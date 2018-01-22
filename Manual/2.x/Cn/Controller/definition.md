@@ -1,12 +1,12 @@
 # 控制器定义
 
-控制器名称空间前缀统一为 `{$APPLICATION_DIR}\Controller`，系统默认的应用命名空间为`App`，默认的控制器路径应位于`App/Controller`目录下，类名与文件名保持大小写一致，并且采用大驼峰法命名（驼峰并首字母大写），所有的控制器都应继承`EasySwoole\Core\Http\AbstractInterface\Controller`类，并且实现`index`方法
+控制器名称空间前缀统一为 `{$APPLICATION_DIR}\HttpController`，系统默认的应用命名空间为`App`，默认的控制器路径应位于`App/HttpController`目录下，类名与文件名保持大小写一致，并且采用大驼峰法命名（驼峰并首字母大写），所有的控制器都应继承`EasySwoole\Core\Http\AbstractInterface\Controller`类，并且实现`index`方法
 
 一个典型的控制器定义如下
-
+Http
 ```php
 <?php
-namespace App\Controller;
+namespace App\HttpController;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 
 class Index extends Controller
@@ -24,7 +24,7 @@ class Index extends Controller
 http://127.0.0.1:9501/index/index
 ```
 
-理论上控制器可以支持无限层级的嵌套，即`Controller`文件夹可以进行无限层级的嵌套，并通过`PATHINFO`模式的URL访问到，详见[ URL解析规则 ](Structure/dispatch.md)章节
+理论上控制器可以支持无限层级的嵌套，即`HttpController`文件夹可以进行无限层级的嵌套，并通过`PATHINFO`模式的URL访问到，详见[ URL解析规则 ](Structure/dispatch.md)章节
 
 > **danger**
 >
