@@ -5,16 +5,4 @@ easySwoole在控制器comtroller中有一个validateParams方法，该方法实�
 
 ### **使用方式：**
 
-在comtroller的子类中使用
-
-```php
-    public function POSTAdd()
-    {
-        $rules = new Rules();
-        $rules->add('field', 'errorMessage')->withRule('EMPTY');
-        $validate = $this
-    }
-  
-    
-```
-
+fff
