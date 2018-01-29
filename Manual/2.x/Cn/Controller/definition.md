@@ -6,7 +6,7 @@
 
 ```php
 <?php
-namespace App\Controller;
+namespace App\HttpController;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 
 class Index extends Controller
