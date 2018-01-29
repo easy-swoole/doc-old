@@ -13,7 +13,7 @@ easySwoole 支持REST风格开发，在实现上，其实是对基础控制器�
 ```php
 <?php
 
-namespace App\Controller;
+namespace App\HttpController;
 
 use EasySwoole\Core\Http\AbstractInterface\REST;
 

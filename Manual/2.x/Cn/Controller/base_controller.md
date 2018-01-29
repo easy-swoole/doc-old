@@ -1,12 +1,12 @@
 # 基础控制器
 
-> EasySwoole\Core\Http\AbstractInterface\Controller
+> EasySwoole\Core\Http\AbstractInterface\HttpController
 
 当一个 WEB 请求抵达 Swoole Server 后，经过框架的分发，首先到达的便是控制器的逻辑，在这里可以编写业务逻辑，对请求进行处理，一个最小化的基础控制器定义代码如下
 
 ```php
 <?php
-namespace App\Controller;
+namespace App\HttpController;
 use EasySwoole\Core\Http\AbstractInterface\Controller;
 
 class Index extends Controller
