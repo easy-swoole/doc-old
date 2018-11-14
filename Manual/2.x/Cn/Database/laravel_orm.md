@@ -2,6 +2,8 @@
 
 使用时请注意长连接的[异常处理](Base/exception.md)，否则会出现 PDO::prepare():MySQL server has gone away
 
+> 注意 : 该库并非为Swoole设计，未对全局变量以及协程等做处理，请不要用于生产环境中，建议使用[PHP-MySQLi-Database-Class](https://github.com/ThingEngineer/PHP-MySQLi-Database-Class)作为数据库访问层！
+
 ### 安装
 
 ```bash
