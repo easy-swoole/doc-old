@@ -3,6 +3,8 @@
 
 > Github : [ThinkORM](https://github.com/top-think/think-orm) - 从ThinkPHP5.1独立出来的数据库ORM类库
 
+> 注意 : 该库并非为Swoole设计，未对全局变量以及协程等做处理，请不要用于生产环境中！
+
 ## 安装
 
 ```bash
