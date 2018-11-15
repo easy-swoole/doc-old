@@ -175,7 +175,7 @@ class Tcp extends Controller
     }
     /*
        * 请调用Test=>who，获取到fd再进行http调用
-       * http://ip:9501/tpc/push/index.html?fd=xxxx
+       * http://ip:9501/tcp/push/index.html?fd=xxxx
        */
     public function push()
     {
