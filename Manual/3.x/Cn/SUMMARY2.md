@@ -56,7 +56,7 @@
         - [组件说明]()
         - [简单使用]()
     - [搜索答案的艺术]()
-    - [提问的艺术]()    
+    - [提问的艺术]()
 - [全局事件](Event/Introduction.md)
     - [initialize](Event/initialize.md)
     - [mainServerCreate](Event/mainServerCreate.md)
