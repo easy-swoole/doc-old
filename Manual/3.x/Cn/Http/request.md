@@ -33,9 +33,13 @@ var_dump($who);
 ### getUploadedFiles()
 该方法用于获取客户端上传的全部文件信息。
 ```php
-$data = $request->getUploadFiles();
+$img_file = $request->getUploadFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
+$data = $request->getUploadFiles();//获取全部上传文件返回包含\EasySwoole\Http\Message\UploadFile对象的数组
 var_dump($data);
+#### \EasySwoole\Http\Message\UploadFile对象:
 ```
+点击查看[UploadFile对象](UploadFile.md)
+
 ### getBody()
 该方法用于获取以非form-data或x-www-form-urlenceded编码格式POST提交的原始数据，相当于PHP中的$HTTP_RAW_POST_DATA。
 

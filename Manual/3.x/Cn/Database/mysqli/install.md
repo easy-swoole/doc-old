@@ -4,7 +4,7 @@
 composer require easyswoole/mysqli
 ```
 
-### 配置
+### 配置参数
 
 ```dotenv
 MYSQL.host = 127.0.0.1   // 数据库地址
@@ -13,6 +13,7 @@ MYSQL.password = root    // 数据库密码
 MYSQL.database = db      // 数据库库名
 MYSQL.port = 3306        // 数据库端口
 ```
+在env配置文件中增加或自行引入
 ### 调用
 ```php
 <?php
