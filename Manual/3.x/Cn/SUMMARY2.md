@@ -12,7 +12,6 @@
         - [php-fpm](noobCourse/RunMode/php-fpm.md)
         - php-cli   
             - [基础介绍](noobCourse/RunMode/php-cli/Introduction.md) 
-            - [常见问题]()
     - [网络协议](noobCourse/NetworkrPotocol/Introduction.md)
         - [ip](noobCourse/NetworkrPotocol/ip.md)
         - tcp
@@ -38,9 +37,12 @@
         - [回调事件](noobCourse/PHP/Callback.md)
         - [闭包/匿名函数](noobCourse/PHP/Closures.md)
     - [php多进程](noobCourse/PHP/Multiprocess/Introduction.md)
-        - [多进程使用]()
-        - [进程通信]()
-        - [进程信号]() 
+        - [多进程开启](noobCourse/PHP/Multiprocess/fork.md)
+        - [进程通信](noobCourse/PHP/Multiprocess/ProcessCommunication.md)
+        - [进程信号](noobCourse/PHP/Multiprocess/ProcessSignal.md)
+        - [僵尸进程](noobCourse/PHP/Multiprocess/ZombieProcess.md)
+        - [孤儿进程](noobCourse/PHP/Multiprocess/OrphanProcess.md)
+        - [守护进程](noobCourse/PHP/Multiprocess/Deamon.md)
     - [阻塞/非阻塞]()
     - [同步/异步]()    
     - [协程]()
