@@ -11,7 +11,7 @@
     - [运行模式](noobCourse/RunMode/Introduction.md)
         - [php-fpm](noobCourse/RunMode/php-fpm.md)
         - php-cli   
-            - [基础介绍](noobCourse/RunMode/php-cli/Introduction.md) 
+            - [基础介绍](noobCourse/RunMode/php-cli/Introduction.md)
     - [网络协议](noobCourse/NetworkrPotocol/Introduction.md)
         - [ip](noobCourse/NetworkrPotocol/ip.md)
         - tcp
@@ -47,6 +47,7 @@
     - [同步/异步]()    
     - [协程]()
     - [Swoole]()
+        - [初识Swoole](noobCourse/Swoole/Start.md)
         - [运行机制]()
         - [生命周期]()
         - [简单使用]()
