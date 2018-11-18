@@ -65,7 +65,7 @@ class Consumer extends AbstractProcess
 ```php
 <?php
 use App\Consumer;
-use \EasySwoole\Core\Swoole\ServerManager;
+use EasySwoole\Core\Swoole\ServerManager;
 
 public static function mainServerCreate(EventRegister $register)
 {
