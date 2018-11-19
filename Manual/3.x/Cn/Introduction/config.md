@@ -116,8 +116,6 @@ DATABASE.password=root
 添加App/Conf/web.php和App/Conf/app.env  
 
 EasySwooleEvent.php文件写法示例:  
-
-
 ```php
 <?php
 /**
@@ -185,8 +183,9 @@ class EasySwooleEvent implements Event
     }
 
 }
-
 ```
+>env文件不支持#特殊字符配置,可通过此方法,引入php文件
+
 ## 生产与开发配置分离
 在php easyswoole start命令下,默认为开发模式,加载dev.env  
 运行 php easyswoole start produce 命令时,为生产模式,加载produce.env
