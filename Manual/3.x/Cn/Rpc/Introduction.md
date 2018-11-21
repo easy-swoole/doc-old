@@ -6,8 +6,10 @@ demo地址:https://github.com/easy-swoole/demo/tree/3.x
  - 服务熔断
  - 服务降级
  - Openssl加密
- - Ip白名单
  - 跨平台，跨语言支持
  
  
- 
+## 安装
+```
+composer require easyswoole/rpc=2.x
+```
