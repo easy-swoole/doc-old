@@ -120,7 +120,7 @@
 - [Rpc组件](Rpc/Introduction.md)
     - [服务端](Rpc/server.md)
     - [客户端](Rpc/client.md)
-    - [无主化自动发现](Rpc/autoFind.md)
+    - [跨语言](Rpc/otherPlatform.md)
     - [服务注册中心](Rpc/registerCenter.md)
 - [Socket](Socket/Introduction.md)
     - [Tcp基础讲解](Socket/Tcp.md)
