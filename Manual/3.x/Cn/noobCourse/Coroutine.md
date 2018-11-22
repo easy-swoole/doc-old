@@ -121,7 +121,7 @@ function task3(){
         Co::sleep(0.001);//挂起当前协程,0.001秒后恢复//相当于切换协程
     }
 }
-$pid1 = go('task1');
+$pid1 = go('task1');//go函数是swoole的开启协程函数,用于开启一个协程
 $pid2 = go('task2');
 $pid3 = go('task3');
 ```
