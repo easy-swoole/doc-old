@@ -56,7 +56,7 @@ php vendor/easyswoole/easyswoole/bin/easyswoole.php install
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole install
+php vendor/bin/easyswoole.php install
 ```
 
 中途没有报错的话，执行：

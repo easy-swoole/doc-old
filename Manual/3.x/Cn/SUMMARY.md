@@ -148,5 +148,6 @@
     - [Trait与单例](Problem/traitSingleTon.md)
     - [Mysql索引降维](Problem/mysqlIndexReduce.md)
     - [跨域处理](Problem/cors.md)
+    - [tp ORM使用问题](Problem/TpORM.md)
 - [教学视频](teach.md)
 - [捐赠](donate.md)
