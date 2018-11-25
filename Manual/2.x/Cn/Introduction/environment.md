@@ -48,8 +48,7 @@ extension=swoole.so
 ```bash
 phpize
 ./configure
-make
-make && install
+make && make  install
 ```
 
 编译完成后，同样需要找到 **php.ini** 文件，在文件的最后面加入以下内容

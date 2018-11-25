@@ -8,7 +8,7 @@ $raw_array = json_decode($content, true);
 举例，如何在控制器中获取客户端IP
 ```
 //真实地址
-$ip = ServerManager::getInstance()->getServer()->connection_info($this->request()->getSwooleRequest()->fd);
+$ip = ServerManager::getInstance()->getSwooleServer()->connection_info($this->request()->getSwooleRequest()->fd);
 var_dump($ip);
 //header 地址，例如经过nginx proxy后
 $ip2 = $this->request()->getHeaders();

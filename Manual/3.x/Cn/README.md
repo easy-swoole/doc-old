@@ -22,7 +22,7 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 ## 入门成本
 
 相比传统的FPM框架来说，EasySwoole是有一点的入门成本的，许多设计理念及和环境均与传统的FPM不同，
-对于长时间使用LAMP（LANP）技术的开发人员来说会有一段时间的适应期，而在众多的Swoole框架中，EasySwoole上手还是比较容易，根据简单的例子和文档几乎立即就能开启EasySwoole的探索之旅。
+对于长时间使用LAMP（LNMP）技术的开发人员来说会有一段时间的适应期，而在众多的Swoole框架中，EasySwoole上手还是比较容易，根据简单的例子和文档几乎立即就能开启EasySwoole的探索之旅。
 
 ## 优势
 

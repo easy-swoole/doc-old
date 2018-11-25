@@ -20,8 +20,8 @@ WebSocket协议是基于TCP的一种新的网络协议。它实现了浏览器�
 ### 握手协议
 ![websocket握手](websocket.jpg)  
 
-首先,浏览器发起一个http协议的websocket握手请求: 
-```http request
+首先,浏览器发起一个http协议的websocket握手请求:  
+```
 GET /websocket/HTTP/1.1
 
 Host: localhost
