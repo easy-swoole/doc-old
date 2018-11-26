@@ -48,7 +48,7 @@
     - [协程](noobCourse/Coroutine.md)
     - [Swoole]()
         - [初识Swoole](noobCourse/Swoole/Start.md)
-        - [运行机制]()
+        - [运行机制](noobCourse/Swoole/RunningMode.md)
         - [生命周期]()
         - [简单使用]()
         - [常见问题]()
