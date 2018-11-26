@@ -2,10 +2,9 @@
 ## CLI独立测试
 ```
 $conf = new \EasySwoole\Rpc\Config();
-$rpc = new \EasySwoole\Rpc\Rpc($conf);
-$conf->setServiceName('serviceName');
 //开启通讯密钥
 //$conf->setAuthKey('123456');
+$rpc = new \EasySwoole\Rpc\Rpc($conf);
 
 //虚拟一个服务节点
 $serviceNode = new \EasySwoole\Rpc\ServiceNode();
