@@ -121,3 +121,104 @@ done
 **如果你运行脚本提示
 > PID file does not exist, please check whether to run in the daemon mode!  
 不必担心， 这个是脚本会先执行php easyswoole stop的缘故(因为你并没有启动easyswoole)**
+
+## 文件扫描式热重启
+
+当运行环境没有扩展或不想依赖脚本进行热重启时，可以新建如下的进程，通过循环扫描文件的最后修改时间，实现热重启
+
+```php
+<?php
+
+namespace App\Process;
+
+use EasySwoole\EasySwoole\ServerManager;
+use EasySwoole\EasySwoole\Swoole\Process\AbstractProcess;
+use EasySwoole\Utility\File;
+use Swoole\Process;
+use Swoole\Table;
+use Swoole\Timer;
+
+/**
+ * 暴力热重载
+ * Class HotReload
+ * @package App\Process
+ */
+class HotReload extends AbstractProcess
+{
+    /** @var \swoole_table $table */
+    protected $table;
+    protected $isReady = false;
+
+    /**
+     * 启动定时器进行循环扫描
+     * @param Process $process
+     */
+    public function run(Process $process)
+    {
+        $this->table = new Table(2048);
+        $this->table->column('mtime', Table::TYPE_INT, 4);
+        $this->table->create();
+        $this->runComparison();
+        Timer::tick(1000, function () {
+            $this->runComparison();
+        });
+    }
+
+    /**
+     * 扫描文件变更
+     */
+    private function runComparison()
+    {
+        $startTime = microtime(true);
+        $doReload = false;
+        $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App');
+        if (isset($files['files'])) {
+            foreach ($files['files'] as $file) {
+                $currentTime = filemtime($file);
+                $inode = fileinode($file);
+                if (!$this->table->exist($inode)) {
+                    $doReload = true;
+                    $this->table->set($inode, ['mtime' => $currentTime]);
+                } else {
+                    $oldTime = $this->table->get($inode)['mtime'];
+                    if ($oldTime != $currentTime) {
+                        $doReload = true;
+                    }
+                    $this->table->set($inode, ['mtime' => $currentTime]);
+                }
+            }
+        }
+        if ($doReload) {
+            $count = $this->table->count();
+            $time = date('Y-m-d H:i:s');
+            $usage = round(microtime(true) - $startTime, 3);
+            if (!$this->isReady == false) {
+                echo "severReload at {$time} use : {$usage} s total: {$count} files\n";
+                ServerManager::getInstance()->getSwooleServer()->reload();
+            } else {
+                echo "hot reload ready at {$time} use : {$usage} s total: {$count} files\n";
+                $this->isReady = true;
+            }
+        }
+    }
+
+    public function onShutDown()
+    {
+        // TODO: Implement onShutDown() method.
+    }
+
+    public function onReceive(string $str)
+    {
+        // TODO: Implement onReceive() method.
+    }
+}
+```
+
+注意将命名空间对应自己的项目文件所在的路径，并在全局事件内注册该进程
+
+```php
+public static function mainServerCreate(EventRegister $register)
+{
+    ServerManager::getInstance()->getSwooleServer()->addProcess((new HotReload('HotReload'))->getProcess());
+}
+```
