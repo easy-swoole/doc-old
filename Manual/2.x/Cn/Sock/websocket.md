@@ -111,9 +111,10 @@ public static function mainServerCreate(ServerManager $server,EventRegister $reg
 </body>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
+    var websocket;
     window.onload = function () {
         var wsServer = 'ws://127.0.0.1:9501';
-        var websocket = new WebSocket(wsServer);
+        websocket = new WebSocket(wsServer);
         websocket.onopen = function (evt) {
             addLine("Connected to WebSocket server.");
         };
