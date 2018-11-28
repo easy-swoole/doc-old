@@ -235,3 +235,81 @@ public function __toString()
 ```php
 public function restore(array $data = [])
 ```
+
+## 字段别名([例子](https://github.com/easy-swoole/demo/tree/3.x/CliExample/splBean.php))
+
+对于前后字段对接以及安全等原因，bean还提供了字段别名的操作。
+
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 18-11-27
+ * Time: 下午2:01
+ */
+
+// 加载库文件
+require_once __DIR__."/../vendor/autoload.php";
+
+class UserBean extends \EasySwoole\Spl\SplBean {
+
+    protected $id;
+    protected $name;
+
+    // 设置字段别名映射
+    function setKeyMapping(): array
+    {
+        return [
+            'id' => 'userId',
+            'name' => 'userName'
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+}
+
+$userBean = new UserBean(['id' => 1, 'name' => 'blank', 'age' => 12]);
+
+var_dump($userBean->toArray());
+/*
+ * 输出结果：
+ * array(2) {
+     ["userId"]=>
+     int(1)
+     ["userName"]=>
+     string(5) "blank"
+   }
+ */
+```
+
