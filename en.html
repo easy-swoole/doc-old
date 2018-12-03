@@ -1,134 +1,222 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="ROBOTS" content="ALL"/>
-    <meta name="MSSmartTagsPreventParsing" content="true" />
-    <meta name="keywords" content="easySwoole|swoole框架|easySwoole文档" />
-    <meta name="description" content="easySwoole框架文档，旨在提供一个高效、快速、优雅的框架给php开发者。" />
-
-    <!-- Favicons -->
-    <meta name="msapplication-TileColor" content="#113228">
-
-    <title>easySwoole|swoole framework|make PHP faster</title>
-
-    <link rel="stylesheet" href="css/main.css">
+    <title>easySwoole|swoole framework|swoole task|swoole project</title>
+    <meta name="keywords" content="eeasySwoole|swoole framework|swoole task|swoole project"/>
+    <meta name="description" content="easySwoole|swoole framework|swoole task|swoole project"/>
+    <link href="https://cdn.bootcss.com/bulma/0.7.1/css/bulma.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/highlight.js/9.10.0/styles/vs.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
 </head>
-
-<body id="homepage" class="homepage">
-
-<div role="banner" id="top">
-    <div class="container">
-        <a class="logo" href="#"><img src="/img/logo.png" width="20px">EasySwoole&nbsp;&nbsp;<span>Simple & Fast</span></a>
-        <div role="navigation">
-            <ul>
-                <li>
-                    <a href="https://github.com/easy-swoole/easyswoole">Git</a>
-                </li>
-                <li>
-                    <a href="/Manual/1.x/En/_book">v1 Doc</a>
-                </li>
-                <li>
-                    <a href="/Manual/2.x/En/_book">v2 Doc</a>
-                </li>
-                <li>
-                    <a href="/index.html">中文</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-
-<div class="copy-banner">
-    <div class="container">
-        <p class="cb-name">EasySwoole</p>
-        <p>
-            <iframe  src="https://ghbtns.com/github-btn.html?user=easy-swoole&repo=easyswoole&type=watch&count=true" width="100px" height="20px" style="border:none;" ></iframe>
-            <iframe  src="https://ghbtns.com/github-btn.html?user=easy-swoole&repo=easyswoole&type=fork&count=true" width="100px" height="20px" style="border:none;"></iframe>
-        </p>
-        <div id='install_info' style="border: solid 1px;width: 390px;text-align: left;border-radius:10px;margin: 0 auto">
-            <p style="font-size: 15px;line-height: 5px;padding: 10px 10px 0 10px;">//Quick Install</p>
-            <p style="font-size: 15px;line-height: 10px;padding: 0px 10px 0px 10px;">bash <(curl https://www.easyswoole.com/installer.sh)</p>
-            <p style="font-size: 15px;line-height: 5px;padding: 10px 10px 0 10px;">//OR</p>
-            <p style="font-size: 15px;line-height: 10px;padding: 0px 10px 10px 10px;">curl https://www.easyswoole.com/installer.php | php</p>
-        </div>
-    </div>
-</div>
-<div id="billboard"></div>
-
-<div class="container sidebar-right">
-    <div role="main">
-        <div class="section">
-            <h1>Intro</h1>
-            <p>
-                EasySwoole is a memory based PHP framework ,which is base on Swoole. EasySwoole is specially designed for API, and eliminates the performance penalty associated with traditional PHP running patterns in process arousal and file loading. And EasySwoole encapsulates Swoole but still keep all the characteristic of Swoole,so that developers can write multi process, asynchronous, highly available application services with minimal learning cost and effort.
-            </p>
-            <h1>The store of swoole and author</h1>
-            <p>
-                In the early of 2015, in order to achieve a multi-process and real-time control crawler with PHP, I started the research of swoole and used it to implement the crawler。I find that Swoole is so convenient and efficient ,what's more , Swoole helps me to achieve a lot of function which is impossible if you use PHP before.  So to improve that PHP is the best language in the world and make everyone benefit from Swoole easily, I wrote EasySwoole and published it for you .
-            </p>
-            <dl class="list-features">
-                <dt><i class="icon icon-bolt"></i>Efficient Develop</dt>
-                <dd>
-                    <p>The extremely streamlined MC design pattern, without any extra burden </p>
-                </dd>
-
-                <dt><i class="icon icon-group"></i>Height Concurrency</dt>
-                <dd>
-                    <p>Support concurrent millions of TCP connections，12000 Qps in the ab base test </p>
-                </dd>
-
-                <dt><i class="icon icon-align-justify"></i> WEB SOCKET/TCP/UDP/UnixSock</dt>
-                <dd>
-                    <p>Support WEB SOCKET, TCP, UDP and mixed protocols and cross protocol communication</p>
-                </dd>
-
-                <dt><i class="icon icon-tasks"></i> Async Task</dt>
-                <dd>
-                    <p>Use custom asynchronous tasks in service, makes heavy and time-consuming tasks async process in server to improve API response speed</p>
-                </dd>
-
-                <dt><i class="icon">T</i> Millisecond Timer</dt>
-                <dd>
-                    <p>Support loop timers and delay timers without crontab</p>
-                </dd>
-
-                <dt><i class="icon">E</i>Event Loop/Process</dt>
-                <dd>
-                    <p>Supports adding custom events, or Process in to server event/process schedule</p>
-                </dd>
-            </dl>
-        </div>
-        <a href="#top" class="backtotop"><i class="icon icon-chevron-up"></i> Back to Top</a>
-    </div>
-
-
-</div>
-
-
-<div role="contentinfo">
-    <div class="footer">
+<body>
+<div class="main">
+    <nav class="navbar">
         <div class="container">
-            <p class="copyright">&copy; 2016-2017 EasySwoole
-            </p>
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="img/easyswoole.png" alt="EASYSWOOLE">
+                </a>
+                <div class="navbar-burger burger" data-target="navbar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="navbar" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="/Manual/3.x/En/_book/">Doc</a>
+                    <a class="navbar-item" href="https://github.com/easy-swoole/demo" target="_blank">Demo</a>
+                    <a class="navbar-item" href="https://github.com/easy-swoole/easyswoole" target="_blank">Git</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?4c8d895ff3b25bddb6fa4185c8651cc3";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-     if(document.body.clientWidth<440)
+    </nav>
+    <section class="hero has-text-centered">
+        <div class="hero-body" style="padding-bottom: 0; padding-top: 1.5rem">
+            <div class="container">
+                <h3 class="hero-headline animated fadeInUp">An Happy Way To Use Swoole</h3>
+                <div class="hero-btn"><a class="btn-blue" id="start" href="/Manual/3.x/En/_book/Introduction/install.html">Getting Start</a></div>
+            </div>
+            <!-- 动画 -->
+            <embed class="image esanimation" src="img/easy.svg" type="image/svg+xml" pluginspage="img/easy.svg"/>
+        </div>
+    </section>
+
+    <!-- 框架特性说明 -->
+    <section class="section" style="padding-top: 1.5rem">
+        <div class="container">
+            <div class="introduction has-text-centered">
+                <h1 class="title">What is Easyswoole</h1>
+                <h2 class="subtitle">
+                    EasySwoole is a distributed, persistent memory PHP framework based on the Swoole extension. It was created specifically for APIs to get rid of the performance penalties associated with process calls and file loading. EasySwoole highly encapsulates the Swoole Server and still maintains the original features of the Swoole server, supports simultaneous monitoring of HTTP, custom TCP, and UDP protocols, allowing developers to write multi-process, asynchronous, and highly available applications with minimal learning cost and effort.
+                </h2>
+            </div>
+            <div class="icons has-text-centered features">
+                <div class="columns">
+                    <div class="column">
+                        <i class="fa fa-fw fa-2x fa-cubes"></i>
+                        <div class="icons-desc">High Performance</div>
+                    </div>
+                    <div class="column">
+                        <i class="fa fa-fw fa-2x fa-cubes"></i>
+                        <div class="icons-desc">Async</div>
+                    </div>
+                    <div class="column">
+                        <i class="fa fa-fw fa-2x fa-cubes"></i>
+                        <div class="icons-desc">Coroutine</div>
+                    </div>
+                    <div class="column">
+                        <i class="fa fa-fw fa-2x fa-cubes"></i>
+                        <div class="icons-desc">Mixed Protocols</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 动态代码块区域 -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="columns is-desktop code-block">
+                <div class="column">
+                    <div class="code-box">
+                        <div class="code-area" id="codebox-1"></div>
+                    </div>
+                </div>
+                <div class="column code-introduction">
+                    <h2>HTTP Controller</h2>
+                    <div class="code-introduction-desc">You can use it easily just like what you use in fpm framework</div>
+                </div>
+            </div>
+            <div class="columns is-desktop code-block">
+                <div class="column">
+                    <div class="code-box">
+                        <div class="code-area" id="codebox-2"></div>
+                    </div>
+                </div>
+                <div class="column code-introduction">
+                    <h2>Async Task</h2>
+                    <div class="code-introduction-desc">You do not need to care about how to achieve an async process but just use it to exec your async task </div>
+                </div>
+            </div>
+
+            <div class="columns is-desktop code-block">
+                <div class="column">
+                    <div class="code-box">
+                        <div class="code-area" id="codebox-4"></div>
+                    </div>
+                </div>
+                <div class="column code-introduction">
+                    <h2>Pool</h2>
+                    <div class="code-introduction-desc">Coroutine pool support,speed up your app</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全局页脚 -->
+    <footer class="footer" style="padding-bottom: 1rem;padding-top: 1rem">
+        <div class="container">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Easyswoole</strong> is power by <strong>yifeng.zhang</strong>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 页面脚本资源 -->
+    <script src="https://cdn.bootcss.com/typed.js/2.0.6/typed.min.js"></script>
+    <script src="https://cdn.staticfile.org/highlight.js/9.10.0/highlight.min.js"></script>
+    <script src="https://cdn.staticfile.org/highlight.js/9.10.0/languages/php.min.js"></script>
+    <script src="css/index.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- 动态代码块模板 -->
+    <pre id="code-template-1" style="display: none">
+class Index extends Controller
+{
+    function index()
     {
-        document.getElementById('install_info').style.width="90%"
+        $params = $this->request()->getRequestParams();
+        var_dump($params);
+        $this->response()->write('hello world');
     }
-</script>
+}
+    </pre>
+    <pre id="code-template-2" style="display: none">
+use EasySwoole\Core\Swoole\Task\TaskManager;
+
+$phone = 'xxx';
+TaskManager::async(function ()use($phone){
+    //do my task
+    $status = sendSms($phone);
+    saveToRedis($phone,$staus);
+});
+$this->response()->write('success');
+    </pre>
+    <pre id="code-template-3" style="display: none">
+class Web extends WebSocketController
+{
+    function delay()
+    {
+        $client = $this->client();
+        TaskManager::async(function ()use($client){
+            Response::response($client,'msg at '.time());
+        });
+    }
+}
+</pre>
+    <pre id="code-template-4" style="display: none">
+$pool = PoolManager::getInstance()->getPool(MysqlPool::class);
+\go(function ()use($pool){
+    $db = $pool->getObj();
+    if($db){
+        $ret = $db->rawQuery('select sleep(1)');
+        $pool->freeObj($db);
+        var_dump('1 finish at '.time());
+    }else{
+        var_dump('db not available');
+    }
+});
+    </pre>
+    <script>
+        window.onload = function () {
+            TypedCode('#codebox-1', 'code-template-1');
+            TypedCode('#codebox-2', 'code-template-2');
+            TypedCode('#codebox-3', 'code-template-3');
+            TypedCode('#codebox-4', 'code-template-4');
+        };
+
+        function addAnim(selector, anim) {
+            $(selector).hover(function () {
+                $(this).addClass(anim);
+            }, function () {
+                $(this).removeClass(anim);
+            }).on('touchstart', function () {
+                $(this).addClass(anim);
+            }).on('touchend', function () {
+                $(this).removeClass(anim);
+            });
+        }
+
+        addAnim('#start', 'animated pulse infinite');
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?4c8d895ff3b25bddb6fa4185c8651cc3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</div>
 </body>
 </html>
