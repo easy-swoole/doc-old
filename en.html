@@ -160,18 +160,6 @@ TaskManager::async(function ()use($phone){
 });
 $this->response()->write('success');
     </pre>
-    <pre id="code-template-3" style="display: none">
-class Web extends WebSocketController
-{
-    function delay()
-    {
-        $client = $this->client();
-        TaskManager::async(function ()use($client){
-            Response::response($client,'msg at '.time());
-        });
-    }
-}
-</pre>
     <pre id="code-template-4" style="display: none">
 $pool = PoolManager::getInstance()->getPool(MysqlPool::class);
 \go(function ()use($pool){
@@ -189,7 +177,6 @@ $pool = PoolManager::getInstance()->getPool(MysqlPool::class);
         window.onload = function () {
             TypedCode('#codebox-1', 'code-template-1');
             TypedCode('#codebox-2', 'code-template-2');
-            TypedCode('#codebox-3', 'code-template-3');
             TypedCode('#codebox-4', 'code-template-4');
         };
 
