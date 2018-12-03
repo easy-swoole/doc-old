@@ -64,4 +64,4 @@ php easyswoole reload all  重启task + worker进程
 相关示例请查看
 
 - [热重载DEMO](https://github.com/easy-swoole/demo/blob/3.x/App/Process/HotReload.php)
-- [热重载实现原理](https://www.easyswoole.com/Manual/3.x/Cn/_book/Othe/HotReload.md)
+- [热重载实现原理](https://www.easyswoole.com/Manual/3.x/Cn/_book/Othe/HotReload.html)
