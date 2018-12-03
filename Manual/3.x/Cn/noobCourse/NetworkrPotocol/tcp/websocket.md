@@ -33,7 +33,7 @@ Sec-WebSocket-Version: 13
 ```
 
 websocket服务器响应:  
-```http response
+```
 HTTP/1.1 101 Switching Protocols
 Upgrade: websocket                #告诉浏览器已经升级到websocket
 Connection: Upgrade               #告诉浏览器已经升级到websocket
