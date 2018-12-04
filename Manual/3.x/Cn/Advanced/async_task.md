@@ -31,7 +31,20 @@ function index()
     });
 });
 ```
+> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的
+> 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
 
+以下的使用方法是错误的:
+```php
+$image = fopen('test.php', 'a');//使用外部资源句柄序列化数据将不存在
+$a=1;//使用外部变量将不存在
+TaskManager::async(function ($image,$a) {
+    var_dump($image);
+    var_dump($a);
+    $this->testFunction();//使用外部对象的引用将出错
+    return true;
+},function () {});
+```
 
 
 ## 投递任务模板类
@@ -87,6 +100,28 @@ function index()
 \EasySwoole\EasySwoole\Swoole\Time\Timer::loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
+```
+ 
+###  使用快速任务模板
+可通过继承`EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface`,增加run方法,即可实现一个任务模板,通过直接投递类名运行任务:
+```php
+<?php
+namespace App\Task;
+use EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface;
+
+class QuickTaskTest implements QuickTaskInterface
+{
+    static function run(\swoole_server $server, int $taskId, int $fromWorkerId)
+    {
+        echo "快速任务模板";
+
+        // TODO: Implement run() method.
+    }
+}
+```
+控制器调用:
+```php
+$result = TaskManager::async(\App\Task\QuickTaskTest::class);
 ```
 
 ## 在自定义进程投递异步任务
