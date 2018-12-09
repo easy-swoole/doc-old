@@ -137,7 +137,7 @@
     - [HTTP中使用protobuf](Othe/Protobuf.md)
     - [队列消费/自定义进程问题](Othe/Process.md)
     - [Redis\Kafka订阅](Othe/RedisSubscribe.md)
-    - [内核优化](Othe/AsyncClient.md)
+    - [内核优化](Kernel/Optimization.md)
     - [服务热重载](Othe/HotReload.md)
     - [更新记录](UpdateLog/Introduction.md)
 - 开发示例
