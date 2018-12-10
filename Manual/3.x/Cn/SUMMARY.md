@@ -1,12 +1,5 @@
 # EasySwoole
 
-- [基础入门](README.md)
-    - [环境要求](Introduction/environment.md)
-    - [框架安装](Introduction/install.md)
-    - [配置文件](Introduction/config.md)
-    - [服务管理](Introduction/server.md)
-    - [开发者必读!!!](Introduction/remind.md)
-    - [核心解读](Introduction/design.md)
 - [新手教程](noobCourse/Introduction.md)
     - [运行模式](noobCourse/RunMode/Introduction.md)
         - [php-fpm](noobCourse/RunMode/php-fpm.md)
@@ -58,82 +51,108 @@
         - [运行过程](noobCourse/EasySwoole/RunSteps.md)
         - [demo](noobCourse/EasySwoole/demo.md)
     - [提问的艺术](noobCourse/ArtOfAskingQuestions.md)
+- [基础入门](README.md)
+    - [环境要求](Introduction/environment.md)
+    - [框架安装](Introduction/install.md)
+    - [配置文件](Introduction/config.md)
+    - [服务管理](Introduction/server.md)
+    - [开发者必读!!!](Introduction/remind.md)
+    - [核心解读](Introduction/design.md)
 - [全局事件](Event/Introduction.md)
     - [initialize](Event/initialize.md)
     - [mainServerCreate](Event/mainServerCreate.md)
     - [onRequest](Event/onRequest.md)
     - [afterRequest](Event/afterRequest.md)
     - [onReceive](Event/onReceive.md)
-- [HTTP组件](Http/intro.md)
-    - [控制器](Http/controller.md)
-    - [URL解析规则](Http/dispatch.md)
-    - [自定义路由](Http/FastRoute.md)
-    - [权限验证](Http/authorization.md)
-    - [Request对象](Http/request.md)
-    - [Response对象](Http/response.md)
-    - [常见问题](Http/problem.md)
-    - [错误与异常拦截](Http/exception.md)
-    - [模板引擎](Http/template.md)
-- 数据库
-    - [mysqli](Database/mysqli/Introduction.md)   
-        - [安装](Database/mysqli/install.md)
-        - [连贯操作](Database/mysqli/continuous_operation.md)
-        - CURD操作
-            - [数据创建](Database/mysqli/curd/create_data.md);
-            - [数据写入](Database/mysqli/curd/insert_data.md);
-            - [数据读取](Database/mysqli/curd/read_data.md);
-            - [数据更新](Database/mysqli/curd/update_data.md);
-            - [数据删除](Database/mysqli/curd/delete_data.md);
-        - [事务](Database/mysqli/Transaction.md)
-        - [其他](Database/mysqli/othe.md)
-- 基础进阶
-    - 协程连接池
-        - [Mysql](CoroutinePool/mysql_pool.md)
-        - [Redis](CoroutinePool/redis_pool.md);
-    - 共享内存
-        - [table_manager](Advanced/ShareMemory/table_manager.md)
-    - [自定义进程](Advanced/process.md)
-    - [异步任务](Advanced/async_task.md)
-    - [定时器](Advanced/timer.md)
-- 系统组件
-    - [Crontab](SystemComponent/crontab.md)
+- 组件与工具
     - [Console](SystemComponent/Console/Introduction.md)
         - [基础功能](SystemComponent/Console/BasicFunction.md)
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
+    - [Crontab](SystemComponent/crontab.md)
+    - [FastCache](SystemComponent/FastCache.md)
+    - Trigger
     - [Logger](SystemComponent/logger.md)
-- 基础组件库
-    - [Di](Component/di.md)
-    - [Invoker](Component/invoker.md)
-- 系统工具
+    - ServerManager
+    - Core
+    - Config
+- 基础进阶
+    - [自定义进程](Advanced/process.md)
+    - [异步任务](Advanced/async_task.md)
+    - [定时器](Advanced/timer.md)
+    - Atomic
+    - Channel
+    - CoChannel
+    - 共享内存
+        - [table_manager](Advanced/ShareMemory/table_manager.md)
+- 组件库
+    - [HTTP组件](Http/intro.md)
+        - [控制器](Http/controller.md)
+        - [URL解析规则](Http/dispatch.md)
+        - [自定义路由](Http/FastRoute.md)
+        - [权限验证](Http/authorization.md)
+        - [Request对象](Http/request.md)
+        - [Response对象](Http/response.md)
+        - [常见问题](Http/problem.md)
+        - [错误与异常拦截](Http/exception.md)
+        - [模板引擎](Http/template.md)       
+    - Component
+        - Singleton
+        - Openssl
+        - [Di](Component/di.md)
+        - Container
+        - [Invoker](Component/invoker.md)
+        - Context
+        - Pool
+            - [Mysql](CoroutinePool/mysql_pool.md)
+            - [Redis](CoroutinePool/redis_pool.md)
+    - Spl
+        - [Array](Spl/array.md)
+        - [Bean](Spl/bean.md)
+        - SplEnum
+        - SplFileStream
+        - SplStream
+        - [String](Spl/string.md)   
+    - [Trace组件](Trace/Introduction.md)
+        - [TrackerManager](Trace/TrackerManager.md)
+        - [Tracker](Trace/Tracker.md)
+    - [Rpc组件](Rpc/Introduction.md)
+        - [服务端](Rpc/server.md)
+        - [客户端](Rpc/client.md)
+        - [跨语言](Rpc/otherPlatform.md)
+        - [服务注册中心](Rpc/registerCenter.md)
+    - [Socket](Socket/Introduction.md)
+        - [Tcp基础讲解](Socket/Tcp.md)
+        - [Websocket](Socket/WebSocket.md)
+        - [Udp](Socket/Udp.md)
+        - [Socket问题](Socket/Problem.md)
+     
+    - [Curl](Curl/curl.md)     
+    - 数据库
+        - [mysqli](Database/mysqli/Introduction.md)   
+            - [安装](Database/mysqli/install.md)
+            - [连贯操作](Database/mysqli/continuous_operation.md)
+            - CURD操作
+                - [数据创建](Database/mysqli/curd/create_data.md);
+                - [数据写入](Database/mysqli/curd/insert_data.md);
+                - [数据读取](Database/mysqli/curd/read_data.md);
+                - [数据更新](Database/mysqli/curd/update_data.md);
+                - [数据删除](Database/mysqli/curd/delete_data.md);
+            - [事务](Database/mysqli/Transaction.md)
+            - [其他](Database/mysqli/othe.md)
     - [Validate](Tools/validate.md)
-    - [File](Tools/file.md)
-    - [Random](Tools/random.md)
-- Spl
-    - [Array](Spl/array.md)
-    - [Bean](Spl/bean.md)
-    - Stream
-    - [String](Spl/string.md)     
-- [Trace组件](Trace/Introduction.md)
-    - [TrackerManager](Trace/TrackerManager.md)
-    - [Tracker](Trace/Tracker.md)
-- [Rpc组件](Rpc/Introduction.md)
-    - [服务端](Rpc/server.md)
-    - [客户端](Rpc/client.md)
-    - [跨语言](Rpc/otherPlatform.md)
-    - [服务注册中心](Rpc/registerCenter.md)
-- [Socket](Socket/Introduction.md)
-    - [Tcp基础讲解](Socket/Tcp.md)
-    - [Websocket](Socket/WebSocket.md)
-    - [Udp](Socket/Udp.md)
-    - [Socket问题](Socket/Problem.md)
-- [Curl](Curl/curl.md)
-- [验证码](Verifycode/Introduction.md)
-    - [配置](Verifycode/Config.md)
-    - [使用](Verifycode/VerifyCode.md)
+    - [验证码](Verifycode/Introduction.md)
+        - [配置](Verifycode/Config.md)
+        - [使用](Verifycode/VerifyCode.md)
+    - 系统工具
+        - ArrayToTextTable
+        - [File](Tools/file.md)
+        - Hash
+        - [Random](Tools/random.md)  
+        - SnowFlake
+        - Str
+        - Time
 - 开发示例
     - [京东爬虫](Example/jd.md)
-    - [微信小程序](Example/miniProgram.md)
-    - [抢红包场景](Example/readPacket.md)
 - 其他
     - [异步客户端](Othe/AsyncClient.md)
     - [错误处理与拦截](Othe/Exception.md)
@@ -143,11 +162,11 @@
     - [Redis\Kafka订阅](Othe/RedisSubscribe.md)
     - [内核优化](Kernel/Optimization.md)
     - [服务热重载](Othe/HotReload.md)
-    - [更新记录](UpdateLog/Introduction.md)
     - [随机生成问题](Problem/random.md)
     - [Trait与单例](Problem/traitSingleTon.md)
     - [Mysql索引降维](Problem/mysqlIndexReduce.md)
     - [跨域处理](Problem/cors.md)
     - [tp ORM使用问题](Problem/TpORM.md)
 - [教学视频](teach.md)
+- [更新记录](UpdateLog/Introduction.md)
 - [捐赠](donate.md)
