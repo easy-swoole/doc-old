@@ -1,6 +1,8 @@
 ## FastCache组件
 EasySwoole FastCache组件通过新开进程,使用SplArray存储,unix sock 高速通信方式,实现了多进程共享数据.
 
+> 该组件为 3.0.8 版本新增，如需要使用，请手动增加 `FAST_CACHE.PROCESS_NUM` 配置项到配置文件里
+
 ### 使用配置:
 ```
 FAST_CACHE.PROCESS_NUM = 1 进程数
