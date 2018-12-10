@@ -130,6 +130,10 @@
 - [验证码](Verifycode/Introduction.md)
     - [配置](Verifycode/Config.md)
     - [使用](Verifycode/VerifyCode.md)
+- 开发示例
+    - [京东爬虫](Example/jd.md)
+    - [微信小程序](Example/miniProgram.md)
+    - [抢红包场景](Example/readPacket.md)
 - 其他
     - [异步客户端](Othe/AsyncClient.md)
     - [错误处理与拦截](Othe/Exception.md)
@@ -140,11 +144,6 @@
     - [内核优化](Kernel/Optimization.md)
     - [服务热重载](Othe/HotReload.md)
     - [更新记录](UpdateLog/Introduction.md)
-- 开发示例
-    - [京东爬虫](Example/jd.md)
-    - [微信小程序](Example/miniProgram.md)
-    - [抢红包场景](Example/readPacket.md)
-- 其他问题
     - [随机生成问题](Problem/random.md)
     - [Trait与单例](Problem/traitSingleTon.md)
     - [Mysql索引降维](Problem/mysqlIndexReduce.md)
