@@ -41,3 +41,17 @@ var_dump($name);
 ```php
 PoolManager::getInstance()->getPool(RedisPool::class)->recycleObj($redis);
 ```
+
+可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:
+```php
+<?php
+try {
+    $result = RedisPool::invoke(function(RedisObject $redis) {
+            $name = $redis->get('name');
+            return $name;
+        });
+    $this->writeJson(Status::CODE_OK, $result);
+} catch (\Throwable $throwable) {
+    $this->writeJson(Status::CODE_BAD_REQUEST, null, $throwable->getMessage());
+}
+```
