@@ -6,7 +6,7 @@
 
 新建文件 `App/Process/HotReload.php` 并添加如下内容，也可以放在其他位置，请对应命名空间
 
-```
+```php
 <?php
 /**
  * Created by PhpStorm.
@@ -144,10 +144,10 @@ class HotReload extends AbstractProcess
 
 添加好后在全局的 `EasySwooleEvent.php` 中，注册该自定义进程
 
-```
+```php
 public static function mainServerCreate(EventRegister $register)
 {
-    $swooleServer = ServerManager::getInstance()->getSwooleServer(); 
+    $swooleServer = ServerManager::getInstance()->getSwooleServer();
     $swooleServer->addProcess((new HotReload('HotReload', ['disableInotify' => false]))->getProcess());
 }
 ```
