@@ -39,3 +39,21 @@ $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj(Config::getI
 ```php
 PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ```
+
+可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:
+```php
+<?php
+try {
+    MysqlPool::invoke(function (MysqlObject $mysqlObject) {
+        $model = new UserModel($mysqlObject);
+        $model->insert(new UserBean($this->request()->getRequestParam()));
+    });
+} catch (\Throwable $throwable) {
+    $this->writeJson(Status::CODE_BAD_REQUEST, null, $throwable->getMessage());
+}catch (PoolEmpty $poolEmpty){
+    $this->writeJson(Status::CODE_BAD_REQUEST, null, '没有链接可用');
+
+}catch (PoolUnRegister $poolUnRegister){
+    $this->writeJson(Status::CODE_BAD_REQUEST, null, '连接池未注册');
+}
+```
