@@ -70,7 +70,7 @@
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
     - [Crontab](SystemComponent/crontab.md)
     - [FastCache](SystemComponent/FastCache.md)
-    - Trigger
+    - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - ServerManager
     - Core
