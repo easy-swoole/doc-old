@@ -79,7 +79,7 @@
     - [自定义进程](Advanced/process.md)
     - [异步任务](Advanced/async_task.md)
     - [定时器](Advanced/timer.md)
-    - Atomic
+    - [Atomic](Advanced/Atomic.md)
     - Channel
     - CoChannel
     - 共享内存
