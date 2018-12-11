@@ -1,5 +1,5 @@
 #EasySwoole 验证码组件  
-EasySwoole提供了独立的验证码组件,地址:https://github.com/easy-swoole/verifyCode,几行代码即可实现输出一个验证码
+EasySwoole提供了独立的[验证码组件](https://github.com/easy-swoole/verifyCode),几行代码即可实现输出一个验证码
 ## composer 安装
 ```
 composer require easyswoole/verifycode
