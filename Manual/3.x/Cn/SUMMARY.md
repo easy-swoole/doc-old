@@ -72,7 +72,7 @@
     - [FastCache](SystemComponent/FastCache.md)
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
-    - ServerManager
+    - [ServerManager](SystemComponent/ServerManager.md)
     - Core
     - Config
 - 基础进阶
