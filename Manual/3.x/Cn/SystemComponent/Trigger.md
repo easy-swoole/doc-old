@@ -1,6 +1,6 @@
 # 触发器
 
-触发器是用来主动触发错误而不中断程序继续执行。
+触发器是用来主动触发错误或者异常而不中断程序继续执行。
 
 ### 用法
 
@@ -12,6 +12,12 @@
 ```php
 public function error($msg, \EasySwoole\Trace\Bean\Location $location = null)
 ```
+
+触发异常：
+
+- \Throwable    `throwable`    异常                           
+
+public function throwable(\Throwable $throwable)
 
 ### [例子](https://github.com/easy-swoole/demo/tree/3.x/CliExample/trigger.php)
 
@@ -26,14 +32,16 @@ public function error($msg, \EasySwoole\Trace\Bean\Location $location = null)
 
 require_once __DIR__."/../vendor/autoload.php";
 
-$l = new \EasySwoole\Trace\Bean\Location();
 $fruit = ['apple', 'orange', 'banana'];
+$l = new \EasySwoole\Trace\Bean\Location();
 $l->setFile(__FILE__);
 $l->setLine(10);
 \EasySwoole\EasySwoole\Trigger::getInstance()->error('Undefined index: key', $l);
+\EasySwoole\EasySwoole\Trigger::getInstance()->throwable(new \Exception("hello easyswoole"));
 var_dump($fruit);
 /**
  * Error at file[/root/develop/demo/CliExample/trigger.php] line[10] message:[Undefined index: key]
+ * Exception at file[/root/develop/demo/CliExample/trigger.php] line[16] message:[hello easyswoole]   
  * array(3) {
  *   [0]=>
  *   string(5) "apple"
