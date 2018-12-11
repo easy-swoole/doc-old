@@ -70,18 +70,18 @@
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
     - [Crontab](SystemComponent/crontab.md)
     - [FastCache](SystemComponent/FastCache.md)
-    - Trigger
+    - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
-    - ServerManager
-    - Core
-    - Config
+    - [ServerManager](SystemComponent/ServerManager.md)
+    - [Core](SystemComponent/Core.md)
+    - [Config](SystemComponent/Config.md)
 - 基础进阶
     - [自定义进程](Advanced/process.md)
     - [异步任务](Advanced/async_task.md)
     - [定时器](Advanced/timer.md)
-    - Atomic
-    - Channel
-    - CoChannel
+    - [Atomic](Advanced/Atomic.md)
+    - [Channel](Advanced/Channel.md)
+    - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
 - 组件库
