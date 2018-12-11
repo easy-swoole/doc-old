@@ -80,8 +80,8 @@
     - [异步任务](Advanced/async_task.md)
     - [定时器](Advanced/timer.md)
     - [Atomic](Advanced/Atomic.md)
-    - Channel
-    - CoChannel
+    - [Channel](Advanced/Channel.md)
+    - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
 - 组件库
