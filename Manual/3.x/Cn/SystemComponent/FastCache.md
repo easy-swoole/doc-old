@@ -46,5 +46,4 @@ var_dump($cache->deQueue('listA'));//出列
 
 ```
 
-
-> FastCache只能在服务启动之后使用,需要有创建unix sock权限
+> FastCache只能在服务启动之后使用,需要有创建unix sock权限(WSL子系统没有sock权限,请换成linux系统或虚拟机,docker等环境)
