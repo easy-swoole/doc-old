@@ -73,7 +73,7 @@
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - Core
+    - [Core](SystemComponent/Core.md)
     - Config
 - 基础进阶
     - [自定义进程](Advanced/process.md)
