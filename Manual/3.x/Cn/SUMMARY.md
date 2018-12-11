@@ -74,7 +74,7 @@
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
     - [Core](SystemComponent/Core.md)
-    - Config
+    - [Config](SystemComponent/Config.md)
 - 基础进阶
     - [自定义进程](Advanced/process.md)
     - [异步任务](Advanced/async_task.md)
