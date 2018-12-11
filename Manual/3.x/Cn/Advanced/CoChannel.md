@@ -12,7 +12,7 @@
 
 创建通道：
 
-- int `capacity`  通道占用的内存的尺寸，单位为字节
+- int `capacity`  通道占用的内存的尺寸，单位为字节，只允许传入正整数
 
 ```php
 public function __construct(int $capacity = 0)
@@ -20,7 +20,9 @@ public function __construct(int $capacity = 0)
 
 向通道写入数据：
 
-- mixed `data` 数据  必须为非空变量，如空字符串、空数组、0、null、false
+- mixed `data` 任意类型的PHP变量，包括匿名函数和资源
+
+> 为避免产生歧义，请勿向通道中写入空数据，如0、false、空字符串、null
 
 ```php
 public function push($data): bool
@@ -35,31 +37,43 @@ function pop()
 获取通道的状态：
 
 ```php
-public function stats()
+public function stats(): array
 ```
+
+该方法返回如下的数组
+
+```
+{
+    consumer_num : 消费者数量，表示当前通道为空，有N个协程正在等待其他协程调用push方法生产数据
+    producer_num : 生产者数量，表示当前通道已满，有N个协程正在等待其他协程调用pop方法消费数据
+    queue_num : 通道中的元素数量
+    queue_bytes : 可能存在, 通道当前占用的内存字节数
+}
+```
+
 
 关闭通道;并唤醒所有等待读写的协程：
 
 ```php
-public function close()
+public function close(): void
 ```
 
 获取通道中的元素数量
 
 ```php
-public function length()
-```
-
-判断当前通道是否已满
-
-```php
-public function isEmpty()
+public function length(): int
 ```
 
 判断当前通道是否为空
 
 ```php
-public function isFull()
+public function isEmpty(): bool
+```
+
+判断当前通道是否已满
+
+```php
+public function isFull(): bool
 ```
 
 通道读写检测
