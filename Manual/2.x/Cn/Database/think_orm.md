@@ -3,6 +3,8 @@
 
 > Github : [ThinkORM](https://github.com/top-think/think-orm) - 从ThinkPHP5.1独立出来的数据库ORM类库
 
+> 注意 : 该库并非为Swoole设计，未对全局变量以及协程等做处理，请不要用于生产环境中，建议使用[PHP-MySQLi-Database-Class](https://github.com/ThingEngineer/PHP-MySQLi-Database-Class)作为数据库访问层！
+
 ## 安装
 
 ```bash
@@ -32,6 +34,12 @@ composer require topthink/think-orm
         'prefix'          => 'db_',
         // 是否需要断线重连
         'break_reconnect' => true,
+        //分页配置
+        'paginate'               => [
+            'type'      => 'bootstrap',
+            'var_page'  => 'page',
+            'list_rows' => 15,
+        ],
       ]
  ]
 ```

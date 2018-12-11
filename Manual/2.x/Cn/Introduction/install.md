@@ -2,8 +2,7 @@
 
 框架使用 `Composer` 作为依赖管理工具，在开始安装框架前，请确保已经按上一章节的要求配置好环境并安装好了`Composer` 工具，在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
 
-> 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程
-
+> 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://laravel-china.org/topics/4484/composer-mirror-use-help) 的安装教程
 
 
 ## 快速安装
@@ -121,6 +120,35 @@ php easyswoole start
 
 中途没有报错的话，框架就安装完成了，此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示框架已经安装成功
 
+## 使用Docker镜像
+
+可以使用docker仓库的镜像 `encircles/easyswoole:latest`
+> 映射本地9501端口, 可以自行修改
+* `docker run -d -p 9501:9501 --name container-name encircles/easyswoole:latest`  
+
+
+
+
+如果docker仓库的镜像不能满足你的开发需求, 可以修改 Dockerfile 来自定义镜像
+
+在 composer.json 添加
+```
+"repositories": [
+    {
+        "type": "composer",
+        "url": "https://packagist.phpcomposer.com"
+    },
+    { "packagist": false }
+]
+```
+
+修改Dockerfile之后, 在当前目录下运行命令
+* `docker build -t yourImageName .`
+
+运行容器
+* `docker run -p 9501:9501 --name container-name yourImageName`
+
+> 如果运行失败, 可以通过 `docker logs containerName` 查看日志
 
 
 ## 关于IDE助手
@@ -135,7 +163,7 @@ composer require easyswoole/swoole-ide-helper
 
 ## 常见问题
 
-###安装后第一次启动 报错协程 ID 只能为 int 或 null 
+###安装后第一次启动 报错协程 ID 只能为 int 或 null
 
 请确保 `swoole` 拓展版本大于 1.9.23 或者是大于 2.1.0，并且使用了easyswoole仓库提供的IDE助手
 

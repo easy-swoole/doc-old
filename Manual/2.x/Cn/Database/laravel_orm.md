@@ -2,6 +2,8 @@
 
 使用时请注意长连接的[异常处理](Base/exception.md)，否则会出现 PDO::prepare():MySQL server has gone away
 
+> 注意 : 该库并非为Swoole设计，未对全局变量以及协程等做处理，请不要用于生产环境中，建议使用[PHP-MySQLi-Database-Class](https://github.com/ThingEngineer/PHP-MySQLi-Database-Class)作为数据库访问层！
+
 ### 安装
 
 ```bash
@@ -37,7 +39,7 @@ composer require illuminate/database
 ```php
 use Illuminate\Database\Capsule\Manager as Capsule;//如果你不喜欢这个名称，as DB;就好 
 // 初始化完成
-function static frameInitialized()
+function static frameInitialize()
 {
     // 初始化数据库
     $dbConf = Config::getInstance()->getConf('database');
@@ -57,6 +59,7 @@ function static frameInitialized()
 数据库初始化完成后即可在控制器内使用，让我们先确认一下Eloquent是否能正常工作
 
 ```php
+use Illuminate\Database\Capsule\Manager as Capsule;
 // 在Index控制器类添加以下方法
 function index()
 {

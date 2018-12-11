@@ -67,33 +67,14 @@ Percentage of the requests served within a certain time (ms)
 ## 其他
 
 - [项目官网主页](http://www.easyswoole.com/)
-- 官方QQ交流群：633921431
+
+- VIP交流群 [579434607](https://jq.qq.com/?_wv=1027&k=5bxu3cG)
+
+- 在线交流群 [633921431](https://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548)
+
 - [文档维护地址](https://github.com/easy-swoole/doc) 
     easySwoole采用gitbook作为文档撰写工具，若您在使用过程中，有发现文档需要纠正/补充。请直接提交在github上。
 
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?4c8d895ff3b25bddb6fa4185c8651cc3";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>    
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
     
     

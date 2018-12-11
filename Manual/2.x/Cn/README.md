@@ -22,7 +22,7 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 ## 入门成本
 
 相比传统的FPM框架来说，EasySwoole是有一点的入门成本的，许多设计理念及和环境均与传统的FPM不同，
-对于长时间使用LAMP（LANP）技术的开发人员来说会有一段时间的适应期，而在众多的Swoole框架中，EasySwoole上手还是比较容易，根据简单的例子和文档几乎立即就能开启EasySwoole的探索之旅。
+对于长时间使用LAMP（LNMP）技术的开发人员来说会有一段时间的适应期，而在众多的Swoole框架中，EasySwoole上手还是比较容易，根据简单的例子和文档几乎立即就能开启EasySwoole的探索之旅。
 
 ## 优势
 
@@ -55,7 +55,7 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 |  PHP   |    7.2     |    ----    |
 | Swoole |   1.9.21   |    ----    |
 
-基准测试在默认的 **Index** 控制器输出 'Hello World' 
+基准测试在默认的 **Index** 控制器输出 'Hello World'
 
 ```php
 <?php
@@ -142,11 +142,13 @@ Percentage of the requests served within a certain time (ms)
 
 - [HTTP基础DEMO](https://github.com/easy-swoole/demo)
 
-- 官方QQ交流群 : **633921431**
+- VIP交流群 [579434607](https://jq.qq.com/?_wv=1027&k=5bxu3cG)
+
+- 在线交流群 [633921431](https://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548)
 
 - [捐赠](https://www.easyswoole.com/Manual/2.x/Cn/_book/donate.html)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
-        
+
   - 持续和深入地开发
   - 文档和社区的建设和维护
 
