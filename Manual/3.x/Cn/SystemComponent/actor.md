@@ -88,4 +88,4 @@ go(function (){
 });
 ```
 
-> 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差
+> 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/easyswoole/tree/3.x/src/Actor
