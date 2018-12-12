@@ -82,8 +82,10 @@ go(function (){
 //        "0001"=>'0001data',
 //        '0022'=>'0022Data'
 //    ]);
+     //广播给全部actor
+    //$ret = ActorManager::getInstance()->actorClient(Room::class)->broadcastPush('121212');
     //退出全部actor
-//    $ret = ActorManager::getInstance()->actorClient(MyActor::class)->exitAll();
+//    $ret = ActorManager::getInstance()->actorClient(RoomActor::class)->exitAll();
     var_dump($ret);
 });
 ```
