@@ -73,6 +73,7 @@
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
+    - [Actor](SystemComponent/actor.md)
     - [Core](SystemComponent/Core.md)
     - [Config](SystemComponent/Config.md)
 - 基础进阶
