@@ -1,33 +1,31 @@
-# 设计解读
-EasySwoole 3 为全新的组件化设计，全协程。
+# Interpretation of design
+Component-based and Coroutine-only
 
-## 代码阅读
+## Code reading
 
 ```
 /bin/easyswoole.php
 ```
-easyswoole 3的入口管理脚本，依旧是easyswoole.php。我们以服务启动为说明，进行设计流程讲解。
+entry script is easyswoole.php. 
 
-### 核心类
-EasySwoole 3 的核心类完整命名空间如下：
+### Core class
+EasySwoole 3 core class namespace is：
 ```
 EasySwoole\EasySwoole\Core
 ```
-它是一个单例类(use EasySwoole\Component\Singleton)，当需要启动服务，执行启动命令：
+It's a singleton(use EasySwoole\Component\Singleton)，if you want to start server，run:
 ```
 php easyswoole start
 ```
-管理脚本做了以下几件事：
-- 环境检查
-- 判断命令参数是否存在produce,如果存在则
-作为生产模式启动
-- 实例化(单例模式)***Core***，执行***Core***中的 ***initialize*** 方法
-- 实例化(单例模式)***Config***，并加载配置文件(根据是否为生产模式引入不同的配置文件)
-- 执行***Core***中的***createServer***方法,并启动服务
+entry script do these:
+- check environment
+- set mode (produce or dev, use produce.env or dev.env)
+- instantiate(singleton)***Core***, and call ***Core::initialize***
+- instantiate(singleton)***Config***, and load config
+- call ***Core::createServer*** to start server.
 
-***Core*** 类的方法列表:
+***Core*** class method list:
 - __construct  
-   实现代码如下:
   ```php
     <?php
     function __construct()
@@ -36,11 +34,10 @@ php easyswoole start
         defined('EASYSWOOLE_ROOT') or define('EASYSWOOLE_ROOT',realpath(getcwd()));
     }
   ```
-  在该函数中,定义了swoole版本以及框架目录
+  define swoole version and framework directory in this method.
   
 
 - setIsDev  
-  实现代码如下:  
   ```php
   <?php
     function setIsDev(bool $isDev)
@@ -49,14 +46,14 @@ php easyswoole start
         return $this;
     }
   ```
-   该函数用于设置框架运行模式(开发/生产),不同模式加载的配置文件不同
+   use dev config
+   
 - initialize  
-  实现代码如下:
   ```php
   <?php
     function initialize()
     {
-        //检查全局文件是否存在.
+        //check file exist or not
         $file = EASYSWOOLE_ROOT . '/EasySwooleEvent.php';
         if(file_exists($file)){
             require_once $file;
@@ -72,13 +69,13 @@ php easyswoole start
         }else{
             die('global event file missing');
         }
-        //执行框架初始化事件
+        //initialize
         EasySwooleEvent::initialize();
-        //加载配置文件
+        //load config
         $this->loadEnv();
-        //临时文件和Log目录初始化
+        //init temp and log directory
         $this->sysDirectoryInit();
-        //注册错误回调
+        //register error handler
         $this->registerErrorHandler();
         return $this;
     }
