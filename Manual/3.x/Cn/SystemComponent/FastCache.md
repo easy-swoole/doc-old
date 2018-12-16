@@ -46,4 +46,8 @@ var_dump($cache->deQueue('listA'));//出列
 
 ```
 
-> FastCache只能在服务启动之后使用,需要有创建unix sock权限(WSL子系统没有sock权限,请换成linux系统或虚拟机,docker等环境)
+> FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发)
+
+### unable to connect to unix:///报错
+该报错是因为系统不支持unix sock或没有权限创建/访问unix sock,请换成换成linux系统或虚拟机,docker等环境
+> 使用虚拟机,docker等方式开发,不能开启共享文件夹使用EasySwoole,如果需要在vm下开发,建议使用sftp上传文件.
