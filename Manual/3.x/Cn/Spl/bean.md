@@ -115,7 +115,7 @@ array(3) {
   protected function initialize()
   {
     // TODO: Implement initialize() method.
-    if(emptye($this->addTime)){
+    if(empty($this->addTime)){
         $this->addTime = time();
     }
   }
