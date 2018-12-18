@@ -68,7 +68,114 @@ php easyswoole start
 
 > 如果第二步的 install 操作报错 请查看上方的报错处理
 
+## Docker镜像
 
+先从镜像库拉取
+
+```bash
+docker pull encircles/easyswoole3:latest
+```
+
+启动一个容器，执行：
+```bash
+# 启动容器
+docker run -d -it -p 9501:9501 --name containerName encircles/easyswoole3:latest
+```
+此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示容器运行成功
+
+> 如果运行容器报错 请查看docker日志 
+
+## Dockerfile
+
+如果镜像满足不了您开发的要求, 这里提供Dockerfile, 您可以自行修改
+
+file: Dockerfile
+```
+FROM php:7.2
+
+LABEL maintainer="encircles@163.com" 
+
+# Version
+ENV PHPREDIS_VERSION 4.0.1
+ENV HIREDIS_VERSION 0.13.3
+ENV SWOOLE_VERSION 4.2.9
+ENV EASYSWOOLE_VERSION 3.x-dev
+
+# Timezone
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone
+
+# Libs
+RUN apt-get update \
+    && apt-get install -y \
+    curl \
+    wget \
+    git \
+    zip \
+    libz-dev \
+    libssl-dev \
+    libnghttp2-dev \
+    libpcre3-dev \
+    && apt-get clean \
+    && apt-get autoremove
+
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer self-update --clean-backups
+
+# PDO extension
+RUN docker-php-ext-install pdo_mysql
+
+# Bcmath extension
+RUN docker-php-ext-install bcmath
+
+# Redis extension
+RUN wget http://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz -O /tmp/redis.tar.tgz \
+    && pecl install /tmp/redis.tar.tgz \
+    && rm -rf /tmp/redis.tar.tgz \
+    && docker-php-ext-enable redis
+
+# Hiredis
+RUN wget https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz -O hiredis.tar.gz \
+    && mkdir -p hiredis \
+    && tar -xf hiredis.tar.gz -C hiredis --strip-components=1 \
+    && rm hiredis.tar.gz \
+    && ( \
+    cd hiredis \
+    && make -j$(nproc) \
+    && make install \
+    && ldconfig \
+    ) \
+    && rm -r hiredis
+
+# Swoole extension
+RUN wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz \
+    && mkdir -p swoole \
+    && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && rm swoole.tar.gz \
+    && ( \
+    cd swoole \
+    && phpize \
+    && ./configure --enable-async-redis --enable-mysqlnd --enable-openssl --enable-http2 \
+    && make -j$(nproc) \
+    && make install \
+    ) \
+    && rm -r swoole \
+    && docker-php-ext-enable swoole
+
+WORKDIR /var/www/code
+
+# Install easyswoole
+RUN cd /var/www/code \
+    && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
+    && php vendor/bin/easyswoole.php install
+
+EXPOSE 80
+
+ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
+```
+> docker build Dockerfile 请自行百度
 
 
 ## Hello World
@@ -166,4 +273,3 @@ project                   项目部署目录
 > 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
 
 > 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件
-
