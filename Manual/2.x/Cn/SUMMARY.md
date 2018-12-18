@@ -73,8 +73,10 @@
     - [抢红包问题](Example/readPacket.md)
     - [聊天室开发](Example/chatRoom.md)
 - 其他问题
+    - [随机生成问题](Problem/random.md)
     - [Trait与单例](Problem/traitSingleTon.md)
     - [Mysql索引降维](Problem/mysqlIndexReduce.md)
+    - [跨域处理](Problem/cors.md)
 - [开源项目案例](example.md)
 - [版本升级细微差异](version.md)
 - [教学视频](teach.md)

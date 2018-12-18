@@ -89,16 +89,32 @@ function index()
 });
 ```
 
+## 自定义进程投递
 
+由于自定义进程的特殊性，不能直接调用Swoole的异步任务相关方法进行异步任务投递，框架已经封装好了相关的方法方便异步任务投递，请看下面的例子
+
+```php
+    public function run(Process $process)
+    {
+        // 直接投递闭包
+        TaskManager::processAsync(function () {
+            echo "process async task run on closure!\n";
+        });
+
+        // 投递任务类
+        $taskClass = new TaskClass('task data');
+        TaskManager::processAsync($taskClass);
+    }
+```
 
 ## 任务并发执行
 
 有时需要同时执行多个异步任务，最典型的例子是数据采集，采集完多个数据后集中进行处理，这时可以进行并发任务投递，底层会将任务逐个进行投递并执行，所有任务执行完后返回一个结果集
 
 ```php
-$tasks[] = function () { sleep(50000); }; // 任务1
+$tasks[] = function () { usleep(50000); }; // 任务1
 $tasks[] = function () { sleep(2); };     // 任务2
-$tasks[] = function () { sleep(50000); }; // 任务3
+$tasks[] = function () { usleep(50000); }; // 任务3
 
 $results = \EasySwoole\Core\Swoole\Task\TaskManager::barrier($tasks, 0.5);
 ```
@@ -137,5 +153,14 @@ static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
  * @return array|bool 每个任务的执行结果
  */
 static function barrier(array $taskList, $timeout = 0.5)
+```
+
+```php
+/**
+ * 异步进程内投递任务
+ * @param array $task 需要执行的异步任务(可以直接投递闭包或任务模板类)
+ * @return bool|string 投递成功 返回整数 $task_id 投递失败 返回 false
+ */
+static function processAsync($task)
 ```
 
