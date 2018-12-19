@@ -1,9 +1,8 @@
 ## Random
+
+> 随机数生成工具类: EasySwoole\Utility\Random
+
 该工具类可用于生成随机验证码,随机字符串等等
-
-#### 命名空间地址
-
-EasySwoole\Utility\Random
 
 #### 方法列表
 
@@ -23,4 +22,3 @@ static function character($length = 6, $alphabet = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNn
 ```php
 static function number(length = 6)
 ```
-

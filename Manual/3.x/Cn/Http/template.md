@@ -1,5 +1,7 @@
 ## 模板引擎集成
 
+> 参考Demo: (think-template)[https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/]
+
 框架秉承高度自由的理念，既可以作为API框架，也可以作为常规的全站框架，开发混合式Web服务，本例介绍了如何集成当下常用的三种模板引擎，为框架集成View层，提供渲染模板视图的能力
 
 |      引擎名称      |           说明           |                   仓库地址                   |                  开发参考手册                  |
@@ -11,7 +13,7 @@
 ## demo
 demo提供了tp-orm的封装:  
 [TpViewController.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/TpViewController.php)  
- [TpView.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/TpViewController.php)
+[TpView.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/TpViewController.php)
 
 ## 引入支持库
 
@@ -156,7 +158,7 @@ abstract class ViewController extends Controller
         $content = ob_get_clean();
         $this->response()->write($content);
     }
-    
+
     /**
      * 模板变量赋值
      * @access public
@@ -263,24 +265,24 @@ class Index extends ViewController
       # mysql.port = 3306
       # MAIN_SERVER.PORT = 80
       # MAIN_SERVER.SETTING.worker_num = 80
-      
+
       ################ defalut config ##################
       SERVER_NAME = EasySwoole
-      
+
       MAIN_SERVER.LISTEN_ADDRESS = 0.0.0.0
       MAIN_SERVER.PORT = 9501
       MAIN_SERVER.SERVER_TYPE = WEB_SERVER ## 可选为 SERVER  WEB_SERVER WEB_SOCKET_SERVER
       MAIN_SERVER.SOCK_TYPE = SWOOLE_TCP  ## 该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
       MAIN_SERVER.RUN_MODEL = SWOOLE_PROCESS
-      
+
       MAIN_SERVER.SETTING.worker_num = 8
       MAIN_SERVER.SETTING.max_request = 5000
       MAIN_SERVER.SETTING.task_worker_num = 8
       MAIN_SERVER.SETTING.task_max_request = 500
       TEMP_DIR = null
       LOG_DIR = null
-      
-      
+
+
       ############## 这里是用户自己的配置 ##################
       ## 加入以下两条配置以返回静态文件
       document_root= EASYSWOOLE_ROOT/Public #静态资源目录  
@@ -325,4 +327,3 @@ server {
    #请开启 proxy_mod proxy_http_mod request_mod
 </IfModule>
 ```
-

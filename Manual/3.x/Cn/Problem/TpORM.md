@@ -4,7 +4,7 @@
 ### 非协程常驻内存模式
 在同步,非协程模式下,一个worker在一个时间内只处理一个请求,到max_request时也将重启进程,可以勉强操作sql,但是以下静态变量会出现问题:
 #### think\Db 静态变量:
-```
+```php
 protected static $config = [];
 //数据库配置,几乎没有影响
 
@@ -36,7 +36,7 @@ protected static $initialized = [];
 //常驻内存下：一个模型只在第一次请求时执行该方法，后续请求不再执行，极有可能会造成bug
 
 protected static $readMaster;
-//是否从主库读取数据 
+//是否从主库读取数据
 //几乎没有影响
 
 ```

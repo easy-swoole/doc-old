@@ -1,10 +1,8 @@
 # Config
 
-Config 它是一个单例类(use EasySwoole\Component\Singleton),完整的命名空间如下：
+> 配置管理类: EasySwoole\EasySwoole\Config
 
-```
-EasySwoole\EasySwoole\Config
-```
+Config 它是一个单例类(use EasySwoole\Component\Singleton)
 
 ### 方法列表如下：
 
@@ -49,7 +47,7 @@ function delDynamicConf($key)
 ```
 
 获取配置信息：
- 
+
 - string  `keyPath`  配置项名称 支持点语法
 
 ```php

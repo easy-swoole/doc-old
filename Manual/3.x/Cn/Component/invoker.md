@@ -3,7 +3,7 @@
 EasySwoole为了让框架支持函数超时处理,封装了一个Invoker。
 
 ## 实现代码
-```
+```php
 <?php
 /**
  * Created by PhpStorm.

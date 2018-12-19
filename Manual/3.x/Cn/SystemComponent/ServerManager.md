@@ -1,10 +1,8 @@
 # ServerManager
 
-ServerManager 它是一个单例类(use EasySwoole\Component\Singleton),完整的命名空间如下：
+> 服务管理类: EasySwoole\EasySwoole\ServerManager
 
-```
-EasySwoole\EasySwoole\ServerManager
-```
+ServerManager 它是一个单例类(use EasySwoole\Component\Singleton)
 
 ### 方法列表如下：
 
@@ -42,7 +40,7 @@ function createSwooleServer($port,$type = self::TYPE_SERVER,$address = '0.0.0.0'
 - array   `setting`        配置
 
 ```php
-public function addServer(string $serverName,int $port,int $type = SWOOLE_TCP,string $listenAddress = '0.0.0.0',array $setting = ["open_eof_check"=>false,]):EventRegister 
+public function addServer(string $serverName,int $port,int $type = SWOOLE_TCP,string $listenAddress = '0.0.0.0',array $setting = ["open_eof_check"=>false,]):EventRegister
 ```
 
 获取事件注册器对象：

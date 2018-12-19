@@ -1,8 +1,6 @@
 ## Validate
 
-#### 命名空间地址
-
-EasySwoole\Validate\Validate
+> 验证器类: EasySwoole\Validate\Validate
 
 #### 方法列表
 

@@ -1,5 +1,6 @@
 # trace组件  
-demo地址 https://github.com/easy-swoole/demo/tree/3.x  
+
+> 参考Demo: [trace组件](https://github.com/easy-swoole/demo/tree/3.x)
 
 es3.x提供了trace代码追踪组件,可在任意位置调用该组件,追踪打印数据,示例:   
 
@@ -7,7 +8,7 @@ es3.x提供了trace代码追踪组件,可在任意位置调用该组件,追踪�
 
 示例:  
 ```php
-<?php 
+<?php
 /**
  * Created by PhpStorm.
  * User: yf

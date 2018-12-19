@@ -1,4 +1,6 @@
-# 单元测试（[demo例子](https://github.com/easy-swoole/demo/tree/3.x/PhpUnit/UserModelTest.php)）
+# 单元测试
+
+> 参考Demo: [单元测试](https://github.com/easy-swoole/demo/tree/3.x/PhpUnit/UserModelTest.php)
 
 单元测试是对单独的代码对象进行测试的过程，比如对函数、类、方法进行测试。如何用EasySwoole框架进行单元测试？
 
@@ -123,5 +125,3 @@ Time: 70 ms, Memory: 4.00MB
 OK (1 test, 2 assertions)
 
 ```
-
-

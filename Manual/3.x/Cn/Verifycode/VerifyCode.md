@@ -1,4 +1,5 @@
 ## 验证码生成
+ 
 ### VerifyCode.php
 VerifyCode验证码操作类,如果不传入Config实例,则自动实例化一个  
 
@@ -7,9 +8,9 @@ VerifyCode验证码操作类,如果不传入Config实例,则自动实例化一�
 $config = new Conf();
 $code = new \EasySwoole\VerifyCode\VerifyCode($config);
 $code->DrawCode();//生成验证码,返回一个Result对象
-``` 
+```
 
-### Result.php 
+### Result.php
 验证码结果类,由VerifyCode验证码操作类调用 DrawCode() 方法时创建并返回  
 
 方法列表:

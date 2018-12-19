@@ -1,6 +1,6 @@
 # Trait与单例
 
-```
+```php
 
 trait A{
     private static $instance;
