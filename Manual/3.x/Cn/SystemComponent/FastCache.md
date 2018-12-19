@@ -50,4 +50,4 @@ var_dump($cache->deQueue('listA'));//出列
 
 ### unable to connect to unix:///报错
 该报错是因为系统不支持unix sock或没有权限创建/访问unix sock,请换成换成linux系统或虚拟机,docker等环境
-> 使用虚拟机,docker等方式开发,不能在共享文件夹使用，因为unixsock 无法在共享目录中正确读写，或者修改EASYSWOOLE的临时目录，把unxisock文件挂载在非共享目录即可.
+> 使用虚拟机,docker等方式开发,不能在共享文件夹使用EasySwoole,如果需要在vm下开发,建议使用sftp上传文件.
