@@ -60,7 +60,6 @@ try {
     $this->writeJson(Status::CODE_BAD_REQUEST, null, '连接池未注册');
 }
 ```
-
 ### 预创建链接
 新增preload方法,可在程序启动后预创建连接,避免在启动时突然大量请求,造成连接来不及创建从而失败的问题.
 示例:
