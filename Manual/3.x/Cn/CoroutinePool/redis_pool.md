@@ -58,3 +58,21 @@ try {
     $this->writeJson(Status::CODE_BAD_REQUEST, null, $throwable->getMessage());
 }
 ```
+### 预创建链接
+新增preload方法,可在程序启动后预创建连接,避免在启动时突然大量请求,造成连接来不及创建从而失败的问题.
+示例:
+在EasySwooleEvent文件,mainServerCreate事件中增加onWorkerStart回调事件中预热启动:
+```php
+//注册onWorkerStart回调事件
+public static function mainServerCreate(EventRegister $register)
+{
+    $register->add($register::onWorkerStart, function (\swoole_server $server, int $workerId) {
+    if ($server->taskworker == false) {
+        PoolManager::getInstance()->getPool(RedisPool::class)->preLoad(1);
+        //PoolManager::getInstance()->getPool(RedisPool::class)->preLoad(预创建数量,必须小于连接池最大数量2);
+    }
+
+    // var_dump('worker:' . $workerId . 'start');
+    });
+}
+```
