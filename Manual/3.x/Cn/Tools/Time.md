@@ -1,4 +1,7 @@
 ## Time
+
+> 时间戳工具类: EasySwoole\Utility\Time
+
 时间戳助手,用法示例:
 ```php
 <?php

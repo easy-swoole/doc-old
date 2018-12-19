@@ -2,7 +2,7 @@
 EasySwoole 自3.0.9开始，提供Actor模式支持，助力游戏行业开发。EasySwoole的Actor采用自定义process作为存储载体，以协程作为最小调度单位，利用协程Channel做mail box,而客户端与process之间的通讯，采用UnixSocket实现。
 
 ## 定义一个Actor
-```
+```php
 namespace App;
 
 
@@ -20,7 +20,7 @@ class Room extends AbstractActor
         // TODO: Implement onExit() method.
         var_dump($this->actorId().' exit ');
     }
-    
+
     /*
     当你的客户端向某个actor推送消息的时候
     */
@@ -46,7 +46,7 @@ class Room extends AbstractActor
 
 ## 注册Actor到服务端中
 在EasySwoole全局的mainServerCreate事件中，我们进行Actor注册（可以注册多种actor）
-```
+```php
 use App\Room;
 use EasySwoole\EasySwoole\Actor\ActorManager;
 
@@ -58,7 +58,7 @@ ActorManager::getInstance()->register(Room::class)
 
 ## 客户端
 以下为单元测试的代码
-```
+```php
 require 'vendor/autoload.php';
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 

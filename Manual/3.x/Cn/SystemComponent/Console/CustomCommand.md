@@ -1,6 +1,8 @@
 ## 自定义命令  
-console组件封装自己的自定义命令,demo地址:https://github.com/easy-swoole/demo/tree/3.x/App/Utility/ConsoleCommand  
 
+> 参考Demo: [Console](https://github.com/easy-swoole/demo/tree/3.x/App/Utility/ConsoleCommand  )
+
+console组件封装自己的自定义命令
 
 ### 代码示例
 我们需要继承\EasySwoole\EasySwoole\Console\CommandInterface接口:
@@ -37,9 +39,9 @@ class Test implements \EasySwoole\EasySwoole\Console\CommandInterface
 
 用法 : Test [arg...]
 
-参数 : 
-  arg 
- 
+参数 :
+  arg
+
 HELP;
 
         return $help;
@@ -66,7 +68,7 @@ HELP;
  |______|  \__,_| |___/  \__, | |_____/    \_/\_/    \___/   \___/  |_|  \___|
                           __/ |
                          |___/
-connect to tcp://127.0.0.1:9000 succeed 
+connect to tcp://127.0.0.1:9000 succeed
 Hello !EasySwoole
 Test tioncico
 你调用的命令为:["tioncico"]
@@ -79,4 +81,3 @@ if (\EasySwoole\EasySwoole\Config::getInstance()->getDynamicConf('CONSOLE.PUSH_L
     \EasySwoole\EasySwoole\Console\TcpService::push('主动推送给控制台');
 }
 ```
-

@@ -1,9 +1,8 @@
 ## ArrayToTextTable
+
+> 数组转表格处理类: EasySwoole\Utility\ArrayToTextTable
+
 该工具类可用于将数组生成表格
-
-#### 命名空间地址
-
-EasySwoole\Utility\ArrayToTextTable
 
 #### 方法列表
 

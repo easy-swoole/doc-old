@@ -1,4 +1,7 @@
 ## Hash
+
+> Hash工具类: EasySwoole\Utility\Hash
+
  用于快速处理哈希密码以及数据完整性校验等场景.
 示例:
 ```php

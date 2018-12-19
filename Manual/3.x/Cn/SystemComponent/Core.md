@@ -1,10 +1,8 @@
 # Core
 
-Core 它是一个单例类(use EasySwoole\Component\Singleton),完整的命名空间如下：
+> 核心类: EasySwoole\EasySwoole\Core
 
-```
-EasySwoole\EasySwoole\Core
-```
+Core 它是一个单例类(use EasySwoole\Component\Singleton)
 
 ### 方法列表:
 
@@ -329,7 +327,7 @@ private function registerDefaultCallBack(\swoole_server $server,string $serverTy
 ```
 
 加载配置文件信息：       
-     
+
 ```php
 private function loadEnv()
 {
@@ -342,5 +340,3 @@ private function loadEnv()
     Config::getInstance()->loadEnv($file);
 }
 ```
-
-    

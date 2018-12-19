@@ -1,4 +1,6 @@
-# 爬虫案例（[京东苹果手机为例子](https://github.com/HeKunTong/easyswoole3_demo)）
+# 爬虫案例
+
+> 参考Demo: [京东苹果手机爬取](https://github.com/HeKunTong/easyswoole3_demo)
 
 ## 采集京东苹果手机任务，也就是链接
 
@@ -169,7 +171,7 @@ class JdGood
         PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($this->db);
     }
 }    
-``` 
+```
 
 采集任务分两步。
 

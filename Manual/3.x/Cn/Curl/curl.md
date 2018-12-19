@@ -1,9 +1,8 @@
 ## Curl
-github地址:https://github.com/easy-swoole/curl
 
-#### 命名空间地址
+> 仓库地址: [Curl](https://github.com/easy-swoole/curl)
 
-EasySwoole\Curl\Request
+> 命名空间: EasySwoole\Curl\Request
 
 #### 方法列表
 
@@ -25,7 +24,7 @@ public function setUrl(string $url):Request
 
 添加Cookie：
 
-- EasySwoole\Curl\Cookie `cookie` 
+- EasySwoole\Curl\Cookie `cookie`
 
 ```php
 public function addCookie(Cookie $cookie):EasySwoole\Curl\Request
@@ -165,17 +164,17 @@ class Curl
   * Date: 18-10-12
   * Time: 上午11:07
   */
- 
+
  namespace App\HttpController;
- 
- 
+
+
  use App\Utility\Curl;
  use EasySwoole\Http\AbstractInterface\REST;
  use EasySwoole\Spl\SplString;
- 
+
  class User extends REST
  {
-     
+
      function GETTest()
      {
          $request = new Curl();
