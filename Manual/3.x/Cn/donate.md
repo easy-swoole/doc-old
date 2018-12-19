@@ -5,6 +5,7 @@
   - 文档和社区的建设和维护
 ## 支付宝
 ![捐赠](Resource/donate.png)
+> 支付宝二维码支持花呗、信用卡分期付款
 ## 微信
 ![捐赠](Resource/wx_donate.png)
 
