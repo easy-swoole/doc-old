@@ -1,6 +1,6 @@
 # 异步任务
 
-> 参考DEMO：[异步任务处理](https://github.com/easy-swoole/demo/tree/3.x/App/HttpController/Task.php)
+> 参考Demo: [异步任务处理](https://github.com/easy-swoole/demo/tree/3.x/App/HttpController/Task.php)
 
 > 异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
 
@@ -101,7 +101,7 @@ function index()
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
 ```
- 
+
 ###  使用快速任务模板
 可通过继承`EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface`,增加run方法,即可实现一个任务模板,通过直接投递类名运行任务:
 ```php
@@ -190,4 +190,3 @@ static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
  */
 static function barrier(array $taskList, $timeout = 0.5)
 ```
-

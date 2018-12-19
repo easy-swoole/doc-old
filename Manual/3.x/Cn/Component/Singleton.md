@@ -1,6 +1,10 @@
 ## Singleton单例
+
+> 参考Demo: [rpcServer](https://github.com/easy-swoole/demo/blob/3.x/App/Rpc/RpcServer.php)
+
 EasySwoole提供了trait写法的单例,只需要在类里面use Singleton;该类即可实现单例模式.
 例如在demo中的[rpcServer](https://github.com/easy-swoole/demo/blob/3.x/App/Rpc/RpcServer.php)中,就使用了单例模式:
+
 ```php
 <?php
 /**

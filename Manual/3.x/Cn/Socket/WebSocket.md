@@ -1,5 +1,7 @@
 # WebSocket控制器
 
+> 参考Demo: [WebSocket](https://github.com/easy-swoole/demo/tree/3.x)
+
 EasySwoole 3.x支持以控制器模式来开发你的代码。
 
 首先，修改项目根目录下配置文件dev.env，修改SERVER_TYPE为:
@@ -542,7 +544,3 @@ server {
 **服务地址输入wss://你上面的域名不加端口号谢谢**
 
 点击开启连接 恭喜你 wss成了
-
-## Demo 示例
-
-参见 https://github.com/easy-swoole/demo/tree/3.x
