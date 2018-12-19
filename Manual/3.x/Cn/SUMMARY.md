@@ -74,11 +74,11 @@
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - [Actor](SystemComponent/actor.md)
+    - [Actor](SystemComponent/Actor.md)
     - [Core](SystemComponent/Core.md)
     - [Config](SystemComponent/Config.md)
 - 基础进阶
-    - [自定义进程](Advanced/process.md)
+    - [自定义进程](Advanced/Process.md)
     - [异步任务](Advanced/async_task.md)
     - [定时器](Advanced/timer.md)
     - [Atomic](Advanced/Atomic.md)

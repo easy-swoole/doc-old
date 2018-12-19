@@ -1,4 +1,7 @@
 ## 雪花算法
+
+> 雪花算法工具类: EasySwoole\Utility\SnowFlake
+
 使用雪花算法生成唯一编号
 示例:
 ```php

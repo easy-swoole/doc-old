@@ -3,7 +3,7 @@
 EasySwoole 默认为通过UDP广播的方式来实现无主化的服务发现。但有些情况，不方便用UDP广播的情况下，那么EasySwoole支持你自定义一个节点管理器，来变更服务发现方式。
 
 ## 例如用Redis来实现
-```
+```php
 
 class RedisRegisterCenter implements \EasySwoole\Rpc\NodeManagerInterface
 {

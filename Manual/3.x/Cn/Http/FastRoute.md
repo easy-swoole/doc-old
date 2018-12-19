@@ -1,8 +1,10 @@
 ##自定义路由
+
+> 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
+
 EasySwoole支持自定义路由,其路由利用[fastRoute](https://github.com/nikic/FastRoute)实现，因此其路由规则与其保持一致，该组件的详细文档请参考 [GitHub文档](https://github.com/nikic/FastRoute/blob/master/README.md)  
 ### 示例代码:  
 新建文件App\HttpController\Router.php:  
-demo地址[Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 ```php
 <?php
 /**
@@ -28,7 +30,7 @@ class Router extends AbstractRouter
         $routeCollector->get('/user','/index.html');
         $routeCollector->get('/test','/Index/test');
         $routeCollector->get('/rpc','/Rpc/index');
-    
+
         $routeCollector->get('/',function (Request $request ,Response $response){
             $response->write('this router index');
         });
@@ -70,7 +72,7 @@ $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
 
 
 
-### fastRoute使用 
+### fastRoute使用
 
 addRoute方法
 ------

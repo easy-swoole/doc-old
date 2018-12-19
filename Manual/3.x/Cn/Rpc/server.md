@@ -1,6 +1,6 @@
 # 服务端
 ## 独立使用代码
-```
+```php
 use EasySwoole\Rpc\RequestPackage;
 use EasySwoole\Rpc\Config;
 use EasySwoole\Rpc\Response;

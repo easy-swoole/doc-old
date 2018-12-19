@@ -1,6 +1,6 @@
 # 客户端
 ## CLI独立测试
-```
+```php
 $conf = new \EasySwoole\Rpc\Config();
 //开启通讯密钥
 //$conf->setAuthKey('123456');

@@ -1,7 +1,7 @@
 
 # 自定义进程实现redis订阅
 ## 实现代码
-```
+```php
 <?php
 /**
  * Created by PhpStorm.

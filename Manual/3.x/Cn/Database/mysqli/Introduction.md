@@ -1,5 +1,8 @@
 ## EasySwoole-Mysqli
-EasySwoole提供了mysqli的组件,github地址:https://github.com/easy-swoole/mysqli
+
+> 仓库地址: [EasySwoole-Mysqli](https://github.com/easy-swoole/mysqli)
+
+EasySwoole提供了mysqli的组件
 该组件是由mysqli-db更改为swoole的异步mysql扩展封装的数据库操作类
 
 ### 说明

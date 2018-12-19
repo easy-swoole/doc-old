@@ -1,8 +1,6 @@
 ## File
 
-#### 命名空间地址
-
-EasySwoole\Utility\File
+> 文件管理类: EasySwoole\Utility\File
 
 #### 方法列表
 

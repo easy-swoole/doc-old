@@ -1,4 +1,7 @@
 ## Str
+
+> 字符串工具类: EasySwoole\Utility\Str
+
 Str字符串助手,使用示例:
 ```php
 <?php
