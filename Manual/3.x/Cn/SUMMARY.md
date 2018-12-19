@@ -56,6 +56,7 @@
     - [框架安装](Introduction/install.md)
     - [配置文件](Introduction/config.md)
     - [服务管理](Introduction/server.md)
+    - [反向代理](Introduction/proxy.md)
     - [开发者必读!!!](Introduction/remind.md)
     - [核心解读](Introduction/design.md)
 - [全局事件](Event/Introduction.md)

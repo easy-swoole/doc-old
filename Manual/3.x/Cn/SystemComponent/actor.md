@@ -91,3 +91,11 @@ go(function (){
 ```
 
 > 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/easyswoole/tree/3.x/src/Actor
+
+
+> FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发)
+
+### unable to connect to unix:///报错
+该报错是因为系统不支持unix sock或没有权限创建或者是访问unix sock,请换成换成linux系统或虚拟机,docker等环境
+
+> 使用虚拟机,docker等方式开发,不能在共享文件夹使用，因为unixsock 无法在共享目录中正确读写，或者修改EASYSWOOLE的临时目录，把unxisock文件挂载在非共享目录即可.
