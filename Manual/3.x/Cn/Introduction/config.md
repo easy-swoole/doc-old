@@ -7,7 +7,7 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
 框架安装完成后系统默认的全局配置文件是项目根目录下的 `dev.env`,`produce.env` 文件，
 文件内容如下:
 
-```env
+```ini
 # eg:
 # mysql.port = 3306
 # MAIN_SERVER.PORT = 80
@@ -82,7 +82,7 @@ $instance->load($conf);
 
 每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
 
-```env
+```ini
 # eg:
 # mysql.port = 3306
 # MAIN_SERVER.PORT = 80

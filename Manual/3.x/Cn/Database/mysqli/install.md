@@ -6,7 +6,7 @@ composer require easyswoole/mysqli
 
 ### 配置参数
 
-```dotenv
+```ini
 MYSQL.host = 127.0.0.1   // 数据库地址
 MYSQL.user = root        // 数据库用户名   
 MYSQL.password = root    // 数据库密码
