@@ -57,6 +57,7 @@
     - [生命周期](Introduction/lifecycle.md)
     - [配置文件](Introduction/config.md)
     - [服务管理](Introduction/server.md)
+    - [反向代理](Introduction/proxy.md)
     - [开发者必读!!!](Introduction/remind.md)
     - [核心解读](Introduction/design.md)
 - [全局事件](Event/Introduction.md)
@@ -71,18 +72,19 @@
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
     - [Crontab](SystemComponent/crontab.md)
     - [FastCache](SystemComponent/FastCache.md)
-    - Trigger
+    - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
-    - ServerManager
-    - Core
-    - Config
+    - [ServerManager](SystemComponent/ServerManager.md)
+    - [Actor](SystemComponent/Actor.md)
+    - [Core](SystemComponent/Core.md)
+    - [Config](SystemComponent/Config.md)
 - 基础进阶
-    - [自定义进程](Advanced/process.md)
+    - [自定义进程](Advanced/Process.md)
     - [异步任务](Advanced/async_task.md)
     - [定时器](Advanced/timer.md)
-    - Atomic
-    - Channel
-    - CoChannel
+    - [Atomic](Advanced/Atomic.md)
+    - [Channel](Advanced/Channel.md)
+    - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
 - 组件库
@@ -97,21 +99,21 @@
         - [错误与异常拦截](Http/exception.md)
         - [模板引擎](Http/template.md)       
     - Component
-        - Singleton
-        - Openssl
+        - [Singleton](Component/Singleton.md)
+        - [Openssl](Component/Openssl.md)
         - [Di](Component/di.md)
-        - Container
+        - [Container](Component/Container.md)
         - [Invoker](Component/invoker.md)
-        - Context
+        - [Context](Component/Context.md)
         - Pool
             - [Mysql](CoroutinePool/mysql_pool.md)
             - [Redis](CoroutinePool/redis_pool.md)
     - Spl
         - [Array](Spl/array.md)
         - [Bean](Spl/bean.md)
-        - SplEnum
-        - SplFileStream
-        - SplStream
+        - [SplEnum](Spl/SplEnum.md)
+        - [SplStream](Spl/SplStream.md)
+        - [SplFileStream](Spl/SplFileStream.md)
         - [String](Spl/string.md)   
     - [Trace组件](Trace/Introduction.md)
         - [TrackerManager](Trace/TrackerManager.md)
@@ -138,19 +140,19 @@
                 - [数据更新](Database/mysqli/curd/update_data.md);
                 - [数据删除](Database/mysqli/curd/delete_data.md);
             - [事务](Database/mysqli/Transaction.md)
-            - [其他](Database/mysqli/othe.md)
+            - [其他](Database/mysqli/other.md)
     - [Validate](Tools/validate.md)
     - [验证码](Verifycode/Introduction.md)
         - [配置](Verifycode/Config.md)
         - [使用](Verifycode/VerifyCode.md)
     - 系统工具
-        - ArrayToTextTable
+        - [ArrayToTextTable](Tools/ArrayToTextTable.md)
         - [File](Tools/file.md)
-        - Hash
+        - [Hash](Tools/Hash.md)
         - [Random](Tools/random.md)  
-        - SnowFlake
-        - Str
-        - Time
+        - [SnowFlake](Tools/SnowFlake.md)
+        - [Str](Tools/Str.md)
+        - [Time]()
 - 开发示例
     - [京东爬虫](Example/jd.md)
 - 其他
@@ -167,6 +169,7 @@
     - [Mysql索引降维](Problem/mysqlIndexReduce.md)
     - [跨域处理](Problem/cors.md)
     - [tp ORM使用问题](Problem/TpORM.md)
-- [教学视频](teach.md)
 - [更新记录](UpdateLog/Introduction.md)
+- [项目案例](Case/case.md)
+- [Demo](demo.md)
 - [捐赠](donate.md)

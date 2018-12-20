@@ -34,7 +34,7 @@ LOG_DIR = null
 各项目的配置含义如下
 
 - **MAIN_SERVER**  -  默认Server配置
-  - **LISTEN_ADDRESS**  -  默认Server监听的地址
+  - **LISTEN_ADDRESS**  -  默认Server监听的地址**(3.0.7以前 为 HOST)**
   - **PORT**  -  默认Server监听的端口
   - **SERVER_TYPE**  -  默认Server的类型
   - **SOCK_TYPE**  -  默认Server的Sock类型（ 仅 SERVER_TYPE 配置为 SERVER 时有效 ）
@@ -46,6 +46,8 @@ LOG_DIR = null
     - **max_request**  -  worker 完成该数量的请求后将退出，防止内存溢出
 - **TEMP_DIR**  -  临时文件存放的目录
 - **LOG_DIR**  -  日志文件存放的目录
+
+> **配置文件注释必须使用 `#` 如果使用 `//` 会无法正常读取**
 
 ## 配置操作类
 
@@ -189,7 +191,7 @@ class EasySwooleEvent implements Event
 ## 生产与开发配置分离
 在php easyswoole start命令下,默认为开发模式,加载dev.env  
 运行 php easyswoole start produce 命令时,为生产模式,加载produce.env
- 
+
 
 ## DI注入配置
 es3.x提供了几个Di参数配置,可自定义配置脚本错误异常处理回调,控制器命名空间,最大解析层级等
