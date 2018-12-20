@@ -44,7 +44,7 @@ server {
 }
 ```
 # HTTP 状态码总为500
-自 swoole **1.10.x** 和 **2.1.x** 版本存起，未执行http server回调中，若未执行response->end(),则全部返回500状态码
+自 swoole **1.10.x** 和 **2.1.x** 版本起，执行http server回调中，若未执行response->end(),则全部返回500状态码
 
 # 如何setCookie  
 调用response对象的setCookie方法即可设置cookie
