@@ -69,7 +69,7 @@ public static function mainServerCreate(EventRegister $register)
     $register->add($register::onWorkerStart, function (\swoole_server $server, int $workerId) {
     if ($server->taskworker == false) {
         PoolManager::getInstance()->getPool(RedisPool::class)->preLoad(1);
-        //PoolManager::getInstance()->getPool(RedisPool::class)->preLoad(预创建数量,必须小于连接池最大数量2);
+        //PoolManager::getInstance()->getPool(RedisPool::class)->preLoad(预创建数量,必须小于连接池最大数量);
     }
 
     // var_dump('worker:' . $workerId . 'start');
