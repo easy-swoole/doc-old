@@ -49,7 +49,7 @@
         - [设计理念](noobCourse/EasySwoole/DesignIdea.md)
         - [组件说明](noobCourse/EasySwoole/Section.md)
         - [运行过程](noobCourse/EasySwoole/RunSteps.md)
-        - [demo](noobCourse/EasySwoole/demo.md)
+        - [demo](noobCourse/EasySwoole/Demo.md)
     - [提问的艺术](noobCourse/ArtOfAskingQuestions.md)
 - [基础入门](README.md)
     - [环境要求](Introduction/environment.md)

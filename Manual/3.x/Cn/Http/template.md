@@ -285,8 +285,8 @@ class Index extends ViewController
 
       ############## 这里是用户自己的配置 ##################
       ## 加入以下两条配置以返回静态文件
-      document_root= EASYSWOOLE_ROOT/Public #静态资源目录  
-      enable_static_handler = true
+      MAIN_SERVER.SETTING.enable_static_handler = true
+      MAIN_SERVER.SETTING.document_root = EASYSWOOLE_ROOT/Static #静态资源目录  
 ```
 
 > 注意静态资源目录需要提前新建好 改为自己的目录 **！！！不要直接复制！！！**
