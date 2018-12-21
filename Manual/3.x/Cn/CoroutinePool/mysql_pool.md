@@ -6,7 +6,7 @@ demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.p
 
 ### 添加数据库配置
 在env中添加配置信息：
-```dotenv
+```ini
 ################ DATABASE CONFIG ##################
 
 MYSQL.host = 127.0.0.1          // 数据库地址

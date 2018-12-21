@@ -6,7 +6,7 @@ demo中有封装好的redis连接池以及redis类，复制demo中的RedisPool.p
 
 ### 添加数据库配置
 在env中添加配置信息：
-```dotenv
+```ini
 ################ REDIS CONFIG ##################
 
 REDIS.host = 127.0.0.1

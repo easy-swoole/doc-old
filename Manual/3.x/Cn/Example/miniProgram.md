@@ -448,7 +448,7 @@ class Tools{
 在配置文件中增加加密解密使用的密钥
 
 
-```dotenv
+```ini
 ENCRYPT.key = aaa
 ENCRYPT.iv = xxxxxxxx       ## 注意iv必须是16位的字符串不要多了少了
 ```
@@ -591,7 +591,7 @@ composer require joshcam/mysqli-database-class:dev-master
 
 接下来对配置文件进行扩充，需要增加 Mysql 的配置文件：
 
-```dotenv
+```ini
 MYSQL.host = 127.0.0.1
 MYSQL.username = root
 MYSQL.password = 

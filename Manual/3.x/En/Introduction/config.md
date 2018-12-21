@@ -7,7 +7,7 @@ EasySwoole provides a very flexible and free global configuration function. The 
 After the framework is installed, the system default global configuration file is the `dev.env`, `produce.env` file in the project root directory.
 The file contents are as follows:
 
-```env
+```
 # eg:
 # mysql.port = 3306
 # MAIN_SERVER.PORT = 80
@@ -65,7 +65,7 @@ $instance->load($conf);
 
 You can add it in config file
 
-```env
+```ini
 # eg:
 # mysql.port = 3306
 # MAIN_SERVER.PORT = 80
