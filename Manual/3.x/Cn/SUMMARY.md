@@ -151,7 +151,7 @@
         - [Random](Tools/random.md)  
         - [SnowFlake](Tools/SnowFlake.md)
         - [Str](Tools/Str.md)
-        - [Time]()
+        - [Time](Tools/Time.md)
 - 开发示例
     - [京东爬虫](Example/jd.md)
 - 其他
