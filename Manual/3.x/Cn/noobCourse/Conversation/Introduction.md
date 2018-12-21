@@ -2,8 +2,9 @@
 在[http协议](../NetworkrPotocol/tcp/http.md)中,我们了解到了,http每次请求都是握手/挥手,第二次和第一次请求时没有任何关联的,属于无状态协议,那么问题来了,既然http是无状态协议,那服务器是怎么区分不同的用户的呢?,这就是会话了  
 
 ### 基础讲解
-服务器能区分用户的原理主要就是在于会话,每次发起http请求时,都附加上一条身份识别数据,例如下面这个http请求头:  
-```http request
+服务器能区分用户的原理主要就是在于会话,每次发起http请求时,都附加上一条身份识别数据,例如下面这个http请求头:   
+
+```
 GET / HTTP/1.1
 Host: www.easyswoole.com
 Connection: keep-alive
