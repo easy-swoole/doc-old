@@ -38,7 +38,7 @@ $data = $request->getUploadFiles();//获取全部上传文件返回包含\EasySw
 var_dump($data);
 #### \EasySwoole\Http\Message\UploadFile对象:
 ```
-点击查看[UploadFile对象](UploadFile.md)
+点击查看[UploadFile对象](./UploadFile.md)
 
 ### getBody()
 该方法用于获取以非form-data或x-www-form-urlenceded编码格式POST提交的原始数据，相当于PHP中的$HTTP_RAW_POST_DATA。
