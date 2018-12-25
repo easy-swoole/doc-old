@@ -146,6 +146,9 @@
     - [验证码](Verifycode/Introduction.md)
         - [配置](Verifycode/Config.md)
         - [使用](Verifycode/VerifyCode.md)
+    - [协程HTTPClient](CoroutineHttpClient/Introduction.md)
+        - [请求](CoroutineHttpClient/Request.md)
+        - [响应](CoroutineHttpClient/Response.md)
     - 系统工具
         - [ArrayToTextTable](Tools/ArrayToTextTable.md)
         - [File](Tools/file.md)
