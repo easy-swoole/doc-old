@@ -48,7 +48,7 @@
 而此刻，一个问题就是，在swoole中，如何推送给一个用户信息，那么是以$server->push($fd，message)的形式，单机下，这个fd是不会重复的，为一个非常大的自增整数，而如果在多机器的情况下，那么就可能，
 A、B用户分别连接到A1,B1这两台机器，而且此时，刚好，A,B两个人分配到的fd可能都是相同的，例如，都是1。因此如果此刻想给A或者B下发消息，就会存在问题。因此，一个做法，那么就是在用户与机器建立连接的时候，记录
 userId=>[serverId,serverFd] 这样的映射关系到数据中心。若此时，想给任意一个用户发消息，那么就去数据中心查询得到[serverId,serverFd],通过serverId,你可以获取得到目标服务器的ip地址或者通讯方式，比如，我们就是有一个HTTP服务用于接受消息推送请求，
-那么你就可以post [serverFd,message]到目标机器接口，有目标机器执行$server->push($fd，message)。
+那么你就可以post [serverFd,message]到目标机器接口，由目标机器执行$server->push($fd，message)。
 
 ## 其他
 ### EasySwoole支持分布式吗
