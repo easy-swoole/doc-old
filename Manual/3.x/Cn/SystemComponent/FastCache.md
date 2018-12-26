@@ -46,6 +46,39 @@ var_dump($cache->deQueue('listA'));//出列
 
 ```
 
+### 落地重启恢复方案
+FastCache提供了3个方法,用于数据落地以及重启恢复,在`EasySwooleEvent.php`中的`mainServerCreate`回调事件中设置以下方法:
+```php
+<?php
+Cache::getInstance()->__setTickInterval(5 * 1000);//设置定时频率
+Cache::getInstance()->__setTickCall(function (CacheProcess $cacheProcess) {
+    $data = [
+        'data'  => $cacheProcess->getSplArray(),
+        'queue' => $cacheProcess->getQueueArray()
+    ];
+    $path = EASYSWOOLE_ROOT . '/Temp/' . $cacheProcess->getProcessName();
+    File::createFile($path,serialize($data));//每隔5秒将数据存回文件
+});
+Cache::getInstance()->__setOnStart(function (CacheProcess $cacheProcess) {
+    $path = EASYSWOOLE_ROOT . '/Temp/' . $cacheProcess->getProcessName();
+    if(is_file($path)){
+        $data = unserialize(file_get_contents($path));
+        $cacheProcess->setQueueArray($data['queue']);
+        $cacheProcess->setSplArray($data['data']);
+    }//启动时将存回的文件重新写入
+});
+Cache::getInstance()->__setOnShutdown(function (CacheProcess $cacheProcess) {
+    $data = [
+        'data'  => $cacheProcess->getSplArray(),
+        'queue' => $cacheProcess->getQueueArray()
+    ];
+    $path = EASYSWOOLE_ROOT . '/Temp/' . $cacheProcess->getProcessName();
+    File::createFile($path,serialize($data));//在守护进程时,php easyswoole stop 时会调用,落地数据
+});
+
+```
+
+
 > FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发)
 
 ### unable to connect to unix:///报错

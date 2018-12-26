@@ -349,3 +349,12 @@ public static function mainServerCreate(EventRegister $register)
 
 > 当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
 
+### \PoolNumError: pool num setting of 
+该错误是因为PoolConf的$maxObjectNum(连接池最大连接数)配置比$minObjectNum(连接池最小连接数,默认5)少.例如:
+```php
+    // 注册mysql数据库连接池
+    PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
+    // 注册redis连接池
+    PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
+```
+                 
