@@ -201,8 +201,8 @@ public static function mainServerCreate(EventRegister $register): void
 namespace App\HttpController;
 
 
-use EasySwoole\Core\Http\AbstractInterface\Controller;
-use EasySwoole\Core\Swoole\ServerManager;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\EasySwoole\ServerManager;
 
 class WebSocketTest extends Controller
 {

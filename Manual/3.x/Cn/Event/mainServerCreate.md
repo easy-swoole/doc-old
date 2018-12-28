@@ -27,7 +27,7 @@ $register->add($register::onWorkerStart,function (\swoole_server $server,int $wo
 ```php
  ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
-> Test 是一个EasySwoole\Core\Swoole\Process\AbstractProcess子类
+> Test 是 `EasySwoole\EasySwoole\Swoole\Process\AbstractProcess` 抽象类的子类
 
 ### 添加一个子服务监听
 ```php
