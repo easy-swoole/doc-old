@@ -13,12 +13,12 @@
 namespace App\Process;
 
 
-use EasySwoole\EasySwoole\Swoole\Process\AbstractProcess;
+use EasySwoole\Component\Process\AbstractProcess;
 use Swoole\Process;
 
 class Subscribe extends AbstractProcess
 {
-    public function run(Process $process)
+    public function run($arg)
     {
         // TODO: Implement run() method.
         $redis = new \Redis();//此处为伪代码，请自己建立连接或者维护

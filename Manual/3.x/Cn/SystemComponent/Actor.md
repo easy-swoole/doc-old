@@ -6,7 +6,7 @@ EasySwoole 自3.0.9开始，提供Actor模式支持，助力游戏行业开发�
 namespace App;
 
 
-use EasySwoole\EasySwoole\Actor\AbstractActor;
+use EasySwoole\Actor\AbstractActor;
 
 class Room extends AbstractActor
 {
@@ -48,7 +48,7 @@ class Room extends AbstractActor
 在EasySwoole全局的mainServerCreate事件中，我们进行Actor注册（可以注册多种actor）
 ```php
 use App\Room;
-use EasySwoole\EasySwoole\Actor\ActorManager;
+use EasySwoole\Actor\ActorManager;
 
 ActorManager::getInstance()->register(Room::class)
 ->setActorProcessNum(3)//设置保存actor的进程数目
@@ -63,7 +63,7 @@ require 'vendor/autoload.php';
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 
 
-use EasySwoole\EasySwoole\Actor\ActorManager;
+use EasySwoole\Actor\ActorManager;
 use App\Room;
 go(function (){
     //模拟注册Actor ,若在整个easySwoole服务中，客户端不必重复注册，因为已经在全局事件中注册了

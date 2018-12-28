@@ -13,13 +13,13 @@
 
 namespace App\Process;
 
-use EasySwoole\EasySwoole\Swoole\Process\AbstractProcess;
+use EasySwoole\Component\Process\AbstractProcess;
 use Swoole\Process;
 
 class Consumer extends AbstractProcess
 {
     private $isRun = false;
-    public function run(Process $process)
+    public function run($arg)
     {
         // TODO: Implement run() method.
         /*

@@ -25,7 +25,7 @@ function index()
 }
 
 // 在定时器中投递的例子
-\EasySwoole\EasySwoole\Swoole\Time\Timer::loop(1000, function () {
+\EasySwoole\Component\Timer::loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
         echo "执行异步任务...\n";
     });
@@ -97,7 +97,7 @@ function index()
 }
 
 // 在定时器中投递的例子
-\EasySwoole\EasySwoole\Swoole\Time\Timer::loop(1000, function () {
+\EasySwoole\Component\Timer::loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
 ```
