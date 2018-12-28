@@ -2,12 +2,12 @@
 
 > 参考Demo: [自定义进程](https://github.com/easy-swoole/demo/tree/3.x)
 
-> 自定义进程抽象类：EasySwoole\EasySwoole\Swoole\Process\AbstractProcess
+> 自定义进程抽象类：EasySwoole\Component\Process\AbstractProcess
 
 EasySwoole中支持添加用户自定义的swoole process。  
 
 ## 抽象父类
-> 任何的自定义进程，都应该继承自EasySwoole\EasySwoole\Swoole\Process\AbstractProcess
+> 任何的自定义进程，都应该继承自EasySwoole\Component\Process\AbstractProcess
 
 **AbstractProcess实现代码如下：**
 ```php
@@ -15,29 +15,25 @@ EasySwoole中支持添加用户自定义的swoole process。
 /**
  * Created by PhpStorm.
  * User: yf
- * Date: 2018/7/29
- * Time: 下午3:37
+ * Date: 2018-12-27
+ * Time: 01:41
  */
 
-namespace EasySwoole\EasySwoole\Swoole\Process;
-
-
-use EasySwoole\EasySwoole\Swoole\Time\Timer;
+namespace EasySwoole\Component\Process;
+use EasySwoole\Component\Timer;
 use Swoole\Process;
 
 abstract class AbstractProcess
 {
     private $swooleProcess;
     private $processName;
-    private $async = null;
-    private $args = [];
+    private $arg;
 
-    final function __construct(string $processName,array $args = [],$async = true)
+    final function __construct(string $processName,$arg = null)
     {
-        $this->async = $async;
-        $this->args = $args;
+        $this->arg = $arg;
         $this->processName = $processName;
-        $this->swooleProcess = new \swoole_process([$this,'__start'],false,2);
+        $this->swooleProcess = new \swoole_process([$this,'__start']);
     }
 
     public function getProcess():Process
@@ -50,21 +46,19 @@ abstract class AbstractProcess
      */
     public function addTick($ms,callable $call):?int
     {
-        return Timer::loop(
+        return Timer::getInstance()->loop(
             $ms,$call
         );
     }
 
-    public function clearTick(int $timerId)
+    public function clearTick(int $timerId):?int
     {
-        Timer::clear($timerId);
+        return Timer::getInstance()->clear($timerId);
     }
 
     public function delay($ms,callable $call):?int
     {
-        return Timer::delay(
-            $ms,$call
-        );
+        return Timer::getInstance()->after($ms,$call);
     }
 
     /*
@@ -90,31 +84,29 @@ abstract class AbstractProcess
         }
 
         Process::signal(SIGTERM,function ()use($process){
-            $this->onShutDown();
+            try{
+                $this->onShutDown();
+            }catch (\Throwable $throwable){
+                $this->onException($throwable);
+            }
             swoole_event_del($process->pipe);
             $this->swooleProcess->exit(0);
+
         });
-        if($this->async){
-            swoole_event_add($this->swooleProcess->pipe, function(){
-                $msg = $this->swooleProcess->read(64 * 1024);
-                $this->onReceive($msg);
-            });
+        swoole_event_add($this->swooleProcess->pipe, function(){
+            $msg = $this->swooleProcess->read(64 * 1024);
+            $this->onReceive($msg);
+        });
+        try{
+            $this->run($this->arg);
+        }catch (\Throwable $throwable){
+            $this->onException($throwable);
         }
-        $this->run($this->swooleProcess);
     }
 
-    public function getArgs():array
+    public function getArg()
     {
-        return $this->args;
-    }
-
-    public function getArg($key)
-    {
-        if(isset($this->args[$key])){
-            return $this->args[$key];
-        }else{
-            return null;
-        }
+        return $this->arg;
     }
 
     public function getProcessName()
@@ -122,10 +114,13 @@ abstract class AbstractProcess
         return $this->processName;
     }
 
-    public abstract function run(Process $process);
+    protected function onException(\Throwable $throwable){
+        throw $throwable;
+    }
+
+    public abstract function run($arg);
     public abstract function onShutDown();
     public abstract function onReceive(string $str);
-
 }
 ```
 
@@ -136,20 +131,18 @@ Helper，实现代码如下：
 /**
  * Created by PhpStorm.
  * User: yf
- * Date: 2018/9/19
- * Time: 下午7:11
+ * Date: 2018-12-27
+ * Time: 11:36
  */
 
-namespace EasySwoole\EasySwoole\Swoole\Process;
+namespace EasySwoole\Component\Process;
 
 
-use EasySwoole\EasySwoole\ServerManager;
-
-class Helper
+class ProcessHelper
 {
-    public static function addProcess(string $processName,string $processClass):bool
+    static function register(\swoole_server $server,AbstractProcess $process):bool
     {
-        return ServerManager::getInstance()->getSwooleServer()->addProcess((new $processClass($processName))->getProcess());
+        return $server->addProcess($process->getProcess());
     }
 }
 ```
@@ -178,38 +171,39 @@ class Helper
 <?php
 /**
  * Created by PhpStorm.
- * User: root
- * Date: 18-9-26
- * Time: 上午11:21
+ * User: Apple
+ * Date: 2018/11/1 0001
+ * Time: 11:30
  */
 
 namespace App\Process;
 
 
-use EasySwoole\EasySwoole\Swoole\Process\AbstractProcess;
+use EasySwoole\Component\Process\AbstractProcess;
 use Swoole\Process;
 
-class Test extends AbstractProcess
+class ProcessTest extends AbstractProcess
 {
-
-    public function run(Process $process)
+    public function run($arg)
     {
+        var_dump($arg);
+        echo "process is run.\n";
+
         // TODO: Implement run() method.
-        $this->addTick(30000, function() {
-            echo 'this is '.$this->getProcessName().' process tick'.PHP_EOL;
-        });
     }
 
     public function onShutDown()
     {
+        echo "process is onShutDown.\n";
         // TODO: Implement onShutDown() method.
     }
 
     public function onReceive(string $str)
     {
+        echo "process is onReceive.\n";
         // TODO: Implement onReceive() method.
-        echo 'process rec '.$str.PHP_EOL;
     }
+
 }
 ```
 以上代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x/App/Process/ProcessTest.php)，
