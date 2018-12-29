@@ -16,18 +16,18 @@
 * 循环调用
 * @param int      $microSeconds 循环执行的间隔毫秒数 传入整数型
 * @param \Closure $func 定时器需要执行的操作 传入一个闭包
-* @param mixed    $args 操作参数 此处传入的参数会按顺序传给闭包
+* @param string    $name 定时器名称,用于取消该定时器
 * @return int 返回整数型的定时器编号 可以用该编号停止定时器
 */
-public static function loop($microSeconds, \Closure $func, $args = null)
+public function loop($microSeconds, \Closure $func, $args = null)
 ```
 
 ### 示例代码
 
 ```php
 // 每隔 10 秒执行一次
-Timer::loop(10 * 1000, function () {
-	echo "this timer runs at intervals of 10 seconds\n";
+\EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
+    echo "this timer runs at intervals of 10 seconds\n";
 });
 ```
 
@@ -44,18 +44,17 @@ Timer::loop(10 * 1000, function () {
 * 延时调用
 * @param int      $microSeconds 需要延迟执行的时间
 * @param \Closure $func 定时器需要执行的操作 传入一个闭包
-* @param mixed    $args 操作参数 此处传入的参数会按顺序传给闭包
-* @return int 返回整数型的定时器编号 可以用该编号停止定时器
+* @return int 返回整数型的定时器编号 
 */
-public static function delay($microSeconds, \Closure $func, $args = null)
+public function after($microSeconds, \Closure $func)
 ```
 
 ### 示例代码
 
 ```php
 // 10 秒后执行一次
-Timer::delay(10 * 1000, function () {
-	echo "ten seconds later\n";
+\EasySwoole\Component\Timer::getInstance()->after(10 * 1000, function () {
+    echo "ten seconds later\n";
 });
 ```
 
@@ -72,23 +71,23 @@ Timer::delay(10 * 1000, function () {
 ```php
 /**
 * 清除定时器
-* @param int $timerId 定时器编号
+* @param int $timerId|$timeName 定时器编号或名称
 * @author : evalor <master@evalor.cn>
 */
-public static function clear($timerId)
+public function clear($timerId)
 ```
 
 ### 示例代码
 
 ```php
-// 创建一个延迟10秒后执行的定时器
-$timerId = Timer::delay(10 * 1000, function () {
-	echo "timeout\n";
-});
+// 创建一个2秒定时器
+$timerId = \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
+    echo "timeout\n";
+},'time');
 
 // 清除该定时器
-var_dump(Timer::clear($timerId)); // bool(true)
-var_dump($timer); // int(1)
+//var_dump(\EasySwoole\Component\Timer::getInstance()->clear($timerId)); // bool(true)
+var_dump($timerId); // int(1)
 
 // 定时器得不到执行 不输出：timeout
 ```
@@ -102,7 +101,7 @@ var_dump($timer); // int(1)
 ```php
 // 为第一个 Worker 添加定时器
 if ($workerId == 0) {
-	Timer::loop(10 * 1000, function () {
+	\EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
 		echo "timer in the worker number 0\n";
 	});
 }
@@ -112,23 +111,23 @@ if ($workerId == 0) {
 public static function mainServerCreate(EventRegister $register)
 {
     $register->add(EventRegister::onWorkerStart, function (\swoole_server $server, $workerId) {
-          //如何避免定时器因为进程重启而丢失
-          //例如在第一个进程 添加一个10秒的定时器
-          if ($workerId == 0) {
-              Timer::loop(10 * 1000, function () {
-                    // 从数据库，或者是redis中，去获取下个就近10秒内需要执行的任务
-                    // 例如:2秒后一个任务，3秒后一个任务 代码如下
-                    Timer::delay(2 * 1000, function () {
-                        //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
-                        Logger::getInstance()->console("time 2", false);
-                    });
-                    Timer::delay(3 * 1000, function () {
-                        //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
-                        Logger::getInstance()->console("time 3", false);
-                    });
-              });
-          }
-      });    
+        //如何避免定时器因为进程重启而丢失
+        //例如在第一个进程 添加一个10秒的定时器
+        if ($workerId == 0) {
+            \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
+                // 从数据库，或者是redis中，去获取下个就近10秒内需要执行的任务
+                // 例如:2秒后一个任务，3秒后一个任务 代码如下
+                \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
+                    //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
+                    Logger::getInstance()->console("time 2", false);
+                });
+                \EasySwoole\Component\Timer::getInstance()->after(3 * 1000, function () {
+                    //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
+                    Logger::getInstance()->console("time 3", false);
+                });
+            });
+        }
+    });
 }
 ```
 
