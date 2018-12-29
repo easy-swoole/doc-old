@@ -3,94 +3,117 @@ EasySwoole 自3.0.9开始，提供Actor模式支持，助力游戏行业开发�
 
 ## 定义一个Actor
 ```php
-namespace App;
+<?php
 
+namespace App\Actor;
 
-use EasySwoole\Actor\AbstractActor;
+use EasySwoole\Actor\ActorConfig;
 
-class Room extends AbstractActor
+class RoomActor extends \EasySwoole\Actor\AbstractActor
 {
-    /*
-    当一个actor退出的时候，会执行的回调
-    如果是客户端单独发送exit命令给某个actor的时候，你可以return 一个可以被序列化的变量，返回给客户端
-    若是客户端执行exitAll命令时，则无法接收该消息（等待全部的代价过大）
-    */
+    /**
+     * 当发送消息时的回调
+     * onMessage
+     * @param $msg
+     * @author Apple
+     * Time: 13:59
+     */
+    function onMessage($msg)
+    {
+        var_dump("actor".$this->actorId()."on message:" . $msg . PHP_EOL);
+        return "on message success\n";
+        // TODO: Implement onMessage() method.
+    }
+
+    /**
+     * 当actor退出时执行的回调
+     * onExit
+     * @author Apple
+     * Time: 13:57
+     */
     function onExit()
     {
+        var_dump("actor".$this->actorId() . "已经退出\n");
+        return "on exit success\n";
         // TODO: Implement onExit() method.
-        var_dump($this->actorId().' exit ');
     }
 
-    /*
-    当你的客户端向某个actor推送消息的时候
-    */
-    function onMessage($arg)
+    /**
+     * 当执行出现异常时的回调
+     * onException
+     * @param \Throwable $throwable
+     * @author Apple
+     * Time: 13:58
+     */
+    protected function onException(\Throwable $throwable)
     {
-        // TODO: Implement onCommand() method.
-        var_dump($arg);
-        return $this->actorId().' msg at '.time();
+        // TODO: Implement onException() method.
     }
-    /*
-       当该Actor被创建的时候
-    */
-    function onStart()
+
+    /**
+     * 当该Actor被创建的时候
+     * onStart
+     * @author Apple
+     * Time: 13:58
+     */
+    function onStart($arg)
     {
+        var_dump("actor".$this->actorId() . "on start");
         // TODO: Implement onStart() method.
-        var_dump($this->actorId().' start ');
-        $this->tick(1000,function (){
-           var_dump('time tick for'.$this->actorId());
-        });
+        return "on start success\n";
+    }
+
+    static function configure(ActorConfig $actorConfig)
+    {
+        $actorConfig->setActorName('RoomActor');//配置actor名称
+        // TODO: Implement configure() method.
     }
 }
 ```
 
 ## 注册Actor到服务端中
-在EasySwoole全局的mainServerCreate事件中，我们进行Actor注册（可以注册多种actor）
+在`EasySwooleEvent.php`全局的`mainServerCreate`事件中，我们进行Actor注册（可以注册多种actor）
 ```php
-use App\Room;
-use EasySwoole\Actor\ActorManager;
 
-ActorManager::getInstance()->register(Room::class)
-->setActorProcessNum(3)//设置保存actor的进程数目
+Actor::getInstance()->register(RoomActor::class)->setActorProcessNum(3)//设置保存actor的进程数目
 ->setActorName('RoomActor')//设置Actor的名称，注意一定要注册，且不能重复
 ->setMaxActorNum(1000);//设置当前actor中最大的actor数目
+
 ```
 
 ## 客户端
 以下为单元测试的代码
 ```php
+<?php
 require 'vendor/autoload.php';
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 
-
-use EasySwoole\Actor\ActorManager;
-use App\Room;
 go(function (){
     //模拟注册Actor ,若在整个easySwoole服务中，客户端不必重复注册，因为已经在全局事件中注册了
-    ActorManager::getInstance()->register(Room::class)->setActorProcessNum(3)->setActorName('RoomActor');//一样需要注册
+    \EasySwoole\Actor\Actor::getInstance()->setTempDir(getcwd())->register(\App\Actor\RoomActor::class)->setActorProcessNum(3)->setActorName('RoomActor');//一样需要注册
     //添加一个actor ，若成功返回actorId,若超出数目则-1
-    $ret = ActorManager::getInstance()->actorClient(Room::class)->create([
+    $actorId = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->create([
         'arg'=>1,
         'time'=>time()
     ]);
     //单独退出某个actor
-    $ret = ActorManager::getInstance()->actorClient(Room::class)->exit('0011');
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exit($actorId);
     //单独推送给某个actor
-    //$ret = ActorManager::getInstance()->actorClient(Room::class)->push('0001',2);
-   //单独推送给全部actor
-//    $ret = ActorManager::getInstance()->actorClient(Room::class)->pushMulti([
-//        "0001"=>'0001data',
-//        '0022'=>'0022Data'
-//    ]);
-     //广播给全部actor
-    //$ret = ActorManager::getInstance()->actorClient(Room::class)->broadcastPush('121212');
-    //退出全部actor
-//    $ret = ActorManager::getInstance()->actorClient(RoomActor::class)->exitAll();
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->push($actorId,'1234');
+    //单独推送给全部actor
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->pushMulti([
+        "0001"=>'0001data',
+        '0022'=>'0022Data'
+    ]);
+//    广播给全部actor
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->broadcastPush('121212');
+//    退出全部actor
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exitAll();
     var_dump($ret);
 });
 ```
 
-> 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/easyswoole/tree/3.x/src/Actor
+> 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/actor
 
 
 > FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发)
