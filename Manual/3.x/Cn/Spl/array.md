@@ -133,3 +133,7 @@ function values(): SplArray
 function flush():SplArray
 ```
 
+将数组转换xml:
+```php
+function toXML($CD_DATA = false,$rootName = 'xml',$encoding = 'UTF-8')
+```
