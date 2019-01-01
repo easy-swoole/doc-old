@@ -2,8 +2,46 @@
 
 EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置
 
-## 默认配置文件
+## 默认配置文件 (3.1.2 之后)
+------
 
+> 注意: 3.1.2 `SERVER_TYPE` 常量修改为 `EASYSWOOLE_SERVER` `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
+
+框架安装完成后系统默认的全局配置文件是项目根目录下的 `dev.php`,`produce.php` 文件，
+文件内容如下:
+```php
+<?php
+    return [
+        'SERVER_NAME'=>"EasySwoole",    // 默认Server配置
+        'MAIN_SERVER'=>[
+            'LISTEN_ADDRESS'=>'0.0.0.0',    // 默认Server监听的地址
+            'PORT'=>9501,                   // 默认Server监听的端口
+            'SERVER_TYPE'=>EASYSWOOLE_WEB_SERVER, //可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_SOCKET_SERVER
+            'SOCK_TYPE'=>SWOOLE_TCP,        // 默认Server的Sock类型 (仅 SERVER_TYPE 配置为 EASYSWOOLE_SERVER 时有效)
+            'RUN_MODEL'=>SWOOLE_PROCESS,    // 默认Server的运行模式 参考 https://wiki.swoole.com/wiki/page/353.html
+            'SETTING'=>[
+                'worker_num'=>8,            // 运行的 worker 进程数量
+                'max_request'=>5000,        // worker 完成该数量的请求后将退出，防止内存溢出
+                'task_worker_num'=>8,       // 运行的 task_worker 进程数量
+                'task_max_request'=>1000    // task_worker 完成该数量的请求后将退出，防止内存溢出
+            ]
+        ],
+        'TEMP_DIR'=>null,   // 临时文件存放的目录
+        'LOG_DIR'=>null,    // 日志文件存放的目录
+        'CONSOLE'=>[
+            'ENABLE'=>true,                 // 是否开启console
+            'LISTEN_ADDRESS'=>'127.0.0.1',  // console服务端监听地址
+            'HOST'=>'127.0.0.1',            // console客户端连接远程地址
+            'PORT'=>9500,                   // console服务端监听端口,客户端连接远程端口
+            'EXPIRE'=>'120',                // 心跳超时时间
+            'AUTH'=>null,                   // 鉴权密码,如不需要鉴权可设置null
+            'PUSH_LOG'=>true                // 是否推送日志
+        ]
+    ];
+```
+
+## 默认配置文件 (3.1.2 之前)
+------
 框架安装完成后系统默认的全局配置文件是项目根目录下的 `dev.env`,`produce.env` 文件，
 文件内容如下:
 
@@ -78,7 +116,48 @@ $instance->load($conf);
 ```
 > 需要注意的是 由于进程隔离的原因 在Server启动后，动态新增修改的配置项，只对执行操作的进程生效，如果需要全局共享配置需要自己进行扩展
 
-## 添加用户配置项
+## 添加用户配置项 (3.1.2 之后)
+
+每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
+
+```php
+<?php
+    return [
+        'SERVER_NAME'=>"EasySwoole",    // 默认Server配置
+        'MAIN_SERVER'=>[
+            'LISTEN_ADDRESS'=>'0.0.0.0',    // 默认Server监听的地址
+            'PORT'=>9501,                   // 默认Server监听的端口
+            'SERVER_TYPE'=>EASYSWOOLE_WEB_SERVER, //可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_SOCKET_SERVER
+            'SOCK_TYPE'=>SWOOLE_TCP,        // 默认Server的Sock类型 (仅 SERVER_TYPE 配置为 EASYSWOOLE_SERVER 时有效)
+            'RUN_MODEL'=>SWOOLE_PROCESS,    // 默认Server的运行模式 参考 https://wiki.swoole.com/wiki/page/353.html
+            'SETTING'=>[
+                'worker_num'=>8,            // 运行的 worker 进程数量
+                'max_request'=>5000,        // worker 完成该数量的请求后将退出，防止内存溢出
+                'task_worker_num'=>8,       // 运行的 task_worker 进程数量
+                'task_max_request'=>1000    // task_worker 完成该数量的请求后将退出，防止内存溢出
+            ]
+        ],
+        'TEMP_DIR'=>null,   // 临时文件存放的目录
+        'LOG_DIR'=>null,    // 日志文件存放的目录
+        'CONSOLE'=>[
+            'ENABLE'=>true,                 // 是否开启console
+            'LISTEN_ADDRESS'=>'127.0.0.1',  // console服务端监听地址
+            'HOST'=>'127.0.0.1',            // console客户端连接远程地址
+            'PORT'=>9500,                   // console服务端监听端口,客户端连接远程端口
+            'EXPIRE'=>'120',                // 心跳超时时间
+            'AUTH'=>null,                   // 鉴权密码,如不需要鉴权可设置null
+            'PUSH_LOG'=>true                // 是否推送日志
+        ],
+        'DATABASE'=> [ // 用户自定义配置
+            'host' => '127.0.0.1',
+            'port' => 3306,
+            'user' => 'root'
+            'password' => 'root'
+        ]
+    ];
+```
+
+## 添加用户配置项 (3.1.2 之前)
 
 每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
 
@@ -113,7 +192,8 @@ DATABASE.password=root
 
 ```
 
-也可以新建php或者env文件进行添加配置,例如:  
+## 新建php或者env文件添加配置
+例如:  
 
 添加App/Conf/web.php和App/Conf/app.env  
 
@@ -189,8 +269,8 @@ class EasySwooleEvent implements Event
 >env文件不支持#特殊字符配置,可通过此方法,引入php文件
 
 ## 生产与开发配置分离
-在php easyswoole start命令下,默认为开发模式,加载dev.env  
-运行 php easyswoole start produce 命令时,为生产模式,加载produce.env
+在php easyswoole start命令下,默认为开发模式,加载 `dev.php` (3.1.2之前为 `dev.env`)
+运行 php easyswoole start produce 命令时,为生产模式,加载 `produce.php` (3.1.2之前为 `produce.env`)
 
 
 ## DI注入配置
@@ -211,7 +291,8 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
 >但是不适合存储大量\大长度的的配置,建议用于开关存储等小数据型数据存储    
 
 ```php
-Config::getInstance()->setDynamicConf('test_config_value', 0);//配置一个动态配置项
-$test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
-Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
+<?php
+    Config::getInstance()->setDynamicConf('test_config_value', 0);//配置一个动态配置项
+    $test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
+    Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
 ```
