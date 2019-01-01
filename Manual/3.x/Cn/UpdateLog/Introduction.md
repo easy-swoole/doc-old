@@ -1,5 +1,13 @@
 # EasySwoole版本更新记录
 
+### V3.1.2 (2019年1月1日)
+------------
+此版本修改了配置文件后缀和服务类型常量
+
+- 配置文件由 `dev.env` 和 `produce.env` 改为 `dev.php` 和 `produce.php`
+- 原配置文件 MYSQL.host = 127.0.0.1 的 `.` 连接格式修改为 MYSQL => ['host' => '127.0.0.1'] 的数组模式
+- 原服务模式常量 `SERVER` `WEB_SERVER` `WEB_SOCKET_SERVER` 修改为 `EASYSWOOLE_SERVER`  `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
+
 ## V3.1.1 大版本升级! (2018年12月27日)
 ------------
 全面移除了内置 `AbstractProcess` 、 `Timer` 、 `FastCache` 、`Actor` 改为独立组件库实现。  
