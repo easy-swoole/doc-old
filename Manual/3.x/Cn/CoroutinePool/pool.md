@@ -2,10 +2,10 @@
 EasySwoole提供了连接池组件,可通过继承组件,实现mysql/redis连接池.  
 ```php
 <?php
-        PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->setMinObjectNum(2);//注册连接池,以及配置连接池配置
+PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->setMinObjectNum(2);//注册连接池,以及配置连接池配置
 
 
- $redis = PoolManager::getInstance()->getPool(RedisPool::class)->getObj(Config::getInstance()->getConf('REDIS.POOL_TIME_OUT'));//获取连接池的一个对象
+$redis = PoolManager::getInstance()->getPool(RedisPool::class)->getObj(Config::getInstance()->getConf('REDIS.POOL_TIME_OUT'));//获取连接池的一个对象
  
 ```
 
