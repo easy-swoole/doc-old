@@ -207,3 +207,10 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
     $test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
     Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
 ```
+
+
+## 存在特殊运算的配置
+可以在框架初始化事件中，进行直接写入
+```
+ Config::getInstance()->setConf('MAIN_SERVER.SOCK_TYPE',SWOOLE_TCP|SWOOLE_SSL);
+```
