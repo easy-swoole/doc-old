@@ -5,15 +5,17 @@
 demo中有封装好的redis连接池以及redis类，复制demo中的RedisPool.php和RedisObject.php并放入App/Utility/Pool中即可使用
 
 ### 添加数据库配置
-在env中添加配置信息：
-```ini
-################ REDIS CONFIG ##################
-
-REDIS.host = 127.0.0.1
-REDIS.port = 6379
-REDIS.auth =
-REDIS.POOL_MAX_NUM = 4
-REDIS.POOL_TIME_OUT = 0.1
+在`dev.php`,`produce.php`中添加配置信息：
+```php
+/*################ REDIS CONFIG ##################*/
+'REDIS' => [
+    'host'          => '127.0.0.1',
+    'port'          => '6379',
+    'auth'          => '',
+    'POOL_MAX_NUM'  => '20',
+    'POOL_MIN_NUM'  => '5',
+    'POOL_TIME_OUT' => '0.1',
+],
 ```
 在EasySwooleEvent初始化事件initialize注册该连接池
 ```php

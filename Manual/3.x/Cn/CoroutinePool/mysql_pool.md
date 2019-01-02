@@ -5,19 +5,21 @@
 demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.php和MysqlObject.php并放入App/Utility/Pool中即可使用
 
 ### 添加数据库配置
-在env中添加配置信息：
-```ini
-################ DATABASE CONFIG ##################
+在`dev.php`,`produce.php`中添加配置信息：
+```php
+/*################ REDIS CONFIG ##################*/
 
-MYSQL.host = 127.0.0.1          // 数据库地址
-MYSQL.port = 3306               // 数据库端口
-MYSQL.user = root               // 数据库用户名   
-MYSQL.timeout = 5
-MYSQL.charset = utf8mb4         
-MYSQL.password = root           // 数据库密码
-MYSQL.database = easyswoole     // 数据库库名
-MYSQL.POOL_MAX_NUM = 4
-MYSQL.POOL_TIME_OUT = 0.1
+'MYSQL' => [
+    'host'          => '192.168.75.1',
+    'port'          => '3306',
+    'user'          => 'root',
+    'timeout'       => '5',
+    'charset'       => 'utf8mb4',
+    'password'      => 'root',
+    'database'      => 'cry',
+    'POOL_MAX_NUM'  => '20',
+    'POOL_TIME_OUT' => '0.1',
+],
 ```
 在EasySwooleEvent初始化事件initialize注册该连接池
 ```php
