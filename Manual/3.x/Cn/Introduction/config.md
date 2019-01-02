@@ -2,9 +2,12 @@
 
 EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置
 
-## 默认配置文件
+## 默认配置文件 (3.1.2 之后)
+------
 
-框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.x版本之前是dev.env,produce.env)
+> 注意: 3.1.2 `SERVER_TYPE` 常量修改为 `EASYSWOOLE_SERVER` `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
+
+框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
 文件内容如下:
 
 ```php
@@ -135,8 +138,7 @@ class EasySwooleEvent implements Event
     }
 
     /**
-     * 引用自定义配置文件
-     * @throws \Exception
+     * 加载配置文件
      */
     public static function loadConf()
     {
@@ -175,10 +177,11 @@ class EasySwooleEvent implements Event
 
 }
 ```
+>env文件不支持#特殊字符配置,可通过此方法,引入php文件
 
 ## 生产与开发配置分离
-在php easyswoole start命令下,默认为开发模式,加载dev.php  
-运行 php easyswoole start produce 命令时,为生产模式,加载produce.php
+在php easyswoole start命令下,默认为开发模式,加载 `dev.php` (3.1.2之前为 `dev.env`)
+运行 php easyswoole start produce 命令时,为生产模式,加载 `produce.php` (3.1.2之前为 `produce.env`)
 
 
 ## DI注入配置
@@ -199,7 +202,8 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
 >但是不适合存储大量\大长度的的配置,建议用于开关存储等小数据型数据存储    
 
 ```php
-Config::getInstance()->setDynamicConf('test_config_value', 0);//配置一个动态配置项
-$test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
-Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
+<?php
+    Config::getInstance()->setDynamicConf('test_config_value', 0);//配置一个动态配置项
+    $test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
+    Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
 ```
