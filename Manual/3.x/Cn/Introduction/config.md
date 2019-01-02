@@ -4,51 +4,46 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
 
 ## 默认配置文件
 
-框架安装完成后系统默认的全局配置文件是项目根目录下的 `dev.env`,`produce.env` 文件，
+框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.x版本之前是dev.env,produce.env)
 文件内容如下:
 
-```ini
-# eg:
-# mysql.port = 3306
-# MAIN_SERVER.PORT = 80
-# MAIN_SERVER.SETTING.worker_num = 80
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2019-01-01
+ * Time: 20:06
+ */
 
-################ defalut config ##################
-SERVER_NAME = EasySwoole
-
-MAIN_SERVER.LISTEN_ADDRESS = 0.0.0.0
-MAIN_SERVER.PORT = 9501
-MAIN_SERVER.SERVER_TYPE = WEB_SERVER ## 可选为 SERVER  WEB_SERVER WEB_SOCKET_SERVER
-MAIN_SERVER.SOCK_TYPE = SWOOLE_TCP  ## 该配置项当为SERVER_TYPE值为SERVER时有效
-MAIN_SERVER.RUN_MODEL = SWOOLE_PROCESS
-
-MAIN_SERVER.SETTING.task_worker_num = 8
-MAIN_SERVER.SETTING.task_max_request = 500
-MAIN_SERVER.SETTING.worker_num = 8
-MAIN_SERVER.SETTING.max_request = 5000
-
-TEMP_DIR = null
-LOG_DIR = null
+return [
+    'SERVER_NAME'=>"EasySwoole",
+    'MAIN_SERVER'=>[// 默认Server配置
+        'LISTEN_ADDRESS'=>'0.0.0.0',// 默认Server监听的地址**(3.0.7以前 为 HOST)
+        'PORT'=>9501,//默认Server监听的端口
+        'SERVER_TYPE'=>EASYSWOOLE_WEB_SERVER, // 可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_SOCKET_SERVER
+        'SOCK_TYPE'=>SWOOLE_TCP,//该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
+        'RUN_MODEL'=>SWOOLE_PROCESS,// 默认Server的运行模式
+        'SETTING'=>[// Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
+            'worker_num'=>8,//运行的 task_worker 进程数量
+            'max_request'=>5000,// task_worker 完成该数量的请求后将退出，防止内存溢出
+            'task_worker_num'=>8,//运行的 worker 进程数量
+            'task_max_request'=>1000// worker 完成该数量的请求后将退出，防止内存溢出
+        ]
+    ],
+    'TEMP_DIR'=>null,//临时文件存放的目录
+    'LOG_DIR'=>null,//日志文件存放的目录
+    'CONSOLE'=>[//console组件配置,完整配置可查看:http://easyswoole.com/Manual/3.x/Cn/_book/SystemComponent/Console/Introduction.html
+        'ENABLE'=>true,//是否开启console
+        'LISTEN_ADDRESS'=>'127.0.0.1',//console服务端监听地址
+        'HOST'=>'127.0.0.1',//console客户端连接远程地址
+        'PORT'=>9500,//console服务端监听端口,客户端连接远程端口
+        'EXPIRE'=>'120',//心跳超时时间
+        'AUTH'=>null,//鉴权密码,如不需要鉴权可设置null
+        'PUSH_LOG'=>true//是否推送日志
+    ]
+];
 ```
-
-各项目的配置含义如下
-
-- **MAIN_SERVER**  -  默认Server配置
-  - **LISTEN_ADDRESS**  -  默认Server监听的地址**(3.0.7以前 为 HOST)**
-  - **PORT**  -  默认Server监听的端口
-  - **SERVER_TYPE**  -  默认Server的类型
-  - **SOCK_TYPE**  -  默认Server的Sock类型（ 仅 SERVER_TYPE 配置为 SERVER 时有效 ）
-  - **RUN_MODEL**  -  默认Server的运行模式
-  - **SETTING**  -  Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
-    - **task_worker_num**  -  运行的 task_worker 进程数量
-    - **task_max_request**  -  task_worker 完成该数量的请求后将退出，防止内存溢出
-    - **worker_num**  -  运行的 worker 进程数量
-    - **max_request**  -  worker 完成该数量的请求后将退出，防止内存溢出
-- **TEMP_DIR**  -  临时文件存放的目录
-- **LOG_DIR**  -  日志文件存放的目录
-
-> **配置文件注释必须使用 `#` 如果使用 `//` 会无法正常读取**
-
 ## 配置操作类
 
 配置操作类为 `EasySwoole\Config` 类，使用非常简单，见下面的代码例子，操作类还提供了 `toArray` 方法获取全部配置，`load` 方法重载全部配置，基于这两个方法，可以自己定制更多的高级操作
@@ -82,40 +77,34 @@ $instance->load($conf);
 
 每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
 
-```ini
-# eg:
-# mysql.port = 3306
-# MAIN_SERVER.PORT = 80
-# MAIN_SERVER.SETTING.worker_num = 80
+```php
+/*################ REDIS CONFIG ##################*/
 
-################ defalut config ##################
-SERVER_NAME = EasySwoole
-
-MAIN_SERVER.LISTEN_ADDRESS = 0.0.0.0
-MAIN_SERVER.PORT = 9501
-MAIN_SERVER.SERVER_TYPE = WEB_SERVER ## 可选为 SERVER  WEB_SERVER WEB_SOCKET_SERVER
-MAIN_SERVER.SOCK_TYPE = SWOOLE_TCP  ## 该配置项当为SERVER_TYPE值为SERVER时有效
-MAIN_SERVER.RUN_MODEL = SWOOLE_PROCESS
-
-MAIN_SERVER.SETTING.task_worker_num = 8
-MAIN_SERVER.SETTING.task_max_request = 500
-MAIN_SERVER.SETTING.worker_num = 8
-MAIN_SERVER.SETTING.max_request = 5000
-
-TEMP_DIR = null
-LOG_DIR = null
-
-############## 这里是用户自己的配置 ##################
-DATABASE.ip=127.0.0.1
-DATABASE.port=3306
-DATABASE.user=root
-DATABASE.password=root
-
+'MYSQL' => [
+    'host'          => '192.168.75.1',
+    'port'          => '3306',
+    'user'          => 'root',
+    'timeout'       => '5',
+    'charset'       => 'utf8mb4',
+    'password'      => 'root',
+    'database'      => 'cry',
+    'POOL_MAX_NUM'  => '20',
+    'POOL_TIME_OUT' => '0.1',
+],
+/*################ REDIS CONFIG ##################*/
+'REDIS' => [
+    'host'          => '127.0.0.1',
+    'port'          => '6379',
+    'auth'          => '',
+    'POOL_MAX_NUM'  => '20',
+    'POOL_MIN_NUM'  => '5',
+    'POOL_TIME_OUT' => '0.1',
+],
 ```
 
-也可以新建php或者env文件进行添加配置,例如:  
+也可以新建php文件进行添加配置,例如:  
 
-添加App/Conf/web.php和App/Conf/app.env  
+添加App/Conf/web.php
 
 EasySwooleEvent.php文件写法示例:  
 ```php
@@ -146,18 +135,18 @@ class EasySwooleEvent implements Event
     }
 
     /**
-     * 加载配置文件
+     * 引用自定义配置文件
+     * @throws \Exception
      */
-    public static function loadConf(){
-        $files = File::scanDirectory(EASYSWOOLE_ROOT.'/Application/Config');
-        if(is_array($files)){
+    public static function loadConf()
+    {
+        $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App/Config');
+        if (is_array($files)) {
             foreach ($files['files'] as $file) {
-                $fileNameArr= explode('.',$file);
+                $fileNameArr = explode('.', $file);
                 $fileSuffix = end($fileNameArr);
-                if($fileSuffix=='php'){
-                    Config::getInstance()->loadFile($file);
-                }elseif($fileSuffix=='env'){
-                    Config::getInstance()->loadEnv($file);
+                if ($fileSuffix == 'php') {
+                    Config::getInstance()->loadFile($file);//引入之后,文件名自动转为小写,成为配置的key
                 }
             }
         }
@@ -186,11 +175,10 @@ class EasySwooleEvent implements Event
 
 }
 ```
->env文件不支持#特殊字符配置,可通过此方法,引入php文件
 
 ## 生产与开发配置分离
-在php easyswoole start命令下,默认为开发模式,加载dev.env  
-运行 php easyswoole start produce 命令时,为生产模式,加载produce.env
+在php easyswoole start命令下,默认为开发模式,加载dev.php  
+运行 php easyswoole start produce 命令时,为生产模式,加载produce.php
 
 
 ## DI注入配置
