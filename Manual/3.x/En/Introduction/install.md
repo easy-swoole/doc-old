@@ -144,8 +144,8 @@ project                   root dir
 ├─EasySwooleEvent.php     global event
 ├─easyswoole              
 ├─easyswoole.install      
-├─dev.env                 development config
-├─produce.env             production config
+├─dev.php                 development config
+├─produce.php             production config
 ```
 
 > Note! Please do not use the framework root directory as the root directory of the web server, otherwise the dev.env,produce.env configuration will be accessible, or you can exclude the file yourself.

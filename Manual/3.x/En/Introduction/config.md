@@ -131,20 +131,19 @@ class EasySwooleEvent implements Event
     /**
      * load config file
      */
-    public static function loadConf(){
-        $files = File::scanDirectory(EASYSWOOLE_ROOT.'/Application/Config');
-        if(is_array($files)){
-            foreach ($files['files'] as $file) {
-                $fileNameArr= explode('.',$file);
-                $fileSuffix = end($fileNameArr);
-                if($fileSuffix=='php'){
-                    Config::getInstance()->loadFile($file);
-                }elseif($fileSuffix=='env'){
-                    Config::getInstance()->loadEnv($file);
-                }
-            }
-        }
-    }
+    public static function loadConf()
+   {
+       $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App/Config');
+       if (is_array($files)) {
+           foreach ($files['files'] as $file) {
+               $fileNameArr = explode('.', $file);
+               $fileSuffix = end($fileNameArr);
+               if ($fileSuffix == 'php') {
+                   Config::getInstance()->loadFile($file);
+               }
+           }
+       }
+   }
 
     public static function mainServerCreate(EventRegister $register)
     {
