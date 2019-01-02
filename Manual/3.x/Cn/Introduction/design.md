@@ -344,22 +344,23 @@ php easyswoole start
      * 注册默认的worker start
      
 - loadEnv  
-    实现代码如下:
-    ```php
-    <?php
-    private function loadEnv()
-    {
-        if($this->isDev){
-            $file  = EASYSWOOLE_ROOT.'/dev.env';
-        }else{
-            $file  = EASYSWOOLE_ROOT.'/produce.env';
-        }
-        Config::getInstance()->loadEnv($file);
+实现代码如下:
+```php
+<?php
+private function loadEnv()
+{
+    //加载之前，先清空原来的
+    if($this->isDev){
+        $file  = EASYSWOOLE_ROOT.'/dev.php';
+    }else{
+        $file  = EASYSWOOLE_ROOT.'/produce.php';
     }
-    ```
-    该方法判断了是否为开发环境,如果是,则加载dev.env配置文件,否则加载produce.env配置文件
+    Config::getInstance()->loadEnv($file);
+}
+```
+该方法判断了是否为开发环境,如果是,则加载`dev.php`配置文件,否则加载`produce.php`配置文件(3.1.2是dev.env,produce.env)
 
-    
+
 ###  ServerManager 类
 
 ServerManager 它是一个单例类(use EasySwoole\Component\Singleton),完整的命名空间如下：

@@ -333,9 +333,9 @@ private function loadEnv()
 {
     //加载之前，先清空原来的
     if($this->isDev){
-        $file  = EASYSWOOLE_ROOT.'/dev.env';
+        $file  = EASYSWOOLE_ROOT.'/dev.php';
     }else{
-        $file  = EASYSWOOLE_ROOT.'/produce.env';
+        $file  = EASYSWOOLE_ROOT.'/produce.php';
     }
     Config::getInstance()->loadEnv($file);
 }
