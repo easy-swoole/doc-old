@@ -2,12 +2,11 @@
 EasySwoole提供了连接池组件,可通过继承组件,实现mysql/redis连接池.  
 ```php
 <?php
-        PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');//注册连接池,以及配置连接池配置
+        PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->setMinObjectNum(2);//注册连接池,以及配置连接池配置
 
 
  $redis = PoolManager::getInstance()->getPool(RedisPool::class)->getObj(Config::getInstance()->getConf('REDIS.POOL_TIME_OUT'));//获取连接池的一个对象
  
-
 ```
 
 ### PoolManager
@@ -292,11 +291,11 @@ class PoolConf
 
 2:在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间):
 ```php
-        // 注册mysql数据库连接池
-        PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
+// 注册mysql数据库连接池
+PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->setMinObjectNum((int)Config::getInstance()->getConf('MYSQL.POOL_MIN_NUM'));//min_num不能大于或等于max_num
 
-        // 注册redis连接池
-        PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
+// 注册redis连接池
+PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->setMinObjectNum((int)Config::getInstance()->getConf('REDIS.POOL_MIN_NUM'));//min_num不能大于或等于max_num
 ```
 > 可通过register返回的PoolConf对象去配置其他参数
 
@@ -352,9 +351,10 @@ public static function mainServerCreate(EventRegister $register)
 ### \PoolNumError: pool num setting of 
 该错误是因为PoolConf的$maxObjectNum(连接池最大连接数)配置比$minObjectNum(连接池最小连接数,默认5)少.例如:
 ```php
-    // 注册mysql数据库连接池
-    PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
-    // 注册redis连接池
-    PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->getMinObjectNum('MYSQL.POOL_MIN_NUM');
+// 注册mysql数据库连接池
+PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'))->setMinObjectNum((int)Config::getInstance()->getConf('MYSQL.POOL_MIN_NUM'));//min_num不能大于或等于max_num
+
+// 注册redis连接池
+PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->setMinObjectNum((int)Config::getInstance()->getConf('REDIS.POOL_MIN_NUM'));//min_num不能大于或等于max_num
 ```
                  
