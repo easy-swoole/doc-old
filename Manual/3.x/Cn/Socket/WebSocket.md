@@ -4,9 +4,9 @@
 
 EasySwoole 3.x支持以控制器模式来开发你的代码。
 
-首先，修改项目根目录下配置文件dev.env，修改SERVER_TYPE为:
+首先，修改项目根目录下配置文件dev.php，修改SERVER_TYPE为:
 ```php
-MAIN_SERVER.SERVER_TYPE = WEB_SOCKET_SERVER ## 可选为 SERVER  WEB_SERVER WEB_SOCKET_SERVER
+'SERVER_TYPE'    => EASYSWOOLE_WEB_SOCKET_SERVER,
 ```
 并且引入 easyswoole/socket composer 包:
 >  *composer require easyswoole/socket*

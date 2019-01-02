@@ -261,34 +261,24 @@ class Index extends ViewController
 由于 URL Dispatcher 的解析，直接使用 Swoole 作为HTTP服务器，在默认情况下并不能处理静态文件的返回，需要编辑全局配置文件，加入额外的配置项如下：
 
 ```php
-# eg:
-      # mysql.port = 3306
-      # MAIN_SERVER.PORT = 80
-      # MAIN_SERVER.SETTING.worker_num = 80
 
-      ################ defalut config ##################
-      SERVER_NAME = EasySwoole
-
-      MAIN_SERVER.LISTEN_ADDRESS = 0.0.0.0
-      MAIN_SERVER.PORT = 9501
-      MAIN_SERVER.SERVER_TYPE = WEB_SERVER ## 可选为 SERVER  WEB_SERVER WEB_SOCKET_SERVER
-      MAIN_SERVER.SOCK_TYPE = SWOOLE_TCP  ## 该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
-      MAIN_SERVER.RUN_MODEL = SWOOLE_PROCESS
-
-      MAIN_SERVER.SETTING.worker_num = 8
-      MAIN_SERVER.SETTING.max_request = 5000
-      MAIN_SERVER.SETTING.task_worker_num = 8
-      MAIN_SERVER.SETTING.task_max_request = 500
-      TEMP_DIR = null
-      LOG_DIR = null
-
-
-      ############## 这里是用户自己的配置 ##################
-      ## 加入以下两条配置以返回静态文件
-      MAIN_SERVER.SETTING.enable_static_handler = true
-      MAIN_SERVER.SETTING.document_root = EASYSWOOLE_ROOT/Static #静态资源目录  
+ 'MAIN_SERVER' => [// 默认Server配置
+        'LISTEN_ADDRESS' => '0.0.0.0',// 默认Server监听的地址**(3.0.7以前 为 HOST)
+        'PORT'           => 9501,//默认Server监听的端口
+        'SERVER_TYPE'    => EASYSWOOLE_WEB_SOCKET_SERVER, // 可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_WEB_SOCKET_SERVER
+        'SOCK_TYPE'      => SWOOLE_TCP,//该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
+        'RUN_MODEL'      => SWOOLE_PROCESS,// 默认Server的运行模式
+        'SETTING'        => [// Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
+            'worker_num'            => 8,//运行的 task_worker 进程数量
+            'max_request'           => 5000,// task_worker 完成该数量的请求后将退出，防止内存溢出
+            'task_worker_num'       => 8,//运行的 worker 进程数量
+            'task_max_request'      => 1000,// worker 完成该数量的请求后将退出，防止内存溢出
+            'enable_static_handler' => true,//加入以下两条配置以返回静态文件
+            'document_root'         => EASYSWOOLE_ROOT . "/Static",
+        ],
+    ],
+    
 ```
-
 > 注意静态资源目录需要提前新建好 改为自己的目录 **！！！不要直接复制！！！**
 
 

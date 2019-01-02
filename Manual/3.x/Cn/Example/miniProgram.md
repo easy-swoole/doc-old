@@ -17,8 +17,8 @@ project              项目部署目录
 ├─Temp         缓存目录
 ├─src          核心组件
 ├─vendor       框架及库目录
-├─dev.env      配置文件(开发模式)
-├─produce.env  配置文件（生产模式）
+├─dev.php      配置文件(开发模式)
+├─produce.php  配置文件（生产模式）
 ├─easyswoole   命令行
 ├─EasySwooleEvent.php 主事件配置文件
 ----------------------------------
@@ -40,8 +40,8 @@ project              项目部署目录
 ├─Temp         缓存目录
 ├─src          核心组件
 ├─vendor       框架及库目录
-├─dev.env      配置文件(开发模式)
-├─produce.env  配置文件（生产模式）
+├─dev.php      配置文件(开发模式)
+├─produce.php  配置文件（生产模式）
 ├─easyswoole   命令行
 ├─EasySwooleEvent.php 主事件配置文件
 ----------------------------------

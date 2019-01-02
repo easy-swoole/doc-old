@@ -86,12 +86,12 @@ public function load(array $conf): void
 public function loadFile($filePath, $merge = false)
 ```
 
-载入一个env文件的配置项：
+载入一个php文件的配置项：
 
 - string  `filePath`  文件路径
 
 ```php
-public function loadEnv(string $file)
+public function loadEnv(string $filePath)
 ```
 
 清除配置项：

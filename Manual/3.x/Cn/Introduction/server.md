@@ -40,7 +40,7 @@ php easyswoole start
 ```
 php easyswoole start d
 ```
-## 生产环境(默认配置加载dev.env,使用该命令加载produce.env)
+## 生产环境(默认配置加载dev.php,使用该命令加载produce.php  3.1.2之前是dev.env,produce.env)
 ```
 php easyswoole start produce
 ```

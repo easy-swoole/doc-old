@@ -266,10 +266,10 @@ project                   项目部署目录
 ├─EasySwooleEvent.php     框架全局事件
 ├─easyswoole              框架管理脚本
 ├─easyswoole.install      框架安装锁定文件
-├─dev.env                 开发配置文件
-├─produce.env             生产配置文件
+├─dev.php                 开发配置文件
+├─produce.php             生产配置文件
 ```
 
 > 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
 
-> 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件
+> 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.env,但依旧建议设置到Public)
