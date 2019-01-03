@@ -3,8 +3,9 @@
 该对象在用户上传文件时自动生成,可通过以下方法获取
 ```php
 <?php
-$img_file = $request->getUploadFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
-$data = $request->getUploadFiles();
+$request=  $this->request();
+$img_file = $request->getUploadedFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
+$data = $request->getUploadedFiles();
 ```
 
 ### 实现代码:
