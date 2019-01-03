@@ -37,7 +37,7 @@ ServerManager类是一个单例对象，在整个EasySwoole生命周期中，Ser
 - 读取Config.php中的配置并创建一个swoole server
 - 创建主服务的事件注册器（EasySwoole\Core\Swoole\EventRegister），并通过调用EventHelper注册默认的onWorkerStart、OnTask、OnFinish、OnPipeMessage、OnRequest事件到注册器中
 - 执行全局事件容器中的mainServerCreate事件
-- 将主服务的事件注册器中的全部注册事件，绑定到主服务的回调事件中心。
+- 将主服务的事件注册器中的全部注册事件，绑定到主服务的回调事件中。
 
 ### ServerManager中的attachListener方法
 该方法主要是用于，将用户添加的子服务通过swoole server的addlistener方法做真实绑定并设置对应的子服务回调。
