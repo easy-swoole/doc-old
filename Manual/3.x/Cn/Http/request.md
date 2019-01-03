@@ -33,8 +33,8 @@ var_dump($who);
 ### getUploadedFiles()
 该方法用于获取客户端上传的全部文件信息。
 ```php
-$img_file = $request->getUploadFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
-$data = $request->getUploadFiles();//获取全部上传文件返回包含\EasySwoole\Http\Message\UploadFile对象的数组
+$img_file = $request->getUploadedFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
+$data = $request->getUploadedFiles();//获取全部上传文件返回包含\EasySwoole\Http\Message\UploadFile对象的数组
 var_dump($data);
 #### \EasySwoole\Http\Message\UploadFile对象:
 ```
