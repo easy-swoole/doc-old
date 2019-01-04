@@ -13,6 +13,8 @@ composer require easyswoole/easyswoole=3.x-dev
 php vendor/bin/easyswoole.php install
 ```
 
+> 如果安装遇到报错，请看下面的报错处理
+
 ## 报错处理
 
 在一些环境中，特别是使用集成面板安装的 PHP 环境，会出现以下报错：
@@ -35,20 +37,25 @@ dir=$(echo $dir | sed 's/ /\ /g')
 "${dir}/easyswoole" "$@"
 ```
 
-关于该问题，搜索了几回谷歌，都说是composer问题。不信执行以下代码也有同样问题
+引起该报错的大多数原因是因为当前PHP.ini禁用了`symlink`函数，或者无法在`vendor`目录下创建符号链接，可以执行以下命令行观察输出确认是否禁用了该函数，如果没有禁用该函数，则输出的列表中没有`symlink`字样
 
 ```bash
-> php vendor/bin/php-parser
+php -ini | grep disable_functions
 ```
 
-暂时解决方案就是用 `yum` 或者是以手动编译的形式重新安装你的 PHP 环境，或者也可以直接指向easySwoole的脚本，若有解决该报错的方案，请与我联系
+> 如果禁用了该函数，可以直接修改PHP.ini或在集成面板中解除该函数的禁用，删除项目目录下的`vendor`目录，重新执行`composer install`拉取依赖包
+
+如果是其他原因导致的该报错，可以在项目根目录下手工执行以下命令，将可执行文件链接出来 :
 
 ```bash
-# 直接指向easySwoole的管理脚本
+cd vendor/bin/ && rm -rf easyswoole.php && ln -s ../easyswoole/easyswoole/bin/easyswoole.php easyswoole.php && cd ../../
+```
+
+或者直接指向EasySwoole的管理脚本执行安装命令 : 
+
+```bash
 php vendor/easyswoole/easyswoole/bin/easyswoole.php install
 ```
-
-
 
 ## 手动安装
 
