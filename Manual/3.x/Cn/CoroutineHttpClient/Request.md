@@ -1,7 +1,6 @@
 ## 请求
 ```php
 <?php
-<?php
 include "./vendor/autoload.php";
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 go(function () {
