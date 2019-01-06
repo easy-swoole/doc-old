@@ -6,12 +6,20 @@ composer require easyswoole/mysqli
 
 ### 配置参数
 
-```ini
-MYSQL.host = 127.0.0.1   // 数据库地址
-MYSQL.user = root        // 数据库用户名   
-MYSQL.password = root    // 数据库密码
-MYSQL.database = db      // 数据库库名
-MYSQL.port = 3306        // 数据库端口
+```php
+/*################ MYSQL CONFIG ##################*/
+
+'MYSQL' => [
+    'host'          => '192.168.75.1',
+    'port'          => '3306',
+    'user'          => 'root',
+    'timeout'       => '5',
+    'charset'       => 'utf8mb4',
+    'password'      => 'root',
+    'database'      => 'cry',
+    'POOL_MAX_NUM'  => '20',
+    'POOL_TIME_OUT' => '0.1',
+],
 ```
 在env配置文件中增加或自行引入
 ### 调用

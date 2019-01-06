@@ -7,7 +7,7 @@ demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.p
 ### 添加数据库配置
 在`dev.php`,`produce.php`中添加配置信息：
 ```php
-/*################ REDIS CONFIG ##################*/
+/*################ MYSQL CONFIG ##################*/
 
 'MYSQL' => [
     'host'          => '192.168.75.1',
