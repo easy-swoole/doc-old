@@ -71,17 +71,13 @@
         - [基础功能](SystemComponent/Console/BasicFunction.md)
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
     - [Crontab](SystemComponent/crontab.md)
-    - [FastCache](SystemComponent/FastCache.md)
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - [Actor](SystemComponent/Actor.md)
     - [Core](SystemComponent/Core.md)
-    - [Config](SystemComponent/Config.md)
+    - [Config](SystemComponent/Config.md)1
 - 基础进阶
-    - [自定义进程](Advanced/Process.md)
     - [异步任务](Advanced/async_task.md)
-    - [定时器](Advanced/timer.md)
     - [Atomic](Advanced/Atomic.md)
     - [Channel](Advanced/Channel.md)
     - [CoChannel](Advanced/CoChannel.md)
@@ -157,6 +153,10 @@
         - [SnowFlake](Tools/SnowFlake.md)
         - [Str](Tools/Str.md)
         - [Time](Tools/Time.md)
+    - [Actor](SystemComponent/Actor.md)
+    - [FastCache](SystemComponent/FastCache.md)
+    - [定时器](Advanced/timer.md)
+    - [自定义进程](Advanced/Process.md)
 - 开发示例
     - [京东爬虫](Example/jd.md)
 - 其他
