@@ -87,7 +87,7 @@ Actor::getInstance()->register(RoomActor::class)->setActorProcessNum(3)//设置�
 以下为单元测试的代码
 ```php
 <?php
-require '../../vendor/autoload.php';//本文件在App/Actor/cliTest.php
+require '../../vendor/autoload.php';
 define('EASYSWOOLE_ROOT','../../');
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 
@@ -100,7 +100,7 @@ go(function (){
         'time'=>time()
     ]);
     //单独退出某个actor
-    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exit($actorId,['test'=>'test']);//退出一个actor,参数是test=>test
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exit($actorId,['test'=>'test']);
     //单独推送给某个actor
     $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->push($actorId,'1234');
     //单独推送给全部actor
@@ -111,7 +111,7 @@ go(function (){
 //    广播给全部actor
     $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->broadcastPush('121212');
 //    退出全部actor
-    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exitAll();
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exitAll(['arg1'=>'1']);//全部退出,参数arg1=>1
     var_dump($ret);
 });
 ```
