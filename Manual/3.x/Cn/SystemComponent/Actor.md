@@ -26,14 +26,16 @@ class RoomActor extends \EasySwoole\Actor\AbstractActor
     }
 
     /**
-     * 当actor退出时执行的回调
-     * onExit
-     * @author Apple
-     * Time: 13:57
-     */
-    function onExit()
+    * 当actor退出时的回调   
+    * onExit
+    * @param $arg 退出参数
+    * @return string
+    * @author tioncico
+    * Time: 下午5:20
+    */
+    function onExit($arg)
     {
-        var_dump("actor".$this->actorId() . "已经退出\n");
+        var_dump("actor".$this->actorId() . "已经退出,退出参数:".json_encode($arg)."\n");
         return "on exit success\n";
         // TODO: Implement onExit() method.
     }
@@ -85,33 +87,69 @@ Actor::getInstance()->register(RoomActor::class)->setActorProcessNum(3)//设置�
 以下为单元测试的代码
 ```php
 <?php
-require 'vendor/autoload.php';
+require '../../vendor/autoload.php';
+define('EASYSWOOLE_ROOT','../../');
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 
 go(function (){
     //模拟注册Actor ,若在整个easySwoole服务中，客户端不必重复注册，因为已经在全局事件中注册了
-    \EasySwoole\Actor\Actor::getInstance()->setTempDir(getcwd())->register(\App\Actor\RoomActor::class)->setActorProcessNum(3)->setActorName('RoomActor');//一样需要注册
+    \EasySwoole\Actor\Actor::getInstance()->setTempDir(EASYSWOOLE_ROOT.'Temp2')->register(\App\Actor\RoomActor::class)->setActorProcessNum(3)->setActorName('RoomActor');//一样需要注册
     //添加一个actor ，若成功返回actorId,若超出数目则-1
     $actorId = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->create([
         'arg'=>1,
         'time'=>time()
     ]);
     //单独退出某个actor
-    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exit($actorId);
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exit($actorId,['test'=>'test']);
     //单独推送给某个actor
     $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->push($actorId,'1234');
     //单独推送给全部actor
-    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->pushMulti([
-        "0001"=>'0001data',
-        '0022'=>'0022Data'
-    ]);
+//    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->pushMulti([
+//        "0001"=>'0001data',
+//        '0022'=>'0022Data'
+//    ]);
 //    广播给全部actor
     $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->broadcastPush('121212');
 //    退出全部actor
-    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exitAll();
+    $ret = \EasySwoole\Actor\Actor::getInstance()->client(\App\Actor\RoomActor::class)->exitAll(['arg1'=>'1']);//全部退出,参数arg1=>1
     var_dump($ret);
 });
 ```
+## actor测试代码
+该文件在App/Actor/cliActorTest.php
+```php
+<?php
+require '../../vendor/autoload.php';
+define('EASYSWOOLE_ROOT','../../');
+\EasySwoole\EasySwoole\Core::getInstance()->initialize();
+
+/**
+ * Created by PhpStorm.
+ * User: tioncico
+ * Date: 19-1-6
+ * Time: 下午5:32
+ */
+use EasySwoole\Actor\DeveloperTool;
+
+go(function (){
+    $tool = new DeveloperTool(\App\Actor\RoomActor::class,'001000001',[
+        'startArg'=>'startArg....'
+    ]);
+    $tool->onReply(function ($data){
+        var_dump('reply :'.$data);
+    });
+    swoole_event_add(STDIN,function ()use($tool){
+        $ret = trim(fgets(STDIN));
+        if(!empty($ret)){
+            go(function ()use($tool,$ret){
+                $tool->push(trim($ret));
+            });
+        }
+    });
+    $tool->run();
+});
+```
+运行之后,通过在终端输入需要发送的信息,即可传递到RoomActor中
 
 > 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/actor
 

@@ -5,7 +5,9 @@ EasySwoole FastCache组件通过新开进程,使用SplArray存储,unix sock 高�
 
 ### 使用配置:
 ```
-FAST_CACHE.PROCESS_NUM = 1 进程数
+'FAST_CACHE'=>[
+    'PROCESS_NUM'=>5
+]
 ```
 
 ### 简单示例:
