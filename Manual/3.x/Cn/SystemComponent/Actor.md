@@ -115,6 +115,41 @@ go(function (){
     var_dump($ret);
 });
 ```
+## actor测试代码
+该文件在App/Actor/cliActorTest.php
+```php
+<?php
+require '../../vendor/autoload.php';
+define('EASYSWOOLE_ROOT','../../');
+\EasySwoole\EasySwoole\Core::getInstance()->initialize();
+
+/**
+ * Created by PhpStorm.
+ * User: tioncico
+ * Date: 19-1-6
+ * Time: 下午5:32
+ */
+use EasySwoole\Actor\DeveloperTool;
+
+go(function (){
+    $tool = new DeveloperTool(\App\Actor\RoomActor::class,'001000001',[
+        'startArg'=>'startArg....'
+    ]);
+    $tool->onReply(function ($data){
+        var_dump('reply :'.$data);
+    });
+    swoole_event_add(STDIN,function ()use($tool){
+        $ret = trim(fgets(STDIN));
+        if(!empty($ret)){
+            go(function ()use($tool,$ret){
+                $tool->push(trim($ret));
+            });
+        }
+    });
+    $tool->run();
+});
+```
+运行之后,通过在终端输入需要发送的信息,即可传递到RoomActor中
 
 > 注意请基于协程实现，不要在actor中写阻塞代码，否则效率会非常差。实现代码目录在 https://github.com/easy-swoole/actor
 
