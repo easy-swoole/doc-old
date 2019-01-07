@@ -51,7 +51,6 @@ class PoolManager
      */
     function getPool(string $className):?AbstractPool
     {
-        //获取连接池对象,获取到之后即可通过返回的连接池对象去获取连接
         $key = $this->generateKey($className);
         if(isset($this->pool[$key])){
             $item = $this->pool[$key];
@@ -63,6 +62,21 @@ class PoolManager
                 $this->pool[$key] = $obj;
                 return $obj;
             }
+        }else if(class_exists($className)){
+            if(!$this->register($className)){
+                $config = clone $this->defaultConfig;
+                $config->setClass($className);
+                $pool = new class($config) extends AbstractPool{
+                    protected function createObject()
+                    {
+                        // TODO: Implement createObject() method.
+                        $className = $this->getPoolConfig()->getClass();
+                        return new $className;
+                    }
+                };
+                $this->pool[$key] = $pool;
+            }
+            return $this->getPool($className);
         }
         return null;
     }
@@ -297,7 +311,7 @@ PoolManager::getInstance()->register(MysqlPool::class, Config::getInstance()->ge
 // 注册redis连接池
 PoolManager::getInstance()->register(RedisPool::class, Config::getInstance()->getConf('REDIS.POOL_MAX_NUM'))->setMinObjectNum((int)Config::getInstance()->getConf('REDIS.POOL_MIN_NUM'));//min_num不能大于或等于max_num
 ```
-> 可通过register返回的PoolConf对象去配置其他参数
+> 可通过register返回的PoolConf对象去配置其他参数,3.1.4版本实现了在getPool时,未注册的连接池自动注册,该步骤可以忽略
 
 3:在worker(http控制器)进程调用(注意命名空间):
 ```php

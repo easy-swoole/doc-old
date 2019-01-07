@@ -23,6 +23,15 @@ $register->add($register::onWorkerStart,function (\swoole_server $server,int $wo
      var_dump($workerId.'start');
 });
 ```
+例如为主服务增加onMessage事件
+```php
+  // 给server 注册相关事件 在 WebSocket 模式下  message 事件必须注册 并且交给 
+$register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) {
+    var_dump($frame);
+});
+```
+>set方法和add方法是不同的,set将会覆盖之前配置的事件回调,而add是增加一个新的回调
+
 ### 添加一个自定义进程
 ```php
  ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
