@@ -10,7 +10,7 @@
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
+php vendor/bin/easyswoole install
 ```
 
 > 如果安装遇到报错，请看下面的报错处理
@@ -54,7 +54,7 @@ cd vendor/bin/ && rm -rf easyswoole.php && ln -s ../easyswoole/easyswoole/bin/ea
 或者直接指向EasySwoole的管理脚本执行安装命令 : 
 
 ```bash
-php vendor/easyswoole/easyswoole/bin/easyswoole.php install
+php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 
 ## 手动安装
@@ -63,7 +63,7 @@ php vendor/easyswoole/easyswoole/bin/easyswoole.php install
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
+php vendor/bin/easyswoole install
 ```
 
 中途没有报错的话，执行：
@@ -176,7 +176,7 @@ WORKDIR /var/www/code
 # Install easyswoole
 RUN cd /var/www/code \
     && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
-    && php vendor/bin/easyswoole.php install
+    && php vendor/bin/easyswoole install
 
 EXPOSE 80
 

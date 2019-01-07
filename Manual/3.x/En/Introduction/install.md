@@ -8,7 +8,7 @@ Follow these steps
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
+php vendor/bin/easyswoole install
 ```
 
 ## Possible error
@@ -37,7 +37,7 @@ The temporary solution is to reinstall your PHP environment by `yum` or compile,
 
 ```bash
 # run script directly
-php vendor/easyswoole/easyswoole/bin/easyswoole.php install
+php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 
 
@@ -48,7 +48,7 @@ Follow these steps
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
+php vendor/bin/easyswoole install
 ```
 
 If no error is reported, run：
