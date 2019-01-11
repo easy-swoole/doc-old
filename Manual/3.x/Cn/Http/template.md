@@ -269,10 +269,10 @@ class Index extends ViewController
         'SOCK_TYPE'      => SWOOLE_TCP,//该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
         'RUN_MODEL'      => SWOOLE_PROCESS,// 默认Server的运行模式
         'SETTING'        => [// Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
-            'worker_num'            => 8,//运行的 task_worker 进程数量
-            'max_request'           => 5000,// task_worker 完成该数量的请求后将退出，防止内存溢出
-            'task_worker_num'       => 8,//运行的 worker 进程数量
-            'task_max_request'      => 1000,// worker 完成该数量的请求后将退出，防止内存溢出
+            'worker_num'=>8,//运行的  worker进程数量
+            'max_request'=>5000,// worker 完成该数量的请求后将退出，防止内存溢出
+            'task_worker_num'=>8,//运行的 task_worker 进程数量
+            'task_max_request'=>1000// task_worker 完成该数量的请求后将退出，防止内存溢出
             'enable_static_handler' => true,//加入以下两条配置以返回静态文件
             'document_root'         => EASYSWOOLE_ROOT . "/Static",
         ],
