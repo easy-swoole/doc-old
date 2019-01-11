@@ -16,7 +16,7 @@ server {
     }
 }
 ```
-
+> 代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
 ## Apache
 ```
 <IfModule mod_rewrite.c>
@@ -29,3 +29,4 @@ server {
    #请开启 proxy_mod proxy_http_mod request_mod
 </IfModule>
 ```
+
