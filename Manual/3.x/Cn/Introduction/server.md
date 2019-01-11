@@ -23,8 +23,8 @@ php easyswoole
 操作:
   install       安装easySwoole
   start         启动easySwoole
-  stop          停止easySwoole
-  reload        重启easySwoole
+  stop          停止easySwoole(守护模式下使用)
+  reload        重启easySwoole(守护模式下使用)
   help          查看命令的帮助信息
 
 有关某个操作的详细信息 请使用 help 命令查看 
