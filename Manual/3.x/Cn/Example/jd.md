@@ -23,7 +23,7 @@ $redis->del(Queue::$queue);
     if ($redis) {
 //      $jd = new Jd($redis);     // curl模式
 //      $jd->run();
-        $client = new JdClient($redis);     // 异步客户端
+        $client = new JdClient($redis);     // 协程客户端
         $client->run();
     } else {
         echo 'redis pool is empty'.PHP_EOL;
@@ -91,7 +91,7 @@ class Jd
 }
 ```
 
-异步客户端模式:
+协程客户端模式:
 
 ```php
 <?php
@@ -170,7 +170,7 @@ $timer = Timer::getInstance()->loop(1 * 1000, function () use (&$timer) {
         if ($db && $redis) {
             $queue = new Queue($redis);
             // $goodTask = new JdGood($db);        // curl模式
-            $goodTask = new JdGoodClient($db);        // 异步客户端
+            $goodTask = new JdGoodClient($db);        // 协程客户端
             $task = $queue->rPop();
             if($task) {
                 echo 'task-----'.$task.PHP_EOL;
@@ -288,7 +288,7 @@ class JdGood
 }    
 ``` 
 
-异步客户端:
+协程客户端:
 
 ```php
 <?php
