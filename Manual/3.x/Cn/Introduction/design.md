@@ -4,9 +4,9 @@ EasySwoole 3 为全新的组件化设计，全协程。
 ## 代码阅读
 
 ```
-/bin/easyswoole.php
+/bin/easyswoole
 ```
-easyswoole 3的入口管理脚本，依旧是easyswoole.php。我们以服务启动为说明，进行设计流程讲解。
+easyswoole 3的入口管理脚本，依旧是easyswoole。我们以服务启动为说明，进行设计流程讲解。
 
 ### 核心类
 EasySwoole 3 的核心类完整命名空间如下：
@@ -25,38 +25,117 @@ php easyswoole start
 - 实例化(单例模式)***Config***，并加载配置文件(根据是否为生产模式引入不同的配置文件)
 - 执行***Core***中的***createServer***方法,并启动服务
 
-***Core*** 类的方法列表:
-- __construct  
-   实现代码如下:
-  ```php
-    <?php
+***Core*** 类的实现:
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2018/5/28
+ * Time: 下午6:07
+ */
+
+namespace EasySwoole\EasySwoole;
+
+
+use EasySwoole\Actor\Actor;
+use EasySwoole\Component\Context\ContextManager;
+use EasySwoole\Component\Di;
+use EasySwoole\Component\Singleton;
+use EasySwoole\EasySwoole\AbstractInterface\Event;
+use EasySwoole\EasySwoole\Console\TcpService;
+use EasySwoole\EasySwoole\Crontab\Crontab;
+use EasySwoole\EasySwoole\Swoole\EventHelper;
+use EasySwoole\EasySwoole\Swoole\EventRegister;
+use EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface;
+use EasySwoole\FastCache\Cache;
+use EasySwoole\Http\Dispatcher;
+use EasySwoole\Http\Message\Status;
+use EasySwoole\Http\Request;
+use EasySwoole\Http\Response;
+use EasySwoole\Trace\Bean\Location;
+use EasySwoole\EasySwoole\Swoole\PipeMessage\Message;
+use EasySwoole\EasySwoole\Swoole\PipeMessage\OnCommand;
+use EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask;
+use EasySwoole\EasySwoole\Swoole\Task\SuperClosure;
+use Swoole\Server\Task;
+
+////////////////////////////////////////////////////////////////////
+//                          _ooOoo_                               //
+//                         o8888888o                              //
+//                         88" . "88                              //
+//                         (| ^_^ |)                              //
+//                         O\  =  /O                              //
+//                      ____/`---'\____                           //
+//                    .'  \\|     |//  `.                         //
+//                   /  \\|||  :  |||//  \                        //
+//                  /  _||||| -:- |||||-  \                       //
+//                  |   | \\\  -  /// |   |                       //
+//                  | \_|  ''\---/''  |   |                       //
+//                  \  .-\__  `-`  ___/-. /                       //
+//                ___`. .'  /--.--\  `. . ___                     //
+//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
+//      ========`-.____`-.___\_____/___.-`____.-'========         //
+//                           `=---='                              //
+//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
+//         佛祖保佑       永无BUG       永不修改                     //
+////////////////////////////////////////////////////////////////////
+
+
+class Core
+{
+    use Singleton;
+
+    private $isDev = true;
+
     function __construct()
     {
         defined('SWOOLE_VERSION') or define('SWOOLE_VERSION',intval(phpversion('swoole')));
         defined('EASYSWOOLE_ROOT') or define('EASYSWOOLE_ROOT',realpath(getcwd()));
+        defined('EASYSWOOLE_SERVER') or define('EASYSWOOLE_SERVER',1);
+        defined('EASYSWOOLE_WEB_SERVER') or define('EASYSWOOLE_WEB_SERVER',2);
+        defined('EASYSWOOLE_WEB_SOCKET_SERVER') or define('EASYSWOOLE_WEB_SOCKET_SERVER',3);
+        //定义swoole easyswoole版本常量和框架启动的服务类型常量
     }
-  ```
-  在该函数中,定义了swoole版本以及框架目录
-  
 
-- setIsDev  
-  实现代码如下:  
-  ```php
-  <?php
+    /**
+     * 设置框架是否与开发/生产环境启动
+     * setIsDev
+     * @param bool $isDev
+     * @return $this
+     * @author Tioncico
+     * Time: 15:27
+     */
     function setIsDev(bool $isDev)
     {
         $this->isDev = $isDev;
+        //变更这里的时候，例如在全局的事件里面修改的，，重新加载配置项
+        $this->loadEnv();
         return $this;
     }
-  ```
-   该函数用于设置框架运行模式(开发/生产),不同模式加载的配置文件不同
-- initialize  
-  实现代码如下:
-  ```php
-  <?php
+
+    /**
+     * 返回是否以开发环境启动
+     * isDev
+     * @return bool
+     * @author Tioncico
+     * Time: 15:27
+     */
+    function isDev():bool
+    {
+        return $this->isDev;
+    }
+
+    /**
+     * 框架初始化事件
+     * initialize
+     * @return $this
+     * @author Tioncico
+     * Time: 15:28
+     */
     function initialize()
     {
-        //检查全局文件是否存在.
+        //检查全局事件文件是否存在.
         $file = EASYSWOOLE_ROOT . '/EasySwooleEvent.php';
         if(file_exists($file)){
             require_once $file;
@@ -72,108 +151,100 @@ php easyswoole start
         }else{
             die('global event file missing');
         }
+        //先加载配置文件
+        $this->loadEnv();
         //执行框架初始化事件
         EasySwooleEvent::initialize();
-        //加载配置文件
-        $this->loadEnv();
         //临时文件和Log目录初始化
         $this->sysDirectoryInit();
         //注册错误回调
         $this->registerErrorHandler();
         return $this;
     }
-  ```
-    该方法用于框架的初始化(单元测试的时候可以配合使用)，该方法中，做了以下事情：
-    * 检查并执行全局事件 ***EasySwooleEvent.php*** 中的***initialize*** 方法
-    * 调用***Core***中的***loadEnv***方法加载配置文件
-    * 调用***Core***中的***sysDirectoryInit***方法对框架目录进行初始化
-    * 调用***Core***中的***registerErrorHandler***方法注册框架的错误处理器
 
-- createServer  
-   实现代码如下:
-   ```php
-   <?php
     function createServer()
     {
+        //获取服务配置
         $conf = Config::getInstance()->getConf('MAIN_SERVER');
+        //创建swooleServer服务
         ServerManager::getInstance()->createSwooleServer(
-            $conf['PORT'],$conf['SERVER_TYPE'],$conf['HOST'],$conf['SETTING'],$conf['RUN_MODEL'],$conf['SOCK_TYPE']
+            $conf['PORT'],$conf['SERVER_TYPE'],$conf['LISTEN_ADDRESS'],$conf['SETTING'],$conf['RUN_MODEL'],$conf['SOCK_TYPE']
         );
+        //注册服务回调事件
         $this->registerDefaultCallBack(ServerManager::getInstance()->getSwooleServer(),$conf['SERVER_TYPE']);
+        //注册其他事件
         EasySwooleEvent::mainServerCreate(ServerManager::getInstance()->getMainEventRegister());
+        //创建主服务后，创建Tcp子服务
+        (new TcpService(Config::getInstance()->getConf('CONSOLE')));
         return $this;
     }
-   ```
-   该方法中，做了以下事情：  
-    * 获取配置
-    * 创建swooleServer服务
-    * 注册服务回调事件
-    * 执行***EasySwooleEvent***中的***mainServerCreate***事件
 
-- start  
-   实现代码如下:  
-   ```php
-   <?php
-   function start()
-       {
-           //给主进程也命名
-           if(PHP_OS != 'Darwin'){
-               $name = Config::getInstance()->getConf('SERVER_NAME');
-               cli_set_process_title($name);
-           }
-           (new TcpService(Config::getInstance()->getConf('CONSOLE')));
-           ServerManager::getInstance()->start();
-       }
-   ```
-    该方法中,做了以下事情: 
-     * 主进程命名
-     * 实例化一个tcp服务用于做控制台服务
-     * swoole主服务启动
-
-- sysDirectoryInit  
-    实现代码如下:
-    ```php
-    <?php
-    private function sysDirectoryInit():void
-        {
-            //创建临时目录    请以绝对路径，不然守护模式运行会有问题
-            $tempDir = Config::getInstance()->getConf('TEMP_DIR');
-            if(empty($tempDir)){
-                $tempDir = EASYSWOOLE_ROOT.'/Temp';
-                Config::getInstance()->setConf('TEMP_DIR',$tempDir);
-            }
-            if(!is_dir($tempDir)){
-                mkdir($tempDir);
-            }
-    
-            $logDir = Config::getInstance()->getConf('LOG_DIR');
-            if(empty($logDir)){
-                $logDir = EASYSWOOLE_ROOT.'/Log';
-                Config::getInstance()->setConf('LOG_DIR',$logDir);
-            }
-            if(!is_dir($logDir)){
-                mkdir($logDir);
-            }
-            //设置默认文件目录值
-            Config::getInstance()->setConf('MAIN_SERVER.SETTING.pid_file',$tempDir.'/pid.pid');
-            Config::getInstance()->setConf('MAIN_SERVER.SETTING.log_file',$logDir.'/swoole.log');
-            //设置目录
-            Logger::getInstance($logDir);
+    function start()
+    {
+        //给主进程也命名
+        $serverName = Config::getInstance()->getConf('SERVER_NAME');
+        if(PHP_OS != 'Darwin'){
+            cli_set_process_title($serverName);
         }
-    ```
-    该方法中,做了以下事情: 
-     * 创建临时目录
-     * 创建日志目录
-     * 设置pid文件,swoole.log文件目录
+        //注册crontab进程
+        Crontab::getInstance()->__run();
+        //注册fastCache进程
+        if(Config::getInstance()->getConf('FAST_CACHE.PROCESS_NUM') > 0){
+            Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)
+                    ->setProcessNum(Config::getInstance()
+                    ->getConf('FAST_CACHE.PROCESS_NUM'))
+                    ->setServerName($serverName)
+                    ->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        }
 
-- registerErrorHandler  
-   实现代码如下: 
-   ```php
-   <?php
-  private function registerErrorHandler()
+        //执行Actor注册进程
+        Actor::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->setServerName($serverName)->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        //启动swoole server服务
+        ServerManager::getInstance()->start();
+    }
+
+    private function sysDirectoryInit():void
+    {
+        //创建临时目录    请以绝对路径，不然守护模式运行会有问题
+        $tempDir = Config::getInstance()->getConf('TEMP_DIR');
+        if(empty($tempDir)){
+            $tempDir = EASYSWOOLE_ROOT.'/Temp';
+            Config::getInstance()->setConf('TEMP_DIR',$tempDir);
+        }
+        if(!is_dir($tempDir)){
+            mkdir($tempDir);
+        }
+        defined('EASYSWOOLE_TEMP_DIR') or define('EASYSWOOLE_TEMP_DIR',$tempDir);
+
+        $logDir = Config::getInstance()->getConf('LOG_DIR');
+        if(empty($logDir)){
+            $logDir = EASYSWOOLE_ROOT.'/Log';
+            Config::getInstance()->setConf('LOG_DIR',$logDir);
+        }
+        if(!is_dir($logDir)){
+            mkdir($logDir);
+        }
+        defined('EASYSWOOLE_LOG_DIR') or define('EASYSWOOLE_LOG_DIR',$logDir);
+
+        //设置默认文件目录值
+        Config::getInstance()->setConf('MAIN_SERVER.SETTING.pid_file',$tempDir.'/pid.pid');
+        Config::getInstance()->setConf('MAIN_SERVER.SETTING.log_file',$logDir.'/swoole.log');
+        //设置目录
+        Logger::getInstance($logDir);
+    }
+
+    /**
+     * 注册错误处理回调
+     * registerErrorHandler
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 15:35
+     */
+    private function registerErrorHandler()
     {
         ini_set("display_errors", "On");
         error_reporting(E_ALL | E_STRICT);
+        //尝试获取Di的错误处理回调
         $userHandler = Di::getInstance()->get(SysConst::ERROR_HANDLER);
         if(!is_callable($userHandler)){
             $userHandler = function($errorCode, $description, $file = null, $line = null){
@@ -183,8 +254,10 @@ php easyswoole start
                 Trigger::getInstance()->error($description,$l);
             };
         }
+        //设置错误处理回调
         set_error_handler($userHandler);
 
+        //尝试获取di脚本终止回调函数
         $func = Di::getInstance()->get(SysConst::SHUTDOWN_FUNCTION);
         if(!is_callable($func)){
             $func = function (){
@@ -197,128 +270,194 @@ php easyswoole start
                 }
             };
         }
+        //注册脚本终止回调
         register_shutdown_function($func);
     }
-   ```
-    该方法中,做了以下事情: 
-     * 开启显示错误,配置错误显示级别
-     * 获取/设置置  错误处理回调函数
-     * 获取/设置    脚本终止回调函数
-        
-- registerDefaultCallBack  
-   实现代码如下:
-   ```php
-   <?php
-    private function registerDefaultCallBack(\swoole_server $server,string $serverType)
+
+    /**
+     * 注册默认的服务回调事件
+     * registerDefaultCallBack
+     * @param \swoole_server $server
+     * @param int            $serverType
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 15:36
+     */
+    private function registerDefaultCallBack(\swoole_server $server,int $serverType)
     {
         //如果主服务仅仅是swoole server，那么设置默认onReceive为全局的onReceive
-        if($serverType === ServerManager::TYPE_SERVER){
-            $server->on(EventRegister::onReceive,function (\swoole_server $server, int $fd, int $reactor_id, string $data){
-                EasySwooleEvent::onReceive($server,$fd,$reactor_id,$data);
-            });
+        if($serverType === EASYSWOOLE_SERVER){
+            $socketType = Config::getInstance()->getConf('MAIN_SERVER.SOCK_TYPE');
+            if(in_array($socketType,[SWOOLE_TCP,SWOOLE_TCP6])){
+                ServerManager::getInstance()->getMainEventRegister()->add(EventRegister::onReceive,function (){
+                    ContextManager::getInstance()->destroy();
+                });
+            }else if(in_array($socketType,[SWOOLE_UDP,SWOOLE_UDP6])){
+                ServerManager::getInstance()->getMainEventRegister()->add(EventRegister::onPacket,function (){
+                    ContextManager::getInstance()->destroy();
+                });
+            }
         }else{
-            //命名空间
+            //http回调
             $namespace = Di::getInstance()->get(SysConst::HTTP_CONTROLLER_NAMESPACE);
             if(empty($namespace)){
                 $namespace = 'App\\HttpController\\';
             }
-            //url解析最大层级,默认5
             $depth = intval(Di::getInstance()->get(SysConst::HTTP_CONTROLLER_MAX_DEPTH));
             $depth = $depth > 5 ? $depth : 5;
-            //对象池控制器实例最大数,默认100
             $max = intval(Di::getInstance()->get(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM));
             if($max == 0){
-                $max = 100;
+                $max = 15;
             }
-            //实例化webService处理http服务
-            $webService = new WebService($namespace,$depth,$max);
+            $waitTime = intval(Di::getInstance()->get(SysConst::HTTP_CONTROLLER_POOL_WAIT_TIME));
+            if($waitTime == 0){
+                $waitTime = 5;
+            }
+            $dispatcher = new Dispatcher($namespace,$depth,$max);
+            $dispatcher->setControllerPoolWaitTime($waitTime);
             $httpExceptionHandler = Di::getInstance()->get(SysConst::HTTP_EXCEPTION_HANDLER);
-            //获取并注册全局的onRequest异常回调
-            if($httpExceptionHandler){
-                $webService->setExceptionHandler($httpExceptionHandler);
+            if(!is_callable($httpExceptionHandler)){
+                $httpExceptionHandler = function ($throwable,$request,$response){
+                    $response->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
+                    $response->write(nl2br($throwable->getMessage()."\n".$throwable->getTraceAsString()));
+                    Trigger::getInstance()->throwable($throwable);
+                };
+                Di::getInstance()->set(SysConst::HTTP_EXCEPTION_HANDLER,$httpExceptionHandler);
             }
-            EventHelper::on($server,EventRegister::onRequest,function (\swoole_http_request $request,\swoole_http_response $response)use($webService){
+            $dispatcher->setHttpExceptionHandler($httpExceptionHandler);
+
+            EventHelper::on($server,EventRegister::onRequest,function (\swoole_http_request $request,\swoole_http_response $response)use($dispatcher){
                 $request_psr = new Request($request);
                 $response_psr = new Response($response);
                 try{
-                    //先调用全局事件,如果返回true才进行http调度
                     if(EasySwooleEvent::onRequest($request_psr,$response_psr)){
-                        $webService->onRequest($request_psr,$response_psr);
+                        $dispatcher->dispatch($request_psr,$response_psr);
                     }
                 }catch (\Throwable $throwable){
-                    Trigger::getInstance()->throwable($throwable);
+                    call_user_func(Di::getInstance()->get(SysConst::HTTP_EXCEPTION_HANDLER),$throwable,$request_psr,$response_psr);
                 }finally{
                     try{
                         EasySwooleEvent::afterRequest($request_psr,$response_psr);
                     }catch (\Throwable $throwable){
+                        call_user_func(Di::getInstance()->get(SysConst::HTTP_EXCEPTION_HANDLER),$throwable,$request_psr,$response_psr);
+                    }
+                }
+                $response_psr->__response();
+                ContextManager::getInstance()->destroy();
+            });
+
+            if($serverType == EASYSWOOLE_WEB_SOCKET_SERVER){
+                ServerManager::getInstance()->getMainEventRegister()->add(EventRegister::onMessage,function (){
+                    ContextManager::getInstance()->destroy();
+                });
+            }
+        }
+        //注册默认的on task,finish  不经过 event register。因为on task需要返回值。不建议重写onTask,否则es自带的异步任务事件失效
+        //其次finish逻辑在同进程中实现、
+        if(Config::getInstance()->getConf('MAIN_SERVER.SETTING.task_enable_coroutine')){
+            EventHelper::on($server,EventRegister::onTask,function (\swoole_server $server, Task $task){
+                $taskObj = $task->data;
+                if(is_string($taskObj) && class_exists($taskObj)){
+                    $ref = new \ReflectionClass($taskObj);
+                    if($ref->implementsInterface(QuickTaskInterface::class)){
+                        try{
+                            $taskObj::run($server,$task->id,$task->worker_id,$task->flags);
+                        }catch (\Throwable $throwable){
+                            Trigger::getInstance()->throwable($throwable);
+                        }
+                        return;
+                    }else if($ref->isSubclassOf(AbstractAsyncTask::class)){
+                        $taskObj = new $taskObj;
+                    }
+                }
+                if($taskObj instanceof AbstractAsyncTask){
+                    try{
+                        $ret = $taskObj->__onTaskHook($task->id,$task->worker_id,$task->flags);
+                        if($ret !== null){
+                            $taskObj->__onFinishHook($ret,$task->id);
+                        }
+                    }catch (\Throwable $throwable){
+                        Trigger::getInstance()->throwable($throwable);
+                    }
+                }else if($taskObj instanceof SuperClosure){
+                    try{
+                        return $taskObj( $server, $task->id,$task->worker_id,$task->flags);
+                    }catch (\Throwable $throwable){
+                        Trigger::getInstance()->throwable($throwable);
+                    }
+                }else if(is_callable($taskObj)){
+                    try{
+                        call_user_func($taskObj,$server,$task->id,$task->worker_id,$task->flags);
+                    }catch (\Throwable $throwable){
                         Trigger::getInstance()->throwable($throwable);
                     }
                 }
+                return null;
+            });
+        }else{
+            EventHelper::on($server,EventRegister::onTask,function (\swoole_server $server, $taskId, $fromWorkerId,$taskObj){
+                if(is_string($taskObj) && class_exists($taskObj)){
+                    $ref = new \ReflectionClass($taskObj);
+                    if($ref->implementsInterface(QuickTaskInterface::class)){
+                        try{
+                            $taskObj::run($server,$taskId,$fromWorkerId);
+                        }catch (\Throwable $throwable){
+                            Trigger::getInstance()->throwable($throwable);
+                        }
+                        return;
+                    }else if($ref->isSubclassOf(AbstractAsyncTask::class)){
+                        $taskObj = new $taskObj;
+                    }
+                }
+                if($taskObj instanceof AbstractAsyncTask){
+                    try{
+                        $ret = $taskObj->__onTaskHook($taskId,$fromWorkerId);
+                        if($ret !== null){
+                            $taskObj->__onFinishHook($ret,$taskId);
+                        }
+                    }catch (\Throwable $throwable){
+                        Trigger::getInstance()->throwable($throwable);
+                    }
+                }else if($taskObj instanceof SuperClosure){
+                    try{
+                        return $taskObj( $server, $taskId, $fromWorkerId);
+                    }catch (\Throwable $throwable){
+                        Trigger::getInstance()->throwable($throwable);
+                    }
+                }else if(is_callable($taskObj)){
+                    try{
+                        call_user_func($taskObj,$server,$taskId,$fromWorkerId);
+                    }catch (\Throwable $throwable){
+                        Trigger::getInstance()->throwable($throwable);
+                    }
+                }
+                return null;
             });
         }
-        //注册默认的on task,finish  不经过 event register。因为on task需要返回值。不建议重写onTask,否则es自带的异步任务事件失效
-        EventHelper::on($server,EventRegister::onTask,function (\swoole_server $server, $taskId, $fromWorkerId,$taskObj){
-            if(is_string($taskObj) && class_exists($taskObj)){
-                $taskObj = new $taskObj;
-            }
-            if($taskObj instanceof AbstractAsyncTask){
-                try{
-                    $ret =  $taskObj->run($taskObj->getData(),$taskId,$fromWorkerId);
-                    //在有return或者设置了结果的时候  说明需要执行结束回调
-                    $ret = is_null($ret) ? $taskObj->getResult() : $ret;
-                    if(!is_null($ret)){
-                        $taskObj->setResult($ret);
-                        return $taskObj;
-                    }
-                }catch (\Throwable $throwable){
-                    $taskObj->onException($throwable);
-                }
-            }else if($taskObj instanceof SuperClosure){
-                try{
-                    return $taskObj( $server, $taskId, $fromWorkerId);
-                }catch (\Throwable $throwable){
-                    Trigger::getInstance()->throwable($throwable);
-                }
-            }
-            return null;
-        });
-        EventHelper::on($server,EventRegister::onFinish,function (\swoole_server $server, $taskId, $taskObj){
-            //finish 在仅仅对AbstractAsyncTask做处理，其余处理无意义。
-            if($taskObj instanceof AbstractAsyncTask){
-                try{
-                    $taskObj->finish($taskObj->getResult(),$taskId);
-                }catch (\Throwable $throwable){
-                    $taskObj->onException($throwable);
-                }
-            }
+        EventHelper::on($server,EventRegister::onFinish,function (){
+            //空逻辑
         });
 
-        //注册默认的pipe通讯
-        OnCommand::getInstance()->set('TASK',function ($fromId,$taskObj){
-            if(is_string($taskObj) && class_exists($taskObj)){
-                $taskObj = new $taskObj;
-            }
-            if($taskObj instanceof AbstractAsyncTask){
+        //通过pipe通讯，也就是processAsync投递的闭包任务，是没有taskId信息的，因此参数传递默认-1
+        OnCommand::getInstance()->set('TASK',function (\swoole_server $server,$taskObj,$fromWorkerId){
+            //闭包任务无法再次二次序列化,因此直接执行
+            if($taskObj instanceof SuperClosure){
                 try{
-                    $taskObj->run($taskObj->getData(),ServerManager::getInstance()->getSwooleServer()->worker_id,$fromId);
-                }catch (\Throwable $throwable){
-                    $taskObj->onException($throwable);
-                }
-            }else if($taskObj instanceof SuperClosure){
-                try{
-                    $taskObj();
+                    call_user_func($taskObj,$server,-1,$fromWorkerId);
                 }catch (\Throwable $throwable){
                     Trigger::getInstance()->throwable($throwable);
                 }
+            }else{
+                $server->task($taskObj);
             }
         });
 
         EventHelper::on($server,EventRegister::onPipeMessage,function (\swoole_server $server,$fromWorkerId,$data){
-            $message = \swoole_serialize::unpack($data);
+            $message = unserialize($data);
             if($message instanceof Message){
-                OnCommand::getInstance()->hook($message->getCommand(),$fromWorkerId,$message->getData());
+                OnCommand::getInstance()->hook($message->getCommand(),$server,$message->getData(),$fromWorkerId);
             }else{
-                Trigger::getInstance()->error("data :{$data} not packet by swoole_serialize or not a Message Instance");
+                Trigger::getInstance()->error("data :{$data} not packet as an Message Instance");
             }
         });
 
@@ -335,31 +474,27 @@ php easyswoole start
             }
         });
     }
-   ```
-    该方法中,做了以下事情: 
-     * 如果主服务为swoole server,则只注册onReceive全局事件为回调函数
-     * 如果主服务不是swoole server则:注册http服务的 onRequest回调,以及拦截异常
-     * 注册onTask,onFinish回调
-     * 注册默认的pipe通讯
-     * 注册默认的worker start
-     
-- loadEnv  
-实现代码如下:
-```php
-<?php
-private function loadEnv()
-{
-    //加载之前，先清空原来的
-    if($this->isDev){
-        $file  = EASYSWOOLE_ROOT.'/dev.php';
-    }else{
-        $file  = EASYSWOOLE_ROOT.'/produce.php';
+
+    /**
+     * 加载配置文件
+     * loadEnv
+     * @throws \Exception
+     * @author Tioncico
+     * Time: 15:48
+     */
+    private function loadEnv()
+    {
+        //加载之前，先清空原来的
+        //判断dev环境
+        if($this->isDev){
+            $file  = EASYSWOOLE_ROOT.'/dev.php';
+        }else{
+            $file  = EASYSWOOLE_ROOT.'/produce.php';
+        }
+        Config::getInstance()->loadEnv($file);
     }
-    Config::getInstance()->loadEnv($file);
 }
 ```
-该方法判断了是否为开发环境,如果是,则加载`dev.php`配置文件,否则加载`produce.php`配置文件(3.1.2是dev.env,produce.env)
-
 
 ###  ServerManager 类
 
