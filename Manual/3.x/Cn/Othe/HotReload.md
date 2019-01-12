@@ -20,7 +20,6 @@ namespace App\Process;
 use EasySwoole\Component\Process\AbstractProcess;
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\Utility\File;
-use Swoole\Process;
 use Swoole\Table;
 use Swoole\Timer;
 
