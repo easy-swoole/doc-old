@@ -25,7 +25,7 @@ function index()
 }
 
 // 在定时器中投递的例子
-\EasySwoole\Component\Timer::loop(1000, function () {
+\EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
         echo "执行异步任务...\n";
     });
@@ -97,7 +97,7 @@ function index()
 }
 
 // 在定时器中投递的例子
-\EasySwoole\Component\Timer::loop(1000, function () {
+\EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
 ```
@@ -148,14 +148,17 @@ $result = TaskManager::async(\App\Task\QuickTaskTest::class);
 有时需要同时执行多个异步任务，最典型的例子是数据采集，采集完多个数据后集中进行处理，这时可以进行并发任务投递，底层会将任务逐个进行投递并执行，所有任务执行完后返回一个结果集
 
 ```php
-$tasks[] = function () { sleep(50000); }; // 任务1
-$tasks[] = function () { sleep(2); };     // 任务2
-$tasks[] = function () { sleep(50000); }; // 任务3
+// 多任务并发
+$tasks[] = function () { sleep(50000);return 'this is 1'; }; // 任务1
+$tasks[] = function () { sleep(2);return 'this is 2'; };     // 任务2
+$tasks[] = function () { sleep(50000);return 'this is 3'; }; // 任务3
 
-$results = \EasySwoole\EasySwoole\Swoole\Task\TaskManager::barrier($tasks, 0.5);
+$results = \EasySwoole\EasySwoole\Swoole\Task\TaskManager::barrier($tasks, 3);
+
+var_dump($results);
 ```
 
-> 注意：Barrier为阻塞等待执行，所有的任务会被分发到不同Task进程(需要有足够的task进程,否则也会阻塞)同步执行， 直到所有的任务执行结束或超时才返回全部结果，默认的任务超时为0.5秒，所以只有任务1和任务3能成功执行并返回结果
+> 注意：Barrier为阻塞等待执行，所有的任务会被分发到不同Task进程(需要有足够的task进程,否则也会阻塞)同步执行， 直到所有的任务执行结束或超时才返回全部结果，默认的任务超时为0.5秒，以上示例中只有任务2能正常执行并返回。结果
 
 ## 类函数参考
 
