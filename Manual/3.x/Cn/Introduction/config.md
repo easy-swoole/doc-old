@@ -177,7 +177,7 @@ class EasySwooleEvent implements Event
 
 }
 ```
->env文件不支持#特殊字符配置,可通过此方法,引入php文件
+>env文件不支持#特殊字符配置(3.1.2之后删除了env配置),可通过此方法,引入php文件
 
 ## 生产与开发配置分离
 在php easyswoole start命令下,默认为开发模式,加载 `dev.php` (3.1.2之前为 `dev.env`)
