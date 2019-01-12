@@ -11,7 +11,7 @@
 |     Blade      |     Laravel的模板引擎组件     | [GitHub](https://github.com/duncan3dc/blade) | [官方手册](https://laravel-china.org/docs/laravel/5.6/blade) |
 
 ## demo
-demo提供了tp-orm的封装:  
+demo提供了think-template的封装:  
 [TpViewController.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/TpViewController.php)  
 [TpView.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/TpViewController.php)
 
