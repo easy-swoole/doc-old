@@ -104,3 +104,6 @@ Logger::getInstance()->console('这是自定义输出的日志','类别',false);
 
 
 附上demo地址: <https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Log/Index.php>
+
+
+>logger是框架全局的异常错误日志处理类,在默认情况异常错误将不会输出到终端,如果需要输出,请增加配置`DISPLAY_ERROR`=>true
