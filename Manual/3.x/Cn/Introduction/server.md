@@ -56,6 +56,7 @@ php easyswoole reload 只重启task进程
 php easyswoole reload all  重启task + worker进程
 ```
 > 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。
+> http 自定义路由配置不会被更新,需要stop+start;
 
 ## 文件热加载
 
