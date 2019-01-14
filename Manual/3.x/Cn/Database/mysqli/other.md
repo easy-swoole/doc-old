@@ -39,7 +39,7 @@ setDec($tableName, $filedName, $num = 1)
 ####  getInsertId()
 获取最后插入的id
 ####  getLastQuery()
-获取最后自行的sql语句
+获取最后执行的sql语句
 ####  getLastError()
 获取最后一次查询错误的内容
 ####  getLastErrno()
