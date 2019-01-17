@@ -440,6 +440,8 @@ public static function mainServerCreate(EventRegister $register): void
 
   // 创建 Dispatcher 对象 并注入 config 对象
   $dispatch = new Dispatcher($conf);
+  
+  $websocketEvent = new WebSocketEvent();
 
   // 给server 注册相关事件
   // 在 WebSocket 模式下  message 事件必须注册 并且交给 Dispatcher 对象处理
