@@ -7,13 +7,13 @@ Response对象在系统中以单例模式存在，自收到客户端HTTP请求�
 ### write
 该方法用于向客户响应数据。
 ```
-$response->write('hello world');
+$this->response->write('hello world');
 ```
 
 ### redirect
 该方法用于将请求重定向至指定的URL
 ```
-$response()->redirect("/newURL/index.html");
+$this->response()->redirect("/newURL/index.html");
 ```
 ### setCookie
 向客户端设置一个Cookie，用法与原生的setCookie一致。
@@ -32,12 +32,12 @@ if(!$this->response()->isEndResponse()){
 ### withStatus
 向客户端发送HTTP状态码。
 ```
-$response()->withStatus($statusCode);
+$this->response()->withStatus($statusCode);
 ```
 > 注意：$statusCode必须为标准的HTTP允许状态码，具体请见Http Message中的Status对象。
 
 ### withHeader
 用于向HTTP客户端发送一个header。
 ```
-$response()->withHeader('Content-type','application/json;charset=utf-8');
+$this->response()->withHeader('Content-type','application/json;charset=utf-8');
 ```
