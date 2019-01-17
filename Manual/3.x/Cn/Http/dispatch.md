@@ -30,13 +30,13 @@ public static function initialize()
 ```
 
 ## 特殊情况
-当控制器方法为index时,可直接忽略不写
+当控制器和方法都为index时,可直接忽略不写
 
 如果方法为index,则可以忽略:  
 > 如果对应执行方法名为 \App\HttpController\Api\User::index()
 > url可直接写 <http://serverName/api/User>  
 
-如果控制器为Index,则可以忽略
+如果控制器和方法都为Index,则可以忽略
 > 如果对应执行方法名为 \App\HttpController\Index::index()
 > url可直接写 <http://serverName/>   
 
