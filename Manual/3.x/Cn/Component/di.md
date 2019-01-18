@@ -29,14 +29,14 @@ $di = Di::getInstance();
 - $arg:若注入的内容为is_callable，则可以设置该参数以供callable执行时传入。
 
 ```php
-$di->set('db',new DbClass());
-$di->set('db',DbClass::class);
+$di->set('test',new TestClass());
+$di->set('test',TestClass::class);
 
 // set的时候储存的是[类名, 方法名]的数组，需要自己手动调用call_user_func()执行 (不要因错误与异常章节的demo而误解会自动执行)
-$di->set('db', [DbClass::class,'connect']);
+$di->set('test', [TestClass::class,'testFunction']);
 
 // set的时候传递了类名，get的时候才去new对象，并且将可变变量传递进构造函数，返回实例化后的对象
-$di->set('db',DbClass::class,$host,$port);
+$di->set('test', TestClass::class, $arg_one, $arg_tow);
 ```
 
 > Di的set方法为懒惰加载模式，若set一个对象名或者闭包，则该对象不会马上被创建。
@@ -44,13 +44,13 @@ $di->set('db',DbClass::class,$host,$port);
 ### get
 
 ```php
-$db = $db->get('db');
+$db = $db->get('test');
 ```
 
 ### delete
 
 ```php
-$di->delete('db');
+$di->delete('test');
 ```
 
 ### clear
