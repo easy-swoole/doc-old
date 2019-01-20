@@ -71,11 +71,9 @@
         - [基础功能](SystemComponent/Console/BasicFunction.md)
         - [自定义命令](SystemComponent/Console/CustomCommand.md)
     - [Crontab](SystemComponent/crontab.md)
-    - [FastCache](SystemComponent/FastCache.md)
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - [Actor](SystemComponent/Actor.md)
     - [Core](SystemComponent/Core.md)
     - [Config](SystemComponent/Config.md)
 - 基础进阶
@@ -109,7 +107,7 @@
         - [Pool](CoroutinePool/pool.md)
             - [Mysql](CoroutinePool/mysql_pool.md)
             - [Redis](CoroutinePool/redis_pool.md)
-    - Spl
+    - Spl库
         - [Array](Spl/array.md)
         - [Bean](Spl/bean.md)
         - [SplEnum](Spl/SplEnum.md)
@@ -129,6 +127,8 @@
         - [Websocket](Socket/WebSocket.md)
         - [Udp](Socket/Udp.md)
         - [Socket问题](Socket/Problem.md)
+    - [FastCache](FastCache/FastCache.md)
+    - [Actor](Actor/actor.md)    
     - [Curl](Curl/curl.md)
     - 数据库
         - [mysqli](Database/mysqli/Introduction.md)

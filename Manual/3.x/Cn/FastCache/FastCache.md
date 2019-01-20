@@ -6,12 +6,13 @@ EasySwoole FastCache组件通过新开进程,使用SplArray存储,unix sock 高�
 ### 使用配置:
 ```
 FAST_CACHE.PROCESS_NUM = 1 进程数
+FAST_CACHE.BACKLOG = 256 等待连接数
 ```
 
 ### 简单示例:
 ```php
 <?php
-$cache = \EasySwoole\EasySwoole\FastCache\Cache::getInstance();
+$cache = \EasySwoole\FastCache\Cache::getInstance();
 $cache->set('name','仙士可');
 $cache->set('name2','仙士可2号');//设置
 $cache->unset('name');//销毁
