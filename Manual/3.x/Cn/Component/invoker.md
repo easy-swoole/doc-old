@@ -2,6 +2,13 @@
 
 EasySwoole为了让框架支持函数超时处理,封装了一个Invoker。
 
+参数列表：
+```
+$callable     可执行回调函数
+$timeOut      超时时间，单位为 `微秒` 1s = 1 * 1000 * 1000μs。 `默认值100 * 1000`
+...$params    可变参数
+```
+
 ## 实现代码
 ```php
 <?php
@@ -48,7 +55,7 @@ try{
     \EasySwoole\Component\Invoker::exec(function (){
         sleep(2);
     });
-}catch (Throwable $throwable){
+}catch (\Throwable $throwable){
     echo $throwable->getMessage();
 }
 ```

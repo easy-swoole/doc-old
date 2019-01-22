@@ -5,6 +5,7 @@ EasySwoole 提供了console控制台组件,在项目运行的时候,可通过命
 示例:  
 ```
 php easyswoole console
+auth root root(3.1.11后面的版本需要鉴权登录验证)
 server status 
 server hostIp
 ```
@@ -12,7 +13,30 @@ server hostIp
 
 ## 配置
 console配置如下:
-3.1.2后
+
+3.1.11后
+
+```
+'CONSOLE'     => [//console组件配置,完整配置可查看:http://easyswoole.com/Manual/3.x/Cn/_book/SystemComponent/Console/Introduction.html
+    'ENABLE'         => true,//是否开启console
+    'LISTEN_ADDRESS' => '127.0.0.1',//console服务端监听地址
+    'HOST'           => '127.0.0.1',//console客户端连接远程地址
+    'PORT'           => 9500,//console服务端监听端口,客户端连接远程端口
+    'EXPIRE'         => '120',//心跳超时时间
+    'AUTH'           => [
+        [
+            'USER'        => 'root',
+            'PASSWORD'    => 'root',
+            'MODULES'     => [
+                'auth', 'server', 'help', 'test'
+            ],
+            'PUSH_LOG'    => true
+        ]
+    ]
+],
+```
+
+3.1.2---3.1.10
 ```
 'CONSOLE'     => [//console组件配置,完整配置可查看:http://easyswoole.com/Manual/3.x/Cn/_book/SystemComponent/Console/Introduction.html
     'ENABLE'         => true,//是否开启console
