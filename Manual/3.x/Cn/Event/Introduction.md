@@ -8,4 +8,3 @@ EasySwoole有五个全局事件，全部位于框架安装后生成的EasySwoole
 - mainServerCreate 主服务创建事件
 - onRequest Http请求事件
 - afterRequest Http响应后事件
-- onReceive tcp服务器接收数据响应事件

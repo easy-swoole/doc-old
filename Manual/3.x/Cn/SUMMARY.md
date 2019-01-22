@@ -65,7 +65,6 @@
     - [mainServerCreate](Event/mainServerCreate.md)
     - [onRequest](Event/onRequest.md)
     - [afterRequest](Event/afterRequest.md)
-    - [onReceive](Event/onReceive.md)
 - 组件与工具
     - [Console](SystemComponent/Console/Introduction.md)
         - [基础功能](SystemComponent/Console/BasicFunction.md)
