@@ -68,19 +68,21 @@ Logger::getInstance()->console('这是自定义输出的日志','类别',false);
 namespace App\Log;
 use EasySwoole\Trace\AbstractInterface\LoggerInterface;
 
-class MyLogHandle implements LoggerInterface{
-    public function console(string $str, $category = null, $saveLog = true)
+class MyLogHandle implements LoggerInterface {
+
+    public function console(string $str, $category = null, $saveLog = true): ?string
     {
-        echo "这是自定义的log处理,输出:$str\n";
         // TODO: Implement console() method.
+        echo "这是自定义的log处理,输出:$str\n";
+        return "这是自定义的log处理,输出:$str\n";
     }
 
-    public function log(string $str, $logCategory, int $timestamp = null)
+    public function log(string $str, $logCategory = null, int $timestamp = null): ?string
     {
-        echo "这是自定义的log处理,模拟写入:[$logCategory]$str\n";
         // TODO: Implement log() method.
+        echo "这是自定义的log处理,模拟写入:[$logCategory]$str\n";
+        return "这是自定义的log处理,模拟写入:[$logCategory]$str\n";
     }
-
 }
 ```
 
@@ -97,9 +99,31 @@ function static initialize()
 打印日志信息
 
 ```php
-Logger::getInstance()->log('这是自定义写入的日志','notice');
-Logger::getInstance()->console('这是自定义输出的日志','类别',false);//默认输出之后还会写入,第三个参数false则不写入
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 18-11-12
+ * Time: 上午9:34
+ */
+
+namespace App\HttpController\Log;
+
+
+use App\HttpController\Base;
+use EasySwoole\EasySwoole\Logger;
+
+class Index extends Base
+{
+    function index()
+    {
+        Logger::getInstance()->log('这是自定义写入的日志','notice');
+        Logger::getInstance()->console('这是自定义输出的日志','类别',false);//默认输出之后还会写入,第三个参数false则不写入
+        $this->response()->write('日志');
+    }
+}
 ```
+
 >框架全局的错误/异常处理都是使用Logger类来处理的
 
 
