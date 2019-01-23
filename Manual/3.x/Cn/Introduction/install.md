@@ -34,30 +34,12 @@ fi
 dir=$(echo $dir | sed 's/ /\ /g')
 "${dir}/easyswoole" "$@"
 ```
-
-关于该问题，搜索了几回谷歌，都说是composer问题。不信执行以下代码也有同样问题
-
+请确认 php.ini是否禁用了symlink函数。或者可以直接指向easySwoole的管理脚本安装。
 ```bash
-> php vendor/bin/php-parser
-```
-
-暂时解决方案就是用 `yum` 或者是以手动编译的形式重新安装你的 PHP 环境，或者也可以直接指向easySwoole的脚本，若有解决该报错的方案，请与我联系
-
-```bash
-# 直接指向easySwoole的管理脚本
 php vendor/easyswoole/easyswoole/bin/easyswoole.php install
 ```
+> https://github.com/composer/composer/issues/7873
 
-
-
-## 手动安装
-
-按下面的步骤进行手动安装
-
-```bash
-composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
-```
 
 中途没有报错的话，执行：
 ```bash
@@ -179,6 +161,7 @@ ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 
 
 ## Hello World
+
 在项目根目录下创建如下的目录结构，这个目录是编写业务逻辑的应用目录，编辑 `Index.php` 文件，添加基础控制器的代码
 
 ```
