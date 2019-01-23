@@ -9,7 +9,4 @@
 - [HttpServer](Http/httpServer.md)
     - [Controller](Http/controller.md)
 - ComponentList
-   - [DataBase](Component/mysqli.md)    
-    
-    
-    
+   - [DataBase](Component/mysqli.md)
