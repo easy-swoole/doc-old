@@ -32,23 +32,10 @@ fi
 dir=$(echo $dir | sed 's/ /\ /g')
 "${dir}/easyswoole" "$@"
 ```
-It's a composer issue.
-The temporary solution is to reinstall your PHP environment by `yum` or compile, or you can point directly to the easySwoole script. If you have a solution to the error, please contact me.
+It's a composer issue.make sure symlink function is allow. or you can run script directly
 
 ```bash
-# run script directly
 php vendor/easyswoole/easyswoole/bin/easyswoole.php install
-```
-
-
-
-## Installation
-
-Follow these steps
-
-```bash
-composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
 ```
 
 If no error is reported, run：
@@ -57,8 +44,6 @@ If no error is reported, run：
 php easyswoole start
 ```
 Now you can visit `http://localhost:9501` , you will see a welcome page.
-
-
 
 ## Hello World
 Create the following directory structure in the project root directory. This directory is the application directory for writing business logic. Edit the `Index.php` file and add the code of the base controller.
@@ -144,8 +129,8 @@ project                   root dir
 ├─EasySwooleEvent.php     global event
 ├─easyswoole              
 ├─easyswoole.install      
-├─dev.env                 development config
-├─produce.env             production config
+├─dev.php                 development config
+├─produce.php             production config
 ```
 
 > Note! Please do not use the framework root directory as the root directory of the web server, otherwise the dev.env,produce.env configuration will be accessible, or you can exclude the file yourself.
