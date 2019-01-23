@@ -88,7 +88,12 @@ class MysqlDbObject extends Mysqli implements PoolObjectInterface
     }
 }
 ```
-
+get dbObject from pool
+```
+MysqlPool::invoke(function (MysqlDbObject $dbObject){
+   return $dbObject->get('test');
+});
+```
 > pool is implement at easyswoole/component
 
 ## Usage List

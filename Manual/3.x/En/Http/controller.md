@@ -31,3 +31,29 @@ Each Controller must extends ***EasySwoole\Http\AbstractInterface\Controller*** 
 - response()
 
     get current psr-7 http response instance
+    
+## Controller Example        
+```
+namespace App\HttpController;
+
+use EasySwoole\Http\AbstractInterface\Controller;
+
+class Index extends Controller
+{
+    /*
+     * url: /index.html
+     */
+    function index()
+    {
+        // TODO: Implement index() method.
+        $this->response()->write('hello world');
+    }
+    /*
+     * url: /myAction/index.html
+     */
+    function myAction()
+    {
+        $this->response()->write('this is my action');
+    }
+}
+```
