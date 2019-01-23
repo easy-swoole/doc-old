@@ -7,6 +7,8 @@ ContextManager上下文管理器
 ContextManager::getInstance()->set('mysqlObject',PoolManager::getInstance()->getPool(MysqlPool::class)->getObj());
 //注册一个mysql连接,这次请求都将是单例Mysql的
 //在控制器中获取本次请求唯一的一个数据库连接
+//在afterRequest销毁本次请求的context
+ContextManager::getInstance()->destroy();
 
 function index()
 {
@@ -17,7 +19,7 @@ function index()
 
 ```
 >如上,我们可以使用Context实现在某个协程中的"全局"变量,这个变量在当前协程中是可全局访问修改的   
->EasySwoole3.1.5版本已经实现了自动销毁Context,无需手动
+
 
 实现代码:
 ```php
