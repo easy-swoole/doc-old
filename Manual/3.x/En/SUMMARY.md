@@ -9,12 +9,12 @@
 - [HttpServer](Http/httpServer.md)
     - [Controller](Http/controller.md)
 - SysComponent
-    - [Console](SysComponent/console.md)
-    - AsyncTask    
-    - Trigger
-    - Logger
+    - [AsyncTask](SysComponent/task.md)    
+    - [Trigger](SysComponent/trigger.md)
+    - [Logger](SysComponent/logger.md)
     - Config
     - ServerManager
+    - [Console](SysComponent/console.md)
 - ExtraComponent
    - [DataBase](ExtraComponent/mysqli.md)
    - Component

@@ -7,7 +7,7 @@ The framework uses `Composer` as the dependency management tool. Before starting
 Follow these steps
 
 ```bash
-composer require easyswoole/easyswoole=3.x-dev
+composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole.php install
 ```
 
