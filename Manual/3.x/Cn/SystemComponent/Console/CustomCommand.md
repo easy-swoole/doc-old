@@ -5,7 +5,7 @@
 console组件封装自己的自定义命令
 
 ### 代码示例
-我们需要继承\EasySwoole\EasySwoole\Console\CommandInterface接口:
+我们需要继承\EasySwoole\EasySwoole\Console\ModuleContainer接口:
 
 ```php
 <?php
@@ -18,12 +18,11 @@ console组件封装自己的自定义命令
 
 namespace App\Utility\ConsoleCommand;
 
-
-use EasySwoole\EasySwoole\Console\CommandInterface;
+use EasySwoole\EasySwoole\Console\ModuleInterface;
 use EasySwoole\Socket\Bean\Caller;
 use EasySwoole\Socket\Bean\Response;
 
-class Test implements CommandInterface
+class Test implements ModuleInterface
 {
 
     public function moduleName(): string
@@ -140,7 +139,7 @@ return [
 
 在EasySwooleEvent.php的initialize事件中进行注册:
 ```
- \EasySwoole\EasySwoole\Console\CommandContainer::getInstance()->set(new Test());
+\EasySwoole\EasySwoole\Console\ModuleContainer::getInstance()->set(new Test());
 ```
 
 使用php easyswoole console打开控制台,验证鉴权用户，输入test blank,结果
