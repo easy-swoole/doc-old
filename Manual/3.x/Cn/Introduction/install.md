@@ -10,7 +10,8 @@
 
 ```bash
 composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole install
+# php vendor/bin/easyswoole install 
+php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 
 > 如果安装遇到报错，请看下面的报错处理
