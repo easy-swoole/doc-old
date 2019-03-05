@@ -259,6 +259,9 @@ function poolInvoke(){
 > 当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
 ### 创建匿名连接池
 当你不想新建文件实现 连接池 或者不想实现 连接池对象时,可通过`registerAnonymous`创建匿名连接池,例如:
+
+在```EasySwooleEvent.php```的initialize方法中注册连接池对象
+
 ````php
 <?php
    PoolManager::getInstance()->registerAnonymous('mysql',function (){
@@ -266,15 +269,15 @@ function poolInvoke(){
             $dbConf = new Config($conf);
             return new Mysqli($dbConf);
         });
+````
+在控制器中使用:
+````php
+<?php
         $db = PoolManager::getInstance()->getPool('mysql')->getObj();
         $data = $db->get('test');
         $db->resetDbStatus();//重置为初始状态,否则回收之后会出问题
         PoolManager::getInstance()->getPool('mysql')->recycleObj($db);
         $this->response()->write(json_encode($data));
 ````
-
-
-
-
-
+> 
 
