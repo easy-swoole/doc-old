@@ -1,13 +1,6 @@
 # 配置文件
 
-EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置
-
-## 默认配置文件 (3.1.2 之后)
-------
-
-> 注意: 3.1.2 `SERVER_TYPE` 常量修改为 `EASYSWOOLE_SERVER` `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
-
-框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
+EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置。框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
 文件内容如下:
 
 ```php
@@ -64,7 +57,8 @@ return [
 ];
 ```
 
-> EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive,message),否则将出错
+> EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive或message),否则将出错
+
 ## 配置操作类
 
 配置操作类为 `EasySwoole\Config` 类，使用非常简单，见下面的代码例子，操作类还提供了 `toArray` 方法获取全部配置，`load` 方法重载全部配置，基于这两个方法，可以自己定制更多的高级操作
@@ -123,80 +117,6 @@ $instance->load($conf);
 ],
 ```
 
-也可以新建php文件进行添加配置,例如:  
-
-添加App/Conf/web.php
-
-EasySwooleEvent.php文件写法示例:  
-```php
-<?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/5/28
- * Time: 下午6:33
- */
-
-namespace EasySwoole\EasySwoole;
-
-
-use EasySwoole\EasySwoole\Swoole\EventRegister;
-use EasySwoole\EasySwoole\AbstractInterface\Event;
-use EasySwoole\Http\Request;
-use EasySwoole\Http\Response;
-use EasySwoole\Utility\File;
-
-class EasySwooleEvent implements Event
-{
-
-    public static function initialize()
-    {
-        self::loadConf();
-        // TODO: Implement initialize() method.
-    }
-
-    /**
-     * 加载配置文件
-     */
-    public static function loadConf()
-    {
-        $files = File::scanDirectory(EASYSWOOLE_ROOT . '/App/Conf');
-        if (is_array($files)) {
-            foreach ($files['files'] as $file) {
-                $fileNameArr = explode('.', $file);
-                $fileSuffix = end($fileNameArr);
-                if ($fileSuffix == 'php') {
-                    Config::getInstance()->loadFile($file);//引入之后,文件名自动转为小写,成为配置的key
-                }
-            }
-        }
-    }
-
-    public static function mainServerCreate(EventRegister $register)
-    {
-        // TODO: Implement mainServerCreate() method.
-    }
-
-    public static function onRequest(Request $request, Response $response): bool
-    {
-        // TODO: Implement onRequest() method.
-        return true;
-    }
-
-    public static function afterRequest(Request $request, Response $response): void
-    {
-        // TODO: Implement afterAction() method.
-    }
-
-    public static function onReceive(\swoole_server $server, int $fd, int $reactor_id, string $data):void
-    {
-
-    }
-
-}
-```
->env文件不支持#特殊字符配置(3.1.2之后删除了env配置),可通过此方法,引入php文件
-
 ## 生产与开发配置分离
 在php easyswoole start命令下,默认为开发模式,加载 `dev.php` (3.1.2之前为 `dev.env`)
 运行 php easyswoole start produce 命令时,为生产模式,加载 `produce.php` (3.1.2之前为 `produce.env`)
@@ -224,11 +144,4 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
     Config::getInstance()->setDynamicConf('test_config_value', 0);//配置一个动态配置项
     $test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value');//获取一个配置
     Config::getInstance()->delDynamicConf('test_config_value');//删除一个配置
-```
-
-
-## 存在特殊运算的配置
-可以在框架初始化事件中，进行直接写入
-```
- Config::getInstance()->setConf('MAIN_SERVER.SOCK_TYPE',SWOOLE_TCP|SWOOLE_SSL);
 ```

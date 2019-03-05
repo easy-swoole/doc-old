@@ -9,7 +9,7 @@
 按下面的步骤进行手动安装
 
 ```bash
-composer require easyswoole/easyswoole=3.x-dev
+composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
 
@@ -75,37 +75,14 @@ php easyswoole start
 
 > 如果第二步的 install 操作报错 请查看上方的报错处理
 
-## Docker镜像
-
-先从镜像库拉取
-
-```bash
-docker pull encircles/easyswoole3:latest
-```
-
-启动一个容器，执行：
-```bash
-# 启动容器
-docker run -d -it -p 9501:9501 --name containerName encircles/easyswoole3:latest
-```
-此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示容器运行成功
-
-> 如果运行容器报错 请查看docker日志 
-
 ## Dockerfile
 
-如果镜像满足不了您开发的要求, 这里提供Dockerfile, 您可以自行修改
-
-file: Dockerfile
 ```
-FROM php:7.2
-
-LABEL maintainer="encircles@163.com" 
+FROM php:7.1
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV HIREDIS_VERSION 0.13.3
-ENV SWOOLE_VERSION 4.2.9
+ENV SWOOLE_VERSION 4.3.0
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
@@ -143,19 +120,6 @@ RUN wget http://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz -O /tmp/redis.tar
     && rm -rf /tmp/redis.tar.tgz \
     && docker-php-ext-enable redis
 
-# Hiredis
-RUN wget https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz -O hiredis.tar.gz \
-    && mkdir -p hiredis \
-    && tar -xf hiredis.tar.gz -C hiredis --strip-components=1 \
-    && rm hiredis.tar.gz \
-    && ( \
-    cd hiredis \
-    && make -j$(nproc) \
-    && make install \
-    && ldconfig \
-    ) \
-    && rm -r hiredis
-
 # Swoole extension
 RUN wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz \
     && mkdir -p swoole \
@@ -178,12 +142,12 @@ RUN cd /var/www/code \
     && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
     && php vendor/bin/easyswoole install
 
-EXPOSE 80
+EXPOSE 9501
 
 ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
+
 ```
 > docker build Dockerfile 请自行百度
-
 
 ## Hello World
 在项目根目录下创建如下的目录结构，这个目录是编写业务逻辑的应用目录，编辑 `Index.php` 文件，添加基础控制器的代码
@@ -248,12 +212,6 @@ php easyswoole start
 ```bash
 composer require easyswoole/swoole-ide-helper
 ```
-
-## 示例项目
-
-框架准备了一个示例项目，内有框架大部分功能的示例代码，直接克隆下方的 GitHub 仓库到本地并安装依赖，即可开始体验
-
-> 仓库地址: [https://github.com/easy-swoole/demo/tree/3.x](https://github.com/easy-swoole/demo/tree/3.x)
 
 ## 目录结构
 
