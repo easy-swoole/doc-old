@@ -40,8 +40,8 @@ class Router extends AbstractRouter
             $response->end();
         });
         // /user/1/index.html
-        $routeCollector->get( '/user/{id:\d+}',function (Request $request ,Response $response,$id){
-            $response->write("this is router user ,your id is {$id}");
+        $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
+            $response->write("this is router user ,your id is {$request->getQueryParam('id')}");
             $response->end();
         });
 
