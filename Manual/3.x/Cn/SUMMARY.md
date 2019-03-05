@@ -77,7 +77,6 @@
 - 基础进阶
     - [异步任务](Advanced/async_task.md)
     - [Atomic](Advanced/Atomic.md)
-    - [Channel](Advanced/Channel.md)
     - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
