@@ -48,6 +48,7 @@ function index()
 }
 ```
 用完redis连接池对象之后记得用recycleObj回收
+> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断
 
 ```php
 <?php
