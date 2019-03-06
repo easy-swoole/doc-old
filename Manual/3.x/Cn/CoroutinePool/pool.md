@@ -1,6 +1,6 @@
 ## 连接池组件
 EasySwoole在基础组件中集合了连接池组件,增加mysql/redis等i/o连接的复用性,命名空间为:`EasySwoole\Component\Pool`
-
+demo地址:(https://github.com/easy-swoole/demo/tree/3.x-pool)
 > 在新版本中,实现了连接池自动回收,自动注册,匿名连接池注册,以及本身的底层异常处理
 > 使得用户在使用连接池时,可做到直接使用,无需注册,无需回收,也不会出现问题
 
