@@ -1,6 +1,6 @@
 # 自定义进程
 
-> 参考Demo: [自定义进程](https://github.com/easy-swoole/demo/tree/3.x)
+> 参考Demo: [自定义进程](https://github.com/easy-swoole/demo/tree/3.x-process)
 
 > 自定义进程抽象类：EasySwoole\Component\Process\AbstractProcess
 
@@ -206,5 +206,5 @@ class ProcessTest extends AbstractProcess
 
 }
 ```
-以上代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x/App/Process/ProcessTest.php)，
-至于如何使用（测试），请见demo中的EasySwooleEvent.php
+代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x-process/App/Process/ProcessOne.php)，
+至于如何使用（测试），请见demo中的[EasySwooleEvent.php](https://github.com/easy-swoole/demo/blob/3.x-process/EasySwooleEvent.php)
