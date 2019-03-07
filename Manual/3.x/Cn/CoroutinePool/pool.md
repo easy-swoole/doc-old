@@ -198,6 +198,8 @@ class Index extends Controller
     }
 }
 ```
+> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断
+
 
 ### 无需注册
 在`PoolManager`中的`getPool`方法中,实现了对连接池的自动注册   
