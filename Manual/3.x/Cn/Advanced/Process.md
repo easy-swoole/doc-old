@@ -221,3 +221,5 @@ class ProcessTest extends AbstractProcess
 ```
 代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x-process/App/Process/ProcessOne.php)，
 至于如何使用（测试），请见demo中的[EasySwooleEvent.php](https://github.com/easy-swoole/demo/blob/3.x-process/EasySwooleEvent.php)
+
+> 注意,自定义进程不要写while,或者需要有break等逻辑,否则会造成stop 不能关闭进程的情况,如果要死循环,可以用定时器进行循环
