@@ -1,6 +1,6 @@
 # 异步任务
 
-> 参考Demo: [异步任务处理](https://github.com/easy-swoole/demo/tree/3.x/App/HttpController/Task.php)
+> 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 
 > 异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
 
