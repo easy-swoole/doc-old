@@ -1,5 +1,5 @@
 # EasySwoole  Tcp服务
-tcp 服务以及tcp客户端 demo:https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller
+tcp 服务以及tcp客户端 demo:https://github.com/easy-swoole/demo/tree/3.x-subtcp
 
 ## 创建tcp服务
 通过`EasySwooleEvent.php`文件的`mainServerCreate` 事件,进行添加子服务监听,例如:
@@ -136,7 +136,7 @@ function decode($str)
 ````json
 {"controller":"Index","action":"index","param":{"name":"\u4ed9\u58eb\u53ef"}}
 ````
-实现解析器[Parser.php](https://github.com/easy-swoole/demo/blob/3.x-tcpcontroller/App/TcpController/Parser.php)
+实现解析器[Parser.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Parser.php)
 ````php
 <?php
 /**
@@ -182,7 +182,7 @@ class Parser implements ParserInterface
     }
 }
 ````
-### 实现控制器[Index.php](https://github.com/easy-swoole/demo/blob/3.x-tcpcontroller/App/TcpController/Index.php)
+### 实现控制器[Index.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Index.php)
 ````php
 <?php
 /**
