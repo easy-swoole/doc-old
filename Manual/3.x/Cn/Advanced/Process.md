@@ -147,6 +147,19 @@ class ProcessHelper
 }
 ```
 
+## 创建进程
+在`EasySwooleEvent.php`的`mainServerCreate`事件中创建:
+````php
+<?php
+
+    public static function mainServerCreate(EventRegister $register)
+    {
+        ServerManager::getInstance()->getSwooleServer()->addProcess((new Task('processTest'))->getProcess());
+
+        // TODO: Implement mainServerCreate() method.
+    }
+````
+
 ## 在自定义进程投递异步任务
 
 由于自定义进程的特殊性，不能直接调用Swoole的异步任务相关方法进行异步任务投递，框架已经封装好了相关的方法方便异步任务投递，请看下面的例子,详细异步任务教程请[点击这里](async_task.md)查看
