@@ -52,8 +52,8 @@ var_dump($cache->deQueue('listA'));//出列
 FastCache提供了3个方法,用于数据落地以及重启恢复,在`EasySwooleEvent.php`中的`mainServerCreate`回调事件中设置以下方法:
 ```php
 <?php
-Cache::getInstance()->__setTickInterval(5 * 1000);//设置定时频率
-Cache::getInstance()->__setTickCall(function (CacheProcess $cacheProcess) {
+Cache::getInstance()->setTickInterval(5 * 1000);//设置定时频率
+Cache::getInstance()->setOnTick(function (CacheProcess $cacheProcess) {
     $data = [
         'data'  => $cacheProcess->getSplArray(),
         'queue' => $cacheProcess->getQueueArray()
@@ -61,7 +61,7 @@ Cache::getInstance()->__setTickCall(function (CacheProcess $cacheProcess) {
     $path = EASYSWOOLE_ROOT . '/Temp/' . $cacheProcess->getProcessName();
     File::createFile($path,serialize($data));//每隔5秒将数据存回文件
 });
-Cache::getInstance()->__setOnStart(function (CacheProcess $cacheProcess) {
+Cache::getInstance()->setOnStart(function (CacheProcess $cacheProcess) {
     $path = EASYSWOOLE_ROOT . '/Temp/' . $cacheProcess->getProcessName();
     if(is_file($path)){
         $data = unserialize(file_get_contents($path));
@@ -69,7 +69,7 @@ Cache::getInstance()->__setOnStart(function (CacheProcess $cacheProcess) {
         $cacheProcess->setSplArray($data['data']);
     }//启动时将存回的文件重新写入
 });
-Cache::getInstance()->__setOnShutdown(function (CacheProcess $cacheProcess) {
+Cache::getInstance()->setOnShutdown(function (CacheProcess $cacheProcess) {
     $data = [
         'data'  => $cacheProcess->getSplArray(),
         'queue' => $cacheProcess->getQueueArray()
