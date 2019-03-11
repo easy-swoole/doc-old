@@ -72,7 +72,6 @@
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - [Core](SystemComponent/Core.md)
     - [Config](SystemComponent/Config.md)
 - 基础进阶
     - [异步任务](Advanced/async_task.md)
@@ -80,7 +79,7 @@
     - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
-- 组件库
+- 独立组件库
     - [HTTP组件](Http/intro.md)
         - [控制器](Http/controller.md)
         - [URL解析规则](Http/dispatch.md)
