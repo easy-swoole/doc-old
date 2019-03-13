@@ -89,7 +89,6 @@
         - [Response对象](Http/response.md)
         - [常见问题](Http/problem.md)
         - [错误与异常拦截](Http/exception.md)
-        - [模板引擎](Http/template.md)
         - [UploadFile对象](Http/UploadFile.md)
     - Component
         - [Singleton](Component/Singleton.md)
