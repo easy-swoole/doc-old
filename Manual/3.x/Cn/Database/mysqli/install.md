@@ -21,7 +21,7 @@ composer require easyswoole/mysqli
     'POOL_TIME_OUT' => '0.1',
 ],
 ```
-在env配置文件中增加或自行引入
+在配置文件中增加或自行引入
 ### 调用
 ```php
 <?php
