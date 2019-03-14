@@ -132,6 +132,7 @@
                 - [数据更新](Database/mysqli/curd/update_data.md);
                 - [数据删除](Database/mysqli/curd/delete_data.md);
             - [事务](Database/mysqli/Transaction.md)
+            - [执行sql](Database/mysqli/ExecuteSql.md)
             - [其他](Database/mysqli/other.md)
     - [Validate](Tools/validate.md)
     - [验证码](Verifycode/Introduction.md)
