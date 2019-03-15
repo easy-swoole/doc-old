@@ -1,6 +1,6 @@
 # WebSocket控制器
 
-> 参考Demo: [WebSocket](https://github.com/easy-swoole/demo/tree/3.x)
+> 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
 
 EasySwoole 3.x支持以控制器模式来开发你的代码。
 
@@ -15,7 +15,7 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 ## 新人帮助
 
 * 本文遵循PSR-4自动加载类规范，如果你还不了解这个规范，请先学习相关规则。
-* 本节基础命名空间App 默认指项目根目录下Application文件夹，如果你的App指向不同，请自行替换。
+* 本节基础命名空间App 默认指项目根目录下App文件夹，如果你的App指向不同，请自行替换。
 * 只要遵循PSR-4规范，无论你怎么组织文件结构都没问题，本节只做简单示例。
 
 ## 实现命令解析
@@ -27,58 +27,87 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 >
 > 需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
 
-**创建Application/Socket/WebSocketParser.php文件，写入以下代码**
+**创建App/WebSocket/WebSocketParser.php文件，写入以下代码**
 
 ```php
-namespace App\Socket;
+namespace App\WebSocket;
+
 
 use EasySwoole\Socket\AbstractInterface\ParserInterface;
-use EasySwoole\Socket\Client;
-use EasySwoole\Socket\Bean\{
-    Caller,
-    Response
-};
+use EasySwoole\Socket\Client\WebSocket;
+use EasySwoole\Socket\Bean\Caller;
+use EasySwoole\Socket\Bean\Response;
 
-use App\Socket\Websocket\Test;
-
+/**
+ * Class WebSocketParser
+ *
+ * 此类是自定义的 websocket 消息解析器
+ * 此处使用的设计是使用 json string 作为消息格式
+ * 当客户端消息到达服务端时，会调用 decode 方法进行消息解析
+ * 会将 websocket 消息 转成具体的 Class -> Action 调用 并且将参数注入
+ *
+ * @package App\WebSocket
+ */
 class WebSocketParser implements ParserInterface
 {
     /**
      * decode
-     * @param  string         $raw    客户端消息
-     * @param  Client         $client Socket Client 对象
-     * @return Caller         Socket 调用对象
+     * @param  string         $raw    客户端原始消息
+     * @param  WebSocket      $client WebSocket Client 对象
+     * @return Caller         Socket  调用对象
      */
     public function decode($raw, $client) : ? Caller
     {
-        // 开发者在这里将客户端发送来的消息解析成具体的调用控制器和方法
-        // 开发者可以自己选择 event 模式 或者传统的控制器模式
-        $jsonObject = json_decode($raw);
+        // 解析 客户端原始消息
+        $data = json_decode($raw, true);
+        if (!is_array($data)) {
+            echo "decode message error! \n";
+            return null;
+        }
 
         // new 调用者对象
         $caller =  new Caller();
-        // 设置被调用的类
-        $caller->setControllerClass(Test::class);
+        /**
+         * 设置被调用的类 这里会将ws消息中的 class 参数解析为具体想访问的控制器
+         * 如果更喜欢 event 方式 可以自定义 event 和具体的类的 map 即可
+         * 注 目前 easyswoole 3.0.4 版本及以下 不支持直接传递 class string 可以通过这种方式
+         */
+        $class = '\\App\\WebSocket\\'. ucfirst($data['class'] ?? 'Index');
+        $caller->setControllerClass($class);
+
+        // 提供一个事件风格的写法
+//         $eventMap = [
+//             'index' => Index::class
+//         ];
+//         $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
+
         // 设置被调用的方法
-        $caller->setAction($jsonObject->action);
+        $caller->setAction($data['action'] ?? 'index');
+        // 检查是否存在args
+        if (isset($data['content']) && is_array($data['content'])) {
+            $args = $data['content'];
+        }
+
         // 设置被调用的Args
-        $caller->setArgs(isset($jsonObject->content) ? [$jsonObject->content] : []);
+        $caller->setArgs($args ?? []);
         return $caller;
     }
-
     /**
      * encode
-     * @param  Response $response Socket Response 对象
-     * @param  Client   $client   Socket Client 对象
+     * @param  Response     $response Socket Response 对象
+     * @param  WebSocket    $client   WebSocket Client 对象
      * @return string             发送给客户端的消息
      */
     public function encode(Response $response, $client) : ? string
     {
-        // 这里返回响应给客户端的信息
-        // 这里应当只做统一的encode操作 具体的状态等应当由 Controller处理
+        /**
+         * 这里返回响应给客户端的信息
+         * 这里应当只做统一的encode操作 具体的状态等应当由 Controller处理
+         */
         return $response->getMessage();
     }
 }
+
 ```
 > *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
 
@@ -94,26 +123,23 @@ class WebSocketParser implements ParserInterface
 ```php
 //注意：在此文件引入以下命名空间
 use EasySwoole\Socket\Dispatcher;
-use App\Socket\WebSocketParser;
+use App\WebSocket\WebSocketParser;
 
 public static function mainServerCreate(EventRegister $register): void
 {
     /**
-     * *************** WebSocket ***************
+     * **************** websocket控制器 **********************
      */
-
     // 创建一个 Dispatcher 配置
     $conf = new \EasySwoole\Socket\Config();
     // 设置 Dispatcher 为 WebSocket 模式
-    $conf->setType($conf::WEB_SOCKET);
+    $conf->setType(\EasySwoole\Socket\Config::WEB_SOCKET);
     // 设置解析器对象
     $conf->setParser(new WebSocketParser());
-
     // 创建 Dispatcher 对象 并注入 config 对象
     $dispatch = new Dispatcher($conf);
-
-    // 给server 注册相关事件 在 WebSocket 模式下  message 事件必须注册 并且交给 Dispatcher 对象处理
-    $register->set(EventRegister::onMessage, function(\swoole_websocket_server  $server, \swoole_websocket_frame $frame) use ($dispatch){
+    // 给server 注册相关事件 在 WebSocket 模式下  on message 事件必须注册 并且交给 Dispatcher 对象处理
+    $register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) use ($dispatch) {
         $dispatch->dispatch($server, $frame->data, $frame);
     });
 }
@@ -126,7 +152,7 @@ public static function mainServerCreate(EventRegister $register): void
 **友情提示**
 > easyswoole 提供了更强大的WebSocket调试工具，[foo]: http://www.evalor.cn/websocket.html  'WEBSOCKET CLIENT'；
 
-**创建Application/HttpController/websocket.html文件，写入以下代码**
+**创建App/HttpController/websocket.html文件，写入以下代码**
 
 ```html
 <html>
@@ -138,8 +164,7 @@ public static function mainServerCreate(EventRegister $register): void
     <div>
         <p>info below</p>
         <ul  id="line">
-
-        </ul>
+         </ul>
     </div>
     <div>
         <select id="action">
@@ -161,16 +186,13 @@ public static function mainServerCreate(EventRegister $register): void
         websocket.onopen = function (evt) {
             addLine("Connected to WebSocket server.");
         };
-
-        websocket.onclose = function (evt) {
+         websocket.onclose = function (evt) {
             addLine("Disconnected");
         };
-
-        websocket.onmessage = function (evt) {
+         websocket.onmessage = function (evt) {
             addLine('Retrieved data from server: ' + evt.data);
         };
-
-        websocket.onerror = function (evt, e) {
+         websocket.onerror = function (evt, e) {
             addLine('Error occured: ' + evt.data);
         };
     };
@@ -195,21 +217,32 @@ public static function mainServerCreate(EventRegister $register): void
 **新人提示**
 > 这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
 
-**创建Application/HttpController/WebSocketTest.php文件，写入以下代码**
+**创建App/HttpController/WebSocket.php文件，写入以下代码**
 
 ```php
 namespace App\HttpController;
 
-
 use EasySwoole\Http\AbstractInterface\Controller;
 use EasySwoole\EasySwoole\ServerManager;
 
-class WebSocketTest extends Controller
+/**
+ * Class WebSocket
+ *
+ * 此类是通过 http 请求来调用具体的事件
+ * 实际生产中需要自行管理 fd -> user 的关系映射，这里不做详细解释
+ *
+ * @package App\HttpController
+ */
+class WebSocket extends Controller
 {
-    function index()
+    /**
+     * 默认的 websocket 测试页
+     */
+    public function index()
     {
-        $content = file_get_contents(__DIR__.'/websocket.html');
+        $content = file_get_contents(__DIR__ . '/websocket.html');
         $this->response()->write($content);
+        $this->response()->end();
     }
 }
 ```
@@ -222,16 +255,23 @@ class WebSocketTest extends Controller
 >
 > actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
 
-**创建Application/Socket/WebSocket/Test.php文件，写入以下内容**
+**创建App/WebSocket/Index.php文件，写入以下内容**
 
 ```php
-namespace App\Socket\WebSocket;
+namespace App\WebSocket;
 
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
 use EasySwoole\Socket\AbstractInterface\Controller;
 
-class Test extends Controller
+/**
+ * Class Index
+ *
+ * 此类是默认的 websocket 消息解析后访问的 控制器
+ *
+ * @package App\WebSocket
+ */
+class Index extends Controller
 {
     function hello()
     {
@@ -248,13 +288,12 @@ class Test extends Controller
         $client = $this->caller()->getClient();
 
         // 异步推送, 这里直接 use fd也是可以的
-        // TaskManager::async 回调参数中的代码是在 task 进程中执行的 默认不含连接池 需要注意可能出现 getPool null的情况
         TaskManager::async(function () use ($client){
             $server = ServerManager::getInstance()->getSwooleServer();
             $i = 0;
             while ($i < 5) {
                 sleep(1);
-                $server->push($client->getFd(),'push in http at '.time());
+                $server->push($client->getFd(),'push in http at '. date('H:i:s'));
                 $i++;
             }
         });
@@ -266,13 +305,12 @@ class Test extends Controller
 
 *如果你按照本文配置，那么你的文件结构应该是以下形式*
 
-Application
+App
 ├── HttpController
 │   ├── websocket.html
-│   └── WebSocketTest.php
-├── Socket
-│   ├── Websocket
-│   │   └── Test.php
+│   └── WebSocket.php
+├── Websocket
+│   └── Index.php
 └── └── WebSocketParser.php
 
 > 首先在根目录运行easyswoole
@@ -280,7 +318,7 @@ Application
 > > *php easyswoole start*
 >
 > 如果没有错误此时已经启动了easyswoole服务;  
-> 访问 127.0.0.1:9501/WebSocketTest/index 可以看到之前写的测试html文件;
+> 访问 127.0.0.1:9501/WebSocket/index 可以看到之前写的测试html文件;
 > *新人提示：这种访问方式会请求HttpController控制器下Index.php中的index方法*  
 
 ##扩展
@@ -291,34 +329,65 @@ Application
 我们可以通过自定义解析器，实现自己需要的场景。
 
 ```php
-    public function decode($raw, $client) : ? Caller
-    {
-        $jsonObject = json_decode($raw);
-
-        // new 调用者对象
-        $caller =  new Caller();
-        // 设置被调用的类 这里会将ws消息中的 class 参数解析为具体想访问的控制器
-        // 如果更喜欢 event 方式 可以自定义 event 和具体的类的 map 即可
-        // 注 目前 easyswoole 3.0.4 版本及以下 不支持直接传递 class string 可以通过这种方式
-        $class = '\\App\\Socket\\Websocket\\'. ucfirst($jsonObject->class ?? 'Test');
-        $caller->setControllerClass($class);
-
-        // 提供一个事件风格的写法
-        // $eventMap = [
-        //     'test' => Test::class,
-        //     'index' => Index::class
-        // ];
-        // $caller->setControllerClass($eventMap[$jsonObject->event] ?? Test::class);
-
-        // 设置被调用的方法
-        $caller->setAction($jsonObject->action);
-        // 设置被调用的Args
-        $caller->setArgs($jsonObject->content ? [$jsonObject->content] : []);
-        return $caller;
+/**
+ * decode
+ * @param  string         $raw    客户端原始消息
+ * @param  WebSocket      $client WebSocket Client 对象
+ * @return Caller         Socket  调用对象
+ */
+public function decode($raw, $client) : ? Caller
+{
+    // 解析 客户端原始消息
+    $data = json_decode($raw, true);
+    if (!is_array($data)) {
+        echo "decode message error! \n";
+        return null;
     }
+
+    // new 调用者对象
+    $caller =  new Caller();
+    /**
+     * 设置被调用的类 这里会将ws消息中的 class 参数解析为具体想访问的控制器
+     * 如果更喜欢 event 方式 可以自定义 event 和具体的类的 map 即可
+     * 注 目前 easyswoole 3.0.4 版本及以下 不支持直接传递 class string 可以通过这种方式
+     */
+    $class = '\\App\\WebSocket\\'. ucfirst($data['class'] ?? 'Index');
+    $caller->setControllerClass($class);
+
+    // 提供一个事件风格的写法
+//         $eventMap = [
+//             'index' => Index::class
+//         ];
+//         $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
+
+    // 设置被调用的方法
+    $caller->setAction($data['action'] ?? 'index');
+    // 检查是否存在args
+    if (isset($data['content']) && is_array($data['content'])) {
+        $args = $data['content'];
+    }
+
+    // 设置被调用的Args
+    $caller->setArgs($args ?? []);
+    return $caller;
+}
+/**
+ * encode
+ * @param  Response     $response Socket Response 对象
+ * @param  WebSocket    $client   WebSocket Client 对象
+ * @return string             发送给客户端的消息
+ */
+public function encode(Response $response, $client) : ? string
+{
+    /**
+     * 这里返回响应给客户端的信息
+     * 这里应当只做统一的encode操作 具体的状态等应当由 Controller处理
+     */
+    return $response->getMessage();
+}
   ```
-  > 例如{"class":"Test","action":"hello"}  
-  > 则会访问Application/Socket/WebSocket/Test.php 并执行hello方法
+  > 例如{"class":"Index","action":"hello"}  
+  > 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
 
   **当然这里是举例，你可以根据自己的业务场景进行设计**
 
@@ -326,26 +395,37 @@ Application
 
 在常见业务场景中，我们通常需要验证客户端的身份，所以可以通过自定义WebSocket握手规则来完成。
 
-**创建Application/Socket/WebSocketEvent.php文件，写入以下内容**  
+**创建App/WebSocket/WebSocketEvent.php文件，写入以下内容**  
 
 ```php
-namespace App\Socket;
+namespace App\WebSocket;
 
+/**
+ * Class WebSocketEvent
+ *
+ * 此类是 WebSocet 中一些非强制的自定义事件处理
+ *
+ * @package App\WebSocket
+ */
 class WebSocketEvent
 {
     /**
      * 握手事件
-     * @param  swoole_http_request  $request  swoole http request
-     * @param  swoole_http_response $response swoole http response
-     * @return bool                         是否通过握手
+     *
+     * @param \swoole_http_request  $request
+     * @param \swoole_http_response $response
+     * @return bool
      */
     public function onHandShake(\swoole_http_request $request, \swoole_http_response $response)
     {
-        // 通过自定义握手 和 RFC ws 握手验证
-        if ($this->customHandShake($request, $response) && $this->secWebsocketAccept($request, $response)) {
-            // 接受握手 还需要101状态码以切换状态
-            $response->status(101);
-            var_dump('shake success at fd :' . $request->fd);
+        /** 此处自定义握手规则 返回 false 时中止握手 */
+        if (!$this->customHandShake($request, $response)) {
+            $response->end();
+            return false;
+        }
+
+        /** 此处是  RFC规范中的WebSocket握手验证过程 必须执行 否则无法正确握手 */
+        if ($this->secWebsocketAccept($request, $response)) {
             $response->end();
             return true;
         }
@@ -356,13 +436,18 @@ class WebSocketEvent
 
     /**
      * 自定义握手事件
-     * 在这里自定义验证规则
-     * @param  swoole_http_request  $request  swoole http request
-     * @param  swoole_http_response $response swoole http response
-     * @return bool                         是否通过握手
+     *
+     * @param \swoole_http_request  $request
+     * @param \swoole_http_response $response
+     * @return bool
      */
-    protected function customHandShake(\swoole_http_request $request, \swoole_http_response $response) : bool
+    protected function customHandShake(\swoole_http_request $request, \swoole_http_response $response): bool
     {
+        /**
+         * 这里可以通过 http request 获取到相应的数据
+         * 进行自定义验证后即可
+         * (注) 浏览器中 JavaScript 并不支持自定义握手请求头 只能选择别的方式 如get参数
+         */
         $headers = $request->header;
         $cookie = $request->cookie;
 
@@ -374,11 +459,13 @@ class WebSocketEvent
 
     /**
      * RFC规范中的WebSocket握手验证过程
-     * @param  swoole_http_request  $request  swoole http request
-     * @param  swoole_http_response $response swoole http response
-     * @return bool                           是否通过验证
+     * 以下内容必须强制使用
+     *
+     * @param \swoole_http_request  $request
+     * @param \swoole_http_response $response
+     * @return bool
      */
-    protected function secWebsocketAccept(\swoole_http_request $request, \swoole_http_response $response) : bool
+    protected function secWebsocketAccept(\swoole_http_request $request, \swoole_http_response $response): bool
     {
         // ws rfc 规范中约定的验证过程
         if (!isset($request->header['sec-websocket-key'])) {
@@ -394,7 +481,7 @@ class WebSocketEvent
             return false;
         }
 
-        $key     = base64_encode(sha1($request->header['sec-websocket-key'] . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11', true));
+        $key = base64_encode(sha1($request->header['sec-websocket-key'] . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11', true));
         $headers = array(
             'Upgrade'               => 'websocket',
             'Connection'            => 'Upgrade',
@@ -411,6 +498,10 @@ class WebSocketEvent
         foreach ($headers as $key => $val) {
             $response->header($key, $val);
         }
+
+        // 接受握手 还需要101状态码以切换状态
+        $response->status(101);
+        var_dump('shake success at fd :' . $request->fd);
         return true;
     }
 }
@@ -422,36 +513,33 @@ class WebSocketEvent
 ```php
 //注意：在此文件引入以下命名空间
 use EasySwoole\Socket\Dispatcher;
-use App\Socket\WebSocketParser;
-use App\Socket\WebSocketEvent;
+use App\WebSocket\WebSocketParser;
+use App\WebSocket\WebSocketEvent;
 
 public static function mainServerCreate(EventRegister $register): void
 {
-  /**
-   * *************** WebSocket ***************
-   */
+    /**
+       * **************** websocket控制器 **********************
+       */
+      // 创建一个 Dispatcher 配置
+      $conf = new \EasySwoole\Socket\Config();
+      // 设置 Dispatcher 为 WebSocket 模式
+      $conf->setType(\EasySwoole\Socket\Config::WEB_SOCKET);
+      // 设置解析器对象
+      $conf->setParser(new WebSocketParser());
+      // 创建 Dispatcher 对象 并注入 config 对象
+      $dispatch = new Dispatcher($conf);
 
-  // 创建一个 Dispatcher 配置
-  $conf = new \EasySwoole\Socket\Config();
-  // 设置 Dispatcher 为 WebSocket 模式
-  $conf->setType($conf::WEB_SOCKET);
-  // 设置解析器对象
-  $conf->setParser(new WebSocketParser());
+      // 给server 注册相关事件 在 WebSocket 模式下  on message 事件必须注册 并且交给 Dispatcher 对象处理
+      $register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) use ($dispatch) {
+          $dispatch->dispatch($server, $frame->data, $frame);
+      });
 
-  // 创建 Dispatcher 对象 并注入 config 对象
-  $dispatch = new Dispatcher($conf);
-  
-  $websocketEvent = new WebSocketEvent();
-
-  // 给server 注册相关事件
-  // 在 WebSocket 模式下  message 事件必须注册 并且交给 Dispatcher 对象处理
-  // handshake 事件为自定义握手事件 用于身份验证等
-  $register->set(EventRegister::onHandShake, function(\swoole_http_request $request, \swoole_http_response $response) use ($websocketEvent){
-      $websocketEvent->onHandShake($request, $response);
-  });
-  $register->set(EventRegister::onMessage, function(\swoole_websocket_server  $server, \swoole_websocket_frame $frame) use ($dispatch){
-      $dispatch->dispatch($server, $frame->data, $frame);
-  });
+      //自定义握手事件
+      $websocketEvent = new WebSocketEvent();
+      $register->set(EventRegister::onHandShake, function (\swoole_http_request $request, \swoole_http_response $response) use ($websocketEvent) {
+          $websocketEvent->onHandShake($request, $response);
+      });
 }
 ```
 
@@ -459,42 +547,64 @@ public static function mainServerCreate(EventRegister $register): void
 
 在常见业务场景中，我们通常需要在用户断开或者服务器主动断开连接时设置回调事件。
 
-**创建Application/Socket/WebSocketEvent.php文件，增加以下内容**  
+**创建App/WebSocket/WebSocketEvent.php文件，增加以下内容**  
 
 ```php
 /**
  * 关闭事件
- * @param  swoole_server $server    swoole server
- * @param  int           $fd        fd
- * @param  int           $reactorId 线程id
- * @return void
+ *
+ * @param \swoole_server $server
+ * @param int            $fd
+ * @param int            $reactorId
  */
 public function onClose(\swoole_server $server, int $fd, int $reactorId)
 {
-    // 判断连接是否为 WebSocket 客户端 详情 参见 https://wiki.swoole.com/wiki/page/490.html
-    $connection = $server->connection_info($fd);
-
-    // 判断连接是否为 server 主动关闭 参见 https://wiki.swoole.com/wiki/page/p-event/onClose.html
-    $reactorId < 0 ? '主动' : '被动';
+    /** @var array $info */
+    $info = $server->getClientInfo($fd);
+    /**
+     * 判断此fd 是否是一个有效的 websocket 连接
+     * 参见 https://wiki.swoole.com/wiki/page/490.html
+     */
+    if ($info && $info['websocket_status'] === WEBSOCKET_STATUS_FRAME) {
+        /**
+         * 判断连接是否是 server 主动关闭
+         * 参见 https://wiki.swoole.com/wiki/page/p-event/onClose.html
+         */
+        if ($reactorId < 0) {
+            echo "server close \n";
+        }
+    }
 }
 ```
 
 **在根目录下EasySwooleEvent.php文件mainServerCreate方法下加入以下代码**
 
 ```php
-    /* 给 server 注册相关事件
-     * 在 WebSocket 模式下  `onMessage` 事件必须注册 并且交给 Dispatcher 对象处理
-     * `onHandShake` 事件为握手事件 用于身份验证等
-     * `onClose` 事件为连接关闭事件 用户状态清除等
-     *注：一但注册了 `onHandShake` 事件 `onOpen` 事件则失效 具体请参照 https://wiki.swoole.com/wiki/page/409.html
+/**
+     * **************** websocket控制器 **********************
      */
-    $register->set(EventRegister::onHandShake, function(\swoole_http_request $request, \swoole_http_response $response) use ($websocketEvent){
-        $websocketEvent->onHandShake($request, $response);
-    });
-    $register->set(EventRegister::onMessage, function(\swoole_websocket_server  $server, \swoole_websocket_frame $frame) use ($dispatch){
+    // 创建一个 Dispatcher 配置
+    $conf = new \EasySwoole\Socket\Config();
+    // 设置 Dispatcher 为 WebSocket 模式
+    $conf->setType(\EasySwoole\Socket\Config::WEB_SOCKET);
+    // 设置解析器对象
+    $conf->setParser(new WebSocketParser());
+    // 创建 Dispatcher 对象 并注入 config 对象
+    $dispatch = new Dispatcher($conf);
+
+    // 给server 注册相关事件 在 WebSocket 模式下  on message 事件必须注册 并且交给 Dispatcher 对象处理
+    $register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) use ($dispatch) {
         $dispatch->dispatch($server, $frame->data, $frame);
     });
-    $register->set(EventRegister::onClose, function (\swoole_server $server, int $fd, int $reactorId) {
+
+    //自定义握手事件
+    $websocketEvent = new WebSocketEvent();
+    $register->set(EventRegister::onHandShake, function (\swoole_http_request $request, \swoole_http_response $response) use ($websocketEvent) {
+        $websocketEvent->onHandShake($request, $response);
+    });
+
+    //自定义关闭事件
+    $register->set(EventRegister::onClose, function (\swoole_server $server, int $fd, int $reactorId) use ($websocketEvent) {
         $websocketEvent->onClose($server, $fd, $reactorId);
     });
 ```
