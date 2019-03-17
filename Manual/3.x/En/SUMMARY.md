@@ -14,7 +14,6 @@
     - [Logger](SysComponent/logger.md)
     - Config
     - ServerManager
-    - [Console](SysComponent/console.md)
 - ExtraComponent
    - [DataBase](ExtraComponent/mysqli.md)
    - Component
