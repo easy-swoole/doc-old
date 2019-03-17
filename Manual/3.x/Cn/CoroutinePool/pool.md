@@ -1,6 +1,8 @@
 ## 连接池组件
 EasySwoole在基础组件中集合了连接池组件,增加mysql/redis等i/o连接的复用性,命名空间为:`EasySwoole\Component\Pool`
-
+demo地址:(https://github.com/easy-swoole/demo/tree/3.x-pool)
+> 在新版本中,实现了连接池自动回收,自动注册,匿名连接池注册,以及本身的底层异常处理
+> 使得用户在使用连接池时,可做到直接使用,无需注册,无需回收,也不会出现问题
 
 ### PoolManager 
 连接池管理工具,提供了以下方法:
@@ -196,6 +198,8 @@ class Index extends Controller
     }
 }
 ```
+> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断
+
 
 ### 无需注册
 在`PoolManager`中的`getPool`方法中,实现了对连接池的自动注册   
@@ -239,6 +243,37 @@ function poolInvoke(){
 }
 ````
 > 异常拦截,当invoke调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
+
+在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`defer`方法,通过defer方法,在当前协程执行完毕时,将自动回收连接,但不适用于匿名连接池,实现代码:
+````php
+<?php
+ public static function defer($timeout = null)
+    {
+        $key = md5(static::class);
+        $obj = ContextManager::getInstance()->get($key);
+        if($obj){
+            return $obj;
+        }else{
+            $pool = PoolManager::getInstance()->getPool(static::class);
+            if($pool instanceof AbstractPool){
+                $obj = $pool->getObj($timeout);
+                if($obj){
+                    Coroutine::defer(function ()use($pool,$obj){
+                        $pool->recycleObj($obj);
+                    });
+                    ContextManager::getInstance()->set($key,$obj);
+                    return $obj;
+                }else{
+                    throw new PoolEmpty(static::class." pool is empty");
+                }
+            }else{
+                throw new PoolException(static::class." convert to pool error");
+            }
+        }
+    }
+````
+
+
 
 ### 预创建连接/热启动
 在之前情况时,如果你重启EasySwoole,由于连接池对象是懒惰加载(只在调用时才创建连接),会导致当在一启动EasySwoole,访问量却很大时造成瞬间过大的压力,所以EasySwoole连接池组件提供了热启动.

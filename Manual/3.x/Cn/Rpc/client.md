@@ -1,37 +1,54 @@
 # 客户端
-## CLI独立测试
-```php
-$conf = new \EasySwoole\Rpc\Config();
-//开启通讯密钥
-//$conf->setAuthKey('123456');
-$rpc = new \EasySwoole\Rpc\Rpc($conf);
+## CLI独立测试(注意命名空间以及自动加载引入)
+````php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: xcg
+ * Date: 2019/2/27
+ * Time: 10:03
+ */
+include_once dirname(__DIR__) . "/vendor/autoload.php";
 
-//虚拟一个服务节点
-$serviceNode = new \EasySwoole\Rpc\ServiceNode();
-$serviceNode->setServiceName('serviceName');
-$serviceNode->setServiceIp('127.0.0.1');
-$serviceNode->setServicePort(9601);
-$serviceNode->setNodeId('asadas');
-//设置为永不过期
-$serviceNode->setNodeExpire(0);
-$rpc->nodeManager()->refreshServiceNode($serviceNode);
+use EasySwoole\Rpc\Config;
+use EasySwoole\Rpc\Rpc;
+use EasySwoole\Rpc\Response;
 
-go(function ()use($rpc){
+$config = new Config();
+//$config->setNodeManager(\EasySwoole\Rpc\NodeManager\TableManager::class);//设置节点管理器处理类,默认是EasySwoole\Rpc\NodeManager\FileManager
+$rpc = new Rpc($config);
+//获取所有服务节点列表
+$nodeList = $config->getNodeManager()->allServiceNodes();
+var_dump($nodeList);
+
+go(function () use ($rpc) {
     $client = $rpc->client();
-    $client->selectService('serviceName')->callAction('a1')->setArg(
-        [
-            'callTime'=>time()
-        ]
-    )->onSuccess(function (\EasySwoole\Rpc\Task $task,\EasySwoole\Rpc\Response $response,?\EasySwoole\Rpc\ServiceNode $serviceNode){
-        var_dump('success'.$response->getMessage());
-    })->onFail(function (\EasySwoole\Rpc\Task $task,\EasySwoole\Rpc\Response $response,?\EasySwoole\Rpc\ServiceNode $serviceNode){
-        var_dump('fail'.$response->getStatus());
-    })->setTimeout(1.5);
+    //调用服务
+    $serviceClient = $client->selectService('ser1');
+    //创建执行任务
+    $serviceClient->createTask()->setAction('call1')->setArg(['arg' => 1])
+        ->setOnSuccess(function (Response $response) {
+            echo ($response->getMessage()).PHP_EOL;
+        })->setOnFail(function () {
+            echo ("请求失败1!\n");
+        });
 
-    $client->selectService('serviceName')->callAction('a2')->onSuccess(function (){
-        var_dump('succ');
-    });
-    $client->call(1.5);
+    //创建执行任务
+    $serviceClient->createTask()->setAction('call3')
+        ->setOnSuccess(function (Response $response) {
+            echo ($response->getMessage()).PHP_EOL;
+        })->setOnFail(function () {
+            echo ("请求失败2!\n");
+        });
+
+    //创建执行任务
+    $serviceClient2 = $client->selectService('ser2');
+    $serviceClient2->createTask()->setAction('call1')
+        ->setOnSuccess(function (Response $response) {
+            echo ($response->getMessage()).PHP_EOL;
+        })->setOnFail(function () {
+            echo ("请求失败3!\n");
+        });
+    $client->exec();//开始执行
 });
-
-```
+````

@@ -1,206 +1,172 @@
 ## Context
 ContextManager上下文管理器  
 在swoole中,由于多个协程是并发执行的，因此不能使用类静态变量/全局变量保存协程上下文内容。使用局部变量是安全的，因为局部变量的值会自动保存在协程栈中，其他协程访问不到协程的局部变量。  
-在控制器中,我们可以使用ContextManager保存协程上下文内容:
-```php
-//在 onRequest全局事件中注册MysqlObject
-ContextManager::getInstance()->set('mysqlObject',PoolManager::getInstance()->getPool(MysqlPool::class)->getObj());
-//注册一个mysql连接,这次请求都将是单例Mysql的
-//在控制器中获取本次请求唯一的一个数据库连接
-//在afterRequest销毁本次请求的context
-ContextManager::getInstance()->destroy();
 
-function index()
+### 操作数据
+在 `EasySwooleEvent.php` 的`onRequest` 中 set数据:
+````php
+<?php
+public static function onRequest(Request $request, Response $response): bool
 {
-    $mysqlObject = \EasySwoole\Component\Context\ContextManager::getInstance()->get('mysqlObject');
-    $data = ($mysqlObject->get('test'));
-    $this->response()->write(json_encode($data));
+    ContextManager::getInstance()->set('requestData',$request->getRequestParam());
+    // TODO: Implement onRequest() method.
+    return true;
 }
-
-```
->如上,我们可以使用Context实现在某个协程中的"全局"变量,这个变量在当前协程中是可全局访问修改的   
-
-
-实现代码:
-```php
+````
+`App\Controller\Index.php`可直接调用:
+````php
 <?php
 /**
  * Created by PhpStorm.
- * User: yf
- * Date: 2019-01-06
- * Time: 22:58
+ * User: Tioncico
+ * Date: 2019/3/8 0008
+ * Time: 15:16
  */
 
-namespace EasySwoole\Component\Context;
+namespace App\HttpController;
 
 
-use EasySwoole\Component\Context\Exception\ModifyError;
-use EasySwoole\Component\Singleton;
-use Swoole\Coroutine;
+use App\Utility\Excel;
+use EasySwoole\Component\Context\ContextManager;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Utility\Random;
+use EasySwoole\VerifyCode\Conf;
+use EasySwoole\VerifyCode\VerifyCode;
 
-class ContextManager
+class Index extends Controller
 {
-    use Singleton;
-
-    private $handler = [];
-
-    private $context = [];
-
-    /**
-     * 注册一个context处理,在调用get,unset时会调用HandlerInterface的onContextCreate,onDestroy方法
-     * handler
-     * @param                  $key
-     * @param HandlerInterface $handler
-     * @return ContextManager
-     * @author tioncico
-     * Time: 15:42
-     */
-    public function handler($key,HandlerInterface $handler):ContextManager
+    function index()
     {
-        $this->handler[$key] = $handler;
-        return $this;
-    }
-
-    /**
-     * 设置一个值
-     * set
-     * @param      $key
-     * @param      $value
-     * @param null $cid
-     * @return ContextManager
-     * @throws ModifyError
-     * @author tioncico
-     * Time: 15:43
-     */
-    public function set($key,$value,$cid = null):ContextManager
-    {
-        if(isset($this->handler[$key])){
-            throw new ModifyError('key is already been register for handler');
-        }
-        $cid = $this->getCid($cid);
-        $this->context[$cid][$key] = $value;
-        return $this;
-    }
-
-    /**
-     * 获取一个值,如果使用handler注册,还会调用handler的onContextCreate方法
-     * get
-     * @param      $key
-     * @param null $cid
-     * @return null
-     * @author tioncico
-     * Time: 15:44
-     */
-    public function get($key,$cid = null)
-    {
-        $cid = $this->getCid($cid);
-        if(isset($this->context[$cid][$key])){
-            return $this->context[$cid][$key];
-        }
-        if(isset($this->handler[$key])){
-            /** @var HandlerInterface $handler */
-            $handler = $this->handler[$key];
-            $this->context[$cid][$key] = $handler->onContextCreate();
-            return $this->context[$cid][$key];
-        }
-        return null;
-    }
-
-    /**
-     * 删除一个值,如果是使用handler注册,还会调用handler的onDestroy方法
-     * unset
-     * @param      $key
-     * @param null $cid
-     * @return bool
-     * @author tioncico
-     * Time: 15:44\
-     */
-    public function unset($key,$cid = null)
-    {
-        $cid = $this->getCid($cid);
-        if(isset($this->context[$cid][$key])){
-            if(isset($this->handler[$key])){
-                /** @var HandlerInterface $handler */
-                $handler = $this->handler[$key];
-                $item = $this->context[$cid][$key];
-                return $handler->onDestroy($item);
-            }
-            unset($this->context[$cid][$key]);
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
-     * 销毁当前协程所有值
-     * destroy
-     * @param null $cid
-     * @author tioncico
-     * Time: 15:44
-     */
-    public function destroy($cid = null)
-    {
-        $cid = $this->getCid($cid);
-        if(isset($this->context[$cid])){
-            $data = $this->context[$cid];
-            foreach ($data as $key => $val){
-                $this->unset($key,$cid);
-            }
-        }
-        unset($this->context[$cid]);
-    }
-
-    /**
-     * 获取当前协程id
-     * getCid
-     * @param null $cid
-     * @return int
-     * @author tioncico
-     * Time: 15:45
-     */
-    public function getCid($cid = null):int
-    {
-        if($cid === null){
-            return Coroutine::getUid();
-        }
-        return $cid;
-    }
-
-    /**
-     * 清空所有值
-     * destroyAll
-     * @param bool $force
-     * @author tioncico
-     * Time: 15:45
-     */
-    public function destroyAll($force = false)
-    {
-        if($force){
-            $this->context = [];
-        }else{
-            foreach ($this->context as $cid => $data){
-                $this->destroy($cid);
-            }
-        }
-    }
-
-    /**
-     * 获取当前协程所有变量
-     * getContextArray
-     * @param null $cid
-     * @return array|null
-     * @author tioncico
-     * Time: 15:45
-     */
-    public function getContextArray($cid = null):?array
-    {
-        $cid = $this->getCid($cid);
-        if(isset($this->context[$cid])){
-            return $this->context[$cid];
-        }else{
-            return null;
-        }
+        $data = ContextManager::getInstance()->get('requestData');
+        $this->response()->write(json_encode($data));
     }
 }
-```
+````
+> 同理,在任意地方set的数据,都是处于当前协程的共享数据,和php-fpm中的超全局变量性质类似,可通过该组件进行实现$_GET,$_SESSION,$_POST等超全局变量的任意位置获取,修改等功能
+
+
+### 方法列表
+````php
+<?php
+public function set($key,$value,$cid = null){};//设置一个变量,cid为null时为当前协程
+public function get($key,$cid = null){};//获取一个变量,cid为null时为当前协程
+public function unset($key,$cid = null){};//删除一个变量,cid为null时为当前协程
+public function destroy($cid = null){};//销毁协程数据,cid为null时为当前协程
+public function getCid($cid = null):int{};//默认为获取当前协程id,并实现了协程关闭后,自动销毁该协程数据
+public function destroyAll($force = false){};//销毁所有协程数据
+public function getContextArray($cid = null){};//获取当前协程数据列表,cid为null时为当前协程
+public function registerItemHandler($key, ContextItemHandlerInterface $handler):ContextManager();//注册自定义存储,销毁逻辑
+````
+#### registerItemHandler
+`ContextManager`提供了另一种设置方式,registerItemHandler方法去注册需要额外处理的数据.  
+首先先继承`EasySwoole\Component\Context\ContextItemHandlerInterface`接口:
+````php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/3/13 0013
+ * Time: 14:04
+ */
+
+namespace App\Utility\Context;
+
+
+use EasySwoole\Component\Context\ContextItemHandlerInterface;
+
+class RegisterClassHandel implements ContextItemHandlerInterface
+{
+    protected $className;
+    public function __construct($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * 当ContextManager get 时,会调用该方法
+     * 可以使用该方法进行 get 的初始化操作
+     * 例如set mysql时,可以在这里获取连接池
+     * 例如set 某个对象时,可以在这里初始化对象属性,等
+     * onContextCreate
+     * @author Tioncico
+     * Time: 14:09
+     */
+    function onContextCreate()
+    {
+        $class = new $this->className;
+        $class->context = '测试内容';
+        return $class;
+        // TODO: Implement onContextCreate() method.
+    }
+
+    /**
+     * 当ContextManager unset或销毁时,会调用该方法
+     * 可以使用该方法进行销毁后的操作
+     * 例如set mysql 需要销毁时,可以在这里回收连接池
+     * 例如set 某个对象时,可以在这里清除对象属性,等
+     * onDestroy
+     * @param $context
+     * @author Tioncico
+     * Time: 14:11
+     */
+    function onDestroy($context)
+    {
+        unset($context);
+        return true;
+        // TODO: Implement onDestroy() method.
+    }
+
+
+}
+````
+注册 stdClass 
+````php
+<?php
+    public static function onRequest(Request $request, Response $response): bool
+    {
+        ContextManager::getInstance()->registerItemHandler('stdclass',new RegisterClassHandel(\stdClass::class));
+        // TODO: Implement onRequest() method.
+        return true;
+    }
+````
+注册之后,其实并没有new stdClass,只有get的时候才有new.在控制器调用:
+````php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/3/8 0008
+ * Time: 15:16
+ */
+
+namespace App\HttpController;
+
+
+use App\Utility\Excel;
+use EasySwoole\Component\Context\ContextManager;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Utility\Random;
+use EasySwoole\VerifyCode\Conf;
+use EasySwoole\VerifyCode\VerifyCode;
+
+class Index extends Controller
+{
+    function index()
+    {
+        $data = ContextManager::getInstance()->get('stdclass');
+        var_dump($data);
+        $this->response()->write(json_encode($data));
+    }
+}
+````
+
+控制台输出:
+````
+object(stdClass)#52 (1) {
+  ["context"]=>
+  string(12) "测试内容"
+}
+````
+
+### 实现原理
+context上下文管理器,是通过协程id作为key,进程单例模式,实现的,确保每个协程操作的都是当前协程数据,并通过defer,实现了协程结束后自动销毁,用户无需进行任何的回收处理,只管用就行

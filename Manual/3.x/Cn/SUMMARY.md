@@ -72,7 +72,6 @@
     - [Trigger](SystemComponent/Trigger.md)
     - [Logger](SystemComponent/logger.md)
     - [ServerManager](SystemComponent/ServerManager.md)
-    - [Core](SystemComponent/Core.md)
     - [Config](SystemComponent/Config.md)
 - 基础进阶
     - [异步任务](Advanced/async_task.md)
@@ -80,7 +79,7 @@
     - [CoChannel](Advanced/CoChannel.md)
     - 共享内存
         - [table_manager](Advanced/ShareMemory/table_manager.md)
-- 组件库
+- 独立组件库
     - [HTTP组件](Http/intro.md)
         - [控制器](Http/controller.md)
         - [URL解析规则](Http/dispatch.md)
@@ -90,7 +89,6 @@
         - [Response对象](Http/response.md)
         - [常见问题](Http/problem.md)
         - [错误与异常拦截](Http/exception.md)
-        - [模板引擎](Http/template.md)
         - [UploadFile对象](Http/UploadFile.md)
     - Component
         - [Singleton](Component/Singleton.md)
@@ -134,6 +132,7 @@
                 - [数据更新](Database/mysqli/curd/update_data.md);
                 - [数据删除](Database/mysqli/curd/delete_data.md);
             - [事务](Database/mysqli/Transaction.md)
+            - [执行sql](Database/mysqli/ExecuteSql.md)
             - [其他](Database/mysqli/other.md)
     - [Validate](Tools/validate.md)
     - [验证码](Verifycode/Introduction.md)

@@ -19,7 +19,7 @@ $conf = new Config([
     'port'=>''
 ]);
 
-$db = new Mysqli($conf);
+$db = new EasySwoole\Mysqli\Mysqli($conf);
 $data = $db->get('test');
 ```
 

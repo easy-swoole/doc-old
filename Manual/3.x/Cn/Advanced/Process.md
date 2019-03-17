@@ -1,6 +1,6 @@
 # 自定义进程
 
-> 参考Demo: [自定义进程](https://github.com/easy-swoole/demo/tree/3.x)
+> 参考Demo: [自定义进程](https://github.com/easy-swoole/demo/tree/3.x-process)
 
 > 自定义进程抽象类：EasySwoole\Component\Process\AbstractProcess
 
@@ -147,6 +147,19 @@ class ProcessHelper
 }
 ```
 
+## 创建进程
+在`EasySwooleEvent.php`的`mainServerCreate`事件中创建:
+````php
+<?php
+
+    public static function mainServerCreate(EventRegister $register)
+    {
+        ServerManager::getInstance()->getSwooleServer()->addProcess((new Task('processTest'))->getProcess());
+
+        // TODO: Implement mainServerCreate() method.
+    }
+````
+
 ## 在自定义进程投递异步任务
 
 由于自定义进程的特殊性，不能直接调用Swoole的异步任务相关方法进行异步任务投递，框架已经封装好了相关的方法方便异步任务投递，请看下面的例子,详细异步任务教程请[点击这里](async_task.md)查看
@@ -206,5 +219,7 @@ class ProcessTest extends AbstractProcess
 
 }
 ```
-以上代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x/App/Process/ProcessTest.php)，
-至于如何使用（测试），请见demo中的EasySwooleEvent.php
+代码[直达连接](https://github.com/easy-swoole/demo/blob/3.x-process/App/Process/ProcessOne.php)，
+至于如何使用（测试），请见demo中的[EasySwooleEvent.php](https://github.com/easy-swoole/demo/blob/3.x-process/EasySwooleEvent.php)
+
+> 注意,自定义进程不要写while,或者需要有break等逻辑,否则会造成stop 不能关闭进程的情况,如果要死循环,可以用定时器进行循环
