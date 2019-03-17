@@ -29,3 +29,5 @@
      - SplBean
      - SplEnum
    - Socket
+   - [Actor](ExtraComponent/actor.md)
+   - [Rpc](ExtraComponent/rpc.md)
