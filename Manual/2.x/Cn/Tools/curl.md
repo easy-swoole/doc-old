@@ -123,7 +123,7 @@ class Curl
 			}
 		break;
 		default:
-			throw new \InvalidArgumentException( "method eroor" );
+			throw new \InvalidArgumentException( "method error" );
 		break;
 		}
 
