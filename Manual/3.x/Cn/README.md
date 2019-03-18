@@ -49,7 +49,9 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 
 - [项目文档仓库](https://github.com/easy-swoole/doc)
 
-- [HTTP基础DEMO](https://github.com/easy-swoole/demo)
+- [HTTP基础DEMO](https://github.com/easy-swoole/demo/tree/3.x-http)
+
+- [其他DEMO](https://github.com/easy-swoole/demo/branches)
 
 - VIP交流群 [579434607](https://jq.qq.com/?_wv=1027&k=5bxu3cG)
 

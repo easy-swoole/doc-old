@@ -30,7 +30,7 @@ public function addColumn(string $name,?string $errorMsg = null,?string $alias =
 function validate(array $data)
 ```
 
-#### 例子（[demo](https://github.com/easy-swoole/demo/tree/3.x/CliExample/validate.php)）
+#### 例子
 
 ```php
 

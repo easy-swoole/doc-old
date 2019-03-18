@@ -37,4 +37,4 @@ $tcp = $server->addServer('tcp',9502);
 });
 ```
 
-> 使用参考：https://github.com/easy-swoole/demo/blob/master/EasySwooleEvent.php
+> 使用可参考不同的demo分支：https://github.com/easy-swoole/demo/branches
