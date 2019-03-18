@@ -25,12 +25,6 @@
             return false;
         }
 
-        //为每个请求做标记
-        TrackerManager::getInstance()->getTracker()->addAttribute('workerId', ServerManager::getInstance()->getSwooleServer()->worker_id);
-        // TODO: Implement onRequest() method.
-        //增加tracker 调用栈监控
-        TrackerManager::getInstance()->getTracker()->setPoint('request');
-
         return true;
     }
 ```
