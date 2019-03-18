@@ -8,22 +8,23 @@ public static function afterRequest(Request $request, Response $response): void
 ```
 
 ## 示例
-
-使用trace组件,在onRequest中开启,再afterRequest中结束,可追踪一个请求进来的处理时间以及处理过程
-
+可在该事件中做trace 进行请求的追踪监视,以及获取此次的响应内容
 ```php
+<?php
+
+    public static function afterRequest(Request $request, Response $response): void
+    {
+        TrackerManager::getInstance()->getTracker()->endPoint('request');
+
+        $responseMsg = $response->getBody()->__toString();
+        Logger::getInstance()->console("响应内容:".$responseMsg);
+        //响应状态码:
+//        var_dump($response->getStatusCode());
 
 
-public static function onRequest(Request $request, Response $response): bool
-{
-    //为每个请求做标记
-    TrackerManager::getInstance()->getTracker()->addAttribute('workerId', ServerManager::getInstance()->getSwooleServer()->worker_id);
-    return true;
-}
-
-public static function afterRequest(Request $request, Response $response): void
-{
-    // TODO: Implement afterAction() method.
-    TrackerManager::getInstance()->closeTracker();
-}
+        //tracker结束,结束之后,能看到中途设置的参数,调用栈的运行情况
+        TrackerManager::getInstance()->closeTracker();
+        // TODO: Implement afterAction() method.
+    }
 ```
+

@@ -73,23 +73,27 @@ AtomicManager::getInstance()->add('second');
 <?php
 /**
  * Created by PhpStorm.
- * User: root
- * Date: 18-12-11
- * Time: 下午2:24
+ * User: Tioncico
+ * Date: 2019/3/18 0018
+ * Time: 15:39
  */
 
-namespace App\HttpController\Advanced;
+namespace App\HttpController;
 
 
-use App\HttpController\Base;
-use EasySwoole\EasySwoole\Swoole\Memory\AtomicManager;
+use EasySwoole\Component\AtomicManager;
+use EasySwoole\Http\AbstractInterface\Controller;
 
-class Atomic extends Base
+class Index extends Controller
 {
-    function index() {
+    function index()
+    {
+
+        AtomicManager::getInstance()->add('second',0);
         $atomic = AtomicManager::getInstance()->get('second');
         $atomic->add(1);
         $this->response()->write($atomic->get());
+        // TODO: Implement index() method.
     }
 }
 ```
