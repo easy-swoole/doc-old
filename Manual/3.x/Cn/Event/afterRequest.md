@@ -28,4 +28,3 @@ public static function afterRequest(Request $request, Response $response): void
     }
 ```
 
-> 可查看[demo](https://github.com/easy-swoole/demo/tree/3.x-http)

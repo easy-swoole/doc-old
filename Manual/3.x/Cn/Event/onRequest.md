@@ -31,5 +31,3 @@
 
 > 若在该事件中，执行 $response->end(),则该次请求不会进入路由匹配阶段。
 
-> 可查看[demo](https://github.com/easy-swoole/demo/tree/3.x-http)
-
