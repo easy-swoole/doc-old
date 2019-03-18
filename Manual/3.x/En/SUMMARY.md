@@ -12,8 +12,8 @@
     - [AsyncTask](SysComponent/task.md)    
     - [Trigger](SysComponent/trigger.md)
     - [Logger](SysComponent/logger.md)
-    - Config
-    - ServerManager
+    - [Config](SysComponent/config.md)
+    - [ServerManager](SysComponent/serverManager.md)
 - ExtraComponent
    - [DataBase](ExtraComponent/mysqli.md)
    - Component
