@@ -1,7 +1,11 @@
 ## EasySwoole 协程HTTPClient组件
 协程httpClient组件,基于swoole [异步http client客户端](https://wiki.swoole.com/wiki/page/p-http_client.html)实现,可在协程内发起http请求不被阻塞,可用于下载文件,请求api,爬虫等一系列需求当中
 
-> 安装: composer require easyswoole/http-client
+## 安装
+
+```bash
+composer require easyswoole/http-client
+```
 
 单次请求:  
 ```php
