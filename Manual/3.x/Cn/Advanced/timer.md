@@ -92,7 +92,7 @@ var_dump($timerId); // int(1)
 // 定时器得不到执行 不输出：timeout
 ```
 
-
+> 若开启了reload_async配置时，请将定时器移动到自定义进程中，否则会导致worker进程无法reload
 
 ## 应用实例
 
