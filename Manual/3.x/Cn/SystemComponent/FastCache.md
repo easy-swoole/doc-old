@@ -39,7 +39,7 @@ $cache->flush();//清空所有key
 ($cache->enQueue('listA', '3'));//增加一个队列数据
 var_dump($cache->queueSize('listA'));//队列大小
 // var_dump($cache->unsetQueue('listA'));   //删除队列
-// var_dump($cache->queueList(1));          //队列列表 参数为超时时间 默认0.1
+// var_dump($cache->queueList(1));          //队列列表 参数为超时时间  默认0.1
 var_dump($cache->flushQueue());//清空队列
 var_dump($cache->deQueue('listA'));//出列
 var_dump($cache->deQueue('listA'));//出列
