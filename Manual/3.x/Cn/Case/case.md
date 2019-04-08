@@ -1,6 +1,7 @@
 # EasySwoole 项目案例
 
 ## FaShop(综合商城+小程序)
+---
 ![](FaShop/fashop.jpg)
 FaShop 
 - 基于EasySwoole开发的开源商城系统，第一版本发布于2018年9月20日；
@@ -14,9 +15,32 @@ FaShop
 项目地址：https://www.fashop.cn/
 
 ## E城通智能充电系统(硬件互联)
+---
 ![](E-City/e-city-1.jpg)
 
-e城通智能充电系统（即充电桩，于2017年6月上线，基于EasySwoole开发，微信搜索关注 "e城通智能充电系统" 可以体验
+> **e城通智能充电系统（即充电桩，于2017年6月上线，基于EasySwoole开发，微信搜索关注 "e城通智能充电系统" 可以体验**
+
+## Eunex Pay
+---
+- 资产管理：Eunex Pay提供了了数字资产云钱包、HD钱包功 能数字货币资产， ⼀⽬了然。
+- 币⽀支付：助⼒力力品牌零售商构建⽣生态闭环，以⽤用户消费体验为中心，通过数据驱动泛零售形态。
+- NFC保险柜：通过您的Eunex NFC卡钱包，解除您备份HD钱包助记词的困扰。
+  
+![](EunexPay/index.png)
+
+项目地址：https://eunex.co/eunexpay/
+
+## 火把Wiki
+---
+- 游戏资料站
+- 游戏攻略站
+
+![](HuoBa/index.png)
+
+> `火把` 基于EasySwoole3开发，包括api及服务端渲染。
+
+项目地址：https://wiki.xiaohuoba.cn
 
 ## 深圳信息职业技术学院计算机协会(综合服务-智能电表硬件互联)
+---
 ![](Aiy/aiy-1.jpg)
