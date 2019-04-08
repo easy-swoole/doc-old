@@ -100,7 +100,8 @@
         - [Pool](CoroutinePool/pool.md)
             - [Mysql](CoroutinePool/mysql_pool.md)
             - [Redis](CoroutinePool/redis_pool.md)
-    - Spl
+        - [定时器](Component/timer.md)
+   - Spl
         - [Array](Spl/array.md)
         - [Bean](Spl/bean.md)
         - [SplEnum](Spl/SplEnum.md)
@@ -151,7 +152,6 @@
         - [Time](Tools/Time.md)
     - [Actor](SystemComponent/Actor.md)
     - [FastCache](SystemComponent/FastCache.md)
-    - [定时器](Advanced/timer.md)
     - [自定义进程](Advanced/Process.md)
 - 开发示例
     - [京东爬虫](Example/jd.md)
