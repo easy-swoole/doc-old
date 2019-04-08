@@ -46,4 +46,4 @@ $subPort->on('receive',function (\swoole_server $server, int $fd, int $reactor_i
 });
 ```
 
-> 使用参考：https://github.com/easy-swoole/demo/blob/3.x/EasySwooleEvent.php
+> 参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)

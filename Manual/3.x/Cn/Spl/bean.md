@@ -236,7 +236,7 @@ public function __toString()
 public function restore(array $data = [])
 ```
 
-## 字段别名([例子](https://github.com/easy-swoole/demo/tree/3.x/CliExample/splBean.php))
+## 字段别名
 
 对于前后字段对接以及安全等原因，bean还提供了字段别名的操作。
 

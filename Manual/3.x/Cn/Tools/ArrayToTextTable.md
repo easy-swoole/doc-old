@@ -54,7 +54,7 @@ public function setFormatter($formatter)
 ```
 
 
-####  例子([demo](https://github.com/easy-swoole/demo/tree/3.x/CliExample/table.md))
+####  例子
 
 ```php
 $data = [

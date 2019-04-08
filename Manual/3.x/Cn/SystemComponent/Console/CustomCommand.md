@@ -97,7 +97,7 @@ HELP;
 在`EasySwooleEvent.php`的`initialize`事件中注册该命令控制器:
 ````php
 <?php
-EasySwoole\Console\ConsoleModuleContainer ::getInstance()->set(new TestConsole());
+\EasySwoole\Console\ConsoleModuleContainer ::getInstance()->set(new TestConsole());
 ````
 ### 调用控制器
 登陆控制台之后,输入`test echo 仙士可`即可出现结果:

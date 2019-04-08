@@ -107,9 +107,10 @@ For development, you can install IDE helper for IDE auto completion.
 composer require easyswoole/swoole-ide-helper
 ```
 
-## Demo
 
-> [https://github.com/easy-swoole/demo/tree/3.x](https://github.com/easy-swoole/demo/tree/3.x)
+## Demo
+https://github.com/easy-swoole/demo , you can see each functions in the sub branch.
+
 
 ## Directory Structure
 

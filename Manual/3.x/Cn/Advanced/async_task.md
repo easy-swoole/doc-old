@@ -64,7 +64,7 @@ class Task extends \EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
      * @param int   $fromWorkerId 派发任务的worker进程号
      * @author : evalor <master@evalor.cn>
      */
-    function run($taskData, $taskId, $fromWorkerId)
+    function run($taskData, $taskId, $fromWorkerId,$flags = null)
     {
         // 需要注意的是task编号并不是绝对唯一
         // 每个worker进程的编号都是从0开始
@@ -111,7 +111,7 @@ use EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface;
 
 class QuickTaskTest implements QuickTaskInterface
 {
-    static function run(\swoole_server $server, int $taskId, int $fromWorkerId)
+    static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags = null)
     {
         echo "快速任务模板";
 

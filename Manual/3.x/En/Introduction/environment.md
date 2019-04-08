@@ -1,7 +1,7 @@
 # Environmental requirements
 
 - PHP >= 7.1
-- Swoole >= 4.2.12
+- Swoole >= 4.3.0
 - pcntl
 - Linux / FreeBSD / MacOS
 - Composer
@@ -12,7 +12,7 @@ FROM php:7.2
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV SWOOLE_VERSION 4.2.13
+ENV SWOOLE_VERSION 4.3.0
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
