@@ -9,7 +9,7 @@ EasySwoole 自3.0.9开始，提供Actor模式支持，助力游戏行业开发�
 > 修改限制数: sudo sysctl -w net.core.somaxconn=2048 (centos)
 
 
-> 在3.1.19版本之后,FastCache组件需要自行引入以及配置
+> 在3.1.19版本之后,Actor组件需要自行引入以及配置
 
 ### 在`EasySwooleEvent`中创建注册Acotr
 ````php
