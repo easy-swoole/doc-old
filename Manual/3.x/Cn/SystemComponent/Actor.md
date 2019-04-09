@@ -1,10 +1,27 @@
 # Actor
 EasySwoole 自3.0.9开始，提供Actor模式支持，助力游戏行业开发。EasySwoole的Actor采用自定义process作为存储载体，以协程作为最小调度单位，利用协程Channel做mail box,而客户端与process之间的通讯，采用UnixSocket实现。
-
+````
+ composer require easyswoole/actor
+````
 > 注意，因内核参数限制，单一进程默认仅允许创建128个UnixSock链接，请将此限制修改为2048或更大
 > 查看限制数: sysctl -a | grep somax
 > 修改限制数: sudo sysctl -w kern.ipc.somaxconn=2048 (mac)
 > 修改限制数: sudo sysctl -w net.core.somaxconn=2048 (centos)
+
+
+> 在3.1.19版本之后,FastCache组件需要自行引入以及配置
+
+### 在`EasySwooleEvent`中创建注册Acotr
+````php
+<?php
+    public static function mainServerCreate(EventRegister $register)
+    {
+      //执行Actor注册进程		
+             Actor::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->setServerName('easyswooleActor')->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        // TODO: Implement mainServerCreate() method.
+    }
+````
+
 
 ## 定义一个Actor
 ```php

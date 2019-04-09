@@ -1,14 +1,37 @@
 ## FastCache组件
 EasySwoole FastCache组件通过新开进程,使用SplArray存储,unix sock 高速通信方式,实现了多进程共享数据.[组件地址](https://github.com/easy-swoole/fast-cache)
+````
+ composer require easyswoole/fast-cache
+````
+> 在3.1.19版本之后,FastCache组件需要自行引入以及配置
 
-> 该组件为 3.0.8 版本新增，如需要使用，请手动增加 `FAST_CACHE.PROCESS_NUM` 配置项到配置文件里
+### 在`EasySwooleEvent`中创建注册FastCache
+````php
+<?php
+    public static function mainServerCreate(EventRegister $register)
+    {
+        //注册fastCache进程
+        if(Config::getInstance()->getConf('FAST_CACHE.PROCESS_NUM') > 0){
+            Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)
+                ->setProcessNum(Config::getInstance()->getConf('FAST_CACHE.PROCESS_NUM'))
+                ->setBacklog(Config::getInstance()->getConf('FAST_CACHE.BACKLOG'))
+                ->setServerName('easyswooleFastCcahe')
+                ->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        }
+
+        // TODO: Implement mainServerCreate() method.
+    }
+````
+
 
 ### 使用配置:
 ```
-'FAST_CACHE'=>[
-    'PROCESS_NUM'=>5
-]
+'FAST_CACHE'    => [//fastCache组件
+    'PROCESS_NUM' => 1,//进程数,大于0才开启
+    'BACKLOG'     => 256,//数据队列缓冲区大小
+],
 ```
+
 
 ### 简单示例:
 ```php
