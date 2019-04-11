@@ -8,26 +8,8 @@
 - [EasyswooleEvent](Event/easyswooleEvent.md)
 - [HttpServer](Http/httpServer.md)
     - [Controller](Http/controller.md)
-- SysComponent
-    - [AsyncTask](SysComponent/task.md)    
-    - [Trigger](SysComponent/trigger.md)
-    - [Logger](SysComponent/logger.md)
-    - [Config](SysComponent/config.md)
-    - [ServerManager](SysComponent/serverManager.md)
-- ExtraComponent
-   - [DataBase](ExtraComponent/mysqli.md)
-   - Component
-     - [Di](ExtraComponent/Component/di.md)
-     - Context
-     - Pool
-     - Process 
-     - Timer
-     - SwooleTableManager
-     - Singleton
-   - SplLib
-     - SplArray
-     - SplBean
-     - SplEnum
-   - Socket
-   - [Actor](ExtraComponent/actor.md)
-   - [Rpc](ExtraComponent/rpc.md)
+- ComponentList
+   - [DataBase](Component/mysqli.md)    
+    
+    
+    

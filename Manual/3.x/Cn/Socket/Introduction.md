@@ -1,2 +1,0 @@
-# Socket基础应用
-EasySwoole对swoole socket进行了封装,使用少量代码即可编写socket应用
