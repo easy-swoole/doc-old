@@ -17,7 +17,7 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 
 ## 对象方法
 ### 调度类方法
- * onRequest
+ * onRequest  
 ````php
 protected function onRequest(?string $action): ?bool
 {
@@ -42,16 +42,16 @@ function onRequest(?string $action): ?bool
 }
 ````
 
- * afterAction
+ * afterAction  
 当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑
 
- * index
+ * index  
 index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.
 
- * actionNotFound
+ * actionNotFound  
 当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑
-
- * onException
+> 该方法可以理解成 `默认方法`,类似于`index`方法,所以调用完之后也会触发`afterAction`,`gc`等方法
+ * onException  
 当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)    
 可覆盖该方法,进行自定义的异常处理,例如:
 ````php
@@ -62,13 +62,27 @@ function onException(\Throwable $throwable): void
     $this->response()->write('系统繁忙,请稍后再试 ');
 }
 ````
- * gc
+ * gc  
+````php
+protected function gc()
+{
+    // TODO: Implement gc() method.
+    if ($this->session instanceof SessionDriver) {
+        $this->session->writeClose();
+        $this->session = null;
+    }
+    //恢复默认值
+    foreach ($this->defaultProperties as $property => $value) {
+        $this->$property = $value;
+    }
+}
+````
 gc 方法将在执行`方法`,`afterAction`完之后自动调用  
 将控制器属性重置为默认值,关闭`session`  
-可自行覆盖实现其他的gc回收逻辑.
+可自行覆盖实现其他的gc回收逻辑.  
 
 ### 请求响应类方法
- * request  
+ * request   
 request方法调用之后,将返回`EasySwoole\Http\Request`对象  
 该对象附带了用户请求的所有数据,例如:
 ````php
@@ -92,7 +106,7 @@ function index()
     $response->write('hello world');//向客户端发送一条数据(类似于常规web模式的 echo )
 }
 ````  
- * writeJson
+ * writeJson  
  writeJson方法直接封装了设置响应状态码,设置响应头,数组转为json输出.
 ````php
 function index()
