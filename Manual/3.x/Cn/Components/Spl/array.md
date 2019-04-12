@@ -43,8 +43,8 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->get('fruit.apple'));
 
 /**
-* 输出结果过：
- int(2)
+ * 输出结果过：
+ * int(2)
  */
 
 ```
@@ -89,8 +89,8 @@ $splArray->set('fruit.apple', 3);
 var_dump($splArray->get('fruit.apple'));
 
 /**
-* 输出结果过：
- int(3)
+ * 输出结果过：
+ * int(3)
  */
 
 ```
@@ -129,8 +129,8 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->__toString());
 
 /**
-* 输出结果过：
- string(80) "{"fruit":{"apple":2,"orange":1,"grape":4},"color":{"red":12,"blue":8,"green":6}}"
+ * 输出结果过：
+ * string(80) "{"fruit":{"apple":2,"orange":1,"grape":4},"color":{"red":12,"blue":8,"green":6}}"
  */
 
 ```
@@ -169,28 +169,28 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->__toString());
 
 /**
-* 输出结果过：
- array(2) {
-   ["fruit"]=>
-   array(3) {
-     ["apple"]=>
-     int(2)
-     ["orange"]=>
-     int(1)
-     ["grape"]=>
-     int(4)
-   }
-   ["color"]=>
-   array(3) {
-     ["red"]=>
-     int(12)
-     ["blue"]=>
-     int(8)
-     ["green"]=>
-     int(6)
-   }
- }
-
+ * 输出结果过：
+ * array(2) {
+ *   ["fruit"]=>
+ *   array(3) {
+ *     ["apple"]=>
+ *     int(2)
+ *     ["orange"]=>
+ *     int(1)
+ *     ["grape"]=>
+ *     int(4)
+ *   }
+ *   ["color"]=>
+ *   array(3) {
+ *     ["red"]=>
+ *     int(12)
+ *     ["blue"]=>
+ *     int(8)
+ *     ["green"]=>
+ *     int(6)
+ *   }
+ * }
+ * 
  */
 
 ```
@@ -234,24 +234,24 @@ $splArray->unset('fruit.apple');
 var_dump($splArray->__toString());
 
 /**
-* 输出结果过：
- array(2) {
-   ["fruit"]=>
-   array(2) {
-     ["orange"]=>
-     int(1)
-     ["grape"]=>
-     int(4)
-   }
-   ["color"]=>
-   array(3) {
-     ["red"]=>
-     int(12)
-     ["blue"]=>
-     int(8)
-     ["green"]=>
-     int(6)
-   }
+ * 输出结果过：
+ * array(2) {
+ *   ["fruit"]=>
+ *   array(2) {
+ *     ["orange"]=>
+ *     int(1)
+ *     ["grape"]=>
+ *     int(4)
+ *   }
+ *   ["color"]=>
+ *   array(3) {
+ *     ["red"]=>
+ *     int(12)
+ *     ["blue"]=>
+ *     int(8)
+ *     ["green"]=>
+ *     int(6)
+ * }
  }
 
  */
@@ -299,25 +299,25 @@ $splArray->delete('fruit.apple');
 var_dump($splArray->__toString());
 
 /**
-* 输出结果过：
- array(2) {
-   ["fruit"]=>
-   array(2) {
-     ["orange"]=>
-     int(1)
-     ["grape"]=>
-     int(4)
-   }
-   ["color"]=>
-   array(3) {
-     ["red"]=>
-     int(12)
-     ["blue"]=>
-     int(8)
-     ["green"]=>
-     int(6)
-   }
- }
+ * 输出结果过：
+ * array(2) {
+ *   ["fruit"]=>
+ *   array(2) {
+ *     ["orange"]=>
+ *     int(1)
+ *     ["grape"]=>
+ *     int(4)
+ *   }
+ *   ["color"]=>
+ *   array(3) {
+ *     ["red"]=>
+ *     int(12)
+ *     ["blue"]=>
+ *     int(8)
+ *     ["green"]=>
+ *     int(6)
+ *   }
+ * }
  */
 
 ```
@@ -351,17 +351,17 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->unique()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(4) {
-   ["apple"]=>
-   int(2)
-   ["orange"]=>
-   int(1)
-   ["pear"]=>
-   int(4)
-   ["banana"]=>
-   int(8)
- }
+ * 输出结果过：
+ * array(4) {
+ *   ["apple"]=>
+ *   int(2)
+ *   ["orange"]=>
+ *   int(1)
+ *   ["pear"]=>
+ *   int(4)
+ *   ["banana"]=>
+ *   int(8)
+ * }
  */
 
 ```
@@ -395,11 +395,11 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->unique()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(1) {
-   ["grape"]=>
-   int(2)
- }
+ * 输出结果过：
+ * array(1) {
+ *   ["grape"]=>
+ *   int(2)
+ * }
  */
 
 ```
@@ -433,19 +433,19 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->asort()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(5) {
-   ["orange"]=>
-   int(1)
-   ["apple"]=>
-   int(2)
-   ["grape"]=>
-   int(2)
-   ["pear"]=>
-   int(4)
-   ["banana"]=>
-   int(8)
- }
+ * 输出结果过：
+ * array(5) {
+ *   ["orange"]=>
+ *   int(1)
+ *   ["apple"]=>
+ *   int(2)
+ *   ["grape"]=>
+ *   int(2)
+ *   ["pear"]=>
+ *   int(4)
+ *   ["banana"]=>
+ *   int(8)
+ * }
  */
 
 ```
@@ -479,19 +479,19 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->ksort()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(5) {
-   ["apple"]=>
-   int(2)
-   ["banana"]=>
-   int(8)
-   ["grape"]=>
-   int(2)
-   ["orange"]=>
-   int(1)
-   ["pear"]=>
-   int(4)
- }
+ * 输出结果过：
+ * array(5) {
+ *   ["apple"]=>
+ *   int(2)
+ *   ["banana"]=>
+ *   int(8)
+ *   ["grape"]=>
+ *   int(2)
+ *   ["orange"]=>
+ *   int(1)
+ *   ["pear"]=>
+ *   int(4)
+ * }
  */
 
 ```
@@ -534,19 +534,19 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->ksort()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(5) {
-   [0]=>
-   int(1)
-   [1]=>
-   int(2)
-   [2]=>
-   int(2)
-   [3]=>
-   int(4)
-   [4]=>
-   int(8)
- }
+ * 输出结果过：
+ * array(5) {
+ *   [0]=>
+ *   int(1)
+ *   [1]=>
+ *   int(2)
+ *   [2]=>
+ *   int(2)
+ *   [3]=>
+ *   int(4)
+ *   [4]=>
+ *   int(8)
+ * }
  */
 
 ```
@@ -588,11 +588,11 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->column('apple')->getArrayCopy());
 
 /**
-* 输出结果过：
- array(1) {
-   [0]=>
-   int(2)
- }
+ * 输出结果过：
+ * array(1) {
+ *   [0]=>
+ *   int(2)
+ * }
  */
 
 ```
@@ -626,17 +626,17 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->flip()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(4) {
-   [2]=>
-   string(5) "grape"
-   [1]=>
-   string(6) "orange"
-   [4]=>
-   string(4) "pear"
-   [8]=>
-   string(6) "banana"
- }
+ * 输出结果过：
+ * array(4) {
+ *   [2]=>
+ *   string(5) "grape"
+ *   [1]=>
+ *   string(6) "orange"
+ *   [4]=>
+ *   string(4) "pear"
+ *   [8]=>
+ *   string(6) "banana"
+ * }
  */
 
 ```
@@ -673,13 +673,13 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->filter('apple,orange')->getArrayCopy());
 
 /**
-* 输出结果过：
- array(2) {
-   ["apple"]=>
-   int(2)
-   ["orange"]=>
-   int(1)
- }
+ * 输出结果过：
+ * array(2) {
+ *   ["apple"]=>
+ *   int(2)
+ *   ["orange"]=>
+ *   int(1)
+ * }
  */
 
 ```
@@ -720,15 +720,15 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->keys('fruit'));
 
 /**
-* 输出结果过：
- array(3) {
-   [0]=>
-   string(5) "apple"
-   [1]=>
-   string(6) "orange"
-   [2]=>
-   string(5) "grape"
- }
+ * 输出结果过：
+ * array(3) {
+ *   [0]=>
+ *   string(5) "apple"
+ *   [1]=>
+ *   string(6) "orange"
+ *   [2]=>
+ *   string(5) "grape"
+ * }
  */
 
 ```
@@ -767,27 +767,27 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->values()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(2) {
-   [0]=>
-   array(3) {
-     ["apple"]=>
-     int(2)
-     ["orange"]=>
-     int(1)
-     ["grape"]=>
-     int(4)
-   }
-   [1]=>
-   array(3) {
-     ["red"]=>
-     int(2)
-     ["blue"]=>
-     int(8)
-     ["green"]=>
-     int(6)
-   }
- }
+ * 输出结果过：
+ * array(2) {
+ *   [0]=>
+ *   array(3) {
+ *     ["apple"]=>
+ *     int(2)
+ *     ["orange"]=>
+ *     int(1)
+ *     ["grape"]=>
+ *     int(4)
+ *   }
+ *   [1]=>
+ *   array(3) {
+ *     ["red"]=>
+ *     int(2)
+ *     ["blue"]=>
+ *     int(8)
+ *     ["green"]=>
+ *     int(6)
+ *   }
+ * }
  */
 
 ```
@@ -826,9 +826,9 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->flush()->getArrayCopy());
 
 /**
-* 输出结果过：
- array(0) {
- }
+ * 输出结果过：
+ * array(0) {
+ * }
  */
 
 ```
@@ -880,18 +880,18 @@ var_dump($splArray->loadArray($data)->getArrayCopy());
 
 /**
 * 输出结果过：
- array(5) {
-   ["apple"]=>
-   int(2)
-   ["orange"]=>
-   int(1)
-   ["grape"]=>
-   int(2)
-   ["pear"]=>
-   int(4)
-   ["banana"]=>
-   int(8)
- }
+ * array(5) {
+ *   ["apple"]=>
+ *   int(2)
+ *   ["orange"]=>
+ *   int(1)
+ *   ["grape"]=>
+ *   int(2)
+ *   ["pear"]=>
+ *   int(4)
+ *   ["banana"]=>
+ *   int(8)
+ * }
  */
 
 ```
@@ -934,8 +934,8 @@ $splArray = new \EasySwoole\Spl\SplArray($data);
 var_dump($splArray->toXML());
 
 /**
-* 输出结果过：
- string(134) "<xml><fruit><apple>2</apple><orange>1</orange><grape>4</grape></fruit><color><red>2</red><blue>8</blue><green>6</green></color></xml>"
+ * 输出结果过：
+ * string(134) "<xml><fruit><apple>2</apple><orange>1</orange><grape>4</grape></fruit><color><red>2</red><blue>8</blue><green>6</green></color></xml>"
  */
 
 ```
