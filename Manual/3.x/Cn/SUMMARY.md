@@ -71,7 +71,6 @@
     - [路由](Http/FastRoute.md)
     - [Request对象](Http/request.md)
     - [Response对象](Http/response.md)
-    - [权限验证](Http/authorization.md)
     - [错误与异常拦截](Http/exception.md)
     - [UploadFile对象](Http/UploadFile.md)
     - [常见问题](Http/problem.md)

@@ -62,6 +62,7 @@ function onException(\Throwable $throwable): void
     $this->response()->write('系统繁忙,请稍后再试 ');
 }
 ````
+> 更多控制器异常相关可查看[错误与异常拦截](exception.md)
  * gc  
 ````php
 protected function gc()
@@ -94,7 +95,7 @@ function index()
     $request->getCookieParams();//获取cookie参数
 }
 ````
->
+> 更多request相关可查看[request对象](request.md)
  * response  
 response方法将返回`EasySwoole\Http\Response`,用于向客户端响应数据,例如:
 ````php
@@ -106,6 +107,7 @@ function index()
     $response->write('hello world');//向客户端发送一条数据(类似于常规web模式的 echo )
 }
 ````  
+> 更多response相关可查看[response对象](response.md)
  * writeJson  
  writeJson方法直接封装了设置响应状态码,设置响应头,数组转为json输出.
 ````php
@@ -131,4 +133,28 @@ function index()
  * session  
  返回session的驱动类,进行管理session 
  
+### 验证相关
+ * validate
+ validate方法可直接调用`EasySwoole\Validate\Validate`对象的验证,返回验证成功/失败的结果,实现代码:
+````php
+protected function validate(Validate $validate)
+{
+    return $validate->validate($this->request()->getRequestParam());
+}
+````
+我们可使用该方法进行验证客户端发送的数据:
+````php
+function index()
+{
+    $validate = new Validate();
+    $validate->addColumn('name','姓名')->required()->lengthMax(50);
+    //限制name必填并且不能大于50个字符串
+    if (!$this->validate($validate)){
+        $this->writeJson(400, [], $validate->getError()->__toString());
+        return false;
+    }
+    $this->writeJson(200, [], 'success');
+}
+````
+> 更多validate 相关可查看[验证器](https://github.com/easy-swoole/doc/blob/3.1.x/Manual/3.x/Cn/Tools/validate.md)
  
