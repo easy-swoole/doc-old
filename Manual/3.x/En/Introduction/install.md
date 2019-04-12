@@ -7,7 +7,7 @@ The framework uses `Composer` as the dependency management tool. Before starting
 Follow these steps
 
 ```bash
-composer require easyswoole/easyswoole=3.x
+composer require easyswoole/easyswoole=3.x-dev
 php vendor/bin/easyswoole.php install
 ```
 
@@ -107,10 +107,9 @@ For development, you can install IDE helper for IDE auto completion.
 composer require easyswoole/swoole-ide-helper
 ```
 
-
 ## Demo
-https://github.com/easy-swoole/demo , you can see each functions in the sub branch.
 
+> [https://github.com/easy-swoole/demo/tree/3.x](https://github.com/easy-swoole/demo/tree/3.x)
 
 ## Directory Structure
 

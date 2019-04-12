@@ -16,11 +16,48 @@
 >
 > 如果 f 为方法名，则执行的方法为 \App\HttpControllers\A\B\C\D::f()
 
+> 如果最后的路径为`index`时,底层会自动忽略,并直接调用控制器的默认方法(也就是index)
 
+实现代码:
+````php
+//如果请求为/Index/index,或/abc/index
+//将自动删除最后面的index字符,$path已经被处理为/Index或/abc
+$pathInfo = ltrim($path,"/");
+$list = explode("/",$pathInfo);
+$actionName = null;
+$finalClass = null;
+$controlMaxDepth = $this->maxDepth;
+$currentDepth = count($list);
+$maxDepth = $currentDepth < $controlMaxDepth ? $currentDepth : $controlMaxDepth;
+while ($maxDepth >= 0){//解析层级
+    $className = '';
+    //根据请求的路径,逐层解析字符串转为首字母大写,并判断字符串是否有效,无效则默认为Index
+    for ($i=0 ;$i<$maxDepth;$i++){
+        $className = $className."\\".ucfirst($list[$i] ?: 'Index');//为一级控制器Index服务
+    }
+    //如果找到了该控制器,则退出循环
+    if(class_exists($this->controllerNameSpacePrefix.$className)){
+        //尝试获取该class后的actionName
+        $actionName = empty($list[$i]) ? 'index' : $list[$i];
+        $finalClass = $this->controllerNameSpacePrefix.$className;
+        break;
+    }else{
+        //尝试搜搜index控制器
+        $temp = $className."\\Index";
+        if(class_exists($this->controllerNameSpacePrefix.$temp)){
+            $finalClass = $this->controllerNameSpacePrefix.$temp;
+            //尝试获取该class后的actionName
+            $actionName = empty($list[$i]) ? 'index' : $list[$i];
+            break;
+        }
+    }
+    $maxDepth--;
+}
+````
 
 ## 解析层级
 
-理论上 easySwoole 支持无限层级的URL -> 控制器映射，但出于系统效率和防止恶意 URL 访问， 系统默认为3级，若由于业务需求，需要更多层级的URL映射匹配，请于框架初始化事件中向 DI 注入常量`SysConst::HTTP_CONTROLLER_MAX_DEPTH` ，值为 URL 解析的最大层级，如下代码，允许 URL 最大解析至5层
+理论上 EasySwoole 支持无限层级的URL -> 控制器映射，但出于系统效率和防止恶意 URL 访问， 系统默认为3级，若由于业务需求，需要更多层级的URL映射匹配，请于框架初始化事件中向 DI 注入常量`SysConst::HTTP_CONTROLLER_MAX_DEPTH` ，值为 URL 解析的最大层级，如下代码，允许 URL 最大解析至5层
 
 ```php
 public static function initialize()

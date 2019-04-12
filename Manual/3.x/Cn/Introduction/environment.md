@@ -7,11 +7,82 @@
 - 保证 **PHP** 版本大于等于 **7.1**
 
 
-- 保证 **Swoole** 拓展版本大于等于 **4.3.0**
+- 保证 **Swoole** 拓展版本大于等于 **4.2.12**
 - 需要 **pcntl** 拓展的任意版本
 - 使用 **Linux** / **FreeBSD** / **MacOS** 这三类操作系统
 - 使用 **Composer** 作为依赖管理工具
 
 > 参考下面的建议，它们都不是必须的，但是有助于更高效的使用框架和进行开发
 
-- 使用 **Ubuntu14** / **CentOS 7.0** 或更高版本操作系统
+- 使用 **Ubuntu14** / **CentOS 6.5** 或更高版本操作系统
+
+## DockerFile
+```
+FROM php:7.2
+
+# Version
+ENV PHPREDIS_VERSION 4.0.1
+ENV SWOOLE_VERSION 4.2.13
+ENV EASYSWOOLE_VERSION 3.x-dev
+
+# Timezone
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+    && echo 'Asia/Shanghai' > /etc/timezone
+
+# Libs
+RUN apt-get update \
+    && apt-get install -y \
+    curl \
+    wget \
+    git \
+    zip \
+    libz-dev \
+    libssl-dev \
+    libnghttp2-dev \
+    libpcre3-dev \
+    && apt-get clean \
+    && apt-get autoremove
+
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer self-update --clean-backups
+
+# PDO extension
+RUN docker-php-ext-install pdo_mysql
+
+# Bcmath extension
+RUN docker-php-ext-install bcmath
+
+# Redis extension
+RUN wget http://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz -O /tmp/redis.tar.tgz \
+    && pecl install /tmp/redis.tar.tgz \
+    && rm -rf /tmp/redis.tar.tgz \
+    && docker-php-ext-enable redis
+
+# Swoole extension
+RUN wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz \
+    && mkdir -p swoole \
+    && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
+    && rm swoole.tar.gz \
+    && ( \
+    cd swoole \
+    && phpize \
+    && ./configure --enable-async-redis --enable-mysqlnd --enable-openssl --enable-http2 \
+    && make -j$(nproc) \
+    && make install \
+    ) \
+    && rm -r swoole \
+    && docker-php-ext-enable swoole
+
+WORKDIR /var/www/code
+
+# Install easyswoole
+RUN cd /var/www/code \
+    && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
+    && php vendor/bin/easyswoole install
+
+EXPOSE 9501
+
+ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
+```

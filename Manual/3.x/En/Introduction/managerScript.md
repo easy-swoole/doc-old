@@ -15,16 +15,20 @@ display:
                           __/ |
                          |___/
 
-Welcome To EASYSWOOLE Command Console!
-Usage: php easyswoole [command] [arg]
-Get help : php easyswoole help [command]
-Current Register Command:
-help
-install
-start
-stop
-reload
-console
+欢迎使用为API而生的 easySwoole 框架 当前版本: 3.x
+
+使用:
+  easyswoole [操作] [选项]
+
+操作:
+  install       安装easySwoole
+  start         启动easySwoole
+  stop          停止easySwoole
+  reload        重启easySwoole
+  help          查看命令的帮助信息
+
+有关某个操作的详细信息 请使用 help 命令查看 
+如查看 start 操作的详细信息 请输入 easyswoole help -start
 ```
 ## manager command
 run easyswoole

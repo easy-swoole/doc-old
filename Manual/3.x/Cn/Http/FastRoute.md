@@ -2,7 +2,8 @@
 
 > 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 
-EasySwoole支持自定义路由,其路由利用[fastRoute](https://github.com/nikic/FastRoute)实现，因此其路由规则与其保持一致，该组件的详细文档请参考 [GitHub文档](https://github.com/nikic/FastRoute/blob/master/README.md)  
+EasySwoole支持自定义路由,其路由利用[fastRoute](https://github.com/nikic/FastRoute)实现，因此其路由规则与其保持一致，该组件的详细文档请参考 [GitHub文档](https://github.com/nikic/FastRoute/blob/master/README.md) 
+
 ### 示例代码:  
 新建文件App\HttpController\Router.php:  
 ```php
@@ -24,32 +25,115 @@ use EasySwoole\Http\Response;
 
 class Router extends AbstractRouter
 {
-    function initialize(RouteCollector $routeCollector)
-    {
-        // TODO: Implement initialize() method.
-        $routeCollector->get('/user','/index.html');
-        $routeCollector->get('/test','/Index/test');
-        $routeCollector->get('/rpc','/Rpc/index');
-
-        $routeCollector->get('/',function (Request $request ,Response $response){
-            $response->write('this router index');
-        });
-        // /test/index.html
-        $routeCollector->get('/test',function (Request $request ,Response $response){
-            $response->write('this router test');
-            $response->end();
-        });
-        // /user/1/index.html
-        $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
-            $response->write("this is router user ,your id is {$request->getQueryParam('id')}");
-            $response->end();
-        });
-
-    }
+  function initialize(RouteCollector $routeCollector)
+      {
+  // TODO: Implement initialize() method.
+          $routeCollector->get('/user', '/index.html');
+          $routeCollector->get('/rpc', '/Rpc/index');
+  
+          $routeCollector->get('/', function (Request $request, Response $response) {
+              $response->write('this router index');
+          });
+          $routeCollector->get('/test', function (Request $request, Response $response) {
+              $response->write('this router test');
+              return '/a';//重新定位到/a方法
+          });
+          $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
+              $response->write("this is router user ,your id is {$request->getQueryParam('id')}");
+              return false;//不再往下请求
+          });
+  
+      }
 }
 ```
 访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
-> 注意：若在路由回调函数中不结束该请求响应，则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。
+> 如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
+
+实现代码:
+
+````php
+/*
+* 进行一次初始化判定
+*/
+if($this->router === null){
+    $class = $this->controllerNameSpacePrefix.'\\Router';
+    try{
+        if(class_exists($class)){//如果存在router类
+            $ref = new \ReflectionClass($class);
+            if($ref->isSubclassOf(AbstractRouter::class)){
+                $this->routerRegister =  $ref->newInstance();
+                $this->router = new GroupCountBased($this->routerRegister->getRouteCollector()->getData());//将router类的配置数据经过fastroute处理后取出
+            }else{
+                $this->router = false;
+                throw new RouterError("class : {$class} not AbstractRouter class");
+            }
+        }else{
+            $this->router = false;
+        }
+    }catch (\Throwable $throwable){
+        $this->router = false;
+        throw new RouterError($throwable->getMessage());
+    }
+}
+$path = UrlParser::pathInfo($request->getUri()->getPath());
+if($this->router instanceof GroupCountBased){
+$handler = null;
+$routeInfo = $this->router->dispatch($request->getMethod(),$path);
+if($routeInfo !== false){
+    switch ($routeInfo[0]) {//未找到路由匹配
+        case \FastRoute\Dispatcher::NOT_FOUND:{
+            $handler = $this->routerRegister->getRouterNotFoundCallBack();
+            break;
+        }
+        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:{//未找到处理方法
+            $handler = $this->routerRegister->getMethodNotAllowCallBack();
+            break;
+        }
+        case \FastRoute\Dispatcher::FOUND:{
+            $handler = $routeInfo[1];
+            //合并解析出来的数据
+            $vars = $routeInfo[2];
+            $data = $request->getQueryParams();
+            $request->withQueryParams($vars+$data);//将数据插入到get数据中
+            break;
+        }
+        default:{
+            $handler = $this->routerRegister->getRouterNotFoundCallBack();
+            break;
+        }
+    }
+}
+//如果handler不为null，那么说明，非为 \FastRoute\Dispatcher::FOUND ，因此执行
+if(is_callable($handler)){
+    try{
+        //若直接返回一个url path
+        $ret = call_user_func($handler,$request,$response);
+        if(is_string($ret)){
+            $path = UrlParser::pathInfo($ret);
+        }else if($ret == false){
+            return;
+        }else{
+            //可能在回调中重写了URL PATH
+            $path = UrlParser::pathInfo($request->getUri()->getPath());
+        }
+        $request->getUri()->withPath($path);
+    }catch (\Throwable $throwable){
+        $this->hookThrowable($throwable,$request,$response);
+        //出现异常的时候，不在往下dispatch
+        return;
+    }
+}else if(is_string($handler)){
+    $path = UrlParser::pathInfo($handler);
+    $request->getUri()->withPath($path);
+    goto response;
+}
+/*
+    * 全局模式的时候，都拦截。非全局模式，否则继续往下
+*/
+if($this->routerRegister->isGlobalMode()){
+    return;
+}
+````
 
 ### 全局模式拦截
 在Router.php加入以下代码,即可开启全局模式拦截
