@@ -156,5 +156,5 @@ function index()
     $this->writeJson(200, [], 'success');
 }
 ````
-> 更多validate 相关可查看[验证器](https://github.com/easy-swoole/doc/blob/3.1.x/Manual/3.x/Cn/Tools/validate.md)
+> 更多validate 相关可查看[验证器](https://github.com/easy-swoole/doc/blob/3.1.x/Manual/3.x/Cn/Components/validate.md)
  
