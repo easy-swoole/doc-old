@@ -76,12 +76,14 @@
     - [常见问题](Http/problem.md)
 - 基础使用
     - [自定义进程](BaseUsage/process.md)
-    - [异步任务](Advanced/async_task.md)
-    - [定时器](Advanced/timer.md)
-    - [Crontab](SystemComponent/crontab.md)
-    - [日志处理]
-    - [Swoole实例]
-    - [远程控制台]
+    - [异步任务](BaseUsage/async_task.md)
+    - [定时器](BaseUsage/timer.md)
+    - [Crontab](BaseUsage/crontab.md)
+    - [日志处理](BaseUsage/log.md)
+    - [Swoole实例](BaseUsage/ServerManager.md)
+    - [远程控制台](BaseUsage/Console/Introduction.md)
+        - [基础功能](BaseUsage/Console/BasicFunction.md)
+        - [自定义命令](BaseUsage/Console/CustomCommand.md)
 - 组件库
     - 基础组件
         - [单例模式](Component/Singleton.md)
