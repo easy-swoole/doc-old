@@ -102,7 +102,7 @@ class ProcessOne extends AbstractProcess
 
 ## 核心对象方法
 
-核心类：AbstractProcess。
+核心类：EasySwoole\Component\Process\AbstractProcess。
 
 构造函数，创建子进程
 
