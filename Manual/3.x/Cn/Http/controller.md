@@ -17,6 +17,49 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 > 对象池模式是针对单一进程的,多个work进程的对象池不共享.  
 ## 对象方法 
 ### 调度类方法
+ * "action"   
+ "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.
+> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:
+````php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/4/11 0011
+ * Time: 14:40
+ */
+
+namespace App\HttpController;
+
+use EasySwoole\EasySwoole\Trigger;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Http\Message\Status;
+class Index extends Controller
+{
+    function index()
+    {
+        $this->writeJson(200, [], 'success');
+        return '/test';
+    }
+
+    function test()
+    {
+        $this->response()->write('this is test');
+        return '/test2';//当执行完test方法之后,返回/test2,让框架继续调度/test2方法
+    }
+
+    function test2()
+    {
+        $this->response()->write('this is test2');
+        return true;
+    }
+}
+````
+> 返回的字符串将会被`url解析规则`以及`route路由`规则解析
+> 但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
+ 
+ 
+
  * onRequest  
 ````php
 protected function onRequest(?string $action): ?bool

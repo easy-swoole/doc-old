@@ -73,7 +73,7 @@ PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ### 自动回收
 
 * invoke
-可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:
+可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:    
 ```php
 <?php
 try {
@@ -91,12 +91,13 @@ try {
 }
 ```
 * defer
-使用`defer`方法直接获取一个连接池连接,直接使用,协程结束后自动回收:
-````php
+使用`defer`方法直接获取一个连接池连接,直接使用,协程结束后自动回收:  
+````php   
+<?php
 $db = MysqlPool::defer();
 $model = new UserModel($db);
 $model->insert(new UserBean($this->request()->getRequestParam()));
-````
+````  
 > 异常拦截,当invoke,defer调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
 
 > 只要使用以上两个方法,就无需关注连接回收问题,将自动回收

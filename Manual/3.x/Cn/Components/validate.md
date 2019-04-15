@@ -31,7 +31,7 @@ var_dump($valitor->getError()->getErrorRuleMsg()?:$valitor->getError()->getColum
 */
 ```
 
-#### 如何在控制器使用验证例子([demo](https://github.com/easy-swoole/demo/tree/3.x/App/HttpController/Validate/Index.php))
+#### 如何在控制器使用验证例子([demo](https://github.com/tioncico/demo/tree/3.x-validate))
 
 ```php
 <?php
