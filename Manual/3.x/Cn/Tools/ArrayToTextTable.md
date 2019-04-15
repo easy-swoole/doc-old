@@ -1,4 +1,4 @@
-## ArrayToTextTable
+# ArrayToTextTable
 
 ## 用途
 用于输出表格信息。
