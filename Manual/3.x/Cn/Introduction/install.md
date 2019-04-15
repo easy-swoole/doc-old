@@ -36,7 +36,7 @@ dir=$(echo $dir | sed 's/ /\ /g')
 ```
 请确认 php.ini是否禁用了symlink函数。或者可以直接指向easySwoole的管理脚本安装。
 ```bash
-php vendor/easyswoole/easyswoole/bin/easyswoole.php install
+php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 > https://github.com/composer/composer/issues/7873
 
