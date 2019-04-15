@@ -1,6 +1,6 @@
 # http服务
-http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它实现了控制器连接池,url解析以及url路由规则.
-
+http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它实现了控制器连接池,url解析以及url路由规则.  
+[http组件demo](https://github.com/easy-swoole/demo/tree/3.x-http)
 ## 命名空间
 我们首先需要在`composer.json`中注册应用目录的命名空间(控制器命名空间默认为`App\HttpController`)
 ````

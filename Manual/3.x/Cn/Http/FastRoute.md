@@ -39,8 +39,8 @@ class Router extends AbstractRouter
               return '/a';//重新定位到/a方法
           });
           $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
-              $response->write("this is router user ,your id is {$request->getQueryParam('id')}");
-              return false;//不再往下请求
+              $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//获取到路由匹配的id
+              return false;//不再往下请求,结束此次响应
           });
   
       }
@@ -52,6 +52,7 @@ class Router extends AbstractRouter
 实现代码:
 
 ````php
+<?php
 /*
 * 进行一次初始化判定
 */
@@ -77,61 +78,62 @@ if($this->router === null){
 }
 $path = UrlParser::pathInfo($request->getUri()->getPath());
 if($this->router instanceof GroupCountBased){
-$handler = null;
-$routeInfo = $this->router->dispatch($request->getMethod(),$path);
-if($routeInfo !== false){
-    switch ($routeInfo[0]) {//未找到路由匹配
-        case \FastRoute\Dispatcher::NOT_FOUND:{
-            $handler = $this->routerRegister->getRouterNotFoundCallBack();
-            break;
-        }
-        case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:{//未找到处理方法
-            $handler = $this->routerRegister->getMethodNotAllowCallBack();
-            break;
-        }
-        case \FastRoute\Dispatcher::FOUND:{
-            $handler = $routeInfo[1];
-            //合并解析出来的数据
-            $vars = $routeInfo[2];
-            $data = $request->getQueryParams();
-            $request->withQueryParams($vars+$data);//将数据插入到get数据中
-            break;
-        }
-        default:{
-            $handler = $this->routerRegister->getRouterNotFoundCallBack();
-            break;
+    $handler = null;
+    $routeInfo = $this->router->dispatch($request->getMethod(),$path);
+    if($routeInfo !== false){
+        switch ($routeInfo[0]) {//未找到路由匹配
+            case \FastRoute\Dispatcher::NOT_FOUND:{
+                $handler = $this->routerRegister->getRouterNotFoundCallBack();
+                break;
+            }
+            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:{//未找到处理方法
+                $handler = $this->routerRegister->getMethodNotAllowCallBack();
+                break;
+            }
+            case \FastRoute\Dispatcher::FOUND:{
+                $handler = $routeInfo[1];
+                //合并解析出来的数据
+                $vars = $routeInfo[2];
+                $data = $request->getQueryParams();
+                $request->withQueryParams($vars+$data);//将数据插入到get数据中
+                break;
+            }
+            default:{
+                $handler = $this->routerRegister->getRouterNotFoundCallBack();
+                break;
+            }
         }
     }
-}
-//如果handler不为null，那么说明，非为 \FastRoute\Dispatcher::FOUND ，因此执行
-if(is_callable($handler)){
-    try{
-        //若直接返回一个url path
-        $ret = call_user_func($handler,$request,$response);
-        if(is_string($ret)){
-            $path = UrlParser::pathInfo($ret);
-        }else if($ret == false){
+    //如果handler不为null，那么说明，非为 \FastRoute\Dispatcher::FOUND ，因此执行
+    if(is_callable($handler)){
+        try{
+            //若直接返回一个url path
+            $ret = call_user_func($handler,$request,$response);
+            if(is_string($ret)){
+                $path = UrlParser::pathInfo($ret);
+            }else if($ret == false){
+                return;
+            }else{
+                //可能在回调中重写了URL PATH
+                $path = UrlParser::pathInfo($request->getUri()->getPath());
+            }
+            $request->getUri()->withPath($path);
+        }catch (\Throwable $throwable){
+            $this->hookThrowable($throwable,$request,$response);
+            //出现异常的时候，不在往下dispatch
             return;
-        }else{
-            //可能在回调中重写了URL PATH
-            $path = UrlParser::pathInfo($request->getUri()->getPath());
         }
+    }else if(is_string($handler)){
+        $path = UrlParser::pathInfo($handler);
         $request->getUri()->withPath($path);
-    }catch (\Throwable $throwable){
-        $this->hookThrowable($throwable,$request,$response);
-        //出现异常的时候，不在往下dispatch
+        goto response;
+    }
+    /*
+        * 全局模式的时候，都拦截。非全局模式，否则继续往下
+    */
+    if($this->routerRegister->isGlobalMode()){
         return;
     }
-}else if(is_string($handler)){
-    $path = UrlParser::pathInfo($handler);
-    $request->getUri()->withPath($path);
-    goto response;
-}
-/*
-    * 全局模式的时候，都拦截。非全局模式，否则继续往下
-*/
-if($this->routerRegister->isGlobalMode()){
-    return;
 }
 ````
 
@@ -145,11 +147,14 @@ $this->setGlobalMode(true);
 ### 异常错误处理  
 通过以下2个方法,可设置路由匹配错误以及未找到方法的回调:
 ```php
+<?php
 $this->setMethodNotAllowCallBack(function (Request $request,Response $response){
     $response->write('未找到处理方法');
+    return false;//结束此次响应
 });
 $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
     $response->write('未找到路由匹配');
+    return 'index';//重定向到index路由
 });
 ```
 >该回调函数只针对于fastRoute未匹配状况,如果回调里面不结束该请求响应,则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。  
@@ -223,51 +228,26 @@ $routeCollector->addRoute('GET', '/users/{name}', 'handler');
 
 $routeCollector->addRoute('GET', '/users/to[/{name}]', 'handler');
 ```
-
-获取路由中绑定的参数有两种情况
-
-1. `handler`传入了一个闭包，Dispatch会将绑定的参数按顺序传给闭包
-2. `handler`传入了一个控制器路径，Dispatch会将绑定的参数附加给Request对象
-
-利用该方法还可以实现请求`/router/fun1/{id:\d+}`但是符合一定条件的请求需要分发给`/router/fun2/{id:\d+}`处理的情况
-
-```
-// 在闭包中使用
-$routeCollector->addRoute('GET', '/router/{id:\d+}', function ($id) {
-	$Response = Response::getInstance();
-	$Response->write('Userid : ' . $id);
-	$Response->end();
+> 绑定的参数将由框架内部进行组装到get数据之中,调用方法:
+````php
+<?php
+$routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
+    $response->write("this is router user ,your id is {$request->getQueryParam('id')}");
+    return false;
 });
+````
 
-// --------------------------------------------------------
-
-// 直接调用控制器方法
-$routeCollector->addRoute('POST', '/router/{id:\d+}', '/Index');
-// 此时可以在控制器中调用Request对象存放的参数
-$id = $this->request()->getQueryParam('id');
-
-// --------------------------------------------------------
-
-// 绑定参数并跳转到控制器
-$routeCollector->addRoute('GET', '/router2/{id:\d+}', function ($id) {
-	// 将请求参数附加到Request
-	Request::getInstance()->withQueryParams(['id' => $id]);
-	// 按自己的处理逻辑转发请求给控制器
-	Response::getInstance()->forward('/Index');
-});
-
-```
 
 #### handler
 ------
 指定路由匹配成功后需要处理的方法，可以传入一个闭包，当传入闭包时一定要**注意处理完成之后要处理结束响应**否则请求会继续Dispatch寻找对应的控制器来处理，当然如果利用这一点，也可以对某些请求进行处理后再交给控制器执行逻辑
 
-```
+```php
 // 传入闭包的情况
-$routeCollector->addRoute('GET', '/router/{id:\d+}', function ($id) {
-	$Response = Response::getInstance();
-	$Response->write('Userid : ' . $id);
-	$Response->end();
+$routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
+    $id = $request->getQueryParam('id');
+	$response->write('Userid : ' . $id);
+	return false;
 });
 
 ```
