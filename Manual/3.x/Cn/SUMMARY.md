@@ -98,7 +98,7 @@
     - Spl库
         - [Array](Spl/array.md)
         - [Bean](Spl/bean.md)
-        - [SplEnum](Spl/SplEnum.md)
+        - [SplEnum](Spl/enum.md)
         - [SplStream](Spl/SplStream.md)
         - [SplFileStream](Spl/SplFileStream.md)
         - [String](Spl/string.md)
