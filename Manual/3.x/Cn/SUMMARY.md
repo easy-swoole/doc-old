@@ -112,7 +112,7 @@
         - [Websocket](Components/Socket/WebSocket.md)
         - [Udp](Components/Socket/Udp.md)
         - [Socket问题](Components/Socket/Problem.md)
-    - [Curl](Curl/curl.md)
+    - [Curl](Components/Curl/curl.md)
     - [mysqli](Components/mysqli/Introduction.md)
         - [安装](Components/mysqli/install.md)
         - [连贯操作](Components/mysqli/continuous_operation.md)
