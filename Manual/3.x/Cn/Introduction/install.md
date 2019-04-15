@@ -9,9 +9,11 @@
 按下面的步骤进行手动安装
 
 ```bash
-composer require easyswoole/easyswoole=3.x-dev
-php vendor/bin/easyswoole.php install
+composer require easyswoole/easyswoole=3.x
+php vendor/bin/easyswoole install
 ```
+
+> 如果安装遇到报错，请看下面的报错处理
 
 ## 报错处理
 
@@ -34,12 +36,35 @@ fi
 dir=$(echo $dir | sed 's/ /\ /g')
 "${dir}/easyswoole" "$@"
 ```
-请确认 php.ini是否禁用了symlink函数。或者可以直接指向easySwoole的管理脚本安装。
+
+引起该报错的大多数原因是因为当前PHP.ini禁用了`symlink`函数，或者无法在`vendor`目录下创建符号链接，可以执行以下命令行观察输出确认是否禁用了该函数，如果没有禁用该函数，则输出的列表中没有`symlink`字样
+
+```bash
+php -ini | grep disable_functions
+```
+
+> 如果禁用了该函数，可以直接修改PHP.ini或在集成面板中解除该函数的禁用，删除项目目录下的`vendor`目录，重新执行`composer install`拉取依赖包
+
+如果是其他原因导致的该报错，可以在项目根目录下手工执行以下命令，将可执行文件链接出来 :
+
+```bash
+cd vendor/bin/ && rm -rf easyswoole.php && ln -s ../easyswoole/easyswoole/bin/easyswoole.php easyswoole.php && cd ../../
+```
+
+或者直接指向EasySwoole的管理脚本执行安装命令 : 
+
 ```bash
 php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
-> https://github.com/composer/composer/issues/7873
 
+## 手动安装
+
+按下面的步骤进行手动安装
+
+```bash
+composer require easyswoole/easyswoole=3.x-dev
+php vendor/bin/easyswoole install
+```
 
 中途没有报错的话，执行：
 ```bash
@@ -50,37 +75,14 @@ php easyswoole start
 
 > 如果第二步的 install 操作报错 请查看上方的报错处理
 
-## Docker镜像
-
-先从镜像库拉取
-
-```bash
-docker pull encircles/easyswoole3:latest
-```
-
-启动一个容器，执行：
-```bash
-# 启动容器
-docker run -d -it -p 9501:9501 --name containerName encircles/easyswoole3:latest
-```
-此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示容器运行成功
-
-> 如果运行容器报错 请查看docker日志 
-
 ## Dockerfile
 
-如果镜像满足不了您开发的要求, 这里提供Dockerfile, 您可以自行修改
-
-file: Dockerfile
 ```
-FROM php:7.2
-
-LABEL maintainer="encircles@163.com" 
+FROM php:7.1
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV HIREDIS_VERSION 0.13.3
-ENV SWOOLE_VERSION 4.2.9
+ENV SWOOLE_VERSION 4.3.0
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
@@ -118,19 +120,6 @@ RUN wget http://pecl.php.net/get/redis-${PHPREDIS_VERSION}.tgz -O /tmp/redis.tar
     && rm -rf /tmp/redis.tar.tgz \
     && docker-php-ext-enable redis
 
-# Hiredis
-RUN wget https://github.com/redis/hiredis/archive/v${HIREDIS_VERSION}.tar.gz -O hiredis.tar.gz \
-    && mkdir -p hiredis \
-    && tar -xf hiredis.tar.gz -C hiredis --strip-components=1 \
-    && rm hiredis.tar.gz \
-    && ( \
-    cd hiredis \
-    && make -j$(nproc) \
-    && make install \
-    && ldconfig \
-    ) \
-    && rm -r hiredis
-
 # Swoole extension
 RUN wget https://github.com/swoole/swoole-src/archive/v${SWOOLE_VERSION}.tar.gz -O swoole.tar.gz \
     && mkdir -p swoole \
@@ -151,17 +140,16 @@ WORKDIR /var/www/code
 # Install easyswoole
 RUN cd /var/www/code \
     && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
-    && php vendor/bin/easyswoole.php install
+    && php vendor/bin/easyswoole install
 
-EXPOSE 80
+EXPOSE 9501
 
 ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
+
 ```
 > docker build Dockerfile 请自行百度
 
-
 ## Hello World
-
 在项目根目录下创建如下的目录结构，这个目录是编写业务逻辑的应用目录，编辑 `Index.php` 文件，添加基础控制器的代码
 
 ```
@@ -225,12 +213,6 @@ php easyswoole start
 composer require easyswoole/swoole-ide-helper
 ```
 
-## 示例项目
-
-框架准备了一个示例项目，内有框架大部分功能的示例代码，直接克隆下方的 GitHub 仓库到本地并安装依赖，即可开始体验
-
-> 仓库地址: [https://github.com/easy-swoole/demo/tree/3.x](https://github.com/easy-swoole/demo/tree/3.x)
-
 ## 目录结构
 
 **EasySwoole** 的目录结构是非常灵活的，基本上可以任意定制，没有太多的约束，但是仍然建议遵循下面的目录结构，方便开发
@@ -249,10 +231,10 @@ project                   项目部署目录
 ├─EasySwooleEvent.php     框架全局事件
 ├─easyswoole              框架管理脚本
 ├─easyswoole.install      框架安装锁定文件
-├─dev.env                 开发配置文件
-├─produce.env             生产配置文件
+├─dev.php                 开发配置文件
+├─produce.php             生产配置文件
 ```
 
 > 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
 
-> 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件
+> 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.php,但依旧建议设置到Public)
