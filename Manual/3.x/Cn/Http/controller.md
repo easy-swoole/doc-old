@@ -17,7 +17,8 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 > 对象池模式是针对单一进程的,多个work进程的对象池不共享.
 ## 对象方法
 ### 调度类方法
- * onRequest  
+ * onRequest 
+ 
 ````php
 protected function onRequest(?string $action): ?bool
 {
@@ -25,6 +26,7 @@ protected function onRequest(?string $action): ?bool
 }
 
 ````
+
 在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.
 可用于做控制器基类权限验证等,例如:
 ````php
