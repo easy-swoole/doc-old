@@ -47,7 +47,7 @@ class Router extends AbstractRouter
 }
 ```
 访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
-> 如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
+> 如果使用回调函数方式处理路由,return false 代表着不再继续往下请求,并且不能触发`afterAction`,`gc`等方法
 
 实现代码:
 
