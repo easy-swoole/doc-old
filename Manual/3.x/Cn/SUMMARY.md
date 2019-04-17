@@ -99,7 +99,7 @@
         - [Array](Components/Spl/array.md)
         - [Bean](Components/Spl/bean.md)
         - [SplEnum](Components/Spl/enum.md)
-        - [SplStream](Components/Spl/Splstream.md)
+        - [SplStream](Components/Spl/SplStream.md)
         - [SplFileStream](Components/Spl/SplFileStream.md)
         - [String](Components/Spl/string.md)
     - [Rpc组件](Components/Rpc/Introduction.md)
