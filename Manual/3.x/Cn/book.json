@@ -48,11 +48,11 @@
                     "text": "EASYSWOOLE v3 中文手册"
                 },
                 {
-                    "value": "https://www.easyswoole.com/Manual/1.x/Cn/_book/",
+                    "value": "https://github.com/easy-swoole/doc/tree/master/Manual/1.x/Cn",
                     "text": "EASYSWOOLE v1 中文手册"
                 },
                 {
-                    "value": "https://www.easyswoole.com/Manual/2.x/Cn/_book/",
+                    "value": "https://github.com/easy-swoole/doc/tree/master/Manual/2.x/Cn",
                     "text": "EASYSWOOLE v2 中文手册"
                 }
             ]
