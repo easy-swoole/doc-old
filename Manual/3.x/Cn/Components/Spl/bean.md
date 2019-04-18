@@ -135,7 +135,10 @@ protected function setClassMapping()
 
 重新初始化bean数据
 
-public function restore(array $data = [])
+* array     $data                   数据
+* mixed     $autoCreateProperty     是否过滤非类成员变量成员数据
+
+public function restore(array $data = [], $autoCreateProperty = false)
 
 绑定关联类
 
