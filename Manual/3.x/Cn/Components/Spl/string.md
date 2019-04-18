@@ -1024,3 +1024,4 @@ var_dump($string->startsWith('Easy'));
  * 输出结果过：
  * bool(true)
  */
+```
