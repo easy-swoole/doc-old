@@ -19,8 +19,8 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 ### 调度类方法
  * "action"   
  "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.
-> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:
-````php
+> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:  
+````php  
 <?php
 /**
  * Created by PhpStorm.
@@ -54,22 +54,22 @@ class Index extends Controller
         return true;
     }
 }
-````
-> 返回的字符串将会被`url解析规则`以及`route路由`规则解析
+````   
+> 返回的字符串将会被`url解析规则`以及`route路由`规则解析   
 > 但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
- 
+    
  
 
- * onRequest  
+ * onRequest    
 ````php
-protected function onRequest(?string $action): ?bool
+protected function onRequest(?string $action): ?bool  
 {
-    return true;
+    return true;   
 }
 
 ````
-在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.
-可用于做控制器基类权限验证等,例如:
+在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.    
+可用于做控制器基类权限验证等,例如:   
 ````php
 function onRequest(?string $action): ?bool
 {
@@ -86,16 +86,16 @@ function onRequest(?string $action): ?bool
 ````
 
  * afterAction  
-当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑
+当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑   
 
  * index  
 index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.
 
  * actionNotFound  
-当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑
+当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑   
 > 该方法可以理解成 `默认方法`,类似于`index`方法,所以调用完之后也会触发`afterAction`,`gc`等方法
  * onException  
-当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)    
+当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)      
 可覆盖该方法,进行自定义的异常处理,例如:
 ````php
 function onException(\Throwable $throwable): void
@@ -127,7 +127,7 @@ gc 方法将在执行`方法`,`afterAction`完之后自动调用
 
 ### 请求响应类方法
  * request   
-request方法调用之后,将返回`EasySwoole\Http\Request`对象  
+request方法调用之后,将返回`EasySwoole\Http\Request`对象    
 该对象附带了用户请求的所有数据,例如:
 ````php
 function index()
