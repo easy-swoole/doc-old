@@ -30,13 +30,7 @@
             <div id="navbar" class="navbar-menu">
                 <div class="navbar-end">
                     <a class="navbar-item" href="/">首页</a>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link" href="/Manual/3.x/Cn/_book/">文档中心</a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="/Manual/3.x/Cn/_book/">V3 在线文档</a>
-                            <hr class="navbar-divider">
-                        </div>
-                    </div>
+                    <a class="navbar-item" href="/Manual/3.x/Cn/_book/">V3 在线文档</a>
                     <a class="navbar-item" href="https://github.com/easy-swoole/demo" target="_blank">示例项目</a>
                     <a class="navbar-item" href="https://github.com/easy-swoole/easyswoole" target="_blank">源码仓库</a>
                     <a class="navbar-item" href="en.html" target="_blank">ENGLISH</a>
@@ -121,7 +115,7 @@
                 </div>
                 <div class="column code-introduction">
                     <h2>WEB SOCKET开发</h2>
-                    <div class="code-introduction-desc">以控制器方式编写WebSocket代码<br/>按业务逻辑编写好解析器，即可对WS的业务逻辑进行控制器式的管理，代码结构更清晰</div>
+                    <div class="code-introduction-desc">通过parse逻辑调度,实现以控制器方式编写WebSocket代码<br/>按业务逻辑编写好解析器，即可对WS的业务逻辑进行控制器式的管理，代码结构更清晰</div>
                 </div>
             </div>
             <div class="columns is-desktop code-block">
@@ -169,40 +163,73 @@ class Index extends Controller
 }
     </pre>
     <pre id="code-template-2" style="display: none">
-use EasySwoole\Core\Swoole\Task\TaskManager;
+// 在控制器中投递的例子
+function index()
+{
+    \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
+        echo "执行异步任务...\n";
+        return true;
+    }, function () {
+        echo "异步任务执行完毕...\n";
+    });
+}
 
-$phone = 'xxx';
-TaskManager::async(function ()use($phone){
-    //do my task
-    $status = sendSms($phone);
-    saveToRedis($phone,$staus);
+// 在定时器中投递的例子
+\EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
+    \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
+        echo "执行异步任务...\n";
+    });
 });
-$this->response()->write('success');
     </pre>
     <pre id="code-template-3" style="display: none">
-class Web extends WebSocketController
+namespace App\WebSocket;
+use EasySwoole\EasySwoole\ServerManager;
+use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
+use EasySwoole\Socket\AbstractInterface\Controller;
+class Index extends Controller
 {
+    function hello()
+    {
+        $this->response()->setMessage('call hello with arg:'. json_encode($this->caller()->getArgs()));
+    }
+    public function who(){
+        $this->response()->setMessage('your fd is '. $this->caller()->getClient()->getFd());
+    }
     function delay()
     {
-        $client = $this->client();
-        TaskManager::async(function ()use($client){
-            Response::response($client,'msg at '.time());
+        $this->response()->setMessage('this is delay action');
+        $client = $this->caller()->getClient();
+        // 异步推送, 这里直接 use fd也是可以的
+        TaskManager::async(function () use ($client){
+            $server = ServerManager::getInstance()->getSwooleServer();
+            $i = 0;
+            while ($i < 5) {
+                sleep(1);
+                $server->push($client->getFd(),'push in http at '. date('H:i:s'));
+                $i++;
+            }
         });
     }
 }
 </pre>
     <pre id="code-template-4" style="display: none">
-$pool = PoolManager::getInstance()->getPool(MysqlPool::class);
-\go(function ()use($pool){
-    $db = $pool->getObj();
-    if($db){
-        $ret = $db->rawQuery('select sleep(1)');
-        $pool->freeObj($db);
-        var_dump('1 finish at '.time());
-    }else{
-        var_dump('db not available');
+namespace App\HttpController;
+use App\Utility\Pool\MysqlPool;
+use EasySwoole\Component\Pool\PoolManager;
+use EasySwoole\Http\AbstractInterface\Controller;
+
+class Index extends Controller
+{
+    function index()
+    {
+        $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
+        $data = $db->get('test');
+        //使用完毕需要回收
+        PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
+        $this->response()->write(json_encode($data));
+        // TODO: Implement index() method.
     }
-});
+}
     </pre>
     <script>
         window.onload = function () {
