@@ -36,7 +36,7 @@ demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.p
 
 ### 基础使用
 在控制器 通过mysql连接池获取mysql操作对象
-```php
+````php
 <?php
 /**
  * Created by PhpStorm.
@@ -61,44 +61,50 @@ class Index extends Controller
         // TODO: Implement index() method.
     }
 }
-```
+````
 > 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断
 
-用完mysql连接池对象之后记得用recycleObj回收(新版本可使用`invoker`.`defer`方法自动回收)
-```php
+用完mysql连接池对象之后记得用recycleObj回收(新版本可使用`invoker`.`defer`方法自动回收)  
+````php
 <?php
-PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
-```
+PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);  
+
+````
 
 ### 自动回收
 
-* invoke
-可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:    
-```php
-<?php
-try {
-    MysqlPool::invoke(function (MysqlObject $mysqlObject) {
-        $model = new UserModel($mysqlObject);
-        $model->insert(new UserBean($this->request()->getRequestParam()));
-    });
-} catch (\Throwable $throwable) {
-    $this->writeJson(Status::CODE_BAD_REQUEST, null, $throwable->getMessage());
-}catch (PoolEmpty $poolEmpty){
-    $this->writeJson(Status::CODE_BAD_REQUEST, null, '没有链接可用');
+#### invoke  
+可通过`invoke`静态方法直接从连接池取出一个连接,直接使用,回调函数结束后自动回收:   
 
-}catch (PoolUnRegister $poolUnRegister){
-    $this->writeJson(Status::CODE_BAD_REQUEST, null, '连接池未注册');
-}
-```
-* defer
-使用`defer`方法直接获取一个连接池连接,直接使用,协程结束后自动回收:  
-````php   
+````php  
 <?php
-$db = MysqlPool::defer();
+    try {
+        MysqlPool::invoke(function (MysqlObject $mysqlObject) {
+            $model = new UserModel($mysqlObject);
+            $model->insert(new UserBean($this->request()->getRequestParam()));
+        });
+    } catch (\Throwable $throwable) {
+        $this->writeJson(Status::CODE_BAD_REQUEST, null, $throwable->getMessage());
+    }catch (PoolEmpty $poolEmpty){
+        $this->writeJson(Status::CODE_BAD_REQUEST, null, '没有链接可用');
+    
+    }catch (PoolUnRegister $poolUnRegister){
+        $this->writeJson(Status::CODE_BAD_REQUEST, null, '连接池未注册');
+    }
+````
+
+
+#### defer  
+使用`defer`方法直接获取一个连接池连接,直接使用,协程结束后自动回收:   
+
+````php   
+<?php  
+$db = MysqlPool::defer();  
 $model = new UserModel($db);
 $model->insert(new UserBean($this->request()->getRequestParam()));
 ````  
-> 异常拦截,当invoke,defer调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
+
+> 异常拦截,当invoke,defer调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.  
 
 > 只要使用以上两个方法,就无需关注连接回收问题,将自动回收
 
@@ -107,6 +113,7 @@ $model->insert(new UserBean($this->request()->getRequestParam()));
 示例:
 在EasySwooleEvent文件,mainServerCreate事件中增加onWorkerStart回调事件中预热启动:
 ```php
+<?php
 //注册onWorkerStart回调事件
 public static function mainServerCreate(EventRegister $register)
 {
