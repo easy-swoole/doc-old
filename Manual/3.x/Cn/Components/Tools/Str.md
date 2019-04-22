@@ -7,6 +7,8 @@ Str字符串助手
 
 核心类：EasySwoole\Utility\Str
 
+### contains
+
 检查字符串中是否包含另一字符串
 
 * mixed     $haystack       被检查的字符串
@@ -36,6 +38,8 @@ var_dump(\EasySwoole\Utility\Str::contains('hello, easyswoole', 'Swoole', false)
  */
 
 ```
+
+### startsWith
 
 检查字符串是否以某个字符串开头
 
@@ -67,6 +71,8 @@ var_dump(\EasySwoole\Utility\Str::startsWith('hello, easyswoole', 'Hello', false
 
 ```
 
+### endsWith
+
 检查字符串是否以某个字符串结尾
 
 * mixed     $haystack       被检查的字符串
@@ -97,6 +103,8 @@ var_dump(\EasySwoole\Utility\Str::endsWith('hello, easyswoole', 'Swoole', false)
 
 ```
 
+### snake
+
 驼峰转下划线
 
 * mixed     $value          待处理字符串
@@ -126,6 +134,8 @@ var_dump(\EasySwoole\Utility\Str::snake('EasySwoole'));
 
 ```
 
+### camel
+
 下划线转驼峰 (首字母小写)
 
 * mixed     $value          待处理字符串
@@ -153,6 +163,8 @@ var_dump(\EasySwoole\Utility\Str::camel('easy_swoole'));
  */
 
 ```
+
+### studly
 
 下划线转驼峰 (首字母大写)
 

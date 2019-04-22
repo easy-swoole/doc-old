@@ -15,11 +15,16 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 > 只有第一次请求 创建对象才会调用构造函数,在第二次请求获取对象时将不会再次调用  
 > 对象池模式不会重置静态属性和private私有属性,这2种属性将会复用  
 > 对象池模式是针对单一进程的,多个work进程的对象池不共享.  
-## 对象方法 
-### 调度类方法
- * "action"   
- "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.
-> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:  
+
+
+    
+## 对象方法   
+### 调度类方法   
+ * "action"     
+ "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.   
+> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:    
+
+ 
 ````php  
 <?php
 /**
@@ -61,15 +66,20 @@ class Index extends Controller
  
 
  * onRequest    
+
+ 
 ````php
+<?php 
 protected function onRequest(?string $action): ?bool  
 {
     return true;   
 }
 
-````
+````  
+
+
 在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.    
-可用于做控制器基类权限验证等,例如:   
+可用于做控制器基类权限验证等,例如:    
 ````php
 function onRequest(?string $action): ?bool
 {
@@ -85,8 +95,8 @@ function onRequest(?string $action): ?bool
 }
 ````
 
- * afterAction  
-当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑   
+ * afterAction   
+当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑    
 
  * index  
 index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.

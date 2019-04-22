@@ -7,12 +7,16 @@
 
 核心类：EasySwoole\Utility\SplFileStream
 
+### __construct
+
 初始化资源和读写操作
 
 * mixed     $file       文件
 * mixed     $mode       读写操作类型
 
 function __construct($file,$mode = 'c+')
+
+### lock
 
 文件锁定
 
@@ -25,6 +29,8 @@ function __construct($file,$mode = 'c+')
 * LOCK_UN  释放锁定（无论共享或独占）
 
 function lock($mode = LOCK_EX)
+
+### unlock
 
 释放锁定
 

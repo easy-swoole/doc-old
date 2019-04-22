@@ -41,12 +41,16 @@ var_dump(\EasySwoole\Utility\SnowFlake::unmake($str));
 
 核心类：EasySwoole\Utility\SnowFlake
 
+### make
+
 生成基于雪花算法的随机编号
 
 * mixed     $dataCenterID       数据中心
 * mixed     $workerID           任务进程I
 
 static function make($dataCenterID = 0, $workerID = 0)
+
+### unmake
 
 反向解析雪花算法生成的编号
 
