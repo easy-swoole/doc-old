@@ -114,6 +114,7 @@
     - [Curl](Components/Curl/curl.md)
     - [mysqli](Components/mysqli/Introduction.md)
         - [安装](Components/mysqli/install.md)
+        - [TpORM](Components/mysqli/TpORM.md)
         - [连贯操作](Components/mysqli/continuous_operation.md)
         - CURD操作
             - [数据创建](Components/mysqli/curd/create_data.md);
