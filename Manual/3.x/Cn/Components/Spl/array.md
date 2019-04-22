@@ -7,6 +7,8 @@
 
 核心类：EasySwoole\Spl\SplArray。
 
+### get
+
 获取数组中某项的值。
 
 * mixed     $name     数据项索引
@@ -48,6 +50,8 @@ var_dump($splArray->get('fruit.apple'));
  */
 
 ```
+
+### set
 
 设置数组中某项的值。
 
@@ -95,6 +99,8 @@ var_dump($splArray->get('fruit.apple'));
 
 ```
 
+### __toString
+
 进行 JSON 编码
 
 function __toString()
@@ -134,6 +140,8 @@ var_dump($splArray->__toString());
  */
 
 ```
+
+### getArrayCopy
 
 强制转换成数组
 
@@ -194,6 +202,8 @@ var_dump($splArray->__toString());
  */
 
 ```
+
+### unset
 
 去除某个数据项
 
@@ -257,6 +267,8 @@ var_dump($splArray->__toString());
  */
 
 ```
+
+### delete
 
 去除某个数据项
 
@@ -322,6 +334,8 @@ var_dump($splArray->__toString());
 
 ```
 
+### unique
+
 移除数组中重复的值
 
 public function unique()
@@ -366,6 +380,8 @@ var_dump($splArray->unique()->getArrayCopy());
 
 ```
 
+### multiple
+
 获取数组中重复的值
 
 public function multiple()
@@ -403,6 +419,8 @@ var_dump($splArray->unique()->getArrayCopy());
  */
 
 ```
+
+### asort
 
 进行排序并保持索引关系
 
@@ -450,6 +468,8 @@ var_dump($splArray->asort()->getArrayCopy());
 
 ```
 
+### ksort
+
 按照键名排序
 
 public function ksort()
@@ -495,6 +515,8 @@ var_dump($splArray->ksort()->getArrayCopy());
  */
 
 ```
+
+### sort
 
 自定义排序
 
@@ -551,6 +573,8 @@ var_dump($splArray->ksort()->getArrayCopy());
 
 ```
 
+### column
+
 取得某一列
 
 * mixed    $column     列索引
@@ -597,6 +621,8 @@ var_dump($splArray->column('apple')->getArrayCopy());
 
 ```
 
+### flip
+
 交换数组中的键和值
 
 public function flip()
@@ -641,6 +667,8 @@ var_dump($splArray->flip()->getArrayCopy());
 
 ```
 
+### filter
+
 过滤数组数据
 
 * mixed    $keys     需要取得/排除的键
@@ -683,6 +711,8 @@ var_dump($splArray->filter('apple,orange')->getArrayCopy());
  */
 
 ```
+
+### keys
 
 获取数组索引
 
@@ -732,6 +762,8 @@ var_dump($splArray->keys('fruit'));
  */
 
 ```
+
+### values
 
 获取数组中所有的值
 
@@ -792,6 +824,8 @@ var_dump($splArray->values()->getArrayCopy());
 
 ```
 
+### flush
+
 清空数据
 
 public function flush()
@@ -833,6 +867,7 @@ var_dump($splArray->flush()->getArrayCopy());
 
 ```
 
+### loadArray
 
 重新加载数据
 
@@ -895,6 +930,8 @@ var_dump($splArray->loadArray($data)->getArrayCopy());
  */
 
 ```
+
+### toXML
 
 转化成xml
 

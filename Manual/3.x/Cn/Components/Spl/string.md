@@ -7,6 +7,8 @@
 
 核心类：EasySwoole\Spl\SplString。
 
+### setString
+
 设置字符串。
 
 * string     $string     数据项索引
@@ -35,6 +37,8 @@ var_dump($string->setString('Hello, EasySwoole')->__toString());
  */
 
 ```
+
+### split
 
 设置数组中某项的值。
 
@@ -74,6 +78,8 @@ var_dump($string->split(5)->getArrayCopy());
 
 ```
 
+### explode
+
 分割字符串
 
 * string     $delimiter     分隔符
@@ -108,6 +114,8 @@ var_dump($string->explode(',')->getArrayCopy());
 
 ```
 
+### subString
+
 截取字符串
 
 * int     $start     开始位置
@@ -137,6 +145,8 @@ var_dump($string->subString(0, 5)->__toString());
  */
 
 ```
+
+### encodingConvert
 
 编码转换
 
@@ -170,6 +180,8 @@ var_dump($string->encodingConvert('UTF-8')->__toString());
 
 ```
 
+### utf8
+
 转成utf-8
 
 function utf8() : SplString
@@ -200,6 +212,8 @@ var_dump($string->utf8()->__toString());
 
 ```
 
+### unicodeToUtf8
+
 将unicode编码转成utf-8
 
 function unicodeToUtf8() : SplString
@@ -228,6 +242,8 @@ var_dump($string->unicodeToUtf8()->__toString());
 
 ```
 
+### toUnicode
+
 转成unicode编码
 
 function toUnicode() : SplString
@@ -255,6 +271,8 @@ var_dump($string->toUnicode()->__toString());
  */
 
 ```
+
+### compare
 
 二进制字符串比较
 
@@ -287,6 +305,8 @@ var_dump($string->compare('apple'));
 
 ```
 
+### lTrim
+
 删除字符串开头的空白字符（或其他字符）
 
 * string     $charList           删除的字符
@@ -316,6 +336,8 @@ var_dump($string->lTrim()->__toString());
  */
 
 ```
+
+### rTrim
 
 删除字符串末端的空白字符（或者其他字符）
 
@@ -347,6 +369,8 @@ var_dump($string->rTrim()->__toString());
 
 ```
 
+### trim
+
 去除字符串首尾处的空白字符（或者其他字符）
 
 * string     $charList           删除的字符
@@ -376,6 +400,8 @@ var_dump($string->trim()->__toString());
  */
 
 ```
+
+### pad
 
 使用另一个字符串填充字符串为指定长度
 
@@ -415,6 +441,8 @@ var_dump($string->pad(5, 'game')->__toString());
 
 ```
 
+### repeat
+
 重复一个字符串
 
 * int    $times     重复次数
@@ -445,6 +473,8 @@ var_dump($string->repeat(2)->__toString());
 
 ```
 
+### length
+
 获取字符串长度
 
 function length() : int
@@ -472,6 +502,8 @@ var_dump($string->length());
  */
 
 ```
+
+### upper
 
 将字符串转化为大写
 
@@ -501,6 +533,8 @@ var_dump($string->upper()->__toString());
 
 ```
 
+### lower
+
 将字符串转化为小写
 
 function lower() : SplString
@@ -528,6 +562,8 @@ var_dump($string->lower()->__toString());
  */
 
 ```
+
+### stripTags
 
 从字符串中去除 HTML 和 PHP 标记
 
@@ -558,6 +594,8 @@ var_dump($string->stripTags()->__toString());
  */
 
 ```
+
+### replace
 
 子字符串替换
 
@@ -590,6 +628,8 @@ var_dump($string->replace('t', 's')->__toString());
 
 ```
 
+### between
+
 获取指定目标的中间字符串
 
 * string    $startStr       指定目标的开头字符串
@@ -621,6 +661,8 @@ var_dump($string->between('easy', 'le')->__toString());
 
 ```
 
+### regex
+
 按照正则规则查找字符串
 
 * mixed    $regex           正则规则
@@ -650,6 +692,8 @@ var_dump($string->regex('/swoole/'));
  * string(6) "swoole"
  */
 ```
+
+### exist
 
 是否存在指定字符串
 
@@ -681,6 +725,8 @@ var_dump($string->exist('Swoole', true));
  */
 ```
 
+### kebab
+
 转换为烤串
 
 function kebab() : SplString
@@ -707,6 +753,8 @@ var_dump($string->kebab()->__toString());
  * string(11) "easy-swoole"
  */
 ```
+
+### snake
 
 转为蛇的样子
 
@@ -737,6 +785,8 @@ var_dump($string->kebab()->__toString());
  */
 ```
 
+### studly
+
 驼峰
 
 function studly() : SplString
@@ -764,6 +814,8 @@ var_dump($string->studly()->__toString());
  */
 ```
 
+### camel
+
 驼峰
 
 function camel() : SplString
@@ -790,6 +842,8 @@ var_dump($string->camel()->__toString());
  * string(10) "EasySwoole"
  */
 ```
+
+### replaceArray
 
 给数组每个元素替换字符串
 
@@ -821,6 +875,8 @@ var_dump($string->replaceArray('easy', ['as', 'bs', 'cs'])->__toString());
  */
 ```
 
+### replaceFirst
+
 替换字符串中给定值的第一次出现
 
 * string    $search          查找字符串
@@ -850,6 +906,8 @@ var_dump($string->replaceFirst('easy', 'as')->__toString());
  * string(14) "as_swoole_easy"
  */
 ```
+
+### replaceLast
 
 替换字符串中给定值的最后一次出现
 
@@ -881,6 +939,8 @@ var_dump($string->replaceLast('easy', 'as')->__toString());
  */
 ```
 
+### start
+
 以一个给定值的单一实例开始一个字符串
 
 * string    $prefix          开头字符串
@@ -909,6 +969,8 @@ var_dump($string->start('Hello,')->__toString());
  * string(16) "Hello,EasySwoole"
  */
 ```
+
+### after
 
 在给定的值之后返回字符串的其余部分
 
@@ -939,6 +1001,8 @@ var_dump($string->after('Easy')->__toString());
  */
 ```
 
+### before
+
 在给定的值之前获取字符串的一部分
 
 * string    $search       查找字符串  
@@ -968,6 +1032,8 @@ var_dump($string->before('Swoole')->__toString());
  */
 ```
 
+### endsWith
+
 确定给定的字符串是否以给定的子字符串结束
 
 * string    $needles        查找字符串  
@@ -996,6 +1062,8 @@ var_dump($string->endsWith('Swoole'));
  * bool(true)
  */
 ```
+
+### startsWith
 
 确定给定的字符串是否从给定的子字符串开始
 

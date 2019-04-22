@@ -7,6 +7,8 @@
 
 核心类：EasySwoole\Utility\File
 
+### createDirectory
+
 创建目录：
 
 - string    $dirPath        目录路径
@@ -15,6 +17,8 @@
 ```php
 static function createDirectory($dirPath, $permissions = 0755):bool
 ```
+
+### cleanDirectory
 
 清空目录：
 
@@ -25,6 +29,8 @@ static function createDirectory($dirPath, $permissions = 0755):bool
 static function cleanDirectory($dirPath, $keepStructure = false):bool
 ```
 
+### deleteDirectory
+
 删除目录：
 
 - string    $dirPath     目录路径
@@ -32,6 +38,8 @@ static function cleanDirectory($dirPath, $keepStructure = false):bool
 ```php
 static function deleteDirectory($dirPath):bool
 ```
+
+### copyDirectory
 
 复制目录：
 
@@ -43,6 +51,8 @@ static function deleteDirectory($dirPath):bool
 static function copyDirectory($source, $target, $overwrite = true):bool
 ```
 
+### moveDirectory
+
 移动目录：
 
 - string    $source     源位置
@@ -52,6 +62,8 @@ static function copyDirectory($source, $target, $overwrite = true):bool
 ```php
 static function moveDirectory($source, $target ,$overwrite = true):bool
 ```
+
+### copyFile
 
 复制文件：
 
@@ -63,6 +75,8 @@ static function moveDirectory($source, $target ,$overwrite = true):bool
 static function copyFile($source, $target, $overwrite = true):bool
 ```
 
+### touchFile
+
 创建空文件：
 
 - string    $filePath       文件名
@@ -71,6 +85,8 @@ static function copyFile($source, $target, $overwrite = true):bool
 ```php
 static function touchFile($filePath, $overwrite = true):bool
 ```
+
+### createFile
 
 创建有内容文件：
 
@@ -82,6 +98,8 @@ static function touchFile($filePath, $overwrite = true):bool
 static function createFile($filePath, $content, $overwrite = true):bool
 ```
 
+### moveFile
+
 移动文件：
 
 - string    $source         源位置
@@ -91,6 +109,8 @@ static function createFile($filePath, $content, $overwrite = true):bool
 ```php
 static function moveFile($source, $target, $overwrite = true):bool
 ```
+
+### scanDir
 
 获得文件目录或目录文件数组：
 

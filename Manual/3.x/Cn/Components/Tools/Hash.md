@@ -33,12 +33,16 @@ var_dump(\EasySwoole\Utility\Hash::validatePasswordHash($password, $hash));
 
 核心类：EasySwoole\Utility\Hash
 
+### makePasswordHash
+
 从一个明文值生产哈希
 
 * mixed    $value        需要生产哈希的原文
 * mixed    $cost         递归的层数
 
 static function makePasswordHash($value, $cost = 10)
+
+### validatePasswordHash
 
 校验明文值与哈希是否匹配
 

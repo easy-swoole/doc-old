@@ -7,6 +7,8 @@
 
 核心类：EasySwoole\Utility\Time
 
+### startTimestamp
+
 返回某一天开始的时间戳
 
 * mixed  $date      字符串日期或时间戳
@@ -35,11 +37,13 @@ var_dump(\EasySwoole\Utility\Time::startTimestamp('2019-4-15'));
 
 ```
 
+### endTimestamp
+
 返回某一天结束的时间戳
 
 * mixed  $date      字符串日期或时间戳
 
-static function startTimestamp($date = '')
+static function endTimestamp($date = '')
 
 > 例子
 
@@ -63,11 +67,13 @@ var_dump(\EasySwoole\Utility\Time::endTimestamp('2019-4-15'));
 
 ```
 
+### endTimestamp
+
 从字符串创建出 Datetime 对象
 
 * mixed  $datetime      传入文本日期或者时间戳
 
-static function startTimestamp($date = '')
+static function createDateTimeClass($datetime = '')
 
 > 例子
 
@@ -97,6 +103,8 @@ var_dump(\EasySwoole\Utility\Time::createDateTimeClass('2019-4-15'));
  */
 
 ```
+
+### parserDateTime
 
 从DateTime对象中获取年月日时分秒
 
