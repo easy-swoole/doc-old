@@ -45,19 +45,27 @@ echo $month->getName();
 
 核心类：EasySwoole\Spl\SplEnum。
 
+### __construct
+
 构造函数
 
 * mixed     $val     查找的值
 
 final public function __construct($val)
 
+### getName
+
 获取定义常量的键
 
 final public function getName():string
 
+### getValue
+
 获取定义常量
 
 final public function getValue()
+
+### isValidName
 
 查找常量的键值是否有效
 
@@ -65,15 +73,21 @@ final public function getValue()
 
 final public static function isValidName(string $name):bool
 
+### isValidValue
+
 查找常量的值是否有效
 
 * mixed     $val     查找常量的值
 
 final public static function isValidValue($val)
 
+### getEnumList
+
 获取枚举集合
 
 final public static function getEnumList():array
+
+### getConstants
 
 获取枚举集合
 

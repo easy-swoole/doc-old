@@ -72,6 +72,8 @@ print_r($apple->toArrayWithMapping());
 
 核心类：EasySwoole\Spl\SplBean。
 
+### __construct
+
 构造函数，初始化bean数据
 
 * array     $data                   数据
@@ -79,9 +81,13 @@ print_r($apple->toArrayWithMapping());
 
 public function __construct(array $data = null,$autoCreateProperty = false)
 
+### allProperty
+
 获取类所有的public和protected 成员变量
 
 final public function allProperty()
+
+### toArray
 
 过滤并转换程数组数据
 
@@ -90,12 +96,16 @@ final public function allProperty()
 
 function toArray(array $columns = null,$filter = null)
 
+### toArrayWithMapping
+
 获取过滤后带有字段别名的数组数据
 
 * array     $columns    要过滤的字段数据
 * mixed     $filter     过滤满足某种条件的数据
 
 function toArrayWithMapping(array $columns = null,$filter = null)
+
+### arrayToBean
 
 设置类属性
 
@@ -104,6 +114,8 @@ function toArrayWithMapping(array $columns = null,$filter = null)
 
 final private function arrayToBean(array $data,$autoCreateProperty = false):SplBean
 
+### addProperty
+
 设置类成员变量
 
 * mixed     $name       成员变量名字
@@ -111,27 +123,39 @@ final private function arrayToBean(array $data,$autoCreateProperty = false):SplB
 
 final public function addProperty($name,$value = null):void
 
+### getProperty
+
 获取类成员变量值
 
 * mixed     $name       成员变量名字
 
 final public function getProperty($name)
 
+### jsonSerialize
+
 获取类成员变量集合
 
 final public function jsonSerialize():array
+
+### initialize
 
 初始化操作
 
 protected function initialize()
 
+### setKeyMapping
+
 设置keyMapping关系，也就是字段别名
 
 protected function setKeyMapping()
 
+### setClassMapping
+
 设置classMapping关系，也就是关联类
 
 protected function setClassMapping()
+
+### restore
 
 重新初始化bean数据
 
@@ -139,6 +163,8 @@ protected function setClassMapping()
 * mixed     $autoCreateProperty     是否过滤非类成员变量成员数据
 
 public function restore(array $data = [], $autoCreateProperty = false)
+
+### classMap
 
 绑定关联类
 

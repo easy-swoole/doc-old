@@ -58,6 +58,8 @@ echo $renderer;
 
 核心类：EasySwoole\Utility\ArrayToTextTable
 
+### getTable
+
 获取表格：
 
 - mixed    $data     表格数据
@@ -65,6 +67,8 @@ echo $renderer;
 ```php
 public function getTable($data = null)
 ```
+### setIndentation
+
 设置表格缩进
 
 - mixed    $indentation     设置缩进
@@ -72,6 +76,8 @@ public function getTable($data = null)
 ```php
 public function setIndentation($indentation)
 ```
+
+### isDisplayHeader
 
 设置表格头部
 
@@ -81,6 +87,8 @@ public function setIndentation($indentation)
 public function isDisplayHeader(bool $displayHeader)
 ```
 
+### setKeysAlignment
+
 设置表格头部对齐方式
 
 - mixed    $keysAlignment     表格头部对齐方式
@@ -89,13 +97,17 @@ public function isDisplayHeader(bool $displayHeader)
 public function setKeysAlignment($keysAlignment)
 ```
 
+### setValuesAlignment
+
 设置表格数据对齐方式
 
-- mixed    $keysAlignment     表格数据对齐方式
+- mixed    $valuesAlignment    表格数据对齐方式
 
 ```php
-public function setKeysAlignment($keysAlignment)
+public function setValuesAlignment($valuesAlignment)
 ```
+
+### setFormatter
 
 处理表格数据格式
 

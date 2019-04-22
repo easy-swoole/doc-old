@@ -33,6 +33,8 @@ var_dump(\EasySwoole\Utility\Random::arrayRandOne(['one', 'two', 'three']));
 
 核心类：EasySwoole\Utility\Random
 
+### character
+
 字符串随机生成：
 
 - int       $length     生成长度
@@ -42,6 +44,8 @@ var_dump(\EasySwoole\Utility\Random::arrayRandOne(['one', 'two', 'three']));
 static function character($length = 6, $alphabet = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789')
 ```
 
+### number
+
 纯数字字符串随机生成：
 
 - int       $length     生成长度
@@ -49,6 +53,8 @@ static function character($length = 6, $alphabet = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNn
 ```php
 static function number(length = 6)
 ```
+
+### arrayRandOne
 
 从集合里面随机产生一个个体：
 
