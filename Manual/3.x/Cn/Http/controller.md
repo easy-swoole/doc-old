@@ -66,15 +66,20 @@ class Index extends Controller
  
 
  * onRequest    
+
+ 
 ````php
+<?php 
 protected function onRequest(?string $action): ?bool  
 {
     return true;   
 }
 
-````
+````  
+
+
 在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.    
-可用于做控制器基类权限验证等,例如:   
+可用于做控制器基类权限验证等,例如:    
 ````php
 function onRequest(?string $action): ?bool
 {
@@ -90,8 +95,8 @@ function onRequest(?string $action): ?bool
 }
 ````
 
- * afterAction  
-当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑   
+ * afterAction   
+当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑    
 
  * index  
 index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.
