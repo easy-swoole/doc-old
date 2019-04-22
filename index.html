@@ -7,10 +7,7 @@
     <title>easySwoole|swoole框架|swoole拓展|swoole</title>
     <meta name="keywords" content="easySwoole|swoole框架|swoole拓展|swoole"/>
     <meta name="description" content="easySwoole是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能异步框架，旨在提供一个高效、快速、优雅的框架给php开发者。"/>
-    <link href="css/bulma-0.7.4/css/bulma.min.css" rel="stylesheet">
     <link href="css/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/highlight.js-9.10.0/src/styles/vs.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -21,11 +18,6 @@
                 <a class="navbar-item" href="/">
                     <img src="img/easyswoole.png" alt="EASYSWOOLE">
                 </a>
-                <div class="navbar-burger burger" data-target="navbar">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </div>
             <div id="navbar" class="navbar-menu">
                 <div class="navbar-end">
@@ -81,57 +73,6 @@
             </div>
         </div>
     </section>
-
-    <!-- 动态代码块区域 -->
-    <section class="section" style="padding-top: 0;">
-        <div class="container">
-            <div class="columns is-desktop code-block">
-                <div class="column">
-                    <div class="code-box">
-                        <div class="code-area" id="codebox-1"></div>
-                    </div>
-                </div>
-                <div class="column code-introduction">
-                    <h2>HTTP控制器</h2>
-                    <div class="code-introduction-desc">贴合传统FPM框架开发习惯的控制器<br/>无需关注底层各种事件回调，只需关注自身业务逻辑，即使初次使用也能快速上手</div>
-                </div>
-            </div>
-            <div class="columns is-desktop code-block">
-                <div class="column">
-                    <div class="code-box">
-                        <div class="code-area" id="codebox-2"></div>
-                    </div>
-                </div>
-                <div class="column code-introduction">
-                    <h2>异步任务</h2>
-                    <div class="code-introduction-desc">精心设计的异步任务管理器<br/>随时随地通过管理器投递异步任务，支持自定义异步任务异常处理</div>
-                </div>
-            </div>
-            <div class="columns is-desktop code-block">
-                <div class="column">
-                    <div class="code-box">
-                        <div class="code-area" id="codebox-3"></div>
-                    </div>
-                </div>
-                <div class="column code-introduction">
-                    <h2>WEB SOCKET开发</h2>
-                    <div class="code-introduction-desc">通过parse逻辑调度,实现以控制器方式编写WebSocket代码<br/>按业务逻辑编写好解析器，即可对WS的业务逻辑进行控制器式的管理，代码结构更清晰</div>
-                </div>
-            </div>
-            <div class="columns is-desktop code-block">
-                <div class="column">
-                    <div class="code-box">
-                        <div class="code-area" id="codebox-4"></div>
-                    </div>
-                </div>
-                <div class="column code-introduction">
-                    <h2>连接池</h2>
-                    <div class="code-introduction-desc">内置协程连接池<br/>简单的方式实现高效的连接复用，提供通用的PoolManager组件，更多惊喜等你发现</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 全局页脚 -->
     <footer class="footer" style="padding-bottom: 1rem;padding-top: 1rem">
         <div class="container">
@@ -142,127 +83,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- 页面脚本资源 -->
-    <script src="css/typed.js-2.0.6/lib/typed.min.js"></script>
-    <script src="css/highlight.js-9.10.0/src/highlight.min.js"></script>
-    <script src="css/highlight.js-9.10.0/src/languages/php.min.js"></script>
-    <script src="css/index.js"></script>
-    <script src="css/jquery-3.3.1.min.js"></script>
-
-    <!-- 动态代码块模板 -->
-    <pre id="code-template-1" style="display: none">
-class Index extends Controller
-{
-    function index()
-    {
-        $params = $this->request()->getRequestParams();
-        var_dump($params);
-        $this->response()->write('hello world');
-    }
-}
-    </pre>
-    <pre id="code-template-2" style="display: none">
-// 在控制器中投递的例子
-function index()
-{
-    \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        echo "执行异步任务...\n";
-        return true;
-    }, function () {
-        echo "异步任务执行完毕...\n";
-    });
-}
-
-// 在定时器中投递的例子
-\EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
-    \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        echo "执行异步任务...\n";
-    });
-});
-    </pre>
-    <pre id="code-template-3" style="display: none">
-namespace App\WebSocket;
-use EasySwoole\EasySwoole\ServerManager;
-use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
-use EasySwoole\Socket\AbstractInterface\Controller;
-class Index extends Controller
-{
-    function hello()
-    {
-        $this->response()->setMessage('call hello with arg:'. json_encode($this->caller()->getArgs()));
-    }
-    public function who(){
-        $this->response()->setMessage('your fd is '. $this->caller()->getClient()->getFd());
-    }
-    function delay()
-    {
-        $this->response()->setMessage('this is delay action');
-        $client = $this->caller()->getClient();
-        // 异步推送, 这里直接 use fd也是可以的
-        TaskManager::async(function () use ($client){
-            $server = ServerManager::getInstance()->getSwooleServer();
-            $i = 0;
-            while ($i < 5) {
-                sleep(1);
-                $server->push($client->getFd(),'push in http at '. date('H:i:s'));
-                $i++;
-            }
-        });
-    }
-}
-</pre>
-    <pre id="code-template-4" style="display: none">
-namespace App\HttpController;
-use App\Utility\Pool\MysqlPool;
-use EasySwoole\Component\Pool\PoolManager;
-use EasySwoole\Http\AbstractInterface\Controller;
-
-class Index extends Controller
-{
-    function index()
-    {
-        $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
-        $data = $db->get('test');
-        //使用完毕需要回收
-        PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
-        $this->response()->write(json_encode($data));
-        // TODO: Implement index() method.
-    }
-}
-    </pre>
-    <script>
-        window.onload = function () {
-            TypedCode('#codebox-1', 'code-template-1');
-            TypedCode('#codebox-2', 'code-template-2');
-            TypedCode('#codebox-3', 'code-template-3');
-            TypedCode('#codebox-4', 'code-template-4');
-        };
-
-        function addAnim(selector, anim) {
-            $(selector).hover(function () {
-                $(this).addClass(anim);
-            }, function () {
-                $(this).removeClass(anim);
-            }).on('touchstart', function () {
-                $(this).addClass(anim);
-            }).on('touchend', function () {
-                $(this).removeClass(anim);
-            });
-        }
-
-        addAnim('#start', 'animated pulse infinite');
-    </script>
-    <script>
-        var _hmt = _hmt || [];
-        (function () {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?4c8d895ff3b25bddb6fa4185c8651cc3";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
-
 </div>
 </body>
 </html>
