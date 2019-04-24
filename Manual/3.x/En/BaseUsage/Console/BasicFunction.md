@@ -1,74 +1,73 @@
-## 基础功能
-console组件提供了3个基础控制器和一个帮助控制器.
+## basic function
+The console component provides 3 base controllers and a help controller.
 
-### Help 
-帮助控制器,通过这命令,可显示当前控制台组件的可用命令列表:
+### Help
+Help controller, with this command, displays a list of available commands for the current console component:
 ````
-help
+Help
 Welcome to EasySwoole remote console
-Usage: command [action] [...arg] 
+Usage: command [action] [...arg]
 For help: help [command] [...arg]
 Current command list:
 
-help
-auth
-server
-log
+Help
+Auth
+Server
+Log
 ````
-> 所有控制器都应该要有关于该控制器相关的帮助
+> All controllers should have help with this controller
 
 ### Auth
-权限验证控制器,当用户配置了user和password配置项时,使用console组件必须要通过auth控制器验证权限:
+Permission verification controller, when the user configures the user and password configuration items, the console component must use the auth controller to verify permissions:
 ````
 [root@localhost tioncico_demo]# php easyswoole console
-connect to  tcp://127.0.0.1:9500 success 
+Connect to tcp://127.0.0.1:9500 success
 Welcome to EasySwoole Console
-auth fail,please auth, auth {USER} {PASSWORD}
-auth root 123456
-auth success
+Auth fail,please auth, auth {USER} {PASSWORD}
+Auth root 123456
+Auth success
 ````
 
 ### Server
-服务控制器,进行服务端的管理,服务控制器提供了以下几个方法,可通过`Server help`进行查看:
+The service controller performs server-side management. The service controller provides the following methods, which can be viewed by `Server help`:
 ````
-server help
-进行服务端的管理
+Server help
+Server-side management
 
-用法: 命令 [命令参数]
+Usage: Command [command parameter]
 
-server status                    | 查看服务当前的状态
-server hostIp                    | 显示服务当前的IP地址
-server reload                    | 重载服务端
-server shutdown                  | 关闭服务端
-server clientInfo [fd]           | 查看某个链接的信息
-server close [fd]                | 断开某个链接
-````
-
-### Log 
-远程控制台日志推送控制器,提供的方法可通过`log help`查看:
-````
-log help
-远程控制台日志推送管理
-用法 : 
-    log enable 开启日志推送
-    log disable 关闭日志推送
-    log category 查看当前推送分类
-    log setCategory {category} 仅推送某分类日志
-    log clearCategory 清除推送分类限制
+Server status | View the current status of the service
+Server hostIp | Displays the current IP address of the service
+Server reload | overloaded server
+Server shutdown | close the server
+Server clientInfo [fd] | View information about a link
+Server close [fd] | Disconnect a link
 ````
 
-> 在默认情况,日志推送为关闭状态,需要`log enable`进行开启日志推送
+### Log
+Remote console log push controller, the provided method can be viewed by `log help`:
+````
+Log help
+Remote console log push management
+Usage:
+    Log enable to enable log push
+    Log disable turn off log push
+    Log category View current push categories
+    Log setCategory {category} push only a category log
+    Log clearCategory Clear push classification restrictions
+````
 
-开启日志推送之后,系统的错误将会推送到控制台,例如在index控制器new一个不存在的类,则会:
+> By default, log push is off, and `log enable` is required to enable log push.
+
+After the log push is turned on, the system error will be pushed to the console. For example, if the index controller new does not exist in the class, it will:
 ````
 [root@localhost tioncico_demo]# php easyswoole console
-connect to  tcp://127.0.0.1:9500 success 
+Connect to tcp://127.0.0.1:9500 success
 Welcome to EasySwoole Console
-auth fail,please auth, auth {USER} {PASSWORD}
-auth root 123456
-auth success
-log enable
-已经开启日志推送
+Auth fail,please auth, auth {USER} {PASSWORD}
+Auth root 123456
+Auth success
+Log enable
+Log push has been turned on
 [2019-03-11 11:29:18][Exception][file:/www/easyswoole/tioncico_demo/App/HttpController/Index.php][line:28]Class 'App\HttpController\a' not found
 ````
-
