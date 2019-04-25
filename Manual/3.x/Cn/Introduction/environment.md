@@ -90,3 +90,26 @@ EXPOSE 9501
 
 ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 ```
+
+## 其他
+
+- QQ交流群
+    - VIP群 579434607 （本群需要付费599元）
+    - EasySwoole官方一群 633921431(已满)
+    - EasySwoole官方二群 709134628
+    
+- 商业支持：
+    - QQ 291323003
+    - EMAIL admin@fosuss.com
+        
+- 作者微信
+
+    ![](../../../../img/authWx.jpg)    
+    
+- [捐赠](../donate.md)
+    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+        
+  - 持续和深入地开发
+  - 文档和社区的建设和维护
+  
+- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们

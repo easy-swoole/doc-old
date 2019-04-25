@@ -60,7 +60,7 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
         
 - 作者微信
 
-    ![](/img/authWx.jpg)    
+    ![](../../../img/authWx.jpg)    
     
 - [捐赠](donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
