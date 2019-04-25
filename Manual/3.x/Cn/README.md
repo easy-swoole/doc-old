@@ -45,23 +45,27 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 
 ## 其他
 
-- [项目官网主页](https://www.easyswoole.com)
-
 - [项目文档仓库](https://github.com/easy-swoole/doc)
 
-- [HTTP基础DEMO](https://github.com/easy-swoole/demo/tree/3.x-http)
+- [DEMO](https://github.com/easy-swoole/demo/)
 
-- [其他DEMO](https://github.com/easy-swoole/demo/branches)
+- QQ交流群
+    - VIP群 579434607 （本群需要付费599元）
+    - EasySwoole官方一群 633921431(已满)
+    - EasySwoole官方二群 709134628
+    
+- 商业支持：
+    - QQ 291323003
+    - EMAIL admin@fosuss.com
+        
+- 作者微信
 
-- VIP交流群 [579434607](https://jq.qq.com/?_wv=1027&k=5bxu3cG)
-
-- 在线交流群 [633921431](https://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548)（已满）
-- 在线交流群 709134628
-
-- [捐赠](https://www.easyswoole.com/Manual/2.x/Cn/_book/donate.html)
+    ![](/img/authWx.jpg)    
+    
+- [捐赠](donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
   - 文档和社区的建设和维护
-
+  
 - **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
