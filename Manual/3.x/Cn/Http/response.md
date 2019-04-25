@@ -7,7 +7,7 @@ Response对象在系统中以单例模式存在，自收到客户端HTTP请求�
 ### write
 该方法用于向客户响应数据。
 ```
-$this->response->write('hello world');
+$this->response()->write('hello world');
 ```
 
 ### redirect
