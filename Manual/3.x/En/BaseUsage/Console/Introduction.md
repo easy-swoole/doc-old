@@ -1,42 +1,42 @@
-#EasySwoole CONSOLE组件  
+#EasySwoole CONSOLE component
 
-EasySwoole 提供了console控制台组件,在项目运行的时候,可通过命令和服务端进行通讯,查看服务端运行状态,实时推送运行逻辑等
+EasySwoole provides the console console component. When the project is running, it can communicate with the server through commands and services, view the running status of the server, and push the running logic in real time.
 
-## 配置
-通过以下配置开启console组件功能
+## Configuration
+Enable the console component function with the following configuration
 ````php
-    'CONSOLE'       => [
-        'ENABLE'         => true,//是否开启
-        'LISTEN_ADDRESS' => '127.0.0.1',//监听地址
-        'PORT'           => 9500,//监听端口
-        'USER'       => 'root',//验证用户名
-        'PASSWORD'       => '123456',//验证密码
+    'CONSOLE' => [
+        'ENABLE' => true, / / ​​open
+        'LISTEN_ADDRESS' => '127.0.0.1', // Listener address
+        'PORT' => 9500, / / ​​listening port
+        'USER' => 'root', // verify username
+        'PASSWORD' => '123456', // verify password
     ],
 ````
 
-## 使用步骤
-1:`php easyswoole start` 正常开启服务或`php easyswoole start d` 守护进程
-2:切换命令行窗口或在当前命令行窗口(easyswoole服务不能停止),输入`php easyswoole console`
-3:如果配置有`USER` 和`PASSWORD`,则需要通过auth {user} {password}  回车 进行验证权限
-4:输入控制台命令,例如`help`,点击回车
-5:例如:
+## Steps for usage
+1: `php easyswoole start` normal service or `php easyswoole start d` daemon
+2: Switch the command line window or in the current command line window (easyswoole service can not stop), enter `php easyswoole console`
+3: If you have `USER` and `PASSWORD` configured, you need to press auth {user} {password} to enter the authentication permission.
+4: Enter the console command, such as `help`, click Enter
+5: For example:
 ````
 [root@localhost tioncico_demo]# php easyswoole console
-connect to  tcp://127.0.0.1:9500 success //连接命令行服务成功
-Welcome to EasySwoole Console //欢迎语
-auth fail,please auth, auth {USER} {PASSWORD} //验证账号密码失败
-auth root 123456 //输入账号,密码验证
-auth success //验证成功
-help //help命令,将输出console的帮助文档
-Welcome to EasySwoole remote console 
-Usage: command [action] [...arg] 
+Connect to tcp://127.0.0.1:9500 success //Connect to the command line service successfully
+Welcome to EasySwoole Console //Welcome
+Auth fail, please auth, auth {USER} {PASSWORD} //Verify account password failed
+Auth root 123456 //Enter account, password verification
+Auth success // verification success
+Help //help command, will output the help file of the console
+Welcome to EasySwoole remote console
+Usage: command [action] [...arg]
 For help: help [command] [...arg]
-Current command list: //当前可用命令列表
+Current command list: //List of currently available commands
 
-help
-auth
-server
-log
+Help
+Auth
+Server
+Log
 
 
 ````
