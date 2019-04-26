@@ -91,6 +91,8 @@
         - [容器](Components/Component/Container.md)
         - [Invoker](Components/Component/invoker.md)
         - [上下文管理器](Components/Component/Context.md)
+        - [TableManager](Components/table_manager.md)
+        - [Atomic](Components/Atomic.md)
         - [Pool管理器](Components/CoroutinePool/pool.md)
             - [Mysql连接池](Components/CoroutinePool/mysql_pool.md)
             - [Redis连接池](Components/CoroutinePool/redis_pool.md)
