@@ -3,7 +3,7 @@
 Request对象在系统中以单例模式存在，自收到客户端HTTP请求时自动创建，直至请求结束自动销毁。Request对象完全符合[PSR7](psr-7.md)中的所有规范。
 ## 方法列表
 ### getRequestParam()
-用于获取用户通过POST或者GET提交的参数（注意：若POST与GET存在同键名参数，则以POST为准）。
+用于获取用户通过POST或者GET提交的参数（注意：若POST与GET存在同键名参数，则以GET为准）。
 示例：
 ```php
 // 在控制器中 可以通过 $this->request() 获取到Request对象
