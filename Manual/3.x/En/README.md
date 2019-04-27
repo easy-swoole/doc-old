@@ -52,7 +52,7 @@ Developers using LAMP (LNMP) technology for a long time may need a period of tim
 - QQ exchange group
      - VIP group 579434607 (this group needs to pay 599 RMB)
      - EasySwoole official group 633921431 (full)
-     - EasySwoole official two groups 709134628
+     - EasySwoole official second group 709134628
     
 - Business support:
      - QQ 291323003
