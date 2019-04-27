@@ -50,7 +50,7 @@ Developers using LAMP (LNMP) technology for a long time may need a period of tim
 - [DEMO](https://github.com/easy-swoole/demo/)
 
 - QQ exchange group
-     - VIP group 579434607 (this group needs to pay 599 yuan)
+     - VIP group 579434607 (this group needs to pay 599 RMB)
      - EasySwoole official group 633921431 (full)
      - EasySwoole official two groups 709134628
     
