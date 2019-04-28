@@ -1,26 +1,23 @@
 # Timer
-The framework encapsulates the native millisecond timer so that developers can quickly call Swoole's native timer. The namespace of the timer class is `EasySwoole\Component\Timer`
+The framework encapsulates Swoole's native millisecond timer so that developers can quickly call the native timer. The namespace of the timer class is `EasySwoole\Component\Timer`
 
-> Note: The time parameter of the timer is in milliseconds. Do not forget to execute by the second. Multiply by 1000.
-> If the reload_async configuration is enabled, move the timer to the custom process. Otherwise, the worker process cannot be reloaded.
+> Note: The time parameter of the timer is in milliseconds. Do not forget to multiply it by 1000 when it is executed in second.
+> If the reload_async configuration is enabled, please move the timer to the custom process. Otherwise, the worker process cannot be reloaded.
 
-
-
-## Loop execution
-
-Set an interval clock timer, which is triggered at regular intervals until the `clear` operation, and the corresponding Swoole timer function is `swoole_timer_tick`
+## Loop Execution
+To set an interval clock timer, triggered regularly until the `clear` operation, you can call the corresponding Swoole timer function `swoole_timer_tick`
 
 ### Function Prototype
 
 ```php
 /**
-* Loop call
-* @param int $microSeconds Interval milliseconds for loop execution Integer type
-* @param \Closure $func The action that the timer needs to perform. Pass in a closure.
-* @param string $name The name of the timer used to cancel the timer
-* @return int returns the integer type of timer number. You can use this number to stop the timer.
+* Loop Call
+* @param int $microSeconds executed recuurently in milliseconds as integer type
+* @param \Closure $func the behavior that the timer needs to perform, passing in a closure
+* @param string $name the name of the timer used to cancel the timer
+* @return int returns the integer type of timer number which can be used to stop the timer
 */
-Public function loop($microSeconds, \Closure $func, $args = null)
+public function loop($microSeconds, \Closure $func, $args = null)
 ```
 
 ### Sample Code
@@ -32,40 +29,36 @@ Public function loop($microSeconds, \Closure $func, $args = null)
 });
 ```
 
+## Delay Execution
 
-
-## Delay execution
-
-Set a delay timer, trigger the corresponding operation after a specified time delay, only perform one operation, corresponding to the Swoole native timer function is `swoole_timer_after`
+ßTo set a delay timer, triggered one time operation after a specified delay of time, you can cal the Swoole native timer function `swoole_timer_after`
 
 ### Function Prototype
 
 ```php
 /**
 * Delayed call
-* @param int $microSeconds Time to delay execution
-* @param \Closure $func The action that the timer needs to perform. Pass in a closure.
+* @param int $microSeconds delay of time to execute
+* @param \Closure $func the behavior that the timer needs to perform, passing in a closure
 * @return int returns the integer type of timer number
 */
-Public function after($microSeconds, \Closure $func)
+public function after($microSeconds, \Closure $func)
 ```
 
 ### Sample Code
 
 ```php
-// Execute once in 10 seconds
+// execute once after 10 seconds
 \EasySwoole\Component\Timer::getInstance()->after(10 * 1000, function () {
-    Echo "ten seconds later\n";
+    echo "ten seconds later\n";
 });
 ```
 
-
-
-## Clear timer
+## Clear Timer
 
 > Note: This operation cannot be used to clear timers of other processes, only for the current process.
 
-When the timer is successfully created, it will return an integer number. If you call this function to pass the number, you can stop the timer ahead of time. The corresponding Swoole timer function is `swoole_timer_clear`.
+When the timer is successfully created, it will return an integer number. If you pass the number to the corresponding function, the timer can be stopped ahead of time. The Swoole's stop timer function is `swoole_timer_clear`.
 
 ### Function Prototype
 
@@ -75,7 +68,7 @@ When the timer is successfully created, it will return an integer number. If you
 * @param int $timerId|$timeName timer number or name
 * @author : evalor <master@evalor.cn>
 */
-Public function clear($timerId)
+public function clear($timerId)
 ```
 
 ### Sample Code
@@ -83,12 +76,12 @@ Public function clear($timerId)
 ```php
 // Create a 2 second timer
 $timerId = \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
-    Echo "timeout\n";
+    echo "timeout\n";
 },'time');
 
 // clear the timer
 //var_dump(\EasySwoole\Component\Timer::getInstance()->clear($timerId)); // bool(true)
-Var_dump($timerId); // int(1)
+var_dump($timerId); // int(1)
 
 // The timer is not executed. No output: timeout
 ```
@@ -100,29 +93,29 @@ Var_dump($timerId); // int(1)
 
 ```php
 // Add a timer to the first worker
-If ($workerId == 0) {
+if ($workerId == 0) {
 \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
-Echo "timer in the worker number 0\n";
+    echo "timer in the worker number 0\n";
 });
 }
 ```
 
 ```php
-Public static function mainServerCreate(EventRegister $register)
+public static function mainServerCreate(EventRegister $register)
 {
     $register->add(EventRegister::onWorkerStart, function (\swoole_server $server, $workerId) {
-        / / How to avoid the timer is lost due to process restart
-        // For example, in the first process, add a 10 second timer.
+        // how to avoid the timer is lost due to process restart
+        // for example, in the first process, add a 10 second timer.
         If ($workerId == 0) {
             \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
-                // From the database, or redis, to get the next task that needs to be executed within 10 seconds
-                // For example: a task after 2 seconds, a task after 3 seconds is as follows
+                // from the database, or redis, to get the next task that needs to be executed within 10 seconds
+                // for example: a task after 2 seconds, a task after 3 seconds is as follows
                 \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
-                    / / In order to prevent the timer from being inaccurate because of the task blocking, the task is processed to the asynchronous process
+                    // in order to prevent the timer from being inaccurate because of the task blocking, the task is processed to the asynchronous process
                     Logger::getInstance()->console("time 2", false);
                 });
                 \EasySwoole\Component\Timer::getInstance()->after(3 * 1000, function () {
-                    / / In order to prevent the timer from being inaccurate because of the task blocking, the task is processed to the asynchronous process
+                    // in order to prevent the timer from being inaccurate because of the task blocking, the task is processed to the asynchronous process
                     Logger::getInstance()->console("time 3", false);
                 });
             });
@@ -132,5 +125,4 @@ Public static function mainServerCreate(EventRegister $register)
 ```
 
 ### Classic Case - Order Status Timeout Monitoring
-Scene Description: In many snapped-up scenarios, after the order is placed, it is necessary to limit the payment time, or in the board game, the room status needs to be monitored. Then we
-You can first push the order to be monitored or the room into the redis queue. Then use the timer + asynchronous process to achieve cyclic monitoring of the order status.
+Scene Description: In many snapped-up scenarios, it is necessary to limit the payment time after the order is placed, or the room status needs to be monitored in the board game. Then we can first monitor the purchasing order, or push the room into the redis queue. Then we use the timer with asynchronous process to achieve cyclic monitoring of their status.
