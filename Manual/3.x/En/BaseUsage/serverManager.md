@@ -90,7 +90,7 @@ public static function mainServerCreate(EventRegister $register)
 
 ## start And isStart
 The `start` method will process the configuration of Swoole including main service, subservices, and callback events, and then start the service. This method is called internally by the framework. The successful call represents that the service has started successfully.
-The `isStart` method will return bool variable of whether the service started successfully or not.
+The `isStart` method will return bool variable to identify whether the service started successfully or not.
 
 ## getSubServerRegister
 `getSubServerRegister` will get the callback event created by all child services.
