@@ -110,7 +110,7 @@ Constructor to create a child process
 * mixed $arg - setting parameters
 * bool $redirectStdinStdout - redirect the standard input and output of a child process. When this option is enabled, the output of the child process will not be printed on screen, but will be written to the main process pipeline. Reading the keyboard input means reading the data from the pipeline. The default is reading in blocks.
 * mixed $pipeType - pipe type option will ignore the user parameter and force it to 1 when $redirect_stdin_stdout is enabled. It can be set to 0 if there is no interprocess communication within the child process.
-* bool $enableCoroutine - defaults to false, coroutine is enabled in callback function. If it is true, coroutines can be used directly in the functions of child processes. 
+* bool $enableCoroutine - default is false, and coroutine is enabled in callback function. If it is true, coroutines can be used directly in the functions of child processes. 
 
 final function __construct(string $processName, $arg = null, $redirectStdinStdout = false,$pipeType = 2, $enableCoroutine = false)
 
