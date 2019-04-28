@@ -20,15 +20,15 @@ public static function mainServerCreate(EventRegister $register)
         'open_length_check' => false, / / ​​does not verify the packet
     ]);
     $tcp1ventRegister->set(EventRegister::onConnect,function (\swoole_server $server, int $fd, int $reactor_id) {
-        Echo "tcp service 1 fd:{$fd} is connected to \n";
+        echo "tcp service 1 fd:{$fd} is connected to \n";
         $str = 'Congratulations on connecting to server 1 successfully';
         $server->send($fd, $str);
     });
     $tcp1ventRegister->set(EventRegister::onClose,function (\swoole_server $server, int $fd, int $reactor_id) {
-        Echo "tcp service 1 fd:{$fd} has been closed \n";
+        echo "tcp service 1 fd:{$fd} has been closed \n";
     });
     $tcp1ventRegister->set(EventRegister::onReceive,function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
-        Echo "tcp service 1 fd:{$fd} send message: {$data}\n";
+        echo "tcp service 1 fd:{$fd} send message: {$data}\n";
     });
 }
 ````
