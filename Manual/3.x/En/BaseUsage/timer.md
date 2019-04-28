@@ -74,13 +74,13 @@ public function clear($timerId)
 ### Sample Code
 
 ```php
-// Create a 2 second timer
+// create a 2 second timer
 $timerId = \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
     echo "timeout\n";
 },'time');
 
 // clear the timer
-//var_dump(\EasySwoole\Component\Timer::getInstance()->clear($timerId)); // bool(true)
+// var_dump(\EasySwoole\Component\Timer::getInstance()->clear($timerId)); // bool(true)
 var_dump($timerId); // int(1)
 
 // The timer is not executed. No output: timeout
@@ -92,7 +92,7 @@ var_dump($timerId); // int(1)
 > Note: The timer cannot be used before the service is started. After the service is started, the added timer is only valid in the current process. When adding a timer to the workerStart event, please pay attention to determine the workerId that needs to be added to the timer. Otherwise, the timer will be executed in each process.
 
 ```php
-// Add a timer to the first worker
+// add a timer to the first worker
 if ($workerId == 0) {
 \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
     echo "timer in the worker number 0\n";
