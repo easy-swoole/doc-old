@@ -3,23 +3,25 @@
 > Service Management Class: EasySwoole\EasySwoole\ServerManager
 
 ServerManager It is a singleton class (use EasySwoole\Component\Singleton)
-## Create a main service
-The `createSwooleServer` listener service can be listened to in the `mainServerCreate` event of `EasySwooleEvent`.
-This method is automatically called at the bottom of the framework, will create a swoole main service (not open service), can be obtained through the `getSwooleServer` method, and set the event callback, call the native swoole service method to create sub-services, etc.
 
-## Creating a subservice
-The `addServer` listener service can be used in the `mainServerCreate` event of `EasySwooleEvent`.
+## Create A Main Service
+Through the `createSwooleServer` listener service, the `mainServerCreate` event of `EasySwooleEvent` can be listened.
+This method is automatically called at the bottom of the framework. It will create a Swoole main service (unstarted service) through the `getSwooleServer` method, and set the callback event to call the native Swoole service method to create subservices etc.
+
+## Creating A Subservice
+The `addServer` listener service can be used by calling the `mainServerCreate` event of `EasySwooleEvent`.
+
 ````php
 <?php
-Public static function mainServerCreate(EventRegister $register)
+public static function mainServerCreate(EventRegister $register)
 {
-    ################# tcp Server 1 does not handle sticky packets #####################
+    ################# TCP Server 1 does not handle sticky package #####################
     $tcp1ventRegister = $subPort1 = ServerManager::getInstance()->addServer('tcp1', 9502, SWOOLE_TCP, '0.0.0.0', [
         'open_length_check' => false, / / ​​does not verify the packet
     ]);
     $tcp1ventRegister->set(EventRegister::onConnect,function (\swoole_server $server, int $fd, int $reactor_id) {
         Echo "tcp service 1 fd:{$fd} is connected to \n";
-        $str = 'Congratulations on connecting to successful server 1';
+        $str = 'Congratulations on connecting to server 1 successfully';
         $server->send($fd, $str);
     });
     $tcp1ventRegister->set(EventRegister::onClose,function (\swoole_server $server, int $fd, int $reactor_id) {
@@ -33,8 +35,8 @@ Public static function mainServerCreate(EventRegister $register)
 > The addServer method returns the EventRegister method registration class, which can be used to register/set event callbacks for the service.
 
 
-## Get the service
-Get the currently created swoole service and listener subservices with `getSwooleServer`
+## Get The Service
+Get the currently created swoole service and listener subservices via `getSwooleServer`
 ````php
 <?php
 /**
@@ -44,22 +46,22 @@ Get the currently created swoole service and listener subservices with `getSwool
  * Time: 11:10
  */
 
-Namespace App\HttpController;
+namespace App\HttpController;
 
-Use EasySwoole\EasySwoole\ServerManager;
-Use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\EasySwoole\ServerManager;
+use EasySwoole\Http\AbstractInterface\Controller;
 
-Class Index extends Controller
+class Index extends Controller
 {
-    Function index()
+    function index()
     {
         // TODO: Implement index() method.
     }
 
-    Function push(){
+    function push(){
         $fd = intval($this->request()->getRequestParam('fd'));
         $info = ServerManager::getInstance()->getSwooleServer()->connection_info($fd);
-        If(is_array($info)){
+        if(is_array($info)){
             ServerManager::getInstance()->getSwooleServer()->send($fd,'push in http at '.time());
         }else{
             $this->response()->write("fd {$fd} not exist");
@@ -71,24 +73,24 @@ Similarly, you can also add a custom process after the main service is obtained 
 ```php
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
-> Get the swoole service, you can use the swoole service all methods.
+> Get the swoole service, you can use all the methods of Swoole service.
 
-## Get the registration event class getMainEventRegister
-The `getMainEventRegister` method gets the event registration class of the main service, which can register the event callback of the main service.
-The method framework automatically calls the bottom layer. In the 'mainServerCreate` event, the `mainServerCreate` method passed to `EasySwooleEvent` is used as a parameter, for example, the onWorkerStart event is registered for the main service.
+## Get Registration Event Class getMainEventRegister
+The `getMainEventRegister` method gets the event registration class of the main service. The class can register the callback event of the main service.
+The method framework automatically calls the bottom layer. In the `mainServerCreate` event, the `EasySwooleEvent` is passed to `mainServerCreate` method as a parameter, for example, the onWorkerStart event is registered for the main service.
 ```php
 <?php
-Public static function mainServerCreate(EventRegister $register)
+public static function mainServerCreate(EventRegister $register)
 {
     $register->add($register::onWorkerStart,function (\swoole_server $server,int $workerId){
-        Var_dump($workerId.'start');
+        var_dump($workerId.'start');
     });
 }
 ```
 
-## start and isStart
-The `start` method will process the configured swoole main service, subservices, and callback events, and start the service. This method is called internally by the framework. The successful call represents that the service has started successfully.
-The `isStart` method will return whether the service started a successful bool variable.
+## start And isStart
+The `start` method will process the configuration of Swoole including main service, subservices, and callback events, and then start the service. This method is called internally by the framework. The successful call represents that the service has started successfully.
+The `isStart` method will return bool variable of whether the service started successfully or not.
 
 ## getSubServerRegister
-`getSubServerRegister` will get the event callback created by all child services.
+`getSubServerRegister` will get the callback event created by all child services.
