@@ -75,7 +75,7 @@ class Logger implements LoggerInterface
   }
 
     /**
-     * Customize log storage, such as saving to a database, saving to a file, or requesting storage elsewhere
+     * customized log storage methods, such as saving to a database, saving to a file, or requesting storage elsewhere
      * log
      * @param string $str
      * @param null $logCategory
@@ -84,11 +84,11 @@ class Logger implements LoggerInterface
      * @author Tioncico
      * Time: 14:56
      */
-    Public function log(string $str, $logCategory = null, int $timestamp = null): ?string
+    public function log(string $str, $logCategory = null, int $timestamp = null): ?string
     {
-        / / Custom logic, such as stored to the database, SMS sent error data to the phone, etc.
-        File_put_contents(getcwd()."/test.log",$str.PHP_EOL,FILE_APPEND);
-        Return $str; / / must return the string back
+        // customized logic, such as stored to the database, sent error data to the phone via SMS, etc.
+        file_put_contents(getcwd()."/test.log",$str.PHP_EOL,FILE_APPEND);
+        return $str; // must return the string back
   }
 }
 ````
@@ -97,16 +97,16 @@ class Logger implements LoggerInterface
 Register with the `initialize` method in `EasySwooleEvent.php`:
 ````php
 <?php
-Public static function initialize()
+public static function initialize()
 {
     // TODO: Implement initialize() method.
-    Date_default_timezone_set('Asia/Shanghai');
+    date_default_timezone_set('Asia/Shanghai');
     Di::getInstance()->set(SysConst::LOGGER_HANDLER,\App\Utility\Logger::class);
 }
 ````
 transfer:
 ````php
-Function index()
+function index()
 {
     \EasySwoole\EasySwoole\Logger::getInstance()->log('log content');//will log
     \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content');// logs + output to the console
