@@ -1,13 +1,14 @@
 #Handling Log
 ## Logger
-`EasySwoole\Trace\Logger` is the default log processing class for easyswoole, we only need to call it directly:
+
+`EasySwoole\Trace\Logger` is the default log processing class for easyswoole. We only need to call and use it directly.
 ````php
-Function index()
+function index()
 {
-    \EasySwoole\EasySwoole\Logger::getInstance()->log('log content');//will log
-    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content');// logs + output to the console
-    \EasySwoole\EasySwoole\Logger::getInstance()->logWithLocation('log content+file source');//will log +call the file address and file line number of the method
-    \EasySwoole\EasySwoole\Logger::getInstance()->consoleWithLocation('Controller output content+file source'); // Record log + output to console + call file address and file line number of this method
+    \EasySwoole\EasySwoole\Logger::getInstance()->log('log content'); // will write log
+    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content'); // will write log + output to console
+    \EasySwoole\EasySwoole\Logger::getInstance()->logWithLocation('log content+file source'); // will write log + call the file address and file line number of the method
+    \EasySwoole\EasySwoole\Logger::getInstance()->consoleWithLocation('Controller output content+file source'); // will write log + output to console + call file address and file line number of this method
     $this->writeJson(200, [], 'success');
 }
 ````
@@ -16,25 +17,28 @@ The following will be output/recorded:
 [2019-04-12 10:04:18][default] controller output content
 [2019-04-12 10:04:18][default][file:/www/easyswoole/easyswoole-test/App/HttpController/Index.php][line:26] controller output content
 ````
+
 ## Trigger
+
 The `\EasySwoole\EasySwoole\Trigger` trigger is used to actively trigger an error or exception without interrupting the program.
 For example, in the controller's onException, we can log the error exception, and then output other content, so that the system terminal is not running, and the user is not allowed to detect the real error.
 ````php
-Function onException(\Throwable $throwable): void
+function onException(\Throwable $throwable): void
 {
-    / / Record error exception log, the level is Exception
+    // record error exception log, the level is Exception
     Trigger::getInstance()->throwable($throwable);
-    / / Record error message, the level is FatalError
+    // record error message, the level is FatalError
     Trigger::getInstance()->error($throwable->getMessage().'666');
-    / / Directly respond to the front end 500 and output system busy
+    // directly respond to the front end 500 and output system busy
     $this->response()->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
     $this->response()->write('System is busy, please try again later');
 }
 ````
 
-## Custom logger
-If you don't want to use the framework's default logging logic, you can customize the logger implementation.
-For example, the record log of the framework is recorded to the file, we can change to record to the database, or send the error directly to the phone (just for example).
+## Custom Logger
+
+If you don't want to use the framework's default logging logic, you can customize the implementation of logger.
+For example, the record log of the framework is recorded to the file, but we can change the log to be saved to the database, or send the error directly to the phone via sms (just for example).
 
 Add the file `App/Utility/Logger.php`:
 ````php
@@ -46,15 +50,15 @@ Add the file `App/Utility/Logger.php`:
  * Time: 14:56
  */
 
-Namespace App\Utility;
+namespace App\Utility;
 
 
-Use EasySwoole\Trace\AbstractInterface\LoggerInterface;
+use EasySwoole\Trace\AbstractInterface\LoggerInterface;
 
-Class Logger implements LoggerInterface
+class Logger implements LoggerInterface
 {
     /**
-     * Print to the console and log
+     * print the log to console and record it
      * console
      * @param string $str
      * @param null $category
@@ -63,11 +67,11 @@ Class Logger implements LoggerInterface
      * @author Tioncico
      * Time: 14:57
      */
-    Public function console(string $str, $category = null, $saveLog = true): ?string
+    public function console(string $str, $category = null, $saveLog = true): ?string
     {
-        / / Custom logic, here only echo the string, we can refer to the framework itself, then call the log record
-        Echo $str;
-        Return $str; / / must return the string back
+        // customized logic, here is only echo the string, but we can refer to the framework itself, then call the log function to record
+        echo $str;
+        return $str; // must return the string back
   }
 
     /**
