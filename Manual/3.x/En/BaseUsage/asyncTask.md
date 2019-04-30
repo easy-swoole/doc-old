@@ -1,51 +1,52 @@
-# asynchronous task
+# Asynchronous Task
 
 > Reference Demo: [Asynchronous Task Processing Demo] (https://github.com/easy-swoole/demo/tree/3.x-async)
 
 > Asynchronous Task Manager Class: EasySwoole\EasySwoole\Swoole\Task\TaskManager
 
-In any place after the service is started, asynchronous task delivery can be performed. To simplify the delivery of asynchronous tasks, the framework encapsulates the task manager for delivering synchronous/asynchronous tasks. There are two ways to deliver tasks. One is direct delivery. Closure, the second is the delivery task template class
+In any place after the service is started, a delivery of asynchronous task can be performed. To simplify the delivery of asynchronous tasks, the framework encapsulates the task manager for delivering synchronous/asynchronous tasks. There are two ways to deliver tasks. The first way is direct delivery of closure, and the second way is the delivery task template class
 
 
+## Direct Delivery of Closure
 
-## Direct delivery closure
-
-The task can be directly delivered when the task is relatively simple, and can be delivered in any callback after any controller/timer/service startup.
+When the task is relatively simple, the task can be directly delivered and it can be delivered in any callback after any controller/timer/service startup.
 
 ```php
-// Example of delivery in the controller
-Function index()
+// example of delivery in the controller
+function index()
 {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        Echo "execute asynchronous task...\n";
-        Return true;
+        echo "execute asynchronous task...\n";
+        return true;
     }, function () {
-        Echo "Asynchronous task execution completed...\n";
+        echo "asynchronous task execution completed...\n";
     });
 }
 
-// Example of posting in a timer
+// example of posting delivery of closure in a timer
 \EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        Echo "execute asynchronous task...\n";
+        echo "execute asynchronous task...\n";
     });
 });
 ```
-> Since php itself can't serialize closures, the closure delivery is achieved by reflecting the closure function, getting the php code to serialize the php code directly, and then directly implementing the eval code.
-> So delivery closures cannot use external object references, as well as resource handles. For complex tasks, use the task template method.
+由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法
+
+> Since php itself can't serialize closures, the delivery of closure is achieved by reflecting the closure function, getting the PHP code to serialize the PHP code directly, and then directly implemented by the eval code.
+> Therefore, delivery of closure cannot use external object references and resource handler. For those complex tasks, please use the task template method.
 
 The following usage is wrong:
+
 ```php
-$image = fopen('test.php', 'a');// Serialization data using external resource handles will not exist
-$a=1;//Using external variables will not exist
+$image = fopen('test.php', 'a'); // serialization data using external resource handler will not exist
+$a=1; // using external variables will not exist
 TaskManager::async(function ($image,$a) {
-    Var_dump($image);
-    Var_dump($a);
-    $this->testFunction();//The reference to the external object will be wrong
-    Return true;
+    var_dump($image);
+    var_dump($a);
+    $this->testFunction(); // the reference to the external object will be wrong
+    return true;
 },function () {});
 ```
-
 
 ## Delivery Task Template Class
 
