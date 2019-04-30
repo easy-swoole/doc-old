@@ -9,8 +9,6 @@ The parsing rules can be implemented by referring to https://github.com/dragonma
 To use EasySwoole\EasySwoole\Crontab\Crontab in EasySwooleEvent.php
 
 ```
-use EasySwoole\EasySwoole\Crontab\Crontab
-
     Public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
