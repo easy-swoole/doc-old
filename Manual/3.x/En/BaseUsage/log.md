@@ -6,9 +6,9 @@
 function index()
 {
     \EasySwoole\EasySwoole\Logger::getInstance()->log('log content'); // will write log
-    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content'); // will write log + output to console
-    \EasySwoole\EasySwoole\Logger::getInstance()->logWithLocation('log content+file source'); // will write log + call the file address and file line number of the method
-    \EasySwoole\EasySwoole\Logger::getInstance()->consoleWithLocation('Controller output content+file source'); // will write log + output to console + call file address and file line number of this method
+    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content'); // will record log + output to console
+    \EasySwoole\EasySwoole\Logger::getInstance()->logWithLocation('log content+file source'); // will record log + call the file address and file line number of the method
+    \EasySwoole\EasySwoole\Logger::getInstance()->consoleWithLocation('Controller output content+file source'); // will record log + output to console + call file address and file line number of this method
     $this->writeJson(200, [], 'success');
 }
 ````
@@ -108,8 +108,8 @@ transfer:
 ````php
 function index()
 {
-    \EasySwoole\EasySwoole\Logger::getInstance()->log('log content');//will log
-    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content');// logs + output to the console
+    \EasySwoole\EasySwoole\Logger::getInstance()->log('log content'); // will record log
+    \EasySwoole\EasySwoole\Logger::getInstance()->console('controller output content'); // will record logs + output to the console
     $this->writeJson(200, [], 'success');
 }
 ````
@@ -128,22 +128,22 @@ Add file `App/Utility/Trigger.php`
  * Time: 14:34
  */
 
-Namespace App\Utility;
+namespace App\Utility;
 
 
-Use EasySwoole\EasySwoole\Logger;
-Use EasySwoole\Trace\AbstractInterface\TriggerInterface;
-Use EasySwoole\Trace\Bean\Location;
+use EasySwoole\EasySwoole\Logger;
+use EasySwoole\Trace\AbstractInterface\TriggerInterface;
+use EasySwoole\Trace\Bean\Location;
 
-Class Trigger implements TriggerInterface
+class Trigger implements TriggerInterface
 {
-    Public function error($msg, int $errorCode = E_USER_ERROR, Location $location = null)
+    public function error($msg, int $errorCode = E_USER_ERROR, Location $location = null)
     {
         Logger::getInstance()->console('This is a custom output error: '.$msg);
         // TODO: Implement error() method.
     }
 
-    Public function throwable(\Throwable $throwable)
+    public function throwable(\Throwable $throwable)
     {
         Logger::getInstance()->console('This is a custom output exception: '.$throwable->getMessage());
         // TODO: Implement throwable() method.
@@ -152,14 +152,14 @@ Class Trigger implements TriggerInterface
 ````
 Inject in the `initialize` method of `EasySwooleEvent.php`:
 ````php
-    Public static function initialize()
+    public static function initialize()
     {
         // TODO: Implement initialize() method.
-        Date_default_timezone_set('Asia/Shanghai');
+        date_default_timezone_set('Asia/Shanghai');
         Di::getInstance()->set(SysConst::TRIGGER_HANDLER,\App\Utility\Trigger::class);
     }
 ````
-transfer:
+Transfer:
 ````php
 <?php
 /**
@@ -169,26 +169,26 @@ transfer:
  * Time: 14:40
  */
 
-Namespace App\HttpController;
+namespace App\HttpController;
 
-Use EasySwoole\EasySwoole\Trigger;
-Use EasySwoole\Http\AbstractInterface\Controller;
-Use EasySwoole\Http\Message\Status;
-Class Index extends Controller
+use EasySwoole\EasySwoole\Trigger;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Http\Message\Status;
+class Index extends Controller
 {
-    Function index()
+    function index()
     {
-        $a = new a();//new a non-existing class to trigger
+        $a = new a(); //new a non-existing class to trigger
         $this->writeJson(200, [], 'success');
     }
 
-    Function onException(\Throwable $throwable): void
+    function onException(\Throwable $throwable): void
     {
-        / / Record error exception log, the level is Exception
+        // record error exception log, the level is Exception
         Trigger::getInstance()->throwable($throwable);
-        / / Record error message, the level is FatalError
+        // record error message, the level is FatalError
         Trigger::getInstance()->error($throwable->getMessage() . '666');
-        / / Directly respond to the front end 500 and output system busy
+        // directly respond to the front end 500 and output system busy
         $this->response()->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
         $this->response()->write('System is busy, please try again later');
     }
