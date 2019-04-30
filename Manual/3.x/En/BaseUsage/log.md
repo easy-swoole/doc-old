@@ -104,7 +104,7 @@ public static function initialize()
     Di::getInstance()->set(SysConst::LOGGER_HANDLER,\App\Utility\Logger::class);
 }
 ````
-transfer:
+Transfer:
 ````php
 function index()
 {
