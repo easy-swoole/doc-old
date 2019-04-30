@@ -30,7 +30,6 @@ function index()
     });
 });
 ```
-由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法
 
 > Since php itself can't serialize closures, the delivery of closure is achieved by reflecting the closure function, getting the PHP code to serialize the PHP code directly, and then directly implemented by the eval code.
 > Therefore, delivery of closure cannot use external object references and resource handler. For those complex tasks, please use the task template method.
