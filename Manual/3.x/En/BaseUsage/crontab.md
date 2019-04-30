@@ -1,23 +1,25 @@
 # Crontab Timer
 EasySwoole allows users to add timers based on Crontab rules. The minimum time granularity is 1 minute.
 
-## Implementation principle
-In the main process, each task rule and callback are registered. After the service is started, in the custom process, the timer is used to detect whether there is a task to be executed, and if so, the asynchronous process is delivered asynchronously.
+## Implementation Principle
+Each task rule and callback are registered in the main process. After the service is started, the timer is used to detect whether there is a task to be executed in the custom process, and if a task is detected, it will be delivered to the asynchronous process to execute asynchronously.
 The parsing rules can be implemented by referring to https://github.com/dragonmantank/cron-expression.
 
 ## Sample Code
-EasySwooleEvent.php
-Use EasySwoole\EasySwoole\Crontab\Crontab;
+To use EasySwoole\EasySwoole\Crontab\Crontab in EasySwooleEvent.php
+
 ```
+use EasySwoole\EasySwoole\Crontab\Crontab
+
     Public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
         /**
          * **************** Crontab Mission Plan **********************
          */
-        // Start a scheduled task plan
+        // start a scheduled task plan
         Crontab::getInstance()->addTask(TaskOne::class);
-        // Start a scheduled task plan
+        // start a scheduled task plan
         Crontab::getInstance()->addTask(TaskTwo::class);
     }
 ```
@@ -33,33 +35,33 @@ Scheduled tasks: TaskOne.php
  * Time: 3:30 PM
  */
 
-Namespace App\Crontab;
+namespace App\Crontab;
 
 
-Use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
 
-Class TaskOne extends AbstractCronTask
+class TaskOne extends AbstractCronTask
 {
 
-    Public static function getRule(): string
+    public static function getRule(): string
     {
         // TODO: Implement getRule() method.
-        // timing period (hourly)
-        Return '@hourly';
+        // scheduled period (hourly)
+        return '@hourly';
     }
 
-    Public static function getTaskName(): string
+    public static function getTaskName(): string
     {
         // TODO: Implement getTaskName() method.
-        // Timed task name
-        Return 'taskOne';
+        // scheduled task name
+        return 'taskOne';
     }
 
-    Static function run(\swoole_server $server, int $taskId, int $fromWorkerId, $flags=null)
+    static function run(\swoole_server $server, int $taskId, int $fromWorkerId, $flags=null)
     {
         // TODO: Implement run() method.
-        // Timed task processing logic
-        Var_dump('run once per hour');
+        // scheduled task processing logic
+        var_dump('run once per hour');
     }
 }
 ```
@@ -75,33 +77,33 @@ Scheduled task: TaskTwo.php
  * Time: 4:28 PM
  */
 
-Namespace App\Crontab;
+namespace App\Crontab;
 
 
-Use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
 
-Class TaskTwo extends AbstractCronTask
+class TaskTwo extends AbstractCronTask
 {
 
-    Public static function getRule(): string
+    public static function getRule(): string
     {
         // TODO: Implement getRule() method.
-        // Timing period (every two minutes)
-        Return '*/2 * * * *';
+        // scheduled period (every two minutes)
+        return '*/2 * * * *';
     }
 
-    Public static function getTaskName(): string
+    public static function getTaskName(): string
     {
         // TODO: Implement getTaskName() method.
-        // Timed task name
-        Return 'taskTwo';
+        // scheduled task name
+        return 'taskTwo';
     }
 
     Static function run(\swoole_server $server, int $taskId, int $fromWorkerId, $flags=null)
     {
         // TODO: Implement run() method.
-        // Timed task processing logic
-        Var_dump('run once every two minutes');
+        // scheduled task processing logic
+        var_dump('run once every two minutes');
     }
 }
 ```
