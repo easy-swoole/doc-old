@@ -178,7 +178,7 @@ class Index extends Controller
 {
     function index()
     {
-        $a = new a(); //new a non-existing class to trigger
+        $a = new a(); // new a non-existing class to trigger
         $this->writeJson(200, [], 'success');
     }
 
