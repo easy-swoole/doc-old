@@ -52,7 +52,7 @@ php -ini | grep disable_functions
 如果是其他原因导致的该报错，可以在项目根目录下手工执行以下命令，将可执行文件链接出来 :
 
 ```bash
-cd vendor/bin/ && rm -rf easyswoole.php && ln -s ../easyswoole/easyswoole/bin/easyswoole.php easyswoole.php && cd ../../
+cd vendor/bin/ && rm -rf easyswoole && ln -s ../easyswoole/easyswoole/bin/easyswoole easyswoole && cd ../../
 ```
 
 或者直接指向EasySwoole的管理脚本执行安装命令 : 
