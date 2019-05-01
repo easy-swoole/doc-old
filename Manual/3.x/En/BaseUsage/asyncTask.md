@@ -49,82 +49,82 @@ TaskManager::async(function ($image,$a) {
 
 ## Delivery Task Template Class
 
-When the task is more complicated, more logical and fixed, you can create a task template in advance and directly deliver the task template to simplify the operation and facilitate the delivery of the same task in multiple different places. First, you need to create a task template.
+When the task is more complicated with a lot fixed logical code, you can create a task template in advance and directly deliver the task template in order to simplify the operation and facilitate the delivery of the same task in multiple different places. First, you need to create a task template.
 
 > Asynchronous Task Template Class: EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
 
 ```php
-Class Task extends \EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
+class Task extends \EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
 {
 
     /**
      * Content of the task
-     * @param mixed $taskData task data
-     * @param int $taskId The task number of the task to be executed
-     * @param int $fromWorkerId The worker process number of the dispatch task
+     * @param mixed $taskData - task data
+     * @param int $taskId - the task number of the task to be executed
+     * @param int $fromWorkerId  - the worker process number of the dispatch task
      * @author : evalor <master@evalor.cn>
      */
-    Function run($taskData, $taskId, $fromWorkerId,$flags = null)
+    function run($taskData, $taskId, $fromWorkerId, $flags = null)
     {
-        // Note that the task number is not absolutely unique
-        // The number of each worker process starts from 0
-        // So $fromWorkerId + $taskId is the absolute unique number
-        // !!! Task completion requires return result
+        // note that the task number is not absolutely unique
+        // the number of each worker process starts from 0
+        // so $fromWorkerId + $taskId is the absolute unique number
+        // !!! completion of task requires return result
     }
 
     /**
      * Callback after task execution
-     * @param mixed $result The result of the task execution completion
+     * @param mixed $result - the result of the task execution completion
      * @param int $task_id The task number of the task to be executed
      * @author : evalor <master@evalor.cn>
      */
-    Function finish($result, $task_id)
+    function finish($result, $task_id)
     {
-        // Processing of the task execution
+        // processing after the task execution
     }
 }
 ```
 
-Then, as in the previous example, you can post the delivery anywhere after the service is started, but just replace the closure with an instance of the task template class for delivery.
+Then, as in the previous example, you can post the delivery anywhere after the service is started, but just replace the closure by the task template class for delivery.
 
 ```php
-// Example of delivery in the controller
-Function index()
+// example of delivery in the controller
+function index()
 {
-    // Instantiate the task template class and bring the data in. You can get the data in the task class $taskData parameter.
+    // instantiate the task template class and bring the data in it. You can get the data in the task class $taskData parameter.
   $taskClass = new Task('taskData');
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 }
 
-// Example of posting in a timer
+// example of posting in a timer
 \EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
 ```
 
-### Using Quick Task Templates
+### Using Quick Task Template
 You can implement a task template by inheriting the `EasySwoole\EasySwoole\Swoole\EasySwoole\Swoole\Task\QuickTaskInterface` and adding the run method to run the task by directly posting the class name:
 ```php
 <?php
-Namespace App\Task;
-Use EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface;
+namespace App\Task;
+use EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface;
 
-Class QuickTaskTest implements QuickTaskInterface
+class QuickTaskTest implements QuickTaskInterface
 {
-    Static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags = null)
+    static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags = null)
     {
-        Echo "fast task template";
+        echo "fast task template";
 
         // TODO: Implement run() method.
     }
 }
 ```
-Controller call:
+controller call:
 ```php
 $result = TaskManager::async(\App\Task\QuickTaskTest::class);
 ```
 
-## Delivering asynchronous tasks in a custom process
+## Delivering Asynchronous Tasks In A Custom Process
 
 Due to the special nature of the custom process, Swoole's asynchronous task-related methods cannot be directly called for asynchronous task delivery. The framework has already packaged the relevant methods to facilitate asynchronous task delivery. Please see the following example.
 >Custom process delivery asynchronous task without finish callback
