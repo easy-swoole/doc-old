@@ -1,5 +1,22 @@
 # EasySwoole版本更新记录
 
+## V3.2.1 (2019年4月22日)
+------------
+
+- 默认配置调整
+  - 启用 `max_wait_time` [详情参见](https://wiki.swoole.com/wiki/page/1082.html)
+- 修复 `Console Client` 问题
+
+### V3.1.19 (2019年4月15日)
+------------
+
+- 主框架不再强制依赖 `Actor` 组件和 `Process` 组件，有需要可以单独引入并在 `mainServerCreate` 事件中自行创建
+- 默认配置调整
+  - `Task` 进程强制开启协程
+  - 去除 `max_request` 和 `task_max_request` 设置
+  - 启用异步安全重启配置 `reload_async` [详情参见](https://wiki.swoole.com/wiki/page/791.html)
+- 新增一个命令行辅助提示
+
 ### V3.1.18 (2019年3月11日)
 ------------
 
