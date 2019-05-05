@@ -4,11 +4,11 @@
 
 ServerManager It is a singleton class (use EasySwoole\Component\Singleton)
 
-## Create A Main Service
+## Create a Main Service
 Through the `createSwooleServer` listener service, the `mainServerCreate` event of `EasySwooleEvent` can be listened.
 This method is automatically called at the bottom of the framework. It will create a Swoole main service (unstarted service) through the `getSwooleServer` method, and set the callback event to call the native Swoole service method to create subservices etc.
 
-## Creating A Subservice
+## Creating a Subservice
 The `addServer` listener service can be used by calling the `mainServerCreate` event of `EasySwooleEvent`.
 
 ````php
@@ -88,7 +88,7 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-## start And isStart
+## start and isStart
 The `start` method will process the configuration of Swoole including main service, subservices, and callback events, and then start the service. This method is called internally by the framework. The successful call represents that the service has started successfully.
 The `isStart` method will return bool variable to identify whether the service started successfully or not.
 
