@@ -1,6 +1,6 @@
-#EasySwoole CONSOLE component
+# EasySwoole CONSOLE Component
 
-EasySwoole provides the console console component. When the project is running, it can communicate with the server through commands and services, view the running status of the server, and push the running logic in real time.
+EasySwoole provides the console component which can communicate with the server through commands and services, view the running status of the server, and push the running logic in real time when the project is running.
 
 ## Configuration
 Enable the console component function with the following configuration
@@ -14,29 +14,29 @@ Enable the console component function with the following configuration
     ],
 ````
 
-## Steps for usage
-1: `php easyswoole start` normal service or `php easyswoole start d` daemon
-2: Switch the command line window or in the current command line window (easyswoole service can not stop), enter `php easyswoole console`
-3: If you have `USER` and `PASSWORD` configured, you need to press auth {user} {password} to enter the authentication permission.
-4: Enter the console command, such as `help`, click Enter
-5: For example:
+## Steps for Usage
+1: `php easyswoole start` normal service start or `php easyswoole start d` daemon
+2: switch the command line window or in the current command line window (easyswoole service can not stop), enter `php easyswoole console`
+3: if you have `USER` and `PASSWORD` configured, you need to press auth {user} {password} to enter the authentication permission.
+4: enter the console command, such as `help`, click enter
+5: for example:
 ````
 [root@localhost tioncico_demo]# php easyswoole console
-Connect to tcp://127.0.0.1:9500 success //Connect to the command line service successfully
-Welcome to EasySwoole Console //Welcome
-Auth fail, please auth, auth {USER} {PASSWORD} //Verify account password failed
-Auth root 123456 //Enter account, password verification
-Auth success // verification success
-Help //help command, will output the help file of the console
+connect to tcp://127.0.0.1:9500 success // connect to the command line service successfully
+welcome to EasySwoole Console // welcome
+auth fail, please auth, auth {USER} {PASSWORD} // verify account password failed
+auth root 123456 // enter account, password verification
+auth success // verification success
+help // help command, will output the help file of the console
 Welcome to EasySwoole remote console
 Usage: command [action] [...arg]
 For help: help [command] [...arg]
-Current command list: //List of currently available commands
+Current command list: // list all currently available commands
 
-Help
-Auth
-Server
-Log
+help
+auth
+server
+log
 
 
 ````
