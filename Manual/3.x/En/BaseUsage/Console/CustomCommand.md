@@ -1,6 +1,6 @@
 ## Custom Command
 Custom commands need to implement 3 methods of the `EasySwoole\Console\ModuleInterface` interface
-### Creating a controller
+### Creating a Controller
 Create a new file `App\Console\TestConsole.php`
 
 ````php
@@ -12,81 +12,81 @@ Create a new file `App\Console\TestConsole.php`
  * Time: 11:41
  */
 
-Namespace App\console;
+namespace App\console;
 
 
-Use EasySwoole\Console\ModuleInterface;
-Use EasySwoole\Socket\Bean\Caller;
-Use EasySwoole\Socket\Bean\Response;
+use EasySwoole\Console\ModuleInterface;
+use EasySwoole\Socket\Bean\Caller;
+use EasySwoole\Socket\Bean\Response;
 
-Class TestConsole implements ModuleInterface
+class TestConsole implements ModuleInterface
 {
     /**
-     * Command execution
+     * Execution of command
      * exec
      * @param Caller $caller
      * @param Response $response
      * @author Tioncico
      * Time: 11:47
      */
-    Public function exec(Caller $caller, Response $response)
+    public function exec(Caller $caller, Response $response)
     {
         $args = $caller->getArgs();
         $actionName = array_shift($args);
         $caller->setArgs($args);
-        Switch ($actionName) {
-            Case 'echo':
+        switch ($actionName) {
+            case 'echo':
                 $this->echo($caller, $response);
                 Break;
-            Default :
+            default :
                 $this->help($caller, $response);
         }
         // TODO: Implement exec() method.
     }
 
     /**
-     * The help of this command
+     * the help of this command
      * help
      * @param Caller $caller
      * @param Response $response
      * @author Tioncico
      * Time: 11:48
      */
-    Public function help(Caller $caller, Response $response)
+    public function help(Caller $caller, Response $response)
     {
         // TODO: Implement help() method.
         $help = <<<HELP
-Tested custom controller
+tested custom controller
 
-Usage: Command [command parameter]
+usage: Command [command parameter]
 
-Test echo [string] | output string, test method
+test echo [string] | output string, test method
 HELP;
         $response->setMessage($help);
         // TODO: Implement help() method.
     }
 
     /**
-     * Return controller name
+     * return controller name
      * moduleName
      * @return string
      * @author Tioncico
      * Time: 11:48
      */
-    Public function moduleName(): string
+    public function moduleName(): string
     {
-        Return 'Test';
+        return 'Test';
         // TODO: Implement moduleName() method.
     }
 
     /**
-     * Output method
+     * output method
      * echo
      * @param $arg
      * @author Tioncico
      * Time: 11:50
      */
-    Private function echo(Caller $caller, Response $response)
+    private function echo(Caller $caller, Response $response)
     {
         $msg = array_shift($caller->getArgs());
         $response->setMessage($msg);
@@ -99,27 +99,27 @@ Register the command controller in the `initialize` event of `EasySwooleEvent.ph
 <?php
 \EasySwoole\Console\ConsoleModuleContainer ::getInstance()->set(new TestConsole());
 ````
-### Calling the controller
-After logging in to the console, type `test echo XianShiKe` to get the result:S
+### Calling the Controller
+After logging in to the console, type `test echo XianShiKe` to get the result:
 ````
 [root@localhost tioncico_demo]# php easyswoole console
 Connect to tcp://127.0.0.1:9500 success
 Welcome to EasySwoole Console
-Auth fail,please auth, auth {USER} {PASSWORD}
-Auth root 123456
-Auth success
-Help
+auth fail,please auth, auth {USER} {PASSWORD}
+auth root 123456
+auth success
+help
 Welcome to EasySwoole remote console
 Usage: command [action] [...arg]
 For help: help [command] [...arg]
 Current command list:
 
-Test
-Help
-Auth
-Server
-Log
-Test echo
+test
+help
+auth
+server
+log
+test echo XianShiKe
 XianShiKe
 
 ````
