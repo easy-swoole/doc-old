@@ -9,18 +9,63 @@
                           __/ |                                               
                          |___/                                                
 ```
-EasySwoole is a distributed, persistent memory PHP framework based on the Swoole extension. It was created specifically for APIs to get rid of the performance penalties associated with process calls and file loading.
-EasySwoole highly encapsulates the Swoole Server and still maintains the original features of the Swoole server, supports simultaneous monitoring of HTTP, custom TCP, and UDP protocols, allowing developers to write multi-process, asynchronous, and highly available applications with minimal learning cost and effort.
+# EasySwoole
 
-## Common functions and components
-- Http controller and custom routes support
-- TCP, UDP, WEB_SOCKET support
-- Multiple communication protocols support 
-- Coroutine pool support
-- Asynchronous processes, custom processes, timers support 
-- RPC support
-- Crontab Rule Timer support
-- Remote Console support
+EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is specifically designed for APIs and gets rid of the performance loss caused by evoking processes and loading PHP files in traditional method. EasySwoole highly encapsulates the Swoole Server and maintains the original features of the Swoole Server. It supports listening HTTP, custom TCP and UDP protocols simultaneously, so that developers allow to write asynchronous multiple processes, and highly available services and applications with minimal learning cost and effort. 
 
-## Demo
-https://github.com/easy-swoole/demo，you can see each functions in the sub branch.
+## Features
+
+- Powerful TCP/UDP Server framework supporting asynchronous multi-process,  EventLoop, event driven, worker process group, asynchronous task, millisecond timer, SSL/TLS tunnel encryption
+- The EventLoop API allows users directly to manipulate the underlying event loop and add Linux files such as sockets, streams, and pipes to the event loop.
+- Supporting coroutine object pool, HTTP\SOCK controller, distributed microservice, and RPC
+
+## Entry Cost
+
+Compared to the traditional FPM framework, EasySwoole has some entry cost since many design concepts and environments are different to traditional PHP-FPM.
+Developers using LAMP (LNMP) technology for a long time may need a period of time to get used to this framework. However, EasySwoole is still easy to get started comparing to many other Swoole frameworks. The journey of EasySwoole can be started almost immediately according to simple examples and documents from its official website.
+
+## Advantages
+
+- Easy to use and high development efficiency
+- Million of concurrent TCP connections
+- Supporting TCP / UDP / UnixSock
+- Supporting asynchronous / synchronous / coroutine
+- Supporting multi-process / multi-coroutine
+- CPU affinity / daemon
+
+## Common Functions and Components
+
+- HTTP controller and custom routing
+- TCP, UDP, WebSocket controller
+- Multiple protocol communication
+- Asynchronous client and coroutine object pool
+- Asynchronous process, custom process, timer
+- Distributed cluster such as cluster node communication, service discovery, RPC
+- Fully open system event handler and EventHook
+
+## Other
+
+- [Project Document Repository] (https://github.com/easy-swoole/doc)
+
+- [DEMO](https://github.com/easy-swoole/demo/)
+
+- QQ exchange group
+     - VIP group 579434607 (this group needs to pay 599 RMB)
+     - EasySwoole official group 633921431 (full)
+     - EasySwoole official second group 709134628
+    
+- Business support:
+     - QQ 291323003
+     - EMAIL admin@fosuss.com
+        
+- Author WeChat
+
+     ![](http://easyswoole.com/img/authWx.jpg)
+    
+- [donation] (donate.md)
+     Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
+        
+   - Continuous and in-depth development
+   - Documentation, community construction and maintenance
+  
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
