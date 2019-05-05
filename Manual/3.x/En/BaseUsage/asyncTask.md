@@ -127,69 +127,69 @@ $result = TaskManager::async(\App\Task\QuickTaskTest::class);
 ## Delivering Asynchronous Tasks In A Custom Process
 
 Due to the special nature of the custom process, Swoole's asynchronous task-related methods cannot be directly called for asynchronous task delivery. The framework has already packaged the relevant methods to facilitate asynchronous task delivery. Please see the following example.
->Custom process delivery asynchronous task without finish callback
+>Asynchronous task without finish callback is delivered by custom process 
 
 ```php
-    Public function run(Process $process)
+    public function run(Process $process)
     {
-        // Direct delivery closure
+        // directly deliver closure
         TaskManager::processAsync(function () {
-            Echo "process async task run on closure!\n";
+            echo "process async task run on closure!\n";
         });
 
-        // delivery task class
+        // deliver task class
         $taskClass = new TaskClass('task data');
         TaskManager::processAsync($taskClass);
     }
 ```
 
-## Task concurrent execution
+## Task Concurrent Execution
 
-Sometimes it is necessary to execute multiple asynchronous tasks at the same time. The most typical example is data collection. After collecting multiple data, it can be processed centrally. At this time, concurrent task delivery can be performed. The bottom layer will deliver and execute the tasks one by one. After all tasks are executed, Return a result set
+Sometimes it is necessary to execute multiple asynchronous tasks at the same time. The most typical example is data collection. After collecting multiple data, it can be processed centrally. At this time, concurrent delivery of tasks can be performed. The bottom layer will deliver and execute the tasks one by one. After all tasks are executed, a result set will be returned.
 
 ```php
-// Multitasking concurrent
-$tasks[] = function () { sleep(50000);return 'this is 1'; }; // Task 1
-$tasks[] = function () { sleep(2);return 'this is 2'; }; // Task 2
-$tasks[] = function () { sleep(50000);return 'this is 3'; }; // Task 3
+// concurrent multitasking
+$tasks[] = function () { sleep(50000);return 'this is 1'; }; // task 1
+$tasks[] = function () { sleep(2);return 'this is 2'; }; // task 2
+$tasks[] = function () { sleep(50000);return 'this is 3'; }; // task 3
 
 $results = \EasySwoole\EasySwoole\Swoole\Task\TaskManager::barrier($tasks, 3);
 
-Var_dump($results);
+var_dump($results);
 ```
 
-> Note: Barrier is waiting for execution for blocking, all tasks will be distributed to different Task processes (need to have enough task processes, otherwise it will block) synchronous execution, until all tasks finish or timeout returns all results, the default The task timeout is 0.5 seconds. In the above example, only task 2 can execute normally and return the result.
+> Note: Barrier is waiting for execution for blocking, all tasks will be distributed to different Task processes (need to have enough task processes, otherwise blocking will happen) synchronous execution, until all tasks finish or timeout to return all results, the default The task timeout is 0.5 seconds. In the above example, only task 2 can execute normally and return the result.
 
-## Class Function Reference
+## Class Methods Reference
 
 ```php
 /**
- * Submit an asynchronous task
- * @param mixed $task asynchronous task to be delivered
- * @param mixed $finishCallback Callback function after the task is executed
- * @param int $taskWorkerId Specifies the number of the submitted task process (default random delivery to idle processes)
- * @return bool Successful delivery Return integer $task_id Posting failed Return false
+ * deliver an asynchronous task
+ * @param mixed $task - asynchronous task to be delivered
+ * @param mixed $finishCallback - callback function after the task is executed
+ * @param int $taskWorkerId - the number of tje specified delivery of task process (default delivery is random idle processes)
+ * @return bool - successful delivery will return integer $task_id, and failed delivery will return false
  */
-Static function async($task,$finishCallback = null, $taskWorkerId = -1)
-```
-
-```php
-/**
- * Deliver a synchronization task
- * @param mixed $task asynchronous task to be delivered
- * @param float $timeout task timeout
- * @param int $taskWorkerId Specifies the number of the submitted task process (default random delivery to idle processes)
- * @return bool|string successful delivery return integer $task_id delivery failed return false
- */
-Static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
+static function async($task,$finishCallback = null, $taskWorkerId = -1)
 ```
 
 ```php
 /**
- * Asynchronous in-process delivery task
- * @param array $taskList task list to be executed
- * @param float $timeout task execution timeout
- * @return array|bool execution result for each task
+ * deliver a synchronization task
+ * @param mixed $task - asynchronous task to be delivered
+ * @param float $timeout - task timeout
+ * @param int $taskWorkerId - the number of tje specified delivery of task process (default delivery is random idle processes)
+ * @return bool|string successful delivery will return integer $task_id, and failed delivery will return false
  */
-Static function barrier(array $taskList, $timeout = 0.5)
+static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
+```
+
+```php
+/**
+ * asynchronous in-process delivery task
+ * @param array $taskList - task list to be executed
+ * @param float $timeout - task execution timeout
+ * @return array|bool - execution result for each task
+ */
+static function barrier(array $taskList, $timeout = 0.5)
 ```
