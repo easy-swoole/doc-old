@@ -1,6 +1,6 @@
-# Configuration file
+# Configuration File
 
-EasySwoole provides a very flexible and free global configuration function. The configuration file is defined by PHP return array. For some simple applications, no configuration needs to be modified. For complex requirements, you can also extend your own independent configuration files and dynamically configure.
+EasySwoole framework provides a very flexible and global configuration function. The configuration file is defined by PHP return array. For some simple applications, no configuration needs to be modified. For complex cases, you can extend your own configuration files and dynamically configure them independently.
 
 ## Default Profile
 

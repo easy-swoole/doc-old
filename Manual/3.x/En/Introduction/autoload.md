@@ -1,6 +1,6 @@
 ## Autoload
 
-Can be configured in composer.json. Such as:
+Autoload can be configured in composer.json. For example:
 
 ```json
 {
@@ -15,4 +15,4 @@ Can be configured in composer.json. Such as:
 }
 ```
 
-composer doc: https://getcomposer.org/doc/
+For more details, please visit composer documentation: https://getcomposer.org/doc/
