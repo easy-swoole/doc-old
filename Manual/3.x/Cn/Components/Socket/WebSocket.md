@@ -10,7 +10,7 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 ```
 并且引入 easyswoole/socket composer 包:
 >  *composer require easyswoole/socket*
-*警告：请保证你安装的 easyswoole/socket 版本大于等于 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
+*警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
 
 ## 新人帮助
 

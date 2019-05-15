@@ -32,7 +32,8 @@
     }
 
     window.onload = function () {
-        if (!getCookie('isNew')) {
+        var isDonate = window.location.pathname.indexOf('donate') >= 0;
+        if (!isDonate && !getCookie('isNew')) {
             setCookie('isNew', '1');
             new Vue().$Modal.info({
                 title: '重要提示',
