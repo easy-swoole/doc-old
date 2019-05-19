@@ -1,34 +1,55 @@
 ## Mysql协程连接池
 
-> 参考Demo: [Pool连接池](https://github.com/easy-swoole/demo/tree/3.x-pool)
-
-demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.php和MysqlObject.php并放入App/Utility/Pool中即可使用
+easyswoole已经实现了mysql连接池主键 https://github.com/easy-swoole/mysqli-pool
+```
+composer require easyswoole/mysqli-pool
+```
 
 ### 添加数据库配置
 在`dev.php`,`produce.php`中添加配置信息：
 ```php
 /*################ MYSQL CONFIG ##################*/
 
-'MYSQL' => [
-    'host'          => '192.168.75.1',
-    'port'          => '3306',
-    'user'          => 'root',
-    'timeout'       => '5',
-    'charset'       => 'utf8mb4',
-    'password'      => 'root',
-    'database'      => 'cry',
-    'POOL_MAX_NUM'  => '20',
-    'POOL_TIME_OUT' => '0.1',
-],
+'MYSQL'         => [
+         //数据库配置
+               'host'                 => '',//数据库连接ip
+               'user'                 => '',//数据库用户名
+               'password'             => '',//数据库密码
+               'database'             => '',//数据库
+               'port'                 => '',//端口
+               'timeout'              => '30',//超时时间
+               'connect_timeout'      => '5',//连接超时时间
+               'charset'              => 'utf8',//字符编码
+               'strict_type'          => false, //开启严格模式，返回的字段将自动转为数字类型
+               'fetch_mode'           => 'false',//开启fetch模式, 可与pdo一样使用fetch/fetchAll逐行或获取全部结果集(4.0版本以上)
+               'alias'                => '',//子查询别名
+               'isSubQuery'           => false,//是否为子查询
+               'max_reconnect_times ' => '3',//最大重连次数
+       
+               //连接池配置
+               'intervalCheckTime'    => 30 * 1000,//定时验证对象是否可用以及保持最小连接的间隔时间
+               'maxIdleTime'          => 15,//最大存活时间,超出则会每$intervalCheckTime/1000秒被释放
+               'maxObjectNum'         => 20,//最大创建数量
+               'minObjectNum'         => 5,//最小创建数量 最小创建数量不能大于等于最大创建
+    ],
 ```
+
+### 注册
 在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
 ```php
 <?php
-// 注册mysql数据库连接池
-        PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'));
-        //注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
+$mysql1Config = new \EasySwoole\Mysqli\Config(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL'));
+$pool1Config = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql1',$mysql1Config);
+//根据返回的poolConfig对象进行配置连接池配置项
+$pool1Config->setMaxObjectNum(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL.maxObjectNum'));
+
+//多个mysql数据库配置
+$mysql2Config = new \EasySwoole\Mysqli\Config(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL2'));
+$pool2Config = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql2',$mysql2Config);
+//根据返回的poolConfig对象进行配置连接池配置项
+$pool2Config->setMaxObjectNum(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL2.maxObjectNum'));
+
 ```
-> 可通过register返回的PoolConf对象去配置其他参数
 
 
 ### 注意
