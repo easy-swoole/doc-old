@@ -1,11 +1,5 @@
 ## Mysql协程连接池
 
-easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/mysqli-pool
-```
-composer require easyswoole/mysqli-pool
-```
-> 该组件是mysql对于pool组件的再次封装
-
 ### 添加数据库配置
 在`dev.php`,`produce.php`中添加配置信息：
 ```php
@@ -27,7 +21,7 @@ composer require easyswoole/mysqli-pool
                'isSubQuery'           => false,//是否为子查询
                'max_reconnect_times ' => '3',//最大重连次数
        
-               //连接池配置
+               //连接池配置需要根据注册时返回的poolconfig进行配置,只在这里配置无效
                'intervalCheckTime'    => 30 * 1000,//定时验证对象是否可用以及保持最小连接的间隔时间
                'maxIdleTime'          => 15,//最大存活时间,超出则会每$intervalCheckTime/1000秒被释放
                'maxObjectNum'         => 20,//最大创建数量
@@ -35,9 +29,14 @@ composer require easyswoole/mysqli-pool
     ],
 ```
 ## mysqli-pool组件
+easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/mysqli-pool
+```
+composer require easyswoole/mysqli-pool
+```
+> 该组件是mysql对于pool组件的再次封装
 
 ### 注册
-在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
+在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,可注册多个)
 ```php
 <?php
 $mysql1Config = new \EasySwoole\Mysqli\Config(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL'));
