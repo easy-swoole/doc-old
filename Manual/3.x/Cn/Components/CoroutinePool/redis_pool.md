@@ -1,9 +1,5 @@
 ## Redis协程连接池
 
-> 参考Demo: [Pool连接池](https://github.com/easy-swoole/demo/tree/3.x-pool)
-
-demo中有封装好的redis连接池以及redis类，复制demo中的RedisPool.php和RedisObject.php并放入App/Utility/Pool中即可使用
-
 ### 添加数据库配置
 在`dev.php`,`produce.php`中添加配置信息：
 ```php
@@ -12,11 +8,48 @@ demo中有封装好的redis连接池以及redis类，复制demo中的RedisPool.p
     'host'          => '127.0.0.1',
     'port'          => '6379',
     'auth'          => '',
-    'POOL_MAX_NUM'  => '20',
-    'POOL_MIN_NUM'  => '5',
-    'POOL_TIME_OUT' => '0.1',
+    
+   //连接池配置需要根据注册时返回的poolconfig进行配置,只在这里配置无效
+   'intervalCheckTime'    => 30 * 1000,//定时验证对象是否可用以及保持最小连接的间隔时间
+   'maxIdleTime'          => 15,//最大存活时间,超出则会每$intervalCheckTime/1000秒被释放
+   'maxObjectNum'         => 20,//最大创建数量
+   'minObjectNum'         => 5,//最小创建数量 最小创建数量不能大于等于最大创建
 ],
 ```
+## redis-pool组件
+
+easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/redis-pool
+```
+composer require easyswoole/redis-pool
+```
+> 该组件是mysql对于pool组件的再次封装
+
+### 注册
+在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,可注册多个)
+```php
+$redisConfig =new \EasySwoole\RedisPool\Config(Config::getInstance()->getConf('REDIS'));
+$redisPoolConfig = Redis::getInstance()->register('redis',$redisConfig);
+$redisPoolConfig->setMaxObjectNum(Config::getInstance()->getConf('REDIS.maxObjectNum'));
+```
+### 使用
+```php
+<?php
+ //defer方式
+$redis = \EasySwoole\RedisPool\Redis::defer('redis');
+$redis->set('test',1);
+//invoke方式
+\EasySwoole\RedisPool\Redis::invoker('redis',function ($redis){
+   var_dump($redis->get('test'));
+});
+```
+> 以上使用方式为redis-pool组件使用方式,建议使用该方式实现redis多数据库管理,但也可以根据pool管理器,自行实现,下面是pool管理器原生的实现教程
+
+## pool管理器原生实现方式
+
+> 参考Demo: [Pool连接池](https://github.com/easy-swoole/demo/tree/3.x-pool)
+
+demo中有封装好的redis连接池以及redis类，复制demo中的RedisPool.php和RedisObject.php并放入App/Utility/Pool中即可使用
+
 在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
 ```php
 <?php
