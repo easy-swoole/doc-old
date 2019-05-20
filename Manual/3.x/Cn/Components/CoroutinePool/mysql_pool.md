@@ -1,9 +1,10 @@
 ## Mysql协程连接池
 
-easyswoole已经实现了mysql连接池主键 https://github.com/easy-swoole/mysqli-pool
+easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/mysqli-pool
 ```
 composer require easyswoole/mysqli-pool
 ```
+> 该组件是mysql对于pool组件的再次封装
 
 ### 添加数据库配置
 在`dev.php`,`produce.php`中添加配置信息：
@@ -21,7 +22,7 @@ composer require easyswoole/mysqli-pool
                'connect_timeout'      => '5',//连接超时时间
                'charset'              => 'utf8',//字符编码
                'strict_type'          => false, //开启严格模式，返回的字段将自动转为数字类型
-               'fetch_mode'           => 'false',//开启fetch模式, 可与pdo一样使用fetch/fetchAll逐行或获取全部结果集(4.0版本以上)
+               'fetch_mode'           => false,//开启fetch模式, 可与pdo一样使用fetch/fetchAll逐行或获取全部结果集(4.0版本以上)
                'alias'                => '',//子查询别名
                'isSubQuery'           => false,//是否为子查询
                'max_reconnect_times ' => '3',//最大重连次数
@@ -33,6 +34,7 @@ composer require easyswoole/mysqli-pool
                'minObjectNum'         => 5,//最小创建数量 最小创建数量不能大于等于最大创建
     ],
 ```
+## mysqli-pool组件
 
 ### 注册
 在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
@@ -50,7 +52,37 @@ $pool2Config = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql2',$m
 $pool2Config->setMaxObjectNum(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL2.maxObjectNum'));
 
 ```
+### 使用
+```php
+<?php
+  //defer方式
+    $db = EasySwoole\MysqliPool\Mysql::defer('mysql1');
+    $data = $db->get('test');
+    var_dump($data);
+    
+    //invoke方式
+    \EasySwoole\MysqliPool\Mysql::invoker('mysql1',function ($db2){
+        $db2 = EasySwoole\MysqliPool\Mysql::defer('mysql1');
+        $data = $db2->get('test');
+        var_dump($data);
+    });
+```
+> 以上使用方式为mysql-pool组件使用方式,建议使用该方式实现mysql多数据库管理,但也可以根据pool管理器,自行实现,下面是pool管理器原生的实现教程
+## pool管理器原生实现方式
 
+> 参考Demo: [Pool连接池](https://github.com/easy-swoole/demo/tree/3.x-pool)
+
+demo中有封装好的mysql连接池以及mysql类，复制demo中的MysqlPool.php和MysqlObject.php并放入App/Utility/Pool中即可使用
+
+
+在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
+```php
+<?php
+// 注册mysql数据库连接池
+        PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'));
+        //注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
+```
+> 可通过register返回的PoolConf对象去配置其他参数
 
 ### 注意
 连接池不是跨进程的，进程间的连接池连接数是相互独立的，默认最大值是10个；如果开了4个worker，最大连接数可以达到40个。
