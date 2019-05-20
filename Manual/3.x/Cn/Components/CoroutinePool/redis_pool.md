@@ -18,9 +18,9 @@
 ```
 ## redis-pool组件
 
-easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/mysqli-pool
+easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/redis-pool
 ```
-composer require easyswoole/mysqli-pool
+composer require easyswoole/redis-pool
 ```
 > 该组件是mysql对于pool组件的再次封装
 
