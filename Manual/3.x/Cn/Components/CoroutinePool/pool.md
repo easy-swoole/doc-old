@@ -84,11 +84,12 @@ public function getObj(float $timeout = null, int $beforeUseTryTimes = 3){};//�
 public function unsetObj($obj){};//彻底释放一个连接池对象 /关闭连接
 public function gcObject(int $idleTime){};//清理超时连接
 protected function intervalCheck(){};//定时调用清理超时连接以及新创建连接逻辑
-protected function getPoolConfig(){};//获取当前连接池配置
 public function keepMin(?int $num = null){};//保持最小连接,当不够时创建
 public function preLoad(?int $num = null){};//热启动,keepMin的别名
-public function getConfig(){};//getPoolConfig别名
+public function getConfig(){};//获取当前连接池配置
 public function status(){};//获取当前连接池状态
+public function isPoolObject($obj){};//判断连接是否为该连接池创建
+public function isInPool($obj){};//获取该连接是否存在该连接池中(使用了则不存在)
 ````
 
 ### PoolObjectInterface
