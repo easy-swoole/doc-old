@@ -78,7 +78,7 @@ public static function onRequest(Request $request, Response $response): bool
     $response->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
     if ($request->getMethod() === 'OPTIONS') {
         $response->withStatus(Status::CODE_OK);
-        $response->end();
+        return false;
     }
     return true;
 }
