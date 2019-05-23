@@ -1,6 +1,6 @@
 # 模板引擎
 ## 渲染驱动
-EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过协程客户端投递到自定义的进程中进行渲染并返回结果。为何要如此处理，原因在于，市面上的一些模板引擎在Swoole协程下存在变量安全问题。例如以下流程：
+EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过协程客户端投递到自定义的同步进程中进行渲染并返回结果。为何要如此处理，原因在于，市面上的一些模板引擎在Swoole协程下存在变量安全问题。例如以下流程：
    
    - request A reached, static A assign requestA-data
    - compiled template 
@@ -53,7 +53,7 @@ $render = new Render($config);
 
 $http = new swoole_http_server("0.0.0.0", 9501);
 $http->on("request", function ($request, $response)use($render) {
-    //调用渲染
+    //调用渲染器，此时会通过携程客户端，把数据发往自定义的同步进程中处理，并得到渲染结果
     $response->end($render->render('a.html'));
 });
 $render->attachServer($http);
@@ -131,6 +131,7 @@ $http->start();
 ```
 
 ## EasySwoole中使用
+
 为方便在Easyswoole中使用，你可以做以下流程：
  - 声明一个Render ，继承EasySwoole\Template\Render，并定义为单例
  - 在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
