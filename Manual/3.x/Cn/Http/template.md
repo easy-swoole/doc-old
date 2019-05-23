@@ -137,3 +137,33 @@ $http->start();
  - 在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
  
  做完以上步骤，你就可以$html = Render::getInstance()->render();
+ 
+ 
+## 支持常用的模板引擎
+ 
+下面列举一些常用的模板引擎包方便引入使用:
+ 
+### [smarty/smarty](https://github.com/smarty-php/smarty)
+ 
+Smarty是一个使用PHP写出来的模板引擎,是目前业界最著名的PHP模板引擎之一
+ 
+> composer require smarty/smarty=~3.1
+ 
+ 
+### [league/plates](https://github.com/thephpleague/plates)
+ 
+使用原生PHP语法的非编译型模板引擎，更低的学习成本和更高的自由度
+ 
+> composer require league/plates=3.*
+ 
+### [duncan3dc/blade](https://github.com/duncan3dc/blade)
+ 
+Laravel框架使用的模板引擎
+ 
+> composer require duncan3dc/blade=^4.5
+ 
+### [topthink/think-template](https://github.com/top-think/think-template)
+ 
+ThinkPHP框架使用的模板引擎
+ 
+> composer require topthink/think-template
