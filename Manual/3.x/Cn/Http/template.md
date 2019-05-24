@@ -45,16 +45,13 @@ class R implements RenderInterface
 
 #### HTTP服务中调用
 ```
-//创建渲染器配置
-$config = new Config();
-$config->setRender(new R());
-//实例化渲染器
-$render = new Render($config);
+//在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
+Render::getInstance()->getConfig()>setRender(new R());
 
 $http = new swoole_http_server("0.0.0.0", 9501);
 $http->on("request", function ($request, $response)use($render) {
     //调用渲染器，此时会通过携程客户端，把数据发往自定义的同步进程中处理，并得到渲染结果
-    $response->end($render->render('a.html'));
+    $response->end(Render::getInstance()->render('a.html'));
 });
 $render->attachServer($http);
 
@@ -111,33 +108,13 @@ class Smarty implements RenderInterface
 
 #### HTTP服务中调用
 ```
-use EasySwoole\Template\Config;
-use EasySwoole\Template\Render;
-use EasySwoole\Template\Test\Smarty;
+//在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
+Render::getInstance()->getConfig()>setRender(new Smarty());
 
-$config = new Config();
-$config->setRender(new Smarty());
-$render = new Render($config);
+//在action中实现响应
+Render::getInstance()->render('a.html');
 
-$http = new swoole_http_server("0.0.0.0", 9501);
-$http->on("request", function ($request, $response)use($render) {
-    $response->end($render->render('smarty.tpl',[
-        'time'=>time()
-    ]));
-});
-$render->attachServer($http);
-
-$http->start();
 ```
-
-## EasySwoole中使用
-
-为方便在Easyswoole中使用，你可以做以下流程：
- - 声明一个Render ，继承EasySwoole\Template\Render，并定义为单例
- - 在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
- 
- 做完以上步骤，你就可以$html = Render::getInstance()->render();
- 
  
 ## 支持常用的模板引擎
  
