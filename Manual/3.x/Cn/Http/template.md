@@ -12,7 +12,7 @@ EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过�
 
 ## 安装
 ```php
-composer require easyswoole/templdate
+composer require easyswoole/template
 ```    
 
 ## 基础实现讲解
