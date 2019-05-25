@@ -156,6 +156,7 @@
     - [Mysql索引降维](Other/mysqlIndexReduce.md)
     - [Think-ORM使用问题](Other/TpORM.md)
     - [CURL_SSL](Other/curl_ssl.md)
+    - [ChromeHeadless](Other/chrome-headless.md)
 - [更新记录](UpdateLog/Introduction.md)
 - [项目案例](Case/case.md)
 - [Demo](demo.md)
