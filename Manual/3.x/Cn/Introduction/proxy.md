@@ -6,14 +6,18 @@
 server {
     root /data/wwwroot/;
     server_name local.swoole.com;
+    
     location / {
         proxy_http_version 1.1;
         proxy_set_header Connection "keep-alive";
         proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forward-For $remote_addr;
         if (!-f $request_filename) {
              proxy_pass http://127.0.0.1:9501;
         }
     }
+    
 }
 ```
 > 代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
