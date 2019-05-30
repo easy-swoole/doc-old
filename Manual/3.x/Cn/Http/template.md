@@ -58,10 +58,64 @@ $render->attachServer($http);
 $http->start();
 ```
 
+## 重启渲染引擎
+由于某些模板引擎会缓存模板文件
+导致可能出现以下情况：
+ × 用户A请求1.tpl 返回‘a’
+ × 开发者修改了1.tpl的数据，改成了‘b’
+ × 用户B，C，D在之后的请求中，可能会出现‘a’，‘b’两种不同的值
+ 
+那是因为模板引擎已经缓存了A所在进程的文件，导致后面的请求如果也分配到了A的进程，就会获取到缓存的值
+
+解决方案如下：
+1：重启easyswoole，即可解决
+2：模板渲染引擎实现了重启方法`restartWorker`，直接调用即可
+
+````
+Render::getInstance()->restartWorker();
+````
+用户可根据自己的逻辑，自行调用`restartWorker`方法进行重启
+例如在控制器新增reload方法：
+````php
+<?php
+namespace App\HttpController;
+
+
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Template\Render;
+
+class Index extends Controller
+{
+
+    function index()
+    {
+        $this->response()->write(Render::getInstance()->render('index.tpl',[
+            'user'=>'easyswoole',
+            'time'=>time()
+        ]));
+    }
+
+    function reload(){
+        Render::getInstance()->restartWorker();
+        $this->response()->write(1);
+    }
+}
+````
+
+
+
+
+
+
 ## Smarty 渲染
 ### 引入Smarty
 ```
-composer require smarty/smarty
+composer require smarty/smarty   - request A reached, static A assign requestA-data
+   - compiled template 
+   - write compiled template (yiled current coroutine)
+   - request B reached，static A assign requestB-data
+   - render static A data into complied template file
+
 ```
 
 ### 实现渲染引擎
