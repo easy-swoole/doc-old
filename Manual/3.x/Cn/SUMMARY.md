@@ -157,6 +157,7 @@
     - [Think-ORM使用问题](Other/TpORM.md)
     - [CURL_SSL](Other/curl_ssl.md)
     - [ChromeHeadless](Other/chromeHeadless.md)
+    - [GraphQL](Other/GraphQL.md)
 - [更新记录](UpdateLog/Introduction.md)
 - [项目案例](Case/case.md)
 - [Demo](demo.md)
