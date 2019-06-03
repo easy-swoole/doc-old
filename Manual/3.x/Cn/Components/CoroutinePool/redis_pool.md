@@ -18,11 +18,11 @@
 ```
 ## redis-pool组件
 
-easyswoole已经实现了mysql连接池组件 https://github.com/easy-swoole/redis-pool
+easyswoole已经实现了redis连接池组件 https://github.com/easy-swoole/redis-pool
 ```
 composer require easyswoole/redis-pool
 ```
-> 该组件是mysql对于pool组件的再次封装
+> 该组件是redis对于pool组件的再次封装
 
 ### 注册
 在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,可注册多个)
