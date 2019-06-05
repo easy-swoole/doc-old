@@ -134,6 +134,8 @@
     - [协程HTTPClient](Components/CoroutineHttpClient/Introduction.md)
         - [请求](Components/CoroutineHttpClient/Request.md)
         - [响应](Components/CoroutineHttpClient/Response.md)
+        - [WebsocketClient](Components/CoroutineHttpClient/websocket.md)
+    - [Whoops](Components/whoops.md)    
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
