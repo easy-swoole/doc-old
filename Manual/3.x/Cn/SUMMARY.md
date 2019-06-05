@@ -104,6 +104,7 @@
         - [SplStream](Components/Spl/SplStream.md)
         - [SplFileStream](Components/Spl/SplFileStream.md)
         - [String](Components/Spl/string.md)
+    - [Actor组件](Components/Actor/actor.md)
     - [Rpc组件](Components/Rpc/Introduction.md)
         - [服务端](Components/Rpc/server.md)
         - [客户端](Components/Rpc/client.md)

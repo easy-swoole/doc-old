@@ -7,15 +7,11 @@
         s.parentNode.insertBefore(hm, s);
     })();
 </script>
-<!-- import Vue.js -->
-<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
-<!-- import iview -->
-<link href="https://cdn.bootcss.com/iview/3.4.1/styles/iview.css" rel="stylesheet">
-<!-- import website -->
-<link href="/styles/website.css" rel="stylesheet">
-<!-- import iView -->
-<script src="https://cdn.bootcss.com/iview/3.4.1/iview.min.js"></script>
+<link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
 <script>
+
     function getCookie(name) {
         var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
         if (arr = document.cookie.match(reg))
@@ -25,7 +21,7 @@
     }
 
     function setCookie(name, value) {
-        var Days = 2;
+        var Days = 30;
         var exp = new Date();
         exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
         document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString();
@@ -35,14 +31,9 @@
         var isDonate = window.location.pathname.indexOf('donate') >= 0;
         if (!isDonate && !getCookie('isNew')) {
             setCookie('isNew', '1');
-            new Vue().$Modal.info({
-                title: '重要提示',
-                content: '请阅读开发者须知！',
-                okText: '好的，马上去！',
-                onOk: () => {
-                    window.location.href = '/Manual/3.x/Cn/_book/Introduction/remind.html'
-                }
-            })
+            layer.alert('请选阅读开发者须知',function () {
+                window.location.href = '/Manual/3.x/Cn/_book/Introduction/remind.html';
+            });
         }
     }
 </script>
