@@ -58,7 +58,6 @@
     - [服务管理](Introduction/server.md)
     - [反向代理](Introduction/proxy.md)
     - [开发者必读!!!](Introduction/remind.md)
-    - [核心解读](Introduction/design.md)
 - [全局事件](Event/Introduction.md)
     - [initialize](Event/initialize.md)
     - [mainServerCreate](Event/mainServerCreate.md)
