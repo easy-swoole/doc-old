@@ -137,6 +137,7 @@
         - [响应](Components/CoroutineHttpClient/Response.md)
         - [WebsocketClient](Components/CoroutineHttpClient/websocket.md)
     - [Whoops](Components/whoops.md)    
+    - [模板引擎](Http/template.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
