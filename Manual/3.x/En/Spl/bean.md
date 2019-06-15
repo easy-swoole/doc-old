@@ -1,9 +1,9 @@
 # SplBean
 
-## 用途
-用于定义表结构，过滤掉无效字段数据。
+## Purpose
+Used to define table structure and filter out invalid field data.
 
-## 如何使用
+## How to use it
 
 ```php
 <?php
@@ -36,7 +36,7 @@ print_r($apple->toArray());
 print_r($apple->toArrayWithMapping());
 
 /**
- * 输出结果:
+ * Output results:
  * Array
  * (
  *     [name] => test
@@ -68,105 +68,105 @@ print_r($apple->toArrayWithMapping());
 
 ```
 
-## 核心对象方法
+## Core Object Method
 
-核心类：EasySwoole\Spl\SplBean。
+Core class：EasySwoole\Spl\SplBean。
 
 ### __construct
 
-构造函数，初始化bean数据
+Constructor to initialize bean data
 
-* array     $data                   数据
-* mixed     $autoCreateProperty     是否过滤非类成员变量成员数据
+* array     $data                   data
+* mixed     $autoCreateProperty     Whether to filter member data of non-class member variables
 
 public function __construct(array $data = null,$autoCreateProperty = false)
 
 ### allProperty
 
-获取类所有的public和protected 成员变量
+Get all public and protected member variables of the class
 
 final public function allProperty()
 
 ### toArray
 
-过滤并转换成数组数据
+Filter and convert array data
 
-* array     $columns    要过滤的字段数据
-* mixed     $filter     过滤满足某种条件的数据
+* array     $columns    Filtered fields
+* mixed     $filter     Filtering data that meets certain conditions
 
 function toArray(array $columns = null,$filter = null)
 
 ### toArrayWithMapping
 
-获取过滤后带有字段别名的数组数据
+Gets filtered array data with field aliases
 
-* array     $columns    要过滤的字段数据
-* mixed     $filter     过滤满足某种条件的数据
+* array     $columns    Filtered fields
+* mixed     $filter     Filtering data that meets certain conditions
 
 function toArrayWithMapping(array $columns = null,$filter = null)
 
 ### arrayToBean
 
-设置类属性
+Setting class properties
 
-* array     $data                   数据
-* mixed     $autoCreateProperty     是否创建非类成员变量
+* array     $data                   data
+* mixed     $autoCreateProperty     Whether to create non-class member variables
 
 final private function arrayToBean(array $data,$autoCreateProperty = false):SplBean
 
 ### addProperty
 
-设置类成员变量
+Setting class member variables
 
-* mixed     $name       成员变量名字
-* mixed     $value      成员变量值
+* mixed     $name       Membership variable name
+* mixed     $value      Membership variable value
 
 final public function addProperty($name,$value = null):void
 
 ### getProperty
 
-获取类成员变量值
+Get the class member variable value
 
-* mixed     $name       成员变量名字
+* mixed     $name       Membership variable name
 
 final public function getProperty($name)
 
 ### jsonSerialize
 
-获取类成员变量集合
+Get the set of class member variables
 
 final public function jsonSerialize():array
 
 ### initialize
 
-初始化操作
+Initialization operation
 
 protected function initialize()
 
 ### setKeyMapping
 
-设置keyMapping关系，也就是字段别名
+Set the keyMapping relationship, which is the field alias
 
 protected function setKeyMapping()
 
 ### setClassMapping
 
-设置classMapping关系，也就是关联类
+Set up the classMapping relationship, which is the associated class
 
 protected function setClassMapping()
 
 ### restore
 
-重新初始化bean数据
+Reinitialize bean data
 
-* array     $data                   数据
-* mixed     $autoCreateProperty     是否过滤非类成员变量成员数据
+* array     $data                   data
+* mixed     $autoCreateProperty     Whether to filter member data of non-class member variables
 
 public function restore(array $data = [], $autoCreateProperty = false)
 
 ### classMap
 
-绑定关联类
+Binding associative classes
 
 private function classMap()
 
