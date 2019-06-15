@@ -138,6 +138,8 @@
         - [WebsocketClient](Components/CoroutineHttpClient/websocket.md)
     - [Whoops](Components/whoops.md)    
     - [模板引擎](Http/template.md)
+    - [fast-cache](Components/fastCache.md)
+    - [Redis-Pool](Components/redisPool.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
