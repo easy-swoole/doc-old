@@ -10,12 +10,6 @@
 
 ```php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/5/28
- * Time: 下午6:33
- */
 
 namespace EasySwoole\EasySwoole;
 
@@ -46,11 +40,8 @@ class EasySwooleEvent implements Event
         $processConfig = new \EasySwoole\Component\Process\Config();
         $processConfig->setArg(['a'=>1,'b'=>2]);//额外参数
         $processConfig->setProcessName('processName');//进程名称
-        $processConfig->setRedirectStdinStdout(false);//是否重定向标准输入/输出
-        $processConfig->setPipeType($processConfig::PIPE_TYPE_SOCK_DGRAM);//管道类型 PIPE_TYPE_NONE无 PIPE_TYPE_SOCK_STREAM流 PIPE_TYPE_SOCK_DGRAM数据报
         $processConfig->setEnableCoroutine(true);//是否开启协程
-        $processConfig->setPipeReadSize(2);//管道读取大小 2
-        $processConfig->setMaxExitWaitTime(3);//读取超时时间
+   
         //实例化进程写法1
         $myProcess = new ProcessOne($processConfig);
         //实例化进程写法2
