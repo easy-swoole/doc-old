@@ -275,8 +275,28 @@ class RedisObject extends Redis implements PoolObjectInterface
 ```
 
 ### Pool注册
-我们在EasySwoole全局的框架初始化事件中进行注册
+我们在EasySwoole全局的mainServerCreate事件中进行注册
 ```
 use use App\Utility\Pool\RedisPool;
 PoolManager::getInstance()->register(RedisPool::class)
 ```
+
+> 注册成功的时候，会返回一个PoolConf对象，你可以设置这个pool的最大最小连接数等其他信息
+
+### Pool 调用
+方法一
+```
+/** @var Redis $redis */
+$redis = RedisPool::defer();
+$redis->set('test','test');
+```
+方法二
+
+```
+$data = RedisPool::invoke(function (Redis $redis){
+    $redis->set('test','test');
+    return $redis->get('test');
+});
+```
+
+> 其余调用方法请看Pool章节
