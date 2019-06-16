@@ -44,5 +44,5 @@
  - 支持接入第三方注册中心
 ## 安装
 ```
-composer require easyswoole/rpc=3.x
+composer require easyswoole/rpc=4.x
 ```
