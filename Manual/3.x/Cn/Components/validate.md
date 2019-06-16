@@ -7,12 +7,6 @@
 ```php
 
 <?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 18-10-11
- * Time: 上午10:26
- */
 
 require_once 'vendor/autoload.php';
 
