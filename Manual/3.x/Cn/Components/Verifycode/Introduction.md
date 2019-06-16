@@ -6,7 +6,7 @@ EasySwoole提供了独立的 `验证码组件` ,几行代码即可实现输出�
 
 ## composer 安装
 ```
-composer require easyswoole/verifycode
+composer require easyswoole/verifycode=3.x
 ```
 
 ### 示例:  
