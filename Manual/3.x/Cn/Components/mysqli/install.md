@@ -37,5 +37,5 @@ $data = $db->get('test');//获取一个表的数据
 
 ### 协程连接池
 由于是协程状态,每次请求进来都必须使用不同的实例,如果一个请求进来就new,完成请求逻辑就销毁,每次都会创建连接,然后销毁,这样开销会非常大,所以我们可以采用连接池方式,复用连接,
-[协程连接池教程](../CoroutinePool/mysql_pool.md);
+[协程连接池教程](./../mysqlPool.md);
 [协程连接池demo](https://github.com/easy-swoole/demo/tree/3.x-pool);
