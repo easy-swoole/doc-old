@@ -90,8 +90,6 @@
         - [TableManager](Components/table_manager.md)
         - [Atomic](Components/Atomic.md)
         - [Pool管理器](Components/CoroutinePool/pool.md)
-            - [Mysql连接池](Components/CoroutinePool/mysql_pool.md)
-            - [Redis连接池](Components/CoroutinePool/redis_pool.md)
     - Spl库
         - [Array](Components/Spl/array.md)
         - [Bean](Components/Spl/bean.md)
@@ -135,6 +133,7 @@
     - [模板引擎](Http/template.md)
     - [fast-cache](Components/fastCache.md)
     - [Redis-Pool](Components/redisPool.md)
+    - [Mysqli-pool](Components/mysqlPool.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)

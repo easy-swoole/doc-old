@@ -162,119 +162,36 @@ $getObjectTimeout = 3.0;
 $extraConf = [];//连接池对象获取连接对象时的等待时间
 ````
 ### 具体使用例子:
-1:通过上面的2个接口例子,实现```连接池对象```和```连接对象``` 
+1、通过上面的2个接口例子,实现```连接池对象```和```连接对象``` 
 
-2:在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
+2、在```EasySwooleEvent.php```的initialize方法中注册连接池对象(注意命名空间,新版本可以无需注册,自动注册)
 ```php
 // 注册mysql数据库连接池
-        PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'));
-        //注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
+PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'));
+//注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
 ```
 > 可通过register返回的PoolConf对象去配置其他参数
 
-3:在worker(http控制器)进程调用(注意命名空间):
-```php
-<?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/3/5 0005
- * Time: 21:07
- */
-namespace App\HttpController;
-use App\Utility\Pool\MysqlPool;
-use EasySwoole\Component\Pool\PoolManager;
-use EasySwoole\Http\AbstractInterface\Controller;
-
-class Index extends Controller
-{
-    function index()
-    {
-        $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
-        $data = $db->get('test');
-        //使用完毕需要回收
-        PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
-        $this->response()->write(json_encode($data));
-        // TODO: Implement index() method.
-    }
-}
+3、服务启动后即可在任意位置调用
 ```
-> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断
+$db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
+$data = $db->get('test');
+//使用完毕需要回收
+PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
+```
+> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断，而用户没有注册连接池时,直接getPoo也可直接自动注册并使用连接
 
-
-### 无需注册
-在`PoolManager`中的`getPool`方法中,实现了对连接池的自动注册   
-当用户没有注册连接池时,直接getPool可直接自动注册并使用连接,例如上面的控制器用法:
-````php
-<?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/3/5 0005
- * Time: 21:07
- */
-namespace App\HttpController;
-use App\Utility\Pool\MysqlPool;
-use EasySwoole\Component\Pool\PoolManager;
-use EasySwoole\Http\AbstractInterface\Controller;
-
-class Index extends Controller
-{
-    function index()
-    {
-        $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();//直接使用无需注册
-        $data = $db->get('test');
-        //使用完毕需要回收
-        PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
-        $this->response()->write(json_encode($data));
-        // TODO: Implement index() method.
-    }
-}
-````
 ### 自动回收
 在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`invoke`方法,通过invoke方法,可直接在闭包中操作连接池连接,执行完自动回收,例如:
 ````php
-<?php
-function poolInvoke(){
-    $data = MysqlPool::invoke(function ( MysqlObject $db){
-        $data = $db->get('test');
-        return $data;
-    });
-    $this->response()->write(json_encode($data));
-}
+$data = MysqlPool::invoke(function ( MysqlObject $db){
+   $data = $db->get('test');
+   return $data;
+});
 ````
 > 异常拦截,当invoke调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
 
-在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`defer`方法,通过defer方法,在当前协程执行完毕时,将自动回收连接,但不适用于匿名连接池,实现代码:
-````php
-<?php
- public static function defer($timeout = null)
-    {
-        $key = md5(static::class);
-        $obj = ContextManager::getInstance()->get($key);
-        if($obj){
-            return $obj;
-        }else{
-            $pool = PoolManager::getInstance()->getPool(static::class);
-            if($pool instanceof AbstractPool){
-                $obj = $pool->getObj($timeout);
-                if($obj){
-                    Coroutine::defer(function ()use($pool,$obj){
-                        $pool->recycleObj($obj);
-                    });
-                    ContextManager::getInstance()->set($key,$obj);
-                    return $obj;
-                }else{
-                    throw new PoolEmpty(static::class." pool is empty");
-                }
-            }else{
-                throw new PoolException(static::class." convert to pool error");
-            }
-        }
-    }
-````
-
-
+在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`defer`方法,通过defer方法,在当前协程执行完毕时,将自动回收连接,但不适用于匿名连接池。
 
 ### 预创建连接/热启动
 在之前情况时,如果你重启EasySwoole,由于连接池对象是懒惰加载(只在调用时才创建连接),会导致当在一启动EasySwoole,访问量却很大时造成瞬间过大的压力,所以EasySwoole连接池组件提供了热启动.
@@ -282,38 +199,35 @@ function poolInvoke(){
 ```php
 <?php 
 //注册onWorkerStart回调事件
-   public static function mainServerCreate(EventRegister $register)
-    {
-        $register->add($register::onWorkerStart, function (\swoole_server $server, int $workerId) {
-            if ($server->taskworker == false) {
-                //每个worker进程都预创建连接
-                PoolManager::getInstance()->getPool(MysqlPool::class)->preLoad(5);//最小创建数量
-            }
-        });
-    }
+public static function mainServerCreate(EventRegister $register)
+{
+    $register->add($register::onWorkerStart, function (\swoole_server $server, int $workerId) {
+        if ($server->taskworker == false) {
+            //每个worker进程都预创建连接
+            PoolManager::getInstance()->getPool(MysqlPool::class)->preLoad(5);//最小创建数量
+        }
+    });
+}
 ```
 > 当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
+
 ### 创建匿名连接池
 当你不想新建文件实现 连接池 或者不想实现 连接池对象时,可通过`registerAnonymous`创建匿名连接池,例如:
 
 在```EasySwooleEvent.php```的initialize方法中注册连接池对象
 
 ````php
-<?php
-   PoolManager::getInstance()->registerAnonymous('mysql',function (){
-            $conf = \EasySwoole\EasySwoole\Config::getInstance()->getConf("MYSQL");
-            $dbConf = new Config($conf);
-            return new Mysqli($dbConf);
-        });
+PoolManager::getInstance()->registerAnonymous('mysql',function (){
+    $conf = \EasySwoole\EasySwoole\Config::getInstance()->getConf("MYSQL");
+    $dbConf = new Config($conf);
+    return new Mysqli($dbConf);
+});
 ````
-在控制器中使用:
+使用：
 ````php
-<?php
-        $db = PoolManager::getInstance()->getPool('mysql')->getObj();
-        $data = $db->get('test');
-        $db->resetDbStatus();//重置为初始状态,否则回收之后会出问题
-        PoolManager::getInstance()->getPool('mysql')->recycleObj($db);
-        $this->response()->write(json_encode($data));
+$db = PoolManager::getInstance()->getPool('mysql')->getObj();
+$data = $db->get('test');
+PoolManager::getInstance()->getPool('mysql')->recycleObj($db);
 ````
 > 
 
