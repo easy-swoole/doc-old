@@ -160,6 +160,8 @@
     - [GraphQL](Other/GraphQL.md)
 - [更新记录](UpdateLog/Introduction.md)
 - [项目案例](Case/case.md)
+- 视频教程
+    - [入门教程](Video/income.md)
 - [Demo](demo.md)
 - [捐赠](donate.md)
 - [联系作者](contact.md)
