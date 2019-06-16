@@ -59,3 +59,7 @@ Trigger::getInstance()->onException()->set('myHook',function (){
     
 });
 ````
+
+## 日志中心
+
+比如，会有想把数据往日志中心推送，或者是最TCP日志推送，那么，可以新增onLog回调，然后把日志信息，推送到日志中心。
