@@ -143,7 +143,6 @@
         - [Str](Components/Tools/Str.md)
         - [Time](Components/Tools/Time.md)
 - 其他问题
-    - [异步客户端](Other/AsyncClient.md)
     - [错误处理与拦截](Other/Exception.md)
     - [如何实现分布式](Other/Distribute.md)
     - [HTTP中使用protobuf](Other/Protobuf.md)
