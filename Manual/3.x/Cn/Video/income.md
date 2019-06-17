@@ -114,6 +114,9 @@
 - [Composer镜像更换](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85composer%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F.mp4)
 - [EasySwoole安装](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85EasySwoole.mp4)
 
+## 其他视频
+- [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
+
 ## 关于版权
 以上视频由阿正录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
 
