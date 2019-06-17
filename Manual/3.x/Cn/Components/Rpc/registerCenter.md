@@ -24,6 +24,7 @@ class RedisManager implements NodeManagerInterface
     function __construct(string $host, $port = 6379, $auth = null, string $hashKey = '__rpcNodes', int $maxRedisNum = 10)
     {
         $this->redisKey = $hashKey;
+        //注册匿名连接池
         PoolManager::getInstance()->registerAnonymous('__rpcRedis', function (PoolConf $conf) use ($host, $port, $auth, $maxRedisNum) {
             $conf->setMaxObjectNum($maxRedisNum);
             $redis = new Redis();
@@ -35,11 +36,14 @@ class RedisManager implements NodeManagerInterface
             return $redis;
         });
     }
-
+    
+    /**
+    *  获取某个服务的所有可用节点 
+    */
     function getServiceNodes(string $serviceName, ?string $version = null): array
     {
         /** @var \Redis $redis */
-        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);
+        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);//连接池取redis对象
         try {
             $nodes = $redis->hGetAll($this->redisKey . md5($serviceName));
             $nodes = $nodes ?: [];
@@ -49,7 +53,7 @@ class RedisManager implements NodeManagerInterface
                  * @var  $nodeId
                  * @var  ServiceNode $node
                  */
-                if (time() - $node->getLastHeartBeat() > 30) {
+                if (time() - $node->getLastHeartBeat() > 30) {//检查节点最近一次的心跳时间
                     $this->deleteServiceNode($node);
                 }
                 if ($version && $version != $node->getServiceVersion()) {
@@ -67,7 +71,10 @@ class RedisManager implements NodeManagerInterface
         }
         return [];
     }
-
+    
+    /**
+    *  获取某个服务可用随机节点 
+    */
     function getServiceNode(string $serviceName, ?string $version = null): ?ServiceNode
     {
         $list = $this->getServiceNodes($serviceName, $version);
@@ -76,7 +83,10 @@ class RedisManager implements NodeManagerInterface
         }
         return Random::arrayRandOne($list);
     }
-
+    
+    /**
+    *  删除节点 
+    */
     function deleteServiceNode(ServiceNode $serviceNode): bool
     {
         /** @var \Redis $redis */
@@ -91,7 +101,11 @@ class RedisManager implements NodeManagerInterface
         }
         return false;
     }
-
+    
+    /**
+    *  刷新节点(
+    *  ps:由tick process进程定时器刷新(本节点)|监听广播消息(其他节点)来刷新节点信息，redis 节点管理器可以)
+    */
     function serviceNodeHeartBeat(ServiceNode $serviceNode): bool
     {
         if (empty($serviceNode->getLastHeartBeat())) {
