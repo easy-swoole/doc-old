@@ -2,85 +2,75 @@
 ## 独立使用代码
 ````php
 <?php
-<?php
 /**
  * Created by PhpStorm.
  * User: xcg
- * Date: 2019/2/27
- * Time: 10:00
+ * Date: 2019/5/30
+ * Time: 9:17
  */
-include_once dirname(__DIR__) . "/vendor/autoload.php";
+require_once 'vendor/autoload.php';
 
 use EasySwoole\Rpc\Config;
 use EasySwoole\Rpc\Rpc;
-use EasySwoole\Rpc\Request;
-use EasySwoole\Rpc\Response;
+use EasySwoole\Rpc\NodeManager\RedisManager;
+use EasySwoole\Rpc\Test\UserService;
+use EasySwoole\Rpc\Test\OrderService;
+use EasySwoole\Rpc\Test\NodeService;
 
 $config = new Config();
-//注册服务名称
-$config->setServiceName('ser1');
-//设置广播地址，可以多个地址
-$config->getAutoFindConfig()->setAutoFindBroadcastAddress(['127.0.0.1:9600']);
-//设置广播监听地址
-$config->getAutoFindConfig()->setAutoFindListenAddress('127.0.0.1:9600');
-//$config->setNodeManager(\EasySwoole\Rpc\NodeManager\TableManager::class);//设置节点管理器处理类,默认是EasySwoole\Rpc\NodeManager\FileManager
+$config->setServerIp('127.0.0.1');//注册提供rpc服务的ip
 
+$config->setNodeManager(new RedisManager('127.0.0.1'));//注册节点管理器
+$config->getBroadcastConfig()->setSecretKey('lucky');    //设置秘钥
+
+$config->getBroadcastConfig()->setEnableBroadcast(false);     //是否启用广播    (ps:使用redis节点可以关闭)
+$config->getBroadcastConfig()->setEnableListen(false);        //是否启用监听广播(ps:使用redis节点可以关闭)
 
 $rpc = new Rpc($config);
-//注册响应方法
-$rpc->registerAction('call1', function (Request $request, Response $response) {
-    //获取请求参数
-    var_dump($request->getArg());
-    //设置返回给客户端信息
-    $response->setMessage('response');
-});
-//注册响应方法2
-$rpc->registerAction('call2', function (Request $request, Response $response)
-{});
+$rpc->add(new UserService());  //注册服务
+$rpc->add(new OrderService());
+$rpc->add(new NodeService());
 
+$list = $rpc->generateProcess();   
+foreach ($list['worker'] as $p) {//启动rpc 进程
+    $p->getProcess()->start();
+}
 
-//监听/广播 rpc 自定义进程对象
-$autoFindProcess = $rpc->autoFindProcess('es_rpc_process_1');
+foreach ($list['tickWorker'] as $p) { //启动定时进程(ps:定时广播，监听广播)
+    $p->getProcess()->start();
+}
 
-
-
-//创建第二个rpc服务
-$config2=new Config();
-$config2->setServiceName('ser2');
-$rpc2 = new Rpc($config2);
-
-//监听/广播 rpc 自定义进程对象
-$autoFindProcess2 = $rpc2->autoFindProcess('es_rpc_process_2');
-
-//创建http swoole服务
-$http = new swoole_http_server("127.0.0.1", 9525);
-
-//添加自定义进程到服务,开启进程
-$http->addProcess($autoFindProcess->getProcess());
-$http->addProcess($autoFindProcess2->getProcess());
-
-//rpc作为一个子服务运行
-$sub = $http->addlistener("127.0.0.1", 9527, SWOOLE_TCP);
-$sub2 = $http->addlistener("127.0.0.1", 9528, SWOOLE_TCP);
-
-//将swoole tcp子服务注入到rpc对象中,开始监听处理
-$rpc->attachToServer($sub);
-$rpc2->attachToServer($sub2);
-
-/**
- * http请求回调
- */
-$http->on("request", function ($request, $response) {
-    $response->end("Hello World\n");
-});
-$http->start();
-
-
-////rpc 作为主服务运行
-//$tcp = new swoole_server('127.0.0.1', 9526);
-//$tcp->addProcess($autoFindProcess->getProcess());
-//$rpc->attachToServer($tcp);
-
-//$tcp->start();
+while ($ret = \Swoole\Process::wait()) {//回收子进程
+    echo "PID={$ret['pid']}\n";
+}
 ````
+## easyswoole框架下使用
+
+````php
+<?php
+use EasySwoole\Rpc\Config;
+use EasySwoole\Rpc\Rpc;
+use EasySwoole\Rpc\NodeManager\RedisManager;
+use EasySwoole\Rpc\Test\UserService;
+use EasySwoole\Rpc\Test\OrderService;
+use EasySwoole\Rpc\Test\NodeService;
+use EasySwoole\EasySwoole\ServerManager;
+
+#在EasySwooleEvent.php  的全局 mainServerCreate 事件中注册
+
+$config = new Config();
+$config->setServerIp('127.0.0.1');//注册提供rpc服务的ip
+$config->setNodeManager(new RedisManager('127.0.0.1'));//注册节点管理器
+$config->getBroadcastConfig()->setSecretKey('lucky');        //设置秘钥        
+
+$rpc = Rpc::getInstance($config);;
+$rpc->add(new UserService());  //注册服务
+$rpc->add(new OrderService());
+$rpc->add(new NodeService());
+
+$rpc->attachToServer(ServerManager::getInstance()->getSwooleServer());
+
+````
+
+
 
