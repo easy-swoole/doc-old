@@ -1,35 +1,4 @@
 # 入门教程
-
-## 内容概述
-
-- 安装部分
-  - 默认用户已经安装 `LNMP`
-  - 编译安装 `swoole` 扩展 并且启用 `openssl` `socket` 等
-  - 安装 `composer` 并配置 国内镜像
-  - 安装 `EasySwoole3` 简单介绍 `composer` 绑定版本 
-  - 安装 `EasySwoole/Mysqli` `EasySwoole/Utility` 等包
-- Http部分
-  - 介绍基本路由和`FastRoute`
-  - controller 基本使用 池特性介绍
-  - 异常处理
-- 数据库部分
-  - 连接池介绍和使用
-  - 模型封装
-  - `Bean`的使用和介绍
-  - 事务使用和注意点
-  - 多表事务
-- 其他额外部分
-  - 并发查询
-  - http上传
-  - 自定义进程
-  - 异步任务
-- 后期补充
-  - `swoole`介绍 功能介绍
-  - 协程介绍
-  - 协程开发注意事项
-  
-## 具体内容
-
 ## 安装
 
 ### 第一节 安装swoole 约 5分钟
@@ -39,13 +8,13 @@
 4. 编译安装swoole 并且启用 openssl socket 以及指定php config路径
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
-> 观看地址:[Swoole4.x安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
+> 观看地址:[Swoole4.x安装](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
    
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
 2. 配置国内镜像
       
-> 观看地址:[Composer镜像更换](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
+> 观看地址:[Composer镜像更换](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
 
 
 ### 第三节 安装EasySwoole3 约 5分钟
@@ -54,7 +23,7 @@
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
       
-> 观看地址:[EasySwoole安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
+> 观看地址:[EasySwoole安装](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
 
 
 ### 第四节 安装EasySwoole Mysqli 等扩展包 约2分钟
@@ -72,7 +41,7 @@
 2. 使用 FastRoute 并尝试访问
 3. 配置 `强制路由` 、`setMethodNotAllowCallBack` 、`setRouterNotFoundCallBack` 
          
-> [HTTP解析与路由](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+> [HTTP解析与路由](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
 
 
 ### 第二节 控制器特性 以及常用方法 约 10分钟
@@ -80,7 +49,7 @@
 2. 介绍controller的池特性以及静态变量，变量生命周期等
 3. 介绍一些常用方法 尤其介绍请求数据的获取 如form-data raw header params 等等 以及响应数据的一些基本知识 如json 重定向 等等
          
-> 观看地址:[对象简介和池模型介绍](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+> 观看地址:[对象简介和池模型介绍](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
 
 
 ### 第三节 异常处理 约3分钟
@@ -126,24 +95,13 @@
 ### 自定义进程 约10分钟
 1. 简单用EasySwoole的包写个消费者进程
 
-## 视频列表
-- [Swoole4.x安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
-  
-- [Composer镜像更换](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
-  
-- [EasySwoole安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
-  
-- [HTTP解析与路由](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
-  
-- [对象简介和池模型介绍](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
-
 
 ## 其他视频
 - [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
   
-- [Swoole变量生命周期](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
+- [Swoole变量生命周期](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
   
-- [Swoole进程模型](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
+- [Swoole进程模型](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
   
 ## 关于版权
 以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
