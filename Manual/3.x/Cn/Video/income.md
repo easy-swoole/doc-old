@@ -39,20 +39,31 @@
 4. 编译安装swoole 并且启用 openssl socket 以及指定php config路径
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
+> 观看地址:[Swoole4.x安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
+   
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
 2. 配置国内镜像
-   
+      
+> 观看地址:[Composer镜像更换](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
+
+
 ### 第三节 安装EasySwoole3 约 5分钟
 1. 在期望目录建立项目 并使用composer require 安装EasySwoole3
 2. 删除上步目录 使用composer.json 进行手动配置安装 并讲解 composer版本追踪
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
+      
+> 观看地址:[EasySwoole安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
+
 
 ### 第四节 安装EasySwoole Mysqli 等扩展包 约2分钟
 1. 使用 composer require 安装 Mysqli
 2. 使用 编辑 composer.json + update 安装Utility
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
+      
+> 观看地址:暂无
+
 
 ## Http部分
 
@@ -60,12 +71,18 @@
 1. 使用EasySwoole自带的路由解析规则尝试进行访问
 2. 使用 FastRoute 并尝试访问
 3. 配置 `强制路由` 、`setMethodNotAllowCallBack` 、`setRouterNotFoundCallBack` 
-   
+         
+> [HTTP解析与路由](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+
+
 ### 第二节 控制器特性 以及常用方法 约 10分钟
 1. 简单介绍 EasySwoole的请求运行过程 从客户端->nginx->server 从Event的onRequest->http dispatch->controller hook->controller onRequest -> 具体执行 -> controller Response -> gc 和onException，这个部分会配图我自己绘一个
 2. 介绍controller的池特性以及静态变量，变量生命周期等
 3. 介绍一些常用方法 尤其介绍请求数据的获取 如form-data raw header params 等等 以及响应数据的一些基本知识 如json 重定向 等等
-   
+         
+> 观看地址:[对象简介和池模型介绍](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+
+
 ### 第三节 异常处理 约3分钟
 1. 介绍EasySwoole全局异常处理及接管 和自定义异常处理 Di注入
 2. 介绍HttpController onException 
@@ -110,18 +127,26 @@
 1. 简单用EasySwoole的包写个消费者进程
 
 ## 视频列表
-- [Swoole4.x安装](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85swoole.mp4)
-- [Composer镜像更换](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85composer%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F.mp4)
-- [EasySwoole安装](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85EasySwoole.mp4)
-- [HTTP解析与路由](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/EasySwooleHttp%E8%A7%A3%E6%9E%90%E5%92%8C%E8%B7%AF%E7%94%B1%E7%AE%80%E4%BB%8B.mp4)
-- [对象简介和池模型介绍](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/EasySwooleController%E5%AF%B9%E8%B1%A1%E7%AE%80%E4%BB%8B%E5%92%8C%E6%B1%A0%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D.mp4)
+- [Swoole4.x安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
+  
+- [Composer镜像更换](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
+  
+- [EasySwoole安装](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
+  
+- [HTTP解析与路由](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+  
+- [对象简介和池模型介绍](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+
 
 ## 其他视频
 - [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
-- [Swoole变量生命周期](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/swoole%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.mp4)
-- [Swoole进程模型](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/swoole%E7%9A%84%E7%AE%80%E4%BB%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B%7E1.mp4)
+  
+- [Swoole变量生命周期](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
+  
+- [Swoole进程模型](http://easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
+  
 ## 关于版权
-以上视频由阿正录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
+以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
 
 ## CDN赞助
 EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您有帮助，期待您共享一点力量，帮助我们减少CDN费用支出压力。[捐赠链接](./../donate.md)
