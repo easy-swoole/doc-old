@@ -1,4 +1,11 @@
 # 入门教程
+
+## 关于版权
+以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
+
+## CDN赞助
+EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您有帮助，期待您共享一点力量，帮助我们减少CDN费用支出压力。[捐赠链接](./../donate.md)
+
 ## 安装
 
 ### 第一节 安装swoole 约 5分钟
@@ -103,8 +110,3 @@
   
 - [Swoole进程模型](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
   
-## 关于版权
-以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
-
-## CDN赞助
-EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您有帮助，期待您共享一点力量，帮助我们减少CDN费用支出压力。[捐赠链接](./../donate.md)
