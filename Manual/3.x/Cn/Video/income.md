@@ -113,7 +113,13 @@
 - [Swoole4.x安装](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85swoole.mp4)
 - [Composer镜像更换](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85composer%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F.mp4)
 - [EasySwoole安装](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%AE%89%E8%A3%85EasySwoole.mp4)
+- [HTTP解析与路由](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/EasySwooleHttp%E8%A7%A3%E6%9E%90%E5%92%8C%E8%B7%AF%E7%94%B1%E7%AE%80%E4%BB%8B.mp4)
+- [对象简介和池模型介绍](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/EasySwooleController%E5%AF%B9%E8%B1%A1%E7%AE%80%E4%BB%8B%E5%92%8C%E6%B1%A0%E6%A8%A1%E5%9E%8B%E4%BB%8B%E7%BB%8D.mp4)
 
+## 其他视频
+- [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
+- [Swoole变量生命周期](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/swoole%E5%8F%98%E9%87%8F%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.mp4)
+- [Swoole进程模型](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/swoole%E7%9A%84%E7%AE%80%E4%BB%8B%E5%92%8C%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B%7E1.mp4)
 ## 关于版权
 以上视频由阿正录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
 

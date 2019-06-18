@@ -44,8 +44,9 @@ Developers using LAMP (LNMP) technology for a long time may need a period of tim
 - Fully open system event handler and EventHook
 
 ## Other
+We are pool in English,but we hope this project makes you using swoole easily , and if you have any interest in this project, you can contact us in email :  admin@fosuss.com to help us improve this project, for example ,help us translate the English doc better;
 
-- [Project Document Repository] (https://github.com/easy-swoole/doc)
+- [Project Document Repository](https://github.com/easy-swoole/doc)
 
 - [DEMO](https://github.com/easy-swoole/demo/)
 
@@ -61,11 +62,5 @@ Developers using LAMP (LNMP) technology for a long time may need a period of tim
 - Author WeChat
 
      ![](http://easyswoole.com/img/authWx.jpg)
-    
-- [donation] (donate.md)
-     Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
-        
-   - Continuous and in-depth development
-   - Documentation, community construction and maintenance
-  
+     
 - **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
