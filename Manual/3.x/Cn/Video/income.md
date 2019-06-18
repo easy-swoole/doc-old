@@ -15,13 +15,13 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 4. 编译安装swoole 并且启用 openssl socket 以及指定php config路径
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
-> 观看地址:[Swoole4.x安装](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
+> 观看地址:[Swoole4.x安装](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
    
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
 2. 配置国内镜像
       
-> 观看地址:[Composer镜像更换](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
+> 观看地址:[Composer镜像更换](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
 
 
 ### 第三节 安装EasySwoole3 约 5分钟
@@ -30,7 +30,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
       
-> 观看地址:[EasySwoole安装](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
+> 观看地址:[EasySwoole安装](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
 
 
 ### 第四节 安装EasySwoole Mysqli 等扩展包 约2分钟
@@ -48,7 +48,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 使用 FastRoute 并尝试访问
 3. 配置 `强制路由` 、`setMethodNotAllowCallBack` 、`setRouterNotFoundCallBack` 
          
-> [HTTP解析与路由](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+> [HTTP解析与路由](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
 
 
 ### 第二节 控制器特性 以及常用方法 约 10分钟
@@ -56,7 +56,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 介绍controller的池特性以及静态变量，变量生命周期等
 3. 介绍一些常用方法 尤其介绍请求数据的获取 如form-data raw header params 等等 以及响应数据的一些基本知识 如json 重定向 等等
          
-> 观看地址:[对象简介和池模型介绍](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+> 观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
 
 
 ### 第三节 异常处理 约3分钟
@@ -106,7 +106,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 ## 其他视频
 - [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
   
-- [Swoole变量生命周期](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
+- [Swoole变量生命周期](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
   
-- [Swoole进程模型](/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
+- [Swoole进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
   
