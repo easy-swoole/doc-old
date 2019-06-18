@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EasySwoole视频教程</title>
+</head>
+<body>
+<div id="video" style="width:100%;"></div>
+
+<script src="css/ckplayer/ckplayer.min.js"></script>
+<script type="text/javascript">
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+
+    var videoLink = window.atob(GetQueryString('video'));
+    var videoObject = {
+        container: '#video',//“#”代表容器的ID，“.”或“”代表容器的class
+        variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
+        flashplayer: false,//如果强制使用flashplayer则设置成true
+        video:videoLink
+    };
+    var player = new ckplayer(videoObject);
+</script>
+
+</body>
+</html>
