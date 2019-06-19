@@ -1,4 +1,4 @@
-# SplArray
+# SplString
 
 ## 用途
 用于处理字符串。
