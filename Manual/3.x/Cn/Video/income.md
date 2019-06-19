@@ -106,7 +106,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 ## 其他视频
 - [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
   
-- [Swoole变量生命周期](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0=)
+- [Swoole变量生命周期](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0)
   
 - [Swoole进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEJ+MS5tcDQ=)
   
