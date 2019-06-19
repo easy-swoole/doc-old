@@ -1,4 +1,4 @@
-# SplArray
+# SplEnum
 
 ## 用途
 用于定义枚举一个集合，规范化枚举数据。
@@ -8,8 +8,6 @@
 ```php
 <?php
 /**
- * Created by PhpStorm.
- * User: root
  * Date: 19-1-9
  * Time: 上午10:10
  */
