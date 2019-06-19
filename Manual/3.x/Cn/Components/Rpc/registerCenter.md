@@ -5,146 +5,123 @@ EasySwoole 默认为通过UDP广播的方式来实现无主化的服务发现。
 ## 例如用Redis来实现
 ```php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2019-02-25
- * Time: 14:46
- */
 
 namespace EasySwoole\Rpc\NodeManager;
 
+use EasySwoole\Component\Pool\PoolConf;
 use EasySwoole\Component\Pool\PoolManager;
-use EasySwoole\Rpc\Config;
 use EasySwoole\Rpc\ServiceNode;
 use EasySwoole\Utility\Random;
+use Swoole\Coroutine\Channel;
+use Swoole\Coroutine\Redis;
 
 class RedisManager implements NodeManagerInterface
 {
-    const KEY = '__rpcRedisKey';
-    private $pool;
+    protected $redisKey;
+    /** @var Channel */
+    protected $channel;
 
-    /**
-     * 初始化服务节点管理器
-     * RedisManager constructor.
-     * @param Config $config
-     */
-    public function __construct(Config $config)
+    function __construct(string $host, $port = 6379, $auth = null, string $hashKey = '__rpcNodes', int $maxRedisNum = 10)
     {
-        $config = $config->getExtra();
-        //获取redis连接
-        PoolManager::getInstance()->registerAnonymous('__rpcRedis', function () use ($config) {
-            $redis = new \Redis();
-            $redis->connect($config['host'], $config['port']);
-            if (!empty($config['auth'])) {
-                $redis->auth($config['auth']);
+        $this->redisKey = $hashKey;
+        //注册匿名连接池
+        PoolManager::getInstance()->registerAnonymous('__rpcRedis', function (PoolConf $conf) use ($host, $port, $auth, $maxRedisNum) {
+            $conf->setMaxObjectNum($maxRedisNum);
+            $redis = new Redis();
+            $redis->connect($host, $port);
+            if ($auth) {
+                $redis->auth($auth);
             }
-            $redis->setOption(\Redis::OPT_SERIALIZER, \Redis::SERIALIZER_PHP);
+            $redis->setOptions(['serialize' => true, 'compatibility_mode' => true]);
             return $redis;
         });
-        $this->pool = PoolManager::getInstance()->getPool('__rpcRedis');
     }
-
+    
     /**
-     * 获取所有服务
-     * getServiceNodes
-     * @param string      $serviceName
-     * @param string|null $version
-     * @return array
-     * @author Tioncico
-     * Time: 9:38
-     */
+    *  获取某个服务的所有可用节点 
+    */
     function getServiceNodes(string $serviceName, ?string $version = null): array
     {
-        $list = [];
-        $nodeList = $this->allServiceNodes();//获取所有服务
-        foreach ($nodeList as $item) {
-            $serviceNode = new ServiceNode($item);
-            if ($serviceNode->getServiceName() == $serviceName) {
-                if ($version !== null && $serviceNode->getServiceVersion() != $version) {
+        /** @var \Redis $redis */
+        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);//连接池取redis对象
+        try {
+            $nodes = $redis->hGetAll($this->redisKey . md5($serviceName));
+            $nodes = $nodes ?: [];
+            $ret = [];
+            foreach ($nodes as $nodeId => $node) {
+                /**
+                 * @var  $nodeId
+                 * @var  ServiceNode $node
+                 */
+                if (time() - $node->getLastHeartBeat() > 30) {//检查节点最近一次的心跳时间
+                    $this->deleteServiceNode($node);
+                }
+                if ($version && $version != $node->getServiceVersion()) {
                     continue;
                 }
-                $list[$serviceNode->getNodeId()] = $serviceNode->toArray();
+                $ret[$nodeId] = $node;
             }
+            return $ret;
+        } catch (\Throwable $throwable) {
+            //如果该redis断线则销毁
+            PoolManager::getInstance()->getPool('__rpcRedis')->unsetObj($redis);
+        } finally {
+            //这边需要测试一个对象被unset后是否还能被回收
+            PoolManager::getInstance()->getPool('__rpcRedis')->recycleObj($redis);
         }
-        return $list;
+        return [];
     }
-
+    
     /**
-     * 获取某个服务节点的详情
-     * getServiceNode
-     * @param string      $serviceName
-     * @param string|null $version
-     * @return ServiceNode|null
-     * @author Tioncico
-     * Time: 9:39
-     */
+    *  获取某个服务可用随机节点 
+    */
     function getServiceNode(string $serviceName, ?string $version = null): ?ServiceNode
     {
         $list = $this->getServiceNodes($serviceName, $version);
-        $num = count($list);
-        if ($num == 0) {
+        if (empty($list)) {
             return null;
         }
-        return new ServiceNode(Random::arrayRandOne($list));
+        return Random::arrayRandOne($list);
     }
-
+    
     /**
-     * 取所有节点的列表数据
-     * allServiceNodes
-     * @return array
-     * @author Tioncico
-     * Time: 9:39
-     */
-    function allServiceNodes(): array
-    {
-        $list = [];
-        if ($obj = $this->pool->getObj()) {
-            $nodeList = $obj->hGetAll(self::KEY);
-            $this->pool->recycleObj($obj);
-            foreach ($nodeList as $key => $serviceNode) {
-                if ($serviceNode->getNodeExpire() !== null && time() > $serviceNode->getNodeExpire()) {
-                    $this->deleteServiceNode($serviceNode);//超时删除
-                    continue;
-                }
-                $list[] = $serviceNode->toArray();
-            }
-        }
-        return $list;
-    }
-
-    /**
-     * 删除某个节点
-     * deleteServiceNode
-     * @param ServiceNode $serviceNode
-     * @return bool
-     * @author Tioncico
-     * Time: 9:39
-     */
+    *  删除节点 
+    */
     function deleteServiceNode(ServiceNode $serviceNode): bool
     {
-        if ($obj = $this->pool->getObj()) {
-            $obj->hDel(self::KEY, $serviceNode->getNodeId());
-            $this->pool->recycleObj($obj);
+        /** @var \Redis $redis */
+        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);
+        try {
+            $redis->hDel($this->redisKey . md5($serviceNode->getServiceName()), $serviceNode->getNodeId());
             return true;
+        } catch (\Throwable $throwable) {
+            PoolManager::getInstance()->getPool('__rpcRedis')->unsetObj($redis);
+        } finally {
+            PoolManager::getInstance()->getPool('__rpcRedis')->recycleObj($redis);
         }
         return false;
     }
-
+    
     /**
-     * 注册服务节点
-     * registerServiceNode
-     * @param ServiceNode $serviceNode
-     * @return bool
-     * @author Tioncico
-     * Time: 9:39
-     */
-    function registerServiceNode(ServiceNode $serviceNode): bool
+    *  刷新节点(
+    *  ps:由tick process进程定时器刷新(本节点)|监听广播消息(其他节点)来刷新节点信息，redis 节点管理器可以)
+    */
+    function serviceNodeHeartBeat(ServiceNode $serviceNode): bool
     {
-        if ($obj = $this->pool->getObj()) {
-            $obj->hSet(self::KEY, $serviceNode->getNodeId(), $serviceNode);
-            $this->pool->recycleObj($obj);
+        if (empty($serviceNode->getLastHeartBeat())) {
+            $serviceNode->setLastHeartBeat(time());
+        }
+        /** @var \Redis $redis */
+        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);
+        try {
+            $redis->hSet($this->redisKey . md5($serviceNode->getServiceName()), $serviceNode->getNodeId(), $serviceNode);
             return true;
+        } catch (\Throwable $throwable) {
+            //如果该redis断线则销毁
+            PoolManager::getInstance()->getPool('__rpcRedis')->unsetObj($redis);
+        } finally {
+            //这边需要测试一个对象被unset后是否还能被回收
+            PoolManager::getInstance()->getPool('__rpcRedis')->recycleObj($redis);
         }
         return false;
     }

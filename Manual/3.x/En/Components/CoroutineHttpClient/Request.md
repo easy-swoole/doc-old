@@ -16,25 +16,25 @@ go(function () {
         'Accept-Encoding' => 'gzip',
         'Pragma'          => 'no-cache',
         'Cache-Control'   => 'no-cache'
-    ]);//配置请求头(将覆盖原有配置)
-//    $client->setHeader('User-Agent','EasySwooleHttpClient/1');//设置一个请求头
-//    $client->post(['name','这是post的内容']);//发送一段post内容
-//    $client->postJSON(json_encode(['name2','这是post的内容']));//发送一段post json内容
-//    $client->postXML("<name2>这是post的内容</name2>");//发送一段post xml内容
-//    $client->addFile("./1.txt",'file1','txt','1.txt','0',strlen(file_get_contents('./1.txt')));//发送一个文件,注意需要文件大小
-//    $client->addData('这是文件的内容','data1','txt','1.txt');//发送一段内容转换成文件发送
-    $client->addCookies(['aa'=>'a','bb'=>'b']);//设置cookie(将覆盖原有配置)
-    $client->addCookie('a','a');//设置一个cookie
-    $response = $client->exec();//执行请求
+    ]);//Configuration request header(The original configuration will be covered)
+//    $client->setHeader('User-Agent','EasySwooleHttpClient/1');//Setting a request header
+//    $client->post(['name','This is the content of post.']);//Send a post content
+//    $client->postJSON(json_encode(['name2','这是post的内容']));//Send a post json content
+//    $client->postXML("<name2>This is the content of post.</name2>");//Send a post xml content
+//    $client->addFile("./1.txt",'file1','txt','1.txt','0',strlen(file_get_contents('./1.txt')));//Send a file, note the size of the file
+//    $client->addData('This is the content of the file.','data1','txt','1.txt');//Send a piece of content into a file
+    $client->addCookies(['aa'=>'a','bb'=>'b']);//set cookie(The original configuration will be covered)
+    $client->addCookie('a','a');//Setting up a cookie
+    $response = $client->exec();//Execution of requests
     echo ($response->getBody());
-//    var_dump($client->getSwooleHttpClient()->headers);//获取swoole 原始http client
+//    var_dump($client->getSwooleHttpClient()->headers);//Get the original http client of the swoole
 
-    //并发请求
+    //Concurrent requests
     $multi = new \EasySwoole\HttpClient\Multi();
     $multi->addTask('tast1',$client);
     $multi->addTask('tast2',$client);
     $multi->addTask('tast3',$client);
-    var_dump($multi->exec());//执行并发请求
+    var_dump($multi->exec());//Execute concurrent requests
 
 
 });

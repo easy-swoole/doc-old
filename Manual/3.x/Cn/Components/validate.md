@@ -1,27 +1,19 @@
 ## Validate
 
+EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个validate方法，如果希望用其他的方法或者是工具去做检验，可以在子类控制器中重写该方法，从而实现用其他工具进行校验
 > 验证器类: EasySwoole\Validate\Validate
 
-#### 例子
+### 基础使用
 
 ```php
-
-<?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 18-10-11
- * Time: 上午10:26
- */
-
-require_once 'vendor/autoload.php';
+useEasySwoole\Validate\Validate;
 
 $data = [
     'name' => 'blank',
     'age'  => 25
 ];
 
-$valitor = new \EasySwoole\Validate\Validate();
+$valitor = new Validate();
 $valitor->addColumn('name', '名字不为空')->required('名字不为空')->lengthMin(10,'最小长度不小于10位');
 $bool = $valitor->validate($data);
 var_dump($valitor->getError()->getErrorRuleMsg()?:$valitor->getError()->getColumnErrorMsg());
@@ -30,68 +22,77 @@ var_dump($valitor->getError()->getErrorRuleMsg()?:$valitor->getError()->getColum
  string(26) "最小长度不小于10位"
 */
 ```
-
-#### 如何在控制器使用验证例子([demo](https://github.com/tioncico/demo/tree/3.x-validate))
-
+### 控制器中封装使用
 ```php
-<?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 18-11-14
- * Time: 下午2:33
- */
-
-namespace App\HttpController\Validate;
-
-
-use App\HttpController\Base;
+namespace App\HttpController;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\Validate\Validate;
+use EasySwoole\Http\AbstractInterface\Controller;
 
-class Index extends Base
+class BaseController extends Controller
 {
-    function index() {
-        $validate = new Validate();
-        $validate->addColumn('name')->required('姓名必填');
-        $validate->addColumn('age')->required('年龄必填')->between(20, 30, '年轻只能在20岁到30岁之前');
-        if ($this->validate($validate)) {
-            $this->writeJson(Status::CODE_OK, null, 'success');
-        } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, $validate->getError()->__toString(), 'fail');
+
+    protected function onRequest(?string $action): ?bool
+    {
+        $ret =  parent::onRequest($action);
+        if($ret === false){
+            return false;
         }
+        $v = $this->validateRule($action);
+        if($v){
+            $ret = $this->validate($v);
+            if($ret == false){
+                $this->writeJson(Status::CODE_BAD_REQUEST,null,"{$v->getError()->getField()}@{$v->getError()->getFieldAlias()}:{$v->getError()->getErrorRuleMsg()}");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected function validateRule(?string $action):?Validate
+    {
+
+    }
+}
+
+```
+
+> 我们定义了一个带有validateRule方法的基础控制器。
+
+```
+namespace App\HttpController;
+
+
+use App\HttpController\Api\BaseController;
+use EasySwoole\Validate\Validate;
+
+class Common extends BaseController
+{
+   
+    function sms()
+    {
+        $phone = $this->request()->getRequestParam('phone');
+      
+    }
+
+    protected function validateRule(?string $action): ?Validate
+    {
+        $v = new Validate();
+        switch ($action){
+            case 'sms':{
+                $v->addColumn('phone','手机号')->required('不能为空')->length(11,'长度错误');
+                $v->addColumn('verifyCode','验证码')->required('不能为空')->length(4,'长度错误');
+                break;
+            }
+        }
+        return $v;
     }
 }
 ```
 
-启动服务。
+> 在需要验证的控制器方法中，我们给对应的action添加对应的校验规则，即可实现自动校验，这样控制器方法即可安心实现逻辑。
 
-访问<http://localhost:9501/validate>,响应结果如下：
-
-```
-{"code":400,"result":"name姓名必填","msg":"fail"}
-```
-
-访问<http://localhost:9501/validate?name=blank>,响应结果如下：
-
-```
-{"code":400,"result":"age年龄必填","msg":"fail"}
-```
-
-访问<http://localhost:9501/validate?name=blank&age=12>,响应结果如下：
-
-```
-{"code":400,"result":"age年龄只能在20岁到30岁之前","msg":"fail"}
-```
-
-访问<http://localhost:9501/validate?name=blank&age=22>,响应结果如下：
-
-```
-{"code":400,"result":"age年龄只能在20岁到30岁之前","msg":"fail"}
-```
-
-
-#### 方法列表
+### 方法列表
 
 获取Error：
 
@@ -122,14 +123,6 @@ function validate(array $data)
 #### 验证规则类
 目前验证器支持的规则如下
 ````php
-<?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/7/6
- * Time: 上午12:41
- */
-
 namespace EasySwoole\Validate;
 
 /**

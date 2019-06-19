@@ -58,7 +58,6 @@
     - [服务管理](Introduction/server.md)
     - [反向代理](Introduction/proxy.md)
     - [开发者必读!!!](Introduction/remind.md)
-    - [核心解读](Introduction/design.md)
 - [全局事件](Event/Introduction.md)
     - [initialize](Event/initialize.md)
     - [mainServerCreate](Event/mainServerCreate.md)
@@ -81,22 +80,16 @@
     - [Crontab](BaseUsage/crontab.md)
     - [日志处理](BaseUsage/log.md)
     - [Swoole实例](BaseUsage/ServerManager.md)
-    - [远程控制台](BaseUsage/Console/Introduction.md)
-        - [基础功能](BaseUsage/Console/BasicFunction.md)
-        - [自定义命令](BaseUsage/Console/CustomCommand.md)
 - 组件库
     - 基础组件
         - [单例模式](Components/Component/Singleton.md)
         - [Openssl](Components/Component/Openssl.md)
         - [IOC容器](Components/Component/di.md)
         - [容器](Components/Component/Container.md)
-        - [Invoker](Components/Component/invoker.md)
         - [上下文管理器](Components/Component/Context.md)
         - [TableManager](Components/table_manager.md)
         - [Atomic](Components/Atomic.md)
         - [Pool管理器](Components/CoroutinePool/pool.md)
-            - [Mysql连接池](Components/CoroutinePool/mysql_pool.md)
-            - [Redis连接池](Components/CoroutinePool/redis_pool.md)
     - Spl库
         - [Array](Components/Spl/array.md)
         - [Bean](Components/Spl/bean.md)
@@ -118,7 +111,6 @@
     - [Curl](Components/Curl/curl.md)
     - [mysqli](Components/mysqli/Introduction.md)
         - [安装](Components/mysqli/install.md)
-        - [TpORM](Components/mysqli/TpORM.md)
         - [连贯操作](Components/mysqli/continuous_operation.md)
         - CURD操作
             - [数据创建](Components/mysqli/curd/create_data.md);
@@ -128,6 +120,7 @@
             - [数据删除](Components/mysqli/curd/delete_data.md);
         - [事务](Components/mysqli/Transaction.md)
         - [其他](Components/mysqli/other.md)
+        - [TpORM](Components/mysqli/TpORM.md)
     - [验证器](Components/validate.md)
     - [验证码](Components/Verifycode/Introduction.md)
         - [配置](Components/Verifycode/Config.md)
@@ -137,6 +130,11 @@
         - [响应](Components/CoroutineHttpClient/Response.md)
         - [WebsocketClient](Components/CoroutineHttpClient/websocket.md)
     - [Whoops](Components/whoops.md)    
+    - [模板引擎](Http/template.md)
+    - [fast-cache](Components/fastCache.md)
+    - [Redis-Pool](Components/redisPool.md)
+    - [Mysqli-pool](Components/mysqlPool.md)
+    - [Session](Components/session.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
@@ -146,7 +144,6 @@
         - [Str](Components/Tools/Str.md)
         - [Time](Components/Tools/Time.md)
 - 其他问题
-    - [异步客户端](Other/AsyncClient.md)
     - [错误处理与拦截](Other/Exception.md)
     - [如何实现分布式](Other/Distribute.md)
     - [HTTP中使用protobuf](Other/Protobuf.md)
@@ -163,6 +160,8 @@
     - [GraphQL](Other/GraphQL.md)
 - [更新记录](UpdateLog/Introduction.md)
 - [项目案例](Case/case.md)
+- 视频教程
+    - [入门教程](Video/income.md)
 - [Demo](demo.md)
 - [捐赠](donate.md)
 - [联系作者](contact.md)

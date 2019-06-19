@@ -3,148 +3,66 @@
 ## 用途
 处理耗时任务，比如处理死循环队列消费，清除多余redis中的token数据等等。
 
+## 例子
 
-## 如何使用
-
-在EasySwooleEvent注册进程。
-
-```php
-<?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/5/28
- * Time: 下午6:33
- */
-
-namespace EasySwoole\EasySwoole;
-
-
-use App\Process\ProcessOne;
-use EasySwoole\EasySwoole\Swoole\EventRegister;
-use EasySwoole\EasySwoole\AbstractInterface\Event;
-use EasySwoole\Http\Request;
-use EasySwoole\Http\Response;
-
-class EasySwooleEvent implements Event
-{
-
-    public static function initialize()
-    {
-        // TODO: Implement initialize() method.
-        date_default_timezone_set('Asia/Shanghai');
-    }
-
-    
-    public static function mainServerCreate(EventRegister $register)
-    {
-
-        /**
-         * 除了进程名，其余参数非必须
-         */
-
-        $processConfig = new \EasySwoole\Component\Process\Config();
-        $processConfig->setArg(['a'=>1,'b'=>2]);//额外参数
-        $processConfig->setProcessName('processName');//进程名称
-        $processConfig->setRedirectStdinStdout(false);//是否重定向标准输入/输出
-        $processConfig->setPipeType($processConfig::PIPE_TYPE_SOCK_DGRAM);//管道类型 PIPE_TYPE_NONE无 PIPE_TYPE_SOCK_STREAM流 PIPE_TYPE_SOCK_DGRAM数据报
-        $processConfig->setEnableCoroutine(true);//是否开启协程
-        $processConfig->setPipeReadSize(2);//管道读取大小 2
-        $processConfig->setMaxExitWaitTime(3);//读取超时时间
-        //实例化进程写法1
-        $myProcess = new ProcessOne($processConfig);
-        //实例化进程写法2
-//        $myProcess = new ProcessOne('processName',['a'=>1,'b'=>2]/*,$redirectStdinStdout,$pipeType,$enableCoroutine*/);
-        ServerManager::getInstance()->getSwooleServer()->addProcess($myProcess->getProcess());
-        // TODO: Implement mainServerCreate() method.
-    }
-
-
-    public static function onRequest(Request $request, Response $response): bool
-    {
-        // TODO: Implement onRequest() method.
-        return true;
-    }
-
-    public static function afterRequest(Request $request, Response $response): void
-    {
-        // TODO: Implement afterAction() method.
-    }
-}
+### 定义一个进程类
 ```
-
-Process类：
-
-```php
-<?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2019-03-05
- * Time: 20:08
- */
-
-namespace App\Process;
-
-
 use EasySwoole\Component\Process\AbstractProcess;
-use EasySwoole\EasySwoole\Logger;
 
-class ProcessOne extends AbstractProcess
+class Process extends AbstractProcess
 {
 
-    public function run($arg)
+    protected function run($arg)
     {
-        // TODO: Implement run() method.
-        Logger::getInstance()->console($this->getProcessName()." start");
-        while (1){
-            \co::sleep(5);
-            Logger::getInstance()->console($this->getProcessName()." run");
-        }
+        //当进程启动后，会执行的回调
+        var_dump($this->getProcessName()." run");
+        var_dump($arg);
     }
-
-    public function onShutDown()
+    
+    protected function onPipeReadable(\Swoole\Process $process)
     {
-        // TODO: Implement onShutDown() method.
+        /*
+         * 该回调可选
+         * 当有主进程对子进程发送消息的时候，会触发的回调，触发后，务必使用
+         * $process->read()来读取消息
+         */
     }
-
-    public function onReceive(string $str)
+    
+    protected function onShutDown()
     {
-        // TODO: Implement onReceive() method.
+        /*
+         * 该回调可选
+         * 当该进程退出的时候，会执行该回调
+         */
+    }
+    
+    
+    protected function onException(\Throwable $throwable, ...$args)
+    {
+        /*
+         * 该回调可选
+         * 当该进程出现异常的时候，会执行该回调
+         */
     }
 }
 ```
 
-## 核心对象方法
 
-### 核心类：EasySwoole\Component\Process\AbstractProcess。
+### 注册进程
 
-#### construct
+我们在EasySwoole全局的mainServerCreate事件中进行进程注册
+```
+use App\Process;
+use EasySwoole\Component\Process\Config;
+$processConfig = new Config();
+$processConfig->setProcessName('testProcess');
+/*
+ * 传递给进程的参数
+*/
+$processConfig->setArg([
+    'arg1'=>time()
+]);
+ServerManager::getInstance()->getSwooleServer()->addProcess((new Process($processConfig))->getProcess());
+```
 
-* string $processName           设置进程名字
-* mixed  $arg                   设置参数
-* bool   $redirectStdinStdout   重定向子进程的标准输入和输出。启用此选项后，在子进程内输出内容将不是打印屏幕，而是写入到主进程管道。读取键盘输入将变为从管道中读取数据。默认为阻塞读取。
-* mixed  $pipeType              管道类型，PIPE_TYPE_NONE无 PIPE_TYPE_SOCK_STREAM流 PIPE_TYPE_SOCK_DGRAM数据报
-* bool   $enableCoroutine       默认为false，在callback function中启用协程，开启后可以直接在子进程的函数中使用协程
-
-function __construct(...$args)
-
-
-#### getProcess
-获取当前swoole进程实例,用于启动自定义进程
-#### addTick
-增加个定时任务
-#### clearTick
-清除定时任务
-#### delay
-增加个延时任务
-#### getPid
-获取进程id
-#### __start
-启动进程
-#### getArg
-获取进程的自定义参数
-#### getProcessName
-获取进程名
-
-
+> 注意，一个进程模型可以被注册N次，也就是创建N个相同类型的进程
