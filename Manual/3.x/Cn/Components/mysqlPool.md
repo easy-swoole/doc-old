@@ -5,6 +5,7 @@ EasySwoole 提供了一个Mysql Pool组件，等于高度封装了Pool的链接�
 ```
 composer require easyswoole/mysqli-pool
 ```
+> 该组件基于[pool管理器](../Components/CoroutinePool/pool.md)封装
 
 ## 添加配置
 ```
@@ -128,4 +129,4 @@ $data = MysqlPool::invoke(function (MysqlConnection $db){
 });
 ```
 
-> 其余调用方法请看Pool章节
+> 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节
