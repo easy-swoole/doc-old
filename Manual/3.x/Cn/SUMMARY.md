@@ -145,7 +145,7 @@
         - [SnowFlake](Components/Tools/SnowFlake.md)
         - [Str](Components/Tools/Str.md)
         - [Time](Components/Tools/Time.md)
-- [微服务与分布式]
+- 微服务与分布式
     - [微服务](Distribute/microService.md)
     - [负载均衡](Distribute/loadbalance.md)   
 - [MongoDB](mongodb.md)        
