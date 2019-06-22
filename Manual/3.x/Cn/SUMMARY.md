@@ -136,6 +136,7 @@
     - [Redis-Pool](Components/redisPool.md)
     - [Mysqli-pool](Components/mysqlPool.md)
     - [Session](Components/session.md)
+    - [SyncInvoker](Components/syncInvoker.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
