@@ -38,7 +38,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 使用 编辑 composer.json + update 安装Utility
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
       
-> 观看地址:暂无
+> 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVNeXNxbGklRTclQUQlODklRTUlQkElOTMlRTUlOTIlOEMlRTUlOUYlQkElRTYlOUMlQUMlRTYlOTMlOEQlRTQlQkQlOUMubXA0)
 
 
 ## 基础部分
