@@ -136,6 +136,7 @@
     - [Redis-Pool](Components/redisPool.md)
     - [Mysqli-pool](Components/mysqlPool.md)
     - [Session](Components/session.md)
+    - [SyncInvoker](Components/syncInvoker.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)
@@ -144,10 +145,11 @@
         - [SnowFlake](Components/Tools/SnowFlake.md)
         - [Str](Components/Tools/Str.md)
         - [Time](Components/Tools/Time.md)
-- [微服务与分布式]
+- 微服务与分布式
     - [微服务](Distribute/microService.md)
-    - [负载均衡](Distribute/loadbalance.md)   
+    - [负载均衡](Distribute/loadbalance.md)       
 - 其他问题
+    - [MongoDB](Other/mongodb.md)    
     - [错误处理与拦截](Other/Exception.md)
     - [如何实现分布式](Other/Distribute.md)
     - [HTTP中使用protobuf](Other/Protobuf.md)
