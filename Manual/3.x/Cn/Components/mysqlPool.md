@@ -30,7 +30,7 @@ use EasySwoole\Mysqli\Config;
 $configData = GConfig::getInstance()->getConf('MYSQL');
 $config = new Config($configData);
 /**
-    这里注册的名字叫redis，你可以注册多个，比如mysql2,mysql3
+    这里注册的名字叫mysql，你可以注册多个，比如mysql2,mysql3
 */
 $poolConf = Mysql::getInstance()->register('mysql',$config);
 //$poolConf->setMaxObjectNum($configData['maxObjectNum']);
