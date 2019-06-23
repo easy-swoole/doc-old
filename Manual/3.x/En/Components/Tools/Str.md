@@ -1,23 +1,23 @@
 # Str
 
-## 用途
-Str字符串助手
+## Purpose
+Str string assistant
 
-## 核心对象方法
+## Core object method
 
-核心类：EasySwoole\Utility\Str
+Core class：EasySwoole\Utility\Str
 
 ### contains
 
-检查字符串中是否包含另一字符串
+Check whether a string contains another string
 
-* mixed     $haystack       被检查的字符串
-* mixed     $needles        需要包含的字符串
-* mixed     $strict         是否区分大小写
+* mixed     $haystack       Checked string
+* mixed     $needles        Strings to be included
+* mixed     $strict         Case-sensitive or not
 
 static function contains($haystack, $needles, $strict = true)
 
-> 例子
+> Example
 
 ```php
 <?php
@@ -33,7 +33,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::contains('hello, easyswoole', 'Swoole', false));
 
 /**
- * 输出结果:
+ * Output results:
  * bool(true)
  */
 
@@ -41,15 +41,15 @@ var_dump(\EasySwoole\Utility\Str::contains('hello, easyswoole', 'Swoole', false)
 
 ### startsWith
 
-检查字符串是否以某个字符串开头
+Check whether a string begins with a string
 
-* mixed     $haystack       被检查的字符串
-* mixed     $needles        需要包含的字符串
-* mixed     $strict         是否区分大小写
+* mixed     $haystack       Checked string
+* mixed     $needles        Strings to be included
+* mixed     $strict         Case-sensitive or not
 
 static function startsWith($haystack, $needles, $strict = true)
 
-> 例子
+> Example
 
 ```php
 <?php
@@ -65,7 +65,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::startsWith('hello, easyswoole', 'Hello', false));
 
 /**
- * 输出结果:
+ * Output results:
  * bool(true)
  */
 
@@ -73,11 +73,11 @@ var_dump(\EasySwoole\Utility\Str::startsWith('hello, easyswoole', 'Hello', false
 
 ### endsWith
 
-检查字符串是否以某个字符串结尾
+Check whether a string ends with a string
 
-* mixed     $haystack       被检查的字符串
-* mixed     $needles        需要包含的字符串
-* mixed     $strict         是否区分大小写
+* mixed     $haystack       Checked string
+* mixed     $needles        Strings to be included
+* mixed     $strict         Case-sensitive or not
 
 static function endsWith($haystack, $needles, $strict = true)
 
