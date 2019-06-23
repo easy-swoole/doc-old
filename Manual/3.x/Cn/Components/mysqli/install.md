@@ -31,7 +31,7 @@ composer require easyswoole/mysqli
 ```php
 <?php
 $conf = new \EasySwoole\Mysqli\Config(\EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL'));
-$db = new Mysqli($conf);
+$db = new \EasySwoole\Mysqli\Mysqli($conf);
 $data = $db->get('test');//获取一个表的数据
 ```
 
