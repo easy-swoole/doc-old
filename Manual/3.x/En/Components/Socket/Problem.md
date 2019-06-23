@@ -1,4 +1,4 @@
-## 如何遍历全部链接
+## How to traverse all links
 ```php
 use EasySwoole\EasySwoole\ServerManager;
 $server = ServerManager::getInstance()->getSwooleServer();
@@ -22,7 +22,7 @@ while(true)
 
 > https://wiki.swoole.com/wiki/page/p-connection_list.html
 
-## 如何获取链接信息
+## How to Get Link Information
 
 ```php
 use EasySwoole\EasySwoole\ServerManager;
@@ -31,18 +31,18 @@ $fdinfo = $server->getClientInfo($fd);
 ```
 > https://wiki.swoole.com/wiki/page/p-connection_info.html
 
-## Socket有哪些开发场景?
+## What development scenarios does Socket have?
 
-### h5即时游戏
+### H5 Instant Game
 
-### 网页聊天室
+### Web Chat Room
 
-### 物联网开发
+### Development of Internet of Things
 
-### 服务器udp广播
+### Server UDP broadcasting
 
-### 车联网
+### Vehicle Networking
 
-### 智能家居
+### Smart Home
 
-### web网页服务器
+### Web page server
