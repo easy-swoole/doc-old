@@ -403,7 +403,7 @@ namespace App\WebSocket;
 /**
  * Class WebSocketEvent
  *
- * 此类是 WebSocet 中一些非强制的自定义事件处理
+ * 此类是 WebSocket 中一些非强制的自定义事件处理
  *
  * @package App\WebSocket
  */
