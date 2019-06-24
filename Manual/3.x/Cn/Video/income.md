@@ -1,3 +1,6 @@
+<head>
+<meta name="keywords" content="easySwoole视频|swoole教学视频|swoole视频|swoole框架视频"/>
+</head>
 # 入门教程
 
 ## 关于版权
