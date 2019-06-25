@@ -7,7 +7,7 @@
 composer require easyswoole/http-client
 ```
 
-单次请求:  
+## 单次请求
 ```php
 <?php
 $url = 'http://docker.local.com/test.php/?get1=get1';
@@ -26,16 +26,7 @@ $test->addData('sasasas','test.file','text','test.file');
 $ret = $test->exec();
 var_dump($ret->getBody());
 ```
-并发请求:   
-```php
-<?php
-$url = 'http://docker.local.com/test.php/?get1=get1';
-$test = new \EasySwoole\HttpClient\HttpClient($url);
-$multi = new \EasySwoole\HttpClient\Multi();
-$multi->addTask('t1',$test);
-$multi->addTask('t2',$test);
-$ret = $multi->exec();
-foreach ($ret as $taskName => $response){
-    var_dump("task {$taskName} finish and body is {$response->getBody()}");
-}
-```
+
+## 并发请求
+
+关于Http Client的并发请求章节，我们推荐用户使用 EasySwoole组件中提供的[Csp封装](../Component/csp.md)。
