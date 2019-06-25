@@ -90,8 +90,8 @@
         - [TableManager](Components/table_manager.md)
         - [Atomic](Components/Component/Atomic.md)
         - [Pool管理器](Components/Component/pool.md)
-        - [WaitGroup](Components/Component/waitgroup.md)
-        - [Csp](Components/Component/csp.md)
+        - [WaitGroup等待](Components/Component/waitgroup.md)
+        - [Csp并发](Components/Component/csp.md)
     - Spl库
         - [Array](Components/Spl/array.md)
         - [Bean](Components/Spl/bean.md)
