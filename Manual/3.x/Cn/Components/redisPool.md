@@ -322,4 +322,4 @@ $data = $redis->get('test');
 PoolManager::getInstance()->getPool(RedisPool::class)->recycleObj($redis);
 ```
 
-> 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节
+> 其余调用方法请看[pool管理器](../Components/Component/pool.md)章节
