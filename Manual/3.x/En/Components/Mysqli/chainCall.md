@@ -1,4 +1,4 @@
-## Coherent operation
+## Chain-operation
 Mysqli component provides a series of coherent operation (chain operation) methods, which can effectively improve the code clarity and development efficiency of data access, and support all CURD operations.
 
 ### where()
