@@ -88,8 +88,10 @@
         - [容器](Components/Component/Container.md)
         - [上下文管理器](Components/Component/Context.md)
         - [TableManager](Components/table_manager.md)
-        - [Atomic](Components/Atomic.md)
-        - [Pool管理器](Components/CoroutinePool/pool.md)
+        - [Atomic](Components/Component/Atomic.md)
+        - [Pool管理器](Components/Component/pool.md)
+        - [WaitGroup等待](Components/Component/waitgroup.md)
+        - [Csp并发](Components/Component/csp.md)
     - Spl库
         - [Array](Components/Spl/array.md)
         - [Bean](Components/Spl/bean.md)
@@ -137,6 +139,7 @@
     - [Mysqli-pool](Components/mysqlPool.md)
     - [Session](Components/session.md)
     - [SyncInvoker](Components/syncInvoker.md)
+    - [Atomic限流器](Components/atomicLimit.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/ArrayToTextTable.md)
         - [File](Components/Tools/file.md)

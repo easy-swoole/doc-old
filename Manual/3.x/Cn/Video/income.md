@@ -141,4 +141,4 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 
 
 ## 其他视频
-- [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mov)
+- [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mp4)

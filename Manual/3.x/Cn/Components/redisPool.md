@@ -4,7 +4,7 @@ EasySwoole 提供了一个Redis Pool组件，等于高度封装了Pool的链接�
 ```
 composer require easyswoole/redis-pool
 ```
-> 该组件基于[pool管理器](../Components/CoroutinePool/pool.md)封装
+> 该组件基于[pool管理器](../Components/Component/pool.md)封装
 
 ## 添加数据库配置
 在`dev.php`或者是`produce.php`中添加配置信息：
@@ -322,4 +322,4 @@ $data = $redis->get('test');
 PoolManager::getInstance()->getPool(RedisPool::class)->recycleObj($redis);
 ```
 
-> 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节
+> 其余调用方法请看[pool管理器](../Components/Component/pool.md)章节

@@ -150,7 +150,7 @@ public static function mainServerCreate(EventRegister $register): void
 ## 测试前端代码
 
 **友情提示**
-> easyswoole 提供了更强大的WebSocket调试工具，[foo]: http://www.evalor.cn/websocket.html  'WEBSOCKET CLIENT'；
+> easyswoole 提供了更强大的WebSocket调试工具，[foo]: http://easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
 
@@ -403,7 +403,7 @@ namespace App\WebSocket;
 /**
  * Class WebSocketEvent
  *
- * 此类是 WebSocet 中一些非强制的自定义事件处理
+ * 此类是 WebSocket 中一些非强制的自定义事件处理
  *
  * @package App\WebSocket
  */
