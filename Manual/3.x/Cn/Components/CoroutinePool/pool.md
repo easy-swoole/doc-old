@@ -182,7 +182,7 @@ PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 > 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断，而用户没有注册连接池时,直接getPoo也可直接自动注册并使用连接
 
 ### 自动回收
-在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`invoke`方法,通过invoke方法,可直接在闭包中操作连接池连接,执行完自动回收,例如:
+在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`invoke`方法,通过invoke方法,可直接在闭包中操作连接池连接,执行完自动回收,例如
 ````php
 $data = MysqlPool::invoke(function ( MysqlObject $db){
    $data = $db->get('test');
