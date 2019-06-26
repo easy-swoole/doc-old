@@ -1,4 +1,4 @@
-# Mysql-Pool
+    # Mysql-Pool
 
 EasySwoole 提供了一个Mysql Pool组件，等于高度封装了Pool的链接管理器
 ## 安装
@@ -39,10 +39,26 @@ $poolConf = Mysql::getInstance()->register('mysql',$config);
 
 ## 服务启动后任意位置使用
 ```
-use EasySwoole\MysqliPool\Mysql;
-/** @var \EasySwoole\MysqliPool\Connection $db */
-$db = Mysql::getInstance()->pool('mysql')::defer();
-var_dump($db->rawQuery('select version()'));
+ /** @var \EasySwoole\MysqliPool\Connection $db */
+    $db = \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')::defer();
+    var_dump($db->rawQuery('select version()'));
+    $db = \EasySwoole\MysqliPool\Mysql::defer('mysql');
+    var_dump($db->rawQuery('select version()'));
+    
+    
+    $data = \EasySwoole\MysqliPool\Mysql::invoker('mysql',function (\EasySwoole\MysqliPool\Connection $db){
+        return $db->rawQuery('select version()');
+    });
+    $data = \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')::invoke(function (\EasySwoole\MysqliPool\Connection $db){
+        return $db->rawQuery('select version()');
+    });
+    
+    //原生获取方式，getobj和recycleObj必须成对使用
+    $db =\EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')->getObj();
+    $data = $db->get('test');
+    //回收
+    \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')->recycleObj($db);
+
 ```
 
 ## 方法列表
@@ -127,6 +143,13 @@ $db->rawQuery('select version()');
 $data = MysqlPool::invoke(function (MysqlConnection $db){
     return $db->rawQuery('select version()');
 });
+```
+方法三
+```
+$db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
+$data = $db->get('test');
+//使用完毕需要回收
+PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ```
 
 > 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节

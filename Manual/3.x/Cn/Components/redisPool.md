@@ -39,11 +39,26 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
 
 ## 服务启动后任意位置使用
 ```
-use EasySwoole\RedisPool\Redis;
-/** @var \EasySwoole\RedisPool\Connection $redis */
-$redis = Redis::getInstance()->pool('redis')::defer();
-$redis->set('a',time());
-var_dump($redis->get('a'));
+  /*@var \EasySwoole\RedisPool\Connection $redis */
+    $redis = \EasySwoole\RedisPool\Redis::getInstance()->pool('redis')::defer();
+    ($redis->set('name','仙士可'));
+    $redis = \EasySwoole\RedisPool\Redis::defer('redis');
+    var_dump($redis->get('name'));
+    
+    $data = \EasySwoole\RedisPool\Redis::invoker('redis',function (\EasySwoole\RedisPool\Connection $redis){
+        return $redis->get('name');
+    });
+    var_dump($data);
+    $data = \EasySwoole\RedisPool\Redis::getInstance()->pool('redis')::invoke(function (\EasySwoole\RedisPool\Connection $redis){
+        return $redis->get('name');
+    });
+    var_dump($data);
+
+    //原生获取方式，getobj和recycleObj必须成对使用
+    $redis =\EasySwoole\RedisPool\Redis::getInstance()->pool('redis')->getObj();
+    var_dump($redis->get('name'));
+    //回收
+    \EasySwoole\RedisPool\Redis::getInstance()->pool('redis')->recycleObj($redis);
 ```
 
 ## 方法列表
@@ -298,6 +313,13 @@ $data = RedisPool::invoke(function (Redis $redis){
     $redis->set('test','test');
     return $redis->get('test');
 });
+```
+方法三
+```
+$redis = PoolManager::getInstance()->getPool(RedisPool::class)->getObj();
+$data = $redis->get('test');
+//使用完毕需要回收
+PoolManager::getInstance()->getPool(RedisPool::class)->recycleObj($redis);
 ```
 
 > 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节
