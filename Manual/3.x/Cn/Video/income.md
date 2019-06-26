@@ -1,10 +1,10 @@
 # 入门教程
 
 ## 关于版权
-以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。
+以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。若您觉得视频对您有帮助，期待能的赞助用以OSS存储费用支出。[捐赠链接](./../donate.md)
 
 ## CDN赞助
-EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您有帮助，期待您共享一点力量，帮助我们减少CDN费用支出压力。[捐赠链接](./../donate.md)
+本视频CDN赞助由 [verycloud](https://www.verycloud.cn/) 提供
 
 ## 安装
 
@@ -15,13 +15,13 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 4. 编译安装swoole 并且启用 openssl socket 以及指定php config路径
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
-> 观看地址:[Swoole4.x安装](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVzd29vbGUubXA0)
+> 观看地址:[Swoole4.x安装](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NXN3b29sZS5tcDQ=)
    
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
 2. 配置国内镜像
       
-> 观看地址:[Composer镜像更换](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVjb21wb3NlciVFNSVCOSVCNiVFOSU4NSU4RCVFNyVCRCVBRSVFNSU5QiVCRCVFNSU4NiU4NSVFOSU5NSU5QyVFNSU4MyU4Ri5tcDQ=)
+> 观看地址:[Composer镜像更换](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NWNvbXBvc2VyJUU1JUI5JUI2JUU5JTg1JThEJUU3JUJEJUFFJUU1JTlCJUJEJUU1JTg2JTg1JUU5JTk1JTlDJUU1JTgzJThGLm1wNA==)
 
 
 ### 第三节 安装EasySwoole3 约 5分钟
@@ -30,7 +30,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
       
-> 观看地址:[EasySwoole安装](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVFYXN5U3dvb2xlLm1wNA==)
+> 观看地址:[EasySwoole安装](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NUVhc3lTd29vbGUubXA0)
 
 
 ### 第四节 安装EasySwoole Mysqli 等扩展包 约2分钟
@@ -38,7 +38,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 使用 编辑 composer.json + update 安装Utility
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
       
-> 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlQUUlODklRTglQTMlODVNeXNxbGklRTclQUQlODklRTUlQkElOTMlRTUlOTIlOEMlRTUlOUYlQkElRTYlOUMlQUMlRTYlOTMlOEQlRTQlQkQlOUMubXA0)
+> 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NU15c3FsaSVFNyVBRCU4OSVFNSVCQSU5MyVFNSU5MiU4QyVFNSU5RiVCQSVFNiU5QyVBQyVFNiU5MyU4RCVFNCVCRCU5Qy5tcDQ=)
 
 
 ## 基础部分
@@ -48,7 +48,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. php-fpm工作机制
 3. php-fpm问题
    
-> 观看地址:[php-fpm进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9waHAtZnBtJUU0JUJCJThCJUU3JUJCJThELm1wNA==)
+> 观看地址:[php-fpm进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3BocC1mcG0lRTQlQkIlOEIlRTclQkIlOEQubXA0)
 
 ### php多进程模型介绍(附录)
 > 观看地址:[php多进程模型介绍(WorkMan作者公开的pdf)](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/php%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B.pdf)
@@ -58,25 +58,25 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. swoole工作机制
 3. swoole的进程模型
 
-> 观看地址:[Swoole进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTclOUElODQlRTclQUUlODAlRTQlQkIlOEIlRTUlOTIlOEMlRTglQkYlOUIlRTclQTglOEIlRTYlQTglQTElRTUlOUUlOEIlN0UyLm1wNA==)
+> 观看地址:[Swoole进程模型](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNyU5QSU4NCVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFOCVCRiU5QiVFNyVBOCU4QiVFNiVBOCVBMSVFNSU5RSU4QiU3RTIubXA0)
 
 ### Swoole 生命周期
 1. 介绍swoole生命周期
 
-> 观看地址:[Swoole变量生命周期](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9zd29vbGUlRTUlOEYlOTglRTklODclOEYlRTclOTQlOUYlRTUlOTElQkQlRTUlOTElQTglRTYlOUMlOUYubXA0)
+> 观看地址:[Swoole变量生命周期](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNSU4RiU5OCVFOSU4NyU4RiVFNyU5NCU5RiVFNSU5MSVCRCVFNSU5MSVBOCVFNiU5QyU5Ri5tcDQ=)
 
 ### 协程简介
 1. 同步阻塞的问题
 2. 协程原理
 3. swoole协程工作机制
 
-> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlOEQlOEYlRTclQTglOEIlRTclQUUlODAlRTQlQkIlOEIubXA0)
+> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbSVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JThEJThGJUU3JUE4JThCJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
 
 ### 协程带来的影响
 1. 同步阻塞案例
 2. 协程案例
    
-> 观看地址:[协程带来的影响](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS8lRTUlOEQlOEYlRTclQTglOEIlRTUlQjglQTYlRTYlOUQlQTUlRTclOUElODQlRTUlQkQlQjElRTUlOTMlOEQubXA0)
+> 观看地址:[协程带来的影响](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNSVCOCVBNiVFNiU5RCVBNSVFNyU5QSU4NCVFNSVCRCVCMSVFNSU5MyU4RC5tcDQ=)
 
 ## Http部分
 
@@ -85,7 +85,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 使用 FastRoute 并尝试访问
 3. 配置 `强制路由` 、`setMethodNotAllowCallBack` 、`setRouterNotFoundCallBack` 
          
-> [HTTP解析与路由](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlSHR0cCVFOCVBNyVBMyVFNiU5RSU5MCVFNSU5MiU4QyVFOCVCNyVBRiVFNyU5NCVCMSVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+> [HTTP解析与路由](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVIdHRwJUU4JUE3JUEzJUU2JTlFJTkwJUU1JTkyJThDJUU4JUI3JUFGJUU3JTk0JUIxJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
 
 
 ### 第二节 控制器特性 以及常用方法 约 10分钟
@@ -93,7 +93,7 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 2. 介绍controller的池特性以及静态变量，变量生命周期等
 3. 介绍一些常用方法 尤其介绍请求数据的获取 如form-data raw header params 等等 以及响应数据的一些基本知识 如json 重定向 等等
          
-> 观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/play_video.html?video=aHR0cHM6Ly9lYXN5c3dvb2xlLm9zcy1jbi1zaGVuemhlbi5hbGl5dW5jcy5jb20vJUU1JTg1JUE1JUU5JTk3JUE4JUU2JTk1JTk5JUU3JUE4JThCMS9FYXN5U3dvb2xlQ29udHJvbGxlciVFNSVBRiVCOSVFOCVCMSVBMSVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFNiVCMSVBMCVFNiVBOCVBMSVFNSU5RSU4QiVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+> 观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVDb250cm9sbGVyJUU1JUFGJUI5JUU4JUIxJUExJUU3JUFFJTgwJUU0JUJCJThCJUU1JTkyJThDJUU2JUIxJUEwJUU2JUE4JUExJUU1JTlFJThCJUU0JUJCJThCJUU3JUJCJThELm1wNA==)
 
 
 ### 第三节 异常处理 约3分钟
@@ -141,4 +141,4 @@ EasySwoole目前为非盈利组织，若您觉得EasySwoole的视频教程对您
 
 
 ## 其他视频
-- [CSP编程](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%85%A5%E9%97%A8csp.mp4)
+- [CSP编程](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4NSVBNSVFOSU5NyVBOGNzcC5tcDQ=)
