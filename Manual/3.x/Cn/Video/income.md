@@ -141,4 +141,4 @@
 
 
 ## 其他视频
-- [CSP编程](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4NSVBNSVFOSU5NyVBOGNzcC5tcDQ=)
+- [CSP编程](https://www.easyswoole.com/play_video.html?video=aHR0cDovdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JTg1JUE1JUU5JTk3JUE4Y3NwLm1wNA==)
