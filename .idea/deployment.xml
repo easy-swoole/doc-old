@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="x.cn">
+    <serverData>
+      <paths name="x.cn">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/www/easyswoole/tioncico_doc" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
