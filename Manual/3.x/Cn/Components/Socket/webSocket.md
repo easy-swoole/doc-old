@@ -84,8 +84,9 @@ class WebSocketParser implements ParserInterface
         // 设置被调用的方法
         $caller->setAction($data['action'] ?? 'index');
         // 检查是否存在args
-        if (isset($data['content']) && is_array($data['content'])) {
-            $args = $data['content'];
+        if (!empty($data['content'])) {
+            // content 无法解析为array 时 返回 content => string 格式
+            $args = is_array($data['content']) ? $data['content'] : ['content' => $data['content']];
         }
 
         // 设置被调用的Args
@@ -363,8 +364,9 @@ public function decode($raw, $client) : ? Caller
     // 设置被调用的方法
     $caller->setAction($data['action'] ?? 'index');
     // 检查是否存在args
-    if (isset($data['content']) && is_array($data['content'])) {
-        $args = $data['content'];
+    if (!empty($data['content'])) {
+        // content 无法解析为array 时 返回 content => string 格式
+        $args = is_array($data['content']) ? $data['content'] : ['content' => $data['content']];
     }
 
     // 设置被调用的Args
