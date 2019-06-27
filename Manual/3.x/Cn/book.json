@@ -34,7 +34,7 @@
     ],
     "pluginsConfig": {
         "edit-link": {
-            "base": "https://github.com/easy-swoole/doc/edit/master/Manual/3.x/Cn/",
+            "base": "https://github.com/easy-swoole/doc/edit/3.1.x/Manual/3.x/Cn/",
             "label": "编辑本页面"
         },
         "github": {

@@ -5,7 +5,7 @@ EasySwoole 提供了一个Mysql Pool组件，等于高度封装了Pool的链接�
 ```
 composer require easyswoole/mysqli-pool
 ```
-> 该组件基于[pool管理器](../Components/CoroutinePool/pool.md)封装
+> 该组件基于[pool管理器](../Components/Component/pool.md)封装
 
 ## 添加配置
 ```
@@ -30,7 +30,7 @@ use EasySwoole\Mysqli\Config;
 $configData = GConfig::getInstance()->getConf('MYSQL');
 $config = new Config($configData);
 /**
-    这里注册的名字叫redis，你可以注册多个，比如mysql2,mysql3
+    这里注册的名字叫mysql，你可以注册多个，比如mysql2,mysql3
 */
 $poolConf = Mysql::getInstance()->register('mysql',$config);
 //$poolConf->setMaxObjectNum($configData['maxObjectNum']);
@@ -63,7 +63,7 @@ $poolConf = Mysql::getInstance()->register('mysql',$config);
 
 ## 方法列表
 
-EasySwoole\MysqliPool\Connection 实际上是Mysqli的子类，具体可以看 [mysqli](mysqli/install.md)
+EasySwoole\MysqliPool\Connection 实际上是Mysqli的子类，具体可以看 [mysqli](Mysqli/install.md)
 
 
 ## 原生实现
@@ -152,4 +152,4 @@ $data = $db->get('test');
 PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ```
 
-> 其余调用方法请看[pool管理器](../Components/CoroutinePool/pool.md)章节
+> 其余调用方法请看[pool管理器](../Components/Component/pool.md)章节
