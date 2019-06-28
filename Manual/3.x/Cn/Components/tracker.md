@@ -24,6 +24,7 @@ struct Point{
     string endStatus = self::END_UNKNOWN;
     mixed endArg;
     string pointId;
+    string parentId;
     int depth = 0;
     bool isNext
 }
@@ -192,6 +193,215 @@ NextPoint:None
 ```
 
 > 如果想以自己的格式记录到数据库，可以具体查看Point实现的方法，每个Point都有自己的Id
+
+### 基础实例之HTTP API请求追踪
+
+EasySwooleEvent.php
+
+```
+namespace EasySwoole\EasySwoole;
+
+
+use EasySwoole\EasySwoole\Swoole\EventRegister;
+use EasySwoole\EasySwoole\AbstractInterface\Event;
+use EasySwoole\Http\Request;
+use EasySwoole\Http\Response;
+use EasySwoole\Tracker\Point;
+use EasySwoole\Tracker\PointContext;
+
+class EasySwooleEvent implements Event
+{
+
+    public static function initialize()
+    {
+        // TODO: Implement initialize() method.
+        date_default_timezone_set('Asia/Shanghai');
+    }
+
+    public static function mainServerCreate(EventRegister $register)
+    {
+
+    }
+
+    public static function onRequest(Request $request, Response $response): bool
+    {
+        $point = PointContext::getInstance()->createStart('onRequest');
+        $point->setStartArg([
+            'uri'=>$request->getUri()->__toString(),
+            'get'=>$request->getQueryParams()
+        ]);
+        return true;
+    }
+
+    public static function afterRequest(Request $request, Response $response): void
+    {
+        $point = PointContext::getInstance()->startPoint();
+        $point->end();
+        echo Point::toString($point);
+        $array = Point::toArray($point);
+    }
+}
+```
+
+Index.php
+```
+namespace App\HttpController;
+
+use EasySwoole\Component\WaitGroup;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Tracker\PointContext;
+
+class Index extends Controller
+{
+
+    protected function onRequest(?string $action): ?bool
+    {
+        /*
+         * 调用关系  HttpRequest->OnRequest
+         */
+        $point = PointContext::getInstance()->next('ControllerOnRequest');
+        //假设这里进行了权限验证，并模拟数据库耗时
+        \co::sleep(0.01);
+        $point->setEndArg([
+            'userId'=>'xxxxxxxxxxx'
+        ]);
+        $point->end();
+        return true;
+    }
+
+    function index()
+    {
+        //模拟调用第三方Api,调用关系  OnRequest->sub(subApi1,subApi2)
+        $actionPoint = PointContext::getInstance()->next('indexAction');
+        $wait = new WaitGroup();
+        $subApi = $actionPoint->appendChild('subOne');
+        $wait->add();
+        go(function ()use($wait,$subApi){
+            \co::sleep(1);
+            $subApi->end();
+            $wait->done();
+        });
+
+        $subApi = $actionPoint->appendChild('subTwo');
+        $wait->add();
+        go(function ()use($wait,$subApi){
+            \co::sleep(0.3);
+            $subApi->end($subApi::END_FAIL);
+            $wait->done();
+        });
+
+        $wait->wait();
+
+        $actionPoint->end();
+        $this->response()->write('hello world');
+    }
+}
+```
+
+以上每次请求会输出如下格式：
+```
+#
+PointName:onRequest
+Status:success
+PointId:1561743038GyV4lnus
+ParentId:
+Depth:0
+IsNext:false
+Start:1561743038.7011
+StartArg:{"uri":"http://127.0.0.1:9501/","get":[]}
+End:1561743039.7152
+EndArg:null
+ChildCount:0
+Children:None
+NextPoint:
+#
+PointName:ControllerOnRequest
+Status:success
+PointId:15617430386f0OQDsS
+ParentId:1561743038GyV4lnus
+Depth:0
+IsNext:true
+Start:1561743038.7025
+StartArg:null
+End:1561743038.713
+EndArg:null
+ChildCount:0
+Children:None
+NextPoint:
+#
+PointName:indexAction
+Status:success
+PointId:1561743038XEmF0M49
+ParentId:15617430386f0OQDsS
+Depth:0
+IsNext:true
+Start:1561743038.7131
+StartArg:null
+End:1561743039.7151
+EndArg:null
+ChildCount:2
+Children:
+        #
+        PointName:subOne
+        Status:success
+        PointId:1561743038uIkzYgcS
+        ParentId:1561743038XEmF0M49
+        Depth:1
+        IsNext:false
+        Start:1561743038.7135
+        StartArg:null
+        End:1561743039.7151
+        EndArg:null
+        ChildCount:0
+        Children:None
+        NextPoint:None
+        #
+        PointName:subTwo
+        Status:fail
+        PointId:1561743038PslVSY4n
+        ParentId:1561743038XEmF0M49
+        Depth:1
+        IsNext:false
+        Start:1561743038.7136
+        StartArg:null
+        End:1561743039.0149
+        EndArg:null
+        ChildCount:0
+        Children:None
+        NextPoint:None
+NextPoint:None
+```
+### Api调用链记录
+```
+$array = Point::toArray($point);
+```
+可以把一个入口点转为一个数组。例如我们可以在MYSQL数据库中存储以下关键结构：
+```
+CREATE TABLE `api_tracker_point_list` (
+  `pointd` varchar(18) NOT NULL,
+  `pointName` varchar(45) DEFAULT NULL,
+  `parentId` varchar(18) DEFAULT NULL,
+  `depth` int(11) NOT NULL DEFAULT '0',
+  `isNext` int(11) NOT NULL DEFAULT '0',
+  `startTime` varchar(14) NOT NULL,
+  `endTime` varchar(14) DEFAULT NULL,
+  `status` varchar(10) NOT NULL,
+  PRIMARY KEY (`pointd`),
+  UNIQUE KEY `trackerId_UNIQUE` (`pointd`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+```
+> 其余请求参数可以自己记录。
+
+核心字段在pointId，parentId与isNext，status 这四个个字段,例如，我想得到哪次调用链超时，那么就是直接
+```
+where status = fail
+```
+如果想看哪次调用耗时多少，那么可以
+```
+where spendTime > 3
+```
+> spendTime 是用startTime和endTime计算
 
 
 ## 基础服务器信息
