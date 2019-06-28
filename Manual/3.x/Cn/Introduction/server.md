@@ -44,12 +44,11 @@ php easyswoole start d
 ```
 php easyswoole start produce
 ```
-## 服务停止
+## 服务停止(默认配置加载dev.php,使用该命令加载produce.php  3.1.2之前是dev.env,produce.env)
 ```
-php easyswoole stop
+php easyswoole stop produce
 ```
 > 注意，守护模式下才需要stop，不然control+c或者是终端断开就退出进程了
-
 ## 重启服务
 ```
 php easyswoole reload 只重启task进程
