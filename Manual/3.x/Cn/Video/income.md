@@ -70,7 +70,7 @@
 2. 协程原理
 3. swoole协程工作机制
 
-> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbSVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JThEJThGJUU3JUE4JThCJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
+> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
 
 ### 协程带来的影响
 1. 同步阻塞案例
