@@ -30,7 +30,8 @@
         "expandable-chapters-interactive",
         "versions-select",
         "theme-comscore",
-        "footer"
+        "footer",
+        "easyseo-7dtime"
     ],
     "pluginsConfig": {
         "edit-link": {
