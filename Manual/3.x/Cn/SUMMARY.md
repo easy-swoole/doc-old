@@ -142,6 +142,7 @@
     - [Atomic限流器](Components/atomicLimit.md)
     - [支付SDK](Components/pay.md)
     - [微信SDK](Components/wechat.md)
+    - [Tracker](Components/tracker.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/arrayToTextTable.md)
         - [File](Components/Tools/file.md)
