@@ -1,8 +1,9 @@
-# http服务
-http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它实现了控制器连接池,url解析以及url路由规则.  
-[http组件demo](https://github.com/easy-swoole/demo/tree/3.x-http)
-## 命名空间
-我们首先需要在`composer.json`中注册应用目录的命名空间(控制器命名空间默认为`App\HttpController`)
+# Http server
+The HTTP component is automatically enabled when `SERVER_TYPE'is `EASYSWOOLE_WEB_SERVER'. It implements the controller connection pool, URL parsing and URL routing rules.
+[HTTP component demo](https://github.com/easy-swoole/demo/tree/3.x-http)
+## Namespace
+We first need to register the namespace of the application directory in `composer.json'(the controller namespace defaults to `App\HttpController')
+
 ````
 {
     "require": {
@@ -15,13 +16,13 @@ http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它
     }
 }
 ````
-然后更新一下composer
+Then update composer
 ````
 composer update
 ````
 
-## 默认控制器
-创建`App/HttpController/Index.php`文件:
+## Default controller
+Create `App/HttpController/Index.php` file:
 ````php
 <?php
 /**
@@ -43,10 +44,10 @@ class Index extends Controller{
 }
 ````
 
-启动easyswoole:
+Start easyswoole:
 ````
 php easyswoole start
 ````
-访问ip:9501,即可看到输出"hello world";
+Access ip: 9501, you can see the output "hello world";
 
 
