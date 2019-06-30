@@ -1,20 +1,20 @@
-# 常见问题
-## 如何获取$HTTP_RAW_POST_DATA
+# Common problem
+## How to acquire $HTTP_RAW_POST_DATA
 ```php
 $content = $this->request()->getBody()->__toString();
 $raw_array = json_decode($content, true);
 ```
-## 如何获取客户端IP
-举例，如何在控制器中获取客户端IP
+## How to Get Client IP
+For example, how to get client IP in the controller
 ```php
-//真实地址
+//Real address
 $ip = ServerManager::getInstance()->getSwooleServer()->connection_info($this->request()->getSwooleRequest()->fd);
 var_dump($ip);
-//header 地址，例如经过nginx proxy后
+//header Address, eg. after nginx proxy
 $ip2 = $this->request()->getHeaders();
 var_dump($ip2);
 ```
-## 如何处理静态资源
+## How to deal with static resources
 Apache URl rewrite
 ```
 <IfModule mod_rewrite.c>
@@ -22,9 +22,9 @@ Apache URl rewrite
   RewriteEngine On
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
-  #RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]  fcgi下无效
+  #RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]  Invalid under fcgi
   RewriteRule ^(.*)$  http://127.0.0.1:9501/$1 [QSA,P,L]
-   #请开启 proxy_mod proxy_http_mod request_mod
+   #Open it, please. proxy_mod proxy_http_mod request_mod
 </IfModule>
 ```
 
@@ -43,19 +43,19 @@ server {
     }
 }
 ```
-## HTTP 状态码总为500
-自 swoole **1.10.x** 和 **2.1.x** 版本起，执行http server回调中，若未执行response->end(),则全部返回500状态码
+## The total HTTP status code is 500
+Since the swoole ** 1.10.x ** and ** 2.1.x ** versions, when the http server callback is executed, if response-> end () is not executed, all the status codes are returned to 500.
 
-## 如何setCookie  
-调用response对象的setCookie方法即可设置cookie
+## How to Set Cookie  
+Calling the setCookie method of the response object sets the cookie
 ```php
   $this->response()->setCookie('name','value');
 ```
-更多操作可看[Response对象](response.md)
+More operations to see[Response object](response.md)
 
 
-## 如何自定义App名称
-只需要修改composer.json的命名空间注册就行
+## How to Customize App Name
+Just modify composer.json's namespace registration
 ```
     "autoload": {
         "psr-4": {
@@ -64,9 +64,9 @@ server {
     }
 ```
 
-## 关于跨域处理
+## On Cross-domain Processing
 
-在全局事件添加以下代码 拦截所有请求添加跨域头
+Add the following code to the global event to intercept all requests and add cross-domain headers
 
 ```php
 public static function onRequest(Request $request, Response $response): bool
