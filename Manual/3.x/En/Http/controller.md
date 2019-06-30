@@ -1,28 +1,28 @@
-# 控制器对象
-控制器对象是http组件中方便客户端与服务端交互的对象,它使用了对象池对象复用模式,以及注入`request`和`response`对象进行数据交互
+# Controller object
+Controller object is an object in HTTP component that facilitates interaction between client and server. It uses object pool object reuse mode and injects `request'and `response' objects for data interaction.
 
-## 对象池模式
-http的控制器对象都采用了对象池模式进行获取创建对象.  
-例如:
- * 用户A请求`/Index`,经过url解析以及路由转发,定位到了`App\HttpController\Index.php`,控制器
- * 由于是第一次请求,`new App\HttpController\Index.php`,并将该对象存入到对象池中
- * 对象池出列,获取该对象,并进行调用index方法进行处理请求
- * 处理完毕,将对象的属性重置为默认值,对象回收对象池
- * 用户B请求`/Index`,经过url解析以及路由转发,定位到了`App\HttpController\Index.php`,控制器
- * 由于是二次请求,对象池直接获取到第一次的对象,不需要new,直接调用 index方法进行处理
+## Object Pool mode/
+The object pool mode is adopted to acquire the created objects for the control objects of http.
+For example:
+* User A requests `Index`, after URL parsing and routing forwarding, locates `App HttpController Index. php', the controller
+* Since this is the first request, `new \App\HttpController\Index. php', and store the object in the object pool
+* The object pool is listed, the object is fetched, and the index method is called to process the request.
+* After processing, the property of the object is reset to the default value, and the object pool is reclaimed.
+* User B requests `Index`, after URL parsing and routing forwarding, locates `App\HttpController\Index.php', the controller
+* Because it's a second request, the object pool gets the first object directly without requiring new, and calls the index method directly for processing.
  
-> 对象池模式实现了不同请求复用同一个对象,降低了创建/销毁对象的开销  
-> 只有第一次请求 创建对象才会调用构造函数,在第二次请求获取对象时将不会再次调用  
-> 对象池模式不会重置静态属性和private私有属性,这2种属性将会复用  
-> 对象池模式是针对单一进程的,多个work进程的对象池不共享.  
+> Object pool pattern enables different requests to reuse the same object and reduces the overhead of creating/destroying objects.
+> The constructor is called only on the first request to create an object, and will not be called again on the second request to obtain an object.
+> Object pool schema does not reset static and private attributes, which will be reused
+> Object pool pattern is for a single process, and object pools of multiple work processes are not shared.
 
 
     
-## 对象方法   
-### 调度类方法   
+## Object method   
+### Scheduling class method   
  * "action"     
- "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.   
-> action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:    
+ "Action" is the method that the controller finally executes. According to the matching of routes, different controller methods can be executed, such as `index'method which is executed by default, and `test' method which is finally resolved by accessing `ip/index/test', which can be called `action'execution method.
+> The action method can return a string so that the framework can schedule the controller method again, for example: 
 
  
 ````php  
@@ -50,7 +50,7 @@ class Index extends Controller
     function test()
     {
         $this->response()->write('this is test');
-        return '/test2';//当执行完test方法之后,返回/test2,让框架继续调度/test2方法
+        return '/test2';//When the test method has been executed, return to /test2 and let the framework continue scheduling /test2 methods.
     }
 
     function test2()
@@ -60,8 +60,8 @@ class Index extends Controller
     }
 }
 ````   
-> 返回的字符串将会被`url解析规则`以及`route路由`规则解析   
-> 但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
+> The returned string will be parsed by `url parsing Rules'and `route routing' rules
+> However, it should be noted that method A should not return method B, method B should return the string of method A, otherwise infinite dead-loop calls will occur.
     
  
 
@@ -78,15 +78,15 @@ protected function onRequest(?string $action): ?bool
 ````  
 
 
-在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.    
-可用于做控制器基类权限验证等,例如:    
+Events when preparing to call the controller method to process the request, if the method returns false, it will not continue to execute.
+It can be used to verify the privileges of the base class of the controller, for example:
 ````php
 function onRequest(?string $action): ?bool
 {
     if (parent::onRequest($action)) {
-        //判断是否登录
-        if (1/*伪代码*/) {
-            $this->writeJson(Status::CODE_UNAUTHORIZED, '', '登入已过期');
+        //Determine whether to log in or not
+        if (1/*Pseudo-code*/) {
+            $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'Logon has expired');
             return false;
         }
         return true;
@@ -96,26 +96,26 @@ function onRequest(?string $action): ?bool
 ````
 
  * afterAction   
-当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑    
+When the controller method is executed, the method will be called to customize logic such as data recovery.
 
  * index  
-index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.
+Index is an abstract method, representing the need to implement this method for inheriting controller objects. Index will become the default controller method.
 
  * actionNotFound  
-当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑   
-> 该方法可以理解成 `默认方法`,类似于`index`方法,所以调用完之后也会触发`afterAction`,`gc`等方法
+When the request method is not found, the method is called automatically, and the method can be overwritten to realize its own logic.
+This method can be understood as the `default method', similar to the `index'method, so the `afterAction', `gc', and other methods will be triggered after the call is completed.
  * onException  
-当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)      
-可覆盖该方法,进行自定义的异常处理,例如:
+When the controller logic throws an exception, this method is called to handle the exception (the framework has handled the exception by default).
+This method can be overridden for custom exception handling, such as:
 ````php
 function onException(\Throwable $throwable): void
 {
-    //直接给前端响应500并输出系统繁忙
+    //Direct response to front-end 500 and busy output system
     $this->response()->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
-    $this->response()->write('系统繁忙,请稍后再试 ');
+    $this->response()->write('The system is busy. Please try again later. ');
 }
 ````
-> 更多控制器异常相关可查看[错误与异常拦截](exception.md)
+> More Controller Abnormalities can be seen[Error and exception interception](exception.md)
  * gc  
 ````php
 protected function gc()
@@ -125,64 +125,65 @@ protected function gc()
         $this->session->writeClose();
         $this->session = null;
     }
-    //恢复默认值
+    //Restore default values
     foreach ($this->defaultProperties as $property => $value) {
         $this->$property = $value;
     }
 }
 ````
-gc 方法将在执行`方法`,`afterAction`完之后自动调用  
-将控制器属性重置为默认值,关闭`session`  
-可自行覆盖实现其他的gc回收逻辑.  
+The gc method will be called automatically after execution of `method', `afterAction'.
+Reset the controller property to the default value and close `session'.`
+Other gc recovery logic can be implemented by self-coverage.
 
-### 请求响应类方法
+### Request Response Class Method
  * request   
-request方法调用之后,将返回`EasySwoole\Http\Request`对象    
-该对象附带了用户请求的所有数据,例如:
+After the request method is called, the `EasySwoole\HttpRequest'object is returned.
+This object comes with all the data requested by the user, such as:
 ````php
 function index()
 {
     $request = $this->request();
-    $request->getRequestParam();//获取post/get数据,get覆盖post
-    $request->getMethod();//获取请求方式(post/get/)
-    $request->getCookieParams();//获取cookie参数
+    $request->getRequestParam();//Get post/get data, get overrides post
+    $request->getMethod();//Get the request mode (post/get/)
+    $request->getCookieParams();//Get cookie parameters
 }
 ````
-> 更多request相关可查看[request对象](request.md)
+> More requests are available[request object](request.md)
  * response  
-response方法将返回`EasySwoole\Http\Response`,用于向客户端响应数据,例如:
+The response method returns `easywoole\http\response`for responding to data to the client, such as:
 ````php
 function index()
 {
     $response = $this->response();
-    $response->withStatus(200);//设置响应状态码,必须设置
-    $response->setCookie('name','仙士可',time()+86400,'/');//设置一个cookie
-    $response->write('hello world');//向客户端发送一条数据(类似于常规web模式的 echo )
+    $response->withStatus(200);//To set the response status code, you must set it
+    $response->setCookie('name','仙士可',time()+86400,'/');//Setting up a cookie
+    $response->write('hello world');//Send a piece of data to the client (echo similar to regular web mode)
 }
 ````  
-> 更多response相关可查看[response对象](response.md)
+> More responses are available[response object](response.md)
  * writeJson  
- writeJson方法直接封装了设置响应状态码,设置响应头,数组转为json输出.
+The writeJson method directly encapsulates the setting of response status code, the setting of response header and the conversion of array to JSON output.
 ````php
 function index()
 {
- $this->writeJson(200,['xsk'=>'仙士可'],'success');
+ $this->writeJson(200,['xsk'=>'test data'],'success');
 }
 ````
-网页输出:
+Page Output:
 ````
-{"code":200,"result":{"xsk":"仙士可"},"msg":"success"}
+{"code":200,"result":{"xsk":"test data"},"msg":"success"}
 ````
 
-### 反序列化方法
+### Deserialization method
  * json  
- 使用json_decode 解析json字符串
+Resolving JSON strings using json_decode
  * xml  
- 使用simplexml_load_string解析xml字符串
+ Parsing XML strings using simplexml_load_string
+
  
-### session相关
+### Session correlation
  * sessionDriver  
-  设置session的驱动类,默认为`EasySwoole\Http\Session\SessionDriver`
+  Set the session driver class by default`EasySwoole\Http\Session\SessionDriver`
  * session  
 Return the session driver class to manage the session 
 ### Verification correlation
