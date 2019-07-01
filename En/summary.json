@@ -1,3 +1,550 @@
 {
+  "links": [
+    {
+      "name": "VIP交流群 579434607",
+      "link": "http://jq.qq.com/?_wv=1027&k=5bxu3cG"
+    },
+    {
+      "name": "在线交流群 633921431",
+      "link": "http://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548"
+    },
+    {
+      "name": "WebSocket调试工具",
+      "link": "/wstool.html"
+    }
+  ],
+  "menu": [
+    {
+      "name": "Basic",
+      "link": "/Cn/README.html",
+      "sub": [
+        {
+          "name": "Environment",
+          "link": "/Cn/Introduction/environment.html",
+          "sub": [
 
+          ]
+        },
+        {
+          "name": "Install",
+          "link": "/Cn/Introduction/install.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Config",
+          "link": "/Cn/Introduction/config.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "ManagerScript",
+          "link": "/Cn/Introduction/managerScript.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "StaticFileProxy",
+          "link": "/Cn/Introduction/staticFileProxy.html",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EasyswooleEvent",
+      "link": "/Cn/Event/introduction.html",
+      "sub": [
+        {
+          "name": "Initialize",
+          "link": "/Cn/Event/initialize.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "MainServerCreate",
+          "link": "/Cn/Event/mainServerCreate.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "OnRequest",
+          "link": "/Cn/Event/onRequest.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "AfterRequest",
+          "link": "/Cn/Event/afterRequest.html",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HttpServer",
+      "link": "/Cn/Http/httpServer.html",
+      "sub": [
+        {
+          "name": "Controller",
+          "link": "/Cn/Http/controller.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "UrlParser",
+          "link": "/Cn/Http/urlParser.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Router",
+          "link": "/Cn/Http/router.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Request",
+          "link": "/Cn/Http/request.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Response",
+          "link": "/Cn/Http/response.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "ExceptionHandler",
+          "link": "/Cn/Http/exception.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Problems",
+          "link": "/Cn/Http/problem.html",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BaseUsage",
+      "link": "link",
+      "sub": [
+        {
+          "name": "Process",
+          "link": "/Cn/BaseUsage/process.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "AsyncTask",
+          "link": "/Cn/BaseUsage/asyncTask.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Timer",
+          "link": "/Cn/BaseUsage/timer.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Crontab",
+          "link": "/Cn/BaseUsage/crontab.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Log",
+          "link": "/Cn/BaseUsage/log.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "ServerManager",
+          "link": "/Cn/BaseUsage/serverManager.html)   ",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ComponentList",
+      "link": "link",
+      "sub": [
+        {
+          "name": "BaseComponent",
+          "link": "link",
+          "sub": [
+            {
+              "name": "Singleton",
+              "link": "/Cn/Components/Component/singleton.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "IOC",
+              "link": "/Cn/Components/Component/di.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Context",
+              "link": "/Cn/Components/Component/context.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Pool",
+              "link": "/Cn/Components/Component/pool.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "WaitGroup",
+              "link": "/Cn/Components/Component/waitgroup.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Csp",
+              "link": "/Cn/Components/Component/csp.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Spl",
+          "link": "link",
+          "sub": [
+            {
+              "name": "SplArray",
+              "link": "/Cn/Components/Spl/array.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "SplBean",
+              "link": "/Cn/Components/Spl/bean.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "SplEnum",
+              "link": "/Cn/Components/Spl/enum.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "SplString",
+              "link": "/Cn/Components/Spl/string.html)   ",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Validate",
+          "link": "/Cn/Components/validate.html)      ",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "HttpClient",
+          "link": "/Cn/Components/HttpClient/introduction.html",
+          "sub": [
+            {
+              "name": "Request",
+              "link": "/Cn/Components/HttpClient/request.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Response",
+              "link": "/Cn/Components/HttpClient/response.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mysqli",
+          "link": "/Cn/Components/Mysqli/Introduction.html",
+          "sub": [
+            {
+              "name": "Install",
+              "link": "/Cn/Components/Mysqli/install.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "ChainCall",
+              "link": "/Cn/Components/Mysqli/chainCall.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "RawQuery",
+              "link": "/Cn/Components/Mysqli/rawQeury.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "CURD",
+              "link": "link",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Other",
+              "link": "/Cn/Components/Mysqli/other.html)",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MysqlPool",
+          "link": "/Cn/Components/MysqlPool/mysqlPool.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "RedisPool",
+          "link": "/Cn/Components/RedisPool/redisPool.html)    ",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Socket",
+          "link": "/Cn/Components/Socket/introduction.html",
+          "sub": [
+            {
+              "name": "TCP",
+              "link": "/Cn/Components/Socket/tcp.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "UDP",
+              "link": "/Cn/Components/Socket/udp.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "WEBSOCKET",
+              "link": "/Cn/Components/Socket/webSocket.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Problems",
+              "link": "/Cn/Components/Socket/problem.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Actor",
+          "link": "/Cn/Components/Actor/actor.html",
+          "sub": [
+            {
+              "name": "Design",
+              "link": "/Cn/Components/Actor/design.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rpc",
+          "link": "/Cn/Components/Rpc/Introduction.html",
+          "sub": [
+            {
+              "name": "Server",
+              "link": "/Cn/Components/Rpc/server.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Client",
+              "link": "/Cn/Components/Rpc/client.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "RegisterCenter",
+              "link": "/Cn/Components/Rpc/registerCenter.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "otherPlatform",
+              "link": "/Cn/Components/Rpc/otherPlatform.html)        ",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
+          "name": "VerifyCode",
+          "link": "/Cn/Components/verifyCode.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Template",
+          "link": "/Cn/Components/template.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Whoops",
+          "link": "/Cn/Components/whoops.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "SyncInvoker",
+          "link": "/Cn/Components/syncInvoker.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "FastCache",
+          "link": "/Cn/Components/fastCache.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Session",
+          "link": "/Cn/Components/session.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "AtomicLimit",
+          "link": "/Cn/Components/atomicLimit.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Utility",
+          "link": "link",
+          "sub": [
+            {
+              "name": "Random",
+              "link": "/Cn/Components/Utility/random.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "SnowFlake",
+              "link": "/Cn/Components/Utility/snowFlake.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Problems",
+      "link": "link",
+      "sub": [
+        {
+          "name": "Random",
+          "link": "/Cn/Problems/random.html)       ",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "MongoDb",
+          "link": "/Cn/Problems/mongodb.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "Queue",
+          "link": "/Cn/Problems/queue.html",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
+      "name": "  ",
+      "link": "link",
+      "sub": [
+
+      ]
+    }
+  ]
 }
