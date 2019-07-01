@@ -1,14 +1,8 @@
 # Framework Installation
 
-The framework uses `Composer` as the dependency management tool. Before starting to install the framework, please ensure that you have configured the environment and installed the `Composer` tool as required in the previous section. During the installation process, the framework files will be released to the project. Directory, please make sure the project directory has writable permission.
+EasySwoole utilizes `Composer` to manage its dependencies. Before starting the installation process, please ensure that you have got your system satisfied with our requirements, and `Composer` installed on your machine. During the installation process, the framework files will be downloaded to the project root directory automatically, please make sure the folder is writable.
 
-> For the installation of Composer, please refer to the installation tutorial of [Composer China Full Mirror] (https://pkg.phpcomposer.com/#how-to-install-composer). In addition, Composer China has not been updated for a long time. Please use the ladder or other images.
-
-## Switching Laravel Images
-````
-Composer config -g repo.packagist composer https://packagist.laravel-china.org
-````
-## Composer Installation
+## Install via Composer
 
 Follow the steps below to install manually
 
@@ -21,7 +15,7 @@ php vendor/bin/easyswoole install
 
 ## Reporting Error Handling
 
-In some environments, especially PHP environments using the integrated panel installation, the following error occurs:
+In some cases, especially those PHP integrated server environment such as wamp/xampp/mamp, you might see the following error message appear:
 
 ```bash
 dir=$(d=${0%[/\\]*}; cd "$d" > /dev/null; cd '../easyswoole/easyswoole/bin' && pwd)
@@ -41,13 +35,13 @@ dir=$(echo $dir | sed 's/ /\ /g')
 "${dir}/easyswoole" "$@"
 ```
 
-Most of the reasons for this error are the current PHP.ini disables the `symlink` function, or can't create a symbolic link in the `vendor` directory. You can execute the following command line to observe the output to confirm whether the function is disabled. If the function is not disabled, there is no `symlink` in the output list
+The most likely reason could be the `symlink` function is disabled in the PHP.ini file, or can't create a symbolic link in the `vendor` directory. You can execute the following command line to confirm whether the `symlink` function is disabled or not. If it was, there should no `symlink` in the output list
 
 ```bash
 php -ini | grep disable_functions
 ```
 
-> If the function is disabled, you can directly modify PHP.ini or disable the function in the integration panel, delete the `vendor` directory in the project directory, and re-execute `composer install` to pull the dependency package.
+> If the function is disabled, you can directly modify PHP.ini or enable the function in the admin panel, delete the `vendor` directory in the project directory, and re-run `composer install` command to pull the dependency package once again.
 
 If the error is caused by other reasons, you can manually execute the following command in the project root directory to link the executable file:
 
@@ -70,14 +64,15 @@ composer require easyswoole/easyswoole=3.x-dev
 php vendor/bin/easyswoole install
 ```
 
-If there is no error in the middle, execute:
+If there is no error appears during the installation, then:
 ```bash
-# start framework
+# Fire-up the framework
 php easyswoole start
 ```
-At this point you can visit `http://localhost:9501` to see the welcome page of the framework, indicating that the framework has been installed successfully.
+> If the fire-up action failed, please refer to the error message.
 
-> If the install operation of the second step reports an error, please see the error handling above.
+Now if you could see the welcome page by visiting `http://localhost:9501`, congratulations, EasySwoole has been installed and good to go!
+
 
 ## Dockerfile
 
@@ -151,25 +146,25 @@ EXPOSE 9501
 ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 
 ```
-> docker build Dockerfile, please search from Baidu
+> docker build Dockerfile? please google it yourself
 
 ## Hello World
-Create the following directory structure in the project root directory. This directory is the application directory for writing business logic. Edit the `Index.php` file and add the code of the base controller.
+Create the following directory structure in the project root directory. 
 
 ```
-project - project deployment directory
+project - The project root directory
 ----------------------------------
-├─App - App Catalog
-│ └─HttpController - the controller directory of the application
-│ └─Index.php - default controller file
+├─App               - App directory
+│ └─HttpController  - the controller directory of the application
+│   └─Index.php     - default controller file
 ----------------------------------
 ```
+
+The `App` directory is the central place where you should put all business logic. Modify the `Index.php` file to add some codes as below:
 
 ```php
 <?php
 namespace App\HttpController;
-
-
 use EasySwoole\Http\AbstractInterface\Controller;
 
 class Index extends Controller
@@ -178,11 +173,11 @@ class Index extends Controller
     function index()
     {
         // TODO: Implement index() method.
-        $this->response()->write('hello world');
+        $this->response()->write('Hello World');
     }
 }
 ```
-Then edit the composer.json file in the root directory to register the application's namespace.
+Then update the composer.json file in the root directory to register the application's namespace.
 
 ```json
 {
@@ -197,9 +192,9 @@ Then edit the composer.json file in the root directory to register the applicati
 }
 ```
 
-> actually, the name space of the app is registered
+> In fact, the namespace `App` is registered
 
-Finally, the `composer dumpautoload` command is executed to update the namespace. The framework can automatically load the files in the **App** directory. At this point, the framework has been installed and you can start writing business logic.
+At last, run `composer dumpautoload` command in the prompt. The framework now can automatically load the files in the **App** directory, so you can start writing the business logic at this stage.
 
 ```bash
 # update namespace mapping
@@ -207,11 +202,11 @@ composer dumpautoload
 # start framework
 php easyswoole start
 ```
-After launching the framework, visit `http://localhost:9501` to see Hello World.
+After the application launched, you should see `Hello World` by visiting `http://localhost:9501`.
 
 ## About IDE Assistant
 
-Since the function of Swoole is not a PHP standard function, the IDE cannot perform automatic completion. In order to facilitate development, you can execute the following command to introduce the IDE assistant, which can automatically complete the Swoole related functions under the IDE.
+Since Swoole extension is not included in default PHP installation packages, so the IDE which you're using, might not perform automatic completion. In order to avoid the tips of undefined and improve work efficiency, we recommend you install the `Swoole IDE Helper` by:
 
 ```bash
 composer require easyswoole/swoole-ide-helper
@@ -219,50 +214,49 @@ composer require easyswoole/swoole-ide-helper
 
 ## Directory Structure
 
-**EasySwoole**'s directory structure is very flexible, basically it can be customized without too many constraints, but it is still recommended to follow the following directory structure for easy development
+**EasySwoole** can support very flexible files/directories structure, almost it can be customized without any constraints, but we still recommended you to use the directory structure below:
 
 ```
-Project - project deployment directory
-├─App - application directory (can have more than one)
-│ ├─HttpController - controller directory
-│ │ └─Index.php - default controller
-│ └─Model - model file directory
-├─Log - log file directory
-├─Temp - temporary file directory
-├─vendor - third-party class library directory
-├─composer.json - composer architecture
-├─composer.lock - composer lock
-├─EasySwooleEvent.php - framework global event
-├─easyswoole - framework management script
-├─easyswoole.install - framework installation lock file
-├─dev.php - development environment configuration file
-├─produce.php - production environment configuration file
+Project                     - project root directory
+├─App                       - application directory (can have more than one)
+│ ├─HttpController          - controllers directory
+│ │ └─Index.php             - default controller
+│ └─Model                   - models directory
+├─Log                       - log files directory
+├─Temp                      - temporary files directory
+├─vendor                    - third-party library directory
+├─composer.json             - composer.json
+├─composer.lock             - composer.lock
+├─EasySwooleEvent.php       - framework global event
+├─easyswoole                - framework management script
+├─easyswoole.install        - framework installation lock file
+├─dev.php                   - development environment configuration file
+├─produce.php               - production environment configuration file
 ```
 
-> If the project also needs to use other static resource files, it is recommended to use **Nginx** / **Apache** as the front-end web service, forward the request to easySwoole for processing, and add a `Public` directory as the root of the web server table of Contents
+> If you want to use some static resource files (Such as images, css, js, etc.) in your project, it is recommended to use **Nginx** / **Apache** as the tier-1 server, then forward the request to EasySwoole for processing. Meanwhile using a separated `Public` directory as the root of web server.
 
-> Note! Please do not use the framework home directory as the root directory of the web server, otherwise the dev.env, produce.env configuration will be accessible, or you can exclude the file (3.1.2 has been changed to dev.php, produce.php, but still recommended to set to Public)
+> Note! You shall never ever use the framework root directory as the root directory of the web server, which is going to make the dev.php/produce.php accessible.
 
 ## Other
 
-- QQ exchange group
+- QQ Discussion group
     - VIP group 579434607 (this group needs to pay 599 RMB)
-    - EasySwoole official group 633921431 (full)
-    - EasySwoole official second group 709134628
+    - EasySwoole official group: 633921431 (No vacancies)
+    - EasySwoole official alternative group: 709134628
     
-- Business support:
+- Commercial users support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
+    - EMAIL: <a href="mailto:admin@fosuss.com">admin@fosuss.com</a>
         
 - Author WeChat
 
     ![](http://easyswoole.com/img/authWx.jpg)
     
 - [donation] (../donate.md)
-    Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
+    Your donation is the greatest encouragement and support for EasySwoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-   - Continuous and in-depth development
-   - Documentation, community construction and maintenance
+   - Continuous development and upgrade
+   - Documentations, Community and Long term technical support
   
-- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
-
+- **EasySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us

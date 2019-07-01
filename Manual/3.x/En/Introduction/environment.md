@@ -1,22 +1,20 @@
 # Environmental Requirements
 
-Some basic environment requirements are required to run the framework. The easySwoole framework is very friendly to the environment. It only needs to fulfill the conditions of Swoole extension, and the PHP version above 7.1.
+Some basic environment requirements are required to run the framework. The EasySwoole framework is very friendly to the environment. It only needs to fulfill the conditions of Swoole extension, and the PHP version above 7.1.
 
-## Basic Operating Environment
+## Minimum requirement of your development/production environment
+You will need to make sure your system meets the following requirements
 
-- Guaranteed **PHP** version is greater than or equal to **7.1**
-- Guaranteed **Swoole** Extended version is greater than or equal to **4.3.0**
-- Requires any version of **pcntl** extension
-- Use either **Linux** / **FreeBSD** / **MacOS** operating systems
-- Use **Composer** as a dependency management tool
+- PHP >= 7.1
+- **Swoole** PHP Extension >= **4.3.0**
+- **pcntl** PHP extension
+- Operating system: **Linux** / **FreeBSD** / **MacOS**
+- Composer
 
-> Refer to the suggestions below, they are not necessary, but they help to use the framework and develop more efficiently
+> Refer to the suggestions below, they are not mandatory, but might make your coding experiences with EasySwoole much better
 
-- Use **Ubuntu14** / **CentOS 7.0** or higher operating system
-
-> Refer to the suggestions below, they are not necessary, but they help to use the framework and develop more efficiently
-
-- Use **Ubuntu14** / **CentOS 6.5** or higher operating system
+- Use **Ubuntu >= 14** / **CentOS >= 6.5** or Any GNU / Linux Distributions Operating System
+- macOS
 
 ## DockerFile
 ```
@@ -91,24 +89,23 @@ ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 
 ## Other
 
-- QQ exchange group
+- QQ Discussion group
     - VIP group 579434607 (this group needs to pay 599 RMB)
-    - EasySwoole official group 633921431 (full)
-    - EasySwoole official second group 709134628
+    - EasySwoole official group: 633921431 (No vacancies)
+    - EasySwoole official alternative group: 709134628
     
-- Business support:
+- Commercial users support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
+    - EMAIL: <a href="mailto:admin@fosuss.com">admin@fosuss.com</a>
         
 - Author WeChat
 
     ![](http://easyswoole.com/img/authWx.jpg)
     
 - [donation] (../donate.md)
-    Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
+    Your donation is the greatest encouragement and support for EasySwoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-   - Continuous and in-depth development
-   - Documentation, community construction and maintenance
+   - Continuous development and upgrade
+   - Documentations, Community and Long term technical support
   
-- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
-
+- **EasySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us

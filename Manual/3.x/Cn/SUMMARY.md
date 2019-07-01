@@ -142,6 +142,7 @@
     - [Atomic限流器](Components/atomicLimit.md)
     - [支付SDK](Components/pay.md)
     - [微信SDK](Components/wechat.md)
+    - [Tracker](Components/tracker.md)
     - 杂项工具
         - [ArrayToTextTable](Components/Tools/arrayToTextTable.md)
         - [File](Components/Tools/file.md)
@@ -152,11 +153,10 @@
         - [Time](Components/Tools/time.md)
 - 微服务与分布式
     - [微服务](Distribute/microService.md)
-    - [负载均衡](Distribute/loadbalance.md)       
+    - [负载均衡分布式](Distribute/loadbalance.md)       
 - 其他问题
     - [MongoDB](Other/mongodb.md)    
     - [错误处理与拦截](Other/exception.md)
-    - [如何实现分布式](Other/distribute.md)
     - [HTTP中使用protobuf](Other/protobuf.md)
     - [队列消费/自定义进程问题](Other/process.md)
     - [Redis\Kafka订阅](Other/redisSubscribe.md)
