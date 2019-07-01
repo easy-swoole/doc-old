@@ -1,5 +1,11 @@
-# StaticFileProxy
-Easyswoole support use swoole static_handler to handle your static file,but we dont suggest you to do so,you might use nginx or apache proxy to handler static file.
+# Reverse Proxy
+Because `Swoole` can't fully support HTTP protocol, so `EasySwoole` shall be used as a backend service application only. We recommend
+to use `Nginx`/`Apache` as the proxy in the front then forward all incoming requests to `EasySwoole` application.
+
+```bash
+// Make sure you start the service application: it will start listening at port 9501
+php easyswoole start d
+```
 
 ## Nginx
 ```
@@ -16,6 +22,7 @@ server {
     }
 }
 ```
+> You can get the client's IP with: $request->getHeader('x-real-ip')[0]
 
 ## Apache
 ```
@@ -24,8 +31,8 @@ server {
   RewriteEngine On
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f
-  #RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]  fcgi下无效
+  #RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]  # Invalid in fcgi mode
   RewriteRule ^(.*)$  http://127.0.0.1:9501/$1 [QSA,P,L]
-   #请开启 proxy_mod proxy_http_mod request_mod
+   # make sure proxy_mod proxy_http_mod and request_mod are activated
 </IfModule>
 ```
