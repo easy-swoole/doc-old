@@ -1,7 +1,7 @@
-# 如何实现队列消费/自定义进程
-可能我们会经常遇见需要不断消费队列内内容的场景，我们以EasySwoole中自定义进程的方式，来实现这一功能。
-## 实现代码
-### 定义消费进程逻辑
+# How to Implement Queue Consumption/Customization Process
+Perhaps we often encounter scenarios where we need to constantly consume content in the queue. We implement this function by customizing processes in EasySwoole.
+## Implementation code
+### Defining the Logic of Consumption Process
 ```php
 <?php
 /**
@@ -23,13 +23,13 @@ class Consumer extends AbstractProcess
     {
         // TODO: Implement run() method.
         /*
-         * 举例，消费redis中的队列数据
-         * 定时500ms检测有没有任务，有的话就while死循环执行
+         * For example, consume queue data in redis
+         * Timing 500ms to detect whether there is a task or not, or if there is a while dead cycle to execute
          */
         $this->addTick(500,function (){
             if(!$this->isRun){
                 $this->isRun = true;
-                $redis = new \redis();//此处为伪代码，请自己建立连接或者维护redis连接
+                $redis = new \redis();//This is pseudo code. Please establish your own connection or maintain redis connection.
                 while (true){
                     try{
                         $task = $redis->lPop('task_list');
@@ -60,8 +60,8 @@ class Consumer extends AbstractProcess
 }
 ```
 
-### 注册消费进程
-在EasySwoole的全局事件中，注册消费进程。
+### Registered Consumption Process
+In the global event of EasySwoole, register the consumption process.
 ```php
 <?php
 use App\Consumer;
@@ -77,4 +77,4 @@ public static function mainServerCreate(EventRegister $register)
 ```
 
 
-> 爬虫例子：https://github.com/HeKunTong/easyswoole3_demo
+> Examples of reptiles：https://github.com/HeKunTong/easyswoole3_demo
