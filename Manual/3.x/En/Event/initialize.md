@@ -27,7 +27,7 @@ Before the framework initialization event is executed, `EasySwoole` has complete
 - Define global variables EASYSWOOLE_ROOT
 - Define system default Log/Temp directory
 
-## What to do here
+## What to do in this stage
 In this hook, you may want to manage some system constants and global configuration values, eg：
 - Modify and create the system default Log/Temp directory
 - Introducing user-defined configuration
