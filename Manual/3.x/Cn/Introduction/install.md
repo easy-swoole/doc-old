@@ -143,6 +143,7 @@ WORKDIR /var/www/code
 
 # Install easyswoole
 RUN cd /var/www/code \
+    && composer config -g repo.packagist composer https://packagist.laravel-china.org \
     && composer require easyswoole/easyswoole=${EASYSWOOLE_VERSION} \
     && php vendor/bin/easyswoole install
 
