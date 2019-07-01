@@ -2,7 +2,7 @@
 
 - 作者微信
 
-    ![](http://easyswoole.com/img/authWx.jpg)  
+    ![](./Resource/authWx.jpg)  
       
 - 商业支持：
     - QQ 291323003
