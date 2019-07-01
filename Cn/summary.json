@@ -361,7 +361,7 @@
     },
     {
       "name": "基础入门",
-      "link": "/Cn/readme.html",
+      "link": "",
       "sub": [
         {
           "name": "环境要求",
@@ -441,7 +441,7 @@
         },
         {
           "name": "afterRequest",
-          "link": "/Cn/Event/afterRequest.html)   ",
+          "link": "/Cn/Event/afterRequest.html",
           "sub": [
 
           ]
@@ -450,7 +450,7 @@
     },
     {
       "name": "Http服务",
-      "link": "/Cn/Http/introduction.html)   ",
+      "link": "/Cn/Http/introduction.html",
       "sub": [
         {
           "name": "控制器对象",
@@ -919,7 +919,7 @@
         },
         {
           "name": "Whoops",
-          "link": "/Cn/Components/whoops.html)   ",
+          "link": "/Cn/Components/whoops.html",
           "sub": [
 
           ]
@@ -1064,7 +1064,7 @@
         },
         {
           "name": "负载均衡分布式",
-          "link": "/Cn/Distribute/loadbalance.html)      ",
+          "link": "/Cn/Distribute/loadbalance.html",
           "sub": [
 
           ]
@@ -1077,7 +1077,7 @@
       "sub": [
         {
           "name": "MongoDB",
-          "link": "/Cn/Other/mongodb.html)   ",
+          "link": "/Cn/Other/mongodb.html",
           "sub": [
 
           ]
