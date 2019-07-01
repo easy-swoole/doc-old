@@ -1,10 +1,10 @@
-# ManagerScript
-after install success, you may see ***easyswoole*** file at your project root.
-run:
+# Manage your application The Executable Script 
+Once EasySwoole is installed successfully, you will find an executable script file called ***easyswoole*** ready for you in the project root folder.
+***easyswoole*** is the command-line interface included with `EasySwoole`. It provides a number of helpful commands that can assist you while you build your application. To view a list of all available EasySwoole commands, you may use the following command:
 ```
 php easyswoole
 ```
-display:
+Then you will get:
 ```
  ______                          _____                              _
  |  ____|                        / ____|                            | |
@@ -15,46 +15,67 @@ display:
                           __/ |
                          |___/
 
-欢迎使用为API而生的 easySwoole 框架 当前版本: 3.x
+Welcome To EASYSWOOLE Command Console!
+Usage: php easyswoole [command] [arg]
+Get help : php easyswoole help [command]
+Current Register Command:
+  help          User Guide
+  install       Install easySwoole
+  start         Start easySwoole
+  stop          Stop easySwoole
+  reload        Reload easySwoole
+```
 
-使用:
-  easyswoole [操作] [选项]
+The `help` command includes a "help" screen which displays and describes the command's available arguments and options. 
+To view a help screen, precede the name of the command with help, for example:
+```bash
+php easyswoole help start
+```
+You will get:
+```bash
+Operation:
+  php easyswoole start [arg1] [arg2]
+Intro:
+  to start current easyswoole server
+Arg:
+  daemonize                    run in daemonize
+  produce                      load produce.php
+```
 
-操作:
-  install       安装easySwoole
-  start         启动easySwoole
-  stop          停止easySwoole
-  reload        重启easySwoole
-  help          查看命令的帮助信息
+## Start your application
+Run the `start` command
+```
+php easyswoole start    // This command will load configuration values from dev.php file
 
-有关某个操作的详细信息 请使用 help 命令查看 
-如查看 start 操作的详细信息 请输入 easyswoole help -start
+php easyswoole start produce    // This command will load configuration values from produce.php file
 ```
-## manager command
-run easyswoole
+
+## Start your application in daemon mode
 ```
-//load dev.php config
-php easyswoole start
-//load produce config
-php easyswoole start produce
+php easyswoole start d  // This command will load configuration values from dev.php file
+
+php easyswoole start produce d  // This command will load configuration values from dev.php file
 ```
-if you want to run swoole in daemonize model
-```
-//load dev.php config
-php easyswoole start d
-//load produce config
-php easyswoole start produce d
-```
-stop easyswoole when you start in daemonize model
+
+## Stop your application
+> You only need this command when your application is running in daemon mode.
 ```
 php easyswoole stop
 ```
-reload easyswoole when you start in daemonize model
+
+## Reload your application
+> You only need this command when your application is running in daemon mode.
+> Note: Hot reload action will only affect on worker process. Any changes related to the main process, global configurations, routes and etc, please use `stop` + `start`
+
 ```
-//only reload task worker
+//only reload worker processes
 php easyswoole reload
-//reload task and worker 
+//reload main task and worker processes
 php easyswoole reload all 
 ```
+
+### Application hot reload
+Due to the swoole in-memory feature, after modifying the file, you need to restart the worker process to reload the modified file into the memory. 
+We can customize the process to implement file changes and automatically perform service overloading.
 
 > if you want to hook file change and auto reload server,you may use inotify at user process ,see more at demo.
