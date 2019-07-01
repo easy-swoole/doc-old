@@ -1,4 +1,4 @@
-# Framework initialize event
+# Framework initialized event
 
 ## The function prototype
 ```php

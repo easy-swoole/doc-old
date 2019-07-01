@@ -1,4 +1,4 @@
-# Master Service Creation Event
+# Master Service Created Event
 
 ## The function prototype
 ```php
