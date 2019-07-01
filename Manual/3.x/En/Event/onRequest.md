@@ -5,6 +5,7 @@
  public static function onRequest(Request $request, Response $response): bool
 ```
 
+## What to do in this stage
 When `EasySwoole` receives any http request, the `onRequest` event will be emitted and this function will be called automatically. 
 This event can intercept HTTP requests globally.
 
