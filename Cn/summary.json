@@ -1,0 +1,209 @@
+{
+  "links": [
+    {
+      "name": "VIP交流群 579434607",
+      "link": "http://jq.qq.com/?_wv=1027&k=5bxu3cG"
+    },
+    {
+      "name": "在线交流群 633921431",
+      "link": "http://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548"
+    },
+    {
+      "name": "WebSocket调试工具",
+      "link": "/wstool.html"
+    }
+  ],
+  "menu": [
+    {
+      "name": "基础入门",
+      "link": "link",
+      "sub": [
+        {
+          "name": "环境要求",
+          "link": "/Cn/Introduction/environment.html",
+          "sub": []
+        },
+        {
+          "name": "框架安装",
+          "link": "/Cn/Introduction/install.html",
+          "sub": []
+        },
+        {
+          "name": "生命周期",
+          "link": "/Cn/Introduction/lifecycle.html",
+          "sub": []
+        },
+        {
+          "name": "配置文件",
+          "link": "/Cn/Introduction/config.html",
+          "sub": []
+        },
+        {
+          "name": "服务管理",
+          "link": "/Cn/Introduction/server.html",
+          "sub": []
+        },
+        {
+          "name": "反向代理",
+          "link": "/Cn/Introduction/proxy.html",
+          "sub": []
+        },
+        {
+          "name": "开发必读",
+          "link": "/Cn/Introduction/remind.html",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "name": "全局事件",
+      "sub": [
+        {
+          "name": "initialize",
+          "link": "/Cn/Event/initialize.html",
+          "sub": []
+        },
+        {
+          "name": "mainServerCreate",
+          "link": "/Cn/Event/mainServerCreate.html",
+          "sub": []
+        },
+        {
+          "name": "onRequest",
+          "link": "/Cn/Event/onRequest.html",
+          "sub": []
+        },
+        {
+          "name": "afterRequest",
+          "link": "/Cn/Event/afterRequest.html",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "name": "Http服务",
+      "link":"",
+      "sub": [
+        {
+          "name": "控制器对象",
+          "link": "/Cn/Http/controller.html",
+          "sub": []
+        },
+        {
+          "name": "URL解析规则",
+          "link": "/Cn/Http/dispatch.html",
+          "sub": []
+        },
+        {
+          "name": "fastRoute",
+          "link": "/Cn/Http/fastRoute.html",
+          "sub": []
+        },
+        {
+          "name": "Request对象",
+          "link": "/Cn/Http/request.html",
+          "sub": []
+        },
+        {
+          "name": "Response对象",
+          "link": "/Cn/Http/response.html",
+          "sub": []
+        },
+        {
+          "name": "错误与异常拦截",
+          "link": "/Cn/Http/exception.html",
+          "sub": []
+        },
+        {
+          "name": "UploadFile对象",
+          "link": "/Cn/Http/uploadFile.html",
+          "sub": []
+        },
+        {
+          "name": "模板引擎",
+          "link": "/Cn/Http/template.html",
+          "sub": []
+        },
+        {
+          "name": "常见问题",
+          "link": "/Cn/Http/problem.html",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "name": "基础使用",
+      "link": "",
+      "sub": [
+        {
+          "name": "自定义进程",
+          "link": "/Cn/BaseUsage/process.html",
+          "sub": []
+        },
+        {
+          "name": "异步任务",
+          "link": "/Cn/BaseUsage/asyncTask.html",
+          "sub": []
+        },
+        {
+          "name": "定时器",
+          "link": "/Cn/BaseUsage/timer.html",
+          "sub": []
+        },
+        {
+          "name": "Crontab",
+          "link": "/Cn/BaseUsage/crontab.html",
+          "sub": []
+        },
+        {
+          "name": "日志处理",
+          "link": "/Cn/BaseUsage/log.html",
+          "sub": []
+        },
+        {
+          "name": "Swoole实例管理",
+          "link": "/Cn/BaseUsage/serverManager.html",
+          "sub": []
+        }
+      ]
+    },
+    {
+      "name": "组件库",
+      "link": "",
+      "sub": [
+        {
+          "name": "基础组件",
+          "link": "",
+          "sub": [
+            {
+              "name": "单例模式",
+              "link": "/Cn/Components/Component/singleton.html",
+              "sub": []
+            },
+            {
+              "name": "IOC容器",
+              "link": "/Cn/Components/Component/di.html",
+              "sub": []
+            }
+          ]
+        },
+        {
+          "name": "Spl库",
+          "link": "",
+          "sub": [
+            {
+              "name": "Array",
+              "link": "/Cn/Components/Spl/array.html",
+              "sub": []
+            },
+            {
+              "name": "Bean",
+              "link": "/Cn/Components/Sol/bean.html",
+              "sub": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
