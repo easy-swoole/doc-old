@@ -1,18 +1,17 @@
-# 随机生成问题
+# Random Generation Problem
 
-由于Swoole本身的原因，在使用随机数时，需要额外注意，如果在父进程内调用了`mt_rand`，不同的子进程内再调用`mt_rand`返回的结果会是相同的。所以必须在每个子进程内调用`mt_srand`重新播种。
+Because of Swoole's own reasons, when using random numbers, additional attention is needed. If `mt_rand'is called in the parent process, the result will be the same if `mt_rand' is called again in different child processes. So `mt_srand'must be called within each subprocess to reseed.
+` The `PHP'functions dependent on random numbers such as shuffle` and `array_rand` will also be affected.
 
-> `shuffle`和`array_rand`等依赖随机数的`PHP`函数同样会受到影响
+## Scenario examples
 
-## 场景例子
-
-在异步任务，异步进程中，都需要注意随机数播种的问题，如下面的例子
+In the asynchronous process of asynchronous tasks, attention should be paid to the problem of random number seeding, such as the following examples
 
 ```php
-mt_rand(0, 1);    // 此处调用了 mt_rand 已经在父进程内自动播种
+mt_rand(0, 1);    // Here mt_rand is invoked and seeded automatically in the parent process
 $worker_num = 16;
 
-// fork 进程
+// fork process
 for ($i = 0; $i < $worker_num; $i++) {
     $process = new swoole_process('child_async', false, 2);
     $pid = $process->start();
@@ -20,7 +19,7 @@ for ($i = 0; $i < $worker_num; $i++) {
 
 function child_async(swoole_process $worker)
 {
-    mt_srand();  // 此处 必须要重新播种 否则会得到相同的结果
+    mt_srand();  // It has to be replanted or the same results will be achieved.
     echo mt_rand(0, 100) . PHP_EOL;
     $worker->exit();
 }
