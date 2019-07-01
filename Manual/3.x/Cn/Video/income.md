@@ -70,7 +70,7 @@
 2. 协程原理
 3. swoole协程工作机制
 
-> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbSVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JThEJThGJUU3JUE4JThCJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
+> 观看地址:[协程简介](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
 
 ### 协程带来的影响
 1. 同步阻塞案例
@@ -102,10 +102,23 @@
 
 ## 数据库部分
 
-### 连接池的介绍 配置 及使用 约10分钟
+### 上下文管理器介绍及单例模式 约10分钟
+1. 介绍如何实现协程级别的单例模式
+2. 什么是上下文管理器
+   
+> 观看地址:[上下文管理器介绍](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNCVCOCU4QSVFNCVCOCU4QiVFNiU5NiU4NyVFNyVBRSVBMSVFNyU5MCU4NiVFNSU5OSVBOCVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+   
+### 连接池的介绍 约10分钟
 1. 介绍为什么需要连接池， 简单阐述 同步阻塞和 非阻塞会产生的问题 以及数据库压力 服务器熔断知识
-2. 配置连接池并且简单讲解 invoke 和defer的区别 和使用场景
-3. 在controller 写一个操作数据库的demo  分别使用 直接new mysqli invoke 和defer
+   
+> 观看地址:[连接池介绍](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFOCVCRiU5RSVFNiU4RSVBNSVFNiVCMSVBMCVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+
+
+### 连接池的配置 及使用 约10分钟
+1. 配置连接池并且简单讲解 invoke 和defer的区别 和使用场景
+2. 在controller 写一个操作数据库的demo  分别使用 直接new mysqli invoke 和defer
+
+> 观看地址:[连接池使用](https://www.easyswoole.com/play_video.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFOCVCRiU5RSVFNiU4RSVBNSVFNiVCMSVBMCVFNyU5QSU4NCVFNCVCRCVCRiVFNyU5NCVBOC5tcDQ=)
    
 ### 模型封装 约5分钟
 1. 手动封装model 以及强调 mysql连接的问题 
