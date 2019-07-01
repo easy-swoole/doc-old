@@ -81,7 +81,7 @@ php easyswoole start
 
 ## Dockerfile
 
-```
+```markdown
 FROM php:7.2
 
 # Version
