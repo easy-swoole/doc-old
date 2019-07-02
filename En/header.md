@@ -7,8 +7,6 @@
      <link rel="stylesheet" href="/Css/prism.css">
      <link rel="stylesheet" href="/Css/prettify.css">
      <link rel="stylesheet" href="/Css/markdown.css">
-     <link href="/Css/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
-     <script src="/Js/jquery-2.0.3.min.js" type="text/javascript"></script>
      <script src="/Js/prism.js" type="text/javascript"></script>
      <script src="/Js/prettify.js" type="text/javascript"></script>
      <script type="text.javascript">prettyPrint();</script>
