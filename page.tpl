@@ -26,9 +26,7 @@
         </div>
     </div>
 </div>
-</body>
 <script>
-
     $(function () {
         //先隐藏除了一级元素的所有元素
         $('.summary li').not('.summary>li').hide();
@@ -67,4 +65,5 @@
         });
     });
 </script>
+</body>
 </html>
