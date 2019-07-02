@@ -1,15 +1,15 @@
 {
   "links": [
     {
-      "name": "VIP交流群 579434607",
+      "name": "<i class='fa fa-fw fa-qq'></i>VIP交流群 579434607",
       "link": "http://jq.qq.com/?_wv=1027&k=5bxu3cG"
     },
     {
-      "name": "在线交流群 633921431",
+      "name": "<i class='fa fa-fw fa-qq'></i>在线交流群 633921431",
       "link": "http://shang.qq.com/wpa/qunwpa?idkey=35c84e12f7784153501e3c43c9f2454d3235a7f55371458a24f0c32320c99548"
     },
     {
-      "name": "WebSocket调试工具",
+      "name": "<i class='fa fa-fw fa-comments-o'></i>WebSocket调试工具",
       "link": "/wstool.html"
     }
   ],

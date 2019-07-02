@@ -3,33 +3,6 @@
 <head>
     <link href="/Css/page.css" rel="stylesheet">
     {$HEAD}
-    <style>
-
-        .fa {
-            display: inline-block;
-            font: normal normal normal 14px/1 FontAwesome;
-            font-size: inherit;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .exc-trigger:before {
-            content: "\f105";
-            position: absolute;
-            top: 20px;
-            left: 15px;
-            float: left;
-        }
-
-        .exc-trigger2:before {
-            content: "\f107";
-            position: absolute;
-            top: 20px;
-            left: 15px;
-            float: left;
-        }
-    </style>
 </head>
 <body>
 <div class="book without-animation with-summary">
@@ -53,24 +26,36 @@
 </div>
 </body>
 <script>
+
     $(function () {
-        $('.summary li').hide();
-        $('.summary>li').show();
+        //先隐藏除了一级元素的所有元素
+        $('.summary li').not('.summary>li').hide();
+        //删除所有的exc-trigger2元素
         $(this).find('.fa').removeClass('exc-trigger2');
         $(this).find('.fa').addClass('exc-trigger');
         //匹配url
         var pathname = window.location.pathname;
         $('a[href="' + pathname + '"]').parents('li').find('li').show();
-
-        $('a[href="' + pathname + '"]').parents('li').find('.fa').addClass('exc-trigger2').removeClass('exc-trigger');
+        $('a[href="' + pathname + '"]').parents('li').find('.fa').addClass('exc-trigger2');
+        $('a[href="' + pathname + '"]').parents('li').find('.fa').removeClass('exc-trigger');
+        $('a[href="' + pathname + '"]').parents('li:first').addClass('active');
 
         $('.summary li').on('click', function () {
-            $('.summary li').hide();
-            $('.summary>li').show();
-            // console.log($(this).html());
-            $(this).find('li').show();
-            $(this).find('.fa').addClass('exc-trigger2');
-            $(this).find('.fa').removeClass('exc-trigger');
+            if ($(this).children('span').children('a').attr('href')&&!$(this).find('.fa').hasClass('exc-trigger2')) {
+                window.location.href = $(this).children('span').children('a').attr('href');
+                return false;
+            }
+
+            if ($(this).find('.fa').hasClass('exc-trigger2')) {
+                $(this).find('li').slideUp(300);
+                $(this).find('.fa').removeClass('exc-trigger2');
+                $(this).find('.fa').addClass('exc-trigger');
+            } else {
+                $(this).children('ul').children('li').slideDown(300);
+                $(this).children('span').find('.fa').addClass('exc-trigger2');
+                $(this).children('span').find('.fa').removeClass('exc-trigger');
+            }
+            return false;
         });
     });
 </script>

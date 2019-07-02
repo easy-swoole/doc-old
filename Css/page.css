@@ -541,9 +541,7 @@ table {
     white-space:nowrap;
     position:relative
 }
-.book-summary ul.summary li a:hover {
-    text-decoration:underline
-}
+
 .book-summary ul.summary li a:focus {
     outline:0
 }
@@ -1269,4 +1267,42 @@ body {
     text-size-adjust:100%;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%
+}
+
+
+.summary a:hover {
+    text-decoration: none;
+    color: #0bb6cc;
+}
+
+.book-summary ul.summary li a:hover, .book-summary ul.summary li span:hover {
+    color: #0bb6cc;
+}
+.book-summary ul.summary li.active>span>a,.book-summary ul.summary li.active>span{
+    color: #008ccc;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.exc-trigger:before {
+    content: "\f105";
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    float: left;
+}
+
+.exc-trigger2:before {
+    content: "\f107";
+    position: absolute;
+    top: 10px;
+    left: 2px;
+    float: left;
 }
