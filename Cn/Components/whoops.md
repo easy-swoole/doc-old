@@ -12,7 +12,7 @@ composer require easyswoole/easy-whoops=3.x
 ```
 ## 使用
 直接在EasySwoole 全局的事件中进行注册
-```
+```php
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;
