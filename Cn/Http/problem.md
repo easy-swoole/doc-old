@@ -16,7 +16,7 @@ var_dump($ip2);
 ```
 ## 如何处理静态资源
 Apache URl rewrite
-```
+```text
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
   RewriteEngine On
@@ -29,7 +29,7 @@ Apache URl rewrite
 ```
 
 Nginx URl rewrite
-```
+```text
 server {
     root /data/wwwroot/;
     server_name local.swoole.com;
