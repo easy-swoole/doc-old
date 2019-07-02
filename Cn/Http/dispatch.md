@@ -6,17 +6,17 @@
 
 在没有路由干预的情况下，内置的解析规则支持无限级嵌套目录，如下方两个例子所示
 
-> <http://serverName/api/auth/login>
->
-> 对应执行的方法为 \App\HttpController\Api\Auth::login()
->
-> <http://serverName/a/b/c/d/f>
->
-> 如果 f 为控制器名，则执行的方法为 \App\HttpController\A\B\C\D\F::index()
->
-> 如果 f 为方法名，则执行的方法为 \App\HttpControllers\A\B\C\D::f()
+- <http://serverName/api/auth/login>
 
-> 如果最后的路径为`index`时,底层会自动忽略,并直接调用控制器的默认方法(也就是index)
+    对应执行的方法为 \App\HttpController\Api\Auth::login()
+
+- <http://serverName/a/b/c/d/f>
+
+    - 如果 f 为控制器名，则执行的方法为 \App\HttpController\A\B\C\D\F::index()
+
+    - 如果 f 为方法名，则执行的方法为 \App\HttpControllers\A\B\C\D::f()
+
+    - 如果最后的路径为`index`时,底层会自动忽略,并直接调用控制器的默认方法(也就是index)
 
 实现代码:
 ````php
@@ -69,20 +69,19 @@ public static function initialize()
 ## 特殊情况
 当控制器和方法都为index时,可直接忽略不写
 
-如果方法为index,则可以忽略:  
-> 如果对应执行方法名为 \App\HttpController\Api\User::index()
-> url可直接写 <http://serverName/api/User>  
+- 如果方法为index,则可以忽略:  
+    如果对应执行方法名为 \App\HttpController\Api\User::index()
+    url可直接写 <http://serverName/api/User>  
 
-如果控制器和方法都为Index,则可以忽略
-> 如果对应执行方法名为 \App\HttpController\Index::index()
-> url可直接写 <http://serverName/>   
+- 如果控制器和方法都为Index,则可以忽略
+    如果对应执行方法名为 \App\HttpController\Index::index()
+    url可直接写 <http://serverName/>   
 
-index忽略规则理论支持无限层级,根据解析层级最大进行逐层查找:
-> <http://serverName>
-> 当 \App\HttpController\Index.php不存在时,将逐层查找Index.php
-> 如 \App\HttpController\Index\Index\Index::index();
-> 直到最大深度;
-
+- index忽略规则理论支持无限层级,根据解析层级最大进行逐层查找:
+    <http://serverName>
+    当 \App\HttpController\Index.php不存在时,将逐层查找Index.php
+    如 \App\HttpController\Index\Index\Index::index();
+    直到最大深度;
 
 > 注意，EasySwoole的URL路径区分大小写,控制器首字母支持小写转换
 
