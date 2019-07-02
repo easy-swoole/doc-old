@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <link href="/Css/page.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="/Js/jquery-2.0.3.min.js" type="text/javascript"></script>
     {$HEAD}
 </head>
