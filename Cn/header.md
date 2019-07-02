@@ -10,7 +10,6 @@
      <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
      <script src="/Js/jquery-2.0.3.min.js" type="text/javascript"></script>
      <script src="/Js/prism.js" type="text/javascript"></script>
-     <script src="/Js/accordion.js" type="text/javascript"></script>
      <script src="/Js/prettify.js" type="text/javascript"></script>
      <script type="text.javascript">prettyPrint();</script>
 </head>
