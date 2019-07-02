@@ -5,7 +5,7 @@
 php easyswoole
 ```
 可见：
-```
+```text
  ______                          _____                              _
  |  ____|                        / ____|                            | |
  | |__      __ _   ___   _   _  | (___   __      __   ___     ___   | |   ___
@@ -49,13 +49,13 @@ php easyswoole start produce
 php easyswoole stop produce
 ```
 > 注意，守护模式下才需要stop，不然control+c或者是终端断开就退出进程了
+
 ## 重启服务
-```
+```text
 php easyswoole reload 只重启task进程
 php easyswoole reload all  重启task + worker进程
 ```
-> 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。
-> http 自定义路由配置不会被更新,需要stop+start;
+> 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。 http 自定义路由配置不会被更新,需要stop+start;
 
 ## 文件热加载
 
@@ -63,7 +63,7 @@ php easyswoole reload all  重启task + worker进程
 
 相关示例请查看
 
-- [热重载实现原理](../Other/HotReload.md)
+- [热重载实现原理](../Other/hotReload.md)
 
 ## 其他
 
@@ -78,7 +78,7 @@ php easyswoole reload all  重启task + worker进程
         
 - 作者微信
 
-    ![](http://easyswoole.com/img/authWx.jpg)    
+     ![](../Resource/authWx.jpg)    
     
 - [捐赠](../donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
