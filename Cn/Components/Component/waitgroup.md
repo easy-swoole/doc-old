@@ -1,6 +1,6 @@
 # WaitGroup
 示例代码：
-```
+```php
 go(function (){
     $ret = [];
 
