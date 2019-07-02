@@ -43,8 +43,10 @@
         $('a[href="' + pathname + '"]').parents('li:first').addClass('active');
 
         $('.summary li').on('click', function () {
-            if ($(this).children('span').children('a').attr('href')&&!$(this).find('.fa').hasClass('exc-trigger2')) {
-                window.location.href = $(this).children('span').children('a').attr('href');
+            // console.log(1);
+            // console.log($(this).find('.fa').hasClass('exc-trigger2'));
+            if ($(this).find('a:first').attr('href')&&!$(this).find('.fa').hasClass('exc-trigger2')) {
+                window.location.href = $(this).find('a:first').attr('href');
                 return false;
             }
 
