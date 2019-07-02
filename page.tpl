@@ -46,7 +46,11 @@
             // console.log(1);
             // console.log($(this).find('.fa').hasClass('exc-trigger2'));
             if ($(this).find('a:first').attr('href')&&!$(this).find('.fa').hasClass('exc-trigger2')) {
-                window.location.href = $(this).find('a:first').attr('href');
+                if ($(this).find('a:first').attr('target')=='_blank'){
+                    window.open($(this).find('a:first').attr('href'));
+                }else{
+                    window.location.href = $(this).find('a:first').attr('href');
+                }
                 return false;
             }
 
