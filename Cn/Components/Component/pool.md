@@ -173,7 +173,7 @@ PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->get
 > 可通过register返回的PoolConf对象去配置其他参数
 
 3、服务启动后即可在任意位置调用
-```
+```php
 $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
 $data = $db->get('test');
 //使用完毕需要回收

@@ -1,6 +1,6 @@
 # Csp 并发模式
 当我们需要并发执行某些不相干的请求，并得到结果的时候，例如：
-```
+```php
 $sql1->exec();
 $sql2->exec();
 $sql2->exec();
@@ -8,7 +8,7 @@ $sql2->exec();
 在以上的代码中，我们没办法最大的节约时间，因为sql语句都是顺序执行的，因此我们引入了Csp并发编程的概念。
 
 ## 示例代码
-```
+```php
 go(function (){
     $channel = new \Swoole\Coroutine\Channel();
     go(function ()use($channel){
@@ -38,7 +38,7 @@ go(function (){
 
 ## 进一步封装
 
-```
+```php
 go(function (){
     $csp = new \EasySwoole\Component\Csp();
     $csp->add('t1',function (){
