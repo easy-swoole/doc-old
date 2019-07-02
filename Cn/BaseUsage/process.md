@@ -6,7 +6,7 @@
 ## 例子
 
 ### 定义一个进程类
-```
+```php
 use EasySwoole\Component\Process\AbstractProcess;
 
 class Process extends AbstractProcess
@@ -51,7 +51,7 @@ class Process extends AbstractProcess
 ### 注册进程
 
 我们在EasySwoole全局的mainServerCreate事件中进行进程注册
-```
+```php
 use App\Process;
 use EasySwoole\Component\Process\Config;
 $processConfig = new Config();

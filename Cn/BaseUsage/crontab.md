@@ -8,7 +8,8 @@ EasySwoole支持用户根据Crontab规则去添加定时器。时间最小粒度
 ## 示例代码
 EasySwooleEvent.php中
 use EasySwoole\EasySwoole\Crontab\Crontab;
-```
+```php
+
     public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
@@ -104,8 +105,8 @@ class TaskTwo extends AbstractCronTask
         var_dump('run once every two minutes');
     }
 }
-```
 
+```
 
 cron通用表达式规则如下：
 
@@ -120,7 +121,7 @@ cron通用表达式规则如下：
     +------------------------- min (0 - 59)
 
 cron特殊表达式有以下几个：
-```
+``` text
 @yearly                    每年一次 等同于(0 0 1 1 *) 
 @annually                  每年一次 等同于(0 0 1 1 *)
 @monthly                   每月一次 等同于(0 0 1 * *) 
