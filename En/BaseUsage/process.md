@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole custom process|swoole custom process|swoole process|swoole multiprocess|php multiprocess</title>
+     <meta name="keywords" content="EasySwoole custom process|swoole custom process|swoole process|swoole multiprocess|php multiprocess"/>
+     <meta name="description" content="EasySwoole custom process|swoole custom process|swoole process|swoole multiprocess|php multiprocess"/>
+</head>
+---<head>---
+
+
 # Process
 
 ## Usage

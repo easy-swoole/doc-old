@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole service management|swoole service management|swoole service|EasySwoole service</title>
+     <meta name="keywords" content="EasySwoole service management|swoole service management|swoole service|EasySwoole service"/>
+     <meta name="description" content="EasySwoole service management|swoole service management|swoole service|EasySwoole service"/>
+</head>
+---<head>---
+
 # ServerManager
 
 > Service Management Class: EasySwoole\EasySwoole\ServerManager
