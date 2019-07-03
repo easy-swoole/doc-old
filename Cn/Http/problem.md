@@ -5,6 +5,7 @@
      <meta name="description" content="swoole方向代理|swoole 如何获取$HTTP_RAW_POST_DATA swoole php://input"/>
 </head>
 ---<head>---
+
 # 常见问题
 ## 如何获取$HTTP_RAW_POST_DATA
 ```php
