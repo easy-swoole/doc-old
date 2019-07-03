@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole whoops|swoole whoops|swoole debug|swoole 调试</title>
+     <meta name="keywords" content="EasySwoole whoops|swoole whoops|swoole debug|swoole 调试"/>
+     <meta name="description" content="EasySwoole whoops|swoole whoops|swoole debug|swoole 调试"/>
+</head>
+---<head>---
+
 # Whoops
 
 Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业务的错误与异常。
@@ -12,7 +19,7 @@ composer require easyswoole/easy-whoops=3.x
 ```
 ## 使用
 直接在EasySwoole 全局的事件中进行注册
-```
+```php
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;

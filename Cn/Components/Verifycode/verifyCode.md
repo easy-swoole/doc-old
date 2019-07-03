@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 验证码|swoole验证码</title>
+     <meta name="keywords" content="EasySwoole 验证码|swoole验证码"/>
+     <meta name="description" content="EasySwoole 验证码|swoole验证码"/>
+</head>
+---<head>---
+
 ## 验证码生成
  
 ### VerifyCode.php

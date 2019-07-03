@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+</head>
+---<head>---
+
 # 跨平台
 Rpc的请求响应通过tcp协议,服务广播使用udp协议,我们只需要实现网络协议即可
 ## PHP示例代码

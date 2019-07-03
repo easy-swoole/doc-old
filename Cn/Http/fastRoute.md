@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 路由|swoole 路由|swoole Api服务|swoole 自定义路由</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole 路由|swoole 路由|swoole Api服务|swoole 自定义路由"/>
+     <meta name="description" content="EasySwoole 路由|swoole 路由|swoole Api服务|swoole 自定义路由"/>
+</head>
+---<head>---
 ##自定义路由
 
 > 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
@@ -176,7 +183,7 @@ $routeCollector->addRoute($httpMethod, $routePattern, $handler)
 ------
 该参数需要传入一个大写的HTTP方法字符串，指定路由可以拦截的方法，单个方法直接传入字符串，需要拦截多个方法可以传入一个一维数组，如下面的例子：
 
-```
+```php
 // 拦截GET方法
 $routeCollector->addRoute('GET', '/router', '/Index');
 
@@ -203,7 +210,7 @@ $routeCollector->addRoute('GET', '/users/info', 'handler');
 #### 绑定参数
 下面的定义将`/users/`后面的部分作为参数，并且限定参数只能是数字`[0-9]`
 
-```
+```php
 // 可以匹配: http://localhost:9501/users/12667
 // 不能匹配: http://localhost:9501/users/abcde
 
@@ -213,7 +220,7 @@ $routeCollector->addRoute('GET', '/users/{id:\d+}', 'handler');
 
 下面的定义不做任何限定，仅将匹配到的URL部分获取为参数
 
-```
+```php
 // 可以匹配: http://localhost:9501/users/12667
 // 可以匹配: http://localhost:9501/users/abcde
 
@@ -222,7 +229,7 @@ $routeCollector->addRoute('GET', '/users/{name}', 'handler');
 
 有时候路由的部分位置是可选的，可以像下面这样定义
 
-```
+```php
 // 可以匹配: http://localhost:9501/users/to
 // 可以匹配: http://localhost:9501/users/to/username
 

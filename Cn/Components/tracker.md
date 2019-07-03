@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 调用链跟踪|swoole 连接调用链跟踪|swoole 监控|swoole 跟踪|PHP调用链跟踪</title>
+     <meta name="keywords" content="EasySwoole 调用链跟踪|swoole 连接调用链跟踪|swoole 监控|swoole 跟踪|PHP调用链跟踪"/>
+     <meta name="description" content="EasySwoole 调用链跟踪|swoole 连接调用链跟踪|swoole 监控|swoole 跟踪|PHP调用链跟踪"/>
+</head>
+---<head>---
+
 # Tracker
 
 Easyswoole提供了一个基础的追踪组件，方便用户实现基础的服务器状态监控，与调用链记录。

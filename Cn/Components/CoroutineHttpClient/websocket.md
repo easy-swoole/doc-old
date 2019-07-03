@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端</title>
+     <meta name="keywords" content="EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端"/>
+     <meta name="description" content="EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端"/>
+</head>
+---<head>---
+
 # WebSocket-Client
 
 ## 请求实例：

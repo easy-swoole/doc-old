@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole日志处理</title>
+     <meta name="keywords" content="EasySwoole日志处理|swoole日志处理|swoole日志"/>
+     <meta name="description" content="EasySwoole日志处理"/>
+</head>
+---<head>---
+
 # 日志处理
 ## Logger
 在easyswoole3.2.3版本之后，easyswoole的默认日志处理类分离成了组件形式，组件地址：https://github.com/easy-swoole/log
@@ -20,7 +27,7 @@ Logger::getInstance()->onLog()->set('myHook',function ($msg,$logLevel,$category)
 > 注意，在非框架中使用，例如是单元测试脚本，请执行 EasySwoole\EasySwoole\Core::getInstance()->initialize(); 用于初始化日志 
 
 将输出/记录以下内容:
-````
+````text
 [2019-06-01 21:10:25][DEBUG][INFO] : [1]
 [2019-06-01 21:10:25][DEBUG][INFO] : [2]
 [2019-06-01 21:10:25][DEBUG][INFO] : [3]

@@ -11,7 +11,7 @@ composer require easyswoole/sync-invoker
 
 ## 实现例子
 定义mongoDB驱动
-```
+```php
 namespace App\Mongodb;
 
 
@@ -41,7 +41,7 @@ class Driver extends AbstractInvoker
 ```
 
 定义mongoDB客户端
-```
+```php
 
 namespace App\Mongodb;
 
@@ -62,7 +62,7 @@ MongoClient::getInstance(new Driver())->attachServer(ServerManager::getInstance(
 
 ## 使用
 服务启动后即可在任意位置使用
-```
+```php
 $ret = MongoClient::getInstance()->client()->callback(function (Driver $driver){
     $ret = $driver->getDb()->user->list->insertOne([
         'name' =>Random::character(8),

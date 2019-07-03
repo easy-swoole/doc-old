@@ -1,9 +1,17 @@
+<head>
+     <title>EasySwoole 控制器|swoole 控制器|swoole Api服务</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole 控制器|swoole 控制器|swoole Api服务"/>
+     <meta name="description" content="EasySwoole 控制器|swoole 控制器|swoole Api服务"/>
+</head>
+---<head>---
 # 控制器对象
 控制器对象是http组件中方便客户端与服务端交互的对象,它使用了对象池对象复用模式,以及注入`request`和`response`对象进行数据交互
 
 ## 对象池模式
 http的控制器对象都采用了对象池模式进行获取创建对象.  
 例如:
+
  * 用户A请求`/Index`,经过url解析以及路由转发,定位到了`App\HttpController\Index.php`,控制器
  * 由于是第一次请求,`new App\HttpController\Index.php`,并将该对象存入到对象池中
  * 对象池出列,获取该对象,并进行调用index方法进行处理请求
@@ -11,17 +19,16 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
  * 用户B请求`/Index`,经过url解析以及路由转发,定位到了`App\HttpController\Index.php`,控制器
  * 由于是二次请求,对象池直接获取到第一次的对象,不需要new,直接调用 index方法进行处理
  
-> 对象池模式实现了不同请求复用同一个对象,降低了创建/销毁对象的开销  
-> 只有第一次请求 创建对象才会调用构造函数,在第二次请求获取对象时将不会再次调用  
-> 对象池模式不会重置静态属性和private私有属性,这2种属性将会复用  
-> 对象池模式是针对单一进程的,多个work进程的对象池不共享.  
+> 对象池模式实现了不同请求复用同一个对象,降低了创建/销毁对象的开销,只有第一次请求 创建对象才会调用构造函数,在第二次请求获取对象时将不会再次调用  
+,对象池模式不会重置静态属性和private私有属性,这2种属性将会复用,对象池模式是针对单一进程的,多个work进程的对象池不共享.  
 
 
     
 ## 对象方法   
 ### 调度类方法   
- * "action"     
+* "action"     
  "action"是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作"action"执行方法.   
+
 > action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:    
 
  
@@ -60,12 +67,11 @@ class Index extends Controller
     }
 }
 ````   
-> 返回的字符串将会被`url解析规则`以及`route路由`规则解析   
-> 但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
+> 返回的字符串将会被`url解析规则`以及`route路由`规则解析,但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
     
  
 
- * onRequest    
+* onRequest    
 
  
 ````php
@@ -95,16 +101,17 @@ function onRequest(?string $action): ?bool
 }
 ````
 
- * afterAction   
+* afterAction   
 当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑    
 
- * index  
+* index  
 index是一个抽象方法,代表着继承控制器对象的都需要实现该方法,index 将成为默认的控制器方法.
 
- * actionNotFound  
+* actionNotFound  
 当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑   
 > 该方法可以理解成 `默认方法`,类似于`index`方法,所以调用完之后也会触发`afterAction`,`gc`等方法
- * onException  
+
+* onException  
 当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)      
 可覆盖该方法,进行自定义的异常处理,例如:
 ````php
@@ -116,7 +123,8 @@ function onException(\Throwable $throwable): void
 }
 ````
 > 更多控制器异常相关可查看[错误与异常拦截](exception.md)
- * gc  
+
+* gc  
 ````php
 protected function gc()
 {
@@ -136,7 +144,7 @@ gc 方法将在执行`方法`,`afterAction`完之后自动调用
 可自行覆盖实现其他的gc回收逻辑.  
 
 ### 请求响应类方法
- * request   
+* request   
 request方法调用之后,将返回`EasySwoole\Http\Request`对象    
 该对象附带了用户请求的所有数据,例如:
 ````php
@@ -149,7 +157,8 @@ function index()
 }
 ````
 > 更多request相关可查看[request对象](request.md)
- * response  
+
+* response  
 response方法将返回`EasySwoole\Http\Response`,用于向客户端响应数据,例如:
 ````php
 function index()
@@ -161,7 +170,8 @@ function index()
 }
 ````  
 > 更多response相关可查看[response对象](response.md)
- * writeJson  
+
+* writeJson  
  writeJson方法直接封装了设置响应状态码,设置响应头,数组转为json输出.
 ````php
 function index()
@@ -175,19 +185,19 @@ function index()
 ````
 
 ### 反序列化方法
- * json  
+* json  
  使用json_decode 解析json字符串
- * xml  
+* xml  
  使用simplexml_load_string解析xml字符串
  
 ### session相关
- * sessionDriver  
+* sessionDriver  
   设置session的驱动类,默认为`EasySwoole\Http\Session\SessionDriver`
- * session  
+* session  
  返回session的驱动类,进行管理session 
  
 ### 验证相关
- * validate
+* validate
  validate方法可直接调用`EasySwoole\Validate\Validate`对象的验证,返回验证成功/失败的结果,实现代码:
 ````php
 protected function validate(Validate $validate)

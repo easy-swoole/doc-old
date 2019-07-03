@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染"/>
+     <meta name="description" content="EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染"/>
+</head>
+---<head>---
 # 模板引擎
 ## 渲染驱动
 EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过协程客户端投递到自定义的同步进程中进行渲染并返回结果。为何要如此处理，原因在于，市面上的一些模板引擎在Swoole协程下存在变量安全问题。例如以下流程：
@@ -44,7 +51,7 @@ class R implements RenderInterface
 ```  
 
 #### HTTP服务中调用
-```
+```php
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
 Render::getInstance()->getConfig()>setRender(new R());
 
