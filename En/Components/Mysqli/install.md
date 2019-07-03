@@ -1,5 +1,12 @@
-## 安装  
-安装命令:
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+</head>
+---<head>---
+
+## Install  
+Install command:
 ```
 composer require easyswoole/mysqli
 ```
@@ -10,7 +17,7 @@ composer require easyswoole/mysqli
 /*################ MYSQL CONFIG ##################*/
 
 'MYSQL' => [
-//数据库配置
+//Database Configuration 
    'host'                 => '',//Database connection IP
    'user'                 => '',//Database username
    'password'             => '',//Database password

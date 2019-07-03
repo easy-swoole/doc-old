@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole Actor|swoole actor|php actor</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole Actor|swoole actor|php actor"/>
+     <meta name="description" content="EasySwoole Actor|swoole actor|php actor"/>
+</head>
+---<head>---
+
 # ACTOR
 
 Provide Actor Mode Support to Help Game Industry Development。EasySwoole's Actor uses custom process as storage carrier, cooperative process as minimum dispatching unit, cooperative Channel as mail box, while the communication between client and process is implemented by UnixSocket, and distributed Actor Client is implemented by TCP, which can be easily coped with under ultra-high concurrency.

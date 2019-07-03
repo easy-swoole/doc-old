@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+</head>
+---<head>---
+
 # EasySwoole RPC Custom Registry
 
 By default, EasySwoole implements service discovery without ownership through UDP broadcasting. But in some cases where UDP broadcasting is not convenient, EasySwoole supports you to customize a node manager to change service discovery.

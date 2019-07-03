@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+</head>
+---<head>---
+
 # Cross platform
 Rpc's request response is through TCP protocol. Service broadcasting uses UDP protocol. We only need to implement network protocol.
 ## PHP sample code

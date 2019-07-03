@@ -1,3 +1,10 @@
+<head>
+     <title>Easyswoole Crontab|swoole crontab|swoole timing task|php timing</title>
+     <meta name="keywords" content="Easyswoole Crontab|swoole crontab|swoole timing task|php timing"/>
+     <meta name="description" content="Easyswoole Crontab|swoole crontab|swoole timing task|php timing"/>
+</head>
+---<head>---
+
 # Crontab Timer
 EasySwoole allows users to add timers based on Crontab rules. The minimum time granularity is 1 minute.
 

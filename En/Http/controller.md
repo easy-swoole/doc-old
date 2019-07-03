@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole controller|swoole controller|swoole Api service</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole controller|swoole controller|swoole Api service"/>
+     <meta name="description" content="EasySwoole controller|swoole controller|swoole Api service"/>
+</head>
+---<head>---
+
 # Controller object
 Controller object is an object in HTTP component that facilitates interaction between client and server. It uses object pool object reuse mode and injects `request'and `response' objects for data interaction.
 

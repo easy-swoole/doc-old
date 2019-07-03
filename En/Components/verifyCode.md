@@ -1,3 +1,8 @@
+     <title>EasySwoole verification code|swooleverification code</title>
+     <meta name="keywords" content="EasySwoole verification code|swooleverification code"/>
+     <meta name="description" content="EasySwoole verification code|swooleverification code"/>
+</head>
+---<head>---
 
 #EasySwoole Verification Code Component  
 

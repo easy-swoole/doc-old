@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+</head>
+---<head>---
+
 ## Data Object Creation  
 The mysqli component does not encapsulate data objects by itself. It can create a data object by inheriting the EasySwoole tool class [splBean](../../Spl/bean.md).
 
