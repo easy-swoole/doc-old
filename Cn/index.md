@@ -44,6 +44,7 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 - 协程版微信、支付宝支付SDK
 - 协程版微信SDK
 - 协程HTTP client
+- IOC、协程上下文管理器
 
 ## 其他
 
