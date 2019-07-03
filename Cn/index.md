@@ -19,11 +19,6 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 - EventLoop API，让用户可以直接操作底层的事件循环，将socket，stream，管道等Linux文件加入到事件循环中
 - 定时器、协程对象池、HTTP\SOCK控制器、分布式微服务、RPC支持
 
-## 入门成本
-
-相比传统的FPM框架来说，EasySwoole是有一点的入门成本的，许多设计理念及和环境均与传统的FPM不同，
-对于长时间使用LAMP（LNMP）技术的开发人员来说会有一段时间的适应期，而在众多的Swoole框架中，EasySwoole上手还是比较容易，根据简单的例子和文档几乎立即就能开启EasySwoole的探索之旅。
-
 ## 优势
 
 - 简单易用开发效率高
@@ -38,10 +33,17 @@ EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP�
 - HTTP控制器与自定义路由
 - TCP、UDP、WEB_SOCKET控制器
 - 多种混合协议通讯
-- 异步客户端与协程对象池
+- 通用协程对象池，例如mysql,redis协程连接池
 - 异步进程、自定义进程、定时器
-- 集群分布式支持，例如集群节点通讯，服务发现，RPC
+- 协程RPC服务，支持无主化服务发现与注册中心模式
 - 全开放系统事件注册器与EventHook
+- 模板渲染引擎
+- Tracker链路跟踪
+- 限流器
+- 消息队列
+- 协程版微信、支付宝支付SDK
+- 协程版微信SDK
+- 协程HTTP client
 
 ## 其他
 
