@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole  connection pool|swoole  connection pool|swoole mysql connection pool|PHP connection pool</title>
+     <meta name="keywords" content="EasySwoole  connection pool|swoole  connection pool|swoole mysql connection pool|PHP connection pool"/>
+     <meta name="description" content="EasySwoole  connection pool|swoole  connection pool|swoole mysql connection pool|PHP connection pool"/>
+</head>
+---<head>---
+
 # Mysql-Pool
 EasySwoole provides a Mysql Pool component, which is equivalent to a highly encapsulated link manager for Pool.
 ## Install
