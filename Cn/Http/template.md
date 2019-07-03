@@ -121,7 +121,6 @@ composer require smarty/smarty   - request A reached, static A assign requestA-d
 ### 实现渲染引擎
 ```php
 use EasySwoole\Template\RenderInterface;
-use EasySwoole\Template\RenderInterface;
 
 class Smarty implements RenderInterface
 {
@@ -164,7 +163,7 @@ class Smarty implements RenderInterface
 ```
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
 Render::getInstance()->getConfig()>setRender(new Smarty());
-
+Render::getInstance()->attachServer(ServerManager::getInstance()->getSwooleServer());
 //在action中实现响应
 Render::getInstance()->render('a.html');
 
