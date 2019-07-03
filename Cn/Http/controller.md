@@ -5,6 +5,7 @@
      <meta name="description" content="EasySwoole 控制器|swoole 控制器|swoole Api服务"/>
 </head>
 ---<head>---
+
 # 控制器对象
 控制器对象是http组件中方便客户端与服务端交互的对象,它使用了对象池对象复用模式,以及注入`request`和`response`对象进行数据交互
 

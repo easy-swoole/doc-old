@@ -1,3 +1,11 @@
+<head>
+     <title>swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input"/>
+     <meta name="description" content="swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input"/>
+</head>
+---<head>---
+
 # Common problem
 ## How to acquire $HTTP_RAW_POST_DATA
 ```php

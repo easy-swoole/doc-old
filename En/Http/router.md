@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole route|swoole route|swoole Api service|swoole custom route</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole route|swoole route|swoole Api service|swoole custom route"/>
+     <meta name="description" content="EasySwoole route|swoole route|swoole Api service|swoole custom route"/>
+</head>
+---<head>---
+
 ##Custom routing
 
 > Reference demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
