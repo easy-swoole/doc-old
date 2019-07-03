@@ -4,9 +4,9 @@
 
 > 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
 
-## 切换laravel镜像
+## 切换阿里云镜像
 ````
-composer config -g repo.packagist composer https://packagist.laravel-china.org
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 ````
 ## Composer 安装
 
