@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+</head>
+---<head>---
+
 ## Chain-operation
 Mysqli component provides a series of coherent operation (chain operation) methods, which can effectively improve the code clarity and development efficiency of data access, and support all CURD operations.
 

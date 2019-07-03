@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client</title>
+     <meta name="keywords" content="EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client"/>
+     <meta name="description" content="EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client"/>
+</head>
+---<head>---
+
 ## EasySwoole Coroutine HTTPClient assembly
 Coroutine httpClient assembly,Based on swoole [Asynchronous HTTP client client](https://wiki.swoole.com/wiki/page/p-http_client.html)It can be used to download files, request api, crawler and so on.
                                                                                                                                      

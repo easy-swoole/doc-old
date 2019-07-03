@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+</head>
+---<head>---
+
 # Client
 ## CLI Independent Testing (Note Namespace and Automatic Load Introduction)
 ````php
@@ -15,7 +22,7 @@ use EasySwoole\Rpc\Rpc;
 use EasySwoole\Rpc\Response;
 
 $config = new Config();
-//$config->setNodeManager(\EasySwoole\Rpc\NodeManager\TableManager::class);//设置节点管理器处理类,默认是EasySwoole\Rpc\NodeManager\FileManager
+//$config->setNodeManager(\EasySwoole\Rpc\NodeManager\TableManager::class);//Set the node manager processing class by default EasySwoole\Rpc\NodeManager\FileManager
 $rpc = new Rpc($config);
 //Get a list of all service nodes
 $nodeList = $config->getNodeManager()->allServiceNodes();

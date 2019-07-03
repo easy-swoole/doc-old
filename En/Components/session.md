@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Session|swoole session</title>
+     <meta name="keywords" content="EasySwoole Session|swoole session"/>
+     <meta name="description" content="EasySwoole Session|swoole session"/>
+</head>
+---<head>---
+
 # Session 
 
 Easyswoole no longer provides the default session service since 3.2.x. If users need to use it, please introduce session components independently.

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole timer|swoole timer|swoole timing task</title>
+     <meta name="keywords" content="EasySwoole timer|swoole timer|swoole timing task"/>
+     <meta name="description" content="EasySwoole timer|swoole timer|swoole timing task"/>
+</head>
+---<head>---
+
 # Timer
 The framework encapsulates Swoole's native millisecond timer so that developers can quickly call the native timer. The namespace of the timer class is `EasySwoole\Component\Timer`
 
