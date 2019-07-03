@@ -97,6 +97,7 @@
             var url = '/' + window.location.href.split('/').slice(3).join('/'); 
             url = url.substring(0, url.indexOf('.html')+5);
             expanded.expand($("a[href='" +url+"']").parents('li'));
+            $("a[href='" +url+"']").parents('li').addClass('active');
         },
         toggle: function ($chapter) {
             if ($chapter.hasClass('expanded')) {
