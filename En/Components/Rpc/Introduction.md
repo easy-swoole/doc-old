@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole distributed|swoole microservices|php microservices|php Rpc"/>
+</head>
+---<head>---
+
 # EasySwoole RPC
 Many traditional Phper don't know what RPC is. RPC is called Remote Procedure Call, which is translated into remote procedure call in Chinese. In fact, you can understand it as an architectural design or a solution.
 For example, in a large shopping mall system, you can split the whole shopping mall into N micro-services (which can be understood as N independent small modules), such as:
