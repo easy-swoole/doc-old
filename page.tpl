@@ -29,7 +29,11 @@
                         3.0</a>
                 </div>
                 <div class="page-inner">
-                    {$PAGE}
+                    <div class="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">{$PAGE}</section>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

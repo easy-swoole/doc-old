@@ -1562,3 +1562,31 @@ body {
 .book .book-summary .expanded > span .exc-trigger:before {
     content: "\f107";
 }
+
+.markdown-section blockquote {
+    line-height: 42px;
+    border-left-color: #0ec1d4;
+    border-left-width: 5px;
+    position: relative;
+    margin-top: 20px;
+    color: #272626;
+}
+
+.markdown-section blockquote::before {
+    content: '\f02c';
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    text-align: center;
+    background-color: #6f9fe4;
+    display: block;
+    font: normal normal normal 13px/2 FontAwesome;
+    color: #FFF;
+    position: absolute;
+    top: -10px;
+    left: -18px;
+}
+
+.markdown-section {
+    overflow: unset;
+}
