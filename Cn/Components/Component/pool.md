@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池</title>
+     <meta name="keywords" content="EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池"/>
+     <meta name="description" content="EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池"/>
+</head>
+---<head>---
+
 ## 连接池组件
 EasySwoole在基础组件中集合了连接池组件,增加mysql/redis等i/o连接的复用性,命名空间为:`EasySwoole\Component\Pool`
 demo地址:(https://github.com/easy-swoole/demo/tree/3.x-pool)

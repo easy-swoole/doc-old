@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole日志处理</title>
+     <meta name="keywords" content="EasySwoole日志处理|swoole日志处理|swoole日志"/>
+     <meta name="description" content="EasySwoole日志处理"/>
+</head>
+---<head>---
+
 # 日志处理
 ## Logger
 在easyswoole3.2.3版本之后，easyswoole的默认日志处理类分离成了组件形式，组件地址：https://github.com/easy-swoole/log

@@ -1,4 +1,11 @@
-## Context
+<head>
+     <title>EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context</title>
+     <meta name="keywords" content="EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context"/>
+     <meta name="description" content="EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context"/>
+</head>
+---<head>---
+
+# Context
 ContextManager上下文管理器  
 在swoole中,由于多个协程是并发执行的，因此不能使用类静态变量/全局变量保存协程上下文内容。使用局部变量是安全的，因为局部变量的值会自动保存在协程栈中，其他协程访问不到协程的局部变量。  
 

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 验证码|swoole验证码</title>
+     <meta name="keywords" content="EasySwoole 验证码|swoole验证码"/>
+     <meta name="description" content="EasySwoole 验证码|swoole验证码"/>
+</head>
+---<head>---
+
 #EasySwoole 验证码组件  
 
 > 仓库地址: [验证码组件](https://github.com/easy-swoole/verifyCode)

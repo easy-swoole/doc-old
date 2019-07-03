@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 视频教程|swoole 视频教程|swoole教程|swoole免费视频</title>
+     <meta name="keywords" content="EasySwoole 视频教程|swoole 视频教程|swoole教程|swoole免费视频"/>
+     <meta name="description" content="EasySwoole 视频教程|swoole 视频教程|swoole教程|swoole免费视频"/>
+</head>
+---<head>---
+
 # 入门教程
 
 ## 关于版权

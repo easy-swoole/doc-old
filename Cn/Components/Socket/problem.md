@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket</title>
+     <meta name="keywords" content="EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket"/>
+     <meta name="description" content="EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket"/>
+</head>
+---<head>---
+
 ## 如何遍历全部链接
 ```php
 use EasySwoole\EasySwoole\ServerManager;

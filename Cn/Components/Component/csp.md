@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发</title>
+     <meta name="keywords" content="EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发"/>
+     <meta name="description" content="EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发"/>
+</head>
+---<head>---
+
 # Csp 并发模式
 当我们需要并发执行某些不相干的请求，并得到结果的时候，例如：
 ```php

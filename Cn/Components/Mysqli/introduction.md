@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+</head>
+---<head>---
+
 ## EasySwoole-Mysqli
 
 > 仓库地址: [EasySwoole-Mysqli](https://github.com/easy-swoole/mysqli)

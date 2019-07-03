@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程</title>
+     <meta name="keywords" content="EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程"/>
+     <meta name="description" content="EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程"/>
+</head>
+---<head>---
+
 # 进程
 
 ## 用途

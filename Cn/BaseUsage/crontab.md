@@ -1,3 +1,10 @@
+<head>
+     <title>Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时</title>
+     <meta name="keywords" content="Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时"/>
+     <meta name="description" content="Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时"/>
+</head>
+---<head>---
+
 # Crontab 定时器
 EasySwoole支持用户根据Crontab规则去添加定时器。时间最小粒度是1分钟。
 

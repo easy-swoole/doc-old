@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole分布式|swoole分布式|swoole 分布式框架</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+     <meta name="description" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+</head>
+---<head>---
 # 如何实现分布式
 关于最近很多人在询问，如何利用EasySwoole做分布式负载均衡，复杂的就不讲解了，就讲解如何实现最简单的负载均衡。
 

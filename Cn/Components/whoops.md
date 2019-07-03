@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole whoops|swoole whoops|swoole debug|swoole 调试</title>
+     <meta name="keywords" content="EasySwoole whoops|swoole whoops|swoole debug|swoole 调试"/>
+     <meta name="description" content="EasySwoole whoops|swoole whoops|swoole debug|swoole 调试"/>
+</head>
+---<head>---
+
 # Whoops
 
 Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业务的错误与异常。

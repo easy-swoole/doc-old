@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+</head>
+---<head>---
+
 # EasySwoole RPC
 很多传统的Phper并不懂RPC是什么，RPC全称Remote Procedure Call，中文译为远程过程调用,其实你可以把它理解为是一种架构性上的设计，或者是一种解决方案。
 例如在某庞大商场系统中，你可以把整个商场拆分为N个微服务（理解为N个独立的小模块也行），例如：

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 验证码|swoole验证码</title>
+     <meta name="keywords" content="EasySwoole 验证码|swoole验证码"/>
+     <meta name="description" content="EasySwoole 验证码|swoole验证码"/>
+</head>
+---<head>---
+
 ## Config.php
 生成验证码前需要传入Config的对象实例  
 Config类实例化后会有默认配置,无需配置也可生成二维码

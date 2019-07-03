@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole Actor设计|swoole actor设计|php actor设计</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole Actor设计|swoole actor设计|php actor设计"/>
+     <meta name="description" content="EasySwoole Actor设计|swoole actor设计|php actor设计"/>
+</head>
+---<head>---
+
 ## Actor2架构解读
 
 ### Actor

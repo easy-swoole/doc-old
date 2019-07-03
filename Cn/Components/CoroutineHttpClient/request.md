@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端</title>
+     <meta name="keywords" content="EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端"/>
+     <meta name="description" content="EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端"/>
+</head>
+---<head>---
+
 ## 请求
 
 ### 实例化客户端

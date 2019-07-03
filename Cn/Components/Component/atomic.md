@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole atomic|swoole atomic|swoole 计数器</title>
+     <meta name="keywords" content="EasySwoole atomic|swoole atomic|swoole 计数器"/>
+     <meta name="description" content="EasySwoole atomic|swoole atomic|swoole 计数器"/>
+</head>
+---<head>---
+
 # Atomic
 
 [swoole_atomic](https://wiki.swoole.com/wiki/page/p-atomic.html)是swoole扩展提供的原子计数操作类，可以方便整数的无锁原子增减。

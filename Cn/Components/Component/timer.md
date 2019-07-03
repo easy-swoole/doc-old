@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole定时器|swoole定时器|swoole定时任务|php定时器</title>
+     <meta name="keywords" content="EasySwoole定时器|swoole定时器|swoole定时任务|php定时器"/>
+     <meta name="description" content="EasySwoole定时器|swoole定时器|swoole定时任务|php定时器"/>
+</head>
+---<head>---
+
 # 定时器
 框架对原生的毫秒级定时器进行了封装，以便开发者快速调用 Swoole 的原生定时器，定时器类的命名空间为 `EasySwoole\Component\Timer`
 

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+</head>
+---<head>---
+
 ## 连贯操作
 mysqli 组件提供了一系列的连贯操作(链式操作)方法,可以有效的提高数据存取的代码清晰度和开发效率,并且支持所有的CURD操作.
 

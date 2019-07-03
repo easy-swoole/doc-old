@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole分布式|swoole分布式|swoole 分布式框架</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+     <meta name="description" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+</head>
+---<head>---
 # 微服务
 
 ## 微服务的意义

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole waigroup|swoole waigroup|swoole waigroup编程|waigroup|php waigroup</title>
+     <meta name="keywords" content="EasySwoole waigroup|swoole waigroup|swoole waigroup编程|waigroup|php waigroup"/>
+     <meta name="description" content="EasySwoole waigroup|swoole waigroup|swoole waigroup编程|waigroup|php waigroup"/>
+</head>
+---<head>---
+
 # WaitGroup
 示例代码：
 ```php

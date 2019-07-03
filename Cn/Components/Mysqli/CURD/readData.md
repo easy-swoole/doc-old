@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+</head>
+---<head>---
+
 ## 数据读取
 数据读取分为2种读取:读取多条数据,读取单条数据,数据读取支持where等连贯操作,具体连贯操作可查看[连贯操作](../continuous_operation.md),本文不再说明
 

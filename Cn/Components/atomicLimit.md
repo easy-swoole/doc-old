@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 限流|swoole限流|swoole 熔断|swoole api限流</title>
+     <meta name="keywords" content="EasySwoole 限流|swoole限流|swoole 熔断|swoole api限流"/>
+     <meta name="description" content="EasySwoole 限流|swoole限流|swoole 熔断|swoole api限流"/>
+</head>
+---<head>---
+
 # AtomicLimit
 
 Easyswoole提供了一个基于Atomic计数器的限流器。

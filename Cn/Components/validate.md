@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 验证器|swoole 参数验证器</title>
+     <meta name="keywords" content="EasySwoole 验证器|swoole 参数验证器"/>
+     <meta name="description" content="EasySwoole 验证器|swoole 参数验证器"/>
+</head>
+---<head>---
+
 ## Validate
 
 EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个validate方法，如果希望用其他的方法或者是工具去做检验，可以在子类控制器中重写该方法，从而实现用其他工具进行校验
