@@ -93,10 +93,11 @@
             expanded.expand(expanded.lsItem());
             expanded.collapse($('.chapter'));
 
-            //expand current selected chapter with it's parents
-            var activeChapter = $('.chapter' + '.active');
-            expanded.expand(activeChapter);
-            expanded.expand(activeChapter.parents('.chapter'));
+            // 展开当前菜单
+            var url = '/' + window.location.href.split('/').slice(3).join('/'); 
+            url = url.substring(0, url.indexOf('.html')+5);
+            expanded.expand($("a[href='" +url+"']").parents('li'));
+            $("a[href='" +url+"']").parents('li').addClass('active');
         },
         toggle: function ($chapter) {
             if ($chapter.hasClass('expanded')) {
