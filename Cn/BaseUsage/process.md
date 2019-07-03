@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程</title>
+     <meta name="keywords" content="EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程"/>
+     <meta name="description" content="EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程"/>
+</head>
+---<head>---
+
 # 进程
 
 ## 用途
@@ -6,7 +13,7 @@
 ## 例子
 
 ### 定义一个进程类
-```
+```php
 use EasySwoole\Component\Process\AbstractProcess;
 
 class Process extends AbstractProcess
@@ -51,7 +58,7 @@ class Process extends AbstractProcess
 ### 注册进程
 
 我们在EasySwoole全局的mainServerCreate事件中进行进程注册
-```
+```php
 use App\Process;
 use EasySwoole\Component\Process\Config;
 $processConfig = new Config();

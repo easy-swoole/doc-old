@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole分布式|swoole分布式|swoole 分布式框架</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+     <meta name="description" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+</head>
+---<head>---
 # 如何实现分布式
 关于最近很多人在询问，如何利用EasySwoole做分布式负载均衡，复杂的就不讲解了，就讲解如何实现最简单的负载均衡。
 
@@ -46,7 +53,7 @@
 
 我们以WEB SOCKET作为例子，假设在某游戏大型应用中，为了实现均衡负载，我们使用了网关，例如Nginx对用户连接进行随机分发到不同的机器。
 而此刻，一个问题就是，在swoole中，每个链接都是以一个自增的fd标识来标记的，多个swoole服务中，fd是会重复的。因此，在多机器的情况下，我们可以在redis或者是其他的存储中，存储以下数据结构：
-```
+```text
 {
     'userId':'xxxxxx',
     'seerver':

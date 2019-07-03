@@ -42,7 +42,7 @@ class Subscribe extends AbstractProcess
 ```
 
 接下来，需要做的事情，就是到EasySwooleEvent.php的主服务创建事件中，注册该进程即可。
-```
+```php
 use App\Process;
 use EasySwoole\Core\Swoole\Process\ProcessManager;
 

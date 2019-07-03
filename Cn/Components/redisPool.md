@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池</title>
+     <meta name="keywords" content="EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池"/>
+     <meta name="description" content="EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池"/>
+</head>
+---<head>---
+
 # Redis-Pool
 EasySwoole 提供了一个Redis Pool组件，等于高度封装了Pool的链接管理器
 ## 安装

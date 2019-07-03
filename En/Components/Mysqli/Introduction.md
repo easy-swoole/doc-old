@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+</head>
+---<head>---
+
 ## EasySwoole-Mysqli
 
 > Warehouse Address: [EasySwoole-Mysqli](https://github.com/easy-swoole/mysqli)

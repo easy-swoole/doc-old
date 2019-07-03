@@ -1,9 +1,16 @@
-## Context
+<head>
+     <title>EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context</title>
+     <meta name="keywords" content="EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context"/>
+     <meta name="description" content="EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context"/>
+</head>
+---<head>---
+
+# Context
 ContextManager上下文管理器  
 在swoole中,由于多个协程是并发执行的，因此不能使用类静态变量/全局变量保存协程上下文内容。使用局部变量是安全的，因为局部变量的值会自动保存在协程栈中，其他协程访问不到协程的局部变量。  
 
 ##  基础例子
-```
+```php
 use EasySwoole\Component\Context\ContextManager;
 go(function (){
     ContextManager::getInstance()->set('key','key in parent');
@@ -21,7 +28,7 @@ go(function (){
 
 例如，当我们有一个key,希望在协程环境中，get的时候执行一次创建，在协程退出的时候可以进行回收，那么我们就可以注册一个上下文处理项来实现。该场景可以用于协程内数据库短连接管理。
 
-```
+```php
 use EasySwoole\Component\Context\ContextManager;
 use EasySwoole\Component\Context\ContextItemHandlerInterface;
 

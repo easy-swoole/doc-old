@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Pay|swoole 支付组件|swoole 微信支付|swoole 支付宝支付|php 微信支付|php 支付宝</title>
+     <meta name="keywords" content="EasySwoole Pay|swoole 支付组件|swoole 微信支付|swoole 支付宝支付|php 微信支付|php 支付宝"/>
+     <meta name="description" content="EasySwoole Pay|swoole 支付组件|swoole 微信支付|swoole 支付宝支付|php 微信支付|php 支付宝"/>
+</head>
+---<head>---
+
 # 协程支付网关
 ```
 composer require easyswoole/pay

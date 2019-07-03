@@ -29,7 +29,7 @@ protected static $cacheHandler;
 
 ```
 #### think\Model 静态变量:
-```
+```php
 protected static $initialized = [];
 //初始化过的模型.
 //原本作用：确保一个模型类中的init方法在一次请求中只被执行一次
@@ -42,7 +42,7 @@ protected static $readMaster;
 ```
 
 #### think\db\Connection 静态变量:
-```
+```php
 protected static $instance = [];
 //PDO操作实例
 //建立的连接管理实例
@@ -64,7 +64,7 @@ protected static $log = [];
 
 ```
 #### think\db\Query 静态变量:
-```
+```php
 protected static $connections = [];
 // 数据库Connection对象
 // 暂时没发现使用的地方
@@ -85,7 +85,7 @@ private static $readMaster = [];
 
 ```
 #### think\Db\ModelEvent 静态变量:
-```
+```php
 private static $event = [];
 // 回调事件
 //原本作用：给模型设置的事件回调

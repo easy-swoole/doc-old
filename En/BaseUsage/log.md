@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole log processing</title>
+     <meta name="keywords" content="EasySwoole log processing|swoole log processing|swoole log"/>
+     <meta name="description" content="EasySwoole log processing"/>
+</head>
+---<head>---
+
 # Handling Log
 ## Logger
 

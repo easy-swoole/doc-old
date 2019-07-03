@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole asynchronous tasks|swoole asynchronism</title>
+     <meta name="keywords" content="EasySwoole asynchronous tasks|swoole asynchronism|swoole asynchronism process"/>
+     <meta name="description" content="Easyswoole delivers asynchronous tasks"/>
+</head>
+---<head>---
+
 # Asynchronous Task
 
 > Reference Demo: [Asynchronous Task Processing Demo] (https://github.com/easy-swoole/demo/tree/3.x-async)

@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole template engine|swoole template engine|swoole template rendering</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole template engine|swoole template engine|swoole template rendering"/>
+     <meta name="description" content="EasySwoole template engine|swoole template engine|swoole template rendering"/>
+</head>
+---<head>---
+
 # Template engine
 ## Rendering driver
 

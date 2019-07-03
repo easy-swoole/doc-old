@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client</title>
+     <meta name="keywords" content="EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client"/>
+     <meta name="description" content="EasySwoole  coroutine http client|swoole  coroutine http client|swoole coroutine Http|php  coroutine client"/>
+</head>
+---<head>---
+
 ## response
 ```php
 <?php

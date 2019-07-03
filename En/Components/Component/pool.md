@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Connection pool|swoole Connection pool|swoole mysqlConnection pool|swoole redisConnection pool|PHPConnection pool</title>
+     <meta name="keywords" content="EasySwoole Connection pool|swoole Connection pool|swoole mysqlConnection pool|swoole redisConnection pool|PHPConnection pool"/>
+     <meta name="description" content="EasySwoole Connection pool|swoole Connection pool|swoole mysqlConnection pool|swoole redisConnection pool|PHPConnection pool"/>
+</head>
+---<head>---
+
 ## Connection pool component
 EasySwoole integrates connection pool components in the basic components to increase the reusability of i/o connections such as mysql/redis, and the namespace is `EasySwooleComponentPool'.`
 Demo address:(https://github.com/easy-swoole/demo/tree/3.x-pool)

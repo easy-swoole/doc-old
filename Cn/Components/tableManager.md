@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Table|swoole table</title>
+     <meta name="keywords" content="EasySwoole Table|swoole table"/>
+     <meta name="description" content="EasySwoole Table|swoole table"/>
+</head>
+---<head>---
+
 # TableManager
 `EasySwoole\Component\TableManager`
 EasySwoole对Swoole table进行了基础的封装,用于共享内存

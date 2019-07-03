@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Session|swoole session</title>
+     <meta name="keywords" content="EasySwoole Session|swoole session"/>
+     <meta name="description" content="EasySwoole Session|swoole session"/>
+</head>
+---<head>---
+
 # Session 
 Easyswoole 自3.2.x开始，不再提供默认的session服务，若需要使用的用户，请独立引入session组件。
 

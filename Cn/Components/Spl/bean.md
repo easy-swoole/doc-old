@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Bean|php bean</title>
+     <meta name="keywords" content="EasySwoole Bean|php bean"/>
+     <meta name="description" content="EasySwoole Bean|php bean"/>
+</head>
+---<head>---
+
 # SplBean
 
 ## 用途

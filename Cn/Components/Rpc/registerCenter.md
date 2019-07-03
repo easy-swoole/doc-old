@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc</title>
+     <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+</head>
+---<head>---
+
 # EasySwoole RPC 自定义注册中心
 
 EasySwoole 默认为通过UDP广播的方式来实现无主化的服务发现。但有些情况，不方便用UDP广播的情况下，那么EasySwoole支持你自定义一个节点管理器，来变更服务发现方式。

@@ -3,7 +3,7 @@
  A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot.
  若不在服务启动前执行CURL SSL连接，则不报错。
 ## 相关代码
-```
+```php
 $a = function (){
     $ch = curl_init("https://www.baidu.com");
     $curlOPt = array(

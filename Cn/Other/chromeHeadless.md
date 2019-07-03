@@ -5,7 +5,7 @@ Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏�
 
 ## 部署 Chrome Headless
 因为环境部署不是本文的重点，因此我们直接推荐docker。
-```
+```text
 docker pull alpeware/chrome-headless-trunk
 docker run -d -p 9222:9222 alpeware/chrome-headless-trunk
 ```

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+</head>
+---<head>---
+
 ## 数据对象创建  
 mysqli组件没有自行封装数据对象,可通过继承EasySwoole工具类[splBean](../../Spl/bean.md)自行创建一个数据对象.
 

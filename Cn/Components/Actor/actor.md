@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole Actor|swoole actor|php actor</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole Actor|swoole actor|php actor"/>
+     <meta name="description" content="EasySwoole Actor|swoole actor|php actor"/>
+</head>
+---<head>---
+
 # ACTOR
 
 提供Actor模式支持，助力游戏行业开发。EasySwoole的Actor采用自定义process作为存储载体，以协程作为最小调度单位，利用协程Channel做mail box,而客户端与process之间的通讯，采用UnixSocket实现，并且借助TCP实现分布式的ActorClient，超高并发下也能轻松应对。

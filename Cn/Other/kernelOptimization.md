@@ -3,7 +3,7 @@
 ulimit设置
 ----
 ulimit -n 要调整为100000甚至更大。 命令行下执行 ulimit -n 100000即可修改。如果不能修改，需要设置  /etc/security/limits.conf，加入
-```
+```text
 * soft nofile 262140
 * hard nofile 262140
 root soft nofile 262140
@@ -32,7 +32,7 @@ swoole使用unix socket dgram来做进程间通信，如果请求量很大，需
 ### net.core.wmem_max###
 修改此参数增加socket缓存区的内存大小  
 
-```
+```text
 net.ipv4.tcp_mem  =   379008       505344  758016
 net.ipv4.tcp_wmem = 4096        16384   4194304
 net.ipv4.tcp_rmem = 4096          87380   4194304
