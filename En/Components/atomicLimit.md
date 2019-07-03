@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole current limiting|swoole current limiting|swoole Fuse|swoole api current limiting</title>
+     <meta name="keywords" content="EasySwoole current limiting|swoole current limiting|swoole Fuse|swoole api current limiting"/>
+     <meta name="description" content="EasySwoole current limiting|swoole current limiting|swoole Fuse|swoole api current limiting"/>
+</head>
+---<head>---
+
 # AtomicLimit
 
 Easyswoole provides a current limiter based on Atomic counter.

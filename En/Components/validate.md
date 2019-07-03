@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole verifier|swoole parametric verifier</title>
+     <meta name="keywords" content="EasySwoole verifier|swoole parametric verifier"/>
+     <meta name="description" content="EasySwoole verifier|swoole parametric verifier"/>
+</head>
+---<head>---
+
 # Validate
 
 > Validator class: EasySwoole\Validate\Validate

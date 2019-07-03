@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole whoops|swoole whoops|swoole debug|swoole debugging</title>
+     <meta name="keywords" content="EasySwoole whoops|swoole whoops|swoole debug|swoole debugging"/>
+     <meta name="description" content="EasySwoole whoops|swoole whoops|swoole debug|swoole debugging"/>
+</head>
+---<head>---
+
 # Whoops
 
 Easyswoole provides Whoops drivers for the development phase to friendly eliminate errors and exceptions in HTTP business.
