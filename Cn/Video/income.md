@@ -130,12 +130,14 @@
 ### 模型封装 约5分钟
 1. 手动封装model 以及强调 mysql连接的问题 
 2. 在controller 使用模型进行操作数据库
+> 观看地址:[连接池使用](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvJTI1RTclMjVBRSUyNTgwJTI1RTUlMjU4RCUyNTk1TW9kZWwlMjVFNSUyNUIwJTI1ODElMjVFOCUyNUEzJTI1ODUubXA0)
 
 ### Bean的介绍和使用 约5分钟
 1. 简单介绍 Bean 和数据对象的概念 以及 array的问题
 2. 写一个 Bean的demo 介绍一些常用的方法
 3. 配合model 在controller进行操作 数据库
-   
+> 观看地址:[连接池使用](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvQmVhbiUyNUU3JTI1OUElMjU4NCUyNUU0JTI1QkIlMjU4QiUyNUU3JTI1QkIlMjU4RCUyNUU1JTI1OTIlMjU4QyUyNUU0JTI1QkQlMjVCRiUyNUU3JTI1OTQlMjVBOC5tcDQ=)
+
 ### 事务使用和注意点 约10分钟
 1. 再次阐述 事务和mysql 连接的问题
 2. 在controller写一个事务操作 并进行回滚，并且写一个反例 使用多连接事务 导致事务操作失败的例子
