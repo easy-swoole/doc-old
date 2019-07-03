@@ -51,7 +51,7 @@ class R implements RenderInterface
 ```  
 
 #### HTTP服务中调用
-```
+```php
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
 Render::getInstance()->getConfig()>setRender(new R());
 
