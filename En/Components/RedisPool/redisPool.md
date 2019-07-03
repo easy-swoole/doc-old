@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole  connection pool|swoole  connection pool|swoole redis connection pool|PHP connection pool</title>
+     <meta name="keywords" content="EasySwoole  connection pool|swoole  connection pool|swoole redis connection pool|PHP connection pool"/>
+     <meta name="description" content="EasySwoole  connection pool|swoole  connection pool|swoole redis connection pool|PHP connection pool"/>
+</head>
+---<head>---
+
 # Redis-Pool
 EasySwoole provides a Redis Pool component, which is equivalent to a link manager highly encapsulated with Pool.
 ## Install

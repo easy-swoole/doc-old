@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole Http service|swoole Http|swoole Api service</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole Http service|swoole Http|swoole Api service"/>
+     <meta name="description" content="EasySwoole Http service|swoole Http|swoole Api service"/>
+</head>
+---<head>---
+
 # Http server
 The HTTP component is automatically enabled when `SERVER_TYPE'is `EASYSWOOLE_WEB_SERVER'. It implements the controller connection pool, URL parsing and URL routing rules.
 [HTTP component demo](https://github.com/easy-swoole/demo/tree/3.x-http)

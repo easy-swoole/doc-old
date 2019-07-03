@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 服务管理|swoole 服务管理|swoole 服务|EasySwoole 服务</title>
+     <meta name="keywords" content="EasySwoole 服务管理|swoole 服务管理|swoole 服务|EasySwoole 服务"/>
+     <meta name="description" content="EasySwoole 服务管理|swoole 服务管理|swoole 服务|EasySwoole 服务"/>
+</head>
+---<head>---
+
 # ServerManager
 
 > 服务管理类: EasySwoole\EasySwoole\ServerManager

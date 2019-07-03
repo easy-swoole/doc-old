@@ -1,28 +1,35 @@
-# Csp 并发模式
-当我们需要并发执行某些不相干的请求，并得到结果的时候，例如：
-```
+<head>
+     <title>EasySwoole Csp|swoole Csp|swoole Csp programming|Csp programming|php Csp programming|Csp Concurrent</title>
+     <meta name="keywords" content="EasySwoole Csp|swoole Csp|swoole Csp programming|Csp programming|php Csp programming|Csp Concurrent"/>
+     <meta name="description" content="EasySwoole Csp|swoole Csp|swoole Csp programming|Csp programming|php Csp programming|Csp Concurrent"/>
+</head>
+---<head>---
+
+# Csp concurrency mode
+When we need to concurrently execute some unrelated requests and get results, for example:
+```php
 $sql1->exec();
 $sql2->exec();
 $sql2->exec();
 ```
-在以上的代码中，我们没办法最大的节约时间，因为sql语句都是顺序执行的，因此我们引入了Csp并发编程的概念。
+In the above code, we can not save the most time, because SQL statements are executed sequentially, so we introduce the concept of Csp concurrent programming.
 
-## 示例代码
-```
+## Sample code
+```php
 go(function (){
     $channel = new \Swoole\Coroutine\Channel();
     go(function ()use($channel){
-        //模拟执行sql
+        //Sample code simulates SQL execution
         \co::sleep(0.1);
         $channel->push(1);
     });
     go(function ()use($channel){
-        //模拟执行sql
+        //Sample code simulates SQL execution
         \co::sleep(0.1);
         $channel->push(2);
     });
     go(function ()use($channel){
-        //模拟执行sql
+        //Sample code simulates SQL execution
         \co::sleep(0.1);
         $channel->push(3);
     });
@@ -34,11 +41,11 @@ go(function (){
 });
 ```
 
-> 当然，在以上的代码中，我们没有充分的考虑超时等情况
+> Of course, in the above code, we didn't give enough consideration to timeouts and so on.
 
-## 进一步封装
+## Further packaging
 
-```
+```php
 go(function (){
     $csp = new \EasySwoole\Component\Csp();
     $csp->add('t1',function (){

@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool</title>
+     <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole database connection pool|php connection pool"/>
+</head>
+---<head>---
+
 ## Data fetch
 Data reading is divided into two types: reading multiple data, reading single data, data reading support where and other coherent operations, specific coherent operations can be seen [coherent operations](../continuous_operation.md). This article will not explain.
 
