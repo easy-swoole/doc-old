@@ -995,6 +995,13 @@
           ]
         },
         {
+          "name": "Policy策略权限",
+          "link": "/Cn/Components/policy.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "杂项工具",
           "link": "link",
           "sub": [
