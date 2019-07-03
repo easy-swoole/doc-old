@@ -5,8 +5,8 @@
 </head>
 ---<head>---
 
-## 安装  
-安装命令:
+## Install  
+Install command:
 ```
 composer require easyswoole/mysqli
 ```
@@ -17,7 +17,7 @@ composer require easyswoole/mysqli
 /*################ MYSQL CONFIG ##################*/
 
 'MYSQL' => [
-//数据库配置
+//Database Configuration 
    'host'                 => '',//Database connection IP
    'user'                 => '',//Database username
    'password'             => '',//Database password
