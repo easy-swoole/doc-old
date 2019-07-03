@@ -95,8 +95,8 @@
 
             // 展开当前菜单
             var url = '/' + window.location.href.split('/').slice(3).join('/'); 
-			url = url.substring(0, url.indexOf('.html')+5);
-			expanded.expand($("a[href='" +url+"']").parents('li'));
+            url = url.substring(0, url.indexOf('.html')+5);
+            expanded.expand($("a[href='" +url+"']").parents('li'));
         },
         toggle: function ($chapter) {
             if ($chapter.hasClass('expanded')) {
