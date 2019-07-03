@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole异步任务|swoole异步</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole异步任务|swoole异步|swoole异步进程"/>
+     <meta name="description" content="Easyswoole投递异步任务"/>
+</head>
+---<script>---
 # 异步任务
 
 > 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
