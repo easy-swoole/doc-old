@@ -86,6 +86,7 @@
             $('.articles').parent('.chapter').children('a').on('click', function (e) {
                 e.preventDefault();
                 expanded.toggle($(e.target).closest('.chapter'));
+                e.target.href != undefined && e.target.href != null && e.target.href.substring(0, 4) == 'http' && (window.location = e.target.href);
             }).append(
                 $('<i class="exc-trigger fa"></i>')
             );
