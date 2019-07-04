@@ -1545,6 +1545,7 @@ body {
 
 .book .book-summary .exc-trigger {
     position: absolute;
+    width: 18px;
     left: 12px;
     top: 12px;
 }
