@@ -1083,7 +1083,7 @@
       "link": "link",
       "sub": [
         {
-          "name": "MongoDB",
+          "name": "mongodb客户端",
           "link": "/Cn/Other/mongodb.html",
           "sub": [
 
@@ -1199,6 +1199,17 @@
           "sub": [
 
           ]
+        }
+      ]
+    },
+    {
+      "name": "公开文章",
+      "link": "",
+      "sub": [
+        {
+          "name": "如何学习Swoole",
+          "link": "/Cn/Passage/learnSwoole.html",
+          "sub": []
         }
       ]
     },
