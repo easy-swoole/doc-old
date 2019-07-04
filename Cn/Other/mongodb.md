@@ -1,3 +1,11 @@
+<head>
+     <title>EasySwoole Mongodb|swoole Mongodb</title>
+     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+     <meta name="keywords" content="EasySwoole Mongodb|swoole Mongodb"/>
+     <meta name="description" content="EasySwoole Mongodb|swoole Mongodb"/>
+</head>
+---<head>---
+
 # MongoDB
 
 目前，MongoDB并没有提供协程版本的php客户端，只有同步阻塞版本。在实际生产中，直接

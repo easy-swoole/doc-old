@@ -995,6 +995,13 @@
           ]
         },
         {
+          "name": "Policy策略权限",
+          "link": "/Cn/Components/policy.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "杂项工具",
           "link": "link",
           "sub": [
@@ -1076,7 +1083,7 @@
       "link": "link",
       "sub": [
         {
-          "name": "MongoDB",
+          "name": "mongodb客户端",
           "link": "/Cn/Other/mongodb.html",
           "sub": [
 
@@ -1192,6 +1199,17 @@
           "sub": [
 
           ]
+        }
+      ]
+    },
+    {
+      "name": "公开文章",
+      "link": "",
+      "sub": [
+        {
+          "name": "如何学习Swoole",
+          "link": "/Cn/Passage/learnSwoole.html",
+          "sub": []
         }
       ]
     },

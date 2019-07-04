@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <link href="/Css/page.css" rel="stylesheet">
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="/Js/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
     {$HEAD}
 </head>
 <body>
-<div class="book without-animation with-summary">
+<div class="book with-summary without-animation" id="book-main">
     <div class="book-summary">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="搜索功能即将来袭 ^_^">
+        </div>
         <nav role="navigation">
             <ul class="summary">
                 {$MENU}
@@ -19,51 +22,127 @@
     <div class="book-body">
         <div class="body-inner">
             <div class="page-wrapper">
+                <div class="book-header" role="navigation">
+                    <a class="btn pull-left js-toolbar-action" aria-label="" href="#" id="toggleSidebar"><i
+                                class="fa fa-align-justify"></i></a>
+                    <a class="btn pull-right js-toolbar-action" aria-label="" href="#"><i class="fa fa-flag"></i>&nbsp;&nbsp;VERSION
+                        3.0</a>
+                </div>
                 <div class="page-inner">
-                    {$PAGE}
+                    <div class="book-search-results">
+                        <div class="search-noresults">
+                            <section class="normal markdown-section">{$PAGE}</section>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
-    $(function () {
-        //先隐藏除了一级元素的所有元素
-        $('.summary li').not('.summary>li').hide();
-        //删除所有的exc-trigger2元素
-        $(this).find('.fa').removeClass('exc-trigger2');
-        $(this).find('.fa').addClass('exc-trigger');
-        //匹配url
-        var pathname = window.location.pathname;
-        $('a[href="' + pathname + '"]').parents('li').find('li').show();
-        $('a[href="' + pathname + '"]').parents('li').find('.fa').addClass('exc-trigger2');
-        $('a[href="' + pathname + '"]').parents('li').find('.fa').removeClass('exc-trigger');
-        $('a[href="' + pathname + '"]').parents('li:first').addClass('active');
 
-        $('.summary li').on('click', function () {
-            // console.log(1);
-            // console.log($(this).find('.fa').hasClass('exc-trigger2'));
-            if ($(this).find('a:first').attr('href')&&!$(this).find('.fa').hasClass('exc-trigger2')) {
-                if ($(this).find('a:first').attr('target')=='_blank'){
-                    window.open($(this).find('a:first').attr('href'));
-                }else{
-                    window.location.href = $(this).find('a:first').attr('href');
-                }
-                return false;
-            }
+    // 设备尺寸监测
+    var platform = {
+        isMobile: function () {
+            return ($(document).width() <= 600);
+        },
+        // Breakpoint for navigation links position
+        isSmallScreen: function () {
+            return ($(document).width() <= 1240);
+        }
+    };
 
-            if ($(this).find('.fa').hasClass('exc-trigger2')) {
-                $(this).find('li').slideUp(300);
-                $(this).find('.fa').removeClass('exc-trigger2');
-                $(this).find('.fa').addClass('exc-trigger');
+    // 侧边栏切换
+    var sidebarElem = $('.book-summary');
+    var mainBox = $('#book-main');
+
+    // 侧边栏管理
+    var sidebar = {
+        toggleSidebar: function (state) {
+            state ? mainBox.addClass('with-summary') : mainBox.removeClass('with-summary');
+        },
+        isOpen: function () {
+            return mainBox.hasClass('with-summary');
+        },
+        initSidebar: function () {
+            platform.isMobile() ? sidebar.toggleSidebar(false) : sidebar.toggleSidebar(true);
+
+            // 切换边栏状态
+            $('#toggleSidebar').on('click', function () {
+                sidebar.toggleSidebar(!sidebar.isOpen())
+            });
+
+            // 响应式自动切换
+            $(window).resize(function () {
+                sidebar.toggleSidebar(!platform.isMobile())
+            });
+        }
+    };
+
+    // 章节目录管理
+    var expanded = {
+        init: function () {
+            $('.articles').parent('.chapter').children('a').on('click', function (e) {
+                e.preventDefault();
+                expanded.toggle($(e.target).closest('.chapter'));
+                e.target.href != undefined && e.target.href != null && e.target.href.substring(0, 4) == 'http' && (window.location = e.target.href);
+            }).append(
+                $('<i class="exc-trigger fa"></i>')
+            );
+
+            expanded.expand(expanded.lsItem());
+            expanded.collapse($('.chapter'));
+
+            // 展开当前菜单
+            var url = '/' + window.location.href.split('/').slice(3).join('/'); 
+            url = url.substring(0, url.indexOf('.html')+5);
+            expanded.expand($("a[href='" +url+"']").parents('li'));
+            $("a[href='" +url+"']").parents('li').addClass('active');
+        },
+        toggle: function ($chapter) {
+            if ($chapter.hasClass('expanded')) {
+                expanded.collapse($chapter);
             } else {
-                $(this).children('ul').children('li').slideDown(300);
-                $(this).children('span').find('.fa').addClass('exc-trigger2');
-                $(this).children('span').find('.fa').removeClass('exc-trigger');
+                expanded.expand($chapter);
             }
-            return false;
-        });
-    });
+        },
+        collapse: function ($chapter) {
+            if ($chapter.length && $chapter.hasClass('expanded')) {
+                $chapter.removeClass('expanded');
+                expanded.lsItem($chapter);
+            }
+        },
+        expand: function ($chapter) {
+            if ($chapter.length && !$chapter.hasClass('expanded')) {
+                $chapter.addClass('expanded');
+                expanded.lsItem($chapter);
+            }
+        },
+        lsItem: function () {
+            var map = JSON.parse(localStorage.getItem('expChapters')) || {};
+            if (arguments.length) {
+                var $chapters = arguments[0];
+                $chapters.each(function (index, element) {
+                    var level = $(this).data('level');
+                    var value = $(this).hasClass('expanded');
+                    map[level] = value;
+                });
+                localStorage.setItem('expChapters', JSON.stringify(map));
+            } else {
+                return $('.chapter').map(function (index, element) {
+                    if (map[$(this).data('level')]) {
+                        return this;
+                    }
+                })
+            }
+        }
+    };
+    // 初始化侧栏
+    sidebar.initSidebar();
+    // 初始化章节目录
+    expanded.init();
 </script>
+
 </body>
 </html>

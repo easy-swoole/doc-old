@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 安装|swoole 安装|swoole 拓展</title>
+     <meta name="keywords" content="EasySwoole 安装|swoole 安装|swoole 拓展"/>
+     <meta name="description" content="EasySwoole 安装|swoole 安装|swoole 拓展"/>
+</head>
+---<head>---
+
 # 框架安装
 
 框架使用 `Composer` 作为依赖管理工具，在开始安装框架前，请确保已经按上一章节的要求配置好环境并安装好了`Composer` 工具，在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限

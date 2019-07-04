@@ -17,7 +17,7 @@ composer require easyswoole/tracker
 ## 调用链
 Easyswoole的调用链跟踪是一个以类似有序的树状链表的解构实现的，解构如下：
 
-```
+```php
 struct Point{
     struct Point* nextPoint;
     struct Point[] subPoints;
@@ -38,7 +38,7 @@ struct Point{
 ```
 
 ### 示例代码
-```
+```php
 
 use EasySwoole\Tracker\Point;
 use EasySwoole\Component\WaitGroup;
@@ -131,7 +131,7 @@ go(function (){
 ```
 
 以上代码输出结果：
-```
+```php
 #
 PointName:onRequest
 Status:success
@@ -205,7 +205,7 @@ NextPoint:None
 
 EasySwooleEvent.php
 
-```
+```php
 namespace EasySwoole\EasySwoole;
 
 
@@ -251,7 +251,7 @@ class EasySwooleEvent implements Event
 ```
 
 Index.php
-```
+```php
 namespace App\HttpController;
 
 use EasySwoole\Component\WaitGroup;
@@ -306,7 +306,7 @@ class Index extends Controller
 ```
 
 以上每次请求会输出如下格式：
-```
+```php
 #
 PointName:onRequest
 Status:success
@@ -383,7 +383,7 @@ NextPoint:None
 $array = Point::toArray($point);
 ```
 可以把一个入口点转为一个数组。例如我们可以在MYSQL数据库中存储以下关键结构：
-```
+```php
 CREATE TABLE `api_tracker_point_list` (
   `pointd` varchar(18) NOT NULL,
   `pointName` varchar(45) DEFAULT NULL,
@@ -413,7 +413,7 @@ where spendTime > 3
 
 ## 基础服务器信息
 通过执行shell获取基础的服务器状态信息，例如获取硬盘分区信息：
-```
+```php
 $list = \EasySwoole\Tracker\Shell\Shell::diskPartitions();
 foreach ($list as $item){
    var_dump($item->toArray());
