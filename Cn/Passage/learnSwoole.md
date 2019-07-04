@@ -1,8 +1,8 @@
 <head>
      <title>学习Swoole之如何避免成为被坑哭的程序员</title>
      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-     <meta name="keywords" content="如何学习Swoole|swoole 采坑"/>
-     <meta name="description" content="如何学习Swoole|swoole 采坑"/>
+     <meta name="keywords" content="swoole|如何学习swoole|swoole 采坑|swoole学习笔记"/>
+     <meta name="description" content="如何学习swoole|swoole 采坑|swoole|swoole学习笔记"/>
 </head>
 ---<head>---
 
