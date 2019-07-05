@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发</title>
      <meta name="keywords" content="EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发"/>
-     <meta name="description" content="EasySwoole Csp|swoole Csp|swoole Csp编程|Csp编程|php Csp编程|Csp并发"/>
+     <meta name="description" content="php用swoole的channel实现类似go语言中的CSP并发编程模式"/>
 </head>
 ---<head>---
 

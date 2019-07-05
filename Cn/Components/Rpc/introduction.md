@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc</title>
      <meta name="keywords" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
-     <meta name="description" content="EasySwoole Rpc|swoole Rpc|swoole 分布式|swoole 微服务|php 微服务|php Rpc"/>
+     <meta name="description" content="php swoole拓展下可以用的高效分布式rpc组件，适用于swoole微服务，也支持跨平台"/>
 </head>
 ---<head>---
 

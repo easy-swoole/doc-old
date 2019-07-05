@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池</title>
      <meta name="keywords" content="EasySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
-     <meta name="description" content="asySwoole mysqli|swoole mysqli|swoole mysql|swoole 数据库连接池|php连接池"/>
+     <meta name="description" content="php用swoole拓展封装的myql orm，并实现断线重连，与连接池的使用"/>
 </head>
 ---<head>---
 

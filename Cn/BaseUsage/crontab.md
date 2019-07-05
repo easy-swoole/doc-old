@@ -1,7 +1,7 @@
 <head>
      <title>Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时</title>
      <meta name="keywords" content="Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时"/>
-     <meta name="description" content="Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时"/>
+     <meta name="description" content="Crontab 是linux系统中自带的定时器，本文主要讲述php如何在不依赖运维的情况下，利用swoole实现 crontab定时器解析规则"/>
 </head>
 ---<head>---
 

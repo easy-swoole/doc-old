@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池</title>
      <meta name="keywords" content="EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池"/>
-     <meta name="description" content="EasySwoole 连接池|swoole 连接池|swoole mysql连接池|swoole redis连接池|PHP连接池"/>
+     <meta name="description" content="php利用swoole协程的channel实现一个通用的协程连接池"/>
 </head>
 ---<head>---
 

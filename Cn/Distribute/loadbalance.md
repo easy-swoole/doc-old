@@ -1,8 +1,8 @@
 <head>
-     <title>EasySwoole分布式|swoole分布式|swoole 分布式框架</title>
+     <title>EasySwoole分布式|swoole分布式|swoole 分布式框架|swoole微服务框架</title>
      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-     <meta name="keywords" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
-     <meta name="description" content="EasySwoole分布式|swoole分布式|swoole 分布式框架"/>
+     <meta name="keywords" content="EasySwoole分布式|swoole分布式|swoole 分布式框架|swoole微服务框架"/>
+     <meta name="description" content="基于swoole协程拓展实现的微服务分布式框架"/>
 </head>
 ---<head>---
 # 如何实现分布式

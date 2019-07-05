@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端</title>
      <meta name="keywords" content="EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端"/>
-     <meta name="description" content="EasySwoole 协程Http客户端|swoole 协程Http客户端|swoole 协程Http|php 协程客户端"/>
+     <meta name="description" content="php用swoole里面的协程客户端，实现对http请求封装的基本库"/>
 </head>
 ---<head>---
 

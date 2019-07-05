@@ -2,7 +2,7 @@
      <title>EasySwoole Actor|swoole actor|php actor</title>
      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
      <meta name="keywords" content="EasySwoole Actor|swoole actor|php actor"/>
-     <meta name="description" content="EasySwoole Actor|swoole actor|php actor"/>
+     <meta name="description" content="php如何用swoole实现协程模式的actor"/>
 </head>
 ---<head>---
 

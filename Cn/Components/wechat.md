@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole Wechat|swoole 微信sdk|swoole 微信</title>
+     <meta name="keywords" content="EasySwoole Wechat|swoole 微信sdk|swoole 微信"/>
+     <meta name="description" content="基于swoole实现的协程安全的微信sdk"/>
+</head>
+---<head>---
+
 # 微信SDK
 ```
 composer require easyswoole/wechat
@@ -157,7 +164,7 @@ $wechat->officialAccount()->accessToken()->refresh();
 // 获取token
 $wechat->officialAccount()->accessToken()->getToken();
 ```
-
+****
 #### 获取微信公众号服务器 ip 列表
 [如果公众号基于安全等考虑，需要获知微信服务器的IP地址列表，以便进行相关限制，可以通过该接口获得微信服务器IP地址列表或者IP网段信息。](https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_the_WeChat_server_IP_address.html)
 ```php

@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole atomic|swoole atomic|swoole 计数器</title>
      <meta name="keywords" content="EasySwoole atomic|swoole atomic|swoole 计数器"/>
-     <meta name="description" content="EasySwoole atomic|swoole atomic|swoole 计数器"/>
+     <meta name="description" content="本文主要讲解如何在easyswoole中使用swoole计数器"/>
 </head>
 ---<head>---
 

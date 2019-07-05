@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端</title>
      <meta name="keywords" content="EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端"/>
-     <meta name="description" content="EasySwoole websocket客户端|swoole websocket客户端|websocket客户端|php websocket客户端"/>
+     <meta name="description" content="php用swoole里面的协程客户端，实现对http请求封装的基本库"/>
 </head>
 ---<head>---
 

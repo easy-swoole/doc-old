@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole日志处理</title>
      <meta name="keywords" content="EasySwoole日志处理|swoole日志处理|swoole日志"/>
-     <meta name="description" content="EasySwoole日志处理"/>
+     <meta name="description" content="如何在php的swoole拓展中进行自定义的日志处理和异常捕获"/>
 </head>
 ---<head>---
 
