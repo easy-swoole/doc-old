@@ -58,6 +58,7 @@
 > 观看地址:[php-fpm进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3BocC1mcG0lRTQlQkIlOEIlRTclQkIlOEQubXA0)
 
 ### php多进程模型介绍(附录)
+
 > 观看地址:[php多进程模型介绍(WorkMan作者公开的pdf)](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/php%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B.pdf)
   
 ### Swoole 进程模型
@@ -130,12 +131,14 @@
 ### 模型简单封装 约5分钟
 1. 手动封装model 以及强调 mysql连接的问题 
 2. 在controller 使用模型进行操作数据库
+   
 > 观看地址:[模型简单封装](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvJTI1RTclMjVBRSUyNTgwJTI1RTUlMjU4RCUyNTk1TW9kZWwlMjVFNSUyNUIwJTI1ODElMjVFOCUyNUEzJTI1ODUubXA0)
 
 ### Bean的介绍和使用 约5分钟
 1. 简单介绍 Bean 和数据对象的概念 以及 array的问题
 2. 写一个 Bean的demo 介绍一些常用的方法
 3. 配合model 在controller进行操作 数据库
+   
 > 观看地址:[Bean的介绍和使用](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvQmVhbiUyNUU3JTI1OUElMjU4NCUyNUU0JTI1QkIlMjU4QiUyNUU3JTI1QkIlMjU4RCUyNUU1JTI1OTIlMjU4QyUyNUU0JTI1QkQlMjVCRiUyNUU3JTI1OTQlMjVBOC5tcDQ=)
 
 ### 事务使用和注意点 约10分钟
