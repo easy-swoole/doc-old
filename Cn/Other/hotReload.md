@@ -179,7 +179,7 @@ class HotReload extends AbstractProcess
 public static function mainServerCreate(EventRegister $register)
 {
     $swooleServer = ServerManager::getInstance()->getSwooleServer();
-    $swooleServer->addProcess((new HotReload('HotReload', ['disableInotify' => false]))->getProcess());
+    $swooleServer->addProcess(new HotReload('HotReload', ['disableInotify' => false]))->getProcess());
 }
 ```
 
