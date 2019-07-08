@@ -1,4 +1,5 @@
-## Execution after completion of request method
+## A hook function After the request has been handled
+> Note: Right before the cookie sending to the client
 
 ###  The function prototype
 ```php
@@ -7,9 +8,9 @@ public static function afterRequest(Request $request, Response $response): void
 }
 ```
 
-## For example
-   
-Trace can be used in this event to track requests and obtain the response content.
+## What to do in this stage
+
+In this event, you can get request and the response content, so it is a perfect place to put some codes for tracking or logging purpose.
 ```php
 <?php
 
@@ -19,8 +20,9 @@ Trace can be used in this event to track requests and obtain the response conten
         $responseMsg = $response->getBody()->__toString();
         Logger::getInstance()->console("Corresponding content:".$responseMsg);
         // Response State Code:
-//        var_dump($response->getStatusCode());
-        // When tracker is finished, you can see the parameters set in the middle and the operation of the call stack.
+        // var_dump($response->getStatusCode());
+
+        // When the tracker is closed, you can check the parameters during the lifecycle and the operation of the call stack.
         TrackerManager::getInstance()->closeTracker();
         // TODO: Implement afterAction() method.
     }
