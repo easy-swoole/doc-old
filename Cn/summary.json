@@ -426,6 +426,13 @@
       "link": "/Cn/Event/introduction.html",
       "sub": [
         {
+          "name": "bootstrap",
+          "link": "/Cn/Event/bootstrap.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "initialize",
           "link": "/Cn/Event/initialize.html",
           "sub": [
