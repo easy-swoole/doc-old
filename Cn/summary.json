@@ -536,6 +536,13 @@
       "link": "link",
       "sub": [
         {
+          "name": "自定义命令",
+          "link": "/Cn/BaseUsage/customCommand.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "自定义进程",
           "link": "/Cn/BaseUsage/process.html",
           "sub": [
@@ -658,6 +665,11 @@
               ]
             }
           ]
+        },
+        {
+          "name": "PhpUnit",
+          "link": "/Cn/Components/phpunit.html",
+          "sub": []
         },
         {
           "name": "Spl库",
