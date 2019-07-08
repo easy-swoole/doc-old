@@ -419,6 +419,13 @@
       "link": "/Cn/Event/introduction.html",
       "sub": [
         {
+          "name": "bootstrap",
+          "link": "/Cn/Event/bootstrap.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "initialize",
           "link": "/Cn/Event/initialize.html",
           "sub": [
@@ -521,6 +528,13 @@
       "name": "基础使用",
       "link": "link",
       "sub": [
+        {
+          "name": "自定义命令",
+          "link": "/Cn/BaseUsage/customCommand.html",
+          "sub": [
+
+          ]
+        },
         {
           "name": "自定义进程",
           "link": "/Cn/BaseUsage/process.html",
