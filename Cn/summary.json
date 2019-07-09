@@ -1234,6 +1234,11 @@
           "name": "如何学习Swoole",
           "link": "/Cn/Passage/learnSwoole.html",
           "sub": []
+        },
+        {
+          "name": "swoole如何对ip限制访问频率",
+          "link": "/Cn/Passage/SwooleIpLimit.html",
+          "sub": []
         }
       ]
     },
