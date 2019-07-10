@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php多进程|僵尸进程</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php多进程|僵尸进程"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php多进程|僵尸进程"/>
+</head>
+---<head>---
 ## 僵尸进程
 僵尸进程是当子进程比父进程先结束，而父进程又没有回收子进程，释放子进程占用的资源，此时子进程将成为一个僵尸进程。
 

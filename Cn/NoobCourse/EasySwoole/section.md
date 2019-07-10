@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 组件设计</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 组件设计"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 组件设计"/>
+</head>
+---<head>---
 ## 组件设计
 EasySwoole3.x版本采用组件分离设计,可自行选择需要的组件进行添加使用,框架本身只实现了基础的封装,框架变的更加简洁,轻便
 

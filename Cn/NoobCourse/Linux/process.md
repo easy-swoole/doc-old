@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 进程管理</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 进程管理"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 进程管理"/>
+</head>
+---<head>---
 ## 进程管理
 我们可以使用ps 查看当前进程(相当于windows的任务管理器)
 ```
