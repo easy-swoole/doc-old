@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|新手教程</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|新手教程"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|新手教程"/>
+</head>
+---<head>---
 ## 新手入门
 本文适用于那些对Swoole/EasySwoole毫无了解,只用过传统fpm框架的开发者,看完这个教程,你将可以入门Swoole/EasySwoole  
 

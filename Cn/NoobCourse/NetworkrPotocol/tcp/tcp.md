@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议"/>
+</head>
+---<head>---
 ## tcp(传输层)
 
 TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内  另一个重要的传输协议。在因特网协议族（Internet protocol suite）中，TCP层是位于IP层之上，应用层之下的中间层。不同主机的应用层之间经常需要可靠的、像管道一样的连接，但是IP层不提供这样的流机制，而是提供不可靠的包交换。  

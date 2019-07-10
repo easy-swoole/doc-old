@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux php扩展安装</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux php扩展安装"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux php扩展安装"/>
+</head>
+---<head>---
 ## php扩展安装
 在windows中,只需要将dll文件移动到扩展目录,并在php.ini中引入即可  
 linux中类似,我们需要安装扩展的软件(例如mysql扩展,我们需要先安装mysql),再安装mysql操作扩展(mysqli,pdo)生成.so文件,在php.ini中引入.so文件即可

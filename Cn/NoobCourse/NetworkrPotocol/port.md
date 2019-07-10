@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|端口</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|端口"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|端口"/>
+</head>
+---<head>---
 ## 端口
 在网络技术中，端口（Port）包括逻辑端口和物理端口两种类型。物理端口指的是物理存在的端口，如ADSL Modem、集线器、交换机、路由器上用 于连接其他网络设备的接口，如RJ-45端口、SC端口等等。逻辑端口是指逻辑意义上用于区分服务的端口，如TCP/IP协议中的服务端口，端口号的范围从0到65535，比如用于浏览网页服务的80端口，用于FTP服务的21端口等。由于物理端口和逻辑端口数量较多，为了对端口进行区分，将每个端口进行了编号，这就是端口号。本文主要讲逻辑端口.
 

@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 端口监控</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 端口监控"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 端口监控"/>
+</head>
+---<head>---
 ## 端口监控
 在ip章节中,我们知道了,开启一个tcp/udp服务,都得占用一个端口,所有我们可以通过查看端口的方式去判断服务是否开启成功.
 

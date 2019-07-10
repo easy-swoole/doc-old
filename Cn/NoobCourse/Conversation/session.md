@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|会话管理|session</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|会话管理|session"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|会话管理|session"/>
+</head>
+---<head>---
 ## Session
 在计算机中，尤其是在网络应用中，称为“会话控制”。Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。  
 

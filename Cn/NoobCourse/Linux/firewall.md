@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙"/>
+</head>
+---<head>---
 ## 防火墙
 当你开启一个tcp服务,却发现访问不了,那么你得考虑下是否是防火墙拦截了,  
 目前,最常见的拦截有以下几种情况:

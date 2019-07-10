@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|websocket协议</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|websocket协议"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|websocket协议"/>
+</head>
+---<head>---
 ## WebSocket协议
 
 WebSocket协议是基于TCP的一种新的网络协议。它实现了浏览器与服务器全双工(full-duplex)通信——允许服务器主动发送信息给客户端。

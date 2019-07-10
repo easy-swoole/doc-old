@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php运行模式|phpCli|php命令行模式</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php运行模式|phpCli|php命令行模式"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php运行模式|phpCli|php命令行模式"/>
+</head>
+---<head>---
 ## php-cli
 在前面的简单介绍中,我们已经了解了有php-cli这个模式,现在我们继续详细了解下php-cli和传统web模式不一样的地方吧  
 

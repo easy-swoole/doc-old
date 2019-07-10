@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|会话管理|token</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|会话管理|token"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|会话管理|token"/>
+</head>
+---<head>---
 ## api/token
 token其实和session原理差不多,服务端通过给用户发送一个token,用户通过该token进行请求服务端,这种会话验证方式一般用于跨平台开发,以及接口开发,大概步骤为:
 

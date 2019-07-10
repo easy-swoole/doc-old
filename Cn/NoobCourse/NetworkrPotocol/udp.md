@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|udp协议</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|udp协议"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|udp协议"/>
+</head>
+---<head>---
 ## udp(传输层)
 UDP 是User Datagram Protocol的简称， 中文名是用户数据报协议，是OSI（Open System Interconnection，开放式系统互联） 参考模型中一种无连接的传输层协议，提供面向事务的简单不可靠信息传送服务，IETF RFC 768是UDP的正式规范。UDP在IP报文的协议号是17。  
 

@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php多进程|守护进程</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php多进程|守护进程"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php多进程|守护进程"/>
+</head>
+---<head>---
 ## 守护进程
 
 守护进程(daemon)是一类在后台运行的特殊进程，用于执行特定的系统任务。很多守护进程在系统引导的时候启动，并且一直运行直到系统关闭。另一些只在需要的时候才启动，完成任务后就自动结束。 

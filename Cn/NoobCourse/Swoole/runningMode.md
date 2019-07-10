@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole运行模式</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole运行模式"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole运行模式"/>
+</head>
+---<head>---
 ## Swoole 的运行模式
 ------
 注： **以下内容主要指 `SwooleServer` 。**

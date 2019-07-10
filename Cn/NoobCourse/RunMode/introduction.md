@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php运行模式</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php运行模式"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php运行模式"/>
+</head>
+---<head>---
 ## 运行模式  
 php有着5种运行模式,常见的有4种:  
 

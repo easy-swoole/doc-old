@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|会话管理|cookie</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|会话管理|cookie"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|会话管理|cookie"/>
+</head>
+---<head>---
 ## Cookie
 Cookie 是在 HTTP 协议下，服务器或脚本可以维护客户工作站上信息的一种方式。  
 
