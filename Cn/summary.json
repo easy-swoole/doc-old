@@ -884,6 +884,13 @@
               "sub": [
 
               ]
+            },
+            {
+              "name": "建表工具",
+              "link": "/Cn/Components/Mysqli/createTable.html",
+              "sub": [
+
+              ]
             }
           ]
         },
