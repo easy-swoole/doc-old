@@ -1594,3 +1594,71 @@ body {
 .markdown-section {
     overflow: unset;
 }
+
+/*搜索*/
+.book-search-results .search-results .no-results {
+    display: none;
+}
+.book-search-results.open .search-results {
+    display: block;
+}
+.book-search-results.open .search-noresults {
+    display: none;
+}
+.book-search-results.no-results .search-results .has-results {
+    display: none;
+}
+.book-search-results.no-results .search-results .no-results {
+    display: block;
+}
+.book-search-results .search-results .search-results-title {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 200;
+    margin-bottom: 35px;
+    opacity: .6;
+    color: #000;
+}
+.book-search-results .search-results ul.search-results-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+.book-search-results .search-results .has-results .search-results-item {
+    display: block;
+    word-wrap: break-word;
+    overflow: hidden;
+    color: #333;
+    line-height: 1.7;
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+}
+.book-search-results .search-results .has-results .search-results-item a {
+    color: #4183c4;
+    text-decoration: none;
+    background: 0 0;
+}
+.book-search-results .search-results .has-results .search-results-item a:hover {
+    outline: 0;
+    text-decoration: underline;
+}
+.book-search-results .search-results .has-results .search-results-item>:first-child {
+    margin-top: 0!important;
+    font-size:1.5em;
+    font-weight: 700;
+}
+.book-search-results .search-results .has-results .search-results-item p {
+    orphans: 3;
+    widows: 3;
+    margin-top: 0 !important;
+    font-size: 1em;
+}
+.book-search-results .search-results .has-results .search-results-item > h2,h3,h4{
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+}
+.mark_keyword{
+    background: yellow !important;
+}
