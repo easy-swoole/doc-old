@@ -11,7 +11,7 @@
 <div class="book with-summary without-animation" id="book-main">
     <div class="book-summary">
         <div id="book-search-input" role="search">
-            <input type="text" placeholder="搜索功能即将来袭 ^_^">
+            <input type="text" placeholder="搜索功能已上线 ^_^">
         </div>
         <nav role="navigation">
             <ul class="summary">
