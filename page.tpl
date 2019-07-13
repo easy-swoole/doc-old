@@ -4,6 +4,7 @@
     <link href="/Css/page.css" rel="stylesheet">
     <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+    <script src="/Js/search.js" type="text/javascript"></script>
     <script type="text/javascript" src="/Js/jquery.mark.min.js"></script>
     {$HEAD}
 </head>
