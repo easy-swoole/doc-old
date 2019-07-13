@@ -1596,7 +1596,7 @@ body {
 }
 
 /*搜索*/
-.book-search-results .search-results .no-results {
+.search-results, .no-results {
     display: none;
 }
 .book-search-results.open .search-results {
