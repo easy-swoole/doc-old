@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 命令基础</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 命令基础"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 命令基础"/>
+</head>
+---<head>---
 ## 命令基础
 
 linux命令存储以下位置:

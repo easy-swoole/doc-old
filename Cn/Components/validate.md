@@ -13,6 +13,7 @@ EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个
 ### 基础使用
 
 ```php
+<?php
 useEasySwoole\Validate\Validate;
 
 $data = [
@@ -23,7 +24,7 @@ $data = [
 $valitor = new Validate();
 $valitor->addColumn('name', '名字不为空')->required('名字不为空')->lengthMin(10,'最小长度不小于10位');
 $bool = $valitor->validate($data);
-var_dump($valitor->getError()->getErrorRuleMsg()?:$valitor->getError()->getColumnErrorMsg());
+var_dump($bool?"true":$valitor->getError()->getColumnErrorMsg());
 
 /* 结果：
  string(26) "最小长度不小于10位"
@@ -52,7 +53,7 @@ class BaseController extends Controller
                 $this->writeJson(Status::CODE_BAD_REQUEST,null,"{$v->getError()->getField()}@{$v->getError()->getFieldAlias()}:{$v->getError()->getErrorRuleMsg()}");
                 return false;
             }
-        }
+        }   
         return true;
     }
 

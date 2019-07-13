@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole定时器|swoole定时器|swoole定时任务</title>
      <meta name="keywords" content="EasySwoole定时器|swoole定时器|swoole定时任务"/>
-     <meta name="description" content="EasySwoole定时器|swoole定时器|swoole定时任务"/>
+     <meta name="description" content="可以利用swoole定时器，从而实现毫秒级的定时器，以及定时器存在的一些陷阱"/>
 </head>
 ---<head>---
 

@@ -1,19 +1,23 @@
 ## Receiving request event
-   
+
+### The function prototype
 ```php
  public static function onRequest(Request $request, Response $response): bool
 ```
 
-When EasySwoole receives any http request, it executes the event. This event can intercept HTTP requests globally.
+When `EasySwoole` receives any http request, then this event will be triggered. This event can intercept HTTP requests globally.
 
+
+### Demonstration
 ```php
 <?php
  public static function onRequest(Request $request, Response $response): bool
     {
-        //It is not recommended that a controller base class be added to intercept the request.
-        //If you really want to intercept, you can return false after judgment.
+        // The following codes are just the demonstration of the usage of this event.
+        // In real life, we recommend that a controller base class shall be added to intercept the request.
+        // If you really want to intercept, you can return false at the end.
         $code = $request->getRequestParam('code');
-        if (0/*empty($code)Validation failed*/){
+        if (empty($code)){
             $data = Array(
                 "code" => Status::CODE_BAD_REQUEST,
                 "result" => [],
@@ -29,5 +33,4 @@ When EasySwoole receives any http request, it executes the event. This event can
     }
 ```
 
-> If $response->end() is executed on this event, the request will not enter the routing matching phase.。
-
+> If `$response->end()` was executed on this event, the request would NOT enter the routing matching phase.

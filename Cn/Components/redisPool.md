@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池</title>
      <meta name="keywords" content="EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池"/>
-     <meta name="description" content="EasySwoole 连接池|swoole 连接池|swoole redis连接池|PHP连接池"/>
+     <meta name="description" content="用swoole协程channle实现的redis连接池"/>
 </head>
 ---<head>---
 
@@ -36,6 +36,7 @@ use EasySwoole\RedisPool\Config;
 use EasySwoole\RedisPool\Redis;
 $configData = GConfig::getInstance()->getConf('REDIS');
 $config = new Config($configData);
+// $config->setOptions(['serialize'=>true]);
 /**
     这里注册的名字叫redis，你可以注册多个，比如redis2,redis3
 */
@@ -43,6 +44,22 @@ $poolConf = Redis::getInstance()->register('redis',$config);
 $poolConf->setMaxObjectNum($configData['maxObjectNum']);
 $poolConf->setMinObjectNum($configData['minObjectNum']);
 ```
+
+### 可配置选项
+
+- connect_timeout: 连接的超时时间, 默认为全局的协程socket_connect_timeout(1秒)
+
+- timeout: 超时时间, 默认为全局的协程socket_timeout(-1, 永不超时)
+
+- serialize: 自动序列化, 默认开启
+
+- reconnect: 自动连接尝试次数, 如果连接由于超时等原因被close正常断开, 下一次发起请求时, 会自动尝试连接然后再发送请求, 默认为1次(true), 一旦失败指定次数后不会再继续尝试, 需手动重连. 该机制仅用于连接保活, 不会重发请求导致不幂等接口出错等问题
+
+- compatibility_mode: hmGet/hGetAll/zRange/zRevRange/zRangeByScore/zRevRangeByScore 函数返回结果与php-redis不一致的兼容解决方案，开启之后 Co\Redis 和 php-redis 返回结果一致，默认关闭
+
+> compatibility_mode 配置项在4.4.0或更高版本可用
+
+
 
 ## 服务启动后任意位置使用
 ```

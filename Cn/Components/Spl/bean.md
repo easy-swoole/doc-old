@@ -150,11 +150,46 @@ final public function jsonSerialize():array
 
 protected function initialize()
 
+> 此方法会在对象创建时被调用
+
 ### setKeyMapping
 
 设置keyMapping关系，也就是字段别名
 
 protected function setKeyMapping()
+
+```php
+class GoodsBean extends SplBean
+{
+    protected $name;
+
+    /**
+     * 字段映射
+     * return ['beanName' => 'dataName']
+     */
+    protected function setKeyMapping()
+    {
+        return [
+            'name' => 'goodsName'
+        ];
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+}
+
+$arrayData = ['goodsName' => '测试商品'];
+
+$goodsBean = new GoodsBean($arrayData);
+$goodsBean->getName() === '测试商品';
+```
 
 ### setClassMapping
 

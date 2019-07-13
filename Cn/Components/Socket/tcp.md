@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket</title>
      <meta name="keywords" content="EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket"/>
-     <meta name="description" content="EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket"/>
+     <meta name="description" content="php利用swoole实现自定义tcp协议，从而可以实现消息推送，和硬件消息交互"/>
 </head>
 ---<head>---
 

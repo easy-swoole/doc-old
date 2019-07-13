@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php新特性</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php新特性"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php新特性"/>
+</head>
+---<head>---
 ## PHP7与php5
 php在2015年12月03日发布了7.0正式版,带来了许多新的特性，以下是不完全列表:
 

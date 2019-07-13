@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole起源</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole起源"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole起源"/>
+</head>
+---<head>---
 ## 初识 Swoole
 
 ### 前言

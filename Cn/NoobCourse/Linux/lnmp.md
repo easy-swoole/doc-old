@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Linux基础|Linux 防火墙"/>
+</head>
+---<head>---
 ## LNMP
 LNMP代表的就是：Linux系统下Nginx+MySQL+PHP这种网站服务器架构。  
 

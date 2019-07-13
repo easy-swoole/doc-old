@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php多进程|fork</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php多进程|fork"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php多进程|fork"/>
+</head>
+---<head>---
 ## 多进程使用
 怎么才能在一个php脚本中,开启多进程处理呢?这里我们可以使用2种方法(注意,本教程只适用于linux,php-cli环境)
 

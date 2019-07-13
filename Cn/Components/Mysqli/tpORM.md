@@ -7,7 +7,7 @@
 
 # 示例
 假如你的项目的tp的风格，可以继承EasySwoole\Mysqli\TpORM来自定义
-
+> tpORm已经不再维护,强烈不建议使用
 
 ```php
 <?php

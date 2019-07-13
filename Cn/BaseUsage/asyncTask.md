@@ -1,7 +1,7 @@
 <head>
      <title>EasySwoole异步任务|swoole异步</title>
      <meta name="keywords" content="EasySwoole异步任务|swoole异步|swoole异步进程"/>
-     <meta name="description" content="Easyswoole投递异步任务"/>
+     <meta name="description" content="主要讲述php如何用swoole拓展进行异步任务投递，以及常见的swoole异步任务报错问题"/>
 </head>
 ---<head>---
 

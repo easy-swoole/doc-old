@@ -277,7 +277,6 @@
         },
         {
           "name": "Swoole",
-          "link": "/Cn/",
           "sub": [
             {
               "name": "初识Swoole",
@@ -302,7 +301,6 @@
             },
             {
               "name": "常见问题",
-              "link": "/Cn/",
               "sub": [
 
               ]
@@ -419,6 +417,13 @@
       "link": "/Cn/Event/introduction.html",
       "sub": [
         {
+          "name": "bootstrap",
+          "link": "/Cn/Event/bootstrap.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "initialize",
           "link": "/Cn/Event/initialize.html",
           "sub": [
@@ -521,6 +526,13 @@
       "name": "基础使用",
       "link": "link",
       "sub": [
+        {
+          "name": "自定义命令",
+          "link": "/Cn/BaseUsage/customCommand.html",
+          "sub": [
+
+          ]
+        },
         {
           "name": "自定义进程",
           "link": "/Cn/BaseUsage/process.html",
@@ -644,6 +656,16 @@
               ]
             }
           ]
+        },
+        {
+          "name": "PhpUnit",
+          "link": "/Cn/Components/phpunit.html",
+          "sub": []
+        },
+        {
+          "name": "Apollo配置中心",
+          "link": "/Cn/Components/apollo.html",
+          "sub": []
         },
         {
           "name": "Spl库",
@@ -857,6 +879,13 @@
             {
               "name": "TpORM",
               "link": "/Cn/Components/Mysqli/tpORM.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "建表工具",
+              "link": "/Cn/Components/Mysqli/createTable.html",
               "sub": [
 
               ]
@@ -1210,6 +1239,11 @@
           "name": "如何学习Swoole",
           "link": "/Cn/Passage/learnSwoole.html",
           "sub": []
+        },
+        {
+          "name": "swoole如何对ip限制访问频率",
+          "link": "/Cn/Passage/SwooleIpLimit.html",
+          "sub": []
         }
       ]
     },
@@ -1230,13 +1264,6 @@
     {
       "name": "联系作者",
       "link": "/Cn/contact.html",
-      "sub": [
-
-      ]
-    },
-    {
-      "name": false,
-      "link": "link",
       "sub": [
 
       ]

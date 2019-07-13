@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 运行步骤</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 运行步骤"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 运行步骤"/>
+</head>
+---<head>---
 ## EasySwoole运行步骤
 EasySwoole的框架运行步骤大概为以下几步:
 

@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php多进程</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php多进程"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php多进程"/>
+</head>
+---<head>---
 ## php多进程
 
 php多进程是在开发业务逻辑层面,并行处理多个任务的一种开发方式,例如,需要给10万给会员发送邮件,每个邮件需要处理1秒,如果是一个进程处理,就得10万\*1秒才能处理完,但是,如果开启多个进程同时处理,例如:10个进程,那只需要10万\*1/10秒就能处理完成,缩短了10倍的时间
