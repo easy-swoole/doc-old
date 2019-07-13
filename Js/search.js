@@ -64,7 +64,7 @@ $(function () {
 // 关闭搜索
     function closeSearch() {
         $('body').removeClass('with-search');
-        $('#book-search-results').removeClass('open');
+        $('.book-search-results').removeClass('open');
     }
 
 // 更新url
