@@ -66,13 +66,13 @@ EasySwoole 全局事件中的mainServerCreate 进行注册
 
 服务启动后，即可在任意位置调用
 ```
-$ret = MySyncInvoker::getInstance()->client()->test(1,2);
+$ret = MyInvoker::getInstance()->client()->test(1,2);
 var_dump($ret);
-var_dump(MySyncInvoker::getInstance()->client()->a());
-var_dump(MySyncInvoker::getInstance()->client()->a(1));
-var_dump(MySyncInvoker::getInstance()->client()->fuck());
-$ret = MySyncInvoker::getInstance()->client()->callback(function (MySync $mySync){
-    $std = $mySync->getStdClass();
+var_dump(MyInvoker::getInstance()->client()->a());
+var_dump(MyInvoker::getInstance()->client()->a(1));
+var_dump(MyInvoker::getInstance()->client()->fuck());
+$ret = MyInvoker::getInstance()->client()->callback(function (MyInvokerDriver $driver){
+    $std = $driver->getStdClass();
     if(isset($std->time)){
         return $std->time;
     }else{
