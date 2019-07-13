@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|回调函数</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|回调函数"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|回调函数"/>
+</head>
+---<head>---
 ## 回调函数
 回调函数就是在主进程执行当中,突然跳转到预先设置好的函数中去执行的函数.
 ```

@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|闭包函数</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|闭包函数"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php回调与闭包函数|闭包函数"/>
+</head>
+---<head>---
 ## 闭包函数
 
 ### 闭包的概念

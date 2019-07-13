@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|ip协议</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|ip协议"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|ip协议"/>
+</head>
+---<head>---
 ## ip协议(网络层)
 
 ip协议是互联网的基础协议,它是目前最流行的一种网络协议

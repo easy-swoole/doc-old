@@ -83,7 +83,8 @@ Cache::getInstance()->setTickInterval(5 * 1000);//设置定时频率
 Cache::getInstance()->setOnTick(function (SyncData $SyncData, CacheProcessConfig $cacheProcessConfig) {
     $data = [
         'data'  => $SyncData->getArray(),
-        'queue' => $SyncData->getQueueArray()
+        'queue' => $SyncData->getQueueArray(),
+        'ttl'   => $SyncData->getTtlKeys(),
     ];
     $path = EASYSWOOLE_TEMP_DIR . '/FastCacheData/' . $cacheProcessConfig->getProcessName();
     File::createFile($path,serialize($data));
@@ -97,6 +98,7 @@ Cache::getInstance()->setOnStart(function (CacheProcessConfig $cacheProcessConfi
         $syncData = new SyncData();
         $syncData->setArray($data['data']);
         $syncData->setQueueArray($data['queue']);
+        $syncData->setTtlKeys(($data['ttl']));
         return $syncData;
     }
 });
@@ -105,7 +107,8 @@ Cache::getInstance()->setOnStart(function (CacheProcessConfig $cacheProcessConfi
 Cache::getInstance()->setOnShutdown(function (SyncData $SyncData, CacheProcessConfig $cacheProcessConfig) {
     $data = [
         'data'  => $SyncData->getArray(),
-        'queue' => $SyncData->getQueueArray()
+        'queue' => $SyncData->getQueueArray(),
+        'ttl'   => $SyncData->getTtlKeys(),
     ];
     $path = EASYSWOOLE_TEMP_DIR . '/FastCacheData/' . $cacheProcessConfig->getProcessName();
     File::createFile($path,serialize($data));

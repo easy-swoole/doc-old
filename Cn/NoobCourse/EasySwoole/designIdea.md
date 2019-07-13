@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 设计理念</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 设计理念"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|Easyswoole|EasySwoole 设计理念"/>
+</head>
+---<head>---
 ## 设计理念
 以下是作者原话:
 ```

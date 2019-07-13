@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole生命周期</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole生命周期"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|swoole简介|swoole生命周期"/>
+</head>
+---<head>---
 ## Swoole的生命周期
 ------
 

@@ -277,7 +277,6 @@
         },
         {
           "name": "Swoole",
-          "link": "/Cn/",
           "sub": [
             {
               "name": "初识Swoole",
@@ -302,7 +301,6 @@
             },
             {
               "name": "常见问题",
-              "link": "/Cn/",
               "sub": [
 
               ]
@@ -884,6 +882,13 @@
               "sub": [
 
               ]
+            },
+            {
+              "name": "建表工具",
+              "link": "/Cn/Components/Mysqli/createTable.html",
+              "sub": [
+
+              ]
             }
           ]
         },
@@ -1234,6 +1239,11 @@
           "name": "如何学习Swoole",
           "link": "/Cn/Passage/learnSwoole.html",
           "sub": []
+        },
+        {
+          "name": "swoole如何对ip限制访问频率",
+          "link": "/Cn/Passage/SwooleIpLimit.html",
+          "sub": []
         }
       ]
     },
@@ -1254,13 +1264,6 @@
     {
       "name": "联系作者",
       "link": "/Cn/contact.html",
-      "sub": [
-
-      ]
-    },
-    {
-      "name": false,
-      "link": "link",
       "sub": [
 
       ]

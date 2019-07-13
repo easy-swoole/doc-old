@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|阻塞与非阻塞|进程阻塞与非阻塞</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|阻塞与非阻塞|进程阻塞与非阻塞"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|阻塞与非阻塞|进程阻塞与非阻塞"/>
+</head>
+---<head>---
 ## 进程阻塞  
 正在运行的进程由于提出系统服务请求（如I/O操作），但因为某种原因未得到操作系统的立即响应，或者需要从其他合作进程获得的数据尚未到达等原因，该进程只能调用阻塞原语把自己阻塞，等待相应的事件出现后才被唤醒。
 

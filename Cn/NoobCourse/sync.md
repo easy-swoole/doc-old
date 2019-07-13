@@ -1,4 +1,9 @@
-
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|同步/异步</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|同步/异步"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|同步/异步"/>
+</head>
+---<head>---
 ## 同步
 同步代码主要是指调用某个逻辑时,会等待到该逻辑返回调用结果.  
 例如:
@@ -57,4 +62,4 @@ echo "发送邮件中";
 ```
 通过新开一个进程去处理发送邮件的任务,在当前进程中不关心发送邮件的结果,直接往下执行
 
-![同步异步](./Async.png)
+![同步异步](./async.png)

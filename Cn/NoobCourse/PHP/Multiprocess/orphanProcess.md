@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole 入门教程|swoole 入门教程|php多进程|孤儿进程</title>
+     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|php多进程|孤儿进程"/>
+     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|php多进程|孤儿进程"/>
+</head>
+---<head>---
 ## 孤儿进程
 孤儿进程指的是在其父进程执行完成或被终止后仍继续运行的一类进程。这些孤儿进程将被init进程(进程号为1)所收养，并由init进程对它们完成状态收集工作。
 
