@@ -48,6 +48,10 @@ a:hover {
     outline: 0
 }
 
+a:link {color: #aaaaaa} /* 未访问的链接 */
+a:visited {color: #aaaaaa} /* 已访问的链接 */
+a:active {color: #ff0006} /* 被选择的链接 */
+
 h1 {
     font-size: 2em;
     margin: .67em 0
@@ -1681,7 +1685,7 @@ body {
     background-color: #fff;
     width: 100%;
     right: 15px;
-    padding-left: 2.5em;
+    padding-left: 0.1em;
     line-height: 200%;
     border-bottom: 1px solid #EEEEEE;
 }
@@ -1695,4 +1699,7 @@ body {
     list-style-type: none;
     padding-left:5px;
     padding-top: 5px;
+}
+.right-menu > li > a.active{
+    color:#ff0006;
 }
