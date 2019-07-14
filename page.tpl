@@ -182,6 +182,16 @@
         var padding_left = (item.level - 1) * 12 +"px";
         $('.right-menu').append("<li style='padding-left:"+padding_left+"'><a href='#"+item.markid+"' class='right-menu-item'>"+item.content+"</a></li>");
     });
+    // 防止点击的导航是最底部，拉取滑动的只会到倒数其他菜单
+    $('.right-menu').on('click','a',function(){
+        // 延迟执行 等滚动完
+        var that = $(this);
+        setTimeout(function (that) {
+            $(".right-menu-item.active").removeClass("active");
+            that.addClass("active");
+        }, 50, that);
+    });
+
     //初始化
     funScroll();
     $('.book-body').scroll(funScroll);//只放这条 审查元素时候滚动有效 普通打开无效
