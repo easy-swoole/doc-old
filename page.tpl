@@ -168,7 +168,6 @@
             var markid="mark-"+tagName+"-"+index.toString();
             $(this).attr("id",markid);//为当前h标签设置id
             var level = tagName.substr(1,2);
-            // $(".page-inner").append("<a href='#"+markid+"'>"+contentH+"</a>");//在目标DIV中添加内容
             rightMenu.push({
                 level: level,
                 content: contentH,
@@ -176,11 +175,35 @@
             });
         }
     });
-    $('.right-menu').append("<div class='title'>本章导航</div>");
+    $('.right-menu').append("<div class='title'><i class='fa fa-list'></i> 本章导航</div>");
     $.each(rightMenu, function (index, item) {
         var padding_left = (item.level - 1) * 12 +"px";
-        $('.right-menu').append("<li style='padding-left:"+padding_left+"'><a href='#"+item.markid+"'>"+item.content+"</a></li>");
-    })
+        $('.right-menu').append("<li style='padding-left:"+padding_left+"'><a href='#"+item.markid+"' class='right-menu-item'>"+item.content+"</a></li>");
+    });
+    //初始化
+    funScroll();
+    $('.book-body').scroll(funScroll);//只放这条 审查元素时候滚动有效 普通打开无效
+    $('.body-inner').scroll(funScroll);// 加了这条 普通打开滚动有效 只留这条 审查元素滚动无效 怀疑是在不同环境 滚动事件依附的dom优先级不同
+    //条滚动事件方法
+    function funScroll() {
+        //获取当前滚动条的高度
+        var top = $(document).scrollTop();
+        var dom = $("h1,h2,h3,h4,h5");
+        var menuDom = $(".right-menu-item");
+        //遍历所有的div
+        dom.each(function(index) {
+            var $divObj = $(this);
+            var thisTop = $divObj.offset().top;
+            if (top+10 >= thisTop) {
+                //获取当前高亮的选项
+                var $activeObj = menuDom.find(".active");
+                if (menuDom[index] && $(menuDom[index]) !== $activeObj) {
+                    $(".right-menu-item.active").removeClass("active");
+                    $(menuDom[index]).addClass("active");
+                }
+            }
+        });
+    }
 </script>
 
 </body>

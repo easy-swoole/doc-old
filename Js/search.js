@@ -48,11 +48,11 @@ $(function () {
         });
     }
 
-// 执行搜索
+    // 执行搜索
     function launchSearch(keyword) {
         body.addClass('with-search');
         body.addClass('search-loading');
-
+        $('.right-menu').css('display', 'none');
         function doSearch() {
             query(keyword);
             body.removeClass('search-loading');
@@ -61,13 +61,14 @@ $(function () {
         throttle(doSearch)();
     }
 
-// 关闭搜索
+    // 关闭搜索
     function closeSearch() {
         $('body').removeClass('with-search');
+        $('.right-menu').css('display', 'block');
         $('.book-search-results').removeClass('open');
     }
 
-// 更新url
+    // 更新url
     function updateQueryString(key, value) {
         value = encodeURIComponent(value);
 
