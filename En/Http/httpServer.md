@@ -6,13 +6,19 @@
 </head>
 ---<head>---
 
-# Http server
-The HTTP component is automatically enabled when `SERVER_TYPE'is `EASYSWOOLE_WEB_SERVER'. It implements the controller connection pool, URL parsing and URL routing rules.
-[HTTP component demo](https://github.com/easy-swoole/demo/tree/3.x-http)
-## Namespace
-We first need to register the namespace of the application directory in `composer.json'(the controller namespace defaults to `App\HttpController')
+# Http Server
+When you set the `SERVER_TYPE` to `EASYSWOOLE_WEB_SERVER` in your basic configurations file (`dev` or `produce.php`), then your application will be running as a HTTP server.
+In HTTP server mode, the following modules are out of box:
+* Controllers pool
+* URL parser
+* URL routes rules
 
-````
+[HTTP component demo](https://github.com/easy-swoole/demo/tree/3.x-http)
+
+## Namespace
+We first need to register the namespace of the application directory in `composer.json`. By default, the controllers' namespace is `App\HttpController`.
+
+````json
 {
     "require": {
         "easyswoole/easyswoole": "^3.1"
@@ -24,37 +30,39 @@ We first need to register the namespace of the application directory in `compose
     }
 }
 ````
-Then update composer
-````
+Please make sure all dependencies from the `composer.json` file have been updated by simply executing the following command:
+````bash
 composer update
 ````
 
-## Default controller
-Create `App/HttpController/Index.php` file:
+## The default controller
+Once you installed `EasySwoole` from work, the default controller would have created for you in `App/HttpController/Index.php`:
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/4/11 0011
- * Time: 14:40
- */
-
 namespace App\HttpController;
 use EasySwoole\Http\AbstractInterface\Controller;
 
 class Index extends Controller{
+    
+    /**
+     * This is the default action 
+     */
     function index()
     {
-        $this->response()->write('hello world');
-        // TODO: Implement index() method.
+        $this->response()->withHeader('Content-type', 'text/html;charset=utf-8');
+        $this->response()->write('<div style="text-align: center;margin-top: 30px"><h2>欢迎使用EASYSWOOLE</h2></div></br>');
+        $this->response()->write('<div style="text-align: center">您现在看到的页面是默认的 Index 控制器的输出</div></br>');
+        $this->response()->write('<div style="text-align: center"><a href="https://www.easyswoole.com/Manual/2.x/Cn/_book/Base/http_controller.html">查看手册了解详细使用方法</a></div></br>');
+        
+        // Do something awesome from here ...
     }
 }
 ````
 
-Start easyswoole:
-````
+Start your `EasySwoole` application:
+````bash
 php easyswoole start
 ````
-Access ip: 9501, you can see the output "hello world";
+
+Navigate your browser to `http://your-domain-or-ip:9501`, then you shall see the welcome messages, which means the HTTP request is led to the `index()` method in `Index.php`. Now you can start doing something awesome!
 
