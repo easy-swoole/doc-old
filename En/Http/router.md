@@ -6,24 +6,18 @@
 </head>
 ---<head>---
 
-##Custom routing
+## Custom routes
 
 > Reference demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 
-EasySwoole supports custom routing, and its routing is implemented using [fastRoute](https://github.com/nikic/FastRoute), so its routing rules are consistent with it. Refer to the [GitHub document](https://github.com/nikic/FastRoute/blob/master/README.md) for detailed documentation of the component.
+`EasySwoole` supports custom routes using [fastRoute](https://github.com/nikic/FastRoute), 
+so its routing rules are consistent with it. Refer to the [GitHub document](https://github.com/nikic/FastRoute/blob/master/README.md) for detailed documentation of the component.
+
 ### Sample code:  
-New create App\HttpController\Router.php:  
+Create a new `App\HttpController\Router.php` in your application:  
 ```php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/8/15
- * Time: 上午10:39
- */
-
 namespace App\HttpController;
-
 
 use EasySwoole\Http\AbstractInterface\AbstractRouter;
 use FastRoute\RouteCollector;
@@ -34,7 +28,7 @@ class Router extends AbstractRouter
 {
   function initialize(RouteCollector $routeCollector)
       {
-  // TODO: Implement initialize() method.
+          // Implement initialize() method.
           $routeCollector->get('/user', '/index.html');
           $routeCollector->get('/rpc', '/Rpc/index');
   
@@ -43,26 +37,29 @@ class Router extends AbstractRouter
           });
           $routeCollector->get('/test', function (Request $request, Response $response) {
               $response->write('this router test');
-              return '/a';//Repositioning to /a method
+              return '/a'; // Redirect to /a action
           });
           $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
-              $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//Get the id of the routing match
-              return false;//End the response without further requests
+              $response->write("this is router user ,your id is {$request->getQueryParam('id')}"); // Get the id of the routing match
+              return false; // End point cause return false
           });
   
       }
 }
 ```
-Visit 127.0.0.1:9501/rpc,Corresponding toApp\HttpController\Rpc.php->index()  
-> If a callback function is used to handle routing, return false represents no further requests and cannot trigger methods such as `afterAction', `gc', etc.
+Visit `http://your-domain-or-ip:9501/rpc`, Corresponding to `App\HttpController\Rpc.php::index()` 
+> If a callback function is used to handle routing, return a `false` at the end of the callback function means to inform `EasySwoole`
+> to stop any further actions, including `afterAction`, `gc`, and etc.
 
-Implementation code:
+Source code:
 
-````php
+```php
 <?php
-/*
-* Make an initialization decision
-*/
+/**
+ * @file EasySwoole\Http\Dispatcher
+ * 
+ * Make an initialization decision
+ */
 if($this->router === null){
     $class = $this->controllerNameSpacePrefix.'\\Router';
     try{
@@ -142,17 +139,17 @@ if($this->router instanceof GroupCountBased){
         return;
     }
 }
-````
+```
 
 ### Global mode interception
-Add the following code to Router. PHP to turn on global mode interception
+Add the following code to `App\HttpController\Router.php` to turn on global mode interception
 ```php
 $this->setGlobalMode(true);
 ```
-Under global mode interception, the routing will only match the response of the controller method in Router.php, and the default parsing of the framework will not be performed.
+When the global mode interception is on, the routing will only match the response of the controller method in Router.php, and the default parsing of the framework will not be performed.
 
-### Exception error handling  
-By using the following two methods, routing matching errors and callbacks that have not been found can be set up:
+### Exception error handling
+The following 2 examples show how to set callback function for the `MethodNotAllow` and the `RouterNotFound` in `App\HttpController\Router.php`:
 ```php
 <?php
 $this->setMethodNotAllowCallBack(function (Request $request,Response $response){
@@ -164,24 +161,24 @@ $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
     return 'index';//Redirect to index routing
 });
 ```
->The callback function is only for the fastRoute mismatch. If the response to the request is not terminated in the callback, the request will continue to Dispatch and try to find the corresponding controller for response processing.  
+>The callback function is only for the fastRoute mismatch. If the response to the request is not terminated in the callback, the request will be continuously dispatched until the corresponded controller was located.  
 
 
 
-### FastRoute uses
+### The usage of FastRoute
 
 addRoute
 ------
 
-The prototype of the `addRoute'method for defining routing is as follows. This method requires three parameters. Here we have a deeper understanding of the routing components around these three parameters.
+The prototype of the `addRoute` method:
 
-```
+```php
 $routeCollector->addRoute($httpMethod, $routePattern, $handler)
 ```
 
-#### httpMethod
+#### $httpMethod parameter
 ------
-This parameter needs to be passed in an uppercase HTTP method string, specifying the method that routing can intercept, and a single method directly into the string. It needs to intercept multiple methods that can be passed into a one-dimensional array, as follows:
+An uppercase string or an array, specifying which HTTP method/s that shall be intercepted.
 
 ```
 // Intercepting GET Method
@@ -190,12 +187,11 @@ $routeCollector->addRoute('GET', '/router', '/Index');
 // Intercepting POST Method
 $routeCollector->addRoute('POST', '/router', '/Index');
 
-// Intercepting multiple methods
+// Intercepting GET and POST method
 $routeCollector->addRoute(['GET', 'POST'], '/router', '/Index');
-
 ```
 
-#### routePattern
+#### $routePattern parameter
 ------
 When a routing matching expression is passed in, the routing that meets the requirement of the expression will be intercepted and processed. The expression supports placeholder matching such as {parameter name: matching rule} for defining routing parameters.
 
@@ -208,7 +204,7 @@ $routeCollector->addRoute('GET', '/users/info', 'handler');
 ```
 
 #### Binding parameters
-The following definition takes the following part of `/users/` as a parameter, and the qualified parameter can only be the number `[0-9]'.`
+The following definition takes the following part of `/users/` as a parameter, and the qualified parameter format is constrained with `[0-9]'.`
 
 ```
 // Matching: http://localhost:9501/users/12667
@@ -235,7 +231,7 @@ Sometimes part of the routing location is optional and can be defined as follows
 
 $routeCollector->addRoute('GET', '/users/to[/{name}]', 'handler');
 ```
-> Binding parameters will be assembled from within the framework into get data, calling methods:
+> Binding parameters will be assembled from within the framework into query parameter, for example:
 ````php
 <?php
 $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
@@ -245,23 +241,26 @@ $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $res
 ````
 
 
-#### handler
+#### $handler parameter
 ------
-To specify the method to be processed after successful routing matching, a closure can be passed in. When the incoming closure is passed in, we must ** pay attention to the end of the response after processing is completed ** otherwise the request will continue to be processed by Dispatch to find the corresponding controller. Of course, if this is used, some requests can also be processed and handed over. Controller Execution Logic
+To specify the method to be processed after successful routing matching, a closure can be passed in. 
+When a closure is passed in, you must ** return a `false` at the end to terminate any further actions **, 
+otherwise the `Dispatcher` is going to keep looking other corresponding controller except you want it to.
 ```php
-// The case of incoming closure
-$routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
-    $id = $request->getQueryParam('id');
-	$response->write('Userid : ' . $id);
-	return false;
-});
-
+<?php
+    // The case of incoming closure
+    $routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
+        $id = $request->getQueryParam('id');
+        $response->write('Userid : ' . $id);
+        
+        // Terminate any further actions
+        return false;
+    });
 ```
 
-It can also be passed directly into the controller path.
-
+You may pass in a controller path as well:
 ```
 $routeCollector->addRoute('GET', '/router2/{id:\d+}', '/Index');
 ```
 
-> For more details, please check FastRouter directly.
+> For more details, please check `FastRouter` directly.
