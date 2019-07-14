@@ -1662,3 +1662,37 @@ body {
 .mark_keyword{
     background: yellow !important;
 }
+/*右侧本章导航*/
+.right-menu{
+    width: 230px;
+    position: fixed;
+    right: 15px;
+    top:50px;
+    min-height: 1px;
+    z-index: 99;
+    border: 1px solid #EEEEEE;
+    border-radius: 3px;
+    border-top-left-radius: 0px;
+    background-color: #fff;
+    padding: 10px;
+}
+.right-menu > .title {
+    color: #aaaaaa;
+    background-color: #fff;
+    width: 100%;
+    right: 15px;
+    padding-left: 2.5em;
+    line-height: 200%;
+    border-bottom: 1px solid #EEEEEE;
+}
+@media (max-width: 600px) {
+    .right-menu {
+        display:none;
+    }
+}
+
+.right-menu > li{
+    list-style-type: none;
+    padding-left:5px;
+    padding-top: 5px;
+}

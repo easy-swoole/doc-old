@@ -46,6 +46,9 @@
                             </div>
                         </div>
                         <!-- 搜索功能新增结束 -->
+                        <!--右侧本章导航-->
+                        <div class="right-menu"></div>
+                        <!--右侧本章导航结束-->
                     </div>
                 </div>
             </div>
@@ -155,6 +158,29 @@
     sidebar.initSidebar();
     // 初始化章节目录
     expanded.init();
+
+    // ***右侧本章节导航**
+    var rightMenu = [];
+    $(".markdown-section").children().each(function(index, element) {
+        var tagName=$(this).get(0).tagName;
+        if(tagName.substr(0,1).toUpperCase()=="H"){
+            var contentH=$(this).html();//获取内容
+            var markid="mark-"+tagName+"-"+index.toString();
+            $(this).attr("id",markid);//为当前h标签设置id
+            var level = tagName.substr(1,2);
+            // $(".page-inner").append("<a href='#"+markid+"'>"+contentH+"</a>");//在目标DIV中添加内容
+            rightMenu.push({
+                level: level,
+                content: contentH,
+                markid: markid,
+            });
+        }
+    });
+    $('.right-menu').append("<div class='title'>本章导航</div>");
+    $.each(rightMenu, function (index, item) {
+        var padding_left = (item.level - 1) * 12 +"px";
+        $('.right-menu').append("<li style='padding-left:"+padding_left+"'><a href='#"+item.markid+"'>"+item.content+"</a></li>");
+    })
 </script>
 
 </body>
