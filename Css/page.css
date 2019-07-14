@@ -1143,20 +1143,22 @@ table {
     border-bottom: 1px solid rgba(0, 0, 0, .07);
     border-top: 1px solid rgba(0, 0, 0, .07);
     margin-bottom: 10px;
-    margin-top: -1px
+    margin-top: -1px;
+    position:relative;
 }
 
 #book-search-input input,
 #book-search-input input:focus,
 #book-search-input input:hover {
-    width: 100%;
     background: 0 0;
     border: 1px solid transparent;
     box-shadow: none;
     outline: 0;
     line-height: 22px;
     padding: 7px 7px;
-    color: inherit
+    color: inherit;
+    width:95%;
+    float:right;
 }
 
 #book-search-results {
@@ -1600,6 +1602,11 @@ body {
 }
 
 /*搜索*/
+#search_i{
+    position:absolute;
+    left:7px;
+    top:15px;
+}
 .search-results, .no-results {
     display: none;
 }

@@ -12,7 +12,9 @@
 <div class="book with-summary without-animation" id="book-main">
     <div class="book-summary">
         <div id="book-search-input" role="search">
-            <input type="text" placeholder="搜索功能已上线 ^_^">
+            <i class="fa fa-search" id="search_i"></i>
+            <input type="text" placeholder="Search">
+            <div style="clear: both;"></div>
         </div>
         <nav role="navigation">
             <ul class="summary">
