@@ -1682,10 +1682,14 @@ body {
     min-height: 1px;
     z-index: 99;
     border: 1px solid #EEEEEE;
-    border-radius: 3px;
-    border-top-left-radius: 0px;
+    border-radius: 0 3px 3px 3px;
     background-color: #fff;
     padding: 10px;
+    height: 70%;
+    overflow-y: auto;
+}
+.right-menu::-webkit-scrollbar{
+    display:none;
 }
 .right-menu > .title {
     color: #aaaaaa;
