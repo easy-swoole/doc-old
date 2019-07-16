@@ -1699,6 +1699,7 @@ body {
     padding-left: 0.1em;
     line-height: 200%;
     border-bottom: 1px solid #EEEEEE;
+    cursor: pointer;
 }
 @media (max-width: 600px) {
     .right-menu {
