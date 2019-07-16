@@ -191,6 +191,10 @@
             that.addClass("active");
         }, 50, that);
     });
+    // 切换导航显示
+    $('.right-menu .title').on('click', function(){
+        $(this).siblings().toggle();
+    });
 
     //初始化
     funScroll();
