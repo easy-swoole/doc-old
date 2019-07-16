@@ -4,13 +4,17 @@
     <link href="/Css/page.css" rel="stylesheet">
     <link href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" type="text/javascript"></script>
+    <script src="/Js/search.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Js/jquery.mark.min.js"></script>
     {$HEAD}
 </head>
 <body>
 <div class="book with-summary without-animation" id="book-main">
     <div class="book-summary">
         <div id="book-search-input" role="search">
-            <input type="text" placeholder="搜索功能即将来袭 ^_^">
+            <i class="fa fa-search" id="search_i"></i>
+            <input type="text" placeholder="Search">
+            <div style="clear: both;"></div>
         </div>
         <nav role="navigation">
             <ul class="summary">
@@ -33,6 +37,20 @@
                         <div class="search-noresults">
                             <section class="normal markdown-section">{$PAGE}</section>
                         </div>
+                        <!-- 搜索功能新增 -->
+                        <div class="search-results">
+                            <div class="has-results">
+                                <h1 class="search-results-title"><span class="search-results-count">0</span> results matching "<span class="search-query"></span>"</h1>
+                                <ul class="search-results-list"></ul>
+                            </div>
+                            <div class="no-results">
+                                <h1 class="search-results-title">No results matching "<span class="search-query"></span>"</h1>
+                            </div>
+                        </div>
+                        <!-- 搜索功能新增结束 -->
+                        <!--右侧本章导航-->
+                        <div class="right-menu"></div>
+                        <!--右侧本章导航结束-->
                     </div>
                 </div>
             </div>
@@ -142,6 +160,62 @@
     sidebar.initSidebar();
     // 初始化章节目录
     expanded.init();
+
+    // ***右侧本章节导航**
+    var rightMenu = [];
+    $(".markdown-section").children().each(function(index, element) {
+        var tagName=$(this).get(0).tagName;
+        if(tagName.substr(0,1).toUpperCase()=="H"){
+            var contentH=$(this).html();//获取内容
+            var markid="mark-"+tagName+"-"+index.toString();
+            $(this).attr("id",markid);//为当前h标签设置id
+            var level = tagName.substr(1,2);
+            rightMenu.push({
+                level: level,
+                content: contentH,
+                markid: markid,
+            });
+        }
+    });
+    $('.right-menu').append("<div class='title'><i class='fa fa-list'></i> 本章导航</div>");
+    $.each(rightMenu, function (index, item) {
+        var padding_left = (item.level - 1) * 12 +"px";
+        $('.right-menu').append("<li style='padding-left:"+padding_left+"'><a href='#"+item.markid+"' class='right-menu-item'>"+item.content+"</a></li>");
+    });
+    // 防止点击的导航是最底部，拉取滑动的只会到倒数其他菜单
+    $('.right-menu').on('click','a',function(){
+        // 延迟执行 等滚动完
+        var that = $(this);
+        setTimeout(function (that) {
+            $(".right-menu-item.active").removeClass("active");
+            that.addClass("active");
+        }, 50, that);
+    });
+
+    //初始化
+    funScroll();
+    $('.book-body').scroll(funScroll);//只放这条 审查元素时候滚动有效 普通打开无效
+    $('.body-inner').scroll(funScroll);// 加了这条 普通打开滚动有效 只留这条 审查元素滚动无效 怀疑是在不同环境 滚动事件依附的dom优先级不同
+    //条滚动事件方法
+    function funScroll() {
+        //获取当前滚动条的高度
+        var top = $(document).scrollTop();
+        var dom = $("h1,h2,h3,h4,h5");
+        var menuDom = $(".right-menu-item");
+        //遍历所有的div
+        dom.each(function(index) {
+            var $divObj = $(this);
+            var thisTop = $divObj.offset().top;
+            if (top+10 >= thisTop) {
+                //获取当前高亮的选项
+                var $activeObj = menuDom.find(".active");
+                if (menuDom[index] && $(menuDom[index]) !== $activeObj) {
+                    $(".right-menu-item.active").removeClass("active");
+                    $(menuDom[index]).addClass("active");
+                }
+            }
+        });
+    }
 </script>
 
 </body>

@@ -277,7 +277,6 @@
         },
         {
           "name": "Swoole",
-          "link": "/Cn/",
           "sub": [
             {
               "name": "初识Swoole",
@@ -302,7 +301,6 @@
             },
             {
               "name": "常见问题",
-              "link": "/Cn/",
               "sub": [
 
               ]
@@ -1266,13 +1264,6 @@
     {
       "name": "联系作者",
       "link": "/Cn/contact.html",
-      "sub": [
-
-      ]
-    },
-    {
-      "name": false,
-      "link": "link",
       "sub": [
 
       ]

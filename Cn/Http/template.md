@@ -171,7 +171,7 @@ class Smarty implements RenderInterface
 #### HTTP服务中调用
 ```
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
-Render::getInstance()->getConfig()>setRender(new Smarty());
+Render::getInstance()->getConfig()->setRender(new Smarty());
 Render::getInstance()->getConfig()->setTempDir(EASYSWOOLE_TEMP_DIR);
 Render::getInstance()->attachServer(ServerManager::getInstance()->getSwooleServer());
 //在action中实现响应

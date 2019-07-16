@@ -1,27 +1,30 @@
 <head>
      <title>swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input</title>
      <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-     <meta name="keywords" content="swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input"/>
-     <meta name="description" content="swoole directional agent|How does swoole get $HTTP_RAW_POST_DATA swoole php://input"/>
+     <meta name="keywords" content="EasySwoole FAQ and answers"/>
+     <meta name="description" content="EasySwoole FAQ and answers"/>
 </head>
 ---<head>---
 
-# Common problem
-## How to acquire $HTTP_RAW_POST_DATA
+# FAQ
+## How to obtain $HTTP_RAW_POST_DATA
 ```php
 $content = $this->request()->getBody()->__toString();
 $raw_array = json_decode($content, true);
 ```
+
 ## How to Get Client IP
 For example, how to get client IP in the controller
 ```php
-//Real address
+// Real IP
 $ip = ServerManager::getInstance()->getSwooleServer()->connection_info($this->request()->getSwooleRequest()->fd);
 var_dump($ip);
+
 //header Address, eg. after nginx proxy
 $ip2 = $this->request()->getHeaders();
 var_dump($ip2);
 ```
+
 ## How to deal with static resources
 Apache URl rewrite
 ```
@@ -52,17 +55,17 @@ server {
 }
 ```
 ## The total HTTP status code is 500
-Since the swoole ** 1.10.x ** and ** 2.1.x ** versions, when the http server callback is executed, if response-> end () is not executed, all the status codes are returned to 500.
+Since the swoole ** 1.10.x ** and ** 2.1.x ** versions, when the http server callback is executed, if response-> end () is not executed, the server will always return 500.
 
 ## How to Set Cookie  
-Calling the setCookie method of the response object sets the cookie
+Calling the `setCookie()` method of the response object to set the cookies
 ```php
   $this->response()->setCookie('name','value');
 ```
-More operations to see[Response object](response.md)
+More details, please refer to [Response object](response.md)
 
 
-## How to Customize App Name
+## How to Customize App Namespace for your application
 Just modify composer.json's namespace registration
 ```
     "autoload": {
@@ -72,14 +75,14 @@ Just modify composer.json's namespace registration
     }
 ```
 
-## On Cross-domain Processing
+## Deal with Cross-domain request
 
 Add the following code to the global event to intercept all requests and add cross-domain headers
 
 ```php
 public static function onRequest(Request $request, Response $response): bool
 {
-    // TODO: Implement onRequest() method.
+    // Implement onRequest() method.
     $response->withHeader('Access-Control-Allow-Origin', '*');
     $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     $response->withHeader('Access-Control-Allow-Credentials', 'true');
