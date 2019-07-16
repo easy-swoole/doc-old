@@ -1685,7 +1685,7 @@ body {
     border-radius: 0 3px 3px 3px;
     background-color: #fff;
     padding: 10px;
-    height: 70%;
+    max-height: 70%;
     overflow-y: auto;
 }
 .right-menu::-webkit-scrollbar{
