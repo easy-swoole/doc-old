@@ -16,6 +16,9 @@ $sql = $db->getLastQuery();
 ```sql
 SELECT  * FROM xsk_test WHERE  name = '666'  or id > '1'  and id < '10';
 ```
+
+> 注意WHERE的时候，如果条件为IN/BETWEEN等WhereValue需要传入数组的情况，请务必确保数组的key从0开始并且是连续的数字key，可以先用array_values做处理后再传入，或者使用类库提供的whereIn/whereNotIn/whereBetween/whereNotBetween等快捷方法进行链式操作
+
 ###orWhere()
 等同于where($whereProp, $whereValue = 'DBNULL', $operator = '=', $cond = 'OR');
 ###orderBy()
