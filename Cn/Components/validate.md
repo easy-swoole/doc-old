@@ -24,7 +24,7 @@ $data = [
 $valitor = new Validate();
 $valitor->addColumn('name', '名字不为空')->required('名字不为空')->lengthMin(10,'最小长度不小于10位');
 $bool = $valitor->validate($data);
-var_dump($bool?"true":$valitor->getError()->getColumnErrorMsg());
+var_dump($bool?"true":$valitor->getError()->__toString());
 
 /* 结果：
  string(26) "最小长度不小于10位"
