@@ -1,3 +1,9 @@
+<head>
+     <title>EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存</title>
+     <meta name="keywords" content="EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存"/>
+     <meta name="description" content="利用swoole自定义进程实现简单的本机缓存"/>
+</head>
+---<head>---
 
 # FastCache
 EasySwoole 提供了一个快速缓存，是基础UnixSock通讯和自定义进程存储数据实现的，提供基本的缓存服务，本缓存为解决小型应用中，需要动不动就部署Redis服务而出现。

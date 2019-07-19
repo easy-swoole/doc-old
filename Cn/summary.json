@@ -663,6 +663,11 @@
           "sub": []
         },
         {
+          "name": "远程控制台",
+          "link": "/Cn/Components/console.html",
+          "sub": []
+        },
+        {
           "name": "Apollo配置中心",
           "link": "/Cn/Components/apollo.html",
           "sub": []
