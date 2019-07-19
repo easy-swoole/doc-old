@@ -19,31 +19,6 @@ composer require easyswoole/annotation
 
 ## 例子
 ```
-use EasySwoole\Annotation\Annotation;
-use EasySwoole\Annotation\AnnotationTagInterface;
-
-class A
-{
-    /** @var  */
-    protected $a;
-
-    /**
-     * @param(name=a,type=string,value=2)
-     * @param(name=b)
-     * @timeout(0.5)
-     * @fuck(easyswoole)
-     * 这是我的其他说明啊啊啊啊啊
-     */
-    function test()
-    {
-
-    }
-}
-
-
-
-
-
 /*
  * 定义param渲染方法
  */
@@ -66,6 +41,13 @@ class param implements AnnotationTagInterface
             }
         }
     }
+
+    public function aliasMap(): array
+    {
+        return [
+            static::class
+        ];
+    }
 }
 
 /*
@@ -85,7 +67,35 @@ class timeout implements AnnotationTagInterface
     {
         $this->timeout = floatval($raw);
     }
+
+    public function aliasMap(): array
+    {
+        return [
+            static::class,'timeout_alias'
+        ];
+    }
 }
+
+
+class A
+{
+    /** @var  */
+    protected $a;
+
+    /**
+     * @param(name=a,type=string,value=2)
+     * @param(name=b)
+     * @timeout_alias(0.5)
+     * @fuck(easyswoole)
+     * 这是我的其他说明啊啊啊啊啊
+     */
+    function test()
+    {
+
+    }
+}
+
+
 
 /*
  * 实例化渲染器,并注册要解析的渲染方法
