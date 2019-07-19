@@ -668,6 +668,11 @@
           "sub": []
         },
         {
+          "name": "注解解析",
+          "link": "/Cn/Components/annotation.html",
+          "sub": []
+        },
+        {
           "name": "Apollo配置中心",
           "link": "/Cn/Components/apollo.html",
           "sub": []
