@@ -14,7 +14,7 @@ EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个
 
 ```php
 <?php
-useEasySwoole\Validate\Validate;
+use EasySwoole\Validate\Validate;
 
 $data = [
     'name' => 'blank',
