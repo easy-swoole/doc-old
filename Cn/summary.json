@@ -458,8 +458,15 @@
       "link": "/Cn/Http/introduction.html",
       "sub": [
         {
-          "name": "控制器对象",
+          "name": "控制器",
           "link": "/Cn/Http/controller.html",
+          "sub": [
+
+          ]
+        },
+        {
+          "name": "注解控制器",
+          "link": "/Cn/Http/annotation.html",
           "sub": [
 
           ]
