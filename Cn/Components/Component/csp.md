@@ -60,3 +60,4 @@ go(function (){
     var_dump($csp->exec());
 });
 ```
+> exec方法提供了一个默认参数：超时时间(默认为5s)，当调用$csp->exec()后，5s左右会返回结果，不会持续等待add的函数执行完成。
