@@ -115,6 +115,119 @@ foreach ($list['timeout'] as $item){
 
 > 注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
 
+## 默认注解解析工具
+
+Easyswoole 自带的字符串解析工具为 ```EasySwoole\Annotation\ValueParser```,支持格式如下单元测试代码所示：
+```
+namespace EasySwoole\Annotation\Tests;
+
+
+use EasySwoole\Annotation\ValueParser;
+use PHPUnit\Framework\TestCase;
+
+class ValueParserTest extends TestCase
+{
+    function testNormal()
+    {
+        $str = "int=1";
+        $this->assertEquals([
+            'int'=>"1"
+        ],ValueParser::parser($str));
+
+        $str = "int=1,int2=2";
+        $this->assertEquals([
+            'int'=>"1",
+            'int2'=>"2"
+        ],ValueParser::parser($str));
+
+        $str = "int=1,int2='2'";
+        $this->assertEquals([
+            'int'=>"1",
+            'int2'=>"2"
+        ],ValueParser::parser($str));
+    }
+
+    function testArray()
+    {
+        $str = "array={1,2,3}";
+        $this->assertEquals([
+            'array'=>['1','2','3']
+        ],ValueParser::parser($str));
+
+        $str = "array={'1','2','3'}";
+        $this->assertEquals([
+            'array'=>['1','2','3']
+        ],ValueParser::parser($str));
+
+
+        $str = "array={'1','2 , 3'}";
+        $this->assertEquals([
+            'array'=>['1','2 , 3']
+        ],ValueParser::parser($str));
+
+        $str = 'array={"1","2","3"}';
+        $this->assertEquals([
+            'array'=>['1','2','3']
+        ],ValueParser::parser($str));
+
+        $str = "array={1,2,3} ,array2={4,5,6}";
+        $this->assertEquals([
+            'array'=>['1','2','3'],
+            'array2'=>['4','5','6']
+        ],ValueParser::parser($str));
+
+    }
+
+
+    function testEval()
+    {
+        $str = 'time="eval(time() + 30)"';
+        $this->assertEquals([
+            'time'=>time() + 30,
+        ],ValueParser::parser($str));
+
+        $str = 'time="eval(time() + 30)" , time2="eval(time() + 31)';
+        $this->assertEquals([
+            'time'=>time() + 30,
+            'time2'=>time() + 31
+        ],ValueParser::parser($str));
+
+        $str = 'list="eval([1,2,3,4])"';
+        $this->assertEquals([
+            'list'=>[1,2,3,4]
+        ],ValueParser::parser($str));
+    }
+
+    function testArrayAndEval()
+    {
+        $str = 'array="{"1","2",eval(time() + 30)}"';
+        $this->assertEquals([
+            'array'=>['1','2',time() + 30]
+        ],ValueParser::parser($str));
+
+        $str = 'array={"1","2",eval(time() + 30)},str="222"';
+        $this->assertEquals([
+            'array'=>['1','2',time() + 30],
+            "str"=>'222'
+        ],ValueParser::parser($str));
+
+        $str = "array={1,2,3},time=eval(time())";
+        $this->assertEquals([
+            'array'=>['1','2','3'],
+            'time'=>time()
+        ],ValueParser::parser($str));
+    }
+
+
+    function testStrMulti()
+    {
+        $str = 'mix="first|{1,2,3}|eval(time() + 3)"';
+        $this->assertEquals([
+            'mix'=>['first',['1','2','3'],time() + 3]
+        ],ValueParser::parser($str));
+    }
+}
+```
 ## IDE支持
 
 需要为PHPStorm安装"PHP Annotation"插件以提供注解自动提示能力，插件可以在PHPStorm中直接搜索安装，也可以前往Github下载安装
