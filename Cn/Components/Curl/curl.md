@@ -157,7 +157,7 @@ class Curl
 发起请求：
 
 ```php
-<<?php
+<?php
  /**
   * Created by PhpStorm.
   * User: root
