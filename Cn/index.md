@@ -1,4 +1,3 @@
-# EasySwoole
 ```text
   ______                          _____                              _        
  |  ____|                        / ____|                            | |       
@@ -10,6 +9,11 @@
                          |___/                                                
 ```
 # EasySwoole
+[![Latest Stable Version](https://poser.pugx.org/easyswoole/easyswoole/v/stable)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Total Downloads](https://poser.pugx.org/easyswoole/easyswoole/downloads)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Latest Unstable Version](https://poser.pugx.org/easyswoole/easyswoole/v/unstable)](https://packagist.org/packages/easyswoole/easyswoole)
+[![License](https://poser.pugx.org/easyswoole/easyswoole/license)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Monthly Downloads](https://poser.pugx.org/easyswoole/easyswoole/d/monthly)](https://packagist.org/packages/easyswoole/easyswoole)
 
 EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP框架，专为API而生，摆脱传统PHP运行模式在进程唤起和文件加载上带来的性能损失。
 EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特性，支持同时混合监听HTTP、自定义TCP、UDP协议，让开发者以最低的学习成本和精力编写出多进程，可异步，高可用的应用服务。在开发上，我们为您准备了以下常用组件：
@@ -36,6 +40,10 @@ EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特
 
 > 以上组件为常用组件，更多组件请看组件库文档
 
+## 生产可用
+Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如今的EasySwoole 3.x版本，多年时间在众多社区小伙伴的共同努力下，EasySwoole的稳定与可靠已经经历了非常多的大企业检验。例如腾讯公司的IEG部门，
+WEGAME部门，网宿科技（国内CDN厂家），360金融，360小游戏（Actor）,9377小游戏，厦门美图网等公司都在使用EasySwoole。
+
 ## 特性
 
 - 强大的 TCP/UDP Server 框架，多线程，EventLoop，事件驱动，异步，Worker进程组，Task异步任务，毫秒定时器，SSL/TLS隧道加密
@@ -50,7 +58,6 @@ EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特
 - 支持异步/同步/协程
 - 支持多进程/多线程
 - CPU亲和性/守护进程
-
 
 ## 其他
 
