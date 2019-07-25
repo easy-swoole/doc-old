@@ -191,4 +191,5 @@
     font-size: 18px;
     margin-top: 10px;
     color: #4c4c4c;
+    white-space: nowrap;
 }
