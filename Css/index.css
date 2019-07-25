@@ -189,7 +189,11 @@
 }
 .partner-box>a div{
     font-size: 18px;
+    margin: 0 auto;
     margin-top: 10px;
     color: #4c4c4c;
+    max-width: 160px;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
