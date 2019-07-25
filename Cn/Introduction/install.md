@@ -111,8 +111,8 @@ RUN apt-get update \
     libssl-dev \
     libnghttp2-dev \
     libpcre3-dev \
-    && apt-get clean \
-    && apt-get autoremove
+    && apt-get -y clean \
+    && apt-get -y autoremove
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
