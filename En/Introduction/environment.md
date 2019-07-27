@@ -101,11 +101,5 @@ ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 - Author WeChat
 
     ![](http://easyswoole.com/img/authWx.jpg)
-    
-- [donation] (../donate.md)
-    Your donation is the greatest encouragement and support for EasySwoole project development team. We will insist on development and maintenance. Your donation will be used to:
-        
-   - Continuous development and upgrade
-   - Documentations, Community and Long term technical support
-  
+
 - **EasySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
