@@ -1,19 +1,23 @@
 # 自定义命令
 EasySwoole 有着默认的5个命令:  
 ````text
+
 php easyswoole help  命令帮助
 php easyswoole install 安装(需要在./vendor/easyswoole/easyswoole/bin/easyswoole 文件中调用)
 php easyswoole start  启动
 php easyswoole stop   停止(需要守护进程)
 php easyswoole reload  热重启(需要守护进程)
+
 ````
 > 默认命令详细内容可查看[服务管理](../Introduction/server.md)
 ## 定义命令
 通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:
 ````php
+
 public function commandName():string;
 public function exec(array $args):?string ;
 public function help(array $args):?string ;
+
 ````
 新建文件 App/Command/Test.php:
 ````php
@@ -49,10 +53,7 @@ class Test implements CommandInterface
     {
         //输出logo
         $logo = Utility::easySwooleLog();
-        return $logo.<<<HELP_START
-        这是test
-        
-HELP_START;
+        return $logo."this is test";
     }
 }
 ````
@@ -74,11 +75,13 @@ HELP_START;
 ## 执行命令
 ````text
 
-[root@localhost easyswoole-test]# php easyswoole test
+php easyswoole test
 array(0) {
 }
 test
-[root@localhost easyswoole-test]# php easyswoole test 123 456
+
+
+php easyswoole test 123 456
 array(2) {
   [0]=>
   string(3) "123"
@@ -95,6 +98,6 @@ test
  |______|  \__,_| |___/  \__, | |_____/    \_/\_/    \___/   \___/  |_|  \___|
                           __/ |
                          |___/
-        这是test
+this is test
         
 ````
