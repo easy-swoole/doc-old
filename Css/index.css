@@ -174,9 +174,18 @@
     max-height: 150px;
 }
 .partner-one img{
-    width: 40px;
+    width: 30px;
     padding-bottom: 5px;
     border-radius: 100%;
+}
+.partner-one div{
+    font-size: 18px;
+    margin: 10px auto 0;
+    color: #4c4c4c;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .partner-one:nth-child(even){
