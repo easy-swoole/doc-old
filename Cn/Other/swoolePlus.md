@@ -4,7 +4,11 @@ Swoole Enterprise是Swoole官方针对PHP开发的一整套企业级应用监控
 在安装好swoole_plus后，我们可以在Easyswoole中提供的各个事件当中埋点，进行应用监控。
 
 ## 效果图
-### 进程状态监控
+
+### 应用监控
+![](./../Resource/SwoolePlus/img3.png)
+
+### 调试器-进程状态监控
 ![](./../Resource/SwoolePlus/img1.png)
 
 ### 接口监控
