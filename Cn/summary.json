@@ -1129,6 +1129,13 @@
       "link": "link",
       "sub": [
         {
+          "name": "Swoole监控",
+          "link": "/Cn/Other/swoolePlus.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "mongodb客户端",
           "link": "/Cn/Other/mongodb.html",
           "sub": [
