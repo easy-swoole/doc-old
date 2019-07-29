@@ -7,8 +7,10 @@
 ---<head>---
 
 # http服务
+
 http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它实现了控制器连接池,url解析以及url路由规则.  
 [http组件demo](https://github.com/easy-swoole/demo/tree/3.x-http)
+
 ## 命名空间
 我们首先需要在`composer.json`中注册应用目录的命名空间(控制器命名空间默认为`App\HttpController`)
 ```text
@@ -27,6 +29,11 @@ http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它
 ````
 composer update
 ````
+
+## 约定规范
+
+- 项目中类名称与类文件(文件夹)命名，均为大驼峰，变量与类方法为小驼峰。
+- 在HTTP响应中，于业务逻辑代码中echo $var 并不会将$var内容输出至相应内容中，请调用Response实例中的wirte()方法实现。
 
 ## 默认控制器
 创建`App/HttpController/Index.php`文件:
