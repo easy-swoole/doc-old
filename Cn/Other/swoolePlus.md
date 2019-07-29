@@ -3,7 +3,7 @@
 Swoole Enterprise是Swoole官方出品的一整套企业级PHP和Swoole分析调试工具，全面支持协程/非协程环境，数据实时可视化，并全面分析报告服务状况，快速发现及精准定位问题和性能瓶颈。
 在安装好swoole_plus扩展后，我们可以在EasySwoole中提供的各个事件当中埋点，进行应用监控。
 
-> 安装swoole_plus扩展的方法见安装文档https://www.yuque.com/swoole-wiki/try/fi7cpe ，并且可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
+> 安装swoole_plus扩展的方法见安装文档 https://www.yuque.com/swoole-wiki/try/fi7cpe ，并且可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
 
 ## 效果图
 
