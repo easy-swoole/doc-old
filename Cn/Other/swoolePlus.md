@@ -1,15 +1,28 @@
 # Swoole 企业版
 
-Swoole Enterprise是Swoole官方针对PHP开发的一整套企业级应用监控解决方案，全面支持协程/非协程环境，数据实时可视化，并全面分析报告服务状况，快速发现及精准定位问题和性能瓶颈。
-在安装好swoole_plus后，我们可以在Easyswoole中提供的各个事件当中埋点，进行应用监控。
+Swoole Enterprise是Swoole官方出品的一整套企业级PHP和Swoole分析调试工具，全面支持协程/非协程环境，数据实时可视化，并全面分析报告服务状况，快速发现及精准定位问题和性能瓶颈。
+在安装好swoole_plus扩展后，我们可以在EasySwoole中提供的各个事件当中埋点，进行应用监控。
+
+> 安装swoole_plus扩展的方法见安装文档https://www.yuque.com/swoole-wiki/try/fi7cpe ，并且可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
 
 ## 效果图
 
 ### 应用监控
 ![](./../Resource/SwoolePlus/img3.png)
 
-### 调试器-进程状态监控
+### 调试器-进程列表
 ![](./../Resource/SwoolePlus/img1.png)
+
+> 以下为企业版中的调试工具链功能，通过PID远程开启调试，支持检测阻塞IO、内存泄漏和代码性能分析
+
+### 调试器-阻塞检测
+![](./../Resource/SwoolePlus/img4.png)
+
+### 调试器-内存泄漏检测
+![](./../Resource/SwoolePlus/img6.png)
+
+### 调试器-性能分析
+![](./../Resource/SwoolePlus/img5.png)
 
 ### 接口监控
 ![](./../Resource/SwoolePlus/img2.png)
@@ -17,14 +30,11 @@ Swoole Enterprise是Swoole官方针对PHP开发的一整套企业级应用监控
 
 ## 启动
 
-在安装好Swoole_plus后，我们执行：
+在安装好swoole_plus扩展后，我们执行：
 ```
 /opt/swoole/script/php/swoole_php /opt/swoole/node-agent/src/node.php & php easyswoole start
 ```
 即可对EasySwoole进行监控。
-
-
-> Swoole_plus 的安装可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
 
 ## Http服务监控
 
@@ -90,4 +100,4 @@ class Base extends Controller
 
 ## Rpc、Tcp、WebSocket服务监控
 
-Easyswoole的Rpc、Tcp,WebSocket服务也同理提供了onRequest，afterAction方法，对两个方法进行埋点，即可实现对应的监控。
+Easyswoole的Rpc、Tcp、WebSocket服务也同理提供了onRequest，afterAction方法，对两个方法进行埋点，即可实现对应的监控。
