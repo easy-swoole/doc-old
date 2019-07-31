@@ -214,10 +214,10 @@
 }
 @media screen and (min-width:960px) and (max-width:1200px){
     .partner-box{
-       width: 960px;
+       width: 920px;
     }
     .partner-one{
-        width: 30%;
+        width: 288px;
     }
 }
 .detail-card{
