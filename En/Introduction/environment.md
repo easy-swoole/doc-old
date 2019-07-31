@@ -6,7 +6,7 @@ Some basic environment requirements are required to run the framework. The EasyS
 You will need to make sure your system meets the following requirements
 
 - PHP >= 7.1
-- **Swoole** PHP Extension >= **4.3.0**
+- **Swoole** PHP Extension >= **4.4.0**
 - **pcntl** PHP extension
 - Operating system: **Linux** / **FreeBSD** / **MacOS**
 - Composer
@@ -22,7 +22,7 @@ FROM php:7.2
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV SWOOLE_VERSION 4.3.3
+ENV SWOOLE_VERSION 4.4.2
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
