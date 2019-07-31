@@ -1,4 +1,3 @@
-# EasySwoole
 ```
   ______                          _____                              _        
  |  ____|                        / ____|                            | |       
@@ -10,6 +9,11 @@
                          |___/                                                
 ```
 # EasySwoole
+[![Latest Stable Version](https://poser.pugx.org/easyswoole/easyswoole/v/stable)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Total Downloads](https://poser.pugx.org/easyswoole/easyswoole/downloads)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Latest Unstable Version](https://poser.pugx.org/easyswoole/easyswoole/v/unstable)](https://packagist.org/packages/easyswoole/easyswoole)
+[![License](https://poser.pugx.org/easyswoole/easyswoole/license)](https://packagist.org/packages/easyswoole/easyswoole)
+[![Monthly Downloads](https://poser.pugx.org/easyswoole/easyswoole/d/monthly)](https://packagist.org/packages/easyswoole/easyswoole)
 
 EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is specifically designed for APIs and gets rid of the performance loss caused by evoking processes and loading PHP files in traditional method. EasySwoole highly encapsulates the Swoole Server and maintains the original features of the Swoole Server. It supports listening HTTP, custom TCP and UDP protocols simultaneously, so that developers allow to write asynchronous multiple processes, and highly available services and applications with minimal learning cost and effort. 
 
