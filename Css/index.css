@@ -249,6 +249,7 @@
     line-height: 24px;
     font-size: 14px;
     margin: 5px 0 0 0;
+    height: 93px;
     text-overflow: -o-ellipsis-lastline;
     overflow: hidden;
     text-overflow: ellipsis;
