@@ -97,9 +97,3 @@ ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 - Commercial users support:
     - QQ 291323003
     - EMAIL: <a href="mailto:admin@fosuss.com">admin@fosuss.com</a>
-        
-- Author WeChat
-
-    ![](http://easyswoole.com/img/authWx.jpg)
-
-- **EasySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
