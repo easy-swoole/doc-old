@@ -2,9 +2,10 @@
 
 EasySwoole utilizes `Composer` to manage its dependencies. Before starting the installation process, please ensure that you have got your system satisfied with our requirements, and `Composer` installed on your machine. During the installation process, the framework files will be downloaded to the project root directory automatically, please make sure the folder is writable.
 
-## Install via Composer
 
-Follow the steps below to install manually
+## Composer install
+
+Follow these steps to install manually
 
 ```bash
 composer require easyswoole/easyswoole=3.x
@@ -99,8 +100,8 @@ RUN apt-get update \
     libssl-dev \
     libnghttp2-dev \
     libpcre3-dev \
-    && apt-get clean \
-    && apt-get autoremove
+    && apt-get -y clean \
+    && apt-get -y autoremove
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \
@@ -159,8 +160,6 @@ project - The project root directory
 │   └─Index.php     - default controller file
 ----------------------------------
 ```
-
-The `App` directory is the central place where you should put all business logic. Modify the `Index.php` file to add some codes as below:
 
 ```php
 <?php
@@ -240,11 +239,19 @@ Project                     - project root directory
 
 ## Other
 
-- QQ Discussion group
-    - VIP group 579434607 (this group needs to pay 599 RMB)
-    - EasySwoole official group: 633921431 (No vacancies)
-    - EasySwoole official alternative group: 709134628
+- QQ exchange group
+     - VIP group 579434607 (this group needs to pay 599 RMB)
+     - EasySwoole official group 633921431 (full)
+     - EasySwoole official second group 709134628
     
-- Commercial users support:
-    - QQ 291323003
-    - EMAIL: <a href="mailto:admin@fosuss.com">admin@fosuss.com</a>
+- Business support:
+     - QQ 291323003
+     - EMAIL admin@fosuss.com
+     
+- Translate by
+     - NAME: huizhang
+     - QQ: 2788828128
+     - EMAIL: <a href="mailto:tuzisir@163.com">tuzisir@163.com</a>
+
+
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
