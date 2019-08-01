@@ -34,15 +34,11 @@ return [
 > If you set the [`MAIN_SERVER`][`SERVER_TYPE`] to `EASYSWOOLE_SERVER` or `EASYSWOOLE_WEB_SOCKET_SERVER`, 
 please ensure you manually assign the callback (receive or message) in `EasySwooleEvent.php` -> `mainServerCreate`, otherwise, it will cause the error.
 
-## Global config helper class
+## Configuration operation class
 
-You may access your configuration values using a `EasySwoole\Config` class instance from anywhere in your application. 
-- `toArray` method to get all the configuration
-- `load` method overrides all configurations
-- With above two methods, you can customize more advanced operations.
-A simple example is as following:
+Configuration operation class is `EasySwoole\Config`, which is very simple to use. See the code example below. The operation class also provides `toArray` method to get all configurations and `load` method to overload all configurations. Based on these two methods, you can customize more advanced operations by yourself.
 
-> Example for get/set configuration values
+> Setting and getting configuration items both support point segregation, as shown in the following code example for retrieving configuration
 
 ```php
 <?php
@@ -65,6 +61,7 @@ $conf['DATABASE'] = [
 ];
 $instance->load($conf);
 ```
+
 > Note that the process is isolated. The newly added configuration items are valid only for the process performing the operation after the server is started. If the configuration values need to be shared for all, please extend the functionality by yourself.
 
 ## Adding your own configuration items
@@ -74,39 +71,32 @@ Adding your own configuration items is very simple.
 The easiest way is to put them directly in the configuration file, as in the following example.
 
 ```php
-<?php
-[
-    /* ################ MYSQL CONFIG ################## */
-    'MYSQL' => [
-        'host' => '192.168.75.1',
-        'port' => '3306',
-        'user' => 'root',
-        'timeout' => '5',
-        'charset' => 'utf8mb4',
-        'password' => 'root',
-        'database' => 'cry',
-        'POOL_MAX_NUM' => '20',
-        'POOL_TIME_OUT' => '0.1',
-    ],
-    /* ################ REDIS CONFIG ################## */
-    'REDIS' => [
-        'host' => '127.0.0.1',
-        'port' => '6379',
-        'auth' => '',
-        'POOL_MAX_NUM' => '20',
-        'POOL_MIN_NUM' => '5',
-        'POOL_TIME_OUT' => '0.1',
-    ],
-];
+/* ################ MYSQL CONFIG ################## */
+'MYSQL' => [
+    'host' => '192.168.75.1',
+    'port' => '3306',
+    'user' => 'root',
+    'timeout' => '5',
+    'charset' => 'utf8mb4',
+    'password' => 'root',
+    'database' => 'cry',
+    'POOL_MAX_NUM' => '20',
+    'POOL_TIME_OUT' => '0.1',
+],
+/* ################ REDIS CONFIG ################## */
+'REDIS' => [
+    'host' => '127.0.0.1',
+    'port' => '6379',
+    'auth' => '',
+    'POOL_MAX_NUM' => '20',
+    'POOL_MIN_NUM' => '5',
+    'POOL_TIME_OUT' => '0.1',
+],
 ```
 
-## Application running mode 
-- Develop mode: The `php easyswoole start` command will load `dev.php` as the configuration 
-- Production mode: The `php easyswoole start produce` command will load `produce.php` as the configuration
+## DI injection configuration
 
-
-## Dependency Injection
-EasySwoole 3.x provides an elegant way to perform dependency injection. Please refer to the following code snippet:
+Es3.x provides several Di parameter configurations that can be customized to configure script error handling callbacks, controller namespaces, maximum parsing levels, and so on.
 
 ```php
 <?php
@@ -122,17 +112,50 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);              
 ```
 
 ## Dynamic Configuration
-When you modify the configuration values in the controller (worker process), due to process isolation, 
-the updated configuration values can not take effect in other processes, therefore we shall use dynamic configuration (Dynamic configuration values are stored in <a href="https://www.php.net/manual/en/class.swoole-table.php">Swoole\Table</a>). 
-When fetching/modifying dynamic configuration data, it directly operates the `Swoole\Table`, so all processes will be affected.
->But it is not suitable for storing a large-number/big-size of configurations values, so in this case, we recommended to use in-memory database solution such as `Redis` in stead.
 
-```php
+After version 3.2.5, EasySwoole changed the default config storage driver to swoole_table. As long as the configuration is changed, other processes will also take effect.
+
+## Config Driver
+After EasySwoole version 3.2.5, the default configuration-driven storage is changed from SplArray to swoole_table. After the configuration is modified, all processes take effect simultaneously.
+
+### \EasySwoole\Config\AbstractConfig
+The AbstractConfig abstract class provides the following methods for inheriting from other config drivers
+- __construct(bool $isDev = true)
+  Whether the input is a parameter of the development environment, load dev.php or produce.php according to the parameter
+- isDev() 
+  This method can be used to determine whether the current running environment is a development environment or not.
+- abstract function getConf($key = null);
+  Get a configuration
+- abstract function setConf($key,$val):bool ;
+  Set a parameter
+- abstract function load(array $array):bool ;
+  Reload configuration items
+- abstract function merge(array $array):bool ;
+  Merge configuration items
+- abstract function clear():bool ;
+  Clear all configuration items
+  
+### Custom Configuration
+In EasySwoole, SplArray and swoole_table driver implementations are included, so you can see the source code for yourself.
+The default driver is swoole_table
+
+If you need to modify the storage driver, the steps are as follows:
+* Inheriting AbstractConfig to implement various methods
+* Code examples
+````php 
 <?php
-    Config::getInstance()->setDynamicConf('test_config_value', 0); // set a dynamic configuration item
-    $test_config_value_1 = Config::getInstance()->getDynamicConf('test_config_value'); // get a dynamic configuration value
-    Config::getInstance()->delDynamicConf('test_config_value'); // delete a dynamic configuration item
-```
+public static function initialize()
+{
+   //Get the original config configuration item and load it into the new configuration item
+   $config = Config::getInstance()->getConf();
+   Config::getInstance()->storageHandler(new SplArrayConfig())->load($config);
+   // TODO: Implement initialize() method.
+   date_default_timezone_set('Asia/Shanghai');
+}
+````
+
+### Dynamic Configuration Problem
+Since swoole is multi-process, if stored in SplArray mode, other processes will not take effect after a single process changes its configuration, and all processes will take effect when swoole_table mode is used.
 
 ## Other
 

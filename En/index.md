@@ -62,5 +62,11 @@ We are pool in English,but we hope this project makes you using swoole easily , 
 - Business support:
      - QQ 291323003
      - EMAIL admin@fosuss.com
+     
+- Translate by
+     - NAME: huizhang
+     - QQ: 2788828128
+     - EMAIL: <a href="mailto:tuzisir@163.com">tuzisir@163.com</a>
+
 
 - **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
