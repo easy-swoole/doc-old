@@ -22,7 +22,7 @@ FROM php:7.2
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV SWOOLE_VERSION 4.4.2
+ENV SWOOLE_VERSION 4.4.0
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
@@ -89,11 +89,19 @@ ENTRYPOINT ["php", "/var/www/code/easyswoole", "start"]
 
 ## Other
 
-- QQ Discussion group
-    - VIP group 579434607 (this group needs to pay 599 RMB)
-    - EasySwoole official group: 633921431 (No vacancies)
-    - EasySwoole official alternative group: 709134628
+- QQ exchange group
+     - VIP group 579434607 (this group needs to pay 599 RMB)
+     - EasySwoole official group 633921431 (full)
+     - EasySwoole official second group 709134628
     
-- Commercial users support:
-    - QQ 291323003
-    - EMAIL: <a href="mailto:admin@fosuss.com">admin@fosuss.com</a>
+- Business support:
+     - QQ 291323003
+     - EMAIL admin@fosuss.com
+     
+- Translate by
+     - NAME: huizhang
+     - QQ: 2788828128
+     - EMAIL: <a href="mailto:tuzisir@163.com">tuzisir@163.com</a>
+
+
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository for modification , submit **Pull Request** and contact us
