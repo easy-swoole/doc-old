@@ -67,6 +67,10 @@ See related examples
 
 ## Other
 
+- [Project Document Warehouse](https://github.com/easy-swoole/doc)
+
+- [DEMO](https://github.com/easy-swoole/demo/)
+
 - QQ exchange group
      - VIP group 579434607 (this group needs to pay 599 RMB)
      - EasySwoole official group 633921431 (full)
