@@ -52,6 +52,13 @@
       "link": "/En/Event/introduction.html",
       "sub": [
         {
+          "name": "Bootstrap",
+          "link": "/En/Event/bootstrap.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "Initialize",
           "link": "/En/Event/initialize.html",
           "sub": [
