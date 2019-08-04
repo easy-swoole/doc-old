@@ -33,6 +33,13 @@
           ]
         },
         {
+          "name": "框架安装",
+          "link": "/Cn/Introduction/docker.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "生命周期",
           "link": "/Cn/Introduction/lifecycle.html",
           "sub": [
