@@ -33,7 +33,7 @@
           ]
         },
         {
-          "name": "框架安装",
+          "name": "Docker镜像",
           "link": "/Cn/Introduction/docker.html",
           "sub": [
 
