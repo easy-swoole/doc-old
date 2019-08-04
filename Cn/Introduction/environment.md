@@ -1,3 +1,10 @@
+<head>
+     <title>EasySwoole 环境要求|swoole 环境要求</title>
+     <meta name="keywords" content="EasySwoole 环境要求|swoole 环境要求"/>
+     <meta name="description" content="EasySwoole的基础环境要求与swoole的安装"/>
+</head>
+---<head>---
+
 # 环境要求
 
 满足基本的环境要求才能运行框架，easySwoole 框架对环境的要求十分简单，只需要满足运行 Swoole 拓展的条件，并且 PHP 版本在 7.1 以上即可

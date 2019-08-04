@@ -33,6 +33,13 @@
           ]
         },
         {
+          "name": "Docker镜像",
+          "link": "/Cn/Introduction/docker.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "生命周期",
           "link": "/Cn/Introduction/lifecycle.html",
           "sub": [
@@ -252,6 +259,13 @@
             {
               "name": "单例模式",
               "link": "/Cn/Components/Component/singleton.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "就绪等待",
+              "link": "/Cn/Components/Component/readyScheduler.html",
               "sub": [
 
               ]
