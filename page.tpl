@@ -117,6 +117,17 @@
             url = url.substring(0, url.indexOf('.html')+5);
             expanded.expand($("a[href='" +url+"']").parents('li'));
             $("a[href='" +url+"']").parents('li').addClass('active');
+
+            // 滚动到最后一个高亮菜单
+            let nowHeight = $(window).height() + $(window).scrollTop();
+            let activeHeight = $(".chapter.expanded.active:last").offset().top;
+            if( nowHeight <= activeHeight){
+                $(".book-summary").animate({
+                    scrollTop: activeHeight - 400
+                }, 200);
+            }else{
+                // 默认在第一屏
+            }
         },
         toggle: function ($chapter) {
             if ($chapter.hasClass('expanded')) {
