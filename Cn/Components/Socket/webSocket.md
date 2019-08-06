@@ -158,7 +158,7 @@ public static function mainServerCreate(EventRegister $register): void
 ## 测试前端代码
 
 **友情提示**
-> easyswoole 提供了更强大的WebSocket调试工具，[foo]: http://easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+> easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
 
@@ -660,7 +660,7 @@ server {
 ```
 
 重启nginx 如果没有错误
-[点我打开ws调试工具](http://easyswoole.com/wstool.html);
+[点我打开ws调试工具](https://www.easyswoole.com/wstool.html);
 
 **服务地址输入wss://你上面的域名不加端口号谢谢**
 
