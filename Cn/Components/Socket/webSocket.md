@@ -660,7 +660,7 @@ server {
 ```
 
 重启nginx 如果没有错误
-[点我打开ws调试工具](http://easyswoole.com/wstool.html);
+[点我打开ws调试工具](https://www.easyswoole.com/wstool.html);
 
 **服务地址输入wss://你上面的域名不加端口号谢谢**
 
