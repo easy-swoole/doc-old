@@ -158,7 +158,7 @@ public static function mainServerCreate(EventRegister $register): void
 ## 测试前端代码
 
 **友情提示**
-> easyswoole 提供了更强大的WebSocket调试工具，[foo]: http://easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+> easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
 
