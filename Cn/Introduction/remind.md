@@ -1,5 +1,8 @@
 # 开发者必读
 
+- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
+- [GitHub for Doc](https://github.com/easy-swoole/doc)
+
 ## 社区答疑
 
 - QQ交流群
@@ -139,11 +142,3 @@ function onReceive($serv, $fd, $reactorId, $data)
 
 - 项目中类名称与类文件(文件夹)命名，均为大驼峰，变量与类方法为小驼峰。
 - 在HTTP响应中，于业务逻辑代码中echo $var 并不会将$var内容输出至相应内容中，请调用Response实例中的wirte()方法实现。
-
-## 其他
-
-- [项目文档仓库](https://github.com/easy-swoole/doc)
-
-- [DEMO](https://github.com/easy-swoole/demo/)
-  
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们

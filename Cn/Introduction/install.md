@@ -9,6 +9,9 @@
 
 框架使用 `Composer` 作为依赖管理工具，在开始安装框架前，请确保已经按上一章节的要求配置好环境并安装好了`Composer` 工具，在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
 
+- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
+- [GitHub for Doc](https://github.com/easy-swoole/doc)
+
 > 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
 
 ## 切换阿里云镜像

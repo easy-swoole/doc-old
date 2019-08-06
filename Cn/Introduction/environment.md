@@ -9,6 +9,9 @@
 
 满足基本的环境要求才能运行框架，easySwoole 框架对环境的要求十分简单，只需要满足运行 Swoole 拓展的条件，并且 PHP 版本在 7.1 以上即可
 
+- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
+- [GitHub for Doc](https://github.com/easy-swoole/doc)
+
 ## 基础运行环境
 
 - 保证 **PHP** 版本大于等于 **7.1**
