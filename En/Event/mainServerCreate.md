@@ -7,8 +7,9 @@ public static function mainServerCreate(EventRegister $register)
 {
 }
 ```
-## Framework created states
-At the time of execution of the event, `EasySwoole` has completed the following tasks：
+
+## Work completed
+At the time of execution of the event, the following tasks have been completed:
 - Framework initialization events
 - All configuration values are loaded
 - The main Swoole Server instance has been created
@@ -19,7 +20,6 @@ At the time of execution of the event, `EasySwoole` has completed the following 
 ### Register callback events for main services
 For example, register a new callback of `onWorkerStart` event for the main service
 ```php
-// add() function to register a new callback
 $register->add($register::onWorkerStart,function (\swoole_server $server,int $workerId){
      var_dump($workerId.'start');
 });
@@ -35,20 +35,13 @@ $register->set(EventRegister::onMessage, function (\swoole_websocket_server $ser
 
 ### Add a custom process
 ```php
- ServerManager::getInstance()
-    ->getSwooleServer()
-    ->addProcess(
-        (new Test('test_process'))->getProcess()
-    );
+ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
 > The `Test` class is extended from an abstract class: `EasySwoole\Component\Process\AbstractProcess`
                                                          
 ### Attach a listener to a sub-service
 ```php
-$subPort = ServerManager::getInstance()
-    ->getSwooleServer()
-    ->addListener('0.0.0.0',9503,SWOOLE_TCP);
-    
+$subPort = ServerManager::getInstance()->getSwooleServer()->addListener('0.0.0.0',9503,SWOOLE_TCP);
 $subPort->on('receive',function (\swoole_server $server, int $fd, int $reactor_id, string $data){
     var_dump($data);
 });
