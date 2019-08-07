@@ -1,6 +1,7 @@
 # Proxy
 由于 Swoole Server 对 HTTP 协议的支持并不完整，建议仅将 EasySwoole 作为后端服务，并且在前端增加 NGINX 或 APACHE 作为代理，参照下面的例子添加转发规则
 
+
 ## Nginx
 ```
 server {

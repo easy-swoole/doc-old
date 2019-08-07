@@ -7,67 +7,72 @@
 ---<head>---
 
 # The Controller Object
-A controller is a PHP object you create that reads information from the `request` object and creates and returns a `response` object.
-`EasySwoole` has implemented the `object pool pattern` to allow you access the `controller` object, the `request` object and the `response` object.
+Controller object is an object in HTTP component that facilitates interaction between client and server. It uses object pool object reuse mode and injects `request`and `response` objects for data interaction.
 
 ## Object pool pattern
-The object pool pattern is a software creational design pattern that uses a set of initialized objects kept ready to use – a `pool` – rather than allocating and destroying them on demand.
+The object pool mode is adopted to acquire and create the object in the control object of http.
 For example:
 * The first client requests the `Index` resource, after the URL parsing and the route forwarding, the request is dispatched to the controller: `App\HttpController\Index.php`.
 * Since this is the first request, an instance of `App\HttpController\Index` will be initialised then stored in the object pool.
 * The controller object is fetched from the pool, then the `index()` method is called to handle the request.
 * After processing, the properties of the object will be reset to the default value, and the object pool is reclaimed.
-* The next client requests `Index` resource, it will be dispatched to the controller: `App\HttpController\Index.php` as the before.
-* Instead of creating a new object, at this time, the object pool will get the existed `App\HttpController\Index` object from the pool straight away and invoke the `index()` method.
- 
-> Object pool pattern enables different requests to reuse the same object and reduces the overhead of creating/destroying objects.
-> The constructor is only called ONCE on the first request to create a new object.
-> Object pool schema does not reset the static and private attributes, their states are remained.
-> Object pool pattern is attached to its own worker process, but NOT shared by multiple worker processes.
+* User B requests `Index`through URL parsing and routing forwarding, and locates the  `App\HttpController\Index.php` controller.
+* Because it's a second request, the object pool gets the first object directly, and it doesn't need new. It calls the `index` method directly for processing.
+
+> Object pool pattern realizes the reuse of the same object by different requests, which reduces the overhead of creating/destroying objects. Only the first request creates the object will call the constructor. When the second request obtains the object, the constructor will not be called again. Object pool pattern will not reset the static and private attributes. These two attributes will be reused. Object pool pattern is for a single process, and object pools of multiple work processes are not shared.
     
+## Agreed norms
+- In the project, the class name and class file (folder) name are all big humps, and the variables and class methods are small humps.
+- In the HTTP response, echo $var in the business logic code does not output the $var content to the corresponding content. Call the wirte() method implementation in the Response instance.
+
 ## The Controller Object's methods  
 ### Scheduling class method   
  * action    
- "Action" is the method that the controller finally executes. According to the matching of routes, different controller methods can be executed, 
+ `Action` is the method that the controller finally executes. According to the matching of routes, different controller methods can be executed, 
  such as `index()` method which is executed by default; Or the `test()` method which is finally resolved by requesting `ip/index/test`. They all can be called `action` execution method.
 > The action method can return a string value to chain another controller's method, for example: 
 
 ```php
 <?php
-    namespace App\HttpController;
-    
-    use EasySwoole\EasySwoole\Trigger;
-    use EasySwoole\Http\AbstractInterface\Controller;
-    use EasySwoole\Http\Message\Status;
-    class Index extends Controller
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/4/11 0011
+ * Time: 14:40
+ */
+
+namespace App\HttpController;
+
+use EasySwoole\EasySwoole\Trigger;
+use EasySwoole\Http\AbstractInterface\Controller;
+use EasySwoole\Http\Message\Status;
+class Index extends Controller
+{
+    function index()
     {
-        // Demo: actions chaining
-        // The request comes to here first
-        function index()
-        {
-            $this->writeJson(200, [], 'success');
-            return '/test'; // Which will call test() method
-        }
-    
-        function test()
-        {
-            $this->response()->write('this is test');
-            return '/test2'; // Which wil cause the framework to call test2() method.
-        }
-    
-        function test2()
-        {
-            $this->response()->write('this is test2');
-            return true;
-        }
+        $this->writeJson(200, [], 'success');
+        return '/test';
     }
+
+    function test()
+    {
+        $this->response()->write('this is test');
+        return '/test2';//当执行完test方法之后,返回/test2,让框架继续调度/test2方法
+    }
+
+    function test2()
+    {
+        $this->response()->write('this is test2');
+        return true;
+    }
+}
 ```
 
 > The returned string will be parsed by `url parsing` and `route routing` rules.
 > However, you should always keep in mind to avoid recursively calling among methods such as `method_a() -> method_b() -> method_a() ...`, it causes the infinite dead-loop calls apparently.
     
  
- * onRequest method (hook)
+* onRequest
 
 ```php
 <?php
@@ -98,38 +103,32 @@ function onRequest(?string $action): ?bool
 }
 ```
 
- * afterAction method (hook)
-When the controller's `action` method is executed, this `afterAction` method will be called. You may put your customize logic code here such as data recovery.
+ * afterAction
+When the controller method is executed, the method will be called to customize logic such as data recovery.
 
- * index function (default action)
-The `index()` is an abstract method which is defined in the parent abstract `EasySwoole\Http\AbstractInterface\Controller` class, 
-you have to implement this method in your own controllers as the controller's default `action`.
+ * index
+Index is an abstract method, representing the need to implement this method for inheriting controller objects. Index will become the default controller method.
 
- * actionNotFound method (hook) 
-When the requested `action` method is not exist, the `actionNotFound` method will be called automatically. Please feel free to override this method on your own purpose.
+ * actionNotFound
+When the request method is not found, the method is called automatically, and the method can be overwritten to realize its own logic.
 
-> This method can be considered as the `default` action of your plan B. The `afterAction`, `gc`, and other methods will be triggered after the call is completed.
-> The difference between the `index` and the `actionNotFound` is: 
-> * In case of the `action` is not provided in the url, `index` will be called. For instance: http://my-domain-or-ip:9501/MyController
-> * In case of the `action` is provided in the url but not exist in the controller, `actionNotFound` will be called. For instance: http://my-domain-or-ip:9501/MyController/missing_action
+> > This method can be understood as the `default method`, similar to the `index` method, so the `afterAction`, `gc`, and other methods will be triggered after the call is completed.
 
- * onException function
- 
-When the controller logic throws an exception, the `onException` method will be called to handle the exception.
-The `EasySwoole` framework has handled the exception by default, but you may feel free to do it with your way by overriding this function, for example:
+* onException
+
+When the controller logic throws an exception, this method is called to handle the exception (the framework has handled the exception by default).
+This method can be overridden for custom exception handling, such as:
 ```php
-<?php
-
 function onException(\Throwable $throwable): void
 {
-    // Direct response a status code: 500 to inform the client that the system is busy
+    //直接给前端响应500并输出系统繁忙
     $this->response()->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
-    $this->response()->write('The system is busy. Please try again later. ');
+    $this->response()->write('系统繁忙,请稍后再试 ');
 }
 ```
 > More details about `Exception`, please go to [Error and exception interception](exception.md)
 
- * gc
+* gc
  
 ```php
 <?php
@@ -151,10 +150,10 @@ The `gc` method will be called automatically after execution of `action` and `af
 You shall reset the controller properties to the default values and close `session`, 
 or other `garbage collection` logic could be implemented as you wish.
 
-### Request and Response
- * request method
-After the `request()` method is called, the `EasySwoole\HttpRequest'object is returned.
-This object comes with all the data from the client, such as:
+### Request Response Class Method
+* request
+After the `request()` method is called, the `EasySwoole\Http\Request` object is returned.
+This object comes with all the data requested by the user, such as:
 ```php
 <?php
 
@@ -168,7 +167,8 @@ function index()
 ```
 > More details about `Request`, please go to [request object](request.md)
 
- * response method 
+ * response
+  
 The `response()` method returns an instance of `EasySwoole\Http\Response` class for sending response data to the client, such as:
 
 ```php

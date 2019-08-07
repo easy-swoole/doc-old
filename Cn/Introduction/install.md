@@ -9,6 +9,9 @@
 
 框架使用 `Composer` 作为依赖管理工具，在开始安装框架前，请确保已经按上一章节的要求配置好环境并安装好了`Composer` 工具，在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
 
+- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得给我们点个***star***
+- [GitHub for Doc](https://github.com/easy-swoole/doc)
+
 > 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
 
 ## 切换阿里云镜像
@@ -202,5 +205,22 @@ project                   项目部署目录
         
   - 持续和深入地开发
   - 文档和社区的建设和维护
-  
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
+
+---<script>--- 
+
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
+<script>
+ isNew = localStorage.getItem('isNew');
+ if(isNew != 1){
+    localStorage.setItem('isNew',1);
+    window.onload = function () {
+        layer.confirm('是否给EasySwoole点个赞',function (index) {
+            layer.msg('感谢您的支持');
+                setTimeout(function () {
+                    window.open('https://github.com/easy-swoole/easyswoole');
+             },1500);
+        });
+    };  
+ }
+</script>

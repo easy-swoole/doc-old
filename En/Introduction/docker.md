@@ -1,32 +1,21 @@
-<head>
-     <title>EasySwoole docker镜像</title>
-     <meta name="keywords" content="EasySwoole docker镜像|swoole docker镜像|swoole dockerfile"/>
-     <meta name="description" content="EasySwoole的docker镜像构建"/>
-</head>
----<head>---
-
 # Docker
-
-- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
-- [GitHub for Doc](https://github.com/easy-swoole/doc)
-
-## 镜像拉取
+## Mirror pull-out
 ```
 docker pull easyswoole/easyswoole3
 ```
 
-> docker hub上的环境为php7.1.30 + swoole4.4.3
+> The environment on docker hub is php7.1.30 + swoole4.4.3
 
-## 启动
+## start-up
 
 ```
 docker run -ti -p 9501:9501 easyswoole/easyswoole3
 ```
-默认工作目录为: ***/easyswoole*** ，以上命令启动的时候，自动进入工作目录，执行php easyswoole start ，浏览器访问***http://127.0.0.1:9501/***
-即可看到easyswoole欢迎页。
+The default working directory is ***/easyswoole***. When the above command starts, it automatically enters the working directory, executes PHP easyswoole start, and browsers access *** http://127.0.0.1:9501/**.*
+You can see the easyswoole welcome page.
 
 ## Docker File
-您也可以使用Docker file进行自动构建。
+You can also use Docker file for automatic build.
 ```dockerfile
 
 FROM centos:latest

@@ -42,7 +42,7 @@ EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特
 
 ## 生产可用
 Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如今的EasySwoole 3.x版本，多年时间在众多社区小伙伴的共同努力下，EasySwoole的稳定与可靠已经经历了非常多的大企业检验。例如腾讯公司的IEG部门，
-WEGAME部门，网宿科技（国内CDN厂家），360金融，360小游戏（Actor）,9377小游戏，厦门美图网等公司都在使用EasySwoole。
+WEGAME部门，网宿科技（国内CDN厂家），360金融，360小游戏（Actor）,9377小游戏，厦门美图网、蝉大师等公司都在使用EasySwoole。
 
 ## 特性
 
@@ -60,8 +60,8 @@ WEGAME部门，网宿科技（国内CDN厂家），360金融，360小游戏（Ac
 - CPU亲和性/守护进程
 
 ## 其他
-
-- [项目文档仓库](https://github.com/easy-swoole/doc)
+- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
+- [GitHub for Doc](https://github.com/easy-swoole/doc)
 
 - [DEMO](https://github.com/easy-swoole/demo/)
 
