@@ -59,13 +59,12 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
 
 > compatibility_mode 配置项在4.4.0或更高版本可用
 
-
-
 ## 服务启动后任意位置使用
 ```
   /*@var \EasySwoole\RedisPool\Connection $redis */
     $redis = \EasySwoole\RedisPool\Redis::getInstance()->pool('redis')::defer();
     ($redis->set('name','仙士可'));
+    
     $redis = \EasySwoole\RedisPool\Redis::defer('redis');
     var_dump($redis->get('name'));
     
@@ -84,6 +83,9 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
     //回收
     \EasySwoole\RedisPool\Redis::getInstance()->pool('redis')->recycleObj($redis);
 ```
+
+## 如何使用select
+redis默认操作数据库为0,可以通过`select`方法改变数据库,可以通过原生实现redis数据库,在`createObject`的时候调用`select`方法,在本页面下文的`原生实现`标题中有介绍.
 
 ## 方法列表
 EasySwoole\RedisPool\Connection 实际上是 Swoole\Coroutine\Redis 的子类,支持的方法列表如下：
@@ -275,6 +277,10 @@ class RedisPool extends AbstractPool
         if($connected){
             if(!empty($conf['auth'])){
                 $redis->auth($conf['auth']);
+            }
+            //选择数据库,默认为0
+            if(!empty($conf['db'])){
+                $redis->select($conf['db']);
             }
             return $redis;
         }else{
