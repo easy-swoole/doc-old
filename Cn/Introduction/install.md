@@ -219,7 +219,7 @@ project                   项目部署目录
             layer.msg('感谢您的支持');
                 setTimeout(function () {
                     window.open('https://github.com/easy-swoole/easyswoole');
-             },500);
+             },1500);
         });
     };  
  }
