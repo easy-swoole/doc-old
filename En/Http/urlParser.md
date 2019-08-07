@@ -13,7 +13,7 @@ The controller search rule is preferred to complete matching mode.
 
 > More detail of `PATHINFO`, please refer to <a target="_blank" href="https://www.php.net/manual/en/function.pathinfo.php">PHP: pathinfo</a>
 
-## Rules
+## Analytical Rules
 
 Without routing intervention, the built-in parsing rules support infinitely nested directories, as shown in the following two examples:
 
@@ -91,15 +91,18 @@ If both the controller and the method are `Index`, they could be omitted from UR
 > URL can be written directly <http://serverName/>   
 
 Index ignores the rule theory and supports infinite hierarchy, searching layer by layer according to the maximum of analytic hierarchy:
-> Target URL: <http://serverName>
->
-> Step 1: Checking `\App\HttpController\Index.php`, if it does not exist, `EasySwoole` will keep looking deeper, layer by layer, until it gets the maximum depth.
->
-> Step 2: \App\HttpController\Index\Index::index()
->
-> Step 3: \App\HttpController\Index\Index\Index::index()
->
-> Reach the maximum depth, which is 3.
+
+- If the method is index, you can ignore:
+    If the corresponding execution method is named `\App\HttpController\Api\User::index()`
+    URL can be written directly <http://serverName/api/User> 
+- If both the controller and the method are Index, they can be ignored
+    If the corresponding execution method is named `\App\HttpController\Index::index()`
+    URL can be written directly <http://serverName/>
+- Index ignores the rule theory and supports infinite hierarchy, searching layer by layer according to the maximum of analytic hierarchy:
+    <http://serverName>
+    When `\App\HttpController\Index.php` does not exist, index. PHP is looked up layer by layer.
+    Such as \App\HttpController\Index\Index\Index::index();
+    Up to the maximum depth;
 
 
 > Note that EasySwoole's URL path is case-sensitive, and the controller initials support lowercase conversion
