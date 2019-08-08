@@ -47,11 +47,12 @@ var_dump($data);
 ```php
 $get = $request->getQueryParams();
 ```
-### 获得post内容
 
+### 获得post内容
 ```php
 $post = $request->getParsedBody();
 ```
+
 ### 获得raw内容
 ```php
 $content = $request->getBody()->__toString();

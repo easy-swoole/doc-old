@@ -11,7 +11,7 @@ The `Request` implements the `singleton pattern` in the `EasySwoole`.
 It's created automatically since a HTTP client's request is received and destroyed automatically till the end of the process. 
 The Request object fully conforms to all the specifications in [PSR7].
 
-## Usage
+## Method List
 
 ### getRequestParam()
 Used to obtain all parameters which submitted by the HTTP client through POST or GET (Note: If POST and GET have the same key name parameters, then GET prevails).
@@ -53,8 +53,9 @@ $img_file = $request->getUploadedFile('img');
 //Gets all uploaded files and returns an array containing \EasySwoole\Http\Message\UploadFile objects
 $data = $request->getUploadedFiles();
 var_dump($data);
+#### \EasySwoole\Http\Message\UploadFile对象:
 ```
-Click view[UploadFile object](./UploadFile.html)
+Click view[UploadFile object](./uploadFile.html)
 
 ### getBody()
 This method is used to obtain the original data submitted by POST in non-form-data or x-www-form-urlenceded encoding format, 
@@ -63,6 +64,11 @@ equivalent to $HTTP_RAW_POST_DATA in PHP.
 ### Get get content: query parameters
 ```php
 $get = $request->getQueryParams();
+```****
+### 获得post内容
+
+```php
+$post = $request->getParsedBody();
 ```
 
 ### Get post Content
