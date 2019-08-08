@@ -15,7 +15,7 @@ The Request object fully conforms to all the specifications in [PSR7].
 Other details, interested students can view the corresponding code in the IDE.
 
 ## Methods List
-### write()
+### write
 This method is used to respond data to the client.
 ```
 $this->response()->write('hello world');
