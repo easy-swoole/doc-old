@@ -356,6 +356,11 @@
           "sub": []
         },
         {
+          "name": "Queue队列",
+          "link": "/Cn/Components/queue.html",
+          "sub": []
+        },
+        {
           "name": "Spl库",
           "link": "link",
           "sub": [
