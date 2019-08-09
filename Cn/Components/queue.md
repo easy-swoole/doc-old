@@ -55,7 +55,7 @@ go(function (){
 
 ## EasySwoole
 
-### 定义一个单利对象的Queue
+### 定义一个单例对象的Queue
 ```
 namespace App\Utility;
 
