@@ -6,7 +6,7 @@
 ---<head>---
 
 ## 数据读取
-数据读取分为2种读取:读取多条数据,读取单条数据,数据读取支持where等连贯操作,具体连贯操作可查看[连贯操作](../continuous_operation.md),本文不再说明
+数据读取分为2种读取:读取多条数据,读取单条数据,数据读取支持where等连贯操作,具体连贯操作可查看[连贯操作](https://www.easyswoole.com/Cn/Components/Mysqli/continuousOperation.html),本文不再说明
 
 ### getOne($tableName, $columns = '*')
 使用getOne方法可读取单条数据
