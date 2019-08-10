@@ -39,7 +39,6 @@ go(function (){
             \co::sleep(3);
         }
     });
-
     /*
         消费者
      */
