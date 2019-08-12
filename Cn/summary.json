@@ -661,10 +661,14 @@
           ]
         },
         {
-          "name": "fast-cache",
+          "name": "Fast-Cache",
           "link": "/Cn/Components/fastCache.html",
           "sub": [
-
+            {
+              "name": "消息队列",
+              "link": "/Cn/Components/fastCacheQueue.html",
+              "sub": []
+            }
           ]
         },
         {
