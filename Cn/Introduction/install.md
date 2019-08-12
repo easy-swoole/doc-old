@@ -2,7 +2,24 @@
      <title>EasySwoole 安装|swoole 安装|swoole 拓展</title>
      <meta name="keywords" content="EasySwoole 安装|swoole 安装|swoole 拓展"/>
      <meta name="description" content="EasySwoole 安装|swoole 安装|swoole 拓展"/>
+     <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+     <link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
+     <script>
+      isNew = localStorage.getItem('isNew');
+      if(isNew != 1){
+         localStorage.setItem('isNew',1);
+         window.onload = function () {
+             layer.confirm('是否给EasySwoole点个赞',function (index) {
+                 layer.msg('感谢您的支持');
+                     setTimeout(function () {
+                         window.open('https://github.com/easy-swoole/easyswoole');
+                  },1500);
+             });
+         };  
+      }
+     </script>
 </head>
+
 ---<head>---
 
 # 框架安装
@@ -206,21 +223,4 @@ project                   项目部署目录
   - 持续和深入地开发
   - 文档和社区的建设和维护
 
----<script>--- 
 
-<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
-<link href="https://cdn.bootcss.com/layer/2.3/skin/layer.css" rel="stylesheet">
-<script>
- isNew = localStorage.getItem('isNew');
- if(isNew != 1){
-    localStorage.setItem('isNew',1);
-    window.onload = function () {
-        layer.confirm('是否给EasySwoole点个赞',function (index) {
-            layer.msg('感谢您的支持');
-                setTimeout(function () {
-                    window.open('https://github.com/easy-swoole/easyswoole');
-             },1500);
-        });
-    };  
- }
-</script>

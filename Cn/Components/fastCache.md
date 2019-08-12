@@ -20,7 +20,7 @@ use EasySwoole\FastCache\Cache;
 Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
 ```
 
-> > FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发),虚拟机共享目录文件夹是无法创建unix sock监听的
+> FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发),虚拟机共享目录文件夹是无法创建unix sock监听的
 
 ## 客户端调用
 服务启动后，可以在任意位置调用
@@ -125,3 +125,6 @@ Cache::getInstance()->setOnShutdown(function (SyncData $SyncData, CacheProcessCo
 Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
 
 ```
+
+## 消息队列支持
+

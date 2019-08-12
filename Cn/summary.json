@@ -73,6 +73,13 @@
           "sub": [
 
           ]
+        },
+        {
+          "name": "基础开发示例",
+          "link": "/Cn/Introduction/example.html",
+          "sub": [
+
+          ]
         }
       ]
     },
@@ -353,6 +360,11 @@
         {
           "name": "Apollo配置中心",
           "link": "/Cn/Components/apollo.html",
+          "sub": []
+        },
+        {
+          "name": "Queue队列",
+          "link": "/Cn/Components/queue.html",
           "sub": []
         },
         {
@@ -649,10 +661,14 @@
           ]
         },
         {
-          "name": "fast-cache",
+          "name": "Fast-Cache",
           "link": "/Cn/Components/fastCache.html",
           "sub": [
-
+            {
+              "name": "消息队列",
+              "link": "/Cn/Components/fastCacheQueue.html",
+              "sub": []
+            }
           ]
         },
         {

@@ -14,10 +14,11 @@
 so its routing rules are consistent with it. Refer to the [GitHub document](https://github.com/nikic/FastRoute/blob/master/README.md) for detailed documentation of the component.
 
 ### Sample code:  
-Create a new `App\HttpController\Router.php` in your application:  
+Create file `App\HttpController\Router.php`  
 ```php
 <?php
 namespace App\HttpController;
+
 
 use EasySwoole\Http\AbstractInterface\AbstractRouter;
 use FastRoute\RouteCollector;
@@ -47,17 +48,14 @@ class Router extends AbstractRouter
       }
 }
 ```
-Visit `http://your-domain-or-ip:9501/rpc`, Corresponding to `App\HttpController\Rpc.php::index()` 
-> If a callback function is used to handle routing, return a `false` at the end of the callback function means to inform `EasySwoole`
-> to stop any further actions, including `afterAction`, `gc`, and etc.
+Visit 127.0.0.1:9501/rpc, Corresponding to `App\HttpController\Rpc.php::index()` 
+> If a callback function is used to handle routing, return false represents no further requests and cannot trigger methods such as `afterAction`, `gc`, etc.
 
 Source code:
 
 ```php
 <?php
 /**
- * @file EasySwoole\Http\Dispatcher
- * 
  * Make an initialization decision
  */
 if($this->router === null){
@@ -170,7 +168,7 @@ $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
 addRoute
 ------
 
-The prototype of the `addRoute` method:
+The prototype of the `addRoute` method for defining routing is as follows. This method requires three parameters. Here we have a deeper understanding of the routing components around these three parameters.
 
 ```php
 $routeCollector->addRoute($httpMethod, $routePattern, $handler)
@@ -178,7 +176,7 @@ $routeCollector->addRoute($httpMethod, $routePattern, $handler)
 
 #### $httpMethod parameter
 ------
-An uppercase string or an array, specifying which HTTP method/s that shall be intercepted.
+This parameter needs to be passed in an uppercase HTTP method string, specifying the method that routing can intercept, and a single method directly into the string. It needs to intercept multiple methods that can be passed into a one-dimensional array, as follows:
 
 ```
 // Intercepting GET Method
@@ -247,15 +245,12 @@ To specify the method to be processed after successful routing matching, a closu
 When a closure is passed in, you must ** return a `false` at the end to terminate any further actions **, 
 otherwise the `Dispatcher` is going to keep looking other corresponding controller except you want it to.
 ```php
-<?php
-    // The case of incoming closure
-    $routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
-        $id = $request->getQueryParam('id');
-        $response->write('Userid : ' . $id);
-        
-        // Terminate any further actions
-        return false;
-    });
+// The case of incoming closure
+$routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
+    $id = $request->getQueryParam('id');
+    $response->write('Userid : ' . $id);
+    return false;
+});
 ```
 
 You may pass in a controller path as well:

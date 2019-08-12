@@ -6,7 +6,7 @@
 </head>
 ---<head>---
 
-# FAQ
+# Common problem
 ## How to obtain $HTTP_RAW_POST_DATA
 ```php
 $content = $this->request()->getBody()->__toString();
