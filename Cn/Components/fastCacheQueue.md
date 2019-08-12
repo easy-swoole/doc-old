@@ -159,11 +159,53 @@ var_dump($res);
 
 ## 将任务改为延迟状态
 
-未完成
+```php
+//添加任务
+$job = new Job();
+$job->setData("LuffyQAQ");
+$job->setQueue("LuffyQAQ_queue_delay");
+$jobId = Cache::getInstance()->putJob($job);
+
+//方法一 直接传入jobId
+$job->setJobId($jobId);
+$job->setDelay(30);
+var_dump(Cache::getInstance()->delayJob($job));
+
+//方法二 取出任务
+$job = Cache::getInstance()->getJob('LuffyQAQ_queue_delay');
+$job->setDelay(30);
+var_dump(Cache::getInstance()->delayJob($job));
+
+//使用jobQueueSize查看队列长度
+$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_delay");
+var_dump($queueSize);
+
+
+
+
+```
 
 ## 将任务改为保留状态
 
-未完成
+```php
+//添加任务
+$job = new Job();
+$job->setData("LuffyQAQ");
+$job->setQueue("LuffyQAQ_queue_delay");
+$jobId = Cache::getInstance()->putJob($job);
+
+//方法一 直接传入jobId
+$job->setJobId($jobId);
+var_dump(Cache::getInstance()->reserveJob($job));
+
+//方法二 取出任务
+$job = Cache::getInstance()->getJob('LuffyQAQ_queue_delay');
+var_dump(Cache::getInstance()->reserveJob($job));
+
+//使用jobQueueSize查看队列长度
+$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_delay");
+var_dump($queueSize);
+```
 
 ## 将任务改为埋藏状态
 
