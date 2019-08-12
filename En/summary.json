@@ -455,6 +455,17 @@
           ]
         },
         {
+          "name": "Fast-Cache",
+          "link": "/En/Components/FastCache/fastCache.html",
+          "sub": [
+            {
+              "name": "Message queue",
+              "link": "/Cn/Components/FastCache/fastCacheQueue.html",
+              "sub": []
+            }
+          ]
+        },
+        {
           "name": "Whoops",
           "link": "/En/Components/whoops.html",
           "sub": [
