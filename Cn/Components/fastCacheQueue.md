@@ -56,7 +56,7 @@ $jobId = Cache::getInstance()->putJob($job);
 var_dump($jobId);
 ```
 
-Cache::getInstance()->kickJob($job)
+## 取出任务
 
 可以开启自定义进程当消费者，循环监听队列，执行任务处理。
 
