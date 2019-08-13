@@ -93,6 +93,12 @@ Cache::getInstance()->setOnTick(function (SyncData $SyncData, CacheProcessConfig
         'data'  => $SyncData->getArray(),
         'queue' => $SyncData->getQueueArray(),
         'ttl'   => $SyncData->getTtlKeys(),
+	 // queue支持
+        'jobIds'     => $SyncData->getJobIds(),
+        'readyJob'   => $SyncData->getReadyJob(),
+        'reserveJob' => $SyncData->getReserveJob(),
+        'delayJob'   => $SyncData->getDelayJob(),
+        'buryJob'    => $SyncData->getBuryJob(),
     ];
     $path = EASYSWOOLE_TEMP_DIR . '/FastCacheData/' . $cacheProcessConfig->getProcessName();
     File::createFile($path,serialize($data));
@@ -107,6 +113,12 @@ Cache::getInstance()->setOnStart(function (CacheProcessConfig $cacheProcessConfi
         $syncData->setArray($data['data']);
         $syncData->setQueueArray($data['queue']);
         $syncData->setTtlKeys(($data['ttl']));
+        // queue支持
+        $syncData->setJobIds($data['jobIds']);
+        $syncData->setReadyJob($data['readyJob']);
+        $syncData->setReserveJob($data['reserveJob']);
+        $syncData->setDelayJob($data['delayJob']);
+        $syncData->setBuryJob($data['buryJob']);
         return $syncData;
     }
 });
@@ -117,6 +129,12 @@ Cache::getInstance()->setOnShutdown(function (SyncData $SyncData, CacheProcessCo
         'data'  => $SyncData->getArray(),
         'queue' => $SyncData->getQueueArray(),
         'ttl'   => $SyncData->getTtlKeys(),
+         // queue支持
+        'jobIds'     => $SyncData->getJobIds(),
+        'readyJob'   => $SyncData->getReadyJob(),
+        'reserveJob' => $SyncData->getReserveJob(),
+        'delayJob'   => $SyncData->getDelayJob(),
+        'buryJob'    => $SyncData->getBuryJob(),
     ];
     $path = EASYSWOOLE_TEMP_DIR . '/FastCacheData/' . $cacheProcessConfig->getProcessName();
     File::createFile($path,serialize($data));
