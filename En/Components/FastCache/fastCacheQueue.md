@@ -1,12 +1,12 @@
 # FastCacheQueue
-EasySwoole FastCache component added message queue support when `>= 1.1.8'.
+The EasySwoole FastCache component adds message queues and features similar to `beanstalk` when `>= 1.2.1'.
 
 - Multiple queues can be created
 - Support Delayed Delivery
 - Task Overtime Recovery Execution
 - Task Re-execution
 - Maximum number of task retransmissions
-
+- Supporting commands putJob、delayJob、releaseJob、reserveJob、buryJob、kickJob etc
 
 # Service registration
 
@@ -61,6 +61,15 @@ if ($job === null){
     // Delete or resend after execution, otherwise automatically resend after timeout
     Cache::getInstance()->deleteJob($job);
 }
+```
+
+## Clear the read task queue
+
+```php
+
+ var_dump(Cache::getInstance()->flushReadyJobQueue('siam_queue'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('siam_queue'));
 ```
 
 ## Delayed execution of tasks
@@ -198,7 +207,63 @@ var_dump(Cache::getInstance()->reserveJob($job));
 $queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_delay");
 var_dump($queueSize);
 ```
+## Take it from the reservation queue
+
+```php
+//Input queue name
+var_dump(Cache::getInstance()->getReserveJob('LuffyQAQ_queue_reserve'));
+
+```
+
+## Clear the reserve task queue
+
+```php
+
+ var_dump(Cache::getInstance()->flushReserveJobQueue('LuffyQAQ_queue_reserve'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('LuffyQAQ_queue_reserve'));
+```
 
 ## Change the mission to buried status
 
-`To be continued...`
+```php
+$job = new Job();
+$job->setQueue('LuffyQAQ_queue_bury');
+$job->setData('LuffyQAQ');
+$jobId = Cache::getInstance()->putJob($job);
+$job->setJobId($jobId);
+
+
+var_dump(Cache::getInstance()->buryJob($job));
+
+//Use JobQueueSize to view queue length
+$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_bury");
+var_dump($queueSize);
+
+```
+
+##  Take it from the burial queue
+
+```php
+//Input queue name
+var_dump(Cache::getInstance()->getBuryJob('LuffyQAQ_queue_bury'));
+
+```
+
+## Restore the buried Queue task to ready
+
+```php
+
+var_dump(Cache::getInstance()->kickJob($job));
+
+```
+
+## Clear the bury task queue
+
+```php
+
+ var_dump(Cache::getInstance()->flushBuryJobQueue('LuffyQAQ_queue_bury'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('LuffyQAQ_queue_bury'));
+```
+
