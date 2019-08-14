@@ -423,9 +423,14 @@
               "name": "设计解读",
               "link": "/Cn/Components/Actor/analysis.html",
               "sub": [
-
               ]
             }
+          ]
+        },
+        {
+          "name": "Task组件",
+          "link": "/Cn/Components/task.html",
+          "sub": [
           ]
         },
         {
