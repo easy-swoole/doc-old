@@ -6,13 +6,16 @@
 ---<head>---
 
 # FastCacheQueue
-EasySwoole FastCache组件在`>= 1.1.8`的时候新增了  · 消息队列 · 支持。
+EasySwoole FastCache组件在`>= 1.2.1`的时候新增类似· beanstalkd消息队列 ·特性。
 
 - 可以创建多个queue
 - 支持延迟投递
 - 任务超时恢复执行
 - 任务重发执行
 - 任务最大重发次数
+- 支持putJob、delayJob、releaseJob、reserveJob、buryJob、kickJob等命令
+
+
 
 
 # 服务注册
@@ -71,6 +74,15 @@ if ($job === null){
 }
 ```
 
+## 清空ready任务队列
+
+```php
+
+ var_dump(Cache::getInstance()->flushReadyJobQueue('siam_queue'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('siam_queue'));
+```
+
 ## 延迟执行任务
 
 ```php
@@ -85,12 +97,15 @@ $job = Cache::getInstance()->getJob('siam_queue_delay');
 var_dump($job);
 ```
 
+
+
 ## 删除任务
 
 可以是由getJob取出的对象，也可以自己声明Job对象，传入JobId来删除。
 ```php
 $job = new Job();
 $job->setJobId(1);
+$job->setQueue('siam_queue_delay');
 Cache::getInstance()->deleteJob($job);
 ```
 
@@ -181,9 +196,28 @@ $queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_delay");
 var_dump($queueSize);
 
 
+```
 
+
+## 从延迟执行队列中拿取
+
+```php
+//传入队列名
+var_dump(Cache::getInstance()->getDelayJob('LuffyQAQ_queue_delay'));
 
 ```
+
+
+## 清空delay任务队列
+
+```php
+
+ var_dump(Cache::getInstance()->flushDelayJobQueue('LuffyQAQ_queue_delay'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('LuffyQAQ_queue_delay'));
+```
+
+
 
 ## 将任务改为保留状态
 
@@ -191,7 +225,7 @@ var_dump($queueSize);
 //添加任务
 $job = new Job();
 $job->setData("LuffyQAQ");
-$job->setQueue("LuffyQAQ_queue_delay");
+$job->setQueue("LuffyQAQ_queue_reserve");
 $jobId = Cache::getInstance()->putJob($job);
 
 //方法一 直接传入jobId
@@ -199,14 +233,70 @@ $job->setJobId($jobId);
 var_dump(Cache::getInstance()->reserveJob($job));
 
 //方法二 取出任务
-$job = Cache::getInstance()->getJob('LuffyQAQ_queue_delay');
+$job = Cache::getInstance()->getJob('LuffyQAQ_queue_reserve');
 var_dump(Cache::getInstance()->reserveJob($job));
 
 //使用jobQueueSize查看队列长度
-$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_delay");
+$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_reserve");
 var_dump($queueSize);
+```
+
+## 从保留队列中拿取
+
+```php
+//传入队列名
+var_dump(Cache::getInstance()->getReserveJob('LuffyQAQ_queue_reserve'));
+
+```
+
+## 清空reserve任务队列
+
+```php
+
+ var_dump(Cache::getInstance()->flushReserveJobQueue('LuffyQAQ_queue_reserve'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('LuffyQAQ_queue_reserve'));
 ```
 
 ## 将任务改为埋藏状态
 
-未完成
+```php
+$job = new Job();
+$job->setQueue('LuffyQAQ_queue_bury');
+$job->setData('LuffyQAQ');
+$jobId = Cache::getInstance()->putJob($job);
+$job->setJobId($jobId);
+
+
+var_dump(Cache::getInstance()->buryJob($job));
+
+//使用jobQueueSize查看队列长度
+$queueSize = Cache::getInstance()->jobQueueSize("LuffyQAQ_queue_bury");
+var_dump($queueSize);
+
+```
+
+##  从埋藏队列中拿取
+
+```php
+//传入队列名
+var_dump(Cache::getInstance()->getBuryJob('LuffyQAQ_queue_bury'));
+
+```
+
+## 将埋藏队列任务恢复到ready中
+
+```php
+
+var_dump(Cache::getInstance()->kickJob($job));
+
+```
+
+## 清空bury任务队列
+
+```php
+
+ var_dump(Cache::getInstance()->flushBuryJobQueue('LuffyQAQ_queue_bury'));
+
+ var_dump(Cache::getInstance()->jobQueueSize('LuffyQAQ_queue_bury'));
+```
