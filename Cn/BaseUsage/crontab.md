@@ -30,7 +30,81 @@ use EasySwoole\EasySwoole\Crontab\Crontab;
     }
 ```
 
-定时任务:TaskOne.php
+## 任务定义 3.3.0版本后
+```php
+
+namespace App;
+
+
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class TaskOne extends AbstractCronTask
+{
+
+    public static function getRule(): string
+    {
+        return '*/1 * * * *';
+    }
+
+    public static function getTaskName(): string
+    {
+        return  'taskOne';
+    }
+
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+```
+
+```php
+
+namespace App;
+
+
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class TaskTwo extends AbstractCronTask
+{
+
+    public static function getRule(): string
+    {
+        return '*/2 * * * *';
+    }
+
+    public static function getTaskName(): string
+    {
+        return  'taskTwo';
+    }
+
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+```
+
+## 任务定义 3.3.0版本前
+
 
 ```php
 <?php

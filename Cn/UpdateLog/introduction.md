@@ -1,5 +1,16 @@
 # EasySwoole版本更新记录
 
+## V3.3.0-dev(2019年8月15)
+------------
+- 更新异步任务实现为Task组件实现
+- 更新CronTab任务适配为Task任务
+老版本升级步骤：
+- 配置项删除  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
+- 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
+- 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
+
+- [异步任务适配](./../BaseUsage/asyncTask.md)
+- [CronTab任务适配](./../BaseUsage/crontab.md)
 
 ## V3.2.6 (2019年7月31日)
 ------------

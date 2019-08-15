@@ -5,7 +5,84 @@
 </head>
 ---<head>---
 
-# 异步任务
+
+# 异步任务3.3.0版本及以上
+
+3.3.0版本的EasySwoole异步任务采用[Task组件](./../Components/task.md) 实现，用以实现异步任务，并解决：
+
+- 无法投递闭包任务
+- 无法在TaskWorker等其他自定义进程继续投递任务
+- 实现任务限流与状态监控  
+
+老版本过来的用户，请做以下操作进行升级：
+
+- 配置项删除  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
+- 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
+- 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
+
+## 任务管理器
+EasySwoole定义了一个任务管理器，完整名称空间为：
+```EasySwoole\EasySwoole\Task\TaskManager```
+他是一个继承了```EasySwoole\Task\Task```对象的单例对象，并在```Core.php```的主服务创建事件中被实例化。服务启动后的任意位置，均可调用
+
+### 投递闭包任务
+```php
+TaskManager::getInstance()->async(function (){
+    var_dump('r');
+});
+```
+> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+
+### 投递callable 
+
+```php
+TaskManager::getInstance()->async(callable);
+```
+
+### 投递模板任务
+
+```php
+use EasySwoole\Task\AbstractInterface\TaskInterface;
+
+class Task implements TaskInterface
+{
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+
+TaskManager::getInstance()->async(Task::class);
+//或者是
+TaskManager::getInstance()->async(new Task());
+```                                                           
+
+### 更多用法
+TaskManager继承了```EasySwoole\Task\Task```，因此更多用法请见[Task组件](./../Components/task.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 异步任务-3.3.0版本以下
 
 > 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 
@@ -38,8 +115,7 @@ function index()
     });
 });
 ```
-> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的
-> 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
 
 以下的使用方法是错误的:
 ```php
