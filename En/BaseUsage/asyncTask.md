@@ -5,7 +5,69 @@
 </head>
 ---<head>---
 
-# Asynchronous Task
+# Asynchronous Tasks Version 3.3.0 and above
+
+The 3.3.0 version of EasySwoole asynchronous task is implemented with [Task component](./../Components/task.md) to achieve asynchronous tasks and solve:
+
+- Unable to deliver closure tasks
+- Unable to continue delivering tasks in other custom processes such as TaskWorker
+- Realizing Task Limitation and State Monitoring  
+
+Users coming from the old version, please do the following to upgrade:
+
+- Configuration Item Deletion  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
+- Configuration Item Added MAIN_SERVER.TASK ,The default value is```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
+- Note that the Temp directory of EasySwoole is not in the shared directory between the virtual machine and the host machine, otherwise you will not have permission to create UnixSocket links
+
+## Task Manager
+EasySwoole defines a task manager whose full namespace is:
+```EasySwoole\EasySwoole\Task\TaskManager```
+He is a singleton object that inherits ```EasySwoole\Task\Task``` objects and is instantiated in the ```Core.php``` primary service creation event. Any location after service startup can be invoked
+### Delivery closure task
+```php
+TaskManager::getInstance()->async(function (){
+    var_dump('r');
+});
+```
+> Because PHP itself can not serialize closures, the closure delivery is achieved by reflecting the closure function, obtaining PHP code to serialize PHP code directly, and then directly Eval code, so the delivery closure can not use external object references, as well as resource handles. For complex tasks, please use task template method.
+
+### Setting callback function
+
+```php
+TaskManager::getInstance()->async(callable);
+```
+
+### Delivery template task
+
+```php
+use EasySwoole\Task\AbstractInterface\TaskInterface;
+
+class Task implements TaskInterface
+{
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+
+TaskManager::getInstance()->async(Task::class);
+//Or
+TaskManager::getInstance()->async(new Task());
+```                                                           
+
+### More Usage
+Task Manager inherits ```EasySwoole\Task\Task```so see more usage [Task complent](./../Components/task.md)
+
+
+# Asynchronous Tasks - under version 3.3.0
 
 > Reference Demo: [Asynchronous Task Processing Demo] (https://github.com/easy-swoole/demo/tree/3.x-async)
 
