@@ -11,9 +11,10 @@ php easyswoole reload  热重启(需要守护进程)
 ````
 > 默认命令详细内容可查看[服务管理](../Introduction/server.md)
 ## 定义命令
-通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:
-````php
+通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:  
 
+````php
+<?php
 public function commandName():string;
 public function exec(array $args):?string ;
 public function help(array $args):?string ;
