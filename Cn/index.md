@@ -71,6 +71,21 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
 - 支持多进程/多线程
 - CPU亲和性/守护进程
 
+## 维护团队
+- 作者
+    - 如果的如果 admin@fosuss.com   
+- 团队成员
+    - 阿正 1589789807@qq.com
+    - 不忘初心 2788828128@qq.com
+    - 北溟有鱼 1769360227@qq.com
+    - 机器人 694050314@qq.com
+    - Manlin 476295133@qq.com
+    - Siam(宣言 ) 59419979@qq.com
+    - 小菜瓜 1276407988@qq.com
+    - 仙士可 1067197739@qq.com
+    
+> 以上排名不分先后        
+
 ## 其他
 - [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
@@ -84,8 +99,7 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     
 - 商业支持：
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
+    - EMAIL admin@fosuss.com   
 - 作者微信
 
     ![](./Resource/authWx.jpg)    
@@ -95,5 +109,3 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
         
   - 持续和深入地开发
   - 文档和社区的建设和维护
-  
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
