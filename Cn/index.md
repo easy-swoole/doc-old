@@ -80,9 +80,9 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     - 北溟有鱼 1769360227@qq.com
     - 机器人 694050314@qq.com
     - Manlin 476295133@qq.com
+    - Siam(宣言 ) 59419979@qq.com
     - 小菜瓜 1276407988@qq.com
     - 仙士可 1067197739@qq.com
-    - Siam 59419979@qq.com
     
 > 以上排名不分先后        
 
