@@ -93,7 +93,7 @@ php vendor/easyswoole/easyswoole/bin/easyswoole install
 按下面的步骤进行手动安装
 
 ```bash
-composer require easyswoole/easyswoole=3.x-dev
+composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
 
@@ -151,7 +151,7 @@ class Index extends Controller
         }
     },
     "require": {
-        "easyswoole/easyswoole": "3.x-dev"
+        "easyswoole/easyswoole": "3.x"
     }
 }
 ```
