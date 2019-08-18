@@ -15,37 +15,77 @@
 [![License](https://poser.pugx.org/easyswoole/easyswoole/license)](https://packagist.org/packages/easyswoole/easyswoole)
 [![Monthly Downloads](https://poser.pugx.org/easyswoole/easyswoole/d/monthly)](https://packagist.org/packages/easyswoole/easyswoole)
 
-EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is specifically designed for APIs and gets rid of the performance loss caused by evoking processes and loading PHP files in traditional method. EasySwoole highly encapsulates the Swoole Server and maintains the original features of the Swoole Server. It supports listening HTTP, custom TCP and UDP protocols simultaneously, so that developers allow to write asynchronous multiple processes, and highly available services and applications with minimal learning cost and effort. 
+EasySwoole is a resident memory-based distributed PHP framework developed by Swoole Server. It is designed for API and gets rid of the performance loss caused by traditional PHP mode in process wake-up and file loading.
 
-## Features
+EasySwoole highly encapsulates Swoole Server while maintaining Swoole Server's original features. It supports simultaneous monitoring of HTTP, custom TCP and UDP protocols. It allows developers to write multi-process, asynchronous and highly available application services with the lowest learning cost and energy. In development, we have prepared the following common components for you:
 
-- Powerful TCP/UDP Server framework supporting asynchronous multi-process,  EventLoop, event driven, worker process group, asynchronous task, millisecond timer, SSL/TLS tunnel encryption
-- The EventLoop API allows users directly to manipulate the underlying event loop and add Linux files such as sockets, streams, and pipes to the event loop.
-- Supporting coroutine object pool, HTTP\SOCK controller, distributed microservice, and RPC
+- HTTP WEB Component
+- TCP、UDP、WEB_SOCKET Component
+- Redis connection pool
+- MySQL connection pool
+- Customization process
+- Distributed Cross-Platform RPC Components
+- Wechat Public Number and Small Program SDK
+- Coroutine version WeChat and Alipay pay SDK
+- Template Rendering Engine
+- Tracker link tracking
+- Current Limiter
+- Message queue
+- Cooperative HTTP Client Component
+- Apollo configuration center
+- Validate validator
+- Verification Code
+- fast-cache Component
+- Policy power Component
+- IOC、Coroutine Context Manager
 
-## Entry Cost
+> The above components are common components. See the component library documentation for more components.
 
-Compared to the traditional FPM framework, EasySwoole has some entry cost since many design concepts and environments are different to traditional PHP-FPM.
-Developers using LAMP (LNMP) technology for a long time may need a period of time to get used to this framework. However, EasySwoole is still easy to get started comparing to many other Swoole frameworks. The journey of EasySwoole can be started almost immediately according to simple examples and documents from its official website.
+## Production Availability
+From the earliest predecessor of EasySwoole, EasyPHP-Swoole, to the renamed EasySwoole, to the current version of EasySwoole 3.x, EasySwoole's stability and reliability have undergone a lot of large enterprise tests with the joint efforts of many small community partners for many years.
 
-## Advantages
+For example：
 
-- Easy to use and high development efficiency
-- Million of concurrent TCP connections
-- Supporting TCP / UDP / UnixSock
-- Supporting asynchronous / synchronous / coroutine
-- Supporting multi-process / multi-coroutine
-- CPU affinity / daemon
+- 腾讯公司的IEG部门
+- WEGAME部门
+- 网宿科技（国内CDN厂家）
+- 360金融
+- 360小游戏（Actor）
+- 9377小游戏
+- 厦门美图网
+- 蝉大师
 
-## Common Functions and Components
+They all use EasySwoole.
 
-- HTTP controller and custom routing
-- TCP, UDP, WebSocket controller
-- Multiple protocol communication
-- Asynchronous client and coroutine object pool
-- Asynchronous process, custom process, timer
-- Distributed cluster such as cluster node communication, service discovery, RPC
-- Fully open system event handler and EventHook
+## Characteristic
+
+- Powerful TCP/UDP Server framework, multithreading, EventLoop, event-driven, asynchronous, Worker process group, Task asynchronous task, millisecond timer, SSL/TLS tunnel encryption
+- EventLoop API allows users to directly manipulate the underlying event loop, adding Linux files such as socket, stream, pipeline to the event loop
+- Timer, Coroutine Object Pool, HTTPSOCK Controller, Distributed Micro Services, RPC Support
+
+## Advantage
+
+- Easy to use and high efficiency of development
+- Concurrent Million TCP Connections
+- TCP/UDP/UnixSock
+- Support for asynchronization/synchronization/Coroutine
+- Support multi-process/multi-threading
+- CPU affinity/daemon
+
+## Maintenance team
+- author
+    - 如果的如果 admin@fosuss.com   
+- Team members
+    - 阿正 1589789807@qq.com
+    - 不忘初心 2788828128@qq.com
+    - 北溟有鱼 1769360227@qq.com
+    - 机器人 694050314@qq.com
+    - Manlin 476295133@qq.com
+    - Siam(宣言 ) 59419979@qq.com
+    - 小菜瓜 1276407988@qq.com
+    - 仙士可 1067197739@qq.com
+    
+> 以上排名不分先后
 
 ## Other
 We are pool in English,but we hope this project makes you using swoole easily , and if you have any interest in this project, you can contact us in email :  admin@fosuss.com to help us improve this project, for example ,help us translate the English doc better;
