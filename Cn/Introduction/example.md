@@ -76,7 +76,7 @@ composer require easyswoole/mysqli-pool
 ### 事件注册
 
 我们编辑根目录下的```EasySwooleEvent.php```文件，在```mainServerCreate```事件中进行连接池的注册，大体结构如下：  
-````php
+```php
 <?php
 /**
  * Created by PhpStorm.
@@ -123,12 +123,12 @@ class EasySwooleEvent implements Event
     }
 }
 
-````
+```
 
 ## 模型定义
 ### 基础模型定义
 新建`App/Model/BaseModel.php`文件:  
-````php
+```php
 <?php
 
 
@@ -160,11 +160,11 @@ class BaseModel
         return $this->table;
     }
 }
-````
+```
 
 ### 管理员模型
 #### 新增管理员用户表:  
-````mysql
+```mysql
 CREATE TABLE `admin_list` (
   `adminId` int(11) NOT NULL AUTO_INCREMENT,
   `adminName` varchar(15) DEFAULT NULL,
@@ -180,10 +180,10 @@ CREATE TABLE `admin_list` (
 
 INSERT INTO `admin_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1');
 
-````
+```
 #### 新增bean文件
 新增 `App/Model/Admin/AdminBean.php` 文件:  
-````php
+```php
 <?php
 
 namespace App\Model\Admin;
@@ -299,10 +299,11 @@ class AdminBean extends \EasySwoole\Spl\SplBean
 		return $this->adminLastLoginIp;
 	}
 }
-```` 
+```
 #### 新增model文件  
-新增 `App/Model/Admin/AdminModel.php`文件:
-````php
+新增 `App/Model/Admin/AdminModel.php`文件:  
+
+```php
 <?php
 
 namespace App\Model\Admin;
@@ -444,12 +445,12 @@ class AdminModel extends \App\Model\BaseModel
     }
 
 }
-````
+```
 
 ### 普通用户模型
 普通用户模型和管理员模型同理
 #### 建表
-````mysql
+```mysql
 CREATE TABLE `user_list` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(32) NOT NULL,
@@ -468,10 +469,12 @@ CREATE TABLE `user_list` (
   KEY `userSession` (`userSession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-````
+```
+
+
 #### 新增bean文件
 在 `App/Model/User/UserBean.php` 文件:  
-````php
+```php
 <?php
 
 namespace App\Model\User;
@@ -686,10 +689,12 @@ class UserBean extends \EasySwoole\Spl\SplBean
     }
 }
 
-````
+```
+
 #### 新增model文件
-新增 `App/Model/User/UserModel.php` 文件:
-````php
+新增 `App/Model/User/UserModel.php` 文件:  
+
+```php
 <?php
 
 namespace App\Model\User;
@@ -827,11 +832,12 @@ class UserModel extends \App\Model\BaseModel
     }
 
 }
-````
+```
 
 ### banner模型
 #### 建表
-````mysql
+
+```mysql
 CREATE TABLE `banner_list` (
   `bannerId` int(11) NOT NULL AUTO_INCREMENT,
   `bannerName` varchar(32) DEFAULT NULL,
@@ -841,10 +847,11 @@ CREATE TABLE `banner_list` (
   `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
   PRIMARY KEY (`bannerId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-````
+```
 #### 新增bean文件
 新增 `App/Model/Admin/BannerBean.php` 文件:  
-````php
+
+```php
 <?php
 
 namespace App\Model\Admin;
@@ -946,11 +953,12 @@ class BannerBean extends \EasySwoole\Spl\SplBean
         $this->bannerDescription = $bannerDescription;
     }
 }
-````
+```
 
 #### 新增model文件
-新增 `App/Model/Admin/BannerModel.php` 文件:
-````php
+新增 `App/Model/Admin/BannerModel.php` 文件:  
+
+```php
 <?php
 
 namespace App\Model\Admin;
@@ -1076,13 +1084,15 @@ class BannerModel extends \App\Model\BaseModel
 	}
 }
 
-````
+```
 
 ## 控制器定义
 
 ### 全局基础控制器定义
-新增 `App/Httpcontroller/Api/ApiBase.php` 文件:  
-````php
+新增 `App/Httpcontroller/Api/ApiBase.php` 文件:   
+
+
+```php
 <?php
 namespace App\HttpController\Api;
 use EasySwoole\EasySwoole\Core;
@@ -1167,11 +1177,15 @@ abstract class ApiBase extends Controller
         return $clientAddress;
     }
 }
-````
-> 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数
+```
+
+> 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
+
+
 ### 公共基础控制器定义
 新增 `App/Httpcontroller/Api/Common/CommonBase.php`文件:   
-````php
+
+```php
 <?php
 namespace App\HttpController\Api\Common;
 use App\HttpController\Api\ApiBase;
@@ -1192,11 +1206,14 @@ class CommonBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````
+```
+
+
 ### 公共控制器
-公共控制器放不需要登陆即可查看的控制器,例如banner列表查看:
+公共控制器放不需要登陆即可查看的控制器,例如banner列表查看:  
+
 #### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
-````php
+```php
 <?php
 namespace App\HttpController\Api\Common;
 use App\Model\Admin\BannerBean;
@@ -1249,13 +1266,18 @@ class Banner extends CommonBase
         return $validate;
     }
 }
-````
+```
+
 > 测试链接:127.0.0.1:9501/api/common/banner/getAll 
 > 需要有数据才能看到具体输出
 
+
+
 ### 管理员基础控制器定义
-新增 `App/HttpController/Api/Admin/AdminBase.php` 文件:  
-````php
+新增 `App/HttpController/Api/Admin/AdminBase.php` 文件:   
+
+ 
+```php
 <?php
 namespace App\HttpController\Api\Admin;
 use App\HttpController\Api\ApiBase;
@@ -1313,11 +1335,11 @@ class AdminBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````
+```
 
 ### 管理员登录控制器
-新增 `App/HttpController/Api/Admin/Auth.php` 文件:  
-````php
+新增 `App/HttpController/Api/Admin/Auth.php` 文件:   
+```php
 <?php
 namespace App\HttpController\Api\Admin;
 use App\Model\Admin\AdminBean;
@@ -1398,9 +1420,9 @@ class Auth extends AdminBase
         return $validate;
     }
 }
-````
+```
 > 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
-````
+```
 {
     "code": 200,
     "result": {
@@ -1413,11 +1435,13 @@ class Auth extends AdminBase
     },
     "msg": null
 }
-````
+```
 
 ### 管理员用户管理控制器
-新增 `App/httpController/Api/Admin/User.php` 文件:  
-````php
+新增 `App/httpController/Api/Admin/User.php` 文件:   
+
+
+```php
 <?php
 namespace App\HttpController\Api\Admin;
 
@@ -1549,12 +1573,17 @@ class User extends AdminBase
         return $validate;
     }
 }
-````
+```
+
+
 > 后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
-> 请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)
-### 普通用户基础控制器定义
-新增 `App/HttpController/Api/User/UserBase.php` 文件:  
-````php
+> 请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  
+
+
+### 普通用户基础控制器定义  
+新增 `App/HttpController/Api/User/UserBase.php` 文件:    
+
+```php
 <?php
 namespace App\HttpController\Api\User;
 use App\HttpController\Api\ApiBase;
@@ -1618,11 +1647,15 @@ class UserBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````
+```
 
 ### 普通用户登录控制器
-新增 `App/HttpController/Api/User/Auth.php`文件:  
-````php
+
+
+新增 `App/HttpController/Api/User/Auth.php`文件:    
+
+
+```php
 <?php
 namespace App\HttpController\Api\User;
 use App\HttpController\Api\ApiBase;
@@ -1686,7 +1719,7 @@ class UserBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````
+```
 访问 127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456  即可登陆成功
 
 
