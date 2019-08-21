@@ -1084,23 +1084,13 @@ class BannerModel extends \App\Model\BaseModel
 新增 `App/Httpcontroller/Api/ApiBase.php` 文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/3/29 0029
- * Time: 10:45
- */
-
 namespace App\HttpController\Api;
-
-
 use EasySwoole\EasySwoole\Core;
 use EasySwoole\EasySwoole\ServerManager;
 use EasySwoole\EasySwoole\Trigger;
 use EasySwoole\Http\AbstractInterface\Controller;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\Validate\Validate;
-
 abstract class ApiBase extends Controller
 {
     function index()
@@ -1183,25 +1173,11 @@ abstract class ApiBase extends Controller
 新增 `App/Httpcontroller/Api/Common/CommonBase.php`文件:   
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
 namespace App\HttpController\Api\Common;
 use App\HttpController\Api\ApiBase;
 use EasySwoole\Validate\Validate;
 class CommonBase extends ApiBase
 {
-    /**
-     * onRequest
-     * @param null|string $action
-     * @return bool|null
-     * @throws \Throwable
-     * @author yangzhenyu
-     * Time: 13:49
-     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1222,19 +1198,12 @@ class CommonBase extends ApiBase
 #### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
 ````php
 <?php
-
 namespace App\HttpController\Api\Common;
-
 use App\Model\Admin\BannerBean;
 use App\Model\Admin\BannerModel;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Validate\Validate;
-
-/**
- * Class Banner
- * Create With Automatic Generator
- */
 class Banner extends CommonBase
 {
 
@@ -1288,12 +1257,6 @@ class Banner extends CommonBase
 新增 `App/HttpController/Api/Admin/AdminBase.php` 文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
 namespace App\HttpController\Api\Admin;
 use App\HttpController\Api\ApiBase;
 use App\Model\Admin\AdminBean;
@@ -1309,14 +1272,6 @@ class AdminBase extends ApiBase
     //白名单
     protected $whiteList = ['login'];
 
-    /**
-     * onRequest
-     * @param null|string $action
-     * @return bool|null
-     * @throws \Throwable
-     * @author yangzhenyu
-     * Time: 13:49
-     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1334,12 +1289,6 @@ class AdminBase extends ApiBase
         return false;
     }
 
-    /**
-     * getWho
-     * @return bool
-     * @author yangzhenyu
-     * Time: 13:51
-     */
     function getWho(): ?AdminBean
     {
         if ($this->who instanceof AdminBean) {
@@ -1370,12 +1319,6 @@ class AdminBase extends ApiBase
 新增 `App/HttpController/Api/Admin/Auth.php` 文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
 namespace App\HttpController\Api\Admin;
 use App\Model\Admin\AdminBean;
 use App\Model\Admin\AdminModel;
@@ -1386,7 +1329,6 @@ use EasySwoole\Validate\Validate;
 class Auth extends AdminBase
 {
     protected $whiteList=['login'];
-
 
     function login()
     {
@@ -1477,13 +1419,6 @@ class Auth extends AdminBase
 新增 `App/httpController/Api/Admin/User.php` 文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
-
 namespace App\HttpController\Api\Admin;
 
 use App\Model\User\UserBean;
@@ -1504,7 +1439,6 @@ class User extends AdminBase
         $this->writeJson(Status::CODE_OK, $data, 'success');
     }
 
-
     function getOne()
     {
         $db = Mysql::defer('mysql');
@@ -1519,7 +1453,6 @@ class User extends AdminBase
         }
 
     }
-
 
     function add()
     {
@@ -1623,12 +1556,6 @@ class User extends AdminBase
 新增 `App/HttpController/Api/User/UserBase.php` 文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
 namespace App\HttpController\Api\User;
 use App\HttpController\Api\ApiBase;
 use App\Model\User\UserBean;
@@ -1647,14 +1574,6 @@ class UserBase extends ApiBase
     //白名单
     protected $whiteList = ['login', 'register'];
 
-    /**
-     * onRequest
-     * @param null|string $action
-     * @return bool|null
-     * @throws \Throwable
-     * @author yangzhenyu
-     * Time: 13:49
-     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1675,12 +1594,6 @@ class UserBase extends ApiBase
         return false;
     }
 
-    /**
-     * getWho
-     * @return bool
-     * @author yangzhenyu
-     * Time: 13:51
-     */
     function getWho(): ?UserBean
     {
         if ($this->who instanceof UserBean) {
@@ -1711,12 +1624,6 @@ class UserBase extends ApiBase
 新增 `App/HttpController/Api/User/Auth.php`文件:  
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/10/26
- * Time: 5:39 PM
- */
 namespace App\HttpController\Api\User;
 use App\HttpController\Api\ApiBase;
 use App\Model\User\UserBean;
@@ -1735,14 +1642,6 @@ class UserBase extends ApiBase
     //白名单
     protected $whiteList = ['login', 'register'];
 
-    /**
-     * onRequest
-     * @param null|string $action
-     * @return bool|null
-     * @throws \Throwable
-     * @author yangzhenyu
-     * Time: 13:49
-     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1763,12 +1662,6 @@ class UserBase extends ApiBase
         return false;
     }
 
-    /**
-     * getWho
-     * @return bool
-     * @author yangzhenyu
-     * Time: 13:51
-     */
     function getWho(): ?UserBean
     {
         if ($this->who instanceof UserBean) {
