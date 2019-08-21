@@ -1180,7 +1180,7 @@ abstract class ApiBase extends Controller
 ````
 > 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数
 ### 公共基础控制器定义
-新增 `App/Httpcontroller/Api/Common/CommonBase.php`文件:  
+新增 `App/Httpcontroller/Api/Common/CommonBase.php`文件:   
 ````php
 <?php
 /**
@@ -1189,12 +1189,9 @@ abstract class ApiBase extends Controller
  * Date: 2018/10/26
  * Time: 5:39 PM
  */
-
 namespace App\HttpController\Api\Common;
-
 use App\HttpController\Api\ApiBase;
 use EasySwoole\Validate\Validate;
-
 class CommonBase extends ApiBase
 {
     /**
@@ -1219,7 +1216,7 @@ class CommonBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````
+````  
 ### 公共控制器
 公共控制器放不需要登陆即可查看的控制器,例如banner列表查看:
 #### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
@@ -1297,16 +1294,13 @@ class Banner extends CommonBase
  * Date: 2018/10/26
  * Time: 5:39 PM
  */
-
 namespace App\HttpController\Api\Admin;
-
 use App\HttpController\Api\ApiBase;
 use App\Model\Admin\AdminBean;
 use App\Model\Admin\AdminModel;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Validate\Validate;
-
 class AdminBase extends ApiBase
 {
     protected $who;
@@ -1382,16 +1376,13 @@ class AdminBase extends ApiBase
  * Date: 2018/10/26
  * Time: 5:39 PM
  */
-
 namespace App\HttpController\Api\Admin;
-
 use App\Model\Admin\AdminBean;
 use App\Model\Admin\AdminModel;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
 use EasySwoole\Validate\Validate;
-
 class Auth extends AdminBase
 {
     protected $whiteList=['login'];
@@ -1638,9 +1629,7 @@ class User extends AdminBase
  * Date: 2018/10/26
  * Time: 5:39 PM
  */
-
 namespace App\HttpController\Api\User;
-
 use App\HttpController\Api\ApiBase;
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
@@ -1650,7 +1639,6 @@ use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
 use EasySwoole\Validate\Validate;
-
 class UserBase extends ApiBase
 {
     protected $who;
@@ -1729,9 +1717,7 @@ class UserBase extends ApiBase
  * Date: 2018/10/26
  * Time: 5:39 PM
  */
-
 namespace App\HttpController\Api\User;
-
 use App\HttpController\Api\ApiBase;
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
@@ -1741,7 +1727,6 @@ use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
 use EasySwoole\Validate\Validate;
-
 class UserBase extends ApiBase
 {
     protected $who;
