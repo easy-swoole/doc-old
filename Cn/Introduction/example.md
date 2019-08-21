@@ -1192,7 +1192,7 @@ class CommonBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
-````  
+````
 ### 公共控制器
 公共控制器放不需要登陆即可查看的控制器,例如banner列表查看:
 #### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
@@ -1398,7 +1398,7 @@ class Auth extends AdminBase
         return $validate;
     }
 }
-````  
+````
 > 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
 ````
 {
