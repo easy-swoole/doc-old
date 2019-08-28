@@ -1,9 +1,9 @@
-# Swoole 企业版
+# Swoole Tracker
 
-Swoole Enterprise是Swoole官方出品的一整套企业级PHP和Swoole分析调试工具，全面支持协程/非协程环境，数据实时可视化，并全面分析报告服务状况，快速发现及精准定位问题和性能瓶颈。
-在安装好swoole_plus扩展后，我们可以在EasySwoole中提供的各个事件当中埋点，进行应用监控。
+[Swoole Tracker](https://www.swoole-cloud.com/tracker.html)是Swoole官方出品的一整套企业级PHP和Swoole分析调试工具，全面支持协程/非协程环境，数据实时可视化，并全面分析报告服务状况，快速发现及精准定位问题和性能瓶颈。
+在安装好swoole_tracker扩展后，我们可以在EasySwoole中提供的各个事件当中埋点，进行应用监控。
 
-> 安装swoole_plus扩展的方法见安装文档 https://www.yuque.com/swoole-wiki/try/fi7cpe ，并且可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
+> 安装swoole_tracker扩展的方法见安装文档 https://www.kancloud.cn/swoole-inc/ee-base-wiki/1214079#_24 ，并且可以在 https://www.swoole-cloud.com/ 得到支持，若需要进行定制化本地部署，请联系框架作者或者是Swoole官方客服。
 
 ## 效果图
 
@@ -30,7 +30,7 @@ Swoole Enterprise是Swoole官方出品的一整套企业级PHP和Swoole分析调
 
 ## 启动
 
-在安装好swoole_plus扩展后，我们执行：
+在安装好swoole_tracker扩展后，我们执行：
 ```
 /opt/swoole/script/php/swoole_php /opt/swoole/node-agent/src/node.php & php easyswoole start
 ```
@@ -47,7 +47,7 @@ EasySwooleEvent.php中，分别对 onRequest,afterResponse两个事件进行注�
 ```
 public static function onRequest(Request $request, Response $response): bool
 {
-    $tick = \StatsCenter::beforeExecRpc($request->getUri()->getPath(), 'serviceName', "192.168.0.1");
+    $tick = \Tracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'serviceName', "192.168.0.1");
     /*
         把该次请求生成的tick托管给上下文管理器
     */
@@ -66,7 +66,7 @@ public static function afterRequest(Request $request, Response $response): void
     }else{
        $ret = true;
     }
-    \StatsCenter::afterExecRpc($tick, $ret, $response->getStatusCode());
+    \Tracker\Stats::afterExecRpc($tick, $ret, $response->getStatusCode());
 }
 ```
 
@@ -83,13 +83,13 @@ class Base extends Controller
     
     function onRequest(?string $action): ?bool
     {
-        $this->tick = \StatsCenter::beforeExecRpc($request->getUri()->getPath(), 'myGroupName', "192.168.0.1");
+        $this->tick = \Tracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'myGroupName', "192.168.0.1");
         return true;
     }
     
     function afterAction(?string $actionName): void
     {
-        \StatsCenter::afterExecRpc($tick, true, 200);
+        \Tracker\Stats::afterExecRpc($tick, true, 200);
         $this->tick = null;
     }
 }
