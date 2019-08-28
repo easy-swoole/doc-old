@@ -192,6 +192,13 @@
           ]
         },
         {
+          "name": "静态文件处理",
+          "link": "/Cn/Http/static.html",
+          "sub": [
+
+          ]
+        },
+        {
           "name": "常见问题",
           "link": "/Cn/Http/problem.html",
           "sub": [
