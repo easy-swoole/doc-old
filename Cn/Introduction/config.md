@@ -22,11 +22,14 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
               'RUN_MODEL'      => SWOOLE_PROCESS,// 默认Server的运行模式
               'SETTING'        => [// Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
                   'worker_num'       => 8,//运行的  worker进程数量
-                  'max_request'      => 5000,// worker 完成该数量的请求后将退出，防止内存溢出
-                  'task_worker_num'  => 8,//运行的 task_worker 进程数量
-                  'task_max_request' => 1000,// task_worker 完成该数量的请求后将退出，防止内存溢出
                   'reload_async' => true,//设置异步重启开关。设置为true时，将启用异步安全重启特性，Worker进程会等待异步事件完成后再退出。
-                  'task_enable_coroutine' => true//开启后自动在onTask回调中创建协程
+                  'task_enable_coroutine' => true,//开启后自动在onTask回调中创建协程
+                  'max_wait_time'=>3
+              ],
+              'TASK'=>[
+                  'workerNum'=>4,
+                  'maxRunningNum'=>128,
+                  'timeout'=>15
               ]
           ],
           'TEMP_DIR'      => null,//临时文件存放的目录
