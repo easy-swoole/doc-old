@@ -67,6 +67,7 @@ $wechat->officialAccount()->getConfig()->setAppId('your appid')->setAppSecret('y
 ```php
 use EasySwoole\WeChat\WeChat;
 use EasySwoole\WeChat\Bean\OfficialAccount\AccessCheck;
+use EasySwoole\WeChat\Bean\OfficialAccount\Message\Text;
 use EasySwoole\WeChat\Bean\OfficialAccount\RequestMsg;
 use EasySwoole\WeChat\Bean\OfficialAccount\RequestedReplyMsg;
 use EasySwoole\WeChat\Bean\OfficialAccount\RequestConst;
@@ -88,8 +89,8 @@ $wechat->officialAccount()->server()->preCall(function (RequestMsg $msg){
 /*
  * onMessage 方法是 注册每个消息到达时的事件处理，你可以通过set(消息类型, 处理方法) 来注册
  */
-$wechat->officialAccount()->server()->onMessage()->set('test',function (RequestMsg $msg){
-    $reply = new RequestedReplyMsg();
+$wechat->officialAccount()->server()->onMessage()->set('text',function (RequestMsg $msg){
+    $reply = new Text();
     $reply->setMsgType(RequestConst::MSG_TYPE_TEXT);
     $reply->setContent('hello from server');
     return $reply;
