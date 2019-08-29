@@ -47,7 +47,7 @@ EasySwooleEvent.php中，分别对 onRequest,afterResponse两个事件进行注�
 ```
 public static function onRequest(Request $request, Response $response): bool
 {
-    $tick = \Tracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'serviceName', "192.168.0.1");
+    $tick = \SwooleTracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'serviceName', "192.168.0.1");
     /*
         把该次请求生成的tick托管给上下文管理器
     */
@@ -66,7 +66,7 @@ public static function afterRequest(Request $request, Response $response): void
     }else{
        $ret = true;
     }
-    \Tracker\Stats::afterExecRpc($tick, $ret, $response->getStatusCode());
+    \SwooleTracker\Stats::afterExecRpc($tick, $ret, $response->getStatusCode());
 }
 ```
 
@@ -83,13 +83,13 @@ class Base extends Controller
     
     function onRequest(?string $action): ?bool
     {
-        $this->tick = \Tracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'myGroupName', "192.168.0.1");
+        $this->tick = \SwooleTracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'myGroupName', "192.168.0.1");
         return true;
     }
     
     function afterAction(?string $actionName): void
     {
-        \Tracker\Stats::afterExecRpc($tick, true, 200);
+        \SwooleTracker\Stats::afterExecRpc($tick, true, 200);
         $this->tick = null;
     }
 }
