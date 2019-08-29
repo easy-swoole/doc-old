@@ -40,27 +40,25 @@
 
 ### 全局监控
 
-EasySwooleEvent.php中，分别对 onRequest,afterResponse两个事件进行注册
+`EasySwooleEvent.php`中，分别对`onRequest`，`afterResponse`两个事件进行注册
 
 - onRequest事件
-
-```
+```php
 public static function onRequest(Request $request, Response $response): bool
 {
     $tick = \SwooleTracker\Stats::beforeExecRpc($request->getUri()->getPath(), 'serviceName', "192.168.0.1");
     /*
         把该次请求生成的tick托管给上下文管理器
     */
-    ContextManager::getInstance()->set("SWOOLE_PLUS_TICK",$tick);
+    ContextManager::getInstance()->set("SWOOLE_TRACKER_TICK",$tick);
     return true;
 }
 ```
 - afterRequest事件
-
-```
+```php
 public static function afterRequest(Request $request, Response $response): void
 {
-    $tick = ContextManager::getInstance()->get('SWOOLE_PLUS_TICK');
+    $tick = ContextManager::getInstance()->get('SWOOLE_TRACKER_TICK');
     if($response->getStatusCode() != 200){
         $ret = false;
     }else{
@@ -69,9 +67,7 @@ public static function afterRequest(Request $request, Response $response): void
     \SwooleTracker\Stats::afterExecRpc($tick, $ret, $response->getStatusCode());
 }
 ```
-
-注册完以上事件后，即可自动的把http服务的全部链路信息自动上报至swoole企业监控平台。
-
+注册完以上事件后，即可自动的把`Http`服务的全部链路信息自动上报至Swoole Tracker服务端。
 
 ### Http分组监控
 
