@@ -29,6 +29,81 @@ To use EasySwoole\EasySwoole\Crontab\Crontab in EasySwooleEvent.php
     }
 ```
 
+## After Task Definition Version 3.3.0
+```php
+
+namespace App;
+
+
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class TaskOne extends AbstractCronTask
+{
+
+    public static function getRule(): string
+    {
+        return '*/1 * * * *';
+    }
+
+    public static function getTaskName(): string
+    {
+        return  'taskOne';
+    }
+
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+```
+
+```php
+
+namespace App;
+
+
+use EasySwoole\EasySwoole\Crontab\AbstractCronTask;
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class TaskTwo extends AbstractCronTask
+{
+
+    public static function getRule(): string
+    {
+        return '*/2 * * * *';
+    }
+
+    public static function getTaskName(): string
+    {
+        return  'taskTwo';
+    }
+
+    function run(int $taskId, int $workerIndex)
+    {
+        var_dump('c');
+        TaskManager::getInstance()->async(function (){
+           var_dump('r');
+        });
+    }
+
+    function onException(\Throwable $throwable, int $taskId, int $workerIndex)
+    {
+        echo $throwable->getMessage();
+    }
+}
+```
+
+## Task Definition Before Version 3.3.0
+
 Scheduled tasks: TaskOne.php
 
 ```php
