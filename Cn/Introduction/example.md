@@ -1657,66 +1657,97 @@ class UserBase extends ApiBase
 
 ```php
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2019-04-02
+ * Time: 13:03
+ */
+
 namespace App\HttpController\Api\User;
-use App\HttpController\Api\ApiBase;
+
+
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
-use App\Utility\Pool\MysqlPool;
-use App\Utility\Pool\RedisPool;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
 use EasySwoole\Validate\Validate;
-class UserBase extends ApiBase
+
+class Auth extends UserBase
 {
-    protected $who;
-    //session的cookie头
-    protected $sessionKey = 'userSession';
-    //白名单
     protected $whiteList = ['login', 'register'];
 
-    function onRequest(?string $action): ?bool
+    function login()
     {
-        if (parent::onRequest($action)) {
-            //白名单判断
-            if (in_array($action, $this->whiteList)) {
-                return true;
-            }
-            //获取登入信息
-            if (!$data = $this->getWho()) {
-                $this->writeJson(Status::CODE_UNAUTHORIZED, '', '登入已过期');
-                return false;
-            }
-            //刷新cookie存活
-            $this->response()->setCookie($this->sessionKey, $data->getUserSession(), time() + 3600, '/');
+        $param = $this->request()->getRequestParam();
+        $db = Mysql::defer('mysql');
+        $model = new UserModel($db);
+        $bean = new UserBean();
+        $bean->setUserAccount($param['userAccount']);
+        $bean->setUserPassword(md5($param['userPassword']));
 
-            return true;
+        if ($rs = $model->login($bean)) {
+            $bean->restore(['userId' => $rs->getUserId()]);
+            $sessionHash = md5(time() . $rs->getUserId());
+            $model->update($bean, [
+                'lastLoginIp'   => $this->clientRealIP(),
+                'lastLoginTime' => time(),
+                'userSession'   => $sessionHash
+            ]);
+            $rs = $rs->toArray(null, SplBean::FILTER_NOT_NULL);
+            unset($rs['userPassword']);
+            $rs['userSession'] = $sessionHash;
+            $this->response()->setCookie('userSession', $sessionHash, time() + 3600, '/');
+            $this->writeJson(Status::CODE_OK, $rs);
+        } else {
+            $this->writeJson(Status::CODE_BAD_REQUEST, '', '密码错误');
         }
-        return false;
     }
 
-    function getWho(): ?UserBean
+
+    function logout()
     {
-        if ($this->who instanceof UserBean) {
-            return $this->who;
-        }
-        $sessionKey = $this->request()->getRequestParam($this->sessionKey);
+        $sessionKey = $this->request()->getRequestParam('userSession');
         if (empty($sessionKey)) {
-            $sessionKey = $this->request()->getCookieParams($this->sessionKey);
+            $sessionKey = $this->request()->getCookieParams('userSession');
         }
         if (empty($sessionKey)) {
-            return null;
+            $this->writeJson(Status::CODE_UNAUTHORIZED, '', '尚未登入');
+            return false;
         }
         $db = Mysql::defer('mysql');
         $userModel = new UserModel($db);
-        $this->who = $userModel->getOneBySession($sessionKey);
-        return $this->who;
+        $result = $userModel->logout($this->getWho());
+        if ($result) {
+            $this->writeJson(Status::CODE_OK, '', "登出成功");
+        } else {
+            $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'fail');
+        }
+    }
+
+
+    function getInfo()
+    {
+        $this->getWho()->setPhone(substr_replace($this->getWho()->getPhone(), '****', 3, 4));
+        $this->writeJson(200, $this->getWho(), 'success');
     }
 
     protected function getValidateRule(?string $action): ?Validate
     {
-        return null;
-        // TODO: Implement getValidateRule() method.
+        $validate = null;
+        switch ($action) {
+            case 'login':
+                $validate = new Validate();
+                $validate->addColumn('userAccount')->required()->lengthMax(32);
+                $validate->addColumn('userPassword')->required()->lengthMax(32);
+                break;
+            case 'getInfo':
+                break;
+            case 'logout':
+                break;
+        }
+        return $validate;
     }
 }
 ```
