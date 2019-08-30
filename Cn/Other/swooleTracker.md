@@ -36,9 +36,23 @@
 ```
 即可对EasySwoole进行监控。
 
-## Http服务监控
+## 使用
 
-### 全局监控
+### 无需修改代码
+
+Swoole Tracker的`v2.5.0`版本支持自动生成应用名称并创建应用，无需修改任何代码，生成的应用名称格式为：
+
+`Swoole`的`HttpServer`：`ip:prot`
+
+其他的`Server`：`ip(hostname):prot`
+
+### 修改代码
+
+当你需要自定义应用名称时则需要修改代码：
+
+### Http服务监控
+
+#### 全局监控
 
 `EasySwooleEvent.php`中，分别对`onRequest`，`afterResponse`两个事件进行注册
 
@@ -69,7 +83,7 @@ public static function afterRequest(Request $request, Response $response): void
 ```
 注册完以上事件后，即可自动的把`Http`服务的全部链路信息自动上报至Swoole Tracker服务端。
 
-### Http分组监控
+#### Http分组监控
 
 若需要对Http服务做细化的分组监控，我们可以定义一个Base控制器。
 ```
@@ -94,6 +108,6 @@ class Base extends Controller
 例如全部的Api控制器需要监控，那么对于的控制器继承对应的Base控制器即可。
 
 
-## Rpc、Tcp、WebSocket服务监控
+### Rpc、Tcp、WebSocket服务监控
 
 Easyswoole的Rpc、Tcp、WebSocket服务也同理提供了onRequest，afterAction方法，对两个方法进行埋点，即可实现对应的监控。
