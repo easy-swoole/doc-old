@@ -461,7 +461,7 @@ $params = $pay->weChat($wechatConfig)->officialAccount($officialAccount);
 ```
 可以参考demo/wechat/index.php 
 
-> 在使用微信支付时，商品名称中如果出现特殊字符，如 & 请自行使用urlencode在生成签名时进行编码
+> 在使用微信支付时，商品名称中如果出现特殊字符，如 & 请自行使用urlencode在生成签名传参时进行编码
 
 ## H5支付
 
