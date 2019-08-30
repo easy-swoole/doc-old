@@ -84,6 +84,19 @@
       ]
     },
     {
+      "name": "视频教程",
+      "link": "link",
+      "sub": [
+        {
+          "name": "入门教程",
+          "link": "/Cn/Video/income.html",
+          "sub": [
+
+          ]
+        }
+      ]
+    },
+    {
       "name": "全局事件",
       "link": "/Cn/Event/introduction.html",
       "sub": [
@@ -509,13 +522,6 @@
           ]
         },
         {
-          "name": "Curl",
-          "link": "/Cn/Components/Curl/curl.html",
-          "sub": [
-
-          ]
-        },
-        {
           "name": "mysqli",
           "link": "/Cn/Components/Mysqli/introduction.html",
           "sub": [
@@ -929,22 +935,9 @@
     },
     {
       "name": "更新记录",
-      "link": "/Cn/UpdateLog/introduction.html",
+      "link": "/Cn/update.html",
       "sub": [
 
-      ]
-    },
-    {
-      "name": "视频教程",
-      "link": "link",
-      "sub": [
-        {
-          "name": "入门教程",
-          "link": "/Cn/Video/income.html",
-          "sub": [
-
-          ]
-        }
       ]
     },
     {
