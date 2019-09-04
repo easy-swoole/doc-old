@@ -1,7 +1,7 @@
-## RSA 加解密
-本组件包括公钥加密私钥解密,公钥验签和私钥签名
+## RSA
+here is a components which include encryption ,decrypt, attestation signature functions
 
-### 例子
+### example
 ```php
 <?php
 /**
@@ -36,7 +36,7 @@ f7mjCVpdmG4pZpA8cpM3AkAFRUXYKlxLusKBRDZSDCyCUzP/Y3ql/qWXOqcA5Brj
 pj+cofEWd/jZqD3drFjDGvccFmTfEAVmXWxCnJAZU2cW
 -----END RSA PRIVATE KEY-----';
 
-$data = json_encode(['code'=>200,'data'=>'这里是测试'],JSON_UNESCAPED_UNICODE);
+$data = json_encode(['code'=>200,'data'=>'example'],JSON_UNESCAPED_UNICODE);
 
 $rsa = new \EasySwoole\Crypto\RSA($pub,$pri);
 
@@ -46,19 +46,17 @@ var_dump($str);
 $str = $rsa->decrypt($str);
 var_dump($str);
 
-//使用md5加密签名
 $sign = $rsa->sign($data,OPENSSL_ALGO_MD5);
 var_dump($sign);
 
-//对应的md5验签
 $rs = $rsa->isValid($data,$sign,OPENSSL_ALGO_MD5);
 var_dump($rs);
 
 ```
-输出:
+echo:
 ````
 ☁  crypto [master] ⚡   php test.php
 string(172) "xPQoc183kZXfkWgSnAjQvxpZ4GqMIbUY2URNAYqKktK8yJbRpCacQ1wTNAZEHWMvhFzZi1fgWzOPXESPqX0DhbhAmVvqZUYp0elmYbr74U+wXjIYqmXDuVLYMUt8yRxsMGuefKOUM5xwfy2vt7kX9/9yXCKcUNoySQAdcmcSy+0="
-string(37) "{"code":200,"data":"这里是测试"}"
+string(37) "{"code":200,"data":"example"}"
 string(172) "HmTA+/WffQaTjbqk8XEP3Bre2sdfWcBcmSD1gJ4bhpriWwNudBel+vIkBK7upNcBDuoJ9xDO9qada9Tk4mcSybBLcopGd7VOkB/jp2SsUZ0lkmighXA+afAsTRMOlRKk8dpLiLnMPYAqVqzX4O02KFZ9KJqf6JWZTitJAikG1Rw="
 bool(true)
