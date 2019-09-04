@@ -266,10 +266,17 @@ class WebSocket extends Controller
 **创建App/WebSocket/Index.php文件，写入以下内容**
 
 ```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Apple
+ * Date: 2018/11/1 0001
+ * Time: 14:42
+ */
 namespace App\WebSocket;
 
 use EasySwoole\EasySwoole\ServerManager;
-use EasySwoole\EasySwoole\Swoole\Task\TaskManager;
+use EasySwoole\EasySwoole\Task\TaskManager;
 use EasySwoole\Socket\AbstractInterface\Controller;
 
 /**
@@ -296,7 +303,7 @@ class Index extends Controller
         $client = $this->caller()->getClient();
 
         // 异步推送, 这里直接 use fd也是可以的
-        TaskManager::async(function () use ($client){
+        TaskManager::getInstance()->async(function () use ($client){
             $server = ServerManager::getInstance()->getSwooleServer();
             $i = 0;
             while ($i < 5) {
@@ -307,8 +314,10 @@ class Index extends Controller
         });
     }
 }
-
 ```
+
+> 该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
+> composer require easyswoole/task
 ##测试
 
 *如果你按照本文配置，那么你的文件结构应该是以下形式*
