@@ -152,10 +152,10 @@ function getArrayCopy()
 ```php
 <?php
 /**
- * Created by PhpStorm.
+ * Created by IntelliJ IDEA.
  * User: root
- * Date: 19-1-9
- * Time: 上午10:10
+ * Date: 2019-06-17
+ * Time: 18:46
  */
 
 require './vendor/autoload.php';
@@ -174,7 +174,7 @@ $data = [
 ];
 
 $splArray = new \EasySwoole\Spl\SplArray($data);
-var_dump($splArray->__toString());
+var_dump($splArray->getArrayCopy());
 
 /**
  * 输出结果过：
