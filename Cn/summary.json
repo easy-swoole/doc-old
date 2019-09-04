@@ -147,6 +147,40 @@
       "link": "link",
       "sub": [
         {
+          "name": "Socket服务",
+          "link": "/Cn/Components/Socket/introduction.html",
+          "sub": [
+            {
+              "name": "Tcp基础讲解",
+              "link": "/Cn/Components/Socket/tcp.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Websocket",
+              "link": "/Cn/Components/Socket/webSocket.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Udp",
+              "link": "/Cn/Components/Socket/udp.html",
+              "sub": [
+
+              ]
+            },
+            {
+              "name": "Socket问题",
+              "link": "/Cn/Components/Socket/problem.html",
+              "sub": [
+
+              ]
+            }
+          ]
+        },
+        {
           "name": "自定义命令",
           "link": "/Cn/BaseUsage/customCommand.html"
         },
