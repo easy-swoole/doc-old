@@ -189,6 +189,10 @@
           "link": "/Cn/BaseUsage/process.html"
         },
         {
+          "name": "自定义事件",
+          "link": "/Cn/BaseUsage/event.html"
+        },
+        {
           "name": "异步任务",
           "link": "/Cn/BaseUsage/asyncTask.html"
         },
