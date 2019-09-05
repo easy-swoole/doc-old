@@ -20,12 +20,15 @@ return [
         'RUN_MODEL'   => SWOOLE_PROCESS,        // application running mode
         'SETTING' => [                          // Swoole extension settings (Refer to Swoole documentation at https://wiki.swoole.com/wiki/page/274.html)
             'worker_num' => 8,                  // worker's processes number
-            'max_request' => 5000,              // to prevent memory leak, maximum number of requests per worker
-            'task_worker_num' => 8,             // task_worker's processes number
-            'task_max_request' => 1000,         // to prevent memory leak, maximum number of requests per task_worker
+            'max_wait_time'=>3,
             'reload_async' => true,             // set the asynchronous restart switch. the `asynchronous safely restart` feature will be enabled and the worker process will wait for the asynchronous event to complete before exiting when reload_async is set to true
             'task_enable_coroutine' => true     // automatically create coroutines in onTask callback
         ],
+        'TASK'=>[
+            'workerNum'=>4,
+            'maxRunningNum'=>128,
+            'timeout'=>15
+        ]        
     ],
     'TEMP_DIR' => null,                         // temporary file storage directory
     'LOG_DIR' => null,                          // log file storage directory
