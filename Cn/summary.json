@@ -856,6 +856,10 @@
         {
           "name": "swoole如何对ip限制访问频率",
           "link": "/Cn/Passage/SwooleIpLimit.html"
+        },
+        {
+          "name": "微服务中的服务限流与降级",
+          "link": "/Cn/Passage/degradedService.html"
         }
       ]
     },
