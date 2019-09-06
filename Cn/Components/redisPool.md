@@ -21,6 +21,7 @@ composer require easyswoole/redis-pool
     'host'          => '127.0.0.1',
     'port'          => '6379',
     'auth'          => '',
+    'db'            => 1,//选择数据库,默认为0
     'intervalCheckTime'    => 30 * 1000,//定时验证对象是否可用以及保持最小连接的间隔时间
     'maxIdleTime'          => 15,//最大存活时间,超出则会每$intervalCheckTime/1000秒被释放
     'maxObjectNum'         => 20,//最大创建数量
@@ -85,7 +86,9 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
 ```
 
 ## 如何使用select
-redis默认操作数据库为0,可以通过`select`方法改变数据库,可以通过原生实现redis数据库,在`createObject`的时候调用`select`方法,在本页面下文的`原生实现`标题中有介绍.
+redis默认操作数据库为0,可以通过`select`方法改变数据库,可以通过原生实现redis数据库,在`createObject`的时候调用`select`方法,在本页面下文的`原生实现`标题中有介绍.  
+
+> redis-pool组件已经实现了select,只需要在配置项配置db即可  
 
 ## 方法列表
 EasySwoole\RedisPool\Connection 实际上是 Swoole\Coroutine\Redis 的子类,支持的方法列表如下：
