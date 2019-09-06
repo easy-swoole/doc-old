@@ -138,6 +138,12 @@ function decode($str)
 ````
 
 ## tcp控制器实现
+
+引入 easyswoole/socket composer 包:
+>  *composer require easyswoole/socket*
+*警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
+
+
 ### 协议规则与解析
 在本文档中,传输json数据 使用pack N进行二进制处理,json数据有3个参数,例如:
 ````json
