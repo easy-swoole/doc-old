@@ -143,31 +143,31 @@
       ]
     },
     {
+      "name": "Socket服务",
+      "link": "",
+      "sub": [
+        {
+          "name": "Tcp服务",
+          "link": "/Cn/Components/Socket/tcp.html"
+        },
+        {
+          "name": "Websocket",
+          "link": "/Cn/Components/Socket/webSocket.html"
+        },
+        {
+          "name": "Udp",
+          "link": "/Cn/Components/Socket/udp.html"
+        },
+        {
+          "name": "常见问题",
+          "link": "/Cn/Components/Socket/problem.html"
+        }
+      ]
+    },
+    {
       "name": "基础使用",
       "link": "link",
       "sub": [
-        {
-          "name": "Socket服务",
-          "link": "/Cn/Components/Socket/introduction.html",
-          "sub": [
-            {
-              "name": "Tcp基础讲解",
-              "link": "/Cn/Components/Socket/tcp.html"
-            },
-            {
-              "name": "Websocket",
-              "link": "/Cn/Components/Socket/webSocket.html"
-            },
-            {
-              "name": "Udp",
-              "link": "/Cn/Components/Socket/udp.html"
-            },
-            {
-              "name": "Socket问题",
-              "link": "/Cn/Components/Socket/problem.html"
-            }
-          ]
-        },
         {
           "name": "自定义命令",
           "link": "/Cn/BaseUsage/customCommand.html"
