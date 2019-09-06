@@ -148,19 +148,19 @@
       "sub": [
         {
           "name": "Tcp服务",
-          "link": "/Cn/Components/Socket/tcp.html"
+          "link": "/Cn/Socket/tcp.html"
         },
         {
           "name": "Websocket",
-          "link": "/Cn/Components/Socket/webSocket.html"
+          "link": "/Cn/Socket/webSocket.html"
         },
         {
           "name": "Udp",
-          "link": "/Cn/Components/Socket/udp.html"
+          "link": "/Cn/Socket/udp.html"
         },
         {
           "name": "常见问题",
-          "link": "/Cn/Components/Socket/problem.html"
+          "link": "/Cn/Socket/problem.html"
         }
       ]
     },
