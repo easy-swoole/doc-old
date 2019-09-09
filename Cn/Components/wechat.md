@@ -427,14 +427,93 @@ $session = $wxa->auth()->session($code);
 我们可以使用一下三种方式创建二维码
 
 ```php
-$response1 = $wxa->qrCode()->getWxaCode('/pages/index/index', 450);
-$response2 = $wxa->qrCode()->getWxaCodeUnLimit('/pages/index/index', 'scene');
-$response3 = $wxa->qrCode()->createWxaQrCode('/pages/index/index', 450);
+    /** 二维码 - 永久小程序码 Api: $wxa->qrCode()->getWxaCode()
+     * @param $path             扫码进入的小程序页面路径，最大长度 128 字节
+     * @param int $width        二维码的宽度
+     * @param bool $autoColor   自动配置线条颜色
+     * @param null $lineColor   auto_color 为 false 时生效，使用 rgb 设置颜色 例如 {"r":"xxx","g":"xxx","b":"xxx"} 十进制表示
+     * @param bool $isHyaline   是否需要透明底色
+     */
+    function getWxaCode($path, $width = 430, $autoColor = false, $lineColor = null, $isHyaline = false)
+
+     /**
+     * 二维码 - 临时小程序码 Api: $wxa->qrCode()->getWxaCodeUnLimit()
+     * @param $path             已经发布的小程序存在的页面
+     * @param $scene            最大32个可见字符
+     * @param int $width        二维码的宽度
+     * @param bool $autoColor   自动配置线条颜色
+     * @param null $lineColor   auto_color 为 false 时生效，使用 rgb 设置颜色 例如 {"r":"xxx","g":"xxx","b":"xxx"} 十进制表示
+     * @param bool $isHyaline   是否需要透明底色
+     */
+     function getWxaCodeUnLimit($path, $scene, $width = 430, $autoColor = false, $lineColor = null, $isHyaline = false)
+
+     /**
+     * 二维码 - 永久二维码 Api:  $wxa->qrCode()->createWxaQrCode()
+     * @param $path             扫码进入的小程序页面路径，最大长度 128 字节
+     * @param int $width        二维码的宽度
+     */
+      function createWxaQrCode($path, $width = 430)
+
 ```
 
-上述方法也支持更多参数，原型如下
+获取帐号下已存在的模板列表
+
+`$wxa->templateMsg()->getTemplateList(int $offset, int $count)`
+
+获取模板库某个模板标题下关键词库
+
+`$wxa->templateMsg()->getTemplateLibraryById(string $id)`
+
+组合模板并添加至帐号下的个人模板库
+
+`$wxa->templateMsg()->addTemplate(string $id, array $keywordIdList)`
+
+删除帐号下的某个模板
+
+`$wxa->templateMsg()->deleteTemplate(string $templateId)`
+
+获取小程序模板库标题列表
+
+`$wxa->templateMsg()->getTemplateLibraryList(int $offset, int $count)`
+
+发送模板消息
 
 ```php
- function getWxaCode($path, $width = 430, $autoColor = false, $lineColor = null, $isHyaline = false){}
- function getWxaCodeUnLimit($path, $scene, $width = 430, $autoColor = false, $lineColor = null, $isHyaline = false);
- function createWxaQrCode($path, $width = 430)
+//要传递的参数数组，下面实际方法中是传入Bean
+$templateMsg = [
+    'touser' => 'user-openid',
+    'template_id' => 'template-id',
+    'page' => 'index',
+    'form_id' => 'form-id',
+    'data' => [
+        'keyword1' => 'VALUE',
+        'keyword2' => 'VALUE2',
+    ],
+];
+
+$wxa->templateMsg()->send(TemplateMsgBean $templateMsg)
+
+```
+
+微信小程序消息解密(获取电话等功能，信息是加密的，需要解密)
+
+`$wxa->encryptor()->decryptData(string $sessionKey, string $iv, string $encryptedData)`
+
+检查一段文本是否含有违法违规内容
+
+`$wxa->checkFile()->msgSecCheck(string $content)`
+
+
+校验一张图片是否含有违法违规内容
+
+`$wxa->checkFile()->imgSecCheck(ImgUploadBean $imgUpload)`
+
+异步校验图片/音频是否含有违法违规内容
+
+`$wxa->checkFile()->mediaCheckAsync(string $mediaUrl ,int $mediaType)`
+
+物流助手(小程序)
+
+
+
+
