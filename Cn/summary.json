@@ -265,6 +265,10 @@
           "link": "/Cn/Components/apollo.html"
         },
         {
+          "name": "Consul协程客户端",
+          "link": "/Cn/Components/consul.html"
+        },
+        {
           "name": "Queue队列",
           "link": "/Cn/Components/queue.html"
         },
