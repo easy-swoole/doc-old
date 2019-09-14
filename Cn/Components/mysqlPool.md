@@ -56,7 +56,7 @@ $poolConf = Mysql::getInstance()->register('mysql',$config);
     $data = \EasySwoole\MysqliPool\Mysql::invoker('mysql',function (\EasySwoole\MysqliPool\Connection $db){
         return $db->rawQuery('select version()');
     });
-    $data = \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')::invoke(function (\EasySwoole\MysqliPool\Connection $db){
+    $data = \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')::invoker(function (\EasySwoole\MysqliPool\Connection $db){
         return $db->rawQuery('select version()');
     });
     
@@ -147,7 +147,7 @@ $db->rawQuery('select version()');
 方法二
 
 ```
-$data = MysqlPool::invoke(function (MysqlConnection $db){
+$data = MysqlPool::invoker(function (MysqlConnection $db){
     return $db->rawQuery('select version()');
 });
 ```
