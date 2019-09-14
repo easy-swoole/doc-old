@@ -839,7 +839,7 @@ var_dump($string->camel()->__toString());
 
 /**
  * 输出结果过：
- * string(10) "EasySwoole"
+ * string(10) "easySwoole"
  */
 ```
 

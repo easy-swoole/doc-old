@@ -727,7 +727,7 @@ var_dump($string->exist('Swoole', true));
 
 ### kebab
 
-转换为烤串(这句翻译待定)
+Convert to a kebab
 
 function kebab() : SplString
 
@@ -839,7 +839,7 @@ var_dump($string->camel()->__toString());
 
 /**
  * Output results：
- * string(10) "EasySwoole"
+ * string(10) "easySwoole"
  */
 ```
 
