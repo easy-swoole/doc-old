@@ -46,7 +46,15 @@ class Index extends Controller
                 $tpl = str_replace('{!--HEAD--}',$content->find('head',0)->innertext,$tpl);
                 $tpl = str_replace('{!--SUMMARY--}',$summary->find('body',0)->innertext,$tpl);
                 $tpl = str_replace('{!--BODY--}',$content->find('body',0)->innertext,$tpl);
-                $this->response()->write((string)$tpl);
+
+                // we want nice output
+                $dom = new \DOMDocument();
+                $dom->preserveWhiteSpace = false;
+                libxml_use_internal_errors(true);
+                $dom->loadHTML((string)$tpl);
+                libxml_clear_errors();
+                $dom->formatOutput = true;
+                $this->response()->write(html_entity_decode(($dom->saveHTML())));
             }
 
         }else{
