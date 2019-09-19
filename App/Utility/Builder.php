@@ -13,6 +13,9 @@ class Builder
         File::cleanDirectory($target);
         $target = rtrim($target,'/');
         $list = File::scanDirectory($source);
+        if(empty($list)){
+            return;
+        }
         foreach ($list['files'] as $file){
             if(substr($file,-2) == 'md'){
                 $html = Markdown::toHtml($file)->__toString();
