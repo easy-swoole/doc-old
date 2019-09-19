@@ -27,12 +27,12 @@ class Markdown
          */
         if($dom->find('head',0)){
             if($dom->find('head title',0)){
-                $html->getHead()->setTitle($dom->find('head title',0));
+                $html->getHead()->setTitle((string)$dom->find('head title',0));
             }
             foreach (['style','base','link','meta','script'] as $key){
                 $temp = [];
                 foreach ($dom->find("head {$key}") as $subject){
-                    $temp[] = $subject->innertext;
+                    $temp[] = (string)$subject;
                 }
                 $action = "set".ucfirst($key);
                 $html->getHead()->$action($temp);
@@ -47,7 +47,7 @@ class Markdown
          */
         $temp = [];
         foreach ($dom->find('script') as $subject){
-            $temp[] = $subject->innertext;
+            $temp[] = (string)$subject;
             $subject->outertext = '';
         }
         $html->setScript($temp);

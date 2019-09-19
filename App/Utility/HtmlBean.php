@@ -71,15 +71,11 @@ class HtmlBean extends SplBean
 
     function __toString()
     {
-        $dom = new \DOMDocument('1.0');
-        $html = $dom->createElement("html");
-        $head = $dom->createElement('head',$this->head);
-        $body = $dom->createElement('body',$this->body);
-        $script = $dom->createElement('script',implode("\n",$this->script));
-        $html->appendChild($head);
-        $html->appendChild($body);
-        $html->appendChild($script);
-        $dom->appendChild($html);
-        return $dom->saveHTML();
+        $script = implode("\n",$this->script);
+        return "<html>
+<head>{$this->head}</head>
+<body>{$this->body}</body>
+<script>{$script}</script>
+</html>";
     }
 }

@@ -4,7 +4,10 @@
 namespace App\HttpController;
 
 
+use App\Utility\Builder;
 use EasySwoole\Http\AbstractInterface\Controller;
+use voku\helper\HtmlDomParser;
+use voku\helper\SimpleHtmlDom;
 
 class Index extends Controller
 {
@@ -19,9 +22,16 @@ class Index extends Controller
         }
     }
 
+    function _gitHook()
+    {
+        Builder::buildDir(EASYSWOOLE_ROOT.'/Doc/Cn',EASYSWOOLE_TEMP_DIR.'/Doc/Cn');
+    }
+
     protected function actionNotFound(?string $action)
     {
         $path = $this->request()->getUri()->getPath();
+        $rootDir = explode("/",$path)[1];
+
         $file = EASYSWOOLE_TEMP_DIR.'/Doc'.$path;
         if(file_exists($file)){
             if($this->request()->getMethod() == 'POST'){
@@ -30,6 +40,13 @@ class Index extends Controller
                 /*
                  * 构建完整的页面
                  */
+                $tpl = file_get_contents(EASYSWOOLE_ROOT.'/Doc/page.tpl');
+                $content = HtmlDomParser::str_get_html(file_get_contents($file));
+                $summary = HtmlDomParser::str_get_html(file_get_contents(EASYSWOOLE_TEMP_DIR."/Doc/{$rootDir}/summary.html"));
+                $tpl = str_replace('{!--HEAD--}',$content->find('head',0)->innertext,$tpl);
+                $tpl = str_replace('{!--SUMMARY--}',$summary->find('body',0)->innertext,$tpl);
+                $tpl = str_replace('{!--BODY--}',$content->find('body',0)->innertext,$tpl);
+                $this->response()->write((string)$tpl);
             }
 
         }else{

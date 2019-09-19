@@ -113,15 +113,11 @@ class HeadBean extends SplBean
 
     public function __toString()
     {
-        $dom = new \DOMDocument('1.0');
-        $title = $dom->createElement('title',$this->title);
-        $dom->appendChild($title);
+        $head = '';
+        $head = $head.$this->title."\n";
         foreach (['style','base','link','meta','script'] as $key){
-            foreach ($this->$key as $value){
-                $temp = $dom->createElement($key,$value);
-                $dom->appendChild($temp);
-            }
+            $head = $head.implode("\n",$this->$key);
         }
-        return $dom->saveHTML();
+        return $head;
     }
 }
