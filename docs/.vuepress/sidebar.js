@@ -272,24 +272,85 @@ const sidebarCn = [
         children: [
             {
                 title: '基础组件',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Video/404', '单例'],
-                    ['/Video/404', '就绪等待'],
-                    ['/Video/404', 'Swoole Table'],
-                    ['/Video/404', 'Atomic 计数器'],
-                    ['/Video/404', 'Spl组件'],
+                    ['/Components/singleton', '单例'],
+                    ['/Components/readyScheduler', '就绪等待'],
+                    ['/Components/tableManager', 'Swoole Table'],
+                    ['/Components/atomic', 'Atomic 计数器'],
+                    {
+                        title: 'Spl组件',   // 必要的
+                        collapsable: true, // 可选的, 默认值是 true,
+                        sidebarDepth: 0,    // 可选的, 默认值是 1
+                        children: [
+                            ['/Components/array', 'SplArray'],
+                            ['/Components/bean', 'SplBean'],
+                            ['/Components/enum', 'SplEnum'],
+                            ['/Components/splStream', 'SplStream'],
+                            ['/Components/splFileStream', 'SplFileStream'],
+                            ['/Components/string', 'SplString'],
+                        ]
+                    }
                 ]
             },
-            ['/Video/404', 'Pool池管理器'],
-            ['/Video/404', 'HTTPClient协程客户端'],
-            ['/Video/404', 'Task组件'],
-            ['/Video/404', 'Actor组件'],
-            ['/Video/404', 'Whoops'],
-            ['/Video/404', 'SyncInvoker'],
-            ['/Video/404', 'Tracker'],
-            ['/Video/404', 'Policy策略权限'],
+            ['/Components/pool', 'Pool池管理器'],
+            {
+                title: 'HTTPClient协程客户端',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path:'/Components/introduction',
+                children: [
+                    ['/Components/request', '请求'],
+                    ['/Components/response', '响应'],
+                    ['/Components/websocket', 'WebsocketClient'],
+                ]
+            },
+            ['/Components/task', 'Task组件'],
+            {
+                title: 'Actor组件',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path:'/Components/actor',
+                children: [
+                    ['/Components/analysis', '设计解读'],
+                ]
+            },
+            ['/Components/whoops', 'Whoops'],
+            ['/Components/syncInvoker', 'SyncInvoker'],
+            ['/Components/tracker', 'Tracker'],
+            ['/Components/policy', 'Policy策略权限'],
+        ]
+    },
+    {
+        title: '微服务与分布式',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            ['/Distribute/microService', '什么是微服务？'],
+            ['/Distribute/loadbalance', '如何实现分布式？'],
+            ['/Distribute/atomicLimit', '服务限流'],
+            {
+                title: 'Rpc服务',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path:'/Distribute/introduction',
+                children: [
+                    ['/Distribute/server', '服务端'],
+                    ['/Distribute/client', '客户端'],
+                    ['/Distribute/otherPlatform', '跨语言'],
+                    ['/Distribute/registerCenter', '服务注册中心'],
+                ]
+            },
+            ['/Distribute/consul', 'Concul客户端'],
+            {
+                title: '配置中心',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Distribute/apollo', 'Appolo配置中心'],
+                ]
+            }
         ]
     }
 
