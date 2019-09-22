@@ -73,10 +73,10 @@ class ExceptionHandler
 ```
 在initialize事件中DI注册异常处理:
 
-````php
+```php
 public static function initialize()
 {
     Di::getInstance()->set(SysConst::HTTP_EXCEPTION_HANDLER,[ExceptionHandler::class,'handle']);
 }
 
-````
+```

@@ -14,7 +14,7 @@ $result = \EasySwoole\Mysqli\DDLBuilder\DDLBuilder::table('user_list', function 
 echo $result;
 ````
 输出:
-````text
+````sql
 CREATE TABLE `user_list` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键id',
   `userAccount` char(32) NOT NULL COMMENT '会员账号',

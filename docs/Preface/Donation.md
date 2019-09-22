@@ -4,11 +4,11 @@
   - 持续和深入地开发
   - 文档和社区的建设和维护
 ## 支付宝
-![捐赠](../Resource/donate.png)
+![捐赠](/resources/donate.png)
 > 支付宝二维码支持花呗、信用卡分期付款
 
 ## 微信
-![捐赠](../Resource/wx_donate.png)
+![捐赠](/resources/wx_donate.png)
 
 > 通过微信捐赠的用户，请捐赠时留言您的名字，否则不知道您的大名
 

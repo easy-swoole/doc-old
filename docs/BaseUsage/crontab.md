@@ -192,7 +192,7 @@ class TaskTwo extends AbstractCronTask
 ```
 
 cron通用表达式规则如下：
-```text
+```
 
     *    *    *    *    *
     -    -    -    -    -

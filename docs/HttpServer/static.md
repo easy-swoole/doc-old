@@ -9,7 +9,7 @@ meta:
 
 # 如何处理静态资源
 ## Apache URl rewrite
-```text
+```apacheconf
 <IfModule mod_rewrite.c>
   Options +FollowSymlinks
   RewriteEngine On
@@ -22,7 +22,7 @@ meta:
 ```
 
 ## Nginx URl rewrite
-```text
+```nginx
 server {
     root /data/wwwroot/;
     server_name local.swoole.com;

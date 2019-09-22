@@ -13,7 +13,7 @@ http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它
 
 ## 命名空间
 我们首先需要在`composer.json`中注册应用目录的命名空间(控制器命名空间默认为`App\HttpController`)
-```text
+```json
 {
     "require": {
         "easyswoole/easyswoole": "^3.1"

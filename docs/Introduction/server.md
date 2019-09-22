@@ -5,7 +5,7 @@
 php easyswoole
 ```
 可见：
-```text
+```
  ______                          _____                              _
  |  ____|                        / ____|                            | |
  | |__      __ _   ___   _   _  | (___   __      __   ___     ___   | |   ___
@@ -51,7 +51,7 @@ php easyswoole stop produce
 > 注意，守护模式下才需要stop，不然control+c或者是终端断开就退出进程了
 
 ## 重启服务
-```text
+```
 php easyswoole reload 只重启task进程
 php easyswoole reload all  重启task + worker进程
 ```
@@ -78,7 +78,7 @@ php easyswoole reload all  重启task + worker进程
         
 - 作者微信
 
-     ![](../Resource/authWx.jpg)    
+     ![](/resources/authWx.jpg)    
     
 - [捐赠](../donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:

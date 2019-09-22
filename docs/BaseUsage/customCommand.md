@@ -1,6 +1,6 @@
 # 自定义命令
 EasySwoole 有着默认的5个命令:  
-````text
+````
 
 php easyswoole help  命令帮助
 php easyswoole install 安装(需要在./vendor/easyswoole/easyswoole/bin/easyswoole 文件中调用)
@@ -74,7 +74,7 @@ class Test implements CommandInterface
 > bootstrap是3.2.5新增的事件,它允许用户在框架初始化之前执行自定义事件
 
 ## 执行命令
-````text
+````
 
 php easyswoole test
 array(0) {

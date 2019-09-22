@@ -4,8 +4,8 @@
 
 ## 安装
 ### 框架安装
-- 我们先安装好swooole拓展，执行 ```php --ri swoole``` 确保可以看到swoole拓展最版本为4.4.3 
-- 建立一个目录，名为```Test```,执行```composer require easyswoole/easyswoole=3.x``` 引入easyswoole
+- 我们先安装好swooole拓展，执行 `php --ri swoole` 确保可以看到swoole拓展最版本为4.4.3 
+- 建立一个目录，名为 `Test` ,执行 `composer require easyswoole/easyswoole=3.x` 引入easyswoole
 - 执行```php vendor/bin/easyswoole install``` 进行安装
 
 ### 命名空间注册
@@ -164,7 +164,7 @@ class BaseModel
 
 ### 管理员模型
 #### 新增管理员用户表:  
-```mysql
+```sql
 CREATE TABLE `admin_list` (
   `adminId` int(11) NOT NULL AUTO_INCREMENT,
   `adminName` varchar(15) DEFAULT NULL,
@@ -450,7 +450,7 @@ class AdminModel extends \App\Model\BaseModel
 ### 普通用户模型
 普通用户模型和管理员模型同理
 #### 建表
-```mysql
+```sql
 CREATE TABLE `user_list` (
   `userId` int(11) NOT NULL AUTO_INCREMENT,
   `userName` varchar(32) NOT NULL,
@@ -837,7 +837,7 @@ class UserModel extends \App\Model\BaseModel
 ### banner模型
 #### 建表
 
-```mysql
+```sql
 CREATE TABLE `banner_list` (
   `bannerId` int(11) NOT NULL AUTO_INCREMENT,
   `bannerName` varchar(32) DEFAULT NULL,

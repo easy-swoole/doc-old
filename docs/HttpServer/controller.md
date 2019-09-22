@@ -41,7 +41,7 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
 > action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:    
 
  
-````php  
+```php  
 <?php
 /**
  * Created by PhpStorm.
@@ -75,7 +75,7 @@ class Index extends Controller
         return true;
     }
 }
-````   
+```
 > 返回的字符串将会被`url解析规则`以及`route路由`规则解析,但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
     
  
@@ -83,19 +83,19 @@ class Index extends Controller
 * onRequest    
 
  
-````php
-<?php 
+```php
+
 protected function onRequest(?string $action): ?bool  
 {
     return true;   
 }
 
-````  
+```
 
 
 在准备调用控制器方法处理请求时的事件,如果该方法返回false则不继续往下执行.    
 可用于做控制器基类权限验证等,例如:    
-````php
+```php
 function onRequest(?string $action): ?bool
 {
     if (parent::onRequest($action)) {
@@ -108,7 +108,7 @@ function onRequest(?string $action): ?bool
     }
     return false;
 }
-````
+```
 
 * afterAction   
 当控制器方法执行结束之后将调用该方法,可自定义数据回收等逻辑    
@@ -123,18 +123,18 @@ index是一个抽象方法,代表着继承控制器对象的都需要实现该�
 * onException  
 当控制器逻辑抛出异常时将调用该方法进行处理异常(框架默认已经处理了异常)      
 可覆盖该方法,进行自定义的异常处理,例如:
-````php
+```php
 function onException(\Throwable $throwable): void
 {
     //直接给前端响应500并输出系统繁忙
     $this->response()->withStatus(Status::CODE_INTERNAL_SERVER_ERROR);
     $this->response()->write('系统繁忙,请稍后再试 ');
 }
-````
+```
 > 更多控制器异常相关可查看[错误与异常拦截](exception.md)
 
 * gc  
-````php
+```php
 protected function gc()
 {
     // TODO: Implement gc() method.
@@ -147,7 +147,7 @@ protected function gc()
         $this->$property = $value;
     }
 }
-````
+```
 gc 方法将在执行`方法`,`afterAction`完之后自动调用  
 将控制器属性重置为默认值,关闭`session`  
 可自行覆盖实现其他的gc回收逻辑.  
@@ -156,7 +156,7 @@ gc 方法将在执行`方法`,`afterAction`完之后自动调用
 * request   
 request方法调用之后,将返回`EasySwoole\Http\Request`对象    
 该对象附带了用户请求的所有数据,例如:
-````php
+```php
 function index()
 {
     $request = $this->request();
@@ -164,12 +164,12 @@ function index()
     $request->getMethod();//获取请求方式(post/get/)
     $request->getCookieParams();//获取cookie参数
 }
-````
+```
 > 更多request相关可查看[request对象](request.md)
 
 * response  
 response方法将返回`EasySwoole\Http\Response`,用于向客户端响应数据,例如:
-````php
+```php
 function index()
 {
     $response = $this->response();
@@ -177,21 +177,21 @@ function index()
     $response->setCookie('name','仙士可',time()+86400,'/');//设置一个cookie
     $response->write('hello world');//向客户端发送一条数据(类似于常规web模式的 echo )
 }
-````  
+```
 > 更多response相关可查看[response对象](response.md)
 
 * writeJson  
  writeJson方法直接封装了设置响应状态码,设置响应头,数组转为json输出.
-````php
+```php
 function index()
 {
  $this->writeJson(200,['xsk'=>'仙士可'],'success');
 }
-````
+```
 网页输出:
-````
+```
 {"code":200,"result":{"xsk":"仙士可"},"msg":"success"}
-````
+```
 
 ### 反序列化方法
 * json  
@@ -208,14 +208,14 @@ function index()
 ### 验证相关
 * validate
  validate方法可直接调用`EasySwoole\Validate\Validate`对象的验证,返回验证成功/失败的结果,实现代码:
-````php
+```php
 protected function validate(Validate $validate)
 {
     return $validate->validate($this->request()->getRequestParam());
 }
-````
+```
 我们可使用该方法进行验证客户端发送的数据:
-````php
+```php
 function index()
 {
     $validate = new Validate();
@@ -227,6 +227,6 @@ function index()
     }
     $this->writeJson(200, [], 'success');
 }
-````
+```
 > 更多validate 相关可查看[验证器](../Components/validate.md)
  

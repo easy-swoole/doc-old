@@ -54,16 +54,16 @@ meta:
 
 我们以WEB SOCKET作为例子，假设在某游戏大型应用中，为了实现均衡负载，我们使用了网关，例如Nginx对用户连接进行随机分发到不同的机器。
 而此刻，一个问题就是，在swoole中，每个链接都是以一个自增的fd标识来标记的，多个swoole服务中，fd是会重复的。因此，在多机器的情况下，我们可以在redis或者是其他的存储中，存储以下数据结构：
-```text
+```json
 {
-    'userId':'xxxxxx',
-    'seerver':
+    "userId":"xxxxxx",
+    "seerver":
     {
-        'nodeId':'nodeId',
-        'ip':'xxx.xxx.xxx.xxx',
-        'rcpPort':9600
+        "nodeId":"nodeId",
+        "ip":"xxx.xxx.xxx.xxx",
+        "rcpPort":9600
     },
-    'fd':'fd'
+    "fd":"fd"
 }
 ```
 而我们的Server，可以开一个Http服务，在action里面接收fd,参数，然后执行send(fd,data)操作。假设A、B用户分别连接到A1,B1这两台机器，而且此时，刚好，A,B两个人分配到的fd可能都是相同的，例如，都是1。

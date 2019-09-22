@@ -1,5 +1,5 @@
 
-```text
+```
   ______                          _____                              _        
  |  ____|                        / ____|                            | |       
  | |__      __ _   ___   _   _  | (___   __      __   ___     ___   | |   ___ 
@@ -103,7 +103,7 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     - EMAIL admin@fosuss.com   
 - 作者微信
 
-    ![](../Resource/authWx.png)    
+    ![](/resources/authWx.png)    
     
 - [捐赠](donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:

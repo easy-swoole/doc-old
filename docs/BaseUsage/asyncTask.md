@@ -24,8 +24,8 @@ meta:
 
 ## 任务管理器
 EasySwoole定义了一个任务管理器，完整名称空间为：
-```EasySwoole\EasySwoole\Task\TaskManager```
-他是一个继承了```EasySwoole\Task\Task```对象的单例对象，并在```Core.php```的主服务创建事件中被实例化。服务启动后的任意位置，均可调用
+`EasySwoole\EasySwoole\Task\TaskManager`
+他是一个继承了`EasySwoole\Task\Task`对象的单例对象，并在`Core.php`的主服务创建事件中被实例化。服务启动后的任意位置，均可调用
 
 ### 投递闭包任务
 ```php
@@ -68,7 +68,7 @@ TaskManager::getInstance()->async(new Task());
 ```                                                           
 
 ### 更多用法
-TaskManager继承了```EasySwoole\Task\Task```，因此更多用法请见[Task组件](./../Components/task.md)
+TaskManager继承了`EasySwoole\Task\Task`，因此更多用法请见[Task组件](./../Components/task.md)
 
 
 
