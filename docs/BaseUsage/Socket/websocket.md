@@ -324,6 +324,7 @@ class Index extends Controller
 
 *如果你按照本文配置，那么你的文件结构应该是以下形式*
 
+```
 App
 ├── HttpController
 │   ├── websocket.html
@@ -331,18 +332,24 @@ App
 ├── Websocket
 │   └── Index.php
 └── └── WebSocketParser.php
+```
 
-> 首先在根目录运行easyswoole
->
-> > *php easyswoole start*
->
-> 如果没有错误此时已经启动了easyswoole服务;  
-> 访问 127.0.0.1:9501/WebSocket/index 可以看到之前写的测试html文件;
-> *新人提示：这种访问方式会请求HttpController控制器下Index.php中的index方法*  
+首先在根目录运行easyswoole
 
-##扩展
+```shell
+php easyswoole start
+```
 
-###自定义解析器
+如果没有错误此时已经启动了easyswoole服务;  
+访问 127.0.0.1:9501/WebSocket/index 可以看到之前写的测试html文件;
+
+::: danger
+*新人提示：这种访问方式会请求HttpController控制器下Index.php中的index方法*  
+:::
+
+## 扩展
+
+### 自定义解析器
 
 在上文的 WebSocketParser.php 中，已经实现了一个简单解析器；
 我们可以通过自定义解析器，实现自己需要的场景。
@@ -374,10 +381,10 @@ public function decode($raw, $client) : ? Caller
     $caller->setControllerClass($class);
 
     // 提供一个事件风格的写法
-//         $eventMap = [
-//             'index' => Index::class
-//         ];
-//         $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
+    // $eventMap = [
+    //     'index' => Index::class
+    // ];
+    // $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
 
     // 设置被调用的方法
     $caller->setAction($data['action'] ?? 'index');
@@ -405,13 +412,16 @@ public function encode(Response $response, $client) : ? string
      */
     return $response->getMessage();
 }
-  ```
-  > 例如{"class":"Index","action":"hello"}  
-  > 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+```
 
-  **当然这里是举例，你可以根据自己的业务场景进行设计**
+> 例如{"class":"Index","action":"hello"}  
+> 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
 
-###自定义握手
+::: tip
+ **当然这里是举例，你可以根据自己的业务场景进行设计**
+:::
+
+### 自定义握手
 
 在常见业务场景中，我们通常需要验证客户端的身份，所以可以通过自定义WebSocket握手规则来完成。
 
@@ -525,7 +535,7 @@ class WebSocketEvent
         return true;
     }
 }
-  ```
+```
 
 
 **在根目录下EasySwooleEvent.php文件mainServerCreate方法下加入以下代码**
@@ -563,7 +573,7 @@ public static function mainServerCreate(EventRegister $register): void
 }
 ```
 
-###自定义关闭事件
+### 自定义关闭事件
 
 在常见业务场景中，我们通常需要在用户断开或者服务器主动断开连接时设置回调事件。
 
@@ -629,50 +639,3 @@ public function onClose(\swoole_server $server, int $fd, int $reactorId)
     });
 ```
 
-### 支持Wss
-
-这里推荐使用Nginx反向代理解决wss问题。
-
-即客户端通过wss协议连接 `Nginx` 然后 `Nginx` 通过ws协议和server通讯。
-**也就是说Nginx负责通讯加解密，Nginx到server是明文的，swoole不用开启ssl，而且还能隐藏服务器端口和负载均衡(何乐不为)。**
-
-```nginx
-server {
-
-    # 下面这个部分和你https的配置没有什么区别，如果你是 宝塔 或者是 oneinstack 这里用生成的也是没有任何问题的
-    listen 443;
-    server_name 这里是你申请的域名;
-
-    ssl on;
-
-    # 这里是你申请域名对应的证书(一定要注意路径的问题，建议绝对路径)
-    ssl_certificate 你的证书.crt;
-    ssl_certificate_key 你的密匙.key;
-
-    ssl_session_timeout 5m;
-    ssl_session_cache shared:SSL:10m;
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2 SSLv2 SSLv3;
-    ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
-    ssl_prefer_server_ciphers on;
-    ssl_verify_client off;
-
-    # 下面这个部分其实就是反向代理 如果你是 宝塔 或者是 oneinstack 请把你后续检查.php相关的 和重写index.php的部分删除
-    location / {
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:9501;      # 转发到你本地的9501端口 这里要根据你的业务情况填写 谢谢
-        proxy_set_header Host $host;
-        proxy_set_header X-Real_IP $remote_addr;
-        proxy_set_header X-Forwarded-For $remote_addr:$remote_port;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;   # 升级协议头
-        proxy_set_header Connection upgrade;
-    }
-}
-```
-
-重启nginx 如果没有错误
-[点我打开ws调试工具](https://www.easyswoole.com/wstool.html);
-
-**服务地址输入wss://你上面的域名不加端口号谢谢**
-
-点击开启连接 恭喜你 wss成了

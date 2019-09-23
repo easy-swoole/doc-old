@@ -1,9 +1,11 @@
-<head>
-     <title>EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议</title>
-     <meta name="keywords" content="EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议"/>
-     <meta name="description" content="EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议"/>
-</head>
----<head>---
+---
+title: 入门教程TCP
+meta:
+  - name: description
+    content: EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议
+  - name: keywords
+    content: EasySwoole 入门教程|swoole 入门教程|网络协议|tcp协议
+---
 ## tcp(传输层)
 
 TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义。在简化的计算机网络OSI模型中，它完成第四层传输层所指定的功能，用户数据报协议（UDP）是同一层内  另一个重要的传输协议。在因特网协议族（Internet protocol suite）中，TCP层是位于IP层之上，应用层之下的中间层。不同主机的应用层之间经常需要可靠的、像管道一样的连接，但是IP层不提供这样的流机制，而是提供不可靠的包交换。  
@@ -48,9 +50,10 @@ php可通过socket函数,swoole扩展,stream流函数进行创建tcp协议的soc
 在php中,我们并不需要了解tcp的握手/挥手,我们只需要知道ip:port能连接/创建 一个tcp服务端/客户端就行了  
 使用php的socket,我们可以直接发送字符串,接收的也是字符串,其他一切都是语言,操作系统所需要做的事,    
 我们只需要处理好字符串的完整性,例如我们使用php做tcp服务端  
+
  * 客户端连接成功后,发送了一个"easyswoole是一个非常好的swoole框架"的字符串 
  * 而服务端每次只接收9个字节,那第一次获取只会接收到"easyswool"的残缺字符串,需要继续获取数据
 
 
 ## 其他
->可自行搜索详细理解
+> 可自行搜索详细理解
