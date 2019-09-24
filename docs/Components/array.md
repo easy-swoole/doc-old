@@ -23,10 +23,7 @@ meta:
 
 function get($path)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -71,10 +68,7 @@ var_dump($splArray->get('fruit.apple'));
 
 function set($path, $value)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -119,10 +113,7 @@ var_dump($splArray->get('fruit.apple'));
 
 function __toString()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -164,10 +155,7 @@ var_dump($splArray->__toString());
 
 function getArrayCopy()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -231,10 +219,7 @@ var_dump($splArray->__toString());
 
 function unset($path)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -301,10 +286,7 @@ public function delete($key)
 
 ps: unset和delete方法其实是实现统一效果，因考虑旧版本用户使用情况，故而保留。
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -366,10 +348,7 @@ var_dump($splArray->__toString());
 
 public function unique()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -415,10 +394,7 @@ var_dump($splArray->unique()->getArrayCopy());
 
 public function multiple()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -458,10 +434,7 @@ var_dump($splArray->unique()->getArrayCopy());
 
 public function asort()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -509,10 +482,7 @@ var_dump($splArray->asort()->getArrayCopy());
 
 public function ksort()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -569,10 +539,7 @@ public function sort($sort_flags = SORT_REGULAR)
 * SORT_NATURAL - 和 natsort() 类似对每个单元以“自然的顺序”对字符串进行排序。 PHP 5.4.0 中新增的。
 * SORT_FLAG_CASE - 能够与 SORT_STRING 或 SORT_NATURAL 合并（OR 位运算），不区分大小写排序字符串。
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -623,10 +590,7 @@ var_dump($splArray->ksort()->getArrayCopy());
 
 public function column($column, $index_key = null)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -671,10 +635,7 @@ var_dump($splArray->column('apple')->getArrayCopy());
 
 public function flip()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -723,10 +684,7 @@ var_dump($splArray->flip()->getArrayCopy());
 
 public function filter($keys, $exclude = false)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -770,10 +728,7 @@ var_dump($splArray->filter('apple,orange')->getArrayCopy());
 
 public function keys($path = null)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -822,10 +777,7 @@ var_dump($splArray->keys('fruit'));
 
 public function values()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -886,10 +838,7 @@ var_dump($splArray->values()->getArrayCopy());
 
 public function flush()
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -934,10 +883,7 @@ var_dump($splArray->flush()->getArrayCopy());
 
 public function loadArray(array $data)
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php
@@ -1003,10 +949,7 @@ var_dump($splArray->loadArray($data)->getArrayCopy());
 
 public function toXML($CD_DATA = false,$rootName = 'xml',$encoding = 'UTF-8')
 
-
-::: danger 
-例子
-:::
+>例子
 
 ```php
 <?php

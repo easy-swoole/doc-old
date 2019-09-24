@@ -38,20 +38,17 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 
 **新人提示**
 
-::: danger 
+::: danger   
 这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
 :::
 
 
 ::: danger 
-> 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
+在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
 :::
 
 
 ::: danger 
-::: danger 
-:::
-
  需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
 :::
 
@@ -151,11 +148,7 @@ class WebSocketParser implements ParserInterface
 如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
 :::
 
-
 ::: danger 
-::: danger 
-:::
-
  这里是指注册你上面实现的解析器。
 :::
 
@@ -196,7 +189,7 @@ public static function mainServerCreate(EventRegister $register): void
 **友情提示**
 
 ::: danger 
- easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+ easyswoole 提供了更强大的WebSocket调试工具:[WEBSOCKET CLIEN](https://www.easyswoole.com/wstool.html)；
 :::
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
@@ -309,11 +302,7 @@ class WebSocket extends Controller
 WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
 :::
 
-
 ::: danger 
-::: danger 
-:::
-
  actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
 :::
 

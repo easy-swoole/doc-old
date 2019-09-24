@@ -132,12 +132,9 @@ function onReceive($serv, $fd, $reactorId, $data)
 - 同步阻塞并且请求响应式无状态的Server程序可以设置max_request，当Worker进程/Task进程结束运行时或达到任务上限后进程自动退出。该进程的所有变量/对象/资源均会被释放回收。
 - 程序内在onClose或设置定时器及时使用unset清理变量，回收资源
 
-::: danger 
 
 ::: danger 
 内存管理部分参照了swoole官方文档。
-:::
-
 :::
 
 ## 约定规范
