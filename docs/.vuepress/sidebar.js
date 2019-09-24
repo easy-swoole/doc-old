@@ -196,6 +196,7 @@ const sidebarCn = [
                 children: [
                     ['/BaseUsage/Socket/tcp', 'TCP服务器'],
                     ['/BaseUsage/Socket/websocket', 'Websocket服务器'],
+                    ['/BaseUsage/Socket/websocket_wss', 'Websocket支持wss'],
                     ['/BaseUsage/Socket/udp', 'UDP服务器'],
                     ['/BaseUsage/Socket/question', '常见问题'],
                 ]
