@@ -25,4 +25,7 @@ killall -9 php
 ```
 杀死所有php进程
 
->kill 和killall其实是给进程发送一个进程信号的命令,-9是SIGKILL 信号,终止进程,可通过kill ,killall命令发送其他信号
+
+::: warning 
+kill 和killall其实是给进程发送一个进程信号的命令,-9是SIGKILL 信号,终止进程,可通过kill ,killall命令发送其他信号
+:::

@@ -21,7 +21,10 @@ composer require easyswoole/phpunit
 ./vendor/bin/co-phpunit tests
 ```
 
-> tests为你写的测试文件的目录，可以自定义
+
+::: warning 
+ tests为你写的测试文件的目录，可以自定义
+:::
 
 ## 预处理
 ```
@@ -46,4 +49,7 @@ php easyswoole phpunit tests
 即可进行测试，若部分测试需要Http或者tcp等服务，可以先以启动easyswoole并进入守护模式，再进行测试
 
 
-> tests为你写的测试文件的目录，可以自定义
+
+::: warning 
+ tests为你写的测试文件的目录，可以自定义
+:::

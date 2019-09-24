@@ -55,7 +55,10 @@ $http->on("request", function ($request, $response) {
 $http->start();
 ```
 
-> 注意，本例子是用一个自定义进程内加定时器来实现计数定时重置，实际上用一个进程来做这件事情有点不值得，因此实际生产可以指定一个worker,设置定时器来实现
+
+::: warning 
+ 注意，本例子是用一个自定义进程内加定时器来实现计数定时重置，实际上用一个进程来做这件事情有点不值得，因此实际生产可以指定一个worker,设置定时器来实现
+:::
 
 
 ## 使用
@@ -68,6 +71,9 @@ AtomicLimit::getInstance()->addItem('api')->setMax(2);
 AtomicLimit::getInstance()->enableProcessAutoRestore(ServerManager::getInstance()->getSwooleServer(),10*1000)
 ```
 
-> 以上代码表示，default这个限流器在5秒内允许的最大流量为200，而api则个限流器的最大流量为2
+
+::: warning 
+ 以上代码表示，default这个限流器在5秒内允许的最大流量为200，而api则个限流器的最大流量为2
+:::
 
 后续，我们可以在Easyswoole的base控制器中，进行请求拦截，例如在onRequest事件中，先进行流量检验，如果校验通过，则进行下一步操作。

@@ -152,7 +152,10 @@ final public function jsonSerialize():array
 
 protected function initialize()
 
-> 此方法会在对象创建时被调用
+
+::: warning 
+ 此方法会在对象创建时被调用
+:::
 
 ### setKeyMapping
 

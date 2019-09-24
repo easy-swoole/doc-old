@@ -9,7 +9,10 @@ meta:
 
 # ServerManager
 
-> 服务管理类: EasySwoole\EasySwoole\ServerManager
+
+::: warning 
+ 服务管理类: EasySwoole\EasySwoole\ServerManager
+:::
 
 ServerManager 它是一个单例类(use EasySwoole\Component\Singleton)
 ## 创建主服务
@@ -39,7 +42,10 @@ public static function mainServerCreate(EventRegister $register)
     });
 }
 ````
-> addServer方法返回的是EventRegister方法注册类,可通过该类去注册/设置服务的事件回调
+
+::: warning 
+ addServer方法返回的是EventRegister方法注册类,可通过该类去注册/设置服务的事件回调
+:::
 
 
 ## 获取服务
@@ -80,7 +86,10 @@ class Index extends Controller
 ```php
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
-> 获取到的是swoole的服务,可使用swoole服务所有的方法.
+
+::: warning 
+ 获取到的是swoole的服务,可使用swoole服务所有的方法.
+:::
 
 ## 获取注册事件类 getMainEventRegister
 `getMainEventRegister`方法可获取主服务的事件注册类,该类可注册主服务的事件回调  

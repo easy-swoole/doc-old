@@ -11,8 +11,15 @@ meta:
 EasySwoole在基础组件中集合了连接池组件,增加mysql/redis等i/o连接的复用性,命名空间为: `EasySwoole\Component\Pool` 
 
 demo地址: (https://github.com/easy-swoole/demo/tree/3.x-pool)
-> 在新版本中,实现了连接池自动回收,自动注册,匿名连接池注册,以及本身的底层异常处理
-> 使得用户在使用连接池时,可做到直接使用,无需注册,无需回收(通过defer和invoke实现自动回收),也不会出现问题
+
+::: warning 
+在新版本中,实现了连接池自动回收,自动注册,匿名连接池注册,以及本身的底层异常处理
+:::
+
+
+::: warning 
+ 使得用户在使用连接池时,可做到直接使用,无需注册,无需回收(通过defer和invoke实现自动回收),也不会出现问题
+:::
 
 ### PoolManager 
 连接池管理工具,提供了以下方法:
@@ -180,7 +187,10 @@ $extraConf = [];//连接池对象获取连接对象时的等待时间
 PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->getConf('MYSQL.POOL_MAX_NUM'));
 //注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
 ```
-> 可通过register返回的PoolConf对象去配置其他参数
+
+::: warning 
+ 可通过register返回的PoolConf对象去配置其他参数
+:::
 
 3、服务启动后即可在任意位置调用
 ```php
@@ -189,7 +199,10 @@ $data = $db->get('test');
 //使用完毕需要回收
 PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ```
-> 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断，而用户没有注册连接池时,直接getPoo也可直接自动注册并使用连接
+
+::: warning 
+ 直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断，而用户没有注册连接池时,直接getPoo也可直接自动注册并使用连接
+:::
 
 ### 自动回收
 在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`invoke`方法,通过invoke方法,可直接在闭包中操作连接池连接,执行完自动回收,例如
@@ -199,7 +212,10 @@ $data = MysqlPool::invoke(function ( MysqlObject $db){
    return $data;
 });
 ````
-> 异常拦截,当invoke调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
+
+::: warning 
+ 异常拦截,当invoke调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
+:::
 
 在 `AbstractPool`中,use了`EasySwoole\Component\Pool\TraitInvoker`的`defer`方法,通过defer方法,在当前协程执行完毕时,将自动回收连接,但不适用于匿名连接池。
 
@@ -219,7 +235,10 @@ public static function mainServerCreate(EventRegister $register)
     });
 }
 ```
-> 当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
+
+::: warning 
+ 当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
+:::
 
 ### 创建匿名连接池
 当你不想新建文件实现 连接池 或者不想实现 连接池对象时,可通过`registerAnonymous`创建匿名连接池,例如:
@@ -239,5 +258,4 @@ $db = PoolManager::getInstance()->getPool('mysql')->getObj();
 $data = $db->get('test');
 PoolManager::getInstance()->getPool('mysql')->recycleObj($db);
 ````
-> 
 

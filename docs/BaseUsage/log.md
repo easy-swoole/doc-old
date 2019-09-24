@@ -26,7 +26,10 @@ Logger::getInstance()->onLog()->set('myHook',function ($msg,$logLevel,$category)
     //增加日志写入之后的回调函数
 });
 ```
-> 注意，在非框架中使用，例如是单元测试脚本，请执行 EasySwoole\EasySwoole\Core::getInstance()->initialize(); 用于初始化日志 
+
+::: warning 
+ 注意，在非框架中使用，例如是单元测试脚本，请执行 EasySwoole\EasySwoole\Core::getInstance()->initialize(); 用于初始化日志 
+:::
 
 将输出/记录以下内容:
 ````
@@ -44,7 +47,10 @@ Logger::getInstance()->onLog()->set('myHook',function ($msg,$logLevel,$category)
 [2019-06-01 21:23:27][DEBUG][WARNING] : [log level waring]
 [2019-06-01 21:23:27][DEBUG][ERROR] : [log level error]
 ````
-> 在新版logger处理方案中，新增了 `LOG_LEVEL_INFO = 1`，`LOG_LEVEL_NOTICE = 2`，`LOG_LEVEL_WARNING = 3`，`LOG_LEVEL_ERROR = 4`，4个日志等级，有助于更好的区分日志
+
+::: warning 
+ 在新版logger处理方案中，新增了 `LOG_LEVEL_INFO = 1`，`LOG_LEVEL_NOTICE = 2`，`LOG_LEVEL_WARNING = 3`，`LOG_LEVEL_ERROR = 4`，4个日志等级，有助于更好的区分日志
+:::
 
 ## Trigger
 

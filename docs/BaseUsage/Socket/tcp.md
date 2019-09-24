@@ -51,7 +51,10 @@ public static function mainServerCreate(EventRegister $register)
 * 定义消息头,通过特定长度的消息头进行获取,例如我们定义一个协议,前面10位字符串都代表着之后数据主体的长度,那么我们传输数据时,只需要000000000512346(前10位为协议头,表示了这条数据的大小,后面的为数据),每次我们读取只先读取10位,获取到消息长度,再读取消息长度那么多的数据,这样就可以保证数据的完整性了.(但是为了不被混淆,协议头也得像EOF一样标识)
 * 通过pack二进制处理,相当于于方法2,将数据通过二进制封装拼接进消息中,通过验证二进制数据去读取信息,sw采用的就是这种方式
 
->可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
+
+::: warning 
+可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
+:::
 
 ## 实现粘包处理  
 ### 服务端:
@@ -142,7 +145,11 @@ function decode($str)
 ## tcp控制器实现
 
 引入 easyswoole/socket composer 包:
->  *composer require easyswoole/socket*
+
+::: warning 
+*composer require easyswoole/socket*
+:::
+
 *警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
 
 
@@ -412,6 +419,13 @@ class Index extends Controller
 }
 ```
 
-> 实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
+
+::: warning 
+实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
+:::
+
 比如定时器往某个连接推送的时候，就是以userName去redis中取得对应的fd，再send。注意，通过addServer形式创建的子服务器，
->以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
+
+::: warning 
+以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
+:::

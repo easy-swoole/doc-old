@@ -34,4 +34,7 @@ TableManager::getInstance()->add(
 );
 ```
 
-> 注意事项：请勿在onRequest、OnReceive等回调位置创建swoole table,swoole table应该在服务启动前创建，比如在mainServerCreate事件中创建。
+
+::: warning 
+注意事项：请勿在onRequest、OnReceive等回调位置创建swoole table,swoole table应该在服务启动前创建，比如在mainServerCreate事件中创建。
+:::

@@ -36,7 +36,10 @@ for($i=0;$i<1000;$i++){
     }
 }
 ```
->也可通过ob_get_contents函数获取缓冲区内容,ob缓冲系列函数可自行搜索了解  
+
+::: warning 
+也可通过ob_get_contents函数获取缓冲区内容,ob缓冲系列函数可自行搜索了解  
+:::
 
 buffer缓冲详细内容可查看:http://www.php20.cn/article/sw/buffer/104 
 ### 标准输入/输出/错误  
@@ -47,7 +50,10 @@ buffer缓冲详细内容可查看:http://www.php20.cn/article/sw/buffer/104
 在php-cli命令行下,可通过以上3个文件句柄进行一系列的逻辑操作,比如:  
  启动php文件,监听标准输入,获取到输入的网址,php再进行网址的数据请求/接收 等等操作
 而在常规web模式下,标准输出会被拦截 
->echo var_dump等输出函数其实就是stdout,但是在常规web访问下被重定向到了web服务器,然后由web服务器输出
+
+::: warning 
+echo var_dump等输出函数其实就是stdout,但是在常规web访问下被重定向到了web服务器,然后由web服务器输出
+:::
 
 了解详细内容可查看http://www.php20.cn/article/156
  

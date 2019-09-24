@@ -50,4 +50,7 @@ if (strlen($data) != $len[1]) {
 }
 fclose($fp);
 ````
-> 其他语言只需要实现tcp协议即可
+
+::: warning 
+ 其他语言只需要实现tcp协议即可
+:::

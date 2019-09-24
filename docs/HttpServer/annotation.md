@@ -2,7 +2,10 @@
 
 Easyswoole 提供轻量级的注解控制器支持。注解控制器在未添加注解项的时候，逻辑与普通控制器逻辑一致。
 
-> 本功能处于灰度测试中，想体验的同学可以在composer 中添require 配置项 ```"easyswoole/http": "master-dev as 1.3.0"```并执行composer up进行安装。
+
+::: warning 
+ 本功能处于灰度测试中，想体验的同学可以在composer 中添require 配置项 ```"easyswoole/http": "master-dev as 1.3.0"```并执行composer up进行安装。
+:::
 
 
 ## 例子如下
@@ -51,4 +54,7 @@ class Test extends \EasySwoole\Http\AbstractInterface\AnnotationController
 }
 ```
 
-> Param注解支持的校验方法与Easyswoole自带的参数校验器一致，注解格式请见 [annotation](./../Components/annotation.md)
+
+::: warning 
+Param注解支持的校验方法与Easyswoole自带的参数校验器一致，注解格式请见 [annotation](./../Components/annotation.md)
+:::

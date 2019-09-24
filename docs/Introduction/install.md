@@ -15,7 +15,10 @@ meta:
 - [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得给我们点个 ***star***
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
-> 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
+
+::: warning 
+ 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
+:::
 
 ## 切换阿里云镜像
 ````
@@ -30,7 +33,10 @@ composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
 
-> 如果安装遇到报错，请看下面的报错处理
+
+::: warning 
+ 如果安装遇到报错，请看下面的报错处理
+:::
 
 ## 报错处理
 
@@ -60,7 +66,10 @@ dir=$(echo $dir | sed 's/ /\ /g')
 php -ini | grep disable_functions
 ```
 
-> 如果禁用了该函数，可以直接修改PHP.ini或在集成面板中解除该函数的禁用，删除项目目录下的`vendor`目录，重新执行`composer install`拉取依赖包
+
+::: warning 
+ 如果禁用了该函数，可以直接修改PHP.ini或在集成面板中解除该函数的禁用，删除项目目录下的`vendor`目录，重新执行`composer install`拉取依赖包
+:::
 
 如果是其他原因导致的该报错，可以在项目根目录下手工执行以下命令，将可执行文件链接出来 :
 
@@ -90,13 +99,19 @@ php easyswoole start
 ```
 此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示框架已经安装成功
 
-> 如果第二步的 install 操作报错 请查看上方的报错处理
+
+::: warning 
+ 如果第二步的 install 操作报错 请查看上方的报错处理
+:::
 
 ## Docker
 
 [Easyswoole官方docker](docker.md)
 
-> docker 知识请自行学习
+
+::: warning 
+ docker 知识请自行学习
+:::
 
 ## Hello World
 在项目根目录下创建如下的目录结构，这个目录是编写业务逻辑的应用目录，编辑 `Index.php` 文件，添加基础控制器的代码
@@ -142,7 +157,10 @@ class Index extends Controller
 }
 ```
 
-> 实际上就是注册App的名称空间
+
+::: warning 
+ 实际上就是注册App的名称空间
+:::
 
 最后执行 `composer dumpautoload` 命令更新命名空间，框架已经可以自动加载 **App** 目录下的文件了，此时框架已经安装完毕，可以开始编写业务逻辑
 
@@ -184,9 +202,15 @@ project                   项目部署目录
 ├─produce.php             生产配置文件
 ```
 
-> 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
 
-> 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.php,但依旧建议设置到Public)
+::: warning 
+ 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
+:::
+
+
+::: warning 
+ 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.php,但依旧建议设置到Public)
+:::
 
 ## 其他
 

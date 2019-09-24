@@ -1179,7 +1179,10 @@ abstract class ApiBase extends Controller
 }
 ```
 
-> 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
+
+::: warning 
+ 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
+:::
 
 
 ### 公共基础控制器定义
@@ -1268,8 +1271,15 @@ class Banner extends CommonBase
 }
 ```
 
-> 测试链接:127.0.0.1:9501/api/common/banner/getAll 
-> 需要有数据才能看到具体输出
+
+::: warning 
+测试链接:127.0.0.1:9501/api/common/banner/getAll 
+:::
+
+
+::: warning 
+ 需要有数据才能看到具体输出
+:::
 
 
 
@@ -1421,7 +1431,11 @@ class Auth extends AdminBase
     }
 }
 ```
-> 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
+
+::: warning 
+请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
+:::
+
 ```
 {
     "code": 200,
@@ -1576,8 +1590,15 @@ class User extends AdminBase
 ```
 
 
-> 后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
-> 请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  
+
+::: warning 
+后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
+:::
+
+
+::: warning 
+ 请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  
+:::
 
 
 ### 普通用户基础控制器定义  

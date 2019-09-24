@@ -18,7 +18,10 @@ fast-cgi是cgi模式的升级版,它像是一个常驻型的cgi,只要开启后,
 调用原理大概为:  
 web服务器fast-cgi进程管理器初始化->预先fork n个进程  
 用户请求->web服务器接收请求->交给fast-cgi进程管理器->fast-cgi进程管理区接收,给其中一个空闲fast-cgi进程处理->处理完成,fast-cgi进程变为空闲状态,等待下次请求->web服务器接收内容->返回给用户
->注意,fast-cgi和cgi都是一种协议,开启的进程是单独实现该协议的进程  
+
+::: warning 
+注意,fast-cgi和cgi都是一种协议,开启的进程是单独实现该协议的进程  
+:::
 
 ###  模块模式  
 apache+php运行时,默认使用的是模块模式,它把php作为apache的模块随apache启动而启动,接收到用户请求时则直接通过调用mod_php模块进行处理,详细内容可自行百度
@@ -34,7 +37,13 @@ php-cli模式属于命令行模式,对于很多刚开始学php就开始wamp,wnmp
  * 可使用的类/函数 不同
  * php.ini配置的不同
  
->想要了解详细内容可查看http://php.net/manual/zh/features.commandline.php 
+
+::: warning 
+想要了解详细内容可查看http://php.net/manual/zh/features.commandline.php 
+:::
 
 ### 其他
->本文将以上除了php-cli的模式,都定义为常规web访问模式  
+
+::: warning 
+本文将以上除了php-cli的模式,都定义为常规web访问模式  
+:::

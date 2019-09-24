@@ -100,4 +100,7 @@ $ret = MongoClient::getInstance()->client()->callback(function (Driver $driver){
 });
 ```
 
-> 更多使用和原理解析，请看SyncInvoker章节
+
+::: warning 
+更多使用和原理解析，请看SyncInvoker章节
+:::

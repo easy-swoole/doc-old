@@ -113,7 +113,8 @@ foreach ($list['timeout'] as $item){
 }
 ```
 
-> 注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
+
+::: warning  注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
 
 ## 默认注解解析工具
 
@@ -232,7 +233,10 @@ class ValueParserTest extends TestCase
 
 需要为PHPStorm安装"PHP Annotation"插件以提供注解自动提示能力，插件可以在PHPStorm中直接搜索安装，也可以前往Github下载安装
 
-> https://github.com/Haehnchen/idea-php-annotation-plugin
+
+::: warning 
+ https://github.com/Haehnchen/idea-php-annotation-plugin
+:::
 
 然后自己编写一个下面这样的注解提示类，重点在于使用@Annotation类注释，标记这是一个注解提示类，PHPStorm索引到该文件，就可以对类名和类的成员进行注解提示
 

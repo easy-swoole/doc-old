@@ -9,7 +9,10 @@ meta:
 
 # WebSocket控制器
 
-> 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
+
+::: warning 
+ 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
+:::
 
 EasySwoole 3.x支持以控制器模式来开发你的代码。
 
@@ -18,7 +21,11 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 'SERVER_TYPE'    => EASYSWOOLE_WEB_SOCKET_SERVER,
 ```
 并且引入 easyswoole/socket composer 包:
->  *composer require easyswoole/socket*
+
+::: warning 
+*composer require easyswoole/socket*
+:::
+
 *警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
 
 ## 新人帮助
@@ -30,11 +37,20 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 ## 实现命令解析
 
 **新人提示**
-> 这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
->
-> 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
->
-> 需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
+
+::: warning   
+这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
+:::
+
+
+::: warning 
+在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
+:::
+
+
+::: warning 
+ 需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
+:::
 
 **创建App/WebSocket/WebSocketParser.php文件，写入以下代码**
 
@@ -119,14 +135,22 @@ class WebSocketParser implements ParserInterface
 }
 
 ```
-> *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
+
+::: warning 
+ *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
+:::
 
 ## 注册服务
 
 **新人提示**
-> 如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
->
-> 这里是指注册你上面实现的解析器。
+
+::: warning 
+如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
+:::
+
+::: warning 
+ 这里是指注册你上面实现的解析器。
+:::
 
 **在根目录下EasySwooleEvent.php文件mainServerCreate方法下加入以下代码**
 
@@ -155,12 +179,18 @@ public static function mainServerCreate(EventRegister $register): void
 }
 ```
 
-> 在EasySwooleEvent中注册该服务。
+
+::: warning 
+ 在EasySwooleEvent中注册该服务。
+:::
 
 ## 测试前端代码
 
 **友情提示**
-> easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+
+::: warning 
+ easyswoole 提供了更强大的WebSocket调试工具:[WEBSOCKET CLIEN](https://www.easyswoole.com/wstool.html)；
+:::
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
 
@@ -225,7 +255,10 @@ public static function mainServerCreate(EventRegister $register): void
 ## 测试用HttpController 视图控制器
 
 **新人提示**
-> 这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
+
+::: warning 
+ 这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
+:::
 
 **创建App/HttpController/WebSocket.php文件，写入以下代码**
 
@@ -256,14 +289,22 @@ class WebSocket extends Controller
     }
 }
 ```
-> 本控制器主要为方便你获得前端页面和从HTTP请求中对websocket 做推送。
+
+::: warning 
+ 本控制器主要为方便你获得前端页面和从HTTP请求中对websocket 做推送。
+:::
 
 ## WebSocket 控制器
 
 **新人提示**
-> WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
->
-> actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
+
+::: warning 
+WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
+:::
+
+::: warning 
+ actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
+:::
 
 **创建App/WebSocket/Index.php文件，写入以下内容**
 
@@ -318,8 +359,16 @@ class Index extends Controller
 }
 ```
 
-> 该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
-> composer require easyswoole/task
+
+::: warning 
+该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
+:::
+
+
+::: warning 
+composer require easyswoole/task
+:::
+
 ##测试
 
 *如果你按照本文配置，那么你的文件结构应该是以下形式*
@@ -343,7 +392,7 @@ php easyswoole start
 如果没有错误此时已经启动了easyswoole服务;  
 访问 127.0.0.1:9501/WebSocket/index 可以看到之前写的测试html文件;
 
-::: danger
+::: warning
 *新人提示：这种访问方式会请求HttpController控制器下Index.php中的index方法*  
 :::
 
@@ -414,8 +463,15 @@ public function encode(Response $response, $client) : ? string
 }
 ```
 
-> 例如{"class":"Index","action":"hello"}  
-> 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+
+::: warning 
+例如{"class":"Index","action":"hello"}  
+:::
+
+
+::: warning 
+ 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+:::
 
 ::: tip
  **当然这里是举例，你可以根据自己的业务场景进行设计**

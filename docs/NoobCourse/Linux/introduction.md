@@ -11,7 +11,10 @@ Linux是一套免费使用和自由传播的类Unix操作系统，是一个基�
 Linux的发行版说简单点就是将Linux内核与应用软件做一个打包。
 目前市面上较知名的发行版有：Ubuntu、RedHat、CentOS、Debian、Fedora、SuSE、OpenSUSE、Arch Linux、SolusOS 等。
 
->可自行搜索安装方法,推荐使用虚拟机安装,或docker镜像等
+
+::: warning 
+可自行搜索安装方法,推荐使用虚拟机安装,或docker镜像等
+:::
 
 
 ### 一切皆文件
