@@ -18,7 +18,8 @@ composer require easyswoole/annotation
     - 若为严格模式，如果解析不到正确的数值，则报错。  
 
 ## 例子
-```
+```php
+<?php
 use EasySwoole\Annotation\Annotation;
 use EasySwoole\Annotation\AbstractAnnotationTag;
 
@@ -67,7 +68,8 @@ class timeout extends AbstractAnnotationTag
     public function aliasMap(): array
     {
         return [
-            static::class,'timeout_alias'
+            static::class,
+            "timeout_alias"
         ];
     }
 }
@@ -75,7 +77,6 @@ class timeout extends AbstractAnnotationTag
 
 class A
 {
-    /** @var  */
     protected $a;
 
     /**
@@ -91,9 +92,7 @@ class A
     }
 }
 
-
-
-/*
+/**
  * 实例化渲染器,并注册要解析的渲染方法
  */
 $annotation = new Annotation();
@@ -114,12 +113,15 @@ foreach ($list['timeout'] as $item){
 ```
 
 
-::: warning  注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
+::: warning  
+注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
+:::
 
 ## 默认注解解析工具
 
 Easyswoole 自带的字符串解析工具为 ```EasySwoole\Annotation\ValueParser```,支持格式如下单元测试代码所示：
-```
+
+```php
 namespace EasySwoole\Annotation\Tests;
 
 
