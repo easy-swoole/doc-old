@@ -39,7 +39,10 @@ EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特
 - Policy权限组件
 - IOC、协程上下文管理器
 
-> 以上组件为常用组件，更多组件请看组件库文档
+
+:::danger 
+ 以上组件为常用组件，更多组件请看组件库文档
+:::
 
 ## 生产可用
 Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如今的EasySwoole 3.x版本，多年时间在众多社区小伙伴的共同努力下，EasySwoole的稳定与可靠已经经历了非常多的大企业检验。
@@ -85,7 +88,10 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     - 小菜瓜 1276407988@qq.com
     - 仙士可 1067197739@qq.com
     
-> 以上排名不分先后        
+
+:::danger 
+ 以上排名不分先后        
+:::
 
 ## 其他
 - [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***

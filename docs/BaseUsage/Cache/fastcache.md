@@ -22,7 +22,10 @@ use EasySwoole\FastCache\Cache;
 Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
 ```
 
-> FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发),虚拟机共享目录文件夹是无法创建unix sock监听的
+
+:::danger 
+ FastCache只能在服务启动之后使用,需要有创建unix sock权限(建议使用vm,docker或者linux系统开发),虚拟机共享目录文件夹是无法创建unix sock监听的
+:::
 
 ## 客户端调用
 服务启动后，可以在任意位置调用
@@ -78,7 +81,10 @@ var_dump(Cache::getInstance()->get('get'));
 
 FastCache提供了3个方法,用于数据落地以及重启恢复,在`EasySwooleEvent.php`中的`mainServerCreate`回调事件中设置以下方法:
 
-> 设置回调要在注册cache服务之前，注册服务之后不能更改回调事件。 
+
+:::danger 
+ 设置回调要在注册cache服务之前，注册服务之后不能更改回调事件。 
+:::
 
 ```php
 <?php

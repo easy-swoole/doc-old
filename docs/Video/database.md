@@ -29,7 +29,10 @@ meta:
 ### 连接池的介绍 约10分钟
 1. 介绍为什么需要连接池， 简单阐述 同步阻塞和 非阻塞会产生的问题 以及数据库压力 服务器熔断知识
    
-> 观看地址:[连接池介绍](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFOCVCRiU5RSVFNiU4RSVBNSVFNiVCMSVBMCVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+
+:::danger 
+ 观看地址:[连接池介绍](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFOCVCRiU5RSVFNiU4RSVBNSVFNiVCMSVBMCVFNCVCQiU4QiVFNyVCQiU4RC5tcDQ=)
+:::
 
 
 ### 连接池的配置 及使用 约10分钟
@@ -42,14 +45,20 @@ meta:
 1. 手动封装model 以及强调 mysql连接的问题 
 2. 在controller 使用模型进行操作数据库
    
-> 观看地址:[模型简单封装](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvJTI1RTclMjVBRSUyNTgwJTI1RTUlMjU4RCUyNTk1TW9kZWwlMjVFNSUyNUIwJTI1ODElMjVFOCUyNUEzJTI1ODUubXA0)
+
+:::danger 
+ 观看地址:[模型简单封装](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvJTI1RTclMjVBRSUyNTgwJTI1RTUlMjU4RCUyNTk1TW9kZWwlMjVFNSUyNUIwJTI1ODElMjVFOCUyNUEzJTI1ODUubXA0)
+:::
 
 ### Bean的介绍和使用 约5分钟
 1. 简单介绍 Bean 和数据对象的概念 以及 array的问题
 2. 写一个 Bean的demo 介绍一些常用的方法
 3. 配合model 在controller进行操作 数据库
    
-> 观看地址:[Bean的介绍和使用](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvQmVhbiUyNUU3JTI1OUElMjU4NCUyNUU0JTI1QkIlMjU4QiUyNUU3JTI1QkIlMjU4RCUyNUU1JTI1OTIlMjU4QyUyNUU0JTI1QkQlMjVCRiUyNUU3JTI1OTQlMjVBOC5tcDQ=)
+
+:::danger 
+ 观看地址:[Bean的介绍和使用](https://www.easyswoole.com/playVideo.html?video=aHR0cCUzQS8vdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyUyNUU1JTI1ODUlMjVBNSUyNUU5JTI1OTclMjVBOCUyNUU2JTI1OTUlMjU5OSUyNUU3JTI1QTglMjU4QjEvQmVhbiUyNUU3JTI1OUElMjU4NCUyNUU0JTI1QkIlMjU4QiUyNUU3JTI1QkIlMjU4RCUyNUU1JTI1OTIlMjU4QyUyNUU0JTI1QkQlMjVCRiUyNUU3JTI1OTQlMjVBOC5tcDQ=)
+:::
 
 ### 事务使用和注意点 约10分钟
 1. 再次阐述 事务和mysql 连接的问题

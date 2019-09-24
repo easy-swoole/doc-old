@@ -28,7 +28,10 @@
 
 开发swoole程序与普通LAMP下编程有本质区别。在传统的Web编程中，PHP程序员只需要关注request到达，request结束即可。而在swoole程序中程序员可以操控更大范围，变量/对象可以有四种生存周期。
 
-> 变量、对象、资源、require/include的文件等下面统称为对象
+
+:::danger 
+ 变量、对象、资源、require/include的文件等下面统称为对象
+:::
 
 
 程序全局期
@@ -39,7 +42,10 @@
 
 这部分内存会在写时分离（`COW`），在`Worker`进程内对这些对象进行写操作时，会自动从共享内存中分离，变为**进程全局**对象。
 
-> 程序全局期`include`/`require`的代码，必须在整个程序`shutdown`时才会释放，`reload`无效
+
+:::danger 
+ 程序全局期`include`/`require`的代码，必须在整个程序`shutdown`时才会释放，`reload`无效
+:::
 
 
 进程全局期
@@ -47,7 +53,10 @@
 swoole拥有进程生命周期控制的机制，一个`Worker`子进程处理的请求数超过max_request配置后，就会自动销毁。`Worker`进程启动后创建的对象（onWorkerStart中创建的对象），在这个子进程存活周期之内，是常驻内存的。onConnect/onReceive/onClose 中都可以去访问它。
 
 > 进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前`Worker`进程中有效   
-> 进程期include/require的文件，在`reload`后就会重新加载  
+
+:::danger 
+ 进程期include/require的文件，在`reload`后就会重新加载  
+:::
 
 会话期
 -----

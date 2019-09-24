@@ -9,7 +9,10 @@ meta:
 
 # WebSocket控制器
 
-> 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
+
+:::danger 
+ 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
+:::
 
 EasySwoole 3.x支持以控制器模式来开发你的代码。
 
@@ -34,7 +37,10 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 >
 > 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
 >
-> 需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
+
+:::danger 
+ 需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
+:::
 
 **创建App/WebSocket/WebSocketParser.php文件，写入以下代码**
 
@@ -119,14 +125,20 @@ class WebSocketParser implements ParserInterface
 }
 
 ```
-> *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
+
+:::danger 
+ *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
+:::
 
 ## 注册服务
 
 **新人提示**
 > 如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
 >
-> 这里是指注册你上面实现的解析器。
+
+:::danger 
+ 这里是指注册你上面实现的解析器。
+:::
 
 **在根目录下EasySwooleEvent.php文件mainServerCreate方法下加入以下代码**
 
@@ -155,12 +167,18 @@ public static function mainServerCreate(EventRegister $register): void
 }
 ```
 
-> 在EasySwooleEvent中注册该服务。
+
+:::danger 
+ 在EasySwooleEvent中注册该服务。
+:::
 
 ## 测试前端代码
 
 **友情提示**
-> easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+
+:::danger 
+ easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
+:::
 
 **创建App/HttpController/websocket.html文件，写入以下代码**
 
@@ -225,7 +243,10 @@ public static function mainServerCreate(EventRegister $register): void
 ## 测试用HttpController 视图控制器
 
 **新人提示**
-> 这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
+
+:::danger 
+ 这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
+:::
 
 **创建App/HttpController/WebSocket.php文件，写入以下代码**
 
@@ -256,14 +277,20 @@ class WebSocket extends Controller
     }
 }
 ```
-> 本控制器主要为方便你获得前端页面和从HTTP请求中对websocket 做推送。
+
+:::danger 
+ 本控制器主要为方便你获得前端页面和从HTTP请求中对websocket 做推送。
+:::
 
 ## WebSocket 控制器
 
 **新人提示**
 > WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
 >
-> actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
+
+:::danger 
+ actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
+:::
 
 **创建App/WebSocket/Index.php文件，写入以下内容**
 
@@ -415,7 +442,10 @@ public function encode(Response $response, $client) : ? string
 ```
 
 > 例如{"class":"Index","action":"hello"}  
-> 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+
+:::danger 
+ 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+:::
 
 ::: tip
  **当然这里是举例，你可以根据自己的业务场景进行设计**

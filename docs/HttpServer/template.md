@@ -207,4 +207,7 @@ Laravel框架使用的模板引擎
  
 ThinkPHP框架使用的模板引擎
  
-> composer require topthink/think-template
+
+:::danger 
+ composer require topthink/think-template
+:::

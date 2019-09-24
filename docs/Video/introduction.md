@@ -34,7 +34,10 @@ meta:
 1. 下载composer
 2. 配置国内镜像
       
-> 观看地址:[Composer镜像更换](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NWNvbXBvc2VyJUU1JUI5JUI2JUU5JTg1JThEJUU3JUJEJUFFJUU1JTlCJUJEJUU1JTg2JTg1JUU5JTk1JTlDJUU1JTgzJThGLm1wNA==)
+
+:::danger 
+ 观看地址:[Composer镜像更换](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NWNvbXBvc2VyJUU1JUI5JUI2JUU5JTg1JThEJUU3JUJEJUFFJUU1JTlCJUJEJUU1JTg2JTg1JUU5JTk1JTlDJUU1JTgzJThGLm1wNA==)
+:::
 
 
 ### 第三节 安装EasySwoole3 约 5分钟
@@ -43,7 +46,10 @@ meta:
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
       
-> 观看地址:[EasySwoole安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NUVhc3lTd29vbGUubXA0)
+
+:::danger 
+ 观看地址:[EasySwoole安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NUVhc3lTd29vbGUubXA0)
+:::
 
 
 ### 第四节 安装EasySwoole Mysqli 等扩展包 约2分钟

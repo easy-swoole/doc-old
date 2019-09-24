@@ -71,7 +71,10 @@ class FileHandler extends AbstractSessionController
 
 ```
 
-> 自带的文件session实现是无锁的
+
+:::danger 
+ 自带的文件session实现是无锁的
+:::
 
 ## 支持的方法列表
 

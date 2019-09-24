@@ -25,7 +25,10 @@ meta:
 2. php-fpm工作机制
 3. php-fpm问题
    
-> 观看地址:[php-fpm进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3BocC1mcG0lRTQlQkIlOEIlRTclQkIlOEQubXA0)
+
+:::danger 
+ 观看地址:[php-fpm进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3BocC1mcG0lRTQlQkIlOEIlRTclQkIlOEQubXA0)
+:::
 
 ### php多进程模型介绍(附录)
 
@@ -36,19 +39,28 @@ meta:
 2. swoole工作机制
 3. swoole的进程模型
 
-> 观看地址:[Swoole进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNyU5QSU4NCVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFOCVCRiU5QiVFNyVBOCU4QiVFNiVBOCVBMSVFNSU5RSU4QiU3RTIubXA0)
+
+:::danger 
+ 观看地址:[Swoole进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNyU5QSU4NCVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFOCVCRiU5QiVFNyVBOCU4QiVFNiVBOCVBMSVFNSU5RSU4QiU3RTIubXA0)
+:::
 
 ### Swoole 生命周期
 1. 介绍swoole生命周期
 
-> 观看地址:[Swoole变量生命周期](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNSU4RiU5OCVFOSU4NyU4RiVFNyU5NCU5RiVFNSU5MSVCRCVFNSU5MSVBOCVFNiU5QyU5Ri5tcDQ=)
+
+:::danger 
+ 观看地址:[Swoole变量生命周期](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNSU4RiU5OCVFOSU4NyU4RiVFNyU5NCU5RiVFNSU5MSVCRCVFNSU5MSVBOCVFNiU5QyU5Ri5tcDQ=)
+:::
 
 ### 协程简介
 1. 同步阻塞的问题
 2. 协程原理
 3. swoole协程工作机制
 
-> 观看地址:[协程简介](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+
+:::danger 
+ 观看地址:[协程简介](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
+:::
 
 ### 协程带来的影响
 1. 同步阻塞案例

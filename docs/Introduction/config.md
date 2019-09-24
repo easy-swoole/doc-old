@@ -47,13 +47,19 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
       ];
 ```
 
-> EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive或message),否则将出错
+
+:::danger 
+ EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive或message),否则将出错
+:::
 
 ## 配置操作类
 
 配置操作类为 `EasySwoole\Config` 类，使用非常简单，见下面的代码例子，操作类还提供了 `toArray` 方法获取全部配置，`load` 方法重载全部配置，基于这两个方法，可以自己定制更多的高级操作
 
-> 设置和获取配置项都支持点语法分隔，见下面获取配置的代码例子
+
+:::danger 
+ 设置和获取配置项都支持点语法分隔，见下面获取配置的代码例子
+:::
 
 ```php
 <?php
@@ -76,7 +82,10 @@ $conf['DATABASE'] = [
 ];
 $instance->load($conf);
 ```
-> 需要注意的是 由于进程隔离的原因 在Server启动后，动态新增修改的配置项，只对执行操作的进程生效，如果需要全局共享配置需要自己进行扩展
+
+:::danger 
+ 需要注意的是 由于进程隔离的原因 在Server启动后，动态新增修改的配置项，只对执行操作的进程生效，如果需要全局共享配置需要自己进行扩展
+:::
 
 ## 添加用户配置项
 

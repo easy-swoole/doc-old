@@ -51,7 +51,10 @@ public static function mainServerCreate(EventRegister $register)
 * 定义消息头,通过特定长度的消息头进行获取,例如我们定义一个协议,前面10位字符串都代表着之后数据主体的长度,那么我们传输数据时,只需要000000000512346(前10位为协议头,表示了这条数据的大小,后面的为数据),每次我们读取只先读取10位,获取到消息长度,再读取消息长度那么多的数据,这样就可以保证数据的完整性了.(但是为了不被混淆,协议头也得像EOF一样标识)
 * 通过pack二进制处理,相当于于方法2,将数据通过二进制封装拼接进消息中,通过验证二进制数据去读取信息,sw采用的就是这种方式
 
->可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
+
+:::danger 
+可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
+:::
 
 ## 实现粘包处理  
 ### 服务端:

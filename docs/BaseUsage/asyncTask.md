@@ -32,8 +32,11 @@ EasySwoole定义了一个任务管理器，完整名称空间为：
 TaskManager::getInstance()->async(function (){
     var_dump('r');
 });
-```
-> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+```  
+
+:::danger 
+由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+::: 
 
 ### 投递callable 
 
@@ -86,9 +89,15 @@ TaskManager继承了`EasySwoole\Task\Task`，因此更多用法请见[Task组件
 
 # 异步任务-3.3.0版本以下
 
-> 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 
-> 异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
+:::danger 
+ 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
+:::
+
+
+:::danger 
+ 异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
+:::
 
 在服务启动后的任意一个地方，都可以进行异步任务的投递，为了简化异步任务的投递，框架封装了任务管理器，用于投递同步/异步任务，投递任务有两种方式，一是直接投递闭包，二是投递任务模板类
 
@@ -117,7 +126,10 @@ function index()
     });
 });
 ```
-> 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+
+:::danger 
+ 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+:::
 
 以下的使用方法是错误的:
 ```php
@@ -136,7 +148,10 @@ TaskManager::async(function ($image,$a) {
 
 当任务比较复杂，逻辑较多而且固定时，可以预先创建任务模板，并直接投递任务模板，以简化操作和方便在多个不同的地方投递相同的任务，首先需要创建一个任务模板
 
-> 异步任务模板类：EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
+
+:::danger 
+ 异步任务模板类：EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
+:::
 
 ```php
 class Task extends \EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
@@ -212,7 +227,10 @@ $result = TaskManager::async(\App\Task\QuickTaskTest::class);
 ## 在自定义进程投递异步任务
 
 由于自定义进程的特殊性，不能直接调用Swoole的异步任务相关方法进行异步任务投递，框架已经封装好了相关的方法方便异步任务投递，请看下面的例子  
->自定义进程投递异步任务没有finish回调  
+
+:::danger 
+自定义进程投递异步任务没有finish回调  
+:::
 
 ```php
     public function run(Process $process)
@@ -243,7 +261,10 @@ $results = \EasySwoole\EasySwoole\Swoole\Task\TaskManager::barrier($tasks, 3);
 var_dump($results);
 ```
 
-> 注意：Barrier为阻塞等待执行，所有的任务会被分发到不同Task进程(需要有足够的task进程,否则也会阻塞)同步执行， 直到所有的任务执行结束或超时才返回全部结果，默认的任务超时为0.5秒，以上示例中只有任务2能正常执行并返回结果。
+
+:::danger 
+ 注意：Barrier为阻塞等待执行，所有的任务会被分发到不同Task进程(需要有足够的task进程,否则也会阻塞)同步执行， 直到所有的任务执行结束或超时才返回全部结果，默认的任务超时为0.5秒，以上示例中只有任务2能正常执行并返回结果。
+:::
 
 ## 类函数参考
 

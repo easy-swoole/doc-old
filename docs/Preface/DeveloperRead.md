@@ -39,7 +39,9 @@
 
 开发swoole程序与普通LAMP下编程有本质区别。在传统的Web编程中，PHP程序员只需要关注request到达，request结束即可。而在swoole程序中程序员可以操控更大范围，变量/对象可以有四种生存周期。
 
-    变量、对象、资源、require/include的文件等下面统称为对象
+:::danger  
+变量、对象、资源、require/include的文件等下面统称为对象
+:::
 
 #### 程序全局期
 
@@ -49,14 +51,18 @@
 
 这部分内存会在写时分离（COW），在Worker进程内对这些对象进行写操作时，会自动从共享内存中分离，变为进程全局对象。
 
-    程序全局期include/require的代码，必须在整个程序shutdown时才会释放，reload无效
+:::danger 
+程序全局期include/require的代码，必须在整个程序shutdown时才会释放，reload无效
+:::
 
 #### 进程全局期
 
 swoole拥有进程生命周期控制的机制，一个Worker子进程处理的请求数超过max_request配置后，就会自动销毁。Worker进程启动后创建的对象（onWorkerStart中创建的对象），在这个子进程存活周期之内，是常驻内存的。onConnect/onReceive/onClose 中都可以去访问它。
 
-    进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前Worker进程中有效
-    进程期include/require的文件，在reload后就会重新加载
+:::danger 
+进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前Worker进程中有效
+进程期include/require的文件，在reload后就会重新加载
+:::
 
 #### 会话期
 
@@ -80,7 +86,7 @@ swoole_server启动后内存管理的底层原理与普通php-cli程序一致。
 
 在事件回调函数返回后，所有局部对象和变量会全部回收，不需要unset。如果变量是一个资源类型，那么对应的资源也会被PHP底层释放。
 
-```
+```php
 function test()
 {
     $a = new Object;
@@ -105,7 +111,7 @@ $d 也是局部变量，但是return前将它保存到了全局变量$e，所以
 
 全局变量和对象，类静态变量，保存在swoole_server对象上的变量不会被释放。需要程序员自行处理这些变量和对象的销毁工作。
 
-```
+```php
 class Test
 {
     static $array = array();
@@ -126,7 +132,9 @@ function onReceive($serv, $fd, $reactorId, $data)
 - 同步阻塞并且请求响应式无状态的Server程序可以设置max_request，当Worker进程/Task进程结束运行时或达到任务上限后进程自动退出。该进程的所有变量/对象/资源均会被释放回收。
 - 程序内在onClose或设置定时器及时使用unset清理变量，回收资源
 
+:::danger 
 > 内存管理部分参照了swoole官方文档。
+:::
 
 ## 约定规范
 

@@ -21,5 +21,8 @@ $recvFrame = $client->recv();
 //将返回bool或一个消息帧，可自行判断
 var_dump($recvFrame);
 ````
-> recv只会接收一次服务器的消息，如果需要一直接收，请增加while(1)死循环
+
+:::danger 
+ recv只会接收一次服务器的消息，如果需要一直接收，请增加while(1)死循环
+:::
 

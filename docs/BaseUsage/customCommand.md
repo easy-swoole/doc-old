@@ -71,7 +71,10 @@ class Test implements CommandInterface
  */
 \EasySwoole\EasySwoole\Command\CommandContainer::getInstance()->set(new \App\Command\Test());
 ````
-> bootstrap是3.2.5新增的事件,它允许用户在框架初始化之前执行自定义事件
+
+:::danger 
+ bootstrap是3.2.5新增的事件,它允许用户在框架初始化之前执行自定义事件
+:::
 
 ## 执行命令
 ````

@@ -34,7 +34,10 @@ if(!$this->response()->isEndResponse()){
 ```
 $this->response()->withStatus($statusCode);
 ```
-> 注意：$statusCode必须为标准的HTTP允许状态码，具体请见Http Message中的Status对象。
+
+:::danger 
+ 注意：$statusCode必须为标准的HTTP允许状态码，具体请见Http Message中的Status对象。
+:::
 
 ### withHeader
 用于向HTTP客户端发送一个header。

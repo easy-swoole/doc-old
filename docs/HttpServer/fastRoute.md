@@ -9,7 +9,10 @@ meta:
 
 ##自定义路由
 
-> 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
+
+:::danger 
+ 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
+:::
 
 EasySwoole支持自定义路由,其路由利用[fastRoute](https://github.com/nikic/FastRoute)实现，因此其路由规则与其保持一致，该组件的详细文档请参考 [GitHub文档](https://github.com/nikic/FastRoute/blob/master/README.md) 
 
@@ -56,7 +59,10 @@ class Router extends AbstractRouter
 }
 ```
 访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
-> 如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
+
+:::danger 
+ 如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
+:::
 
 实现代码:
 
@@ -166,7 +172,10 @@ $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
     return 'index';//重定向到index路由
 });
 ```
->该回调函数只针对于fastRoute未匹配状况,如果回调里面不结束该请求响应,则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。  
+
+:::danger 
+该回调函数只针对于fastRoute未匹配状况,如果回调里面不结束该请求响应,则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。  
+:::
 
 
 
@@ -267,4 +276,7 @@ $routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request,
 $routeCollector->addRoute('GET', '/router2/{id:\d+}', '/Index');
 ```
 
-> 更多使用详情请直接查看FastRouter。
+
+:::danger 
+ 更多使用详情请直接查看FastRouter。
+:::

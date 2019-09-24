@@ -201,7 +201,10 @@ Children:None
 NextPoint:None
 ```
 
-> 如果想以自己的格式记录到数据库，可以具体查看Point实现的方法，每个Point都有自己的Id
+
+:::danger 
+ 如果想以自己的格式记录到数据库，可以具体查看Point实现的方法，每个Point都有自己的Id
+:::
 
 ### 基础实例之HTTP API请求追踪
 
@@ -400,7 +403,10 @@ CREATE TABLE `api_tracker_point_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ```
-> 其余请求参数可以自己记录。
+
+:::danger 
+ 其余请求参数可以自己记录。
+:::
 
 核心字段在pointId，parentId与isNext，status 这四个个字段,例如，我想得到哪次调用链超时，那么就是直接
 ```
@@ -410,7 +416,10 @@ where status = fail
 ```
 where spendTime > 3
 ```
-> spendTime 是用startTime和endTime计算
+
+:::danger 
+ spendTime 是用startTime和endTime计算
+:::
 
 
 ## 基础服务器信息
@@ -438,4 +447,7 @@ foreach ($list as $item){
 - swap() 
 - userAccounts()
 
-> 注意，以上方法可能需要root权限，另外对mac不兼容 
+
+:::danger 
+ 注意，以上方法可能需要root权限，另外对mac不兼容 
+:::

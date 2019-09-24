@@ -29,7 +29,10 @@ while(true)
 }
 ```
 
-> https://wiki.swoole.com/wiki/page/p-connection_list.html
+
+:::danger 
+ https://wiki.swoole.com/wiki/page/p-connection_list.html
+:::
 
 ## 如何获取链接信息
 
@@ -38,7 +41,10 @@ use EasySwoole\EasySwoole\ServerManager;
 $server = ServerManager::getInstance()->getSwooleServer();
 $fdinfo = $server->getClientInfo($fd);
 ```
-> https://wiki.swoole.com/wiki/page/p-connection_info.html
+
+:::danger 
+ https://wiki.swoole.com/wiki/page/p-connection_info.html
+:::
 
 ## Socket有哪些开发场景?
 

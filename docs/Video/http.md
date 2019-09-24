@@ -22,7 +22,10 @@ meta:
 2. 使用 FastRoute 并尝试访问
 3. 配置 `强制路由` 、`setMethodNotAllowCallBack` 、`setRouterNotFoundCallBack` 
          
-> [HTTP解析与路由](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVIdHRwJUU4JUE3JUEzJUU2JTlFJTkwJUU1JTkyJThDJUU4JUI3JUFGJUU3JTk0JUIxJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
+
+:::danger 
+ [HTTP解析与路由](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVIdHRwJUU4JUE3JUEzJUU2JTlFJTkwJUU1JTkyJThDJUU4JUI3JUFGJUU3JTk0JUIxJUU3JUFFJTgwJUU0JUJCJThCLm1wNA==)
+:::
 
 
 ### 第二节 控制器特性 以及常用方法 约 10分钟
@@ -30,7 +33,10 @@ meta:
 2. 介绍controller的池特性以及静态变量，变量生命周期等
 3. 介绍一些常用方法 尤其介绍请求数据的获取 如form-data raw header params 等等 以及响应数据的一些基本知识 如json 重定向 等等
          
-> 观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVDb250cm9sbGVyJUU1JUFGJUI5JUU4JUIxJUExJUU3JUFFJTgwJUU0JUJCJThCJUU1JTkyJThDJUU2JUIxJUEwJUU2JUE4JUExJUU1JTlFJThCJUU0JUJCJThCJUU3JUJCJThELm1wNA==)
+
+:::danger 
+ 观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVDb250cm9sbGVyJUU1JUFGJUI5JUU4JUIxJUExJUU3JUFFJTgwJUU0JUJCJThCJUU1JTkyJThDJUU2JUIxJUEwJUU2JUE4JUExJUU1JTlFJThCJUU0JUJCJThCJUU3JUJCJThELm1wNA==)
+:::
 
 
 ### 第三节 异常处理 约3分钟

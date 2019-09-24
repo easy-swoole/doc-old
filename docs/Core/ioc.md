@@ -51,7 +51,10 @@ $di->set('test', [TestClass::class,'testFunction']);
 $di->set('test', TestClass::class, $arg_one, $arg_tow);
 ```
 
-> Di的set方法为懒惰加载模式，若set一个对象名或者闭包，则该对象不会马上被创建。
+
+:::danger 
+ Di的set方法为懒惰加载模式，若set一个对象名或者闭包，则该对象不会马上被创建。
+:::
 
 ### get
 
