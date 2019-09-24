@@ -259,7 +259,3 @@ $data = $db->get('test');
 PoolManager::getInstance()->getPool('mysql')->recycleObj($db);
 ````
 
-::: danger 
- 
-:::
-
