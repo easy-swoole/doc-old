@@ -22,7 +22,7 @@ $recvFrame = $client->recv();
 var_dump($recvFrame);
 ````
 
-::: danger 
+::: warning 
  recv只会接收一次服务器的消息，如果需要一直接收，请增加while(1)死循环
 :::
 

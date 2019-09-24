@@ -14,7 +14,7 @@ EasySwoole 提供了一个Redis Pool组件，等于高度封装了Pool的链接�
 composer require easyswoole/redis-pool
 ```
 
-::: danger 
+::: warning 
  该组件基于[pool管理器](../Components/Component/pool.md)封装
 :::
 
@@ -64,7 +64,7 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
 - compatibility_mode: hmGet/hGetAll/zRange/zRevRange/zRangeByScore/zRevRangeByScore 函数返回结果与php-redis不一致的兼容解决方案，开启之后 Co\Redis 和 php-redis 返回结果一致，默认关闭
 
 
-::: danger 
+::: warning 
  compatibility_mode 配置项在4.4.0或更高版本可用
 :::
 
@@ -97,7 +97,7 @@ $poolConf->setMinObjectNum($configData['minObjectNum']);
 redis默认操作数据库为0,可以通过`select`方法改变数据库,可以通过原生实现redis数据库,在`createObject`的时候调用`select`方法,在本页面下文的`原生实现`标题中有介绍.  
 
 
-::: danger 
+::: warning 
  redis-pool组件已经实现了select,只需要在配置项配置db即可  
 :::
 
@@ -342,7 +342,7 @@ PoolManager::getInstance()->register(RedisPool::class)
 ```
 
 
-::: danger 
+::: warning 
  注册成功的时候，会返回一个PoolConf对象，你可以设置这个pool的最大最小连接数等其他信息
 :::
 
@@ -370,6 +370,6 @@ PoolManager::getInstance()->getPool(RedisPool::class)->recycleObj($redis);
 ```
 
 
-::: danger 
+::: warning 
 其余调用方法请看[pool管理器](../Components/Component/pool.md)章节
 :::

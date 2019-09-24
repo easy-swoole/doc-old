@@ -12,12 +12,12 @@ EasySwoole在基础组件中集合了连接池组件,增加mysql/redis等i/o连�
 
 demo地址: (https://github.com/easy-swoole/demo/tree/3.x-pool)
 
-::: danger 
+::: warning 
 在新版本中,实现了连接池自动回收,自动注册,匿名连接池注册,以及本身的底层异常处理
 :::
 
 
-::: danger 
+::: warning 
  使得用户在使用连接池时,可做到直接使用,无需注册,无需回收(通过defer和invoke实现自动回收),也不会出现问题
 :::
 
@@ -188,7 +188,7 @@ PoolManager::getInstance()->register(MysqlPool::class,Config::getInstance()->get
 //注册之后会返回conf配置,可继续配置,如果返回null代表注册失败
 ```
 
-::: danger 
+::: warning 
  可通过register返回的PoolConf对象去配置其他参数
 :::
 
@@ -200,7 +200,7 @@ $data = $db->get('test');
 PoolManager::getInstance()->getPool(MysqlPool::class)->recycleObj($db);
 ```
 
-::: danger 
+::: warning 
  直接getobj时,可能会出现没有连接(返回null)的情况,需要增加判断，而用户没有注册连接池时,直接getPoo也可直接自动注册并使用连接
 :::
 
@@ -213,7 +213,7 @@ $data = MysqlPool::invoke(function ( MysqlObject $db){
 });
 ````
 
-::: danger 
+::: warning 
  异常拦截,当invoke调用,内部发生(连接不够,连接对象错误)等异常情况时,会抛出PoolEmpty和PoolException,可在控制器基类拦截或直接忽略,EasySwoole内部有做异常拦截处理,将直接拦截并返回错误到前端.
 :::
 
@@ -236,7 +236,7 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-::: danger 
+::: warning 
  当连接池对象被实例化之后,每隔30秒($intervalCheckTime默认值)会将15秒($maxIdleTime默认值)未使用的连接彻底释放,并执行一次keepMin方法重新创建5个($minObjectNum默认值)连接对象.确保连接对象不被超时自动关闭
 :::
 

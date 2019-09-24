@@ -1180,7 +1180,7 @@ abstract class ApiBase extends Controller
 ```
 
 
-::: danger 
+::: warning 
  新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
 :::
 
@@ -1272,12 +1272,12 @@ class Banner extends CommonBase
 ```
 
 
-::: danger 
+::: warning 
 测试链接:127.0.0.1:9501/api/common/banner/getAll 
 :::
 
 
-::: danger 
+::: warning 
  需要有数据才能看到具体输出
 :::
 
@@ -1432,7 +1432,7 @@ class Auth extends AdminBase
 }
 ```
 
-::: danger 
+::: warning 
 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
 :::
 
@@ -1591,12 +1591,12 @@ class User extends AdminBase
 
 
 
-::: danger 
+::: warning 
 后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
 :::
 
 
-::: danger 
+::: warning 
  请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  
 :::
 

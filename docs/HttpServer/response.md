@@ -35,7 +35,7 @@ if(!$this->response()->isEndResponse()){
 $this->response()->withStatus($statusCode);
 ```
 
-::: danger 
+::: warning 
  注意：$statusCode必须为标准的HTTP允许状态码，具体请见Http Message中的Status对象。
 :::
 

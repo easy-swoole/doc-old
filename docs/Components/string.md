@@ -24,7 +24,7 @@ meta:
 function setString( string $string ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -58,7 +58,7 @@ var_dump($string->setString('Hello, EasySwoole')->__toString());
 function split( int $length = 1 ) : SplArray
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -101,7 +101,7 @@ var_dump($string->split(5)->getArrayCopy());
 function explode( string $delimiter ) : SplArray
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -141,7 +141,7 @@ var_dump($string->explode(',')->getArrayCopy());
 function subString( int $start, int $length ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -176,7 +176,7 @@ var_dump($string->subString(0, 5)->__toString());
 function encodingConvert( string $desEncoding, $detectList = ['UTF-8', 'ASCII', 'GBK', 'GB2312', 'LATIN1', 'BIG5', "UCS-2",] ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -211,7 +211,7 @@ function utf8() : SplString
 
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -245,7 +245,7 @@ var_dump($string->utf8()->__toString());
 function unicodeToUtf8() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -278,7 +278,7 @@ var_dump($string->unicodeToUtf8()->__toString());
 function toUnicode() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -314,7 +314,7 @@ var_dump($string->toUnicode()->__toString());
 function compare( string $str, int $ignoreCase = 0 ) : int
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -349,7 +349,7 @@ var_dump($string->compare('apple'));
 function lTrim( string $charList = " \t\n\r\0\x0B" ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -384,7 +384,7 @@ var_dump($string->lTrim()->__toString());
 function rTrim( string $charList = " \t\n\r\0\x0B" ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -419,7 +419,7 @@ var_dump($string->rTrim()->__toString());
 function trim( string $charList = " \t\n\r\0\x0B" ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -462,7 +462,7 @@ $pad_type 类型:
 * STR_PAD_BOTH      左右填充
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -497,7 +497,7 @@ var_dump($string->pad(5, 'game')->__toString());
 function repeat( int $times ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -530,7 +530,7 @@ var_dump($string->repeat(2)->__toString());
 function length() : int
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -563,7 +563,7 @@ var_dump($string->length());
 function upper() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -596,7 +596,7 @@ var_dump($string->upper()->__toString());
 function lower() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -631,7 +631,7 @@ var_dump($string->lower()->__toString());
 function stripTags( string $allowable_tags = null ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -667,7 +667,7 @@ var_dump($string->stripTags()->__toString());
 function replace( string $find, string $replaceTo ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -703,7 +703,7 @@ var_dump($string->replace('t', 's')->__toString());
 function between( string $startStr, string $endStr ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -739,7 +739,7 @@ var_dump($string->between('easy', 'le')->__toString());
 public function regex( $regex, bool $rawReturn = false )
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -774,7 +774,7 @@ var_dump($string->regex('/swoole/'));
 public function exist( string $find, bool $ignoreCase = true ) : bool
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -806,7 +806,7 @@ var_dump($string->exist('Swoole', true));
 function kebab() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -840,7 +840,7 @@ var_dump($string->kebab()->__toString());
 function snake( string $delimiter = '_' ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -872,7 +872,7 @@ var_dump($string->kebab()->__toString());
 function studly() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -904,7 +904,7 @@ var_dump($string->studly()->__toString());
 function camel() : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -939,7 +939,7 @@ var_dump($string->camel()->__toString());
 public function replaceArray( string $search, array $replace ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -974,7 +974,7 @@ var_dump($string->replaceArray('easy', ['as', 'bs', 'cs'])->__toString());
 public function replaceFirst( string $search, string $replace ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1009,7 +1009,7 @@ var_dump($string->replaceFirst('easy', 'as')->__toString());
 public function replaceLast( string $search, string $replace ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1043,7 +1043,7 @@ var_dump($string->replaceLast('easy', 'as')->__toString());
 public function start( string $prefix ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1077,7 +1077,7 @@ var_dump($string->start('Hello,')->__toString());
 function after( string $search ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1111,7 +1111,7 @@ var_dump($string->after('Easy')->__toString());
 function before( string $search ) : SplString
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1145,7 +1145,7 @@ var_dump($string->before('Swoole')->__toString());
 public function endsWith( $needles ) : bool
 
 
-::: danger 
+::: warning 
 例子
 :::
 
@@ -1179,7 +1179,7 @@ var_dump($string->endsWith('Swoole'));
 public function startsWith( $needles ) : bool
 
 
-::: danger 
+::: warning 
 例子
 :::
 

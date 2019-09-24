@@ -29,7 +29,7 @@ meta:
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
 
-::: danger 
+::: warning 
 观看地址:[Swoole4.x安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NXN3b29sZS5tcDQ=)
 :::
 
@@ -39,7 +39,7 @@ meta:
 2. 配置国内镜像
       
 
-::: danger 
+::: warning 
  观看地址:[Composer镜像更换](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NWNvbXBvc2VyJUU1JUI5JUI2JUU5JTg1JThEJUU3JUJEJUFFJUU1JTlCJUJEJUU1JTg2JTg1JUU5JTk1JTlDJUU1JTgzJThGLm1wNA==)
 :::
 
@@ -51,7 +51,7 @@ meta:
 4. 运行EasySwoole 并使用浏览器访问
       
 
-::: danger 
+::: warning 
  观看地址:[EasySwoole安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NUVhc3lTd29vbGUubXA0)
 :::
 
@@ -62,6 +62,6 @@ meta:
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
       
 
-::: danger 
+::: warning 
 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NU15c3FsaSVFNyVBRCU4OSVFNSVCQSU5MyVFNSU5MiU4QyVFNSU5RiVCQSVFNiU5QyVBQyVFNiU5MyU4RCVFNCVCRCU5Qy5tcDQ=)
 :::

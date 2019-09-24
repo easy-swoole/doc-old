@@ -20,7 +20,7 @@ docker pull easyswoole/easyswoole3
 ```
 
 
-::: danger 
+::: warning 
  docker hub上的环境为php7.1.30 + swoole4.4.3
 :::
 

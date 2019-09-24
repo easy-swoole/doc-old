@@ -72,7 +72,7 @@ class FileHandler extends AbstractSessionController
 ```
 
 
-::: danger 
+::: warning 
  自带的文件session实现是无锁的
 :::
 

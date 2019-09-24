@@ -11,7 +11,7 @@ meta:
 框架对原生的毫秒级定时器进行了封装，以便开发者快速调用 Swoole 的原生定时器，定时器类的命名空间为 `EasySwoole\Component\Timer`
 
 
-::: danger 
+::: warning 
  注意： 定时器传入的时间参数单位为毫秒 按秒执行一定不要忘记 乘以 1000，若开启了reload_async配置时，请将定时器移动到自定义进程中，否则会导致worker进程无法reload
 :::
 
@@ -74,7 +74,7 @@ public function after($microSeconds, \Closure $func)
 ## 清除定时器
 
 
-::: danger 
+::: warning 
  注意: 该操作不能用于清除其他进程的定时器，只作用于当前进程
 :::
 
@@ -110,7 +110,7 @@ var_dump($timerId); // int(1)
 ## 应用实例
 
 
-::: danger 
+::: warning 
  注意：定时器不能在服务启动之前使用。在服务启动以后，添加的定时器仅仅在当前进程中有效。在workerStart事件中添加定时器时，请注意判断需要添加定时器的workerId,否在该定时器在每个进程中均会被执行
 :::
 

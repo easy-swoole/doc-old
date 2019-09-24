@@ -56,7 +56,7 @@ $http->start();
 ```
 
 
-::: danger 
+::: warning 
  注意，本例子是用一个自定义进程内加定时器来实现计数定时重置，实际上用一个进程来做这件事情有点不值得，因此实际生产可以指定一个worker,设置定时器来实现
 :::
 
@@ -72,7 +72,7 @@ AtomicLimit::getInstance()->enableProcessAutoRestore(ServerManager::getInstance(
 ```
 
 
-::: danger 
+::: warning 
  以上代码表示，default这个限流器在5秒内允许的最大流量为200，而api则个限流器的最大流量为2
 :::
 

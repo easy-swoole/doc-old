@@ -75,7 +75,7 @@ meta:
 * 为什么我这个有问题?(截图一段"xxxxx"自行判断输出的错误信息不截图代码)
 * 能不能咨询一下(某种语言,某种框架,某种项目 一个大范围的概念)
 
-::: danger 
+::: warning 
 当然,没有人会跟钱过不去,只要给钱,可无视一切
 :::
 
@@ -122,6 +122,6 @@ meta:
 * 这段sql我想实现xxxxx查询,但是非常慢,能优化吗?(附上sql语句,表结构,解释器截图)
 
 
-::: danger 
+::: warning 
 可查看https://github.com/tioncico/How-To-Ask-Questions-The-Smart-Way
 :::

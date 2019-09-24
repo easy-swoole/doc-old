@@ -66,7 +66,7 @@ function a(
 ```
 
 
-::: danger 
+::: warning 
 类名/接口限定都需要考虑命名空间
 :::
 

@@ -189,7 +189,7 @@ Render::getInstance()->render('a.html');
 Smarty是一个使用PHP写出来的模板引擎,是目前业界最著名的PHP模板引擎之一
  
 
-::: danger 
+::: warning 
 composer require smarty/smarty=~3.1
 :::
 
@@ -200,7 +200,7 @@ composer require smarty/smarty=~3.1
 使用原生PHP语法的非编译型模板引擎，更低的学习成本和更高的自由度
  
 
-::: danger 
+::: warning 
 composer require league/plates=3.*
 :::
 
@@ -210,7 +210,7 @@ composer require league/plates=3.*
 Laravel框架使用的模板引擎
  
 
-::: danger 
+::: warning 
 composer require duncan3dc/blade=^4.5
 :::
 
@@ -220,6 +220,6 @@ composer require duncan3dc/blade=^4.5
 ThinkPHP框架使用的模板引擎
  
 
-::: danger 
+::: warning 
  composer require topthink/think-template
 :::

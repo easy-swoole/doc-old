@@ -16,7 +16,7 @@ meta:
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
 
-::: danger 
+::: warning 
  关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程,另外 Composer中国 已经很久没有更新了，请大家使用梯子或者是其他镜像。
 :::
 
@@ -34,7 +34,7 @@ php vendor/bin/easyswoole install
 ```
 
 
-::: danger 
+::: warning 
  如果安装遇到报错，请看下面的报错处理
 :::
 
@@ -67,7 +67,7 @@ php -ini | grep disable_functions
 ```
 
 
-::: danger 
+::: warning 
  如果禁用了该函数，可以直接修改PHP.ini或在集成面板中解除该函数的禁用，删除项目目录下的`vendor`目录，重新执行`composer install`拉取依赖包
 :::
 
@@ -100,7 +100,7 @@ php easyswoole start
 此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示框架已经安装成功
 
 
-::: danger 
+::: warning 
  如果第二步的 install 操作报错 请查看上方的报错处理
 :::
 
@@ -109,7 +109,7 @@ php easyswoole start
 [Easyswoole官方docker](docker.md)
 
 
-::: danger 
+::: warning 
  docker 知识请自行学习
 :::
 
@@ -158,7 +158,7 @@ class Index extends Controller
 ```
 
 
-::: danger 
+::: warning 
  实际上就是注册App的名称空间
 :::
 
@@ -203,12 +203,12 @@ project                   项目部署目录
 ```
 
 
-::: danger 
+::: warning 
  如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
 :::
 
 
-::: danger 
+::: warning 
  注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.php,但依旧建议设置到Public)
 :::
 

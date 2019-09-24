@@ -10,7 +10,7 @@ meta:
 # ServerManager
 
 
-::: danger 
+::: warning 
  服务管理类: EasySwoole\EasySwoole\ServerManager
 :::
 
@@ -43,7 +43,7 @@ public static function mainServerCreate(EventRegister $register)
 }
 ````
 
-::: danger 
+::: warning 
  addServer方法返回的是EventRegister方法注册类,可通过该类去注册/设置服务的事件回调
 :::
 
@@ -87,7 +87,7 @@ class Index extends Controller
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
 
-::: danger 
+::: warning 
  获取到的是swoole的服务,可使用swoole服务所有的方法.
 :::
 

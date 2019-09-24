@@ -31,7 +31,7 @@ $register->set(EventRegister::onMessage, function (\swoole_websocket_server $ser
 });
 ```
 
-::: danger 
+::: warning 
 set方法和add方法是不同的,set将会覆盖之前配置的事件回调,而add是增加一个新的回调
 :::
 
@@ -40,7 +40,7 @@ set方法和add方法是不同的,set将会覆盖之前配置的事件回调,而
  ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
 
-::: danger 
+::: warning 
  Test 是 `EasySwoole\Component\Process\AbstractProcess` 抽象类的子类
 :::
 
@@ -53,6 +53,6 @@ $subPort->on('receive',function (\swoole_server $server, int $fd, int $reactor_i
 ```
 
 
-::: danger 
+::: warning 
 参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)
 :::

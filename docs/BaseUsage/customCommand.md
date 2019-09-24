@@ -10,7 +10,7 @@ php easyswoole reload  热重启(需要守护进程)
 
 ````
 
-::: danger 
+::: warning 
 默认命令详细内容可查看[服务管理](../Introduction/server.md)
 :::
 
@@ -76,7 +76,7 @@ class Test implements CommandInterface
 \EasySwoole\EasySwoole\Command\CommandContainer::getInstance()->set(new \App\Command\Test());
 ````
 
-::: danger 
+::: warning 
  bootstrap是3.2.5新增的事件,它允许用户在框架初始化之前执行自定义事件
 :::
 

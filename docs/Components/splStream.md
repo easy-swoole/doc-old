@@ -142,7 +142,7 @@ function getStreamResource()
 function truncate($size = 0)
 
 
-::: danger 
+::: warning 
  ps: 资源和资源流是有区别的,这里说的资源也就是数据或是变量,资源流是一种文件流。
 :::
 
