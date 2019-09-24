@@ -21,7 +21,11 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 'SERVER_TYPE'    => EASYSWOOLE_WEB_SOCKET_SERVER,
 ```
 并且引入 easyswoole/socket composer 包:
->  *composer require easyswoole/socket*
+
+:::danger 
+*composer require easyswoole/socket*
+:::
+
 *警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
 
 ## 新人帮助
@@ -33,12 +37,21 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 ## 实现命令解析
 
 **新人提示**
-> 这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
->
-> 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
->
 
 :::danger 
+这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
+:::
+
+
+:::danger 
+> 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
+:::
+
+
+:::danger 
+:::danger 
+:::
+
  需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
 :::
 
@@ -133,10 +146,16 @@ class WebSocketParser implements ParserInterface
 ## 注册服务
 
 **新人提示**
-> 如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
->
 
 :::danger 
+如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
+:::
+
+
+:::danger 
+:::danger 
+:::
+
  这里是指注册你上面实现的解析器。
 :::
 
@@ -285,10 +304,16 @@ class WebSocket extends Controller
 ## WebSocket 控制器
 
 **新人提示**
-> WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
->
 
 :::danger 
+WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
+:::
+
+
+:::danger 
+:::danger 
+:::
+
  actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
 :::
 
@@ -345,8 +370,16 @@ class Index extends Controller
 }
 ```
 
-> 该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
-> composer require easyswoole/task
+
+:::danger 
+该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
+:::
+
+
+:::danger 
+composer require easyswoole/task
+:::
+
 ##测试
 
 *如果你按照本文配置，那么你的文件结构应该是以下形式*
@@ -441,7 +474,11 @@ public function encode(Response $response, $client) : ? string
 }
 ```
 
-> 例如{"class":"Index","action":"hello"}  
+
+:::danger 
+例如{"class":"Index","action":"hello"}  
+:::
+
 
 :::danger 
  则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法

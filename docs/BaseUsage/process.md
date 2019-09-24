@@ -75,4 +75,7 @@ $processConfig->setArg([
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Process($processConfig))->getProcess());
 ```
 
-> 注意，一个进程模型可以被注册N次，也就是创建N个相同类型的进程
+
+:::danger 
+注意，一个进程模型可以被注册N次，也就是创建N个相同类型的进程
+:::

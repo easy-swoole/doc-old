@@ -133,7 +133,11 @@ function onReceive($serv, $fd, $reactorId, $data)
 - 程序内在onClose或设置定时器及时使用unset清理变量，回收资源
 
 :::danger 
-> 内存管理部分参照了swoole官方文档。
+
+:::danger 
+内存管理部分参照了swoole官方文档。
+:::
+
 :::
 
 ## 约定规范

@@ -82,7 +82,11 @@ class Index extends Controller
     }
 }
 ```
-> 返回的字符串将会被`url解析规则`以及`route路由`规则解析,但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
+
+:::danger 
+返回的字符串将会被`url解析规则`以及`route路由`规则解析,但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
+:::
+
     
  
 
@@ -246,5 +250,9 @@ function index()
     $this->writeJson(200, [], 'success');
 }
 ```
-> 更多validate 相关可查看[验证器](../Components/validate.md)
+
+:::danger 
+更多validate 相关可查看[验证器](../Components/validate.md)
+:::
+
  

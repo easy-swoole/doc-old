@@ -121,4 +121,7 @@ meta:
 * 我发现这段代码执行特别慢,有什么错误吗?(附上代码截图)
 * 这段sql我想实现xxxxx查询,但是非常慢,能优化吗?(附上sql语句,表结构,解释器截图)
 
->可查看https://github.com/tioncico/How-To-Ask-Questions-The-Smart-Way
+
+:::danger 
+可查看https://github.com/tioncico/How-To-Ask-Questions-The-Smart-Way
+:::

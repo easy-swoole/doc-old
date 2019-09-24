@@ -1271,7 +1271,11 @@ class Banner extends CommonBase
 }
 ```
 
-> 测试链接:127.0.0.1:9501/api/common/banner/getAll 
+
+:::danger 
+测试链接:127.0.0.1:9501/api/common/banner/getAll 
+:::
+
 
 :::danger 
  需要有数据才能看到具体输出
@@ -1427,7 +1431,11 @@ class Auth extends AdminBase
     }
 }
 ```
-> 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
+
+:::danger 
+请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
+:::
+
 ```
 {
     "code": 200,
@@ -1582,7 +1590,11 @@ class User extends AdminBase
 ```
 
 
-> 后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
+
+:::danger 
+后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
+:::
+
 
 :::danger 
  请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  

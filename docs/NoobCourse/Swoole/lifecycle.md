@@ -52,7 +52,11 @@
 -----
 swoole拥有进程生命周期控制的机制，一个`Worker`子进程处理的请求数超过max_request配置后，就会自动销毁。`Worker`进程启动后创建的对象（onWorkerStart中创建的对象），在这个子进程存活周期之内，是常驻内存的。onConnect/onReceive/onClose 中都可以去访问它。
 
-> 进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前`Worker`进程中有效   
+
+:::danger 
+进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前`Worker`进程中有效   
+:::
+
 
 :::danger 
  进程期include/require的文件，在`reload`后就会重新加载  

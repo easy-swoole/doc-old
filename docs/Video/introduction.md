@@ -28,7 +28,11 @@ meta:
 4. 编译安装swoole 并且启用 openssl socket 以及指定php config路径
 5. 添加swoole.so到php.ini 并 使用php --ri swoole 检查
    
-> 观看地址:[Swoole4.x安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NXN3b29sZS5tcDQ=)
+
+:::danger 
+观看地址:[Swoole4.x安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NXN3b29sZS5tcDQ=)
+:::
+
    
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
@@ -57,4 +61,7 @@ meta:
 2. 使用 编辑 composer.json + update 安装Utility
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
       
-> 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NU15c3FsaSVFNyVBRCU4OSVFNSVCQSU5MyVFNSU5MiU4QyVFNSU5RiVCQSVFNiU5QyVBQyVFNiU5MyU4RCVFNCVCRCU5Qy5tcDQ=)
+
+:::danger 
+观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NU15c3FsaSVFNyVBRCU4OSVFNSVCQSU5MyVFNSU5MiU4QyVFNSU5RiVCQSVFNiU5QyVBQyVFNiU5MyU4RCVFNCVCRCU5Qy5tcDQ=)
+:::

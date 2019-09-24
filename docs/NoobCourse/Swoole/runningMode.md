@@ -66,10 +66,18 @@ $server->start();
 ##### 仅仅如此吗？
 事实上Swoole 在启动的时候做了非常多的事情:  
 
->Swoole 运行流程图：
+
+:::danger 
+Swoole 运行流程图：
+:::
+
 ![Swoole运行流程图](https://wiki.swoole.com/static/uploads/swoole.jpg)  
 
->Swoole 进程关系图：
+
+:::danger 
+Swoole 进程关系图：
+:::
+
 ![Swoole进程关系图](https://wiki.swoole.com/static/uploads/wiki/201808/03/635680420659.png)
 
 上图中我们可以了解，Swoole 会创建一个 `Manager` 进程专门 管理 `Work` 和 `Task` 进程。 而 `Work` 进程则直接通过 `Unix Socket` 和 `Master` 进程通讯。

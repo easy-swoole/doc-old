@@ -145,7 +145,11 @@ function decode($str)
 ## tcp控制器实现
 
 引入 easyswoole/socket composer 包:
->  *composer require easyswoole/socket*
+
+:::danger 
+*composer require easyswoole/socket*
+:::
+
 *警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
 
 
@@ -415,6 +419,13 @@ class Index extends Controller
 }
 ```
 
-> 实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
+
+:::danger 
+实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
+:::
+
 比如定时器往某个连接推送的时候，就是以userName去redis中取得对应的fd，再send。注意，通过addServer形式创建的子服务器，
->以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
+
+:::danger 
+以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
+:::

@@ -9,7 +9,11 @@ php easyswoole stop   停止(需要守护进程)
 php easyswoole reload  热重启(需要守护进程)
 
 ````
-> 默认命令详细内容可查看[服务管理](../Introduction/server.md)
+
+:::danger 
+默认命令详细内容可查看[服务管理](../Introduction/server.md)
+:::
+
 ## 定义命令
 通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:  
 

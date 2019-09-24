@@ -17,7 +17,11 @@ server {
     }
 }
 ```
-> 代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
+
+:::danger 
+代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
+:::
+
 ## Apache
 ```
 <IfModule mod_rewrite.c>

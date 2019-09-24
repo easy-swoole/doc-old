@@ -32,7 +32,11 @@ meta:
 
 ### php多进程模型介绍(附录)
 
-> 观看地址:[php多进程模型介绍(WorkMan作者公开的pdf)](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/php%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B.pdf)
+
+:::danger 
+观看地址:[php多进程模型介绍(WorkMan作者公开的pdf)](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/php%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B.pdf)
+:::
+
   
 ### Swoole 进程模型
 1. 介绍swoole
@@ -66,4 +70,7 @@ meta:
 1. 同步阻塞案例
 2. 协程案例
    
-> 观看地址:[协程带来的影响](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNSVCOCVBNiVFNiU5RCVBNSVFNyU5QSU4NCVFNSVCRCVCMSVFNSU5MyU4RC5tcDQ=)
+
+:::danger 
+观看地址:[协程带来的影响](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNSVCOCVBNiVFNiU5RCVBNSVFNyU5QSU4NCVFNSVCRCVCMSVFNSU5MyU4RC5tcDQ=)
+:::

@@ -246,7 +246,11 @@ $routeCollector->addRoute('GET', '/users/{name}', 'handler');
 
 $routeCollector->addRoute('GET', '/users/to[/{name}]', 'handler');
 ```
-> 绑定的参数将由框架内部进行组装到get数据之中,调用方法:
+
+:::danger 
+绑定的参数将由框架内部进行组装到get数据之中,调用方法:
+:::
+
 ````php
 <?php
 $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {

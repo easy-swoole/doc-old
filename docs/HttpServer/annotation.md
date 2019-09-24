@@ -54,4 +54,7 @@ class Test extends \EasySwoole\Http\AbstractInterface\AnnotationController
 }
 ```
 
-> Param注解支持的校验方法与Easyswoole自带的参数校验器一致，注解格式请见 [annotation](./../Components/annotation.md)
+
+:::danger 
+Param注解支持的校验方法与Easyswoole自带的参数校验器一致，注解格式请见 [annotation](./../Components/annotation.md)
+:::
