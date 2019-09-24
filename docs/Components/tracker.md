@@ -202,7 +202,7 @@ NextPoint:None
 ```
 
 
-:::danger 
+::: danger 
  如果想以自己的格式记录到数据库，可以具体查看Point实现的方法，每个Point都有自己的Id
 :::
 
@@ -404,7 +404,7 @@ CREATE TABLE `api_tracker_point_list` (
 
 ```
 
-:::danger 
+::: danger 
  其余请求参数可以自己记录。
 :::
 
@@ -417,7 +417,7 @@ where status = fail
 where spendTime > 3
 ```
 
-:::danger 
+::: danger 
  spendTime 是用startTime和endTime计算
 :::
 
@@ -448,6 +448,6 @@ foreach ($list as $item){
 - userAccounts()
 
 
-:::danger 
+::: danger 
  注意，以上方法可能需要root权限，另外对mac不兼容 
 :::

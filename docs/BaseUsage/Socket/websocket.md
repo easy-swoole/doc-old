@@ -10,7 +10,7 @@ meta:
 # WebSocket控制器
 
 
-:::danger 
+::: danger 
  参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
 :::
 
@@ -22,7 +22,7 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 ```
 并且引入 easyswoole/socket composer 包:
 
-:::danger 
+::: danger 
 *composer require easyswoole/socket*
 :::
 
@@ -38,18 +38,18 @@ EasySwoole 3.x支持以控制器模式来开发你的代码。
 
 **新人提示**
 
-:::danger 
+::: danger 
 这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
 :::
 
 
-:::danger 
+::: danger 
 > 在easyswoole中，可以让WebSocket像传统框架那样按照控制器->方法这样去解析请求;
 :::
 
 
-:::danger 
-:::danger 
+::: danger 
+::: danger 
 :::
 
  需要实现EasySwoole\Socket\AbstractInterface\ParserInterface;接口中的decode 和encode方法;
@@ -139,7 +139,7 @@ class WebSocketParser implements ParserInterface
 
 ```
 
-:::danger 
+::: danger 
  *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
 :::
 
@@ -147,13 +147,13 @@ class WebSocketParser implements ParserInterface
 
 **新人提示**
 
-:::danger 
+::: danger 
 如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
 :::
 
 
-:::danger 
-:::danger 
+::: danger 
+::: danger 
 :::
 
  这里是指注册你上面实现的解析器。
@@ -187,7 +187,7 @@ public static function mainServerCreate(EventRegister $register): void
 ```
 
 
-:::danger 
+::: danger 
  在EasySwooleEvent中注册该服务。
 :::
 
@@ -195,7 +195,7 @@ public static function mainServerCreate(EventRegister $register): void
 
 **友情提示**
 
-:::danger 
+::: danger 
  easyswoole 提供了更强大的WebSocket调试工具，[foo]: https://www.easyswoole.com/wstool.html  'WEBSOCKET CLIENT'；
 :::
 
@@ -263,7 +263,7 @@ public static function mainServerCreate(EventRegister $register): void
 
 **新人提示**
 
-:::danger 
+::: danger 
  这里仅提供了前端基本的示例代码，更多需求根据自己业务逻辑设计
 :::
 
@@ -297,7 +297,7 @@ class WebSocket extends Controller
 }
 ```
 
-:::danger 
+::: danger 
  本控制器主要为方便你获得前端页面和从HTTP请求中对websocket 做推送。
 :::
 
@@ -305,13 +305,13 @@ class WebSocket extends Controller
 
 **新人提示**
 
-:::danger 
+::: danger 
 WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
 :::
 
 
-:::danger 
-:::danger 
+::: danger 
+::: danger 
 :::
 
  actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
@@ -371,12 +371,12 @@ class Index extends Controller
 ```
 
 
-:::danger 
+::: danger 
 该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
 :::
 
 
-:::danger 
+::: danger 
 composer require easyswoole/task
 :::
 
@@ -475,12 +475,12 @@ public function encode(Response $response, $client) : ? string
 ```
 
 
-:::danger 
+::: danger 
 例如{"class":"Index","action":"hello"}  
 :::
 
 
-:::danger 
+::: danger 
  则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
 :::
 

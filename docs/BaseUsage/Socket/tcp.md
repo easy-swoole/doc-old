@@ -52,7 +52,7 @@ public static function mainServerCreate(EventRegister $register)
 * 通过pack二进制处理,相当于于方法2,将数据通过二进制封装拼接进消息中,通过验证二进制数据去读取信息,sw采用的就是这种方式
 
 
-:::danger 
+::: danger 
 可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
 :::
 
@@ -146,7 +146,7 @@ function decode($str)
 
 引入 easyswoole/socket composer 包:
 
-:::danger 
+::: danger 
 *composer require easyswoole/socket*
 :::
 
@@ -420,12 +420,12 @@ class Index extends Controller
 ```
 
 
-:::danger 
+::: danger 
 实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
 :::
 
 比如定时器往某个连接推送的时候，就是以userName去redis中取得对应的fd，再send。注意，通过addServer形式创建的子服务器，
 
-:::danger 
+::: danger 
 以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
 :::

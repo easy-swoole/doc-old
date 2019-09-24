@@ -84,7 +84,7 @@ public static function initialize()
     直到最大深度;
 
 
-:::danger 
+::: danger 
  注意，EasySwoole的URL路径区分大小写,控制器首字母支持小写转换
 :::
 

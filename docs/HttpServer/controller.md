@@ -23,7 +23,7 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
  * 由于是二次请求,对象池直接获取到第一次的对象,不需要new,直接调用`index`方法进行处理
  
 
-:::danger 
+::: danger 
  对象池模式实现了不同请求复用同一个对象,降低了创建/销毁对象的开销,只有第一次请求创建对象才会调用构造函数,在第二次请求获取对象时将不会再次调用,对象池模式不会重置静态属性和private私有属性,这2种属性将会复用,对象池模式是针对单一进程的,多个work进程的对象池不共享.  
 :::
 
@@ -42,7 +42,7 @@ http的控制器对象都采用了对象池模式进行获取创建对象.
  `action`是控制器最终执行的方法,根据路由的匹配不同,从而执行不同的控制器方法,例如默认执行的`index`方法,例如访问`ip/Index/test`最终解析的`test`方法,都可以称作`action`执行方法.   
 
 
-:::danger 
+::: danger 
  action方法可以返回一个字符串,从而让框架再次进行控制器方法调度,例如:    
 :::
 
@@ -83,7 +83,7 @@ class Index extends Controller
 }
 ```
 
-:::danger 
+::: danger 
 返回的字符串将会被`url解析规则`以及`route路由`规则解析,但是需要注意,千万不能A方法返回B方法,B方法再返回A方法的字符串,否则会出现无限死循环调用
 :::
 
@@ -129,7 +129,7 @@ index是一个抽象方法,代表着继承控制器对象的都需要实现该�
 * actionNotFound  
 当请求方法未找到时,自动调用该方法,可自行覆盖该方法实现自己的逻辑   
 
-:::danger 
+::: danger 
  该方法可以理解成 `默认方法`,类似于`index`方法,所以调用完之后也会触发`afterAction`,`gc`等方法
 :::
 
@@ -145,7 +145,7 @@ function onException(\Throwable $throwable): void
 }
 ```
 
-:::danger 
+::: danger 
  更多控制器异常相关可查看[错误与异常拦截](exception.md)
 :::
 
@@ -182,7 +182,7 @@ function index()
 }
 ```
 
-:::danger 
+::: danger 
  更多request相关可查看[request对象](request.md)
 :::
 
@@ -198,7 +198,7 @@ function index()
 }
 ```
 
-:::danger 
+::: danger 
  更多response相关可查看[response对象](response.md)
 :::
 
@@ -251,7 +251,7 @@ function index()
 }
 ```
 
-:::danger 
+::: danger 
 更多validate 相关可查看[验证器](../Components/validate.md)
 :::
 

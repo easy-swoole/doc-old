@@ -76,6 +76,6 @@ ServerManager::getInstance()->getSwooleServer()->addProcess((new Process($proces
 ```
 
 
-:::danger 
+::: danger 
 注意，一个进程模型可以被注册N次，也就是创建N个相同类型的进程
 :::

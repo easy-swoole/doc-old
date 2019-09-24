@@ -12,7 +12,7 @@ meta:
 
 EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个validate方法，如果希望用其他的方法或者是工具去做检验，可以在子类控制器中重写该方法，从而实现用其他工具进行校验
 
-:::danger 
+::: danger 
  验证器类: EasySwoole\Validate\Validate
 :::
 
@@ -72,7 +72,7 @@ class BaseController extends Controller
 ```
 
 
-:::danger 
+::: danger 
  我们定义了一个带有validateRule方法的基础控制器。
 :::
 
@@ -108,7 +108,7 @@ class Common extends BaseController
 ```
 
 
-:::danger 
+::: danger 
  在需要验证的控制器方法中，我们给对应的action添加对应的校验规则，即可实现自动校验，这样控制器方法即可安心实现逻辑。
 :::
 

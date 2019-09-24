@@ -51,6 +51,6 @@ if (strlen($data) != $len[1]) {
 fclose($fp);
 ````
 
-:::danger 
+::: danger 
  其他语言只需要实现tcp协议即可
 :::

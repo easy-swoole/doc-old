@@ -138,6 +138,6 @@ class RedisManager implements NodeManagerInterface
 
 ```
 
-:::danger 
+::: danger 
  注意，设置自定义节点管理器后，就不再需要启用UDP定时广播进程了。请在创建RPC实例后，自己创建一个ServiceNode对象，刷新到注册中心。节点下线也是同理，在你服务关闭的时候，向节点管理器下线该节点。
 :::

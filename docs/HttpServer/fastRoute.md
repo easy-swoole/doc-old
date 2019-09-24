@@ -10,7 +10,7 @@ meta:
 ##自定义路由
 
 
-:::danger 
+::: danger 
  参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 :::
 
@@ -60,7 +60,7 @@ class Router extends AbstractRouter
 ```
 访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
 
-:::danger 
+::: danger 
  如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
 :::
 
@@ -173,7 +173,7 @@ $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
 });
 ```
 
-:::danger 
+::: danger 
 该回调函数只针对于fastRoute未匹配状况,如果回调里面不结束该请求响应,则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。  
 :::
 
@@ -247,7 +247,7 @@ $routeCollector->addRoute('GET', '/users/{name}', 'handler');
 $routeCollector->addRoute('GET', '/users/to[/{name}]', 'handler');
 ```
 
-:::danger 
+::: danger 
 绑定的参数将由框架内部进行组装到get数据之中,调用方法:
 :::
 
@@ -281,6 +281,6 @@ $routeCollector->addRoute('GET', '/router2/{id:\d+}', '/Index');
 ```
 
 
-:::danger 
+::: danger 
  更多使用详情请直接查看FastRouter。
 :::

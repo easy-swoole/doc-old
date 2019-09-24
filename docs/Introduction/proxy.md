@@ -18,7 +18,7 @@ server {
 }
 ```
 
-:::danger 
+::: danger 
 代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
 :::
 

@@ -72,7 +72,7 @@ $result = \EasySwoole\Mysqli\DDLBuilder\DDLBuilder::table('user_list', function 
   $blueprint->colMediumBlob('test');
 ````
 
-:::danger 
+::: danger 
  跟mysql的字段规则设置基本类似,第一个参数为字段名,第二个为长度(有些类型没有长度),第三个为小数长度
 :::
 

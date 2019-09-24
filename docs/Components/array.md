@@ -24,7 +24,7 @@ meta:
 function get($path)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -72,7 +72,7 @@ var_dump($splArray->get('fruit.apple'));
 function set($path, $value)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -120,7 +120,7 @@ var_dump($splArray->get('fruit.apple'));
 function __toString()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -165,7 +165,7 @@ var_dump($splArray->__toString());
 function getArrayCopy()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -232,7 +232,7 @@ var_dump($splArray->__toString());
 function unset($path)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -302,7 +302,7 @@ public function delete($key)
 ps: unset和delete方法其实是实现统一效果，因考虑旧版本用户使用情况，故而保留。
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -367,7 +367,7 @@ var_dump($splArray->__toString());
 public function unique()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -416,7 +416,7 @@ var_dump($splArray->unique()->getArrayCopy());
 public function multiple()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -459,7 +459,7 @@ var_dump($splArray->unique()->getArrayCopy());
 public function asort()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -510,7 +510,7 @@ var_dump($splArray->asort()->getArrayCopy());
 public function ksort()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -570,7 +570,7 @@ public function sort($sort_flags = SORT_REGULAR)
 * SORT_FLAG_CASE - 能够与 SORT_STRING 或 SORT_NATURAL 合并（OR 位运算），不区分大小写排序字符串。
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -624,7 +624,7 @@ var_dump($splArray->ksort()->getArrayCopy());
 public function column($column, $index_key = null)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -672,7 +672,7 @@ var_dump($splArray->column('apple')->getArrayCopy());
 public function flip()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -724,7 +724,7 @@ var_dump($splArray->flip()->getArrayCopy());
 public function filter($keys, $exclude = false)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -771,7 +771,7 @@ var_dump($splArray->filter('apple,orange')->getArrayCopy());
 public function keys($path = null)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -823,7 +823,7 @@ var_dump($splArray->keys('fruit'));
 public function values()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -887,7 +887,7 @@ var_dump($splArray->values()->getArrayCopy());
 public function flush()
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -935,7 +935,7 @@ var_dump($splArray->flush()->getArrayCopy());
 public function loadArray(array $data)
 
 
-:::danger 
+::: danger 
 例子
 :::
 
@@ -1004,7 +1004,7 @@ var_dump($splArray->loadArray($data)->getArrayCopy());
 public function toXML($CD_DATA = false,$rootName = 'xml',$encoding = 'UTF-8')
 
 
-:::danger 
+::: danger 
 例子
 :::
 

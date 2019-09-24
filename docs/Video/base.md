@@ -26,14 +26,14 @@ meta:
 3. php-fpm问题
    
 
-:::danger 
+::: danger 
  观看地址:[php-fpm进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3BocC1mcG0lRTQlQkIlOEIlRTclQkIlOEQubXA0)
 :::
 
 ### php多进程模型介绍(附录)
 
 
-:::danger 
+::: danger 
 观看地址:[php多进程模型介绍(WorkMan作者公开的pdf)](https://easyswoole.oss-cn-shenzhen.aliyuncs.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/php%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B.pdf)
 :::
 
@@ -44,7 +44,7 @@ meta:
 3. swoole的进程模型
 
 
-:::danger 
+::: danger 
  观看地址:[Swoole进程模型](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNyU5QSU4NCVFNyVBRSU4MCVFNCVCQiU4QiVFNSU5MiU4QyVFOCVCRiU5QiVFNyVBOCU4QiVFNiVBOCVBMSVFNSU5RSU4QiU3RTIubXA0)
 :::
 
@@ -52,7 +52,7 @@ meta:
 1. 介绍swoole生命周期
 
 
-:::danger 
+::: danger 
  观看地址:[Swoole变量生命周期](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL3N3b29sZSVFNSU4RiU5OCVFOSU4NyU4RiVFNyU5NCU5RiVFNSU5MSVCRCVFNSU5MSVBOCVFNiU5QyU5Ri5tcDQ=)
 :::
 
@@ -62,7 +62,7 @@ meta:
 3. swoole协程工作机制
 
 
-:::danger 
+::: danger 
  观看地址:[协程简介](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNyVBRSU4MCVFNCVCQiU4Qi5tcDQ=)
 :::
 
@@ -71,6 +71,6 @@ meta:
 2. 协程案例
    
 
-:::danger 
+::: danger 
 观看地址:[协程带来的影响](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSU4RCU4RiVFNyVBOCU4QiVFNSVCOCVBNiVFNiU5RCVBNSVFNyU5QSU4NCVFNSVCRCVCMSVFNSU5MyU4RC5tcDQ=)
 :::

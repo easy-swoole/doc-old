@@ -153,7 +153,7 @@ final public function jsonSerialize():array
 protected function initialize()
 
 
-:::danger 
+::: danger 
  此方法会在对象创建时被调用
 :::
 

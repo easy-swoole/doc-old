@@ -40,7 +40,7 @@ EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特
 - IOC、协程上下文管理器
 
 
-:::danger 
+::: danger 
  以上组件为常用组件，更多组件请看组件库文档
 :::
 
@@ -89,7 +89,7 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     - 仙士可 1067197739@qq.com
     
 
-:::danger 
+::: danger 
  以上排名不分先后        
 :::
 

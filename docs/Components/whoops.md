@@ -14,7 +14,7 @@ Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业�
 ![](/resources/easyWhoops.png)
 
 
-:::danger 
+::: danger 
  切勿用于生产阶段，否则造成代码泄露EasySwoole不负任何责任！！！
 :::
 

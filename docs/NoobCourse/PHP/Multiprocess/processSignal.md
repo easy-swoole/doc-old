@@ -54,7 +54,7 @@
  
  
 
-:::danger 
+::: danger 
 详细内容可查看:http://www.php20.cn/article/134
 :::
 

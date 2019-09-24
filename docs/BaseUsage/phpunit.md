@@ -22,7 +22,7 @@ composer require easyswoole/phpunit
 ```
 
 
-:::danger 
+::: danger 
  tests为你写的测试文件的目录，可以自定义
 :::
 
@@ -50,6 +50,6 @@ php easyswoole phpunit tests
 
 
 
-:::danger 
+::: danger 
  tests为你写的测试文件的目录，可以自定义
 :::
