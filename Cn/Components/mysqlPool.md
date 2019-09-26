@@ -13,6 +13,8 @@ EasySwoole 提供了一个Mysql Pool组件，等于高度封装了Pool的链接�
 composer require easyswoole/mysqli-pool
 ```
 > 该组件基于[pool管理器](../Components/Component/pool.md)封装
+> 以上命令会默认安装最新版本2.x分支，此分支将为ORM组件做兼容支持，与以下文档不一致、或出现在安装mysqli组件后再安装mysqli-pool组件时产生错误
+> 请初次安装此组件的用户指定1.2.x分支，出现安装mysqli-pool安装错误的用户先卸载mysqli组件，再安装mysqli-pool，将会自动安装依赖版本的mysqli组件
 
 ## 添加配置
 ```
