@@ -9,7 +9,8 @@ meta:
 
 ## udp应用
 
-### udp服务器开启,在EasySwooleEvent.php中进行创建服务
+### udp服务器开启,在EasySwooleEvent.php中进行创建子服务
+
 ```php
 
 public static function mainServerCreate(EventRegister $register)
