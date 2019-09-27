@@ -199,21 +199,21 @@ $goodsBean->getName() === '测试商品';
 ### setClassMapping
 
 设置classMapping关系，也就是关联类
-
+```php
 protected function setClassMapping()
-
+```
 ### restore
 
 重新初始化bean数据
 
 * array     $data                   数据
 * mixed     $autoCreateProperty     是否过滤非类成员变量成员数据
-
+```php
 public function restore(array $data = [], $autoCreateProperty = false)
-
+```
 ### classMap
 
 绑定关联类
-
+```php
 private function classMap()
-
+```

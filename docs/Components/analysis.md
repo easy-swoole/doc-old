@@ -13,7 +13,7 @@ meta:
 应该叫ActorManager更确切点，它用来注册Actor、启动Proxy和ActorWorker进程。
 当你在业务逻辑里定义了几种Actor，比如RoomActor、PlayerActor，我们需要在SwooleServer启动时注册它们。
 具体就是在EasySwooleEvent.mainServerCreate方法中添加如下代码。
-```
+```php
 $actor = Actor::getInstance();
 $actor->register(RoomActor::class);
 $actor->register(PlayerActor::class);
@@ -32,7 +32,7 @@ Proxy进程做消息中转，Worker进程做消息分发推送。来看个具体
 
 游戏中玩家P请求进入房间R，抽象成Actor模型就是PlayerActor需要往RoomActor发送请求加入的命令。
 那么这时候需要这样写：
-```
+```php
 RoomActor::client($node)->send($roomActorId, [
 	'user_actor_id' => $userActorId,
 	'data'	=> '其他进入房间的参数'
@@ -59,7 +59,7 @@ send时会创建一个协程TcpClient，将消息发送给Proxy，然后Proxy将
 
 ### AbstractActor
 Actor实例的基类，所有业务中用到的Actor都将继承于AbstractActor。例如游戏场景中的房间，你可以：
-```
+```php
 class RoomActor extends AbstractActor
 ```
 #### 工作原理

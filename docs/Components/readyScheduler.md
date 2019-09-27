@@ -41,7 +41,7 @@ class ReadySchedulerTest extends TestCase
 
 ## EasySwoole服务中使用
 以Http服务作为基础例子
-```
+```php
 namespace EasySwoole\EasySwoole;
 
 use EasySwoole\Component\ReadyScheduler;

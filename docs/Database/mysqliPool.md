@@ -20,7 +20,7 @@ composer require easyswoole/mysqli-pool
 :::
 
 ## 添加配置
-```
+```php
 'MYSQL'         => [
     'host'                 => '',
     'port'                 => 3306,
@@ -35,7 +35,7 @@ composer require easyswoole/mysqli-pool
 
 ## 主进程注册
 一般滴，我们在EasySwoole的全局initialize 事件中，进行注册
-```
+```php
 use EasySwoole\EasySwoole\Config as GConfig;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Mysqli\Config;
@@ -50,7 +50,7 @@ $poolConf = Mysql::getInstance()->register('mysql',$config);
 ```
 
 ## 服务启动后任意位置使用
-```
+```php
  /** @var \EasySwoole\MysqliPool\Connection $db */
     $db = \EasySwoole\MysqliPool\Mysql::getInstance()->pool('mysql')::defer();
     var_dump($db->rawQuery('select version()'));
@@ -82,7 +82,7 @@ EasySwoole\MysqliPool\Connection 实际上是Mysqli的子类，具体可以看 [
 
 ### 定义一个Pool对象
 
-```
+```php
 namespace App\Utility\Pool;
 
 
@@ -105,7 +105,7 @@ class MysqlPool extends AbstractPool
 
 ### 定义一个PoolObject对象
 
-```
+```php
 namespace App\Utility\Pool;
 
 
@@ -136,7 +136,7 @@ class MysqlConnection extends Mysqli implements PoolObjectInterface
 ### Pool注册
 
 我们在EasySwoole全局的mainServerCreate事件中进行注册
-```
+```php
 use use App\Utility\Pool\MysqlPool;
 PoolManager::getInstance()->register(MysqlPool::class)
 ```
@@ -148,19 +148,19 @@ PoolManager::getInstance()->register(MysqlPool::class)
 
 ### Pool 调用
 方法一
-```
+```php
 $db = MysqlPool::defer();
 $db->rawQuery('select version()');
 ```
 方法二
 
-```
+```php
 $data = MysqlPool::invoker(function (MysqlConnection $db){
     return $db->rawQuery('select version()');
 });
 ```
 方法三
-```
+```php
 $db = PoolManager::getInstance()->getPool(MysqlPool::class)->getObj();
 $data = $db->get('test');
 //使用完毕需要回收

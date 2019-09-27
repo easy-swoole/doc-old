@@ -22,8 +22,9 @@ meta:
 * mixed     $file       文件
 * mixed     $mode       读写操作类型
 
+```php
 function __construct($file,$mode = 'c+')
-
+```
 ### lock
 
 文件锁定
@@ -35,13 +36,14 @@ function __construct($file,$mode = 'c+')
 * LOCK_SH  取得共享锁定（读取的程序）
 * LOCK_EX  取得独占锁定（写入的程序）
 * LOCK_UN  释放锁定（无论共享或独占）
-
+```php
 function lock($mode = LOCK_EX)
-
+```
 ### unlock
 
 释放锁定
 
 * mixed     $mode       锁定类型
-
+```php
 function unlock($mode = LOCK_UN)
+```

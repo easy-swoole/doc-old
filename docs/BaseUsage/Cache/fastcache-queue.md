@@ -38,7 +38,7 @@ public function setQueueMaxReleaseTimes(int $queueMaxReleaseTimes): void
 # 开始使用
 
 下文示例代码的Job和Cache都使用以下命名空间
-```
+```php
 use EasySwoole\FastCache\Cache;
 use EasySwoole\FastCache\Job;
 ```
