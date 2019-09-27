@@ -20,9 +20,9 @@ meta:
 设置字符串。
 
 * string     $string     数据项索引
-
+```php
 function setString( string $string ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -54,9 +54,9 @@ var_dump($string->setString('Hello, EasySwoole')->__toString());
 设置数组中某项的值。
 
 * int     $length     每一段的长度
-
+```php
 function split( int $length = 1 ) : SplArray
-
+```
 
 ::: warning 
 例子
@@ -97,9 +97,9 @@ var_dump($string->split(5)->getArrayCopy());
 分割字符串
 
 * string     $delimiter     分隔符
-
+```php
 function explode( string $delimiter ) : SplArray
-
+```
 
 ::: warning 
 例子
@@ -137,9 +137,9 @@ var_dump($string->explode(',')->getArrayCopy());
 
 * int     $start     开始位置
 * int     $length    截取长度
-
+```php
 function subString( int $start, int $length ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -172,9 +172,9 @@ var_dump($string->subString(0, 5)->__toString());
 
 * string     $desEncoding     要转换的编码格式
 * mixed      $detectList      字符编码列表
-
+```php
 function encodingConvert( string $desEncoding, $detectList = ['UTF-8', 'ASCII', 'GBK', 'GB2312', 'LATIN1', 'BIG5', "UCS-2",] ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -206,9 +206,9 @@ var_dump($string->encodingConvert('UTF-8')->__toString());
 ### utf8
 
 转成utf-8
-
+```php
 function utf8() : SplString
-
+```
 
 
 ::: warning 
@@ -241,9 +241,9 @@ var_dump($string->utf8()->__toString());
 ### unicodeToUtf8
 
 将unicode编码转成utf-8
-
+```php
 function unicodeToUtf8() : SplString
-
+```
 
 ::: warning 
 例子
@@ -274,9 +274,9 @@ var_dump($string->unicodeToUtf8()->__toString());
 ### toUnicode
 
 转成unicode编码
-
+```php
 function toUnicode() : SplString
-
+```
 
 ::: warning 
 例子
@@ -310,9 +310,9 @@ var_dump($string->toUnicode()->__toString());
 
 * string     $str           要比较的字符串
 * int        $ignoreCase    是否需要胡略大小写
-
+```php
 function compare( string $str, int $ignoreCase = 0 ) : int
-
+```
 
 ::: warning 
 例子
@@ -345,9 +345,9 @@ var_dump($string->compare('apple'));
 删除字符串开头的空白字符（或其他字符）
 
 * string     $charList           删除的字符
-
+```php
 function lTrim( string $charList = " \t\n\r\0\x0B" ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -380,9 +380,9 @@ var_dump($string->lTrim()->__toString());
 删除字符串末端的空白字符（或者其他字符）
 
 * string     $charList           删除的字符
-
+```php
 function rTrim( string $charList = " \t\n\r\0\x0B" ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -415,9 +415,9 @@ var_dump($string->rTrim()->__toString());
 去除字符串首尾处的空白字符（或者其他字符）
 
 * string     $charList           删除的字符
-
+```php
 function trim( string $charList = " \t\n\r\0\x0B" ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -452,9 +452,9 @@ var_dump($string->trim()->__toString());
 * int     $length           值为负数，小于或者等于输入字符串的长度，不会发生任何填充
 * string  $padString        填充字符串
 * int  $pad_type            填充类型
-
+```php
 function pad( int $length, string $padString = null, int $pad_type = STR_PAD_RIGHT ) : SplString
-
+```
 $pad_type 类型:
 
 * STR_PAD_RIGHT     右边填充
@@ -493,9 +493,9 @@ var_dump($string->pad(5, 'game')->__toString());
 重复一个字符串
 
 * int    $times     重复次数
-
+```php
 function repeat( int $times ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -526,9 +526,9 @@ var_dump($string->repeat(2)->__toString());
 ### length
 
 获取字符串长度
-
+```php
 function length() : int
-
+```
 
 ::: warning 
 例子
@@ -559,9 +559,9 @@ var_dump($string->length());
 ### upper
 
 将字符串转化为大写
-
+```php
 function upper() : SplString
-
+```
 
 ::: warning 
 例子
@@ -592,9 +592,9 @@ var_dump($string->upper()->__toString());
 ### lower
 
 将字符串转化为小写
-
+```php
 function lower() : SplString
-
+```
 
 ::: warning 
 例子
@@ -627,9 +627,9 @@ var_dump($string->lower()->__toString());
 从字符串中去除 HTML 和 PHP 标记
 
 * string    $allowable_tags     指定不被去除的字符列表
-
+```php
 function stripTags( string $allowable_tags = null ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -663,9 +663,9 @@ var_dump($string->stripTags()->__toString());
 
 * string    $find           查找的目标值
 * string    $replaceTo      替换值
-
+```php
 function replace( string $find, string $replaceTo ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -699,9 +699,9 @@ var_dump($string->replace('t', 's')->__toString());
 
 * string    $startStr       指定目标的开头字符串
 * string    $endStr         指定目标的结尾字符串
-
+```php
 function between( string $startStr, string $endStr ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -735,9 +735,9 @@ var_dump($string->between('easy', 'le')->__toString());
 
 * mixed    $regex           正则规则
 * bool     $rawReturn       是否返回最初字符串
-
+```php
 public function regex( $regex, bool $rawReturn = false )
-
+```
 
 ::: warning 
 例子
@@ -770,9 +770,9 @@ var_dump($string->regex('/swoole/'));
 
 * string    $find           查找字符串
 * bool      $ignoreCase     忽略大小写
-
+```php
 public function exist( string $find, bool $ignoreCase = true ) : bool
-
+```
 
 ::: warning 
 例子
@@ -802,9 +802,9 @@ var_dump($string->exist('Swoole', true));
 ### kebab
 
 转换为烤串
-
+```php
 function kebab() : SplString
-
+```
 
 ::: warning 
 例子
@@ -836,9 +836,9 @@ var_dump($string->kebab()->__toString());
 转为蛇的样子
 
 * string    $delimiter           分隔符
-
+```php
 function snake( string $delimiter = '_' ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -868,9 +868,9 @@ var_dump($string->kebab()->__toString());
 ### studly
 
 驼峰
-
+```php
 function studly() : SplString
-
+```
 
 ::: warning 
 例子
@@ -900,9 +900,9 @@ var_dump($string->studly()->__toString());
 ### camel
 
 驼峰
-
+```php
 function camel() : SplString
-
+```
 
 ::: warning 
 例子
@@ -935,9 +935,9 @@ var_dump($string->camel()->__toString());
 
 * string    $search           查找字符串
 * array     $replace          替换目标
-
+```php
 public function replaceArray( string $search, array $replace ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -970,9 +970,9 @@ var_dump($string->replaceArray('easy', ['as', 'bs', 'cs'])->__toString());
 
 * string    $search          查找字符串
 * string    $replace         替换字符串
-
+```php
 public function replaceFirst( string $search, string $replace ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -1005,9 +1005,9 @@ var_dump($string->replaceFirst('easy', 'as')->__toString());
 
 * string    $search          查找字符串
 * string    $replace         替换字符串
-
+```php
 public function replaceLast( string $search, string $replace ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -1039,9 +1039,9 @@ var_dump($string->replaceLast('easy', 'as')->__toString());
 以一个给定值的单一实例开始一个字符串
 
 * string    $prefix          开头字符串
-
+```php
 public function start( string $prefix ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -1073,9 +1073,9 @@ var_dump($string->start('Hello,')->__toString());
 在给定的值之后返回字符串的其余部分
 
 * string    $search       查找字符串  
-
+```php
 function after( string $search ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -1107,9 +1107,9 @@ var_dump($string->after('Easy')->__toString());
 在给定的值之前获取字符串的一部分
 
 * string    $search       查找字符串  
-
+```php
 function before( string $search ) : SplString
-
+```
 
 ::: warning 
 例子
@@ -1141,9 +1141,9 @@ var_dump($string->before('Swoole')->__toString());
 确定给定的字符串是否以给定的子字符串结束
 
 * string    $needles        查找字符串  
-
+```php
 public function endsWith( $needles ) : bool
-
+```
 
 ::: warning 
 例子
@@ -1175,9 +1175,9 @@ var_dump($string->endsWith('Swoole'));
 确定给定的字符串是否从给定的子字符串开始
 
 * string    $needles        查找字符串  
-
+```php
 public function startsWith( $needles ) : bool
-
+```
 
 ::: warning 
 例子

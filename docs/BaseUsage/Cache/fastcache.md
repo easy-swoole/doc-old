@@ -17,7 +17,7 @@ composer require easyswoole/fast-cache
 ## 服务注册
 
 我们在EasySwoole全局的事件中进行注册
-```
+```php
 use EasySwoole\FastCache\Cache;
 Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
 ```
@@ -29,7 +29,7 @@ Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerMana
 
 ## 客户端调用
 服务启动后，可以在任意位置调用
-```
+```php
 use EasySwoole\FastCache\Cache;
 Cache::getInstance()->set('get','a');
 var_dump(Cache::getInstance()->get('get'));

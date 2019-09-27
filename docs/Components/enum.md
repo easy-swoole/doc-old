@@ -57,45 +57,46 @@ echo $month->getName();
 构造函数
 
 * mixed     $val     查找的值
-
+```php
 final public function __construct($val)
-
+```
 ### getName
 
 获取定义常量的键
-
+```php
 final public function getName():string
-
+```
 ### getValue
 
 获取定义常量
-
+```php
 final public function getValue()
-
+```
 ### isValidName
 
 查找常量的键值是否有效
 
 * string     $name     查找常量的键值
-
+```php
 final public static function isValidName(string $name):bool
-
+```
 ### isValidValue
 
 查找常量的值是否有效
 
 * mixed     $val     查找常量的值
-
+```php
 final public static function isValidValue($val)
-
+```
 ### getEnumList
 
 获取枚举集合
-
+```php
 final public static function getEnumList():array
-
+```
 ### getConstants
 
 获取枚举集合
-
+```php
 private final static function getConstants():array
+```

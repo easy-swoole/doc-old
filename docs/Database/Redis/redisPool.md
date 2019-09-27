@@ -36,7 +36,7 @@ composer require easyswoole/redis-pool
 
 ## 主进程注册
 一般滴，我们在EasySwoole的全局initialize 事件中，进行注册
-```
+```php
 use EasySwoole\EasySwoole\Config as GConfig;
 use EasySwoole\RedisPool\Config;
 use EasySwoole\RedisPool\Redis;
@@ -267,7 +267,7 @@ EasySwoole\RedisPool\Connection 实际上是 Swoole\Coroutine\Redis 的子类,�
 ## 原生实现
 
 ### 定义一个Pool对象
-```
+```php
 namespace App\Utility\Pool;
 
 use EasySwoole\Component\Pool\AbstractPool;
@@ -306,7 +306,7 @@ class RedisPool extends AbstractPool
 ```
 
 ### 定义一个PoolObject对象
-```
+```php
 namespace App\Utility\Pool;
 
 
@@ -336,7 +336,7 @@ class RedisObject extends Redis implements PoolObjectInterface
 
 ### Pool注册
 我们在EasySwoole全局的mainServerCreate事件中进行注册
-```
+```php
 use use App\Utility\Pool\RedisPool;
 PoolManager::getInstance()->register(RedisPool::class)
 ```
@@ -348,21 +348,21 @@ PoolManager::getInstance()->register(RedisPool::class)
 
 ### Pool 调用
 方法一
-```
+```php
 /** @var Redis $redis */
 $redis = RedisPool::defer();
 $redis->set('test','test');
 ```
 方法二
 
-```
+```php
 $data = RedisPool::invoke(function (Redis $redis){
     $redis->set('test','test');
     return $redis->get('test');
 });
 ```
 方法三
-```
+```php
 $redis = PoolManager::getInstance()->getPool(RedisPool::class)->getObj();
 $data = $redis->get('test');
 //使用完毕需要回收

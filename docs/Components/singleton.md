@@ -39,5 +39,6 @@ $mySingleton = Mysingleton::getInstance();
 
 * mixed     $args     参数
 
+```php
 static function getInstance(...$args)
-    
+```    

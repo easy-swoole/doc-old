@@ -27,7 +27,7 @@ composer require easyswoole/sync-invoker
 
 定义一个驱动工作实例（可以定义多个）
 
-```
+```php
 namespace App;
 use EasySwoole\SyncInvoker\AbstractInvoker;
 use EasySwoole\SyncInvoker\SyncInvoker;
@@ -73,7 +73,7 @@ EasySwoole 全局事件中的mainServerCreate 进行注册
 ```
 
 服务启动后，即可在任意位置调用
-```
+```php
 $ret = MyInvoker::getInstance()->client()->test(1,2);
 var_dump($ret);
 var_dump(MyInvoker::getInstance()->client()->a());

@@ -16,7 +16,7 @@ Easyswoole 提供了一个基于tcp的基础远程控制台，方便用户做开
 composer require easyswoole/console
 ```
 ## Server
-```
+```php
 use EasySwoole\Console\Console;
 use EasySwoole\Console\ModuleInterface;
 $http = new swoole_http_server("127.0.0.1", 9501);

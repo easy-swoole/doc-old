@@ -326,6 +326,37 @@ const sidebarCn = [
         ]
     },
     {
+        title: '微信支付宝SDK',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            {
+                title: '微信SDK',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path:'/Sdk/wechat',
+                children: [
+                    ['/Sdk/openPlatform', '公众号'],
+                    ['/Sdk/miniProgram', '小程序'],
+                    ['/Sdk/wxPay', '微信支付'],
+                ]
+            },
+            {
+                title: '支付宝SDK',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path:'/Sdk/pay',
+                // children: [
+                //     ['/Distribute/server', '服务端'],
+                //     ['/Distribute/client', '客户端'],
+                //     ['/Distribute/otherPlatform', '跨语言'],
+                //     ['/Distribute/registerCenter', '服务注册中心'],
+                // ]
+            },
+
+        ]
+    },
+    {
         title: '微服务与分布式',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1

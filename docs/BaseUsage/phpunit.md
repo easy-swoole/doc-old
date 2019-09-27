@@ -27,7 +27,7 @@ composer require easyswoole/phpunit
 :::
 
 ## 预处理
-```
+```php
 /*
  * 允许自动的执行一些初始化操作，只初始化一次
  */
