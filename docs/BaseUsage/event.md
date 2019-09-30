@@ -4,12 +4,6 @@ easyswoole中,通过Container容器可实现自定义事件功能
 ## 新增`App/Event/Event.php`文件
 ```php
 <?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/9/4 0004
- * Time: 15:27
- */
 namespace App\Event;
 
 use EasySwoole\Component\Container;
