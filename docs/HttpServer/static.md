@@ -37,7 +37,7 @@ server {
 }
 ```
 ## Swoole静态文件处理器
-```
+```php
 $server->set([
     'document_root' => '/data/webroot/example.com', // v4.4.0以下版本, 此处必须为绝对路径
     'enable_static_handler' => true,

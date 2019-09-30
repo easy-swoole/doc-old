@@ -29,7 +29,18 @@ const sidebarCn = [
             ['/Preface/ContactAuthor', '联系作者'],
         ]
     },
-
+    {
+        title: '视频教程',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/Video/introduction', '入门教程'],
+            ['/Video/base', '基础部分'],
+            ['/Video/http', 'HTTP部分'],
+            ['/Video/database', '数据库部分'],
+            ['/Video/other', '其他额外部分'],
+        ]
+    },
     // {
     //     title: 'PHP新手理论基础知识',
     //     collapsable: true, // 可选的, 默认值是 true,
@@ -122,7 +133,7 @@ const sidebarCn = [
     //     ]
     // },
     {
-        title: '基础入门',
+        title: '快速开始',
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
@@ -144,18 +155,6 @@ const sidebarCn = [
             },
             ['/Introduction/example', '基础开发示例'],
             ['/Introduction/demo', 'Demo'],
-        ]
-    },
-    {
-        title: '视频教程',
-        collapsable: true,
-        sidebarDepth: 0,
-        children: [
-            ['/Video/introduction', '入门教程'],
-            ['/Video/base', '基础部分'],
-            ['/Video/http', 'HTTP部分'],
-            ['/Video/database', '数据库部分'],
-            ['/Video/other', '其他额外部分'],
         ]
     },
     {

@@ -10,7 +10,7 @@ Easyswoole 提供轻量级的注解控制器支持。注解控制器在未添加
 
 ## 例子如下
 
-```
+```php
 use EasySwoole\Http\Annotation\Method;
 
 class Test extends \EasySwoole\Http\AbstractInterface\AnnotationController

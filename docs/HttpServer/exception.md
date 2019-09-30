@@ -18,15 +18,7 @@ protected function hookThrowable(\Throwable $throwable,Request $request,Response
 可直接在控制器重写onException方法:
 ```php
 <?php
-/**
- * Created by PhpStorm.
- * User: yf
- * Date: 2018/8/4
- * Time: 下午1:21
- */
-
 namespace App\HttpController;
-
 
 use App\ViewController;
 use EasySwoole\Http\AbstractInterface\Controller;

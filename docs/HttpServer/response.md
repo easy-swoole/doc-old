@@ -29,9 +29,12 @@ if(!$this->response()->isEndResponse()){
 }
 ```
 ## PSR-7规范Response对象中常用方法
+
 ### withStatus
+
 向客户端发送HTTP状态码。
-```
+
+```php
 $this->response()->withStatus($statusCode);
 ```
 
@@ -41,6 +44,6 @@ $this->response()->withStatus($statusCode);
 
 ### withHeader
 用于向HTTP客户端发送一个header。
-```
+```php
 $this->response()->withHeader('Content-type','application/json;charset=utf-8');
 ```

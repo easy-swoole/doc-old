@@ -7,7 +7,7 @@ meta:
     content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
 ---
 
-##自定义路由
+## 自定义路由
 
 
 ::: warning 
@@ -37,25 +37,24 @@ use EasySwoole\Http\Response;
 
 class Router extends AbstractRouter
 {
-  function initialize(RouteCollector $routeCollector)
-      {
-  // TODO: Implement initialize() method.
-          $routeCollector->get('/user', '/index.html');
-          $routeCollector->get('/rpc', '/Rpc/index');
-  
-          $routeCollector->get('/', function (Request $request, Response $response) {
-              $response->write('this router index');
-          });
-          $routeCollector->get('/test', function (Request $request, Response $response) {
-              $response->write('this router test');
-              return '/a';//重新定位到/a方法
-          });
-          $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
-              $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//获取到路由匹配的id
-              return false;//不再往下请求,结束此次响应
-          });
-  
-      }
+    function initialize(RouteCollector $routeCollector)
+    {
+        $routeCollector->get('/user', '/index.html');
+        $routeCollector->get('/rpc', '/Rpc/index');
+
+        $routeCollector->get('/', function (Request $request, Response $response) {
+            $response->write('this router index');
+        });
+        $routeCollector->get('/test', function (Request $request, Response $response) {
+            $response->write('this router test');
+            return '/a';//重新定位到/a方法
+        });
+        $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
+            $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//获取到路由匹配的id
+            return false;//不再往下请求,结束此次响应
+        });
+
+    }
 }
 ```
 访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
@@ -64,93 +63,8 @@ class Router extends AbstractRouter
  如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
 :::
 
-实现代码:
+> 实现原理可在源码中查看
 
-````php
-<?php
-/*
-* 进行一次初始化判定
-*/
-if($this->router === null){
-    $class = $this->controllerNameSpacePrefix.'\\Router';
-    try{
-        if(class_exists($class)){//如果存在router类
-            $ref = new \ReflectionClass($class);
-            if($ref->isSubclassOf(AbstractRouter::class)){
-                $this->routerRegister =  $ref->newInstance();
-                $this->router = new GroupCountBased($this->routerRegister->getRouteCollector()->getData());//将router类的配置数据经过fastroute处理后取出
-            }else{
-                $this->router = false;
-                throw new RouterError("class : {$class} not AbstractRouter class");
-            }
-        }else{
-            $this->router = false;
-        }
-    }catch (\Throwable $throwable){
-        $this->router = false;
-        throw new RouterError($throwable->getMessage());
-    }
-}
-$path = UrlParser::pathInfo($request->getUri()->getPath());
-if($this->router instanceof GroupCountBased){
-    $handler = null;
-    $routeInfo = $this->router->dispatch($request->getMethod(),$path);
-    if($routeInfo !== false){
-        switch ($routeInfo[0]) {//未找到路由匹配
-            case \FastRoute\Dispatcher::NOT_FOUND:{
-                $handler = $this->routerRegister->getRouterNotFoundCallBack();
-                break;
-            }
-            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:{//未找到处理方法
-                $handler = $this->routerRegister->getMethodNotAllowCallBack();
-                break;
-            }
-            case \FastRoute\Dispatcher::FOUND:{
-                $handler = $routeInfo[1];
-                //合并解析出来的数据
-                $vars = $routeInfo[2];
-                $data = $request->getQueryParams();
-                $request->withQueryParams($vars+$data);//将数据插入到get数据中
-                break;
-            }
-            default:{
-                $handler = $this->routerRegister->getRouterNotFoundCallBack();
-                break;
-            }
-        }
-    }
-    //如果handler不为null，那么说明，非为 \FastRoute\Dispatcher::FOUND ，因此执行
-    if(is_callable($handler)){
-        try{
-            //若直接返回一个url path
-            $ret = call_user_func($handler,$request,$response);
-            if(is_string($ret)){
-                $path = UrlParser::pathInfo($ret);
-            }else if($ret == false){
-                return;
-            }else{
-                //可能在回调中重写了URL PATH
-                $path = UrlParser::pathInfo($request->getUri()->getPath());
-            }
-            $request->getUri()->withPath($path);
-        }catch (\Throwable $throwable){
-            $this->hookThrowable($throwable,$request,$response);
-            //出现异常的时候，不在往下dispatch
-            return;
-        }
-    }else if(is_string($handler)){
-        $path = UrlParser::pathInfo($handler);
-        $request->getUri()->withPath($path);
-        goto response;
-    }
-    /*
-        * 全局模式的时候，都拦截。非全局模式，否则继续往下
-    */
-    if($this->routerRegister->isGlobalMode()){
-        return;
-    }
-}
-````
 
 ### 全局模式拦截
 在Router.php加入以下代码,即可开启全局模式拦截
@@ -186,7 +100,7 @@ addRoute方法
 
 定义路由的`addRoute`方法原型如下，该方法需要三个参数，下面围绕这三个参数我们对路由组件进行更深一步的了解
 
-```
+```php
 $routeCollector->addRoute($httpMethod, $routePattern, $handler)
 ```
 
@@ -214,7 +128,7 @@ $routeCollector->addRoute(['GET', 'POST'], '/router', '/Index');
 
 下面的定义将会匹配 `http://localhost:9501/users/info`
 
-```
+```php
 $routeCollector->addRoute('GET', '/users/info', 'handler');
 ```
 
@@ -276,7 +190,7 @@ $routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request,
 
 也可以直接传入控制器路径
 
-```
+```php
 $routeCollector->addRoute('GET', '/router2/{id:\d+}', '/Index');
 ```
 

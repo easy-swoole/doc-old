@@ -11,7 +11,7 @@ meta:
 # 进程
 
 ## 用途
-处理耗时任务，比如处理死循环队列消费，清除多余redis中的token数据等等。
+处理耗时任务，比如循环处理队列消息，清除多余redis中的token数据等等。
 
 ## 例子
 
@@ -46,7 +46,6 @@ class Process extends AbstractProcess
          */
     }
     
-    
     protected function onException(\Throwable $throwable, ...$args)
     {
         /*
@@ -60,10 +59,12 @@ class Process extends AbstractProcess
 
 ### 注册进程
 
-我们在EasySwoole全局的mainServerCreate事件中进行进程注册
+我们在EasySwoole全局的 `mainServerCreate` 事件中进行进程注册
 ```php
 use App\Process;
 use EasySwoole\Component\Process\Config;
+
+
 $processConfig = new Config();
 $processConfig->setProcessName('testProcess');
 /*

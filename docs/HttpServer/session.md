@@ -10,14 +10,14 @@ meta:
 Easyswoole 自3.2.x开始，不再提供默认的session服务，若需要使用的用户，请独立引入session组件。
 
 ## 安装
-```
+```php
 composer require easyswoole/session
 ```
 
 ## 使用
 
 定义一个基础session控制器，并继承AbstractSessionController父类即可，其余的控制器，只需要继承基础session控制器，即可实现session调用
-```
+```php
 use EasySwoole\Session\FileSessionHandler;
 use EasySwoole\Session\Test\RedisHandler;
 use EasySwoole\Session\AbstractSessionController;

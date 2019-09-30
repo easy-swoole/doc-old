@@ -76,7 +76,7 @@ class BaseController extends Controller
  我们定义了一个带有validateRule方法的基础控制器。
 :::
 
-```
+```php
 namespace App\HttpController;
 
 

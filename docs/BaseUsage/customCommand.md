@@ -1,13 +1,11 @@
 # 自定义命令
 EasySwoole 有着默认的5个命令:  
 ````
-
 php easyswoole help  命令帮助
 php easyswoole install 安装(需要在./vendor/easyswoole/easyswoole/bin/easyswoole 文件中调用)
 php easyswoole start  启动
 php easyswoole stop   停止(需要守护进程)
 php easyswoole reload  热重启(需要守护进程)
-
 ````
 
 ::: warning 
@@ -15,6 +13,7 @@ php easyswoole reload  热重启(需要守护进程)
 :::
 
 ## 定义命令
+
 通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:  
 
 ````php
@@ -22,17 +21,12 @@ php easyswoole reload  热重启(需要守护进程)
 public function commandName():string;
 public function exec(array $args):?string ;
 public function help(array $args):?string ;
-
 ````
+
 新建文件 App/Command/Test.php:
+
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/7/8 0008
- * Time: 13:43
- */
 namespace App\Command;
 
 use EasySwoole\EasySwoole\Command\CommandInterface;
@@ -64,15 +58,16 @@ class Test implements CommandInterface
 ````
 
 ## 注入命令
+
+::: tip
+查看 [boostrap事件](../Core/event/bootstrap)
+:::
+
 新增`/bootstrap.php`文件:
+
 ````php
 <?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/7/8 0008
- * Time: 13:48
- */
+
 \EasySwoole\EasySwoole\Command\CommandContainer::getInstance()->set(new \App\Command\Test());
 ````
 
