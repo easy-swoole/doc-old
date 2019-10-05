@@ -32,42 +32,90 @@ var_dump(Cache::getInstance()->get('get'));
 
 ## 支持方法列表
 - public function setTempDir(string $tempDir): Cache
+    
     > 设置临时目录
     
 - public function setProcessNum(int $num): Cache
+    
     > 设置缓存进程数
     
 - public function setServerName(string $serverName): Cache
+    
     > 设置缓存进程所在服务名
     
 - public function setOnTick($onTick): Cache
+    
     > 设置定时回调，可用于数据定时落地
     
 - public function setTickInterval($tickInterval): Cache
+    
     > 设置定时回调间隔
     
 - public function setOnStart($onStart): Cache
+    
     > 设置进程启动回调，可以用于数据落地恢复
     
 - public function setOnShutdown(callable $onShutdown): Cache
+    
     > 设置进程关闭回调，可以用于数据落地
     
 - public function set($key, $value, ?int $ttl = null, float $timeout = 1.0)
+
 - public function get($key, float $timeout = 1.0)
+
 - public function unset($key, float $timeout = 1.0)
+
 - public function keys($key = null, float $timeout = 1.0): ?array
+
 - public function flush(float $timeout = 1.0)
+
 - public function enQueue($key, $value, $timeout = 1.0)
+
 - public function deQueue($key, $timeout = 1.0)
+
 - public function queueSize($key, $timeout = 1.0)
+
 - public function unsetQueue($key, $timeout = 1.0)
+
 - public function queueList($timeout = 1.0): ?array
+
 - public function flushQueue(float $timeout = 1.0): bool
+
 - public function expire($key, int $ttl, $timeout = 1.0)
+
 - public function persist($key, $timeout = 1.0)
+    
     > 移除一个key的过期时间
-        
+    
 - public function ttl($key, $timeout = 1.0)
+
+- function hSet($key, $field, $value, float $timeout = 1.0)
+
+- function hGet($key, $field = null, float $timeout = 1.0)
+
+- function hDel($key, $field = null, float $timeout = 1.0)
+
+- function hFlush(float $timeout = 1.0)
+
+- function hKeys($key, float $timeout = 1.0)
+
+- function hScan($key, $cursor = 0, $limit = 10, float $timeout = 1.0)
+
+- function hSetnx($key, $field, $value, float $timeout = 1.0)
+
+- function hExists($key, $field, float $timeout = 1.0)
+
+- function hLen($key, float $timeout = 1.0)
+
+- function hIncrby($key, $field, $value, float $timeout = 1.0)
+
+- function hMset($key, $fieldValues, float $timeout = 1.0)
+
+- function hMget($key, $fields, float $timeout = 1.0)
+
+- function hVals($key, float $timeout = 1.0)
+
+- function hGetAll($key, float $timeout = 1.0)
 
 
 
