@@ -49,7 +49,7 @@ FROM php:7.2
 
 # Version
 ENV PHPREDIS_VERSION 4.0.1
-ENV SWOOLE_VERSION 4.4.0
+ENV SWOOLE_VERSION 4.4.4
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 # Timezone
@@ -68,7 +68,7 @@ RUN apt-get update \
     libnghttp2-dev \
     libpcre3-dev \
     && apt-get clean \
-    && apt-get autoremove
+    && apt-get autoremove -y
 
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php \

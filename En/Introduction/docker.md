@@ -18,10 +18,10 @@ You can see the easyswoole welcome page.
 You can also use Docker file for automatic build.
 ```dockerfile
 
-FROM centos:latest
+FROM centos:centos7
 
 #version defined
-ENV SWOOLE_VERSION 4.4.3
+ENV SWOOLE_VERSION 4.4.4
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 #update core
