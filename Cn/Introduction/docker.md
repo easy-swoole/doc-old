@@ -29,10 +29,10 @@ docker run -ti -p 9501:9501 easyswoole/easyswoole3
 您也可以使用Docker file进行自动构建。
 ```dockerfile
 
-FROM centos:latest
+FROM centos:centos7
 
 #version defined
-ENV SWOOLE_VERSION 4.4.3
+ENV SWOOLE_VERSION 4.4.4
 ENV EASYSWOOLE_VERSION 3.x-dev
 
 #update core
