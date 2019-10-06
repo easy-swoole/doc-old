@@ -25,42 +25,90 @@ var_dump(Cache::getInstance()->get('get'));
 
 ## List of supporting methods
 - public function setTempDir(string $tempDir): Cache
+    
     > Setting Temporary Directory
     
 - public function setProcessNum(int $num): Cache
+    
     > Setting the number of cached processes
     
 - public function setServerName(string $serverName): Cache
+    
     > Set the name of the service where the cache process is located
     
 - public function setOnTick($onTick): Cache
+    
     > Setting a timing callback can be used for data timing landing
     
 - public function setTickInterval($tickInterval): Cache
+    
     > Set the timing callback interval
     
 - public function setOnStart($onStart): Cache
+    
     > Setting up the process start callback can be used for data landing recovery
     
 - public function setOnShutdown(callable $onShutdown): Cache
+    
     > Setting process shutdown callback can be used for data landing
     
 - public function set($key, $value, ?int $ttl = null, float $timeout = 1.0)
+
 - public function get($key, float $timeout = 1.0)
+
 - public function unset($key, float $timeout = 1.0)
+
 - public function keys($key = null, float $timeout = 1.0): ?array
+
 - public function flush(float $timeout = 1.0)
+
 - public function enQueue($key, $value, $timeout = 1.0)
+
 - public function deQueue($key, $timeout = 1.0)
+
 - public function queueSize($key, $timeout = 1.0)
+
 - public function unsetQueue($key, $timeout = 1.0)
+
 - public function queueList($timeout = 1.0): ?array
+
 - public function flushQueue(float $timeout = 1.0): bool
+
 - public function expire($key, int $ttl, $timeout = 1.0)
+
 - public function persist($key, $timeout = 1.0)
+    
     > The expiration time of removing a key
-        
+    
 - public function ttl($key, $timeout = 1.0)
+
+- function hSet($key, $field, $value, float $timeout = 1.0)
+
+- function hGet($key, $field = null, float $timeout = 1.0)
+
+- function hDel($key, $field = null, float $timeout = 1.0)
+
+- function hFlush(float $timeout = 1.0)
+
+- function hKeys($key, float $timeout = 1.0)
+
+- function hScan($key, $cursor = 0, $limit = 10, float $timeout = 1.0)
+
+- function hSetnx($key, $field, $value, float $timeout = 1.0)
+
+- function hExists($key, $field, float $timeout = 1.0)
+
+- function hLen($key, float $timeout = 1.0)
+
+- function hIncrby($key, $field, $value, float $timeout = 1.0)
+
+- function hMset($key, $fieldValues, float $timeout = 1.0)
+
+- function hMget($key, $fields, float $timeout = 1.0)
+
+- function hVals($key, float $timeout = 1.0)
+
+- function hGetAll($key, float $timeout = 1.0)
 
 
 
