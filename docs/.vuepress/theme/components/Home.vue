@@ -35,7 +35,7 @@
     <!--    </div>-->
 
     <div class="divided">
-      <h2>他们都在用</h2>
+      <h2>{{ data.partnersTips }}</h2>
     </div>
 
     <div
