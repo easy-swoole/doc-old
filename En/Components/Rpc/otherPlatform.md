@@ -45,4 +45,39 @@ if (strlen($data) != $len[1]) {
 }
 fclose($fp);
 ````
+
+## Go sample code
+````
+package main
+
+import (
+	"encoding/binary"
+	"net"
+)
+
+func main() {
+	var tcpAddr *net.TCPAddr
+	tcpAddr,_ = net.ResolveTCPAddr("tcp","127.0.0.1:9600")
+	conn,_ := net.DialTCP("tcp",nil,tcpAddr)
+	defer conn.Close()
+	sendEasyswooleMsg(conn)
+}
+
+func sendEasyswooleMsg(conn *net.TCPConn) {
+	var sendData []byte
+	data := `{"command":1,"request":{"serviceName":"UserService","action":"register","arg":{"args1":"args1","args2":"args2"}}}`
+	b := []byte(data)
+	sendData = int32ToBytes8(int32(len(data)))
+	for _, value := range b {
+		sendData = append(sendData, value)
+	}
+	conn.Write(sendData)
+}
+
+func int32ToBytes8(n int32) []byte {
+	var buf = make([]byte, 4)
+	binary.BigEndian.PutUint32(buf, uint32(n))
+	return buf
+}
+````
 > Other languages only need to implement TCP protocol
