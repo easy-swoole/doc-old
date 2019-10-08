@@ -47,7 +47,7 @@ fclose($fp);
 ````
 
 ## Go sample code
-```go
+````
 package main
 
 import (
@@ -79,5 +79,5 @@ func int32ToBytes8(n int32) []byte {
 	binary.BigEndian.PutUint32(buf, uint32(n))
 	return buf
 }
-```
+````
 > Other languages only need to implement TCP protocol

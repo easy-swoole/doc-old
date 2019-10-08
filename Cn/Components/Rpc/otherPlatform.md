@@ -50,7 +50,7 @@ fclose($fp);
 ````
 
 ## Go示例代码
-```go
+````
 package main
 
 import (
@@ -85,6 +85,6 @@ func int32ToBytes8(n int32) []byte {
 	binary.BigEndian.PutUint32(buf, uint32(n))
 	return buf
 }
-```
+````
 
 > 其他语言只需要实现tcp协议即可
