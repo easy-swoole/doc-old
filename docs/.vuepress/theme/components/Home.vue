@@ -1,21 +1,9 @@
 <template>
   <main class="home" aria-labelledby="main-title">
     <header class="hero">
-      <img
-        v-if="data.heroImage"
-        :src="$withBase(data.heroImage)"
-        :alt="data.heroAlt || 'hero'"
-      >
-
-      <img
-        v-if="data.heroBanner"
-        :src="$withBase(data.heroBanner)"
-        :alt="data.heroAlt || 'banner'"
-        style="max-height:80px"
-      >
 
       <p class="description">
-        {{ data.tagline || $description || 'Welcome to your VuePress site' }}
+        {{ data.tagline || $description || '一种愉悦的开发方式' }}
       </p>
 
       <p
@@ -27,21 +15,24 @@
           :item="actionLink"
         />
       </p>
+
+      <embed class="image esanimation" :src="$withBase(data.heroSvg)" type="image/svg+xml">
+
     </header>
 
-    <div
-      class="features"
-      v-if="data.features && data.features.length"
-    >
-      <div
-        class="feature"
-        v-for="(feature, index) in data.features"
-        :key="index"
-      >
-        <h2>{{ feature.title }}</h2>
-        <p>{{ feature.details }}</p>
-      </div>
-    </div>
+    <!--    <div-->
+    <!--      class="features"-->
+    <!--      v-if="data.features && data.features.length"-->
+    <!--    >-->
+    <!--      <div-->
+    <!--        class="feature"-->
+    <!--        v-for="(feature, index) in data.features"-->
+    <!--        :key="index"-->
+    <!--      >-->
+    <!--        <h2>{{ feature.title }}</h2>-->
+    <!--        <p>{{ feature.details }}</p>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
     <div class="divided">
       <h2>他们都在用</h2>
@@ -51,28 +42,15 @@
       class="partners"
       v-if="data.partners && data.partners.length"
     >
-      <div
-        class="partner"
-        v-for="(partner, index) in data.partners"
-        :key="index"
-      >
-        <PartnerCard
-          :name="partner.name"
-          :link="partner.link"
-          :icon="partner.icon"
-          :details="partner.details"
-        >
-        </PartnerCard>
-      </div>
+      <PartnerCard :partners="data.partners"></PartnerCard>
     </div>
 
     <Content class="theme-default-content custom"/>
 
     <div
       class="footer"
-      v-if="data.footer"
     >
-      {{ data.footer }}
+      本站由 <a href="https://www.verycloud.cn/" target="_blank">VeryCloud</a> 提供云计算与安全服务
     </div>
   </main>
 </template>
@@ -102,8 +80,8 @@
 <style lang="stylus">
   .home
     padding $navbarHeight 2rem 0
-    max-width 960px
-    margin 0px auto
+    max-width 1366px
+    margin 0 auto
     display block
     position relative
 
@@ -123,24 +101,25 @@
         margin 1.8rem auto
 
       .description
+        margin-top 6vh
         max-width 35rem
-        font-size 1.6rem
+        font-size: 2.5rem
+        font-weight 500
         line-height 1.3
         color lighten($textColor, 40%)
 
       .action-button
-        display inline-block
-        font-size 1.2rem
-        color #fff
-        background-color $accentColor
-        padding 0.8rem 1.6rem
-        border-radius 4px
-        transition background-color .1s ease
-        box-sizing border-box
-        border-bottom 1px solid darken($accentColor, 10%)
+        display: block;
+        width: 12rem;
+        color: #fff;
+        background: #42A5F5;
+        font-weight: 700;
+        margin: 3.125rem auto 0 auto;
+        padding: .8rem 1rem;
+        border-radius: 2px;
 
         &:hover
-          background-color lighten($accentColor, 10%)
+          background-color lighten(#42A5F5, 10%)
 
     .features
       border-top 1px solid $borderColor
@@ -170,9 +149,9 @@
 
     .partners
       width 100%
-      display flex;
-      justify-content center;
-      align-items center;
+      display flex
+      justify-content center
+      align-items center
       flex-wrap wrap
       margin-bottom 50px
 
@@ -191,8 +170,9 @@
       color lighten($textColor, 25%)
       position absolute
       bottom -160px
-      width 100%
-      max-width 960px
+      left 0
+      right 0
+      max-width 1366px
 
   @media (max-width: $MQMobile)
     .home

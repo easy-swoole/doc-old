@@ -1,5 +1,6 @@
 ---
 home: true
+heroSvg: /resources/hero.svg
 heroImage: /resources/hero.png
 heroBanner: /resources/banner.png
 navBanner: /resources/nav.png
@@ -47,5 +48,4 @@ partners:
   icon: /resources/partner/chandashi.png
   link: https://www.chandashi.com
   details: 蝉大师是国内兼具ios和android的最专业APP关键词大数据分析平台,提供苹果商城APP查询榜单数据和权威ASO、asm优化方案,为您的APP推广保驾护航
-footer: Apache-2.0 Licensed | Copyright © 2018-EasySwoole Team
 ---
