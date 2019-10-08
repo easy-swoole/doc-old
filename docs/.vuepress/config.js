@@ -8,7 +8,7 @@ module.exports = {
             title: 'EASYSWOOLE',
             description: 'easySwoole是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者'
         },
-        '/en/': {
+        '/En/': {
             lang: 'en-US',
             title: 'EASYSWOOLE',
             description: 'an height-performance base on swoole extension,which is fully support swoole coroutine'
@@ -26,9 +26,14 @@ module.exports = {
                 sidebar: sidebar.sidebarCn,
                 nav: [
                     {text: '源码仓库', link: 'https://github.com/easy-swoole'},
-                ]
+                ],
+                algolia: {
+                    appId: '7PYE6H9MWP',
+                    apiKey: 'a09ac4139beb89df6eabdb84a31951cb',
+                    indexName: 'CN_EASYSWOOLE'
+                }
             },
-            '/en/': {
+            '/En/': {
                 selectText: 'translate',
                 label: 'ENGLISH',
                 editLinkText: 'Edit this page on GitHub',

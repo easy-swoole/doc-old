@@ -7,7 +7,7 @@ navBanner: /resources/nav.png
 heroText: EASYSWOOLE
 tagline: 一种愉悦的开发方式
 actionText: 开始使用
-actionLink: /BaseUsage/asyncTask
+actionLink: /Preface/Introduction
 features:
 - title: 简洁至上
   details: 没有复杂的骚操作，新手也能轻松看懂框架源码！
