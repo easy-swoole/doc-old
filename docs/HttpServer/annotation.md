@@ -1,3 +1,11 @@
+---
+title: 注解控制器
+meta:
+  - name: description
+    content: Easyswoole 提供轻量级的注解控制器支持
+  - name: keywords
+    content:  EasySwoole,注解控制器
+---
 # 注解控制器
 
 Easyswoole 提供轻量级的注解控制器支持。注解控制器在未添加注解项的时候，逻辑与普通控制器逻辑一致。

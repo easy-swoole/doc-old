@@ -1,10 +1,11 @@
-<head>
-     <title>EasySwoole Http服务|swoole Http|swoole Api服务</title>
-     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-     <meta name="keywords" content="EasySwoole Http服务|swoole Http|swoole Api服务"/>
-     <meta name="description" content="EasySwoole Http服务|swoole Http|swoole Api服务"/>
-</head>
----<head>---
+---
+title: http服务
+meta:
+  - name: description
+    content: easyswoole,http服务
+  - name: keywords
+    content: easyswoole,http服务
+---
 
 # http服务
 

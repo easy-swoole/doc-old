@@ -1,3 +1,11 @@
+---
+title: mainServerCreate
+meta:
+  - name: description
+    content: 主服务创建事件
+  - name: keywords
+    content: EasySwoole,mainServerCreate
+---
 # 主服务创建事件
 
 ## 函数原型

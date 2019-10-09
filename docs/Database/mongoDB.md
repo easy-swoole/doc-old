@@ -21,7 +21,7 @@ EasySwoole已经在开发中！！！！
 
 ## composer 安装
 
-```
+```php
 composer require easyswoole/sync-invoker
 ```
 

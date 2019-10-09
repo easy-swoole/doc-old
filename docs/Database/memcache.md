@@ -1,9 +1,17 @@
+---
+title: memcache协程客户端
+meta:
+  - name: description
+    content: memcache协程客户端,由swoole 协程client实现 
+  - name: keywords
+    content:  EasySwoole memcache| Swoole memcache协程客户端
+---
 ## memcache协程客户端
 memcache协程客户端,由swoole 协程client实现   
 github地址: https://github.com/easy-swoole/memcache 
 
 ## composer安装   
-```
+```php
 composer require easyswoole/memcache
 ```
 

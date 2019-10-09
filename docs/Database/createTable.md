@@ -1,3 +1,11 @@
+---
+title: mysqli建表工具
+meta:
+  - name: description
+    content: EasySwoole,mysqli建表工具
+  - name: keywords
+    content:  EasySwoole,mysqli建表工具
+---
 ## mysqli建表工具
 在mysqli 1.2.1版本中,新增了建表工具,只需要配置好相关信息,即可生成对应的建表ddl:
 ````php

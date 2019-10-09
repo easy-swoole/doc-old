@@ -1,3 +1,11 @@
+---
+title: URL解析规则
+meta:
+  - name: description
+    content: Easyswoole,URL解析规则
+  - name: keywords
+    content:  EasySwoole,URL解析规则
+---
 # URL解析规则
 
 仅支持`PATHINFO`模式的 URL 解析，且与控制器名称(方法)保持一致，控制器搜索规则为优先完整匹配模式

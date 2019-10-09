@@ -1,4 +1,12 @@
-# Annotation
+---
+title: Annotation
+meta:
+  - name: description
+    content: Easyswoole提供了一个轻量级的注解解析工具
+  - name: keywords
+    content: EasySwoole,Annotation
+---
+## Annotation
 Easyswoole提供了一个轻量级的注解解析工具。
 
 ## 安装
