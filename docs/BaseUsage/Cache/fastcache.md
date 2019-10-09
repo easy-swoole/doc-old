@@ -74,6 +74,34 @@ var_dump(Cache::getInstance()->get('get'));
         
 - public function ttl($key, $timeout = 1.0)
 
+- function hSet($key, $field, $value, float $timeout = 1.0)
+
+- function hGet($key, $field = null, float $timeout = 1.0)
+
+- function hDel($key, $field = null, float $timeout = 1.0)
+
+- function hFlush(float $timeout = 1.0)
+
+- function hKeys($key, float $timeout = 1.0)
+
+- function hScan($key, $cursor = 0, $limit = 10, float $timeout = 1.0)
+
+- function hSetnx($key, $field, $value, float $timeout = 1.0)
+
+- function hExists($key, $field, float $timeout = 1.0)
+
+- function hLen($key, float $timeout = 1.0)
+
+- function hIncrby($key, $field, $value, float $timeout = 1.0)
+
+- function hMset($key, $fieldValues, float $timeout = 1.0)
+
+- function hMget($key, $fields, float $timeout = 1.0)
+
+- function hVals($key, float $timeout = 1.0)
+
+- function hGetAll($key, float $timeout = 1.0)
+
 
 
 
