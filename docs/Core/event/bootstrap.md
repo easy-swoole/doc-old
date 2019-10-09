@@ -1,3 +1,11 @@
+---
+title: bootstrap事件
+meta:
+  - name: description
+    content: bootstrap事件
+  - name: keywords
+    content: EasySwoole,bootstrap事件
+---
 # bootstrap事件
 
 bootstrap 允许在 框架未初始化之前,允许其他初始化业务

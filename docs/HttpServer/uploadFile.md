@@ -1,3 +1,11 @@
+---
+title: UploadFile对象
+meta:
+  - name: description
+    content: UploadFile对象
+  - name: keywords
+    content: EasySwoole UploadFile对象
+---
 ## UploadFile对象
 
 该对象在用户上传文件时自动生成,可通过以下方法获取

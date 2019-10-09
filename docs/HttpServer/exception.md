@@ -1,3 +1,11 @@
+---
+title: 错误与异常拦截
+meta:
+  - name: description
+    content: Easyswoole,错误与异常拦截
+  - name: keywords
+    content:  EasySwoole,错误与异常拦截
+---
 ## 错误与异常拦截
 
 ### http控制器错误异常

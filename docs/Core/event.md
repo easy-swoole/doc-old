@@ -1,3 +1,11 @@
+---
+title: 全局事件
+meta:
+  - name: description
+    content: 全局事件
+  - name: keywords
+    content: EasySwoole,全局事件
+---
 # 全局事件
 
  参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)

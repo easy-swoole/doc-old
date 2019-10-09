@@ -1,3 +1,11 @@
+---
+title: initialize
+meta:
+  - name: description
+    content: 框架初始化事件
+  - name: keywords
+    content: EasySwoole,initialize
+---
 # 框架初始化事件
 
 ## 函数原型

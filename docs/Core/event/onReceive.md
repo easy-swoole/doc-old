@@ -1,3 +1,11 @@
+---
+title: onReceive
+meta:
+  - name: description
+    content: 当接收到客户端数据时,会触发此事件
+  - name: keywords
+    content: EasySwoole,onReceive
+---
 ## onReceive
 
 主服务为SERVER时有效,当接收到客户端数据时,会触发此事件

@@ -1,10 +1,12 @@
-<head>
-     <title>swoole方向代理|swoole 如何获取$HTTP_RAW_POST_DATA swoole php://input</title>
-     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-     <meta name="keywords" content="swoole方向代理|swoole 如何获取$HTTP_RAW_POST_DATA swoole php://input"/>
-     <meta name="description" content="swoole方向代理|swoole 如何获取$HTTP_RAW_POST_DATA swoole php://input"/>
-</head>
----<head>---
+---
+title: http服务
+meta:
+  - name: description
+    content: easyswoole,如何获取客户端IP
+  - name: keywords
+    content: easyswoole,获取客户端IP
+---
+
 
 # 常见问题
 ## 如何获取$HTTP_RAW_POST_DATA

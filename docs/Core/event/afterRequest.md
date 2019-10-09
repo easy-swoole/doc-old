@@ -1,3 +1,11 @@
+---
+title: afterRequest
+meta:
+  - name: description
+    content: 请求方法结束后执行
+  - name: keywords
+    content: EasySwoole,afterRequest
+---
 ## 请求方法结束后执行
 
 ###  函数原型
