@@ -9,21 +9,21 @@ meta:
 ## 键操作方法
 方法列表
 
-| 方法名称     | 参数 | 说明      | 备注  |
-|:-------------|:-----|:---------|:------|
-| hDel         | $key | 删除一个键 |       |
-| hExists      | $key | 删除一个键 |       |
-| hGet         | $key | 删除一个键 |       |
-| hGetAll      | $key | 删除一个键 |       |
-| hSet         | $key | 删除一个键 |       |
-| hValS        | $key | 删除一个键 |       |
-| hKeys        | $key | 删除一个键 |       |
-| hLen         | $key | 删除一个键 |       |
-| hMGet        | $key | 删除一个键 |       |
-| hMSet        | $key | 删除一个键 |       |
-| hIncrBy      | $key | 删除一个键 |       |
-| hIncrByFloat | $key | 删除一个键 |       |
-| hSetNx       | $key | 删除一个键 |       |
+| 方法名称     | 参数                     | 说明                  | 备注 |
+|:-------------|:-------------------------|:---------------------|:----|
+| hDel         | $key, ...$field          | 删除键,可多个          |     |
+| hExists      | $key, $field             | 查询字段是否存在       |     |
+| hGet         | $key, $field             | 获取一个字段值         |     |
+| hGetAll      | $key                     | 获取这个key的全部字段值 |     |
+| hSet         | $key, $field, $value     | 删除一个键            |     |
+| hValS        | $key                     | 删除一个键            |     |
+| hKeys        | $key                     | 删除一个键            |     |
+| hLen         | $key                     | 删除一个键            |     |
+| hMGet        | $key, $hashKeys          | 删除一个键            |     |
+| hMSet        | $key, $data              | 删除一个键            |     |
+| hIncrBy      | $key, $field, $increment | 删除一个键            |     |
+| hIncrByFloat | $key, $field, $increment | 删除一个键            |     |
+| hSetNx       | $key, $field, $value     | 删除一个键            |     |
 
 
 ## 实例
