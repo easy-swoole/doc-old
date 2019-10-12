@@ -6,36 +6,40 @@ meta:
   - name: keywords
     content:  EasySwoole redis| Swoole redis协程客户端
 
-
-
 ---
 
 ## 有序集合操作方法
 
 方法列表
 
-| 方法名称         | 参数                                          | 说明                                                         | 备注 |
-| :--------------- | :-------------------------------------------- | :----------------------------------------------------------- | :--- |
-| zAdd             | $key,$score1,$member1,[$score2, $member2]     | 向有序集合添加一个或多个成员，或者更新已存在成员的分数       |      |
-| zCard            | $key                                          | 获取有序集合的成员数                                         |      |
-| zCount           | $key,$min,$max                                | 计算在有序集合中指定区间分数的成员数                         |      |
-| zInCrBy          | $key,$increment,$member                       | 有序集合中对指定成员的分数加上增量 increment                 |      |
-| zInTerStore      | $destination,$numkeys,$key [$key ...\]        | 计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中 |      |
-| zLexCount        | $key,$min,$max                                | 在有序集合中计算指定字典区间内成员数量                       |      |
-| zRange           | $key,$start,$stop,$bool                       | 通过索引区间返回有序集合指定区间内的成员                     |      |
-| zRangeByLex      | $key,$min,$max                                | 通过字典区间返回有序集合的成员                               |      |
-| zRangeByScore    | $key,$min,$max,[WITHSCORES\] [LIMIT]          | 通过分数返回有序集合指定区间内的成员                         |      |
-| zRank            | $key,$member                                  | 返回有序集合中指定成员的索引                                 |      |
-| zRem             | $key,$member1,[$member2]                      | 移除有序集合中的一个或多个成员                               |      |
-| zRemRangeByLex   | $key,$min,$max                                | 移除有序集合中给定的字典区间的所有成员                       |      |
-| zRemRangeByRank  | $key,$start,$stop                             | 移除有序集合中给定的排名区间的所有成员                       |      |
-| zRemRangeByScore | $key,$min,$max                                | 移除有序集合中给定的分数区间的所有成员                       |      |
-| zRevRange        | $key,$start,$stop, [WITHSCORES]               | 返回有序集中指定区间内的成员，通过索引，分数从高到低         |      |
-| zRevRangeByScore | $key,$max,$min, [WITHSCORES]                  | 返回有序集中指定分数区间内的成员，分数从高到低排序           |      |
-| zRevRank         | $key,$member                                  | 返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序 |      |
-| zScore           | $key,$member                                  | 返回有序集中，成员的分数值                                   |      |
-| zUnionStore      | $destination,$numkeys,$key                    | 计算给定的一个或多个有序集的并集，并存储在新的 key 中        |      |
-| zScan            | $key,$cursor,[MATCH $pattern\],[COUNT $count] | 迭代有序集合中的元素（包括元素成员和元素分值）               |      |
+| 方法名称         | 参数                                                               | 说明                                                          | 备注 |
+|:-----------------|:-------------------------------------------------------------------|:-------------------------------------------------------------|:----|
+| zAdd             | $key, $score1, $member1, ...$data                                  | 向有序集合添加一个或多个成员，或者更新已存在成员的分数             |     |
+| zCard            | $key                                                               | 获取有序集合的成员数                                            |     |
+| zCount           | $key, $min, $max                                                   | 计算在有序集合中指定区间分数的成员数                             |     |
+| zInCrBy          | $key, $increment, $member                                          | 有序集合中对指定成员的分数加上增量 increment                     |     |
+| zInTerStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | 计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中 |     |
+| zLexCount        | $key, $min, $max                                                   | 在有序集合中计算指定字典区间内成员数量                            |     |
+| zRange           | $key, $start, $stop, $withScores = false                           | 通过索引区间返回有序集合指定区间内的成员                          |     |
+| zRangeByLex      | $key, $min, $max, ...$data                                         | 通过字典区间返回有序集合的成员                                   |     |
+| zRangeByScore    | $key, $min, $max, array $options                                   | 通过分数返回有序集合指定区间内的成员                             |     |
+| zRank            | $key, $member                                                      | 返回有序集合中指定成员的索引                                     |     |
+| zRem             | $key, $member, ...$members                                         | 移除有序集合中的一个或多个成员                                   |     |
+| zRemRangeByLex   | $key, $min, $max                                                   | 移除有序集合中给定的字典区间的所有成员                            |     |
+| zRemRangeByRank  | $key, $start, $stop                                                | 移除有序集合中给定的排名区间的所有成员                            |     |
+| zRemRangeByScore | $key, $min, $max                                                   | 移除有序集合中给定的分数区间的所有成员                            |     |
+| zRevRange        | $key, $start, $stop, $withScores = false                           | 返回有序集中指定区间内的成员，通过索引，分数从高到低               |     |
+| zRevRangeByScore | $key, $max, $min, array $options                                   | 返回有序集中指定分数区间内的成员，分数从高到低排序                 |     |
+| zRevRank         | $key, $member                                                      | 返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序   |     |
+| zScore           | $key, $member                                                      | 返回有序集中，成员的分数值                                      |     |
+| zUnionStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | 计算给定的一个或多个有序集的并集，并存储在新的 key 中              |     |
+| zScan            | $key,&$cursor, $pattern=null, $count=null                          | 迭代有序集合中的元素（包括元素成员和元素分值）                     |     |
+
+
+::: warning
+ 在集群模式中,zInTerStore,zUnionStore 等方法不能使用
+:::
+
 
 ## 实例
 ```php

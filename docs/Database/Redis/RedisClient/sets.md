@@ -13,23 +13,27 @@ meta:
 
 方法列表
 
-| 方法名称    | 参数                                          | 说明                                                         | 备注 |
-| :---------- | :-------------------------------------------- | :----------------------------------------------------------- | :--- |
-| sAdd        | $key,$value1,[$value2]                        | 向集合添加一个或多个成员                                     |      |
-| sCard       | $key                                          | 获取集合的成员数                                             |      |
-| sDiff       | $key1,[$key2]                                 | 返回给定所有集合的差集                                       |      |
-| sMembers    | $key                                          | 返回集合中的所有成员                                         |      |
-| sDiffStore  | $destination,$key1,[$key2]                    | 返回给定所有集合的差集并存储在 destination 中                |      |
-| sInter      | $key1,[$key2]                                 | 返回给定所有集合的交集                                       |      |
-| sInterStore | $destination,$key1,[$key2]                    | 返回给定所有集合的交集并存储在 destination 中                |      |
-| sIsMember   | $key,$member                                  | 判断 member 元素是否是集合 key 的成员                        |      |
-| sMove       | $source, $destination ,$member                | 将 member 元素从 source 集合移动到 destination 集合          |      |
-| sPop        | $key                                          | 移除并返回集合中的一个随机元素                               |      |
-| sRandMemBer | $key,$[count\]                                | 返回集合中一个或多个随机数                                   |      |
-| sRem        | $key,$member1, [$member2]                     | 移除集合中一个或多个成员                                     |      |
-| sUnion      | $key1,[$key2]                                 | 返回所有给定集合的并集                                       |      |
-| sUnIonStore | $destination,$key1 [$key2\]                   | 所有给定集合的并集存储在 destination 集合中                  |      |
-| sScan       | $key,$cursor,[MATCH $pattern\],[COUNT $count] | 迭代集合中的元素                                             |      |
+| 方法名称    | 参数                                      | 说明                                              | 备注 |
+|:------------|:------------------------------------------|:-------------------------------------------------|:----|
+| sAdd        | $key, ...$data                            | 向集合添加一个或多个成员                            |     |
+| sCard       | $key                                      | 获取集合的成员数                                   |     |
+| sDiff       | $key1, ...$keys                           | 返回给定所有集合的差集                              |     |
+| sMembers    | $destination, ...$keys                    | 返回集合中的所有成员                               |     |
+| sDiffStore  | $key1, ...$keys                           | 返回给定所有集合的差集并存储在 destination 中        |     |
+| sInter      | $destination, ...$keys                    | 返回给定所有集合的交集                              |     |
+| sInterStore | $key, $member                             | 返回给定所有集合的交集并存储在 destination 中        |     |
+| sIsMember   | $key                                      | 判断 member 元素是否是集合 key 的成员               |     |
+| sMove       | $source, $destination, $member            | 将 member 元素从 source 集合移动到 destination 集合 |     |
+| sPop        | $key                                      | 移除并返回集合中的一个随机元素                      |     |
+| sRandMemBer | $key, $count = null                       | 返回集合中一个或多个随机数                          |     |
+| sRem        | $key, $member1, ...$members               | 移除集合中一个或多个成员                            |     |
+| sUnion      | $key1, ...$keys                           | 返回所有给定集合的并集                              |     |
+| sUnIonStore | $destination, $key1, ...$keys             | 所有给定集合的并集存储在 destination 集合中         |     |
+| sScan       | $key,&$cursor, $pattern=null, $count=null | 迭代集合中的元素                                   |     |
+
+::: warning
+ 在集群模式中,sDiff,sDiffStore,sInter,sMove,sUnion,sUnIonStore等方法不能使用
+:::
 
 
 ## 实例
@@ -123,7 +127,5 @@ go(function () {
         $data = array_merge($data,$keys);
     } while ($cursor);
     var_dump($data);
-    
-    
-})
+});
 ```
