@@ -79,20 +79,6 @@ const sidebarCn = [
         sidebarDepth: 0,
         children: [
             ['/BaseUsage/serverManager', 'Swoole实例'],
-            {
-                title: 'Socket服务',
-                collapsable: false,
-                sidebarDepth: 0,
-                children: [
-                    ['/BaseUsage/Socket/tcp', 'TCP服务器'],
-                    ['/BaseUsage/Socket/tcp_sticky', 'TCP服务器处理粘包'],
-                    ['/BaseUsage/Socket/websocket', 'Websocket服务器'],
-                    ['/BaseUsage/Socket/websocket_wss', 'Websocket支持wss'],
-                    ['/BaseUsage/Socket/websocket_shake', 'Websocket自定义握手'],
-                    ['/BaseUsage/Socket/udp', 'UDP服务器'],
-                    ['/BaseUsage/Socket/question', '常见问题'],
-                ]
-            },
             ['/BaseUsage/customCommand', '自定义命令'],
             ['/BaseUsage/process', '自定义进程'],
             ['/BaseUsage/event', '自定义事件'],
@@ -132,6 +118,20 @@ const sidebarCn = [
             ['/HttpServer/exception', '错误与异常'],
             ['/HttpServer/static', '静态资源处理'],
             // ['/HttpServer/', '常见问题'],
+        ]
+    },
+    {
+        title: 'Socket服务',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/BaseUsage/Socket/tcp', 'TCP服务器'],
+            ['/BaseUsage/Socket/tcp_sticky', 'TCP服务器处理粘包'],
+            ['/BaseUsage/Socket/websocket', 'Websocket服务器'],
+            ['/BaseUsage/Socket/websocket_wss', 'Websocket支持wss'],
+            ['/BaseUsage/Socket/websocket_shake', 'Websocket自定义握手'],
+            ['/BaseUsage/Socket/udp', 'UDP服务器'],
+            ['/BaseUsage/Socket/question', '常见问题'],
         ]
     },
     {
