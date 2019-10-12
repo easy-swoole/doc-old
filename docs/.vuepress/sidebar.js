@@ -125,13 +125,13 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
-            ['/BaseUsage/Socket/tcp', 'TCP服务器'],
-            ['/BaseUsage/Socket/tcp_sticky', 'TCP服务器处理粘包'],
-            ['/BaseUsage/Socket/websocket', 'Websocket服务器'],
-            ['/BaseUsage/Socket/websocket_wss', 'Websocket支持wss'],
-            ['/BaseUsage/Socket/websocket_shake', 'Websocket自定义握手'],
-            ['/BaseUsage/Socket/udp', 'UDP服务器'],
-            ['/BaseUsage/Socket/question', '常见问题'],
+            ['/Socket/tcp', 'TCP服务器'],
+            ['/Socket/tcp_sticky', 'TCP服务器处理粘包'],
+            ['/Socket/websocket', 'Websocket服务器'],
+            ['/Socket/websocket_wss', 'Websocket支持wss'],
+            ['/Socket/websocket_shake', 'Websocket自定义握手'],
+            ['/Socket/udp', 'UDP服务器'],
+            ['/Socket/question', '常见问题'],
         ]
     },
     {
