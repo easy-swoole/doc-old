@@ -69,7 +69,7 @@ const sidebarCn = [
                     ['/Core/event/afterRequest', 'afterRequest事件'],
                 ]
             },
-            ['/Core/annotation', '注解支持'],
+            ['/Components/annotation', '注解支持'],
             ['/Core/other', '其他架构体系'],
         ]
     },
@@ -80,10 +80,10 @@ const sidebarCn = [
         children: [
             ['/BaseUsage/serverManager', 'Swoole实例'],
             ['/BaseUsage/customCommand', '自定义命令'],
-            ['/BaseUsage/process', '自定义进程'],
+            ['/Components/Component/process', '自定义进程'],
             ['/BaseUsage/event', '自定义事件'],
-            ['/BaseUsage/asyncTask', 'Task 异步任务'],
-            ['/BaseUsage/timer', 'Timer 定时器'],
+            ['/Components/task', 'Task 异步任务'],
+            ['/Components/Component/timer', 'Timer 定时器'],
             ['/BaseUsage/crontab', 'Crontab 计划任务'],
             ['/BaseUsage/log', '日志处理'],
             {
@@ -91,13 +91,12 @@ const sidebarCn = [
                 collapsable: false,
                 sidebarDepth: 0,
                 children: [
-                    ['/BaseUsage/Cache/cache', 'Cache'],
-                    ['/BaseUsage/Cache/fastcache', 'Fast-cache'],
-                    ['/BaseUsage/Cache/fastcache-queue', 'Fast-cache-queue'],
+                    ['/Components/FastCache/fastcache', 'fastcache'],
+                    ['/Components/FastCache/fastcache-queue', 'fastcache']
                 ]
             },
-            ['/BaseUsage/phpunit', '单元测试'],
-            ['/BaseUsage/console', '远程控制台'],
+            ['/Components/phpunit', '单元测试'],
+            ['/Components/console', '远程控制台'],
         ]
     },
     {
@@ -110,14 +109,12 @@ const sidebarCn = [
             ['/HttpServer/annotation', '注解控制器'],
             ['/HttpServer/request', '请求'],
             ['/HttpServer/response', '响应'],
-            ['/HttpServer/template', '视图'],
-            // ['/HttpServer/', 'URL'],
+            ['/Components/template', '视图'],
             ['/HttpServer/uploadFile', '文件上传'],
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
             ['/HttpServer/static', '静态资源处理'],
-            // ['/HttpServer/', '常见问题'],
         ]
     },
     {
@@ -139,23 +136,43 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
-            ['/Database/quickstart', '快速入门'],
-            ['/Database/quickstart', 'Mysqli'],
-            ['/Database/mysqliPool', 'Mysqli连接池'],
-            ['/Database/queryBuilder', '查询构造器'],
-            ['/Database/orm', 'ORM'],
-            ['/Database/createTable', '建表工具'],
             {
-                title: 'Redis',
-                collapsable: false,
+                title: 'MYSQl',
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Database/Redis/redis', 'Redis操作'],
-                    ['/Database/Redis/redisPool', 'Redis连接池'],
+                    ['/Components/ddl', 'DDL定义'],
+                    ['/Components/mysqli', 'mysqli'],
+                    {
+                        title: 'ORM',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/connection', '链接管理'],
+                            ['/Components/Orm/model', '模型对象']
+                        ]
+                    }
                 ]
             },
-            ['/Database/memcache', 'Memcache'],
-            ['/Database/mongoDB', 'MongoDB'],
+            {
+                title: 'Redis',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Redis/redis', '单机客户端'],
+                    ['/Components/Redis/cluster', '集群客户端'],
+                    ['/Components/Redis/pool', '连接池'],
+                ]
+            },
+            {
+                title: 'memcached',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/memcache', '客户端'],
+                    ['/Components/memcache/pool', '连接池'],
+                ]
+            }
         ]
     },
     {
