@@ -39,9 +39,9 @@ const sidebarCn = [
                 collapsable: false, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Introduction/Coroutine/create', '创建协程'],
-                    ['/Introduction/Coroutine/waitgroup', 'WaitGroup等待'],
-                    ['/Introduction/Coroutine/csp', 'Csp并发'],
+                    ['/Introduction/coroutineCreate', '创建协程'],
+                    ['/Components/Component/waitgroup', 'WaitGroup等待'],
+                    ['/Components/Component/csp', 'Csp并发'],
                 ]
             },
             ['/Introduction/example', '基础开发示例'],
@@ -54,8 +54,8 @@ const sidebarCn = [
         sidebarDepth: 0,
         children: [
             ['/Core/lifecycle', '生命周期'],
-            ['/Core/ioc', 'IOC容器'],
-            ['/Core/context', '上下文管理器'],
+            ['/Components/Component/ioc', 'IOC容器'],
+            ['/Components/Component/context', '上下文管理器'],
             {
                 title: '全局事件',
                 path: '/Core/event',
