@@ -169,8 +169,8 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/memcache', '客户端'],
-                    ['/Components/memcache/pool', '连接池'],
+                    ['/Components/Memcache/memcache', '客户端'],
+                    ['/Components/Memcache/pool', '连接池'],
                 ]
             }
         ]
@@ -185,21 +185,21 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/singleton', '单例'],
-                    ['/Components/readyScheduler', '就绪等待'],
-                    ['/Components/tableManager', 'Swoole Table'],
-                    ['/Components/atomic', 'Atomic 计数器'],
+                    ['/Components/Component/singleton', '单例'],
+                    ['/Components/Component/readyScheduler', '就绪等待'],
+                    ['/Components/Component/tableManager', 'Swoole Table'],
+                    ['/Components/Component/atomic', 'Atomic 计数器'],
                     {
                         title: 'Spl组件',   // 必要的
                         collapsable: true, // 可选的, 默认值是 true,
                         sidebarDepth: 0,    // 可选的, 默认值是 1
                         children: [
-                            ['/Components/array', 'SplArray'],
-                            ['/Components/bean', 'SplBean'],
-                            ['/Components/enum', 'SplEnum'],
-                            ['/Components/splStream', 'SplStream'],
-                            ['/Components/splFileStream', 'SplFileStream'],
-                            ['/Components/string', 'SplString'],
+                            ['/Components/Spl/splArray', 'SplArray'],
+                            ['/Components/Spl/splBean', 'SplBean'],
+                            ['/Components/Spl/splEnum', 'SplEnum'],
+                            ['/Components/Spl/splStream', 'SplStream'],
+                            ['/Components/Spl/splFileStream', 'SplFileStream'],
+                            ['/Components/Spl/splString', 'SplString'],
                         ]
                     }
                 ]
@@ -209,11 +209,11 @@ const sidebarCn = [
                 title: 'HTTPClient协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path:'/Components/introduction',
+                path: '/Components/HttpClient/introduction',
                 children: [
-                    ['/Components/request', '请求'],
-                    ['/Components/response', '响应'],
-                    ['/Components/websocket', 'WebsocketClient'],
+                    ['/Components/HttpClient/request', '请求'],
+                    ['/Components/HttpClient/response', '响应'],
+                    ['/Components/HttpClient/websocket', 'WebsocketClient'],
                 ]
             },
             ['/Components/task', 'Task组件'],
@@ -221,16 +221,16 @@ const sidebarCn = [
                 title: 'Actor组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path:'/Components/actor',
+                path: '/Components/Actor/actor',
                 children: [
-                    ['/Components/analysis', '设计解读'],
+                    ['/Components/Actor/analysis', '设计解读'],
                 ]
             },
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', 'Tracker'],
             ['/Components/policy', 'Policy策略权限'],
-             ['/Components/jwt', 'JWT令牌'],
+            ['/Components/jwt', 'JWT令牌'],
         ]
     },
     {
@@ -261,7 +261,7 @@ const sidebarCn = [
                 title: '微信SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path:'/Sdk/wechat',
+                path: '/Sdk/wechat',
                 children: [
                     ['/Sdk/openPlatform', '公众号'],
                     ['/Sdk/miniProgram', '小程序'],
@@ -272,7 +272,7 @@ const sidebarCn = [
                 title: '支付宝SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path:'/Sdk/pay',
+                path: '/Sdk/pay',
                 // children: [
                 //     ['/Distribute/server', '服务端'],
                 //     ['/Distribute/client', '客户端'],
@@ -295,12 +295,12 @@ const sidebarCn = [
                 title: 'Rpc服务',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path:'/Distribute/introduction',
+                path: '/Components/Rpc/introduction',
                 children: [
-                    ['/Distribute/server', '服务端'],
-                    ['/Distribute/client', '客户端'],
-                    ['/Distribute/otherPlatform', '跨语言'],
-                    ['/Distribute/registerCenter', '服务注册中心'],
+                    ['/Components/Rpc/server', '服务端'],
+                    ['/Components/Rpc/client', '客户端'],
+                    ['/Components/Rpc/otherPlatform', '跨语言'],
+                    ['/Components/Rpc/registerCenter', '服务注册中心'],
                 ]
             },
             ['/Distribute/consul', 'Concul客户端'],
@@ -309,7 +309,7 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Distribute/apollo', 'Appolo配置中心'],
+                    ['/Components/apollo', 'Appolo配置中心'],
                 ]
             }
         ]
