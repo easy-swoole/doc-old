@@ -242,6 +242,8 @@ const sidebarCn = [
             ['/Components/tracker', 'Tracker'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
+            ['/Components/consul', 'consul客户端'],
+            ['/Components/apollo', 'apollo配置中心'],
         ]
     },
     {
@@ -314,7 +316,7 @@ const sidebarCn = [
                     ['/Components/Rpc/registerCenter', '服务注册中心'],
                 ]
             },
-            ['/Distribute/consul', 'Concul客户端'],
+            ['/Components/consul', 'Concul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
