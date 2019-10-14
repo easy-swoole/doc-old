@@ -190,20 +190,20 @@ const sidebarCn = [
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
-                    ['/Components/Component/pool', 'Pool池管理器'],
-                    {
-                        title: 'Spl组件',   // 必要的
-                        collapsable: true, // 可选的, 默认值是 true,
-                        sidebarDepth: 0,    // 可选的, 默认值是 1
-                        children: [
-                            ['/Components/Spl/splArray', 'SplArray'],
-                            ['/Components/Spl/splBean', 'SplBean'],
-                            ['/Components/Spl/splEnum', 'SplEnum'],
-                            ['/Components/Spl/splStream', 'SplStream'],
-                            ['/Components/Spl/splFileStream', 'SplFileStream'],
-                            ['/Components/Spl/splString', 'SplString'],
-                        ]
-                    }
+                    ['/Components/Component/pool', 'Pool池管理器']
+                ]
+            },
+            {
+                title: 'Spl组件',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Spl/splArray', 'SplArray'],
+                    ['/Components/Spl/splBean', 'SplBean'],
+                    ['/Components/Spl/splEnum', 'SplEnum'],
+                    ['/Components/Spl/splStream', 'SplStream'],
+                    ['/Components/Spl/splFileStream', 'SplFileStream'],
+                    ['/Components/Spl/splString', 'SplString'],
                 ]
             },
             {
