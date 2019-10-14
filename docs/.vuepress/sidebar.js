@@ -190,6 +190,7 @@ const sidebarCn = [
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
+                    ['/Components/Component/pool', 'Pool池管理器'],
                     {
                         title: 'Spl组件',   // 必要的
                         collapsable: true, // 可选的, 默认值是 true,
@@ -205,7 +206,6 @@ const sidebarCn = [
                     }
                 ]
             },
-            ['/Components/pool', 'Pool池管理器'],
             {
                 title: 'HTTPClient协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
