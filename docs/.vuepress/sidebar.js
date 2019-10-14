@@ -92,7 +92,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/FastCache/fastcache', 'fastcache'],
-                    ['/Components/FastCache/fastcache-queue', 'fastcache']
+                    ['/Components/FastCache/fastcache-queue', 'fastcache-queue']
                 ]
             },
             ['/Components/phpunit', '单元测试'],
