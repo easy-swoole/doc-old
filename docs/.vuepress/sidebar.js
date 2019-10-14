@@ -190,7 +190,8 @@ const sidebarCn = [
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
-                    ['/Components/Component/pool', 'Pool池管理器']
+                    ['/Components/Component/pool', '通用连接池'],
+                    ['/Components/Component/process', '自定义进程'],
                 ]
             },
             {
