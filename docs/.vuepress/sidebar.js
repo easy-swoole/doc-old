@@ -160,11 +160,11 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Redis/introduction', '介绍'],
+                    ['/Components/Redis/install', '安装'],
+                    ['/Components/Redis/config', '配置'],
                     ['/Components/Redis/redis', '单机客户端'],
                     ['/Components/Redis/cluster', '集群客户端'],
                     ['/Components/Redis/pool', '连接池'],
-                    ['/Components/Redis/install', '安装'],
-                    ['/Components/Redis/config', '配置'],
                     ['/Components/Redis/connection', '连接(connection)'],
                     ['/Components/Redis/keys', '键(keys)'],
                     ['/Components/Redis/string', '字符串(string)'],
