@@ -94,8 +94,8 @@ if ($result->getErrorType() == 'MOVED') {
 }
 ```
 ::: warning
-切换完成之后,下一次命令,依旧是默认客户端.
-::: warning
+切换完成之后,下一次命令,依旧是默认客户端.  
+:::
 
 ### 获取集群的客户端
 集群操作方法列表:
@@ -114,7 +114,7 @@ if ($result->getErrorType() == 'MOVED') {
 
 ::: warning
 这些方法用于用户自定义发送命令给redis服务端,或者是自己定义默认客户端进行发送
-::: warning
+:::
 
 
 ## 集群兼容管道方法
