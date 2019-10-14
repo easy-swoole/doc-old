@@ -227,6 +227,16 @@ const sidebarCn = [
                     ['/Components/Actor/analysis', '设计解读'],
                 ]
             },
+            {
+                title: 'Kafka',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Kafka/install', '安装'],
+                    ['/Components/Kafka/consumer', '消费者'],
+                    ['/Components/Kafka/producer', '生产者']
+                ]
+            },
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', 'Tracker'],
