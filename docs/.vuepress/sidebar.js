@@ -88,11 +88,11 @@ const sidebarCn = [
             ['/BaseUsage/log', '日志处理'],
             {
                 title: '缓存',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/FastCache/fastcache', 'fastcache'],
-                    ['/Components/FastCache/fastcache-queue', 'fastcache']
+                    ['/Components/FastCache/fastcache-queue', 'fastcache-queue']
                 ]
             },
             ['/Components/phpunit', '单元测试'],
@@ -148,7 +148,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/connection', '链接管理'],
+                            ['/Components/Orm/install', '安装'],
+                            ['/Components/Orm/connection', '连接管理'],
                             ['/Components/Orm/model', '模型对象']
                         ]
                     }
@@ -205,24 +206,25 @@ const sidebarCn = [
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
-                    {
-                        title: 'Spl组件',   // 必要的
-                        collapsable: true, // 可选的, 默认值是 true,
-                        sidebarDepth: 0,    // 可选的, 默认值是 1
-                        children: [
-                            ['/Components/Spl/splArray', 'SplArray'],
-                            ['/Components/Spl/splBean', 'SplBean'],
-                            ['/Components/Spl/splEnum', 'SplEnum'],
-                            ['/Components/Spl/splStream', 'SplStream'],
-                            ['/Components/Spl/splFileStream', 'SplFileStream'],
-                            ['/Components/Spl/splString', 'SplString'],
-                        ]
-                    }
+                    ['/Components/Component/pool', '通用连接池'],
+                    ['/Components/Component/process', '自定义进程'],
                 ]
             },
-            ['/Components/pool', 'Pool池管理器'],
             {
-                title: 'HTTPClient协程客户端',   // 必要的
+                title: 'Spl组件',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Spl/splArray', 'SplArray'],
+                    ['/Components/Spl/splBean', 'SplBean'],
+                    ['/Components/Spl/splEnum', 'SplEnum'],
+                    ['/Components/Spl/splStream', 'SplStream'],
+                    ['/Components/Spl/splFileStream', 'SplFileStream'],
+                    ['/Components/Spl/splString', 'SplString'],
+                ]
+            },
+            {
+                title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 path: '/Components/HttpClient/introduction',
@@ -237,16 +239,31 @@ const sidebarCn = [
                 title: 'Actor组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path: '/Components/Actor/actor',
                 children: [
+                    ['/Components/Actor/actor', '安装与使用'],
                     ['/Components/Actor/analysis', '设计解读'],
                 ]
             },
+            {
+                title: 'Kafka',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Kafka/install', '安装'],
+                    ['/Components/Kafka/consumer', '消费者'],
+                    ['/Components/Kafka/producer', '生产者']
+                ]
+            },
+            ['/Components/template', '模板引擎'],
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
-            ['/Components/tracker', 'Tracker'],
+            ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
+            ['/Components/consul', 'consul客户端'],
+            ['/Components/apollo', 'apollo配置中心'],
+            ['/Components/console', '远程控制台'],
+            ['/Components/atomicLimit', 'atomic限流器']
         ]
     },
     {
@@ -319,7 +336,7 @@ const sidebarCn = [
                     ['/Components/Rpc/registerCenter', '服务注册中心'],
                 ]
             },
-            ['/Distribute/consul', 'Concul客户端'],
+            ['/Components/consul', 'Concul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
