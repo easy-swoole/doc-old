@@ -207,7 +207,7 @@ const sidebarCn = [
                 ]
             },
             {
-                title: 'HTTPClient协程客户端',   // 必要的
+                title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 path: '/Components/HttpClient/introduction',
