@@ -130,9 +130,7 @@ if ($result->getErrorType() == 'MOVED') {
 
 ## 集群禁用方法
 
-::: warning  
 由于集群的特性,不同的key分配到了不同的槽位,当你调用sUnion,sUnIonStore等涉及多个key操作的命令时,将会返回false,同时错误信息会在$redis->getErrorMsg()中显示:
-:::
 ```php
 $redis = new \EasySwoole\Redis\RedisCluster(new \EasySwoole\Redis\Config\RedisClusterConfig([
     ['172.16.253.156', 9001],
