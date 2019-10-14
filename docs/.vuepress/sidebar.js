@@ -237,6 +237,7 @@ const sidebarCn = [
                     ['/Components/Kafka/producer', '生产者']
                 ]
             },
+            ['/Components/template', '模板引擎'],
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', '链路追踪'],
