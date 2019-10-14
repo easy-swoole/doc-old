@@ -149,7 +149,7 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Orm/install', '安装'],
-                            ['/Components/Orm/connection', '链接管理'],
+                            ['/Components/Orm/connection', '连接管理'],
                             ['/Components/Orm/model', '模型对象']
                         ]
                     }
