@@ -27,11 +27,6 @@ module.exports = {
                 nav: [
                     {text: '源码仓库', link: 'https://github.com/easy-swoole'},
                 ],
-                // algolia: {
-                //     appId: '7PYE6H9MWP',
-                //     apiKey: 'a09ac4139beb89df6eabdb84a31951cb',
-                //     indexName: 'CN_EASYSWOOLE'
-                // }
             },
             '/En/': {
                 selectText: 'translate',
