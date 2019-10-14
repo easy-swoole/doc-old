@@ -239,11 +239,13 @@ const sidebarCn = [
             },
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
-            ['/Components/tracker', 'Tracker'],
+            ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/consul', 'consul客户端'],
             ['/Components/apollo', 'apollo配置中心'],
+            ['/Components/console', '远程控制台'],
+            ['/Components/atomicLimit', 'atomic限流器']
         ]
     },
     {
