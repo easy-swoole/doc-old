@@ -224,6 +224,15 @@ const sidebarCn = [
                 ]
             },
             {
+                title: 'Fastcache',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/FastCache/fastcache', 'fastcache'],
+                    ['/Components/FastCache/fastcache-queue', 'fastcache-queue']
+                ]
+            },
+            {
                 title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
