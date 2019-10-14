@@ -148,6 +148,7 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
+                            ['/Components/Orm/install', '安装'],
                             ['/Components/Orm/connection', '链接管理'],
                             ['/Components/Orm/model', '模型对象']
                         ]
@@ -221,8 +222,8 @@ const sidebarCn = [
                 title: 'Actor组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path: '/Components/Actor/actor',
                 children: [
+                    ['/Components/Actor/actor', '安装与使用'],
                     ['/Components/Actor/analysis', '设计解读'],
                 ]
             },
