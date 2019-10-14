@@ -269,6 +269,7 @@ const sidebarCn = [
                             ['/Database/Redis/RedisClient/introduction', '介绍'],
                             ['/Database/Redis/RedisClient/install', '安装'],
                             ['/Database/Redis/RedisClient/config', '配置'],
+                            ['/Database/Redis/RedisClient/cluster', '集群'],
                             ['/Database/Redis/RedisClient/connection', '连接(connection)'],
                             ['/Database/Redis/RedisClient/keys', '键(keys)'],
                             ['/Database/Redis/RedisClient/string', '字符串(string)'],
@@ -280,7 +281,7 @@ const sidebarCn = [
                             ['/Database/Redis/RedisClient/pubSub', '发布/订阅(pub/sub)'],
                             ['/Database/Redis/RedisClient/transaction', '事务 (transaction)'],
                             ['/Database/Redis/RedisClient/geoHash', 'geohash'],
-                            ['/Database/Redis/RedisClient/cluster', '集群(cluster)'],
+                            ['/Database/Redis/RedisClient/clusterMethod', '集群方法(cluster)'],
                             ['/Database/Redis/RedisClient/pipe', '管道(pipe)'],
                         ]
                     }
