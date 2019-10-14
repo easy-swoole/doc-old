@@ -88,7 +88,7 @@ const sidebarCn = [
             ['/BaseUsage/log', '日志处理'],
             {
                 title: '缓存',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/FastCache/fastcache', 'fastcache'],
