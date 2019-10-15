@@ -229,3 +229,109 @@ protected function getEasyswooleAttr($value,$data)
 $res = UserModel::create()->get(4);
 var_dump($res->easyswoole);
 ```
+
+## 指定连接
+
+connectionName属性，支持多数据库连接方式。
+
+指定``` blank ```连接方式
+
+```php
+Class AdminModel extends \EasySwoole\ORM\AbstractModel {
+
+    protected $connectionName = 'blank';
+
+    /**
+     * 返回当前模型的结构信息
+     * 请为当前模型编写正确的结构
+     * @return \EasySwoole\ORM\Utility\Schema\Table
+     */
+    protected function schemaInfo(): \EasySwoole\ORM\Utility\Schema\Table
+    {
+        // TODO: Implement schemaInfo() method.
+        $table = new \EasySwoole\ORM\Utility\Schema\Table('admin_list');
+        $table->colInt('admin_id')->setIsPrimaryKey(true);
+        $table->colChar('admin_name', 30);
+        $table->colChar('admin_account', 20);
+        $table->colChar('admin_password', 32);
+        $table->colChar('admin_session', 32);
+        $table->colChar('last_login_ip', 20);
+        $table->colInt('last_login_time');
+        $table->colInt('add_time');
+        $table->colTinyInt('is_forbid', 2);
+        return $table;
+    }
+}
+```
+
+添加``` blank ```连接方式
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+
+    $admin = AdminModel::create()->get(1);
+
+    print_r($admin->toArray());
+
+});
+```
+
+## 指定字段
+
+field，其作用是获取指定的数据库字段数据。
+
+AdminModel模型
+
+```php
+Class AdminModel extends \EasySwoole\ORM\AbstractModel {
+
+    protected $connectionName = 'blank';
+
+    /**
+     * 返回当前模型的结构信息
+     * 请为当前模型编写正确的结构
+     * @return \EasySwoole\ORM\Utility\Schema\Table
+     */
+    protected function schemaInfo(): \EasySwoole\ORM\Utility\Schema\Table
+    {
+        // TODO: Implement schemaInfo() method.
+        $table = new \EasySwoole\ORM\Utility\Schema\Table('admin_list');
+        $table->colInt('admin_id')->setIsPrimaryKey(true);
+        $table->colChar('admin_name', 30);
+        $table->colChar('admin_account', 20);
+        $table->colChar('admin_password', 32);
+        $table->colChar('admin_session', 32);
+        $table->colChar('last_login_ip', 20);
+        $table->colInt('last_login_time');
+        $table->colInt('add_time');
+        $table->colTinyInt('is_forbid', 2);
+        return $table;
+    }
+}
+```
+
+获取``` admin_id ```，``` admin_name ```数据
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+
+    $admin = AdminModel::create()->field(['admin_id', 'admin_name'])->get(1);
+
+    print_r($admin->toArray());
+
+});
+```
