@@ -2,7 +2,7 @@
 
 - 作者微信
 
-    ![](/resources/authWx.jpg)  
+    ![](/resources/authWx.png)
       
 - 商业支持：
     - QQ 291323003
