@@ -233,6 +233,41 @@ const sidebarCn = [
                 ]
             },
             {
+                title: 'Redis',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Redis/introduction', '介绍'],
+                    ['/Components/Redis/install', '安装'],
+                    ['/Components/Redis/config', '配置'],
+                    ['/Components/Redis/redis', '单机客户端'],
+                    ['/Components/Redis/cluster', '集群客户端'],
+                    ['/Components/Redis/pool', '连接池'],
+                    ['/Components/Redis/connection', '连接(connection)'],
+                    ['/Components/Redis/keys', '键(keys)'],
+                    ['/Components/Redis/string', '字符串(string)'],
+                    ['/Components/Redis/hash', '哈希(hash)'],
+                    ['/Components/Redis/lists', '列表(lists)'],
+                    ['/Components/Redis/sets', '集合(sets)'],
+                    ['/Components/Redis/sortedSets', '有序集合(sorted sets)'],
+                    ['/Components/Redis/hyperLogLog', 'HyperLogLog'],
+                    ['/Components/Redis/pubSub', '发布/订阅(pub/sub)'],
+                    ['/Components/Redis/transaction', '事务 (transaction)'],
+                    ['/Components/Redis/geoHash', 'geohash'],
+                    ['/Components/Redis/clusterMethod', '集群方法(cluster)'],
+                    ['/Components/Redis/pipe', '管道(pipe)'],
+                ]
+            },
+            {
+                title: 'memcached',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Memcache/memcache', '客户端'],
+                    ['/Components/Memcache/pool', '连接池'],
+                ]
+            },
+            {
                 title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
