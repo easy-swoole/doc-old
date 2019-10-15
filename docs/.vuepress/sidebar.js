@@ -206,7 +206,6 @@ const sidebarCn = [
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
-                    ['/Components/Component/pool', '通用连接池'],
                     ['/Components/Component/process', '自定义进程'],
                 ]
             },
@@ -267,6 +266,7 @@ const sidebarCn = [
                     ['/Components/Memcache/pool', '连接池'],
                 ]
             },
+            ['/Components/pool', '通用连接池'],
             {
                 title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
