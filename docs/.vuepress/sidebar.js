@@ -86,15 +86,6 @@ const sidebarCn = [
             ['/Components/Component/timer', 'Timer 定时器'],
             ['/BaseUsage/crontab', 'Crontab 计划任务'],
             ['/BaseUsage/log', '日志处理'],
-            {
-                title: '缓存',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/FastCache/fastcache', 'fastcache'],
-                    ['/Components/FastCache/fastcache-queue', 'fastcache-queue']
-                ]
-            },
             ['/Components/phpunit', '单元测试'],
             ['/Components/console', '远程控制台'],
         ]
@@ -136,25 +127,25 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
+            ['/Components/ddl', 'DDL定义'],
+            ['/Components/mysqli', 'mysqli'],
             {
-                title: 'MYSQl',
+                title: 'ORM',
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/ddl', 'DDL定义'],
-                    ['/Components/mysqli', 'mysqli'],
-                    {
-                        title: 'ORM',
-                        collapsable: true,
-                        sidebarDepth: 0,
-                        children: [
-                            ['/Components/Orm/install', '安装'],
-                            ['/Components/Orm/connection', '连接管理'],
-                            ['/Components/Orm/model', '模型对象']
-                        ]
-                    }
+                    ['/Components/Orm/install', '安装'],
+                    ['/Components/Orm/connection', '连接管理'],
+                    ['/Components/Orm/model', '模型对象']
                 ]
-            },
+            }
+        ]
+    },
+    {
+        title: '缓存',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
             {
                 title: 'Redis',
                 collapsable: true,
@@ -188,6 +179,15 @@ const sidebarCn = [
                 children: [
                     ['/Components/Memcache/memcache', '客户端'],
                     ['/Components/Memcache/pool', '连接池'],
+                ]
+            },
+            {
+                title: 'FastCache',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/FastCache/fastcache', '基础使用'],
+                    ['/Components/FastCache/fastcache-queue', '队列'],
                 ]
             }
         ]
