@@ -266,7 +266,18 @@ const sidebarCn = [
                     ['/Components/Memcache/pool', '连接池'],
                 ]
             },
-            ['/Components/pool', '通用连接池'],
+            {
+                title: '通用连接池',
+                collapsable: true,
+                sidebarDepth: 2,
+                children: [
+                    ['/Components/Pool/introduction', '通用连接池'],
+                    ['/Components/Pool/config', '连接池配置'],
+                    ['/Components/Pool/demo', '示例'],
+                    ['/Components/Pool/poolManage', '池管理器'],
+                    ['/Components/Pool/abstractPool', '池对象方法']
+                ]
+            },
             {
                 title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
