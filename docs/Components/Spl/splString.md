@@ -11,9 +11,46 @@ meta:
 ## 用途
 用于处理字符串。
 
-## 核心对象方法
+## 操作方法
 
-核心类：EasySwoole\Spl\SplString。
+| 方法名称         | 参数                                                                   | 说明                                        |
+|:----------------|:----------------------------------------------------------------------|:-------------------------------------------|
+| setString       | string $string                                                        | 设置字符串                                  |
+| split           | int $length = 1                                                       | 按长度分割字符串                             |                    
+| explode         | string $delimiter                                                     | 按分隔符分割字符串                           |                    
+| subString       | int $start, int $length                                               | 截取字符串                                  |                       
+| encodingConvert | string $desEncoding, $detectList = ['UTF-8', 'ASCII', 'GBK',...]      | 编码转换                                    |                       
+| utf8            |                                                                       | 转成utf                                    |                        
+| unicodeToUtf8   |                                                                       | 将unicode编码转成utf-8                      |                       
+| toUnicode       |                                                                       | 转成unicode编码(秒)                         |                       
+| compare         | string $str, int $ignoreCase = 0                                      | 二进制字符串比较                             |                       
+| lTrim           | string $charList = " \t\n\r\0\x0B"                                    | 删除字符串开头的空白字符（或其他字符）         |                      
+| rTrim           | string $charList = " \t\n\r\0\x0B"                                    | 删除字符串末端的空白字符（或者其他字符）       |                       
+| trim            | string $charList = " \t\n\r\0\x0B"                                    | 去除字符串首尾处的空白字符（或者其他字符）      |                       
+| pad             | int $length, string $padString = null, int $pad_type = STR_PAD_RIGHT  | 使用另一个字符串填充字符串为指定长度           |                       
+| repeat          | int $times                                                            | 重复一个字符串                              |                       
+| length          |                                                                       | 获取字符串长度                              |                       
+| upper           |                                                                       | 将字符串转化为大写                           |                       
+| lower           |                                                                       | 将字符串转化为小写                           |                       
+| stripTags       | string $allowable_tags = null                                         | 从字符串中去除 HTML 和 PHP 标记1             |                       
+| replace         | string $find, string $replaceTo                                       | 子字符串替换                                |                       
+| between         | string $startStr, string $endStr                                      | 获取指定目标的中间字符串                     |                       
+| regex           | $regex, bool $rawReturn = false                                       | 按照正则规则查找字符串                       |                       
+| exist           | string $find, bool $ignoreCase = true                                 | 是否存在指定字符串                           |                       
+| kebab           |                                                                       | 转换为烤串                                  |                       
+| snake           | string $delimiter = '_'                                               | 转为蛇的样子                                |                       
+| studly          |                                                                       | 驼峰                                       |                       
+| camel           |                                                                       | 小驼峰                                     |                       
+| replaceArray    | string $search, array $replace                                        | 依次替换字符串                              |                       
+| replaceFirst    | string $search, string $replace                                       | 替换字符串中给定值的第一次出现                |                       
+| replaceLast     | string $search, string $replace                                       | 替换字符串中给定值的最后一次出现              |                       
+| start           | string $prefix                                                        | 以一个给定值的单一实例开始一个字符串          |                       
+| after           | string $search                                                        | 在给定的值之后返回字符串的其余部分            |                       
+| before          | string $search                                                        | 在给定的值之前获取字符串的一部分              |                       
+| endsWith        | $needles                                                              | 确定给定的字符串是否以给定的子字符串结束       |                       
+| startsWith      | $needles                                                              | 确定给定的字符串是否从给定的子字符串开始                                                                 
+
+## 例子
 
 ### setString
 
@@ -899,7 +936,7 @@ var_dump($string->studly()->__toString());
 
 ### camel
 
-驼峰
+小驼峰
 ```php
 function camel() : SplString
 ```
