@@ -33,5 +33,39 @@ DbManager::getInstance()->addConnection(new Connection($config));
 
 ## 事务
 ### 开始事务
+```php
+DbManager::getInstance()->startTransaction();
+```
 ### 提交
+```php
+DbManager::getInstance()->commit();
+```
 ### 回滚
+```php
+DbManager::getInstance()->rollback();
+```
+
+::: danger
+开启事务之前，必须添加好数据库连接方式。
+:::
+
+### 事务例子
+```php
+$config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config))->getConnection();
+    
+    try {
+        DbManager::getInstance()->startTransaction();
+        // 事务逻辑
+      
+        DbManager::getInstance()->commit();
+    } catch (Exception $exception) {
+        // 事务失败    
+        DbManager::getInstance()->rollback();
+    }
+```
