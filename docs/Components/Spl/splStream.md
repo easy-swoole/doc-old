@@ -11,7 +11,32 @@ meta:
 ## 用途
 资源流数据操作
 
-## 核心对象方法
+## 操作方法
+
+| 方法名称           | 参数                                       | 说明                                       |
+|:------------------|:-------------------------------------------|:-------------------------------------------|
+| __construct       | $resource = '',$mode = 'r+'                | 初始化资源和读写操作                         |
+| __toString        |                                            | 输出资源                                    |                    
+| close             |                                            | 关闭一个打开的文件指针                       |                    
+| detach            |                                            | 获取资源并重置资源对象                       |                       
+| getSize           | 获取资源大小                                | 编码转换                                    |                       
+| tell              |                                            | 返回文件指针读/写的位置                      |                        
+| eof               |                                            | 文件指针是否到了文件结束的位置                |                       
+| isSeekable        |                                            | 获取是否可以在当前流中定位                    |                       
+| seek              | $offset, $whence = SEEK_SET                | 在文件指针中定位                             |                       
+| rewind            |                                            | 倒回文件指针的位置                           |                      
+| isWritable        |                                            | 是否可写                                    |                       
+| write             | $string                                    | 写入内容                                    |                       
+| isReadable        |                                            | 是否可读                                    |                       
+| read              | $length                                    | 读取内容                                    |                       
+| length            |                                            | 获取字符串长度                              |                       
+| getContents       |                                            | 读取资源流到一个字符串                       |                       
+| getMetadata       | $key = null                                | 从封装协议文件指针中取得报头／元数据           |                       
+| getStreamResource |                                            | 获取资源                                    |                       
+| truncate          | $size = 0                                  | 将文件截断到给定的长度                        |                                                                               
+
+
+## 核心类方法
 
 核心类：EasySwoole\Utility\SplStream
 
