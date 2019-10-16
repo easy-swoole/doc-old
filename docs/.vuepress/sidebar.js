@@ -340,25 +340,6 @@ const sidebarCn = [
         ]
     },
     {
-        title: '其他问题',   // 必要的
-        collapsable: true, // 可选的, 默认值是 true,
-        sidebarDepth: 0,    // 可选的, 默认值是 1
-        children: [
-            ['/Other/swooleTracker', 'SwooleTracker'],
-            ['/Other/process', '队列消费/自定义进程问题'],
-            ['/Other/redisSubscribe', 'Redis/Kafka订阅'],
-            ['/Other/kernelOptimization', '内核优化'],
-            ['/Other/hotReload', '服务热重载'],
-            ['/Other/random', '随机生成问题'],
-            ['/Other/traitSingleTon', 'Trait与单例'],
-            ['/Other/mysqlIndexReduce', 'MySQL索引降维'],
-            ['/Other/tpORM', 'tpORM使用问题'],
-            ['/Other/curlSsl', 'CurlSSL错误'],
-            ['/Other/chromeHeadless', 'ChromeHeadless'],
-            ['/Other/graphQL', 'GraphQL'],
-        ]
-    },
-    {
         title: '微信支付宝SDK',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
@@ -414,8 +395,25 @@ const sidebarCn = [
             }
         ]
     },
-
-
+    {
+        title: '其他问题',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            ['/Other/swooleTracker', 'SwooleTracker'],
+            ['/Other/process', '队列消费/自定义进程问题'],
+            ['/Other/redisSubscribe', 'Redis/Kafka订阅'],
+            ['/Other/kernelOptimization', '内核优化'],
+            ['/Other/hotReload', '服务热重载'],
+            ['/Other/random', '随机生成问题'],
+            ['/Other/traitSingleTon', 'Trait与单例'],
+            ['/Other/mysqlIndexReduce', 'MySQL索引降维'],
+            ['/Other/tpORM', 'tpORM使用问题'],
+            ['/Other/curlSsl', 'CurlSSL错误'],
+            ['/Other/chromeHeadless', 'ChromeHeadless'],
+            ['/Other/graphQL', 'GraphQL'],
+        ]
+    }
 ];
 const sidebarEn = [];
 
