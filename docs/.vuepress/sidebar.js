@@ -309,6 +309,24 @@ const sidebarCn = [
                     ['/Components/Kafka/producer', '生产者']
                 ]
             },
+            {
+                title: '支付SDK',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Pay/ali', '支付宝'],
+                    ['/Components/Pay/wechat', '微信'],
+                ]
+            },
+            {
+                title: '微信SDK',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Wechat/miniProgram', '公众号'],
+                    ['/Components/Wechat/officialAccount', '小程序'],
+                ]
+            },
             ['/Components/template', '模板引擎'],
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
@@ -346,29 +364,23 @@ const sidebarCn = [
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
             {
-                title: '微信SDK',   // 必要的
+                title: '支付SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path: '/Sdk/wechat',
                 children: [
-                    ['/Sdk/openPlatform', '公众号'],
-                    ['/Sdk/miniProgram', '小程序'],
-                    ['/Sdk/wxPay', '微信支付'],
+                    ['/Components/Pay/ali', '支付宝'],
+                    ['/Components/Pay/wechat', '微信'],
                 ]
             },
             {
-                title: '支付宝SDK',   // 必要的
+                title: '微信SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
-                path: '/Sdk/pay',
-                // children: [
-                //     ['/Distribute/server', '服务端'],
-                //     ['/Distribute/client', '客户端'],
-                //     ['/Distribute/otherPlatform', '跨语言'],
-                //     ['/Distribute/registerCenter', '服务注册中心'],
-                // ]
+                children: [
+                    ['/Components/Wechat/miniProgram', '公众号'],
+                    ['/Components/Wechat/officialAccount', '小程序'],
+                ]
             },
-
         ]
     },
     {
