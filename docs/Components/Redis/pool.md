@@ -78,11 +78,15 @@ go(function (){
     var_dump($redis2->get('name'));
 
     //回收对象
-    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->unsetObj($redis1);
-    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->unsetObj($redis2);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->recycleObj($redis1);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->recycleObj($redis2);
 });
 ```
 
 ::: warning
-本文 redis连接池 基于 [pool通用连接池](/Components/Pool/introduction.md) 实现
+详细用法可查看 [pool通用连接池](/Components/Pool/introduction.md)
+:::
+
+::: warning
+本文 redis连接池 基于 [pool通用连接池](/Components/Pool/introduction.md) 实现  
 :::
