@@ -84,7 +84,7 @@ php easyswoole reload all  重启task + worker进程
         
 - 作者微信
 
-     ![](/resources/authWx.jpg)    
+     ![](/resources/authWx.png)
     
 - [捐赠](../donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:

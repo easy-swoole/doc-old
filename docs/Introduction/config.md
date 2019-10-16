@@ -92,7 +92,7 @@ $instance->load($conf);
 每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
 
 ```php
-/*################ REDIS CONFIG ##################*/
+/*################ MYSQL CONFIG ##################*/
 
 'MYSQL' => [
     'host'          => '192.168.75.1',
@@ -193,7 +193,7 @@ public static function initialize()
         
 - 作者微信
 
-     ![](/resources/authWx.jpg)    
+     ![](/resources/authWx.png)
     
 - [捐赠](../donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:

@@ -27,12 +27,16 @@ composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 ## Composer 安装
 
 按下面的步骤进行手动安装
-
+(建议使用)
+```bash
+composer require easyswoole/easyswoole=3.x
+php vendor/easyswoole/easyswoole/bin/easyswoole install
+```
+或者(可能出错)
 ```bash
 composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
-
 
 ::: warning 
  如果安装遇到报错，请看下面的报错处理
@@ -83,14 +87,7 @@ cd vendor/bin/ && rm -rf easyswoole && ln -s ../easyswoole/easyswoole/bin/easysw
 php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 
-## 手动安装
-
-按下面的步骤进行手动安装
-
-```bash
-composer require easyswoole/easyswoole=3.x
-php vendor/bin/easyswoole install
-```
+## 启动框架
 
 中途没有报错的话，执行：
 ```bash
@@ -99,10 +96,6 @@ php easyswoole start
 ```
 此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示框架已经安装成功
 
-
-::: warning 
- 如果第二步的 install 操作报错 请查看上方的报错处理
-:::
 
 ## Docker
 
@@ -209,7 +202,7 @@ project                   项目部署目录
 
 
 ::: warning 
- 注意!请不要将框架主目录作为web服务器的根目录,否则dev.env,produce.env配置将会是可访问的,也可自行排除该文件(3.1.2已经改为dev.php,produce.php,但依旧建议设置到Public)
+ 注意!请不要将框架主目录作为web服务器的根目录,否则dev.php,produce.php等根目录文件配置将会是可访问的,也可自行排除重要文件
 :::
 
 ## 其他
@@ -225,7 +218,7 @@ project                   项目部署目录
         
 - 作者微信
 
-     ![](/resources/authWx.jpg)        
+     ![](/resources/authWx.png)
     
 - [捐赠](../donate.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
