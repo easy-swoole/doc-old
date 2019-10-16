@@ -1,213 +1,11 @@
-# Pool
-通用的连接池管理。
-## 安装
-```php
-composer require easyswoole/pool
-```
-
-## 基础实例代码
-### 定义池对象
-```php
-class Std implements \EasySwoole\Pool\ObjectInterface {
-    function gc()
-    {
-        /*
-         * 本对象被pool执行unset的时候
-         */
-    }
-
-    function objectRestore()
-    {
-        /*
-         * 回归到连接池的时候
-         */
-    }
-
-    function beforeUse(): ?bool
-    {
-        /*
-         * 取出连接池的时候，若返回false，则当前对象被弃用回收
-         */
-        return true;
-    }
-
-    public function who()
-    {
-        return spl_object_id($this);
-    }
-}
-```
-### 定义池
-```php
-
-class StdPool extends \EasySwoole\Pool\AbstractPool{
-    
-    protected function createObject()
-    {
-        return new Std();
-    }
-}
-
-```
-> 不一定非要创建返回 ```EasySwoole\Pool\ObjectInterface``` 对象，任意类型对象均可
-
-### 使用
-```php
-
-$config = new \EasySwoole\Pool\Config();
-$pool = new StdPool($config);
-
-go(function ()use($pool){
-    $obj = $pool->getObj();
-    $obj2 = $pool->getObj();
-    var_dump($obj->who());
-    var_dump($obj2->who());
-});
-```
-
-## Redis连接池示例
-
-### 安装easyswoole/redis组件:
-
-```shell
-composer require easyswoole/redis
-```
-
-### 新增redisPool管理器
-新增文件`/App/Pool/RedisPool.php`
-
-```php
-<?php
-/**
- * Created by PhpStorm.
- * User: Tioncico
- * Date: 2019/10/15 0015
- * Time: 14:46
- */
-
-namespace App\Pool;
-
-use EasySwoole\Pool\Config;
-use EasySwoole\Pool\AbstractPool;
-use EasySwoole\Redis\Config\RedisConfig;
-use EasySwoole\Redis\Redis;
-
-class RedisPool extends AbstractPool
-{
-    protected $redisConfig;
-
-    /**
-     * 重写构造函数,为了传入redis配置
-     * RedisPool constructor.
-     * @param Config      $conf
-     * @param RedisConfig $redisConfig
-     * @throws \EasySwoole\Pool\Exception\Exception
-     */
-    public function __construct(Config $conf,RedisConfig $redisConfig)
-    {
-        parent::__construct($conf);
-        $this->redisConfig = $redisConfig;
-    }
-
-    protected function createObject()
-    {
-        //根据传入的redis配置进行new 一个redis
-        $redis = new Redis($this->redisConfig);
-        return $redis;
-    }
-}
-```
-注册到Manager中:
-```php
-$config = new \EasySwoole\Pool\Config();
-
-$redisConfig1 = new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS1'));
-
-$redisConfig2 = new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS2'));
-
-\EasySwoole\Pool\Manager::getInstance()->register(new \App\Pool\RedisPool($config,$redisConfig1),'redis1');
-
-\EasySwoole\Pool\Manager::getInstance()->register(new \App\Pool\RedisPool($config,$redisConfig2),'redis2');
-
-```
-
-调用(可在控制器中全局调用):
-```php
-go(function (){
-   
-    $redis1=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
-    $redis2=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
-
-    $redis1->set('name','仙士可');
-    var_dump($redis1->get('name'));
-
-    $redis2->set('name','仙士可2号');
-    var_dump($redis2->get('name'));
-
-    //回收对象
-    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->unsetObj($redis1);
-    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->unsetObj($redis2);
-});
-```
-
-
-
-
-
-
-## 连接池配置项
-在实例化一个连接池对象时,需要传入一个连接池配置对象`EasySwoole\Pool\Config`,该对象的属性如下:
-
-| 配置项             | 默认值  | 说明                    | 备注                                                                                  |
-|:-------------------|:--------|:------------------------|:--------------------------------------------------------------------------------------|
-| $intervalCheckTime | 30*1000 | 定时器执行频率           | 用于定时执行连接池对象回收,创建操作                                                       |
-| $maxIdleTime       | 15      | 连接池对象最大闲置时间(秒) | 超过这个时间未使用的对象将会被定时器回收                                                  |
-| $maxObjectNum      | 20      | 连接池最大数量           | 每个进程最多会创建$maxObjectNum连接池对象,如果对象都在使用,则会返回空,或者等待连接空闲        |
-| $minObjectNum      | 5       | 连接池最小数量(热启动)    | 当连接池对象总数低于$minObjectNum时,会自动创建连接,保持连接的活跃性,让控制器能够尽快的获取连接 |
-| $getObjectTimeout  | 3.0     | 获取连接池的超时时间      | 当连接池为空时,会等待$getObjectTimeout秒,如果期间有连接空闲,则会返回连接对象,否则返回null    |
-| $extraConf         |         | 额外配置信息             | 在实例化连接池前,可把一些额外配置放到这里,例如数据库配置信息,redis配置等等                   |
-
-
-## 池管理器
-
-池管理器可以做全局的连接池管理,例如在`EasySwooleEvent.php`中的`initialize`中注册,然后可以在控制器中获取连接池进行获取连接:
-```php
-public static function initialize()
-{
-    // TODO: Implement initialize() method.
-    date_default_timezone_set('Asia/Shanghai');
-
-    $config = new \EasySwoole\Pool\Config();
-
-    $redisConfig1 = new \EasySwoole\Redis\Config\RedisConfig(Config::getInstance()->getConf('REDIS1'));
-    $redisConfig2 = new \EasySwoole\Redis\Config\RedisConfig(Config::getInstance()->getConf('REDIS2'));
-    //注册连接池管理对象
-    \EasySwoole\Pool\Manager::getInstance()->register(new \App\Pool\RedisPool($config,$redisConfig1),'redis1');
-    \EasySwoole\Pool\Manager::getInstance()->register(new \App\Pool\RedisPool($config,$redisConfig2),'redis2');
-
-}
-```
-
-控制器获取连接池连接:
-```php
-public function index()
-{
-    //取出连接池管理对象,并getObj
-   
-    $redis1=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
-    $redis2=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
-
-    $redis1->set('name','仙士可');
-    var_dump($redis1->get('name'));
-
-    $redis2->set('name','仙士可2号');
-    var_dump($redis2->get('name'));
-
-    //回收对象
-    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->unsetObj($redis1);
-    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->unsetObj($redis2);
-}
-```
+---
+title: EasySwoole通用连接池
+meta:
+  - name: description
+    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+  - name: keywords
+    content: easyswoole的通用连接池
+---
 
 
 ## 池对象方法
@@ -339,7 +137,7 @@ array(4) {
 
 ### destroyPool
 销毁连接池  
-调用之后,连接池剩余的所有链接都会unsetObj,并且将关闭连接队列,调用之后getObj等方法都将失效:  
+调用之后,连接池剩余的所有链接都会unsetObj,并且将关闭连接队列,调用之后getObj等方法都将失效:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -349,7 +147,7 @@ go(function (){
 });
 ```
 ### reset
-重置连接池,调用reset之后,会自动调用destroyPool销毁连接池,并在下一次getObj时重新初始化该连接池:  
+重置连接池,调用reset之后,会自动调用destroyPool销毁连接池,并在下一次getObj时重新初始化该连接池:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -360,7 +158,7 @@ go(function (){
 ```
 
 ### status
-获取连接池当前状态,调用之后将输出:  
+获取连接池当前状态,调用之后将输出:
 ```
 array(4) {
   ["created"]=>
