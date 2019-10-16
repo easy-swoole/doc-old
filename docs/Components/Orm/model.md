@@ -274,7 +274,7 @@ Class AdminModel extends \EasySwoole\ORM\AbstractModel {
     $config->setPassword('root');
     $config->setHost('192.168.75.1');
 
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
 
     $admin = AdminModel::create()->get(1);
 
@@ -297,7 +297,7 @@ field，其作用是获取指定的数据库字段数据。
     $config->setPassword('root');
     $config->setHost('192.168.75.1');
 
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
 
     $admin = AdminModel::create()->field(['admin_id', 'admin_name'])->get(1);
 
@@ -320,7 +320,7 @@ limit和withTotalCount，获取分页列表数据以及总条数。
     $config->setPassword('root');
     $config->setHost('192.168.75.1');
 
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
 
     $page = 1;          // 当前页码
     $limit = 10;        // 每页多少条数据
@@ -350,7 +350,7 @@ jsonSerialize，获取序列化记录数据。
     $config->setPassword('root');
     $config->setHost('192.168.75.1');
 
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
 
     $model = AdminModel::create();
 
@@ -373,7 +373,7 @@ __toString，将数据转化成字符串json数据并返回。
    $config->setPassword('root');
    $config->setHost('192.168.75.1');
 
-   DbManager::getInstance()->addConnection(new Connection($config), 'blank')->getConnection();
+   DbManager::getInstance()->addConnection(new Connection($config), 'blank');
 
    $model = AdminModel::create();
 
