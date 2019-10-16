@@ -1,12 +1,21 @@
-# Redis连接池示例
+---
+title: EasySwoole通用连接池
+meta:
+  - name: description
+    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+  - name: keywords
+    content: easyswoole的通用连接池
+---
 
-## 安装 easyswoole/pool 组件:
+## Redis连接池示例
+
+### 安装easyswoole/redis组件:
 
 ```shell
-composer require easyswoole/pool
+composer require easyswoole/redis
 ```
 
-## 新增redisPool管理器
+### 新增redisPool管理器
 新增文件`/App/Pool/RedisPool.php`
 
 ```php
@@ -78,15 +87,7 @@ go(function (){
     var_dump($redis2->get('name'));
 
     //回收对象
-    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->recycleObj($redis1);
-    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->recycleObj($redis2);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->unsetObj($redis1);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->unsetObj($redis2);
 });
 ```
-
-::: warning
-详细用法可查看 [pool通用连接池](/Components/Pool/introduction.md)
-:::
-
-::: warning
-本文 redis连接池 基于 [pool通用连接池](/Components/Pool/introduction.md) 实现  
-:::
