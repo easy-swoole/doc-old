@@ -271,7 +271,7 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 2,
                 children: [
-                    ['/Components/Pool/introduction', '通用连接池'],
+                    ['/Components/Pool/introduction', '介绍'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
                     ['/Components/Pool/poolManage', '池管理器'],
