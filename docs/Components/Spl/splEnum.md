@@ -7,21 +7,38 @@ meta:
     content: easyswoole,SplEnum
 ---
 
-# SplEnum
+
 
 ## 用途
 用于定义枚举一个集合，规范化枚举数据。
 
+# SplEnum相关方法
+
+方法列表
+
+| 方法名称     | 参数         | 说明                   | 备注 |
+| :----------- | :----------- | :--------------------- | :--- |
+| __construct  | $val         | 构造函数               |      |
+| getName      |              | 获取定义常量的键       |      |
+| getValue     |              | 获取定义常量           |      |
+| isValidName  | string $name | 查找常量的键值是否有效 |      |
+| isValidValue | $val         | 查找常量的值是否有效   |      |
+| getEnumList  |              | 获取枚举集合           |      |
+| getConstants |              | 获取枚举集合           |      |
+
 ## 如何使用
 
 ```php
-<?php
 /**
- * Date: 19-1-9
- * Time: 上午10:10
+ *
+ * User: zs
+ * Date: 2019/10/16 17:08
+ * Email: <1769360227@qq.com>
  */
 
-require './vendor/autoload.php';
+
+include "./vendor/autoload.php";
+
 
 class Month extends \EasySwoole\Spl\SplEnum {
     const JANUARY = 1;
@@ -37,66 +54,18 @@ class Month extends \EasySwoole\Spl\SplEnum {
     const NOVEMBER = 11;
     const DECEMBER = 12;
 }
-
 $month = new Month(1);
-echo $month->getName();
 
-/**
- * 输出结果：
- * JANUARY
- */
+var_dump($month->getName());
+
+var_dump($month->getValue());
+
+var_dump(Month::isValidName('JANUARY'));
+
+var_dump(Month::isValidValue(1));
+
+var_dump( Month::getEnumList());
+
 
 ```
 
-## 核心对象方法
-
-核心类：EasySwoole\Spl\SplEnum。
-
-### __construct
-
-构造函数
-
-* mixed     $val     查找的值
-```php
-final public function __construct($val)
-```
-### getName
-
-获取定义常量的键
-```php
-final public function getName():string
-```
-### getValue
-
-获取定义常量
-```php
-final public function getValue()
-```
-### isValidName
-
-查找常量的键值是否有效
-
-* string     $name     查找常量的键值
-```php
-final public static function isValidName(string $name):bool
-```
-### isValidValue
-
-查找常量的值是否有效
-
-* mixed     $val     查找常量的值
-```php
-final public static function isValidValue($val)
-```
-### getEnumList
-
-获取枚举集合
-```php
-final public static function getEnumList():array
-```
-### getConstants
-
-获取枚举集合
-```php
-private final static function getConstants():array
-```
