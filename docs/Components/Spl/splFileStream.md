@@ -20,9 +20,7 @@ meta:
 | unlock            | $mode = LOCK_UN               | 释放锁定                          |                                                                                                   
 
 
-## 核心对象方法
-
-核心类：EasySwoole\Utility\SplFileStream
+## 例子
 
 ### __construct
 
