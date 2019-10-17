@@ -7,7 +7,7 @@ meta:
     content: easyswoole,验证码
 ---
 
-#EasySwoole 验证码组件  
+# EasySwoole 验证码组件  
 
 ::: warning 
 仓库地址: [验证码组件](https://github.com/easy-swoole/verifyCode)

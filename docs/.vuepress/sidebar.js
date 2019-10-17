@@ -4,11 +4,11 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Preface/Introduction', '项目介绍'],
-            ['/Preface/DeveloperRead', '开发者必读'],
-            ['/Preface/UpdateLog', '更新记录'],
-            ['/Preface/Donation', '捐赠'],
-            ['/Preface/ContactAuthor', '联系作者'],
+            ['/Preface/introduction', '项目介绍'],
+            ['/Preface/developer_read', '开发者必读'],
+            ['/Preface/update_log', '更新记录'],
+            ['/Preface/donation', '捐赠'],
+            ['/Preface/contact_author', '联系作者'],
         ]
     },
     {
@@ -39,7 +39,7 @@ const sidebarCn = [
                 collapsable: false, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Introduction/coroutineCreate', '创建协程'],
+                    ['/Introduction/coroutine_create', '创建协程'],
                     ['/Components/Component/waitgroup', 'WaitGroup等待'],
                     ['/Components/Component/csp', 'Csp并发'],
                 ]
@@ -64,9 +64,9 @@ const sidebarCn = [
                 children: [
                     ['/Core/event/bootstrap', 'bootstrap事件'],
                     ['/Core/event/initialize', 'initialize事件'],
-                    ['/Core/event/mainServerCreate', 'mainServerCreate事件'],
-                    ['/Core/event/onRequest', 'onRequest事件'],
-                    ['/Core/event/afterRequest', 'afterRequest事件'],
+                    ['/Core/event/main_server_create', 'mainServerCreate事件'],
+                    ['/Core/event/on_request', 'onRequest事件'],
+                    ['/Core/event/after_request', 'afterRequest事件'],
                 ]
             },
             ['/Components/annotation', '注解支持'],
@@ -78,8 +78,8 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
-            ['/BaseUsage/serverManager', 'Swoole实例'],
-            ['/BaseUsage/customCommand', '自定义命令'],
+            ['/BaseUsage/server_manager', 'Swoole实例'],
+            ['/BaseUsage/custom_command', '自定义命令'],
             ['/Components/Component/process', '自定义进程'],
             ['/BaseUsage/event', '自定义事件'],
             ['/Components/task', 'Task 异步任务'],
@@ -95,6 +95,12 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
+            ['/HttpServer/fast_route', '路由'],
+            ['/HttpServer/controller', '控制器'],
+            ['/HttpServer/annotation', '注解控制器'],
+            ['/HttpServer/request', '请求'],
+            ['/HttpServer/response', '响应'],
+            ['/Components/template', '视图'],
             {
                 title: '验证码',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -102,16 +108,10 @@ const sidebarCn = [
                 path: '/Components/VerifyCode/introduction',
                 children: [
                     ['/Components/VerifyCode/config', '配置'],
-                    ['/Components/VerifyCode/verifyCode', '使用'],
+                    ['/Components/VerifyCode/verify_code', '使用'],
                 ]
             },
-            ['/HttpServer/fastRoute', '路由'],
-            ['/HttpServer/controller', '控制器'],
-            ['/HttpServer/annotation', '注解控制器'],
-            ['/HttpServer/request', '请求'],
-            ['/HttpServer/response', '响应'],
-            ['/Components/template', '视图'],
-            ['/HttpServer/uploadFile', '文件上传'],
+            ['/HttpServer/upload_file', '文件上传'],
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
@@ -213,8 +213,8 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Component/singleton', '单例'],
-                    ['/Components/Component/readyScheduler', '就绪等待'],
-                    ['/Components/Component/tableManager', 'Swoole Table'],
+                    ['/Components/Component/ready_scheduler', '就绪等待'],
+                    ['/Components/Component/table_manager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
                     ['/Components/Component/process', '自定义进程'],
                 ]
@@ -230,50 +230,6 @@ const sidebarCn = [
                     ['/Components/Spl/splStream', 'SplStream'],
                     ['/Components/Spl/splFileStream', 'SplFileStream'],
                     ['/Components/Spl/splString', 'SplString'],
-                ]
-            },
-            {
-                title: 'Fastcache',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/FastCache/fastcache', 'fastcache'],
-                    ['/Components/FastCache/fastcache-queue', 'fastcache-queue']
-                ]
-            },
-            {
-                title: 'Redis',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/Redis/introduction', '介绍'],
-                    ['/Components/Redis/install', '安装'],
-                    ['/Components/Redis/config', '配置'],
-                    ['/Components/Redis/redis', '单机客户端'],
-                    ['/Components/Redis/cluster', '集群客户端'],
-                    ['/Components/Redis/pool', '连接池'],
-                    ['/Components/Redis/connection', '连接(connection)'],
-                    ['/Components/Redis/keys', '键(keys)'],
-                    ['/Components/Redis/string', '字符串(string)'],
-                    ['/Components/Redis/hash', '哈希(hash)'],
-                    ['/Components/Redis/lists', '列表(lists)'],
-                    ['/Components/Redis/sets', '集合(sets)'],
-                    ['/Components/Redis/sortedSets', '有序集合(sorted sets)'],
-                    ['/Components/Redis/hyperLogLog', 'HyperLogLog'],
-                    ['/Components/Redis/pubSub', '发布/订阅(pub/sub)'],
-                    ['/Components/Redis/transaction', '事务 (transaction)'],
-                    ['/Components/Redis/geoHash', 'geohash'],
-                    ['/Components/Redis/clusterMethod', '集群方法(cluster)'],
-                    ['/Components/Redis/pipe', '管道(pipe)'],
-                ]
-            },
-            {
-                title: 'memcached',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/Memcache/memcache', '客户端'],
-                    ['/Components/Memcache/pool', '连接池'],
                 ]
             },
             {
@@ -300,7 +256,6 @@ const sidebarCn = [
                     ['/Components/HttpClient/websocket', 'WebsocketClient'],
                 ]
             },
-            ['/Components/task', 'Task组件'],
             {
                 title: 'Actor组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -320,32 +275,12 @@ const sidebarCn = [
                     ['/Components/Kafka/producer', '生产者']
                 ]
             },
-            {
-                title: '支付SDK',   // 必要的
-                collapsable: true, // 可选的, 默认值是 true,
-                sidebarDepth: 0,    // 可选的, 默认值是 1
-                children: [
-                    ['/Components/Pay/ali', '支付宝'],
-                    ['/Components/Pay/wechat', '微信'],
-                ]
-            },
-            {
-                title: '微信SDK',   // 必要的
-                collapsable: true, // 可选的, 默认值是 true,
-                sidebarDepth: 0,    // 可选的, 默认值是 1
-                children: [
-                    ['/Components/Wechat/miniProgram', '公众号'],
-                    ['/Components/Wechat/officialAccount', '小程序'],
-                ]
-            },
             ['/Components/template', '模板引擎'],
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
-            ['/Components/consul', 'consul客户端'],
-            ['/Components/apollo', 'apollo配置中心'],
             ['/Components/console', '远程控制台'],
             ['/Components/atomicLimit', 'atomic限流器']
         ]

@@ -24,7 +24,7 @@ $code->DrawCode();//生成验证码,返回一个Result对象
 
 方法列表:
 ```php
- /**
+    /**
      * 获取验证码图片
      * @author : evalor <master@evalor.cn>
      * @return mixed
