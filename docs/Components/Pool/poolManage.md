@@ -43,8 +43,8 @@ public function index()
     var_dump($redis2->get('name'));
 
     //回收对象
-    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->unsetObj($redis1);
-    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->unsetObj($redis2);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis1')->recycleObj($redis1);
+    \EasySwoole\Pool\Manager::getInstance()->get('redis2')->recycleObj($redis2);
 }
 ```
 

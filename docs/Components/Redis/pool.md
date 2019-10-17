@@ -1,6 +1,13 @@
 # Redis连接池示例
+## redis-pool组件
+可直接安装[redis-pool组件](/Components/redisPool.md)实现连接池:
 
-## 安装 easyswoole/pool 组件:
+```shell
+composer require easyswoole/redis-pool
+```
+
+
+## 安装 easyswoole/pool 组件自定义实现:
 
 ```shell
 composer require easyswoole/pool

@@ -9,29 +9,29 @@ meta:
 ## 键操作方法
 方法列表
 
-| 方法名称    | 参数                                 | 说明                                       | 备注                   |
-|:------------|:-------------------------------------|:-------------------------------------------|:----------------------|
-| set         | $key, $val, $expireTime = null       | 设置一个键,以及设置过期时间,单位秒            |                       |
-| get         | $key                                 | 获取一个键                                  |                       |
-| getRange    | $key, $start, $end                   | 返回子字符串                                |                       |
-| getSet      | $key, $value                         | 返回key旧值并设置新值                        |                       |
-| getBit      | $key, $offset                        | 获取指定偏移量上的bit值                      |                       |
-| mGet        | $keys                                | 获取多个key的值(参数可为string或者数组)       | 在集群中,将会分开处理    |
-| setBit      | $key, $offset, $value                | 设置偏移量的bit值                           |                       |
-| setEx       | $key, $expireTime, $value            | 设置值以及过期时间(秒)                       |                       |
-| setNx       | $key, $value                         | key不存在时设置 key 的值。                   |                       |
-| setRange    | $key, $offset, $value                | 设置偏移量的值                              |                       |
-| strLen      | $key                                 | 返回 key 所储存的字符串值的长度               |                       |
-| mSet        | $data                                | 设置多个key的值,参数为关联数组                |                       |
-| mSetNx      | $data                                | 当所有key不存在时,设置多个key值,参数和mSet一样 | 在集群中,key将会分开处理 |
-| pSetEx      | $key, $expireTime, $value            | 同setEx,过期时间为毫秒                       |                       |
-| incr        | $key                                 | 自增1                                      |                       |
-| incrBy      | $key, $value                         | 自增$value数值                              |                       |
-| incrByFloat | $key, $value                         | 自增$value浮点值                            |                       |
-| decr        | $key                                 | 自减1                                      |                       |
-| decrBy      | $key, $value                         | 自减$value数值                              |                       |
-| appEnd      | $key, $value                         | 追加字符串                                  |                       |
-| scan        | &$cursor, $pattern=null, $count=null | 迭代string键名                              | 集群模式不能使用        |
+| 方法名称    | 参数                                 | 说明                                       | 备注                                                                        |
+|:------------|:-------------------------------------|:-------------------------------------------|:----------------------------------------------------------------------------|
+| set         | $key, $val, $timeout = 0             | 设置一个键,以及设置过期时间,单位秒            | $timeout值可为int(过期时间秒),可为string("NX","XX"),也可为array['NX','EX'=>10] |
+| get         | $key                                 | 获取一个键                                  |                                                                             |
+| getRange    | $key, $start, $end                   | 返回子字符串                                |                                                                             |
+| getSet      | $key, $value                         | 返回key旧值并设置新值                        |                                                                             |
+| getBit      | $key, $offset                        | 获取指定偏移量上的bit值                      |                                                                             |
+| mGet        | $keys                                | 获取多个key的值(参数可为string或者数组)       | 在集群中,将会分开处理                                                         |
+| setBit      | $key, $offset, $value                | 设置偏移量的bit值                           |                                                                             |
+| setEx       | $key, $expireTime, $value            | 设置值以及过期时间(秒)                       |                                                                             |
+| setNx       | $key, $value                         | key不存在时设置 key 的值。                   |                                                                             |
+| setRange    | $key, $offset, $value                | 设置偏移量的值                              |                                                                             |
+| strLen      | $key                                 | 返回 key 所储存的字符串值的长度               |                                                                             |
+| mSet        | $data                                | 设置多个key的值,参数为关联数组                |                                                                             |
+| mSetNx      | $data                                | 当所有key不存在时,设置多个key值,参数和mSet一样 | 在集群中,key将会分开处理                                                      |
+| pSetEx      | $key, $expireTime, $value            | 同setEx,过期时间为毫秒                       |                                                                             |
+| incr        | $key                                 | 自增1                                      |                                                                             |
+| incrBy      | $key, $value                         | 自增$value数值                              |                                                                             |
+| incrByFloat | $key, $value                         | 自增$value浮点值                            |                                                                             |
+| decr        | $key                                 | 自减1                                      |                                                                             |
+| decrBy      | $key, $value                         | 自减$value数值                              |                                                                             |
+| appEnd      | $key, $value                         | 追加字符串                                  |                                                                             |
+| scan        | &$cursor, $pattern=null, $count=null | 迭代string键名                              | 集群模式不能使用                                                             |
 
 ::: warning
   如果开启序列化配置,getRange,setRange,getBit,setBit,strLen,自增自减命令,append等都会失效
@@ -58,6 +58,14 @@ go(function () {
     $data = $redis->del($key);
     var_dump($data);
     $data = $redis->set($key, $value);
+    var_dump($data);
+    $data = $redis->set($key, $value,'XX');
+    var_dump($data);
+    $data = $redis->set($key, $value,'NX');
+    var_dump($data);
+    $data = $redis->set($key, $value,['NX','EX'=>20]);
+    var_dump($data);
+    $data = $redis->set($key, $value,['NX','PX'=>20000]);
     var_dump($data);
 
     $data = $redis->get($key);
