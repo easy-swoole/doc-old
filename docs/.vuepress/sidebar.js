@@ -9,6 +9,7 @@ const sidebarCn = [
             ['/Preface/update_log', '更新记录'],
             ['/Preface/donation', '捐赠'],
             ['/Preface/contact_author', '联系作者'],
+
         ]
     },
     {

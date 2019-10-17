@@ -111,7 +111,7 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
 
     ![](/resources/authWx.png)    
     
-- [捐赠](donate.md)
+- [捐赠](../../Preface/donation.md)
     您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
