@@ -31,6 +31,7 @@ const sidebarCn = [
         children: [
             ['/Introduction/environment', '环境要求'],
             ['/Introduction/install', '框架安装'],
+            ['/Introduction/hello_world', 'Hello World'],
             ['/Introduction/docker', 'Docker镜像'],
             ['/Introduction/config', '配置文件'],
             ['/Introduction/server', '服务管理'],
@@ -217,7 +218,6 @@ const sidebarCn = [
                     ['/Components/Component/ready_scheduler', '就绪等待'],
                     ['/Components/Component/table_manager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
-                    ['/Components/Component/process', '自定义进程'],
                 ]
             },
             {
@@ -276,13 +276,11 @@ const sidebarCn = [
                     ['/Components/Kafka/producer', '生产者']
                 ]
             },
-            ['/Components/template', '模板引擎'],
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
-            ['/Components/console', '远程控制台'],
             ['/Components/atomicLimit', 'atomic限流器']
         ]
     },
@@ -343,7 +341,7 @@ const sidebarCn = [
         ]
     },
     {
-        title: '其他问题',   // 必要的
+        title: '常见问题',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
