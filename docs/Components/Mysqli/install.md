@@ -31,3 +31,7 @@ go(function ()use($client){
     var_dump($client->execBuilder());
 });
 ```
+
+::: danger
+需要调用execBuilder()才会执行
+:::

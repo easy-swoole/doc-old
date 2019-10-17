@@ -7,11 +7,10 @@ limit方法主要用于指定查询和操作的数量，特别在分页查询的
 查询10个用户数据：
 
 ```php
-$client->queryBuilder()->limit(10)->get('user_list');
+$builder->limit(10)->get('user_list');
 ```
 
 ## 传参说明
-
 
 方法原型
 ```php

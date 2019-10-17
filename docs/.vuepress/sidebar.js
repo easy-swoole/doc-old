@@ -163,17 +163,19 @@ const sidebarCn = [
                                 sidebarDepth: 0,
                                 children: [
                                     // 要加_method 不然很多都是关键词
-                                    ['/Components/Mysqli/Chain/where_method', 'limit'],
-                                    ['/Components/Mysqli/Chain/where_method', 'fields'],
+                                    ['/Components/Mysqli/Chain/limit_method', 'limit'],
+                                    ['/Components/Mysqli/Chain/fields_method', 'fields'],
                                     ['/Components/Mysqli/Chain/where_method', 'where'],
-                                    ['/Components/Mysqli/Chain/where_method', 'orWhere'],
-                                    ['/Components/Mysqli/Chain/where_method', 'orderBy'],
-                                    ['/Components/Mysqli/Chain/where_method', 'groupBy'],
-                                    ['/Components/Mysqli/Chain/where_method', 'having'],
-                                    ['/Components/Mysqli/Chain/where_method', 'orHaving'],
-                                    ['/Components/Mysqli/Chain/where_method', 'join'],
-                                    ['/Components/Mysqli/Chain/where_method', 'joinWhere'],
-                                    ['/Components/Mysqli/Chain/where_method', 'joinOrWhere'],
+                                    ['/Components/Mysqli/Chain/or_where_method', 'orWhere'],
+                                    ['/Components/Mysqli/Chain/orderby_method', 'orderBy'],
+                                    ['/Components/Mysqli/Chain/groupby_method', 'groupBy'],
+                                    ['/Components/Mysqli/Chain/having_method', 'having'],
+                                    ['/Components/Mysqli/Chain/or_having_method', 'orHaving'],
+                                    ['/Components/Mysqli/Chain/join_method', 'join'],
+                                    ['/Components/Mysqli/Chain/join_where_method', 'joinWhere'],
+                                    ['/Components/Mysqli/Chain/join_or_where_method', 'joinOrWhere'],
+                                    
+                                    // 未完成
                                     ['/Components/Mysqli/Chain/where_method', 'union'],
                                     ['/Components/Mysqli/Chain/where_method', 'lockInShareMode'],
                                     ['/Components/Mysqli/Chain/where_method', 'selectForUpdate'],
@@ -194,7 +196,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/where_method', 'getLastBindParams'],
                                     ['/Components/Mysqli/Chain/where_method', 'getLastQueryOptions'],
                                     ['/Components/Mysqli/Chain/where_method', 'getLastQuery'],
-                                    ['/Components/Mysqli/Chain/where_method', 'getSubQuery'],
                                 ]
                             },
 
