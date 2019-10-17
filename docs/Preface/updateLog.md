@@ -9,8 +9,8 @@
 - 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
 - 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
 
-- [异步任务适配](./BaseUsage/asyncTask.md)
-- [CronTab任务适配](./BaseUsage/crontab.md)
+- [异步任务适配](../Components/task.md)
+- [CronTab任务适配](../BaseUsage/crontab.md)
 
 ## V3.2.6 (2019年7月31日)
 ------------

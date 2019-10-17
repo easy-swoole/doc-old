@@ -1,5 +1,5 @@
 # Redis-Pool
-Redis-Pool 基于 [pool通用连接池](/Components/Pool/introduction.md),[redis协程客户端](/Components/Redis/introduction.md)封装的组件
+Redis-Pool 基于 [pool通用连接池](./Pool/introduction.md),[redis协程客户端](./Redis/introduction.md)封装的组件
 ## 安装
 ```shell
 composer require easyswoole/redis-pool
