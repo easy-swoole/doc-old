@@ -12,7 +12,6 @@ $client->queryBuilder()->limit(10)->get('user_list');
 
 ## 传参说明
 
-
 方法原型
 ```php
 function limit(int $one, ?int $two = null)

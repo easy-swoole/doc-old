@@ -163,10 +163,11 @@ const sidebarCn = [
                                 sidebarDepth: 0,
                                 children: [
                                     // 要加_method 不然很多都是关键词
-                                    ['/Components/Mysqli/Chain/where_method', 'limit'],
-                                    ['/Components/Mysqli/Chain/where_method', 'fields'],
+                                    ['/Components/Mysqli/Chain/limit_method', 'limit'],
+                                    ['/Components/Mysqli/Chain/fields_method', 'fields'],
                                     ['/Components/Mysqli/Chain/where_method', 'where'],
-                                    ['/Components/Mysqli/Chain/where_method', 'orWhere'],
+                                    ['/Components/Mysqli/Chain/or_where_method', 'orWhere'],
+                                    // 未完成
                                     ['/Components/Mysqli/Chain/where_method', 'orderBy'],
                                     ['/Components/Mysqli/Chain/where_method', 'groupBy'],
                                     ['/Components/Mysqli/Chain/where_method', 'having'],
@@ -194,7 +195,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/where_method', 'getLastBindParams'],
                                     ['/Components/Mysqli/Chain/where_method', 'getLastQueryOptions'],
                                     ['/Components/Mysqli/Chain/where_method', 'getLastQuery'],
-                                    ['/Components/Mysqli/Chain/where_method', 'getSubQuery'],
                                 ]
                             },
 
