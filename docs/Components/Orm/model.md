@@ -326,11 +326,12 @@ limit和withTotalCount，获取分页列表数据以及总条数。
     $limit = 10;        // 每页多少条数据
 
     $model = AdminModel::create()->limit($limit * ($page - 1), $limit * $page - 1)->withTotalCount();
-
-    // 列表数据
-    $list = $model->all(null, true);
+    $model->all(null, true);
 
     $result = $model->lastQueryResult();
+
+    // 列表数据
+    $list = $result->getResult();
 
     // 总条数
     $total = $result->getTotalCount();
