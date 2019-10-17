@@ -140,7 +140,68 @@ const sidebarCn = [
         sidebarDepth: 0,
         children: [
             ['/Components/ddl', 'DDL定义'],
-            ['/Components/mysqli', 'mysqli'],
+            {
+                title: 'mysqli',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Mysqli/install', '安装和使用'],
+                    {
+                        title: '查询构造器',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Mysqli/builder', '基本使用'],
+                            
+                            ['/Components/Mysqli/query', '查询数据'],
+                            ['/Components/Mysqli/insert', '添加数据'],
+                            ['/Components/Mysqli/update', '更新数据'],
+                            ['/Components/Mysqli/delete', '删除数据'],
+                            {
+                                title: '链式操作',
+                                collapsable: true,
+                                sidebarDepth: 0,
+                                children: [
+                                    // 要加_method 不然很多都是关键词
+                                    ['/Components/Mysqli/Chain/where_method', 'limit'],
+                                    ['/Components/Mysqli/Chain/where_method', 'fields'],
+                                    ['/Components/Mysqli/Chain/where_method', 'where'],
+                                    ['/Components/Mysqli/Chain/where_method', 'orWhere'],
+                                    ['/Components/Mysqli/Chain/where_method', 'orderBy'],
+                                    ['/Components/Mysqli/Chain/where_method', 'groupBy'],
+                                    ['/Components/Mysqli/Chain/where_method', 'having'],
+                                    ['/Components/Mysqli/Chain/where_method', 'orHaving'],
+                                    ['/Components/Mysqli/Chain/where_method', 'join'],
+                                    ['/Components/Mysqli/Chain/where_method', 'joinWhere'],
+                                    ['/Components/Mysqli/Chain/where_method', 'joinOrWhere'],
+                                    ['/Components/Mysqli/Chain/where_method', 'union'],
+                                    ['/Components/Mysqli/Chain/where_method', 'lockInShareMode'],
+                                    ['/Components/Mysqli/Chain/where_method', 'selectForUpdate'],
+                                    ['/Components/Mysqli/Chain/where_method', 'setLockTableMode'],
+                                    ['/Components/Mysqli/Chain/where_method', 'lockTable'],
+                                    ['/Components/Mysqli/Chain/where_method', 'unlockTable'],
+                                    ['/Components/Mysqli/Chain/where_method', 'setQueryOption'],
+                                    ['/Components/Mysqli/Chain/where_method', 'setPrefix'],
+                                    ['/Components/Mysqli/Chain/where_method', 'withTotalCount'],
+                                    ['/Components/Mysqli/Chain/where_method', 'get'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getOne'],
+                                    ['/Components/Mysqli/Chain/where_method', 'insert'],
+                                    ['/Components/Mysqli/Chain/where_method', 'replace'],
+                                    ['/Components/Mysqli/Chain/where_method', 'onDuplicate'],
+                                    ['/Components/Mysqli/Chain/where_method', 'update'],
+                                    ['/Components/Mysqli/Chain/where_method', 'delete'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getLastPrepareQuery'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getLastBindParams'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getLastQueryOptions'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getLastQuery'],
+                                    ['/Components/Mysqli/Chain/where_method', 'getSubQuery'],
+                                ]
+                            },
+
+                        ]
+                    },
+                ]
+            },
             {
                 title: 'ORM',
                 collapsable: true,

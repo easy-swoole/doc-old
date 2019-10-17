@@ -1,53 +1,5 @@
-# Mysqli
-Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。
-## 安装
-```
-composer require easyswoole/mysqli
-```
-## Client 用法
-```php
-$config = new \EasySwoole\Mysqli\Config([
-        'host'          => '',
-        'port'          => 3300,
-        'user'          => '',
-        'password'      => '',
-        'database'      => '',
-        'timeout'       => 5,
-        'charset'       => 'utf8mb4',
-]);
 
-$client = new \EasySwoole\Mysqli\Client($config);
 
-go(function ()use($client){
-    //构建sql
-    $client->queryBuilder()->get('user_list');
-    //执行sql
-    var_dump($client->execBuilder());
-});
-```
-
-## 查询构造器
-QueryBuilder是一个SQL构造器，用来构造prepare sql。例如：
-```php
-use EasySwoole\Mysqli\QueryBuilder;
-
-$builder = new QueryBuilder();
-
-//执行条件构造逻辑
-$builder->where('col1',2)->get('my_table');
-
-//获取上次条件构造的预处理sql语句
-echo $builder->getLastPrepareQuery();
-// SELECT  * FROM whereGet WHERE  col1 = ? 
-
-//获取上次条件构造的sql语句
-echo $builder->getLastQuery();
-//SELECT  * FROM whereGet WHERE  col1 = 2 
-
-//获取上次条件构造的预处理sql语句所以需要的绑定参数
-echo $builder->getLastBindParams();
-//[2]
-```
 
 ### GET
 ```php
