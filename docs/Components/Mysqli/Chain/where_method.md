@@ -5,7 +5,7 @@
 ## 普通查询+
 
 ```php
-$client->queryBuilder()->where('col1', 2)->get('getTable');
+$builder->where('col1', 2)->get('getTable');
 ```
 
 ## 字符串语句
@@ -14,17 +14,17 @@ $client->queryBuilder()->where('col1', 2)->get('getTable');
 
 ```php
 // 生成大概语句：where status = 1 AND (id > 10 or id < 2)
-$client->queryBuilder()->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable);
+$builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable);
 ```
 
 ## 特殊操作符
 
 ```php
-$client->queryBuilder()->where('id', [1,2,3], 'IN')->get('getTable');
+$builder->where('id', [1,2,3], 'IN')->get('getTable');
 ```
 
 ```php
-$client->queryBuilder()->where('age', 12, '>')->get('getTable');
+$builder->where('age', 12, '>')->get('getTable');
 ```
 
 ## 连接条件
@@ -32,11 +32,11 @@ $client->queryBuilder()->where('age', 12, '>')->get('getTable');
 ### orWhere
 
 ```php
-$client->queryBuilder()->where('is_vip', 1)->where('id', [1,2], '=', 'OR')->get('getTable');
+$builder->where('is_vip', 1)->where('id', [1,2], '=', 'OR')->get('getTable');
 ```
 
 ```php
-$client->queryBuilder()->where('is_vip', 1)->orWhere('id', [1,2])->get('getTable');
+$builder->where('is_vip', 1)->orWhere('id', [1,2])->get('getTable');
 ```
 
 ## 传参说明

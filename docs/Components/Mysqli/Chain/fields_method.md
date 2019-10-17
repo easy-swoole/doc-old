@@ -5,19 +5,19 @@
 ## 指定字段
 
 ```php
-$client->queryBuilder()->fields(['id','title'])->get('user_list');
+$builder->fields(['id','title'])->get('user_list');
 ```
 
 ## 设置别名
 
 ```php
-$client->queryBuilder()->fields(['id','title as notice'])->get('user_list');
+$builder->fields(['id','title as notice'])->get('user_list');
 ```
 
 ## 使用SQL函数
 
 ```php
-$client->queryBuilder()->fields(['id','SUM(score)'])->get('user_list');
+$builder->fields(['id','SUM(score)'])->get('user_list');
 ```
 
 ## 传参说明
