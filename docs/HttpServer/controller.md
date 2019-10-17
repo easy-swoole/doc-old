@@ -252,7 +252,7 @@ function index()
 ```
 
 ::: warning 
-更多validate 相关可查看[验证器](../Components/validate.md)
+更多validate 相关可查看[验证器](./validate.md)
 :::
 
  

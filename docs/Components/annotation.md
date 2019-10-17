@@ -10,7 +10,7 @@ meta:
 Easyswoole提供了一个轻量级的注解解析工具。
 
 ## 安装
-```php
+```shell
 composer require easyswoole/annotation
 ```
 
