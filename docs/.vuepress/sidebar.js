@@ -224,12 +224,12 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Spl/splArray', 'SplArray'],
-                    ['/Components/Spl/splBean', 'SplBean'],
-                    ['/Components/Spl/splEnum', 'SplEnum'],
-                    ['/Components/Spl/splStream', 'SplStream'],
-                    ['/Components/Spl/splFileStream', 'SplFileStream'],
-                    ['/Components/Spl/splString', 'SplString'],
+                    ['/Components/Spl/spl_array', 'SplArray'],
+                    ['/Components/Spl/spl_bean', 'SplBean'],
+                    ['/Components/Spl/spl_enum', 'SplEnum'],
+                    ['/Components/Spl/spl_stream', 'SplStream'],
+                    ['/Components/Spl/spl_filestream', 'SplFileStream'],
+                    ['/Components/Spl/spl_string', 'SplString'],
                 ]
             },
             {
@@ -240,8 +240,8 @@ const sidebarCn = [
                     ['/Components/Pool/introduction', '介绍'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
-                    ['/Components/Pool/poolManage', '池管理器'],
-                    ['/Components/Pool/abstractPool', '池对象方法']
+                    ['/Components/Pool/pool_manage', '池管理器'],
+                    ['/Components/Pool/abstract_pool', '池对象方法']
                 ]
             },
             ['/Components/redisPool', 'redis-pool连接池'],
@@ -304,8 +304,8 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Wechat/miniProgram', '公众号'],
-                    ['/Components/Wechat/officialAccount', '小程序'],
+                    ['/Components/Wechat/mini_program', '公众号'],
+                    ['/Components/Wechat/official_account', '小程序'],
                 ]
             },
         ]
@@ -315,9 +315,9 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Distribute/microService', '什么是微服务？'],
+            ['/Distribute/micro_service', '什么是微服务？'],
             ['/Distribute/loadbalance', '如何实现分布式？'],
-            ['/Distribute/atomicLimit', '服务限流'],
+            ['/Distribute/atomic_limit', '服务限流'],
             {
                 title: 'Rpc服务',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -326,8 +326,8 @@ const sidebarCn = [
                 children: [
                     ['/Components/Rpc/server', '服务端'],
                     ['/Components/Rpc/client', '客户端'],
-                    ['/Components/Rpc/otherPlatform', '跨语言'],
-                    ['/Components/Rpc/registerCenter', '服务注册中心'],
+                    ['/Components/Rpc/other_platform', '跨语言'],
+                    ['/Components/Rpc/register_center', '服务注册中心'],
                 ]
             },
             ['/Components/consul', 'Concul客户端'],
