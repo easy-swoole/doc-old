@@ -93,6 +93,10 @@ $builder->where('col3', [1,2,3], 'IN')->get('getTable');
 
 // orWhere
 $builder->where('col1', 2)->orWhere('col2', 'str')->get('getTable');
+
+// 复杂where
+// 生成大概语句：where status = 1 AND (id > 10 or id < 2)
+$builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable');
 ```
 
 #### Join
