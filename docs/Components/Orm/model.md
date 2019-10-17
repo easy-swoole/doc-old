@@ -229,3 +229,159 @@ protected function getEasyswooleAttr($value,$data)
 $res = UserModel::create()->get(4);
 var_dump($res->easyswoole);
 ```
+
+## 指定连接
+
+connectionName属性，支持多数据库连接方式。
+
+指定``` blank ```连接方式
+
+```php
+Class AdminModel extends \EasySwoole\ORM\AbstractModel {
+
+    protected $connectionName = 'blank';
+
+    /**
+     * 返回当前模型的结构信息
+     * 请为当前模型编写正确的结构
+     * @return \EasySwoole\ORM\Utility\Schema\Table
+     */
+    protected function schemaInfo(): \EasySwoole\ORM\Utility\Schema\Table
+    {
+        // TODO: Implement schemaInfo() method.
+        $table = new \EasySwoole\ORM\Utility\Schema\Table('admin_list');
+        $table->colInt('admin_id')->setIsPrimaryKey(true);
+        $table->colChar('admin_name', 30);
+        $table->colChar('admin_account', 20);
+        $table->colChar('admin_password', 32);
+        $table->colChar('admin_session', 32);
+        $table->colChar('last_login_ip', 20);
+        $table->colInt('last_login_time');
+        $table->colInt('add_time');
+        $table->colTinyInt('is_forbid', 2);
+        return $table;
+    }
+}
+```
+
+添加``` blank ```连接方式
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
+
+    $admin = AdminModel::create()->get(1);
+
+    print_r($admin->toArray());
+
+});
+```
+
+## 指定字段
+
+field，其作用是获取指定的数据库字段数据。
+
+获取``` admin_id ```，``` admin_name ```数据
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
+
+    $admin = AdminModel::create()->field(['admin_id', 'admin_name'])->get(1);
+
+    print_r($admin->toArray());
+
+});
+```
+
+## 分页
+
+limit和withTotalCount，获取分页列表数据以及总条数。
+
+下面模拟获取分页列表数据，page为页码，limit为每页显示多少条数。
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
+
+    $page = 1;          // 当前页码
+    $limit = 10;        // 每页多少条数据
+
+    $model = AdminModel::create()->limit($limit * ($page - 1), $limit * $page - 1)->withTotalCount();
+
+    // 列表数据
+    $list = $model->all(null, true);
+
+    $result = $model->lastQueryResult();
+
+    // 总条数
+    $total = $result->getTotalCount();
+
+});
+```
+
+## 获取序列化记录数据
+
+jsonSerialize，获取序列化记录数据。
+
+```php
+\co::create(function() {
+    $config = new Config();
+    $config->setDatabase('cry');
+    $config->setUser('root');
+    $config->setPassword('root');
+    $config->setHost('192.168.75.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
+
+    $model = AdminModel::create();
+
+    $admin = $model->get(1);
+
+    $data = $admin->jsonSerialize();
+
+});
+```
+
+## 获取字符串json数据
+
+__toString，将数据转化成字符串json数据并返回。
+
+```php
+\co::create(function() {
+   $config = new Config();
+   $config->setDatabase('cry');
+   $config->setUser('root');
+   $config->setPassword('root');
+   $config->setHost('192.168.75.1');
+
+   DbManager::getInstance()->addConnection(new Connection($config), 'blank');
+
+   $model = AdminModel::create();
+
+   $admin = $model->get(1);
+
+   $data = $admin->__toString();
+
+   var_dump($data);
+
+});
+```
