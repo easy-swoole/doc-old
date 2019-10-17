@@ -278,6 +278,7 @@ const sidebarCn = [
                     ['/Components/Pool/abstractPool', '池对象方法']
                 ]
             },
+            ['/Components/redisPool', 'redis-pool连接池'],
             {
                 title: 'HTTP协程客户端',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
