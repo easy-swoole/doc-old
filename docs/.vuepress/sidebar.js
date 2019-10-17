@@ -95,6 +95,16 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
+            {
+                title: '验证码',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                path: '/Components/VerifyCode/introduction',
+                children: [
+                    ['/Components/VerifyCode/config', '配置'],
+                    ['/Components/VerifyCode/verifyCode', '使用'],
+                ]
+            },
             ['/HttpServer/fastRoute', '路由'],
             ['/HttpServer/controller', '控制器'],
             ['/HttpServer/annotation', '注解控制器'],
