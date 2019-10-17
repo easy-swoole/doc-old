@@ -19,6 +19,10 @@ meta:
 | lock              | $mode = LOCK_EX               | 文件锁定                          |                    
 | unlock            | $mode = LOCK_UN               | 释放锁定                          |                                                                                                   
 
+::: warning 
+SplFileStream类继承SplStream，其他相关方法参考[SplStream](./splStream.md)。
+:::
+
 
 ## 例子
 
