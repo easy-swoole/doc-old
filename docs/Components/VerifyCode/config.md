@@ -6,10 +6,10 @@ meta:
   - name: keywords
     content: easyswoole,验证码
 ---
-## Config.php
+## 配置
+
 生成验证码前需要传入Config的对象实例  
 Config类实例化后会有默认配置,无需配置也可生成验证码图片
-
 
 ### 实现代码:
 ```php

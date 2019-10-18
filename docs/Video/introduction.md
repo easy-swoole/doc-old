@@ -8,7 +8,7 @@ meta:
 ---
 
 ## 关于版权
-以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。若您觉得视频对您有帮助，期待能的赞助用以OSS存储费用支出。[捐赠链接](./../donate.md)
+以上视频由EasySwoole开发组共同录制，版权归EasySwoole开源组织共有，任何人未经许可禁止转载。本入门教学视频纯属公益，如有错误或者瑕疵，欢迎指出。若您觉得视频对您有帮助，赞助将用以OSS存储费用支出。[捐赠链接](./../donate.md)
 
 ## CDN赞助
 本视频CDN赞助由 [verycloud](https://www.verycloud.cn/) 提供
@@ -33,11 +33,11 @@ meta:
 观看地址:[Swoole4.x安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NXN3b29sZS5tcDQ=)
 :::
 
-   
+
 ### 第二节 安装composer 并且配置国内镜像 约 3分钟
 1. 下载composer
 2. 配置国内镜像
-      
+   
 
 ::: warning 
  观看地址:[Composer镜像更换](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NWNvbXBvc2VyJUU1JUI5JUI2JUU5JTg1JThEJUU3JUJEJUFFJUU1JTlCJUJEJUU1JTg2JTg1JUU5JTk1JTlDJUU1JTgzJThGLm1wNA==)
@@ -49,7 +49,7 @@ meta:
 2. 删除上步目录 使用composer.json 进行手动配置安装 并讲解 composer版本追踪
 3. 执行 EasySwoole安装程序 
 4. 运行EasySwoole 并使用浏览器访问
-      
+   
 
 ::: warning 
  观看地址:[EasySwoole安装](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NUVhc3lTd29vbGUubXA0)
@@ -60,7 +60,7 @@ meta:
 1. 使用 composer require 安装 Mysqli
 2. 使用 编辑 composer.json + update 安装Utility
 3. 简单教学如何找EasySwoole维护的官方composer包 (通过 github 和 composer官网库)
-      
+   
 
 ::: warning 
 观看地址:[安装EasySwoole Mysqli等库](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxLyVFNSVBRSU4OSVFOCVBMyU4NU15c3FsaSVFNyVBRCU4OSVFNSVCQSU5MyVFNSU5MiU4QyVFNSU5RiVCQSVFNiU5QyVBQyVFNiU5MyU4RCVFNCVCRCU5Qy5tcDQ=)
