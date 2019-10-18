@@ -78,3 +78,15 @@ $subPort->on('receive',function (\swoole_server $server, int $fd, int $reactor_i
 ::: warning 
 参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)
 :::
+
+## 启动前调用协程API
+```php
+use Swoole\Coroutine\Scheduler;
+$scheduler = new Scheduler();
+$scheduler->add(function() {
+    /*  调用协程API */
+});
+$scheduler->start();
+//清除全部定时器
+\Swoole\Timer::clearAll();
+```
