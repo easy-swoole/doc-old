@@ -14,7 +14,7 @@ include "./vendor/autoload.php";
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 go(function () {
     $client = new \EasySwoole\HttpClient\HttpClient();
-    $client->setUrl('http://www.php20.cn');//设置url,注意需要http和https,https
+    $client->setUrl('http://www.baidu.com');//设置url,注意需要http和https,https
     $client->addCookie('a','1');
     $response = $client->get();
     var_dump($response->getBody());//获取响应主体
