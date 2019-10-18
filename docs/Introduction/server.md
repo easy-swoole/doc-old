@@ -24,7 +24,8 @@ php easyswoole
   install       安装easySwoole
   start         启动easySwoole
   stop          停止easySwoole(守护模式下使用)
-  reload        重启easySwoole(守护模式下使用)
+  reload        热重启easySwoole(守护模式下使用)
+  restart       重启easySwoole(守护模式下使用)
   help          查看命令的帮助信息
 
 有关某个操作的详细信息 请使用 help 命令查看 
@@ -53,15 +54,29 @@ php easyswoole stop produce
  注意，守护模式下才需要stop，不然control+c或者是终端断开就退出进程了
 :::
 
-## 重启服务
+::: warning
+ 注意,当命令增加produce之后,其他相关的 stop,reload,restart命令都需要增加produce参数,否则可能出错
+:::
+
+## 热重启服务
 ```
-php easyswoole reload 只重启task进程
-php easyswoole reload all  重启task + worker进程
+php easyswoole reload 默认重启task + worker进程
+php easyswoole reload task  重启task进程
 ```
 
-::: warning 
- 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。 http 自定义路由配置不会被更新,需要stop+start;
+::: warning
+ 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。 http 自定义路由配置不会被更新,需要restart;
 :::
+
+## 重启服务
+```
+php easyswoole restart 强制停止服务,并重新启动
+```
+
+::: warning
+restart是强制停止服务并重新启动,所以在生产模式下禁用,否则进程中断可能有意想不到的损失
+:::
+
 
 ## 文件热加载
 
