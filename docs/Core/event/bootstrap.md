@@ -54,3 +54,15 @@ if(!empty($ret)){
 
 即可使用bootstrap事件
 :::
+
+## 启动前调用协程API
+```php
+use Swoole\Coroutine\Scheduler;
+$scheduler = new Scheduler();
+$scheduler->add(function() {
+    /*  调用协程API */
+});
+$scheduler->start();
+//清除全部定时器
+\Swoole\Timer::clearAll();
+```

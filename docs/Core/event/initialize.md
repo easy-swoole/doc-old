@@ -32,3 +32,15 @@ public static function initialize(): void
 - 引入用户自定义配置
 - 注册 数据库,redis 连接池
 - trace链追踪器注册
+
+## 启动前调用协程API
+```php
+use Swoole\Coroutine\Scheduler;
+$scheduler = new Scheduler();
+$scheduler->add(function() {
+    /*  调用协程API */
+});
+$scheduler->start();
+//清除全部定时器
+\Swoole\Timer::clearAll();
+```
