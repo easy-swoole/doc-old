@@ -60,8 +60,7 @@ php easyswoole stop produce
 
 ## 热重启服务
 ```
-php easyswoole reload 默认重启task + worker进程
-php easyswoole reload task  重启task进程
+php easyswoole reload 热重启
 ```
 
 ::: warning
