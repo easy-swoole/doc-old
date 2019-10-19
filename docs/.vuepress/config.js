@@ -5,7 +5,8 @@ module.exports = {
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: 'EASYSWOOLE',
+            title: 'EasySwoole 一款高并发与效率共存的分布式PHP框架',
+            keywords:'easySwoole,swoole,swoole框架,swoole拓展',
             description: 'easySwoole是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者'
         },
         '/En/': {
