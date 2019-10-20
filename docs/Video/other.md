@@ -33,9 +33,14 @@ meta:
 1. 简单讲一下异步任务的处理方式(task进程等)
 2. 写一个异步任务投递的demo 包括闭包和模板
 
-### 自定义进程 约10分钟
-1. 简单用EasySwoole的包写个消费者进程
-
+### 自定义进程 约15分钟
+1. 简单用EasySwoole的包写个小demo
+2. 如何注册进程
+3. 主进程和自定义进程的通讯
+   
+::: warning 
+观看地址:[Easyswoole 自定义进程](http://video-oss.easyswoole.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%BF%9B%E7%A8%8B.mp4)
+:::
 
 ## 其他视频
 - [CSP编程](https://www.easyswoole.com/playVideo.html?video=aHR0cDovdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JTg1JUE1JUU5JTk3JUE4Y3NwLm1wNA==)

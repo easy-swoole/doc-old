@@ -100,15 +100,15 @@ class EasySwooleEvent implements Event
     public static function initialize()
     {
         // TODO: Implement initialize() method.
+    }
+
+    public static function mainServerCreate(EventRegister $register)
+    {
         date_default_timezone_set('Asia/Shanghai');
         $configData = Config::getInstance()->getConf('MYSQL');
         $config = new \EasySwoole\Mysqli\Config($configData);
         $poolConf = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql', $config);
         $poolConf->setMaxObjectNum(20);
-    }
-
-    public static function mainServerCreate(EventRegister $register)
-    {
     }
 
     public static function onRequest(Request $request, Response $response): bool
