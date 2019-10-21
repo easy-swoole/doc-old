@@ -1,3 +1,11 @@
+---
+title: easyswoole
+meta:
+  - name: description
+    content: EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP框架，专为API而生，摆脱传统PHP运行模式在进程唤起和文件加载上带来的性能损失。
+  - name: keywords
+    content: easyswoole|swoole框架|swoole协程框架|php框架
+---
 
 ```
   ______                          _____                              _        

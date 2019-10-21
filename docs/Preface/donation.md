@@ -1,3 +1,12 @@
+---
+title: 捐赠
+meta:
+  - name: description
+    content: easyswoole捐赠
+  - name: keywords
+    content: easyswoole|捐赠|easyswoole
+---
+
 # 捐赠
 您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于：
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Socket,swoole tcp, swoole websocket, swoole udp,php websocket
   - name: keywords
-    content:  EasySwoole Socket,swoole tcp, swoole websocket, swoole udp,php websocket
+    content:  EasySwoole Socket|swoole tcp| swoole websocket| swoole udp|php websocket
 ---
 
 ## 如何遍历全部链接
