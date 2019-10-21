@@ -1,3 +1,12 @@
+---
+title: Redis连接池
+meta:
+  - name: description
+    content: easyswoole redis连接池组件,通过通用连接池和redis协程客户端封装实现
+  - name: keywords
+    content:  EasySwoole redis|redis连接池|swoole redis|redis连接池
+---
+
 # Redis-Pool
 Redis-Pool 基于 [pool通用连接池](./Pool/introduction.md),[redis协程客户端](./Redis/introduction.md)封装的组件
 ## 安装

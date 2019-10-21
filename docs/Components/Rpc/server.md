@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole中Rpc服务端实现
   - name: keywords
-    content: easyswoole,Rpc服务端
+    content: easyswoole|Rpc服务端|swoole RPC
 ---
 
 

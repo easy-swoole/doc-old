@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 当接收到客户端数据时,会触发此事件
   - name: keywords
-    content: EasySwoole,onReceive
+    content: EasySwoole|swoole|onReceive
 ---
 ## onReceive
 
