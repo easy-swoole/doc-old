@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole静态文件处理,Easyswoole静态文件处理
   - name: keywords
-    content: swoole静态文件处理,Easyswoole静态文件处理
+    content: swoole静态文件处理|Easyswoole静态文件处理
 ---
 
 # 如何处理静态资源

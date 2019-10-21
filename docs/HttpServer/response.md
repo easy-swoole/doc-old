@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Response对象
   - name: keywords
-    content: easyswoole,Response对象
+    content: easyswoole|Response对象
 ---
 # Response对象
 ## 生命周期

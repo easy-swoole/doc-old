@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
   - name: keywords
-    content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
+    content: easyswoole|路由|swoole 路由组件|swoole api|swoole自定义路由|restful
 ---
 
 ## 自定义路由

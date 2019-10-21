@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,如何获取客户端IP
   - name: keywords
-    content: easyswoole,获取客户端IP
+    content: easyswoole|获取客户端IP|跨域处理
 ---
 
 

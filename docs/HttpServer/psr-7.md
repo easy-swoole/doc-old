@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,easyswoole完全兼容PSR7 Http Message接口规范
   - name: keywords
-    content: easyswoole,PSR7
+    content: easyswoole|PSR7
 ---
 
 #PSR-7 Http Message
