@@ -4,7 +4,7 @@ meta:
   - name: description
     content: memcache协程客户端,由swoole 协程client实现
   - name: keywords
-    content:  EasySwoole memcache,Swoole memcache协程客户端,memcache连接池
+    content:  EasySwoole memcache|Swoole memcache协程客户端|memcache连接池
 ---
 # Memcache连接池示例
 

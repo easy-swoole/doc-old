@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业务的错误与异常。
   - name: keywords
-    content: easyswoole,Whoops
+    content: easyswoole|Whoops
 ---
 
 # Whoops

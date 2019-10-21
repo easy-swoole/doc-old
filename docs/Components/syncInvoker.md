@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 提供了一个同步程序协程调用转化驱动
   - name: keywords
-    content: easyswoole,SyncInvoker
+    content: easyswoole|SyncInvoker
 ---
 # SyncInvoker
 

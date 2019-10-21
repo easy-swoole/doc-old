@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 协程HTTPClient组件
   - name: keywords
-    content: easyswoole,协程HTTPClient,curl组件,协程curl,响应
+    content: easyswoole|协程HTTPClient|curl组件|协程curl|响应
 ---
 
 ## 响应

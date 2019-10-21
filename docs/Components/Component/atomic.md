@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Atomic
   - name: keywords
-    content: easyswoole,Atomic,Atomic计数器
+    content: easyswoole|Atomic|Atomic计数器
 ---
 
 # Atomic

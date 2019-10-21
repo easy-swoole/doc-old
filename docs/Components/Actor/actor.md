@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole提供Actor模式支持，助力游戏行业开发
   - name: keywords
-    content: easyswoole,ACTOR组件
+    content: easyswoole|ACTOR组件
 ---
 
 # ACTOR

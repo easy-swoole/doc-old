@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole自定义命令实现
   - name: keywords
-    content: Easyswoole 自定义命令|swoole 框架|EasySwoole
+    content: Easyswoole 自定义命令|swoole 框架|swoole定时任务|php 定时
 ---
 
 # 自定义命令
