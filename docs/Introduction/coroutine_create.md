@@ -1,3 +1,12 @@
+---
+title: 配置文件
+meta:
+  - name: description
+    content: swoole,easyswoole协程介绍
+  - name: keywords
+    content: easyswoole 协程|swoole 协程|协程
+---
+
 # 协程
 
 ::: tip

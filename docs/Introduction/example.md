@@ -1,3 +1,11 @@
+---
+title: 配置文件
+meta:
+  - name: description
+    content: EasySwoole基础开发示例,手把手教你怎么用easyswoole实现一个api接口网站
+  - name: keywords
+    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+---
 # 基础开发示例
 ## demo地址
 基础开发示例已经开源,地址:https://github.com/easy-swoole/demo/tree/3.x

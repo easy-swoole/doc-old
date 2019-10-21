@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 安装，Composer安装EasySwoole，swoole快速入门
   - name: keywords
-    content: easyswoole,swoole 扩展,swoole框架,php协程框架
+    content: easyswoole|swoole 扩展|swoole框架|php协程框架
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole的docker镜像构建
   - name: keywords
-    content: easyswoole,swoole docker镜像,swoole dockerfile
+    content: easyswoole|swoole docker镜像|swoole dockerfile
 ---
 
 
