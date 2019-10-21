@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个基于Atomic计数器的限流器
   - name: keywords
-    content: easyswoole,Atomic,限流器
+    content: easyswoole|Atomic|限流器
 ---
 
 # AtomicLimit

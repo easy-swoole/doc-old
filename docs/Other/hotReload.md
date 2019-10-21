@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,服务热重启
   - name: keywords
-    content: easyswoole,服务热重启
+    content: easyswoole|服务热重启
 ---
 ## 服务热重启
 

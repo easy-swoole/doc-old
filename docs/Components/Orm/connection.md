@@ -1,3 +1,11 @@
+---
+title: ORM组件
+meta:
+  - name: description
+    content: Easyswoole ORM组件,
+  - name: keywords
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+---
 # ORM 连接管理
 ORM的链接管理完全依赖```EasySwoole\ORM\DbManager```这个类，它是一个单例类。
 ## 获取管理器

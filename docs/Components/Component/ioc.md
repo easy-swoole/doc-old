@@ -1,10 +1,10 @@
 ---
-title: 异步任务
+title: IOC依赖注入
 meta:
   - name: description
     content: php在swoole的框架开发中，利用IOC容器来实现注入解耦
   - name: keywords
-    content: easyswoole,IOC,swoole IOC,Di注入
+    content: easyswoole|IOC|swoole IOC|Di注入
 ---
 
 

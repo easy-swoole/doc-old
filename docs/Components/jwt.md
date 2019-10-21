@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 基于EasySwoole组件实现的json web token
   - name: keywords
-    content: easyswoole,JWT组件
+    content: easyswoole|JWT组件
 ---
 
 # jwt

@@ -2,9 +2,9 @@
 title: 支付宝SDK
 meta:
   - name: description
-    content: WeChat是一个基于Swoole 4.x全协程支持的SDK库
+    content: 支付宝SDK是封装的协程支付宝支付组件库,
   - name: keywords
-    content: easyswoole,AliPay
+    content: easyswoole|AliPay|支付宝支付组件|swoole 支付宝
 ---
 
 # 协程支付网关
@@ -18,15 +18,15 @@ composer require easyswoole/pay
 
 支付宝支付目前支持 7 种支付方法，对应的支付 method 如下：
 
-| method   | 说明         | 参数    | 返回值   |
-| -------- | ------------ | ------- | -------- |
-| web      | 电脑支付     | Request | Response |
-| wap      | 手机网站支付 | Request | Response |
-| app      | APP 支付     | Request | Response |
-| pos      | 刷卡支付     | Request | Response |
-| scan     | 扫码支付     | Request | Response |
-| transfer | 账户转账     | Request | Response |
-| mini     | 小程序支付   | Request | Response |
+| method   | 说明        | 参数    | 返回值    |
+|:---------|:-----------|:--------|:----------|
+| web      | 电脑支付    | Request | Response  |
+| wap      | 手机网站支付 | Request | Response  |
+| app      | APP 支付    | Request | Response  |
+| pos      | 刷卡支付    | Request | Response  |
+| scan     | 扫码支付    | Request | Response  |
+| transfer | 账户转账    | Request | Response  |
+| mini     | 小程序支付  | Request | Response  |
 
 ## 电脑支付
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 框架初始化事件
   - name: keywords
-    content: EasySwoole,initialize
+    content: EasySwoole|swoole|initialize
 ---
 # 框架初始化事件
 

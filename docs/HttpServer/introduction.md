@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,http服务
   - name: keywords
-    content: easyswoole,http服务
+    content: easyswoole|http服务
 ---
 
 # http服务

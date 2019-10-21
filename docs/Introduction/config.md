@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole提供了非常灵活的全局配置功能，可自行扩展独立的配置文件和进行动态配置。
   - name: keywords
-    content: easyswoole,配置文件,动态配置
+    content: easyswoole|配置文件|动态配置
 ---
 
 

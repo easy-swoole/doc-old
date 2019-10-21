@@ -5,10 +5,10 @@ const sidebarCn = [
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
             ['/Preface/introduction', '项目介绍'],
-            ['/Preface/developer_read', '开发者必读'],
-            ['/Preface/update_log', '更新记录'],
+            ['/Preface/developerRead', '开发者必读'],
+            ['/Preface/updateLog', '更新记录'],
             ['/Preface/donation', '捐赠'],
-            ['/Preface/contact_author', '联系作者'],
+            ['/Preface/contactAuthor', '联系作者'],
 
         ]
     },
@@ -66,9 +66,9 @@ const sidebarCn = [
                 children: [
                     ['/Core/event/bootstrap', 'bootstrap事件'],
                     ['/Core/event/initialize', 'initialize事件'],
-                    ['/Core/event/main_server_create', 'mainServerCreate事件'],
-                    ['/Core/event/on_request', 'onRequest事件'],
-                    ['/Core/event/after_request', 'afterRequest事件'],
+                    ['/Core/event/mainServerCreate', 'mainServerCreate事件'],
+                    ['/Core/event/onRequest', 'onRequest事件'],
+                    ['/Core/event/afterRequest', 'afterRequest事件'],
                 ]
             },
             ['/Components/annotation', '注解支持'],
@@ -80,8 +80,8 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
-            ['/BaseUsage/server_manager', 'Swoole实例'],
-            ['/BaseUsage/custom_command', '自定义命令'],
+            ['/BaseUsage/serverManager', 'Swoole实例'],
+            ['/BaseUsage/customCommand', '自定义命令'],
             ['/Components/Component/process', '自定义进程'],
             ['/BaseUsage/event', '自定义事件'],
             ['/Components/task', 'Task 异步任务'],
@@ -113,7 +113,7 @@ const sidebarCn = [
                     ['/Components/VerifyCode/verify_code', '使用'],
                 ]
             },
-            ['/HttpServer/upload_file', '文件上传'],
+            ['/HttpServer/uploadFile', '文件上传'],
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
@@ -126,10 +126,10 @@ const sidebarCn = [
         sidebarDepth: 0,
         children: [
             ['/Socket/tcp', 'TCP服务器'],
-            ['/Socket/tcp_sticky', 'TCP服务器处理粘包'],
+            ['/Socket/tcpSticky', 'TCP服务器处理粘包'],
             ['/Socket/websocket', 'Websocket服务器'],
-            ['/Socket/websocket_wss', 'Websocket支持wss'],
-            ['/Socket/websocket_shake', 'Websocket自定义握手'],
+            ['/Socket/websocketWss', 'Websocket支持wss'],
+            ['/Socket/websocketShake', 'Websocket自定义握手'],
             ['/Socket/udp', 'UDP服务器'],
             ['/Socket/question', '常见问题'],
         ]

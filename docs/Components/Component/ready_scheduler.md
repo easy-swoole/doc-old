@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole ReadyScheduler
   - name: keywords
-    content: easyswoole,ReadyScheduler,就绪等待
+    content: easyswoole|ReadyScheduler|就绪等待
 ---
 # ReadyScheduler
 Easyswoole 基础组件1.8.7版本起，提供了一个基于Swoole Table实现的就绪计划程序，用于解决主服务启动时，部分子服务未就绪问题。

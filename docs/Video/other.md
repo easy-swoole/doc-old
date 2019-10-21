@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole为广大新手用户专门录制了免费、开放的系列视频
   - name: keywords
-    content: easyswoole,免费视频,php教学视频
+    content: easyswoole|免费视频|php教学视频
 ---
 
 

@@ -1,3 +1,11 @@
+---
+title: 开发者必读
+meta:
+  - name: description
+    content: easyswoole开发者必读,注意事项,进程隔离,协程问题
+  - name: keywords
+    content: easyswoole|Swoole开发注意事项
+---
 # 开发者必读
 
 - [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个 ***star***

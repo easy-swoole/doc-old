@@ -2,9 +2,9 @@
 title: 控制器
 meta:
   - name: description
-    content: easyswoole,控制器,swoole api服务,swoole 控制器池
+    content: easyswoole控制器说明
   - name: keywords
-    content: easyswoole,控制器,swoole api服务,swoole 控制器池
+    content: easyswoole|控制器|swoole api服务|swoole 控制器池
 ---
 
 # 控制器对象

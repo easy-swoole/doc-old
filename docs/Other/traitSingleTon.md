@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Trait与单例
   - name: keywords
-    content: easyswoole,Trait与单例
+    content: easyswoole|Trait与单例
 ---
 
 ## Trait与单例

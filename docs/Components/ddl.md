@@ -1,3 +1,12 @@
+---
+title: DDL
+meta:
+  - name: description
+    content: 数据库模式定义语言DDL(Data Definition Language)，是用于描述数据库中要存储的现实世界实体的语言。Easyswoole提供了一个DDL库，方便用户用于定义一个数据库表结构。
+  - name: keywords
+    content: easyswoole|DDL|数据库语句生成|sql DDL
+---
+
 # DDL
 数据库模式定义语言DDL(Data Definition Language)，是用于描述数据库中要存储的现实世界实体的语言。Easyswoole提供了一个DDL库，方便用户用于定义一个数据库表结构。
 ## 安装

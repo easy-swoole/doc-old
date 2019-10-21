@@ -1,3 +1,11 @@
+---
+title: redis协程客户端
+meta:
+  - name: description
+    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+  - name: keywords
+    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+---
 # Redis单机客户端
 
 示例:

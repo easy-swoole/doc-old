@@ -1,3 +1,12 @@
+---
+title: 服务管理
+meta:
+  - name: description
+    content: easyswoole的服务管理,启动服务,停止服务等
+  - name: keywords
+    content: easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
+---
+
 # 服务管理脚本
 执行完框架安装后，可以在你的项目根目录下，看多一个easyswoole的文件。
 执行以下命令：

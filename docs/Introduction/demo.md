@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole强大的生态贡献了许多的Demo
   - name: keywords
-    content: easyswoole,demo,admin
+    content: easyswoole|demo|admin
 ---
 
 # Demo
