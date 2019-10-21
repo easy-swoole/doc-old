@@ -74,7 +74,7 @@ composer dumpautoload
 
 执行以下命令用于实现Mysqli库的引入
 ```
-composer require easyswoole/mysqli
+composer require easyswoole/mysqli 1.2
 ```
 再引入mysqli-pool库
 ```
