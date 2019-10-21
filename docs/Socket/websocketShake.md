@@ -1,3 +1,11 @@
+---
+title: websocket自定义握手
+meta:
+  - name: description
+    content: websocket自定义握手
+  - name: keywords
+    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+---
 
 ### 自定义握手
 

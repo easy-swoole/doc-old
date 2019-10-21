@@ -126,10 +126,10 @@ const sidebarCn = [
         sidebarDepth: 0,
         children: [
             ['/Socket/tcp', 'TCP服务器'],
-            ['/Socket/tcp_sticky', 'TCP服务器处理粘包'],
+            ['/Socket/tcpSticky', 'TCP服务器处理粘包'],
             ['/Socket/websocket', 'Websocket服务器'],
-            ['/Socket/websocket_wss', 'Websocket支持wss'],
-            ['/Socket/websocket_shake', 'Websocket自定义握手'],
+            ['/Socket/websocketWss', 'Websocket支持wss'],
+            ['/Socket/websocketShake', 'Websocket自定义握手'],
             ['/Socket/udp', 'UDP服务器'],
             ['/Socket/question', '常见问题'],
         ]
