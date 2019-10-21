@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole通用连接池,协程连接池,easyswoole连接池
   - name: keywords
-    content: easyswoole的通用连接池
+    content: easyswoole|连接池|swoole 连接池|通用连接池
 ---
 
 ## 连接池配置
