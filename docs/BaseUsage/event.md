@@ -1,3 +1,12 @@
+---
+title: 自定义事件
+meta:
+  - name: description
+    content: EasySwoole自定义事件
+  - name: keywords
+    content: Easyswoole 自定义事件|swoole 框架|EasySwoole
+---
+
 ## 自定义事件
 easyswoole中,通过Container容器可实现自定义事件功能  
 

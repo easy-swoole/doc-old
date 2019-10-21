@@ -1,3 +1,12 @@
+---
+title: 自定义命令
+meta:
+  - name: description
+    content: EasySwoole自定义命令实现
+  - name: keywords
+    content: Easyswoole 自定义命令|swoole 框架|EasySwoole
+---
+
 # 自定义命令
 EasySwoole 有着默认的5个命令:  
 ````

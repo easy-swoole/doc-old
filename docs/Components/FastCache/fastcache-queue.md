@@ -1,10 +1,10 @@
 ---
-title: FastCache
+title: FastCache-Queue
 meta:
   - name: description
     content: 利用swoole自定义进程实现简单的本机缓存，并且实现了队列特性
   - name: keywords
-    content:  EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存
+    content: FastCache-Queue|队列|EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存
 ---
 
 # FastCacheQueue
