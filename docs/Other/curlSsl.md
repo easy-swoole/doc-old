@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,CURL SSL错误
   - name: keywords
-    content: easyswoole,CURL SSL错误
+    content: easyswoole|CURL SSL错误
 ---
 ## CURL SSL错误
 在低版本的CURL中，若在服务启动前执行CURL一个ssl连接  那么此后在回调函数内再次执行该curl，会报错：

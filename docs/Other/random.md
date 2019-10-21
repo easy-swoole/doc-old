@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,随机生成问题
   - name: keywords
-    content: easyswoole,随机生成问题
+    content: easyswoole|随机生成问题
 ---
 ## 随机生成问题
 
