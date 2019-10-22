@@ -16,20 +16,22 @@ $config = new \EasySwoole\Redis\Config\RedisConfig([
         'host'      => '127.0.0.1',
         'port'      => '6379',
         'auth'      => 'easyswoole',
+        'db'        => null,
         'serialize' => \EasySwoole\Redis\Config\RedisConfig::SERIALIZE_NONE
     ]);
 ```
 
 配置项如下:
 
-| 配置名         | 默认参数       | 说明             | 备注 |
-|:---------------|:---------------|:-----------------|:----|
-| host           | 127.0.0.1      | redis ip         |     |
-| port           | 6379           | redis端口        |     |
-| auth           |                | auth密码         |     |
-| timeout        | 3.0            | 超时时间         |     |
-| reconnectTimes | 3              | 客户端异常重连次数 |     |
-| serialize      | SERIALIZE_NONE | 数据是否序列化    |     |
+| 配置名         | 默认参数           | 说明             | 备注                                               |
+|:---------------|:-------------------|:-----------------|:---------------------------------------------------|
+| host           | 127.0.0.1          | redis ip         |                                                    |
+| port           | 6379               | redis端口        |                                                    |
+| auth           |                    | auth密码         |                                                    |
+| db             | null               | redis数据库      | 当db配置不等于null时,在connect的时候会自动select该配置 |
+| timeout        | 3.0                | 超时时间         |                                                    |
+| reconnectTimes | 3                  | 客户端异常重连次数 |                                                    |
+| serialize      | SERIALIZE_NONE     | 数据是否序列化    |                                                    |
 
 
 ::: warning
