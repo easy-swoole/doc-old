@@ -152,7 +152,7 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Mysqli/builder', '基本使用'],
-
+                            
                             ['/Components/Mysqli/query', '查询数据'],
                             ['/Components/Mysqli/insert', '添加数据'],
                             ['/Components/Mysqli/update', '更新数据'],
@@ -185,15 +185,19 @@ const sidebarCn = [
 
                                     ['/Components/Mysqli/Chain/setPrefix_method', 'setPrefix'],
                                     ['/Components/Mysqli/Chain/withTotalCount_method', 'withTotalCount'],
-                                    // ['/Components/Mysqli/Chain/get_method', 'get'],
-                                    // ['/Components/Mysqli/Chain/getOne_method', 'getOne'],
-                                    // ['/Components/Mysqli/Chain/insert_method', 'insert'],
+                                    ['/Components/Mysqli/Chain/get_method', 'get'],
+                                    ['/Components/Mysqli/Chain/getOne_method', 'getOne'],
+                                    ['/Components/Mysqli/Chain/insert_method', 'insert'],
                                     ['/Components/Mysqli/Chain/replace_method', 'replace'],
                                     ['/Components/Mysqli/Chain/onDuplicate_method', 'onDuplicate'],
 
-                                    // ['/Components/Mysqli/Chain/update_method', 'update'],
-                                    // ['/Components/Mysqli/Chain/delete_method', 'delete'],
-
+                                    ['/Components/Mysqli/Chain/update_method', 'update'],
+                                    ['/Components/Mysqli/Chain/delete_method', 'delete'],
+                                    ['/Components/Mysqli/Chain/getLastPrepareQuery_method', 'getLastPrepareQuery'],
+                                    ['/Components/Mysqli/Chain/getLastBindParams_method', 'getLastBindParams'],
+                                    ['/Components/Mysqli/Chain/getLastQueryOptions_method', 'getLastQueryOptions'],
+                                    ['/Components/Mysqli/Chain/getLastQuery_method', 'getLastQuery'],
+                                    ['/Components/Mysqli/Chain/getSubQuery_method', 'getSubQuery']
                                 ]
                             },
 
