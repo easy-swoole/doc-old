@@ -211,8 +211,26 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Orm/install', '安装'],
+                    // ['/Components/Orm/popular_science_concept', '科普概念'],
+                    ['/Components/Orm/configuration_register', '配置信息注册'],
+                    {
+                        title: '定义模型',
+                        path: '/Components/Orm/define_model',
+                        collapsable: false,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/DefineModel/define_table_structure', '定义表结构'],
+                            ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
+                        ]
+                    },
                     ['/Components/Orm/connection', '连接管理'],
                     ['/Components/Orm/model', '模型对象']
+                    // ['/Components/Orm/query', '查询'],
+                    // ['/Components/Orm/model', '新增'],
+                    // ['/Components/Orm/model', '删除'],
+                    // ['/Components/Orm/model', '更新'],
+                    // ['/Components/Orm/model', '获取器'],
+                    // ['/Components/Orm/model', '修改器'],
                 ]
             }
         ]
