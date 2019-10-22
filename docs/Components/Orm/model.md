@@ -101,6 +101,10 @@ $res = UserModel::create()->destroy(function (QueryBuilder $builder) {
     $builder->where('id', 1);
 });
 
+
+
+//删除全表数据
+$res = UserModel::create()->destroy(null,true);
 var_dump($res);
 ```
 
