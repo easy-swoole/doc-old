@@ -152,7 +152,7 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Mysqli/builder', '基本使用'],
-                            
+
                             ['/Components/Mysqli/query', '查询数据'],
                             ['/Components/Mysqli/insert', '添加数据'],
                             ['/Components/Mysqli/update', '更新数据'],
@@ -219,14 +219,24 @@ const sidebarCn = [
                             ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
                         ]
                     },
-                    ['/Components/Orm/connection', '连接管理'],
-                    ['/Components/Orm/model', '模型对象']
-                    // ['/Components/Orm/query', '查询'],
-                    // ['/Components/Orm/model', '新增'],
-                    // ['/Components/Orm/model', '删除'],
-                    // ['/Components/Orm/model', '更新'],
-                    // ['/Components/Orm/model', '获取器'],
-                    // ['/Components/Orm/model', '修改器'],
+                    ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
+                    ['/Components/Orm/transaction_operations', '事务操作'],
+
+                    ['/Components/Orm/query', '查询'],
+                    ['/Components/Orm/add', '新增'],
+                    ['/Components/Orm/delete', '删除'],
+                    ['/Components/Orm/update', '更新'],
+                    ['/Components/Orm/getter', '获取器'],
+                    ['/Components/Orm/modifier', '修改器'],
+                    {
+                        title: '关联',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/Associat/one_to_one_associations', '一对一关联'],
+                            ['/Components/Orm/Associat/one_to_many_associations', '一对多关联'],
+                        ]
+                    },
                 ]
             }
         ]
