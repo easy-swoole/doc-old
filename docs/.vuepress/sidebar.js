@@ -7,6 +7,7 @@ const sidebarCn = [
             ['/Preface/introduction', '项目介绍'],
             ['/Preface/developerRead', '开发者必读'],
             ['/Preface/updateLog', '更新记录'],
+            ['/Preface/component_updateLog', '组件更新记录'],
             ['/Preface/donation', '捐赠'],
             ['/Preface/contactAuthor', '联系作者'],
             ['/Preface/team', '文档维护团队'],
