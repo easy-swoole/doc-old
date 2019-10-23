@@ -12,7 +12,7 @@ meta:
 
 ## 安装
 ### 框架安装
-- 我们先安装好swooole拓展，执行 `php --ri swoole` 确保可以看到swoole拓展最版本为4.4.3 
+- 我们先安装好swooole拓展，执行 `php --ri swoole` 确保可以看到swoole拓展最版本为4.4.8
 - 建立一个目录，名为 `Test` ,执行 `composer require easyswoole/easyswoole=3.x` 引入easyswoole
 - 执行```php vendor/bin/easyswoole install``` 进行安装
 
@@ -70,20 +70,16 @@ composer dumpautoload
  ]
 ```
 
-### 引入Mysqli库
+### 引入ORM库
 
-执行以下命令用于实现Mysqli库的引入
+执行以下命令用于实现ORM库的引入
 ```
-composer require easyswoole/mysqli 1.2
-```
-再引入mysqli-pool库
-```
-composer require easyswoole/mysqli-pool
+composer require easyswoole/orm
 ```
 
 ### 事件注册
 
-我们编辑根目录下的```EasySwooleEvent.php```文件，在```mainServerCreate```事件中进行连接池的注册，大体结构如下：  
+我们编辑根目录下的```EasySwooleEvent.php```文件，在```mainServerCreate```事件中进行ORM的连接注册，大体结构如下：
 ```php
 <?php
 /**
@@ -108,15 +104,14 @@ class EasySwooleEvent implements Event
     public static function initialize()
     {
         // TODO: Implement initialize() method.
+        date_default_timezone_set('Asia/Shanghai');
+
+        $config = new \EasySwoole\ORM\Db\Config(Config::getInstance()->getConf('MYSQL'));
+        DbManager::getInstance()->addConnection(new Connection($config));
     }
 
     public static function mainServerCreate(EventRegister $register)
     {
-        date_default_timezone_set('Asia/Shanghai');
-        $configData = Config::getInstance()->getConf('MYSQL');
-        $config = new \EasySwoole\Mysqli\Config($configData);
-        $poolConf = \EasySwoole\MysqliPool\Mysql::getInstance()->register('mysql', $config);
-        $poolConf->setMaxObjectNum(20);
     }
 
     public static function onRequest(Request $request, Response $response): bool
@@ -133,43 +128,12 @@ class EasySwooleEvent implements Event
 
 ```
 
+::: warning
+在initialize事件中注册数据库连接池,这个$config可同时配置连接池大小等
+:::
+
+
 ## 模型定义
-### 基础模型定义
-新建`App/Model/BaseModel.php`文件:  
-```php
-<?php
-
-
-namespace App\Model;
-
-
-
-use EasySwoole\Mysqli\Mysqli;
-
-class BaseModel
-{
-    protected $db;
-    protected $table;
-    function __construct(Mysqli $connection)
-    {
-        $this->db = $connection;
-    }
-
-    function getDbConnection():Mysqli
-    {
-        return $this->db;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTable()
-    {
-        return $this->table;
-    }
-}
-```
-
 ### 管理员模型
 #### 新增管理员用户表:  
 ```sql
@@ -189,125 +153,6 @@ CREATE TABLE `admin_list` (
 INSERT INTO `admin_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1');
 
 ```
-#### 新增bean文件
-新增 `App/Model/Admin/AdminBean.php` 文件:  
-```php
-<?php
-
-namespace App\Model\Admin;
-
-/**
- * Class AdminBean
- * Create With Automatic Generator
- * @property int adminId |
- * @property string adminName |
- * @property string adminAccount |
- * @property string adminPassword |
- * @property string adminSession |
- * @property int adminLastLoginTime |
- * @property string adminLastLoginIp |
- */
-class AdminBean extends \EasySwoole\Spl\SplBean
-{
-	protected $adminId;
-
-	protected $adminName;
-
-	protected $adminAccount;
-
-	protected $adminPassword;
-
-	protected $adminSession;
-
-	protected $adminLastLoginTime;
-
-	protected $adminLastLoginIp;
-
-
-	public function setAdminId($adminId)
-	{
-		$this->adminId = $adminId;
-	}
-
-
-	public function getAdminId()
-	{
-		return $this->adminId;
-	}
-
-
-	public function setAdminName($adminName)
-	{
-		$this->adminName = $adminName;
-	}
-
-
-	public function getAdminName()
-	{
-		return $this->adminName;
-	}
-
-
-	public function setAdminAccount($adminAccount)
-	{
-		$this->adminAccount = $adminAccount;
-	}
-
-
-	public function getAdminAccount()
-	{
-		return $this->adminAccount;
-	}
-
-
-	public function setAdminPassword($adminPassword)
-	{
-		$this->adminPassword = $adminPassword;
-	}
-
-
-	public function getAdminPassword()
-	{
-		return $this->adminPassword;
-	}
-
-
-	public function setAdminSession($adminSession)
-	{
-		$this->adminSession = $adminSession;
-	}
-
-
-	public function getAdminSession()
-	{
-		return $this->adminSession;
-	}
-
-
-	public function setAdminLastLoginTime($adminLastLoginTime)
-	{
-		$this->adminLastLoginTime = $adminLastLoginTime;
-	}
-
-
-	public function getAdminLastLoginTime()
-	{
-		return $this->adminLastLoginTime;
-	}
-
-
-	public function setAdminLastLoginIp($adminLastLoginIp)
-	{
-		$this->adminLastLoginIp = $adminLastLoginIp;
-	}
-
-
-	public function getAdminLastLoginIp()
-	{
-		return $this->adminLastLoginIp;
-	}
-}
-```
 #### 新增model文件  
 新增 `App/Model/Admin/AdminModel.php`文件:  
 
@@ -316,16 +161,24 @@ class AdminBean extends \EasySwoole\Spl\SplBean
 
 namespace App\Model\Admin;
 
+use EasySwoole\ORM\AbstractModel;
+
 /**
  * Class AdminModel
  * Create With Automatic Generator
+ * @property $adminId
+ * @property $adminName
+ * @property $adminAccount
+ * @property $adminPassword
+ * @property $adminSession
+ * @property $adminLastLoginTime
+ * @property $adminLastLoginIp
  */
-class AdminModel extends \App\Model\BaseModel
+class AdminModel extends AbstractModel
 {
-    protected $table = 'admin_list';
+    protected $tableName = 'admin_list';
 
     protected $primaryKey = 'adminId';
-
 
     /**
      * @getAll
@@ -337,123 +190,56 @@ class AdminModel extends \App\Model\BaseModel
      */
     public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
     {
+        $where = [];
         if (!empty($keyword)) {
-            $this->getDbConnection()->where('adminAccount', '%' . $keyword . '%', 'like');
+            $where['adminAccount'] = ['%' . $keyword . '%','like'];
         }
-
-        $list = $this->getDbConnection()
-            ->withTotalCount()
-            ->orderBy($this->primaryKey, 'DESC')
-            ->get($this->table, [$pageSize * ($page - 1), $pageSize]);
-        $total = $this->getDbConnection()->getTotalCount();
+        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $total = $this->lastQueryResult()->getTotalCount();
         return ['total' => $total, 'list' => $list];
-    }
-
-
-    /**
-     * 默认根据主键(adminId)进行搜索
-     * @getOne
-     * @param  AdminBean $bean
-     * @return AdminBean
-     */
-    public function getOne(AdminBean $bean): ?AdminBean
-    {
-        $info = $this->getDbConnection()->where($this->primaryKey, $bean->getAdminId())->getOne($this->table);
-        if (empty($info)) {
-            return null;
-        }
-        return new AdminBean($info);
-    }
-
-
-    /**
-     * 默认根据bean数据进行插入数据
-     * @add
-     * @param  AdminBean $bean
-     * @return bool
-     */
-    public function add(AdminBean $bean): bool
-    {
-        return $this->getDbConnection()->insert($this->table, $bean->toArray(null, $bean::FILTER_NOT_NULL));
-    }
-
-
-    /**
-     * 默认根据主键(adminId)进行删除
-     * @delete
-     * @param  AdminBean $bean
-     * @return bool
-     */
-    public function delete(AdminBean $bean): bool
-    {
-        return $this->getDbConnection()->where($this->primaryKey, $bean->getAdminId())->delete($this->table);
-    }
-
-
-    /**
-     * 默认根据主键(adminId)进行更新
-     * @delete
-     * @param  AdminBean $bean
-     * @param  array     $data
-     * @return bool
-     */
-    public function update(AdminBean $bean, array $data): bool
-    {
-        if (empty($data)) {
-            return false;
-        }
-        return $this->getDbConnection()->where($this->primaryKey, $bean->getAdminId())->update($this->table, $data);
     }
 
     /*
      * 登录成功后请返回更新后的bean
      */
-    function login(AdminBean $userBean): ?AdminBean
+    function login():?AdminModel
     {
-        $user = $this->getDbConnection()
-            ->where('adminAccount', $userBean->getAdminAccount())
-            ->where('adminPassword', $userBean->getAdminPassword())
-            ->getOne($this->table);
-        if (empty($user)) {
-            return null;
-        }
-        return new AdminBean($user);
+        $info = $this->get(['adminAccount'=>$this->adminAccount,'adminPassword'=>$this->adminPassword]);
+        return $info;
     }
 
     /*
      * 以account进行查询
      */
-    function accountExist(AdminBean $userBean): ?AdminBean
+    function accountExist($field='*'):?AdminModel
     {
-        $user = $this->getDbConnection()
-            ->where('adminAccount', $userBean->getAdminAccount())
-            ->getOne($this->table);
-        if (empty($user)) {
-            return null;
-        }
-        return new AdminBean($user);
+        $info = $this->field($field)->get(['adminAccount'=>$this->adminAccount]);
+        return $info;
     }
 
-    function getOneBySession($session)
+    function getOneBySession($field='*'):?AdminModel
     {
-        $user = $this->getDbConnection()
-            ->where('adminSession', $session)
-            ->getOne($this->table);
-        if (empty($user)) {
-            return null;
-        }
-        return new AdminBean($user);
+        $info = $this->field($field)->get(['adminSession'=>$this->adminSession]);
+        return $info;
     }
 
-    function logout(AdminBean $bean){
-        $update = [
-            'adminSession'=>'',
-        ];
-        return $this->getDbConnection()->where($this->primaryKey, $bean->getAdminId())->update($this->table, $update);
+    function logout()
+    {
+        return $this->update(['adminSession'=>'']);
     }
 
 }
 ```
+
+::: warning
+ model的定义可查看orm章节
+:::
+::: warning
+ 关于ide自动提示,只要你在类上面注释中加上`@property $adminId` ide就可以自动提示类的这个属性
+:::
+
+
+
 
 ### 普通用户模型
 普通用户模型和管理员模型同理
@@ -479,226 +265,6 @@ CREATE TABLE `user_list` (
 
 ```
 
-
-#### 新增bean文件
-在 `App/Model/User/UserBean.php` 文件:  
-```php
-<?php
-
-namespace App\Model\User;
-
-/**
- * Class UserBean
- * Create With Automatic Generator
- * @property int userId |
- * @property string userName |
- * @property string userAccount |
- * @property string userPassword |
- * @property string phone |
- * @property string money |
- * @property int addTime |
- * @property string lastLoginIp |
- * @property int lastLoginTime |
- * @property string userSession |
- * @property int state |
- */
-class UserBean extends \EasySwoole\Spl\SplBean
-{
-    protected $userId;
-
-    protected $userName;
-
-    protected $userAccount;
-
-    protected $userPassword;
-
-    protected $userAvatar;
-
-    protected $phone;
-
-    protected $money;
-
-    protected $frozenMoney;
-
-    protected $addTime;
-
-    protected $lastLoginIp;
-
-    protected $lastLoginTime;
-
-    protected $userSession;
-
-    protected $state;
-
-    const STATE_PROHIBIT = 0;//禁用状态
-    const STATE_NORMAL = 1;//正常状态
-
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
-
-
-    public function getUserId()
-    {
-        return $this->userId;
-    }
-
-
-    public function setUserName($userName)
-    {
-        $this->userName = $userName;
-    }
-
-
-    public function getUserName()
-    {
-        return $this->userName;
-    }
-
-
-    public function setUserAccount($userAccount)
-    {
-        $this->userAccount = $userAccount;
-    }
-
-
-    public function getUserAccount()
-    {
-        return $this->userAccount;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserAvatar()
-    {
-        return $this->userAvatar;
-    }
-
-    /**
-     * @param mixed $userAvatar
-     */
-    public function setUserAvatar($userAvatar): void
-    {
-        $this->userAvatar = $userAvatar;
-    }
-
-
-    public function setUserPassword($userPassword)
-    {
-        $this->userPassword = $userPassword;
-    }
-
-
-    public function getUserPassword()
-    {
-        return $this->userPassword;
-    }
-
-
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-    }
-
-
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-
-    public function setMoney($money)
-    {
-        $this->money = $money;
-    }
-
-
-    public function getMoney()
-    {
-        return $this->money;
-    }
-
-
-    public function setAddTime($addTime)
-    {
-        $this->addTime = $addTime;
-    }
-
-
-    public function getAddTime()
-    {
-        return $this->addTime;
-    }
-
-
-    public function setLastLoginIp($lastLoginIp)
-    {
-        $this->lastLoginIp = $lastLoginIp;
-    }
-
-
-    public function getLastLoginIp()
-    {
-        return $this->lastLoginIp;
-    }
-
-
-    public function setLastLoginTime($lastLoginTime)
-    {
-        $this->lastLoginTime = $lastLoginTime;
-    }
-
-
-    public function getLastLoginTime()
-    {
-        return $this->lastLoginTime;
-    }
-
-
-    public function setUserSession($userSession)
-    {
-        $this->userSession = $userSession;
-    }
-
-
-    public function getUserSession()
-    {
-        return $this->userSession;
-    }
-
-
-    public function setState($state)
-    {
-        $this->state = $state;
-    }
-
-
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFrozenMoney()
-    {
-        return $this->frozenMoney;
-    }
-
-    /**
-     * @param mixed $frozenMoney
-     */
-    public function setFrozenMoney($frozenMoney)
-    {
-        $this->frozenMoney = $frozenMoney;
-    }
-}
-
-```
-
 #### 新增model文件
 新增 `App/Model/User/UserModel.php` 文件:  
 
@@ -707,139 +273,80 @@ class UserBean extends \EasySwoole\Spl\SplBean
 
 namespace App\Model\User;
 
+use EasySwoole\ORM\AbstractModel;
+
 /**
  * Class UserModel
  * Create With Automatic Generator
+ * @property $userId
+ * @property $userName
+ * @property $userAccount
+ * @property $userPassword
+ * @property $phone
+ * @property $money
+ * @property $addTime
+ * @property $lastLoginIp
+ * @property $lastLoginTime
+ * @property $userSession
+ * @property $state
  */
-class UserModel extends \App\Model\BaseModel
+class UserModel extends AbstractModel
 {
-	protected $table = 'user_list';
+    protected $tableName = 'user_list';
 
-	protected $primaryKey = 'userId';
+    protected $primaryKey = 'userId';
 
+    const STATE_PROHIBIT = 0;//禁用状态
+    const STATE_NORMAL = 1;//正常状态
 
-	/**
-	 * @getAll
-	 * @keyword userName
-	 * @param  int  page  1
-	 * @param  string  keyword
-	 * @param  int  pageSize  10
-	 * @return array[total,list]
-	 */
-	public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
-	{
-		if (!empty($keyword)) {
-		    $this->getDbConnection()->where('userAccount', '%' . $keyword . '%', 'like');
-		}
-
-		$list = $this->getDbConnection()
-		    ->withTotalCount()
-		    ->orderBy($this->primaryKey, 'DESC')
-		    ->get($this->table, [$pageSize * ($page  - 1), $pageSize]);
-		$total = $this->getDbConnection()->getTotalCount();
-		return ['total' => $total, 'list' => $list];
-	}
-
-
-	/**
-	 * 默认根据主键(userId)进行搜索
-	 * @getOne
-	 * @param  UserBean $bean
-	 * @return UserBean
-	 */
-	public function getOne(UserBean $bean,$field='*'): ?UserBean
-	{
-		$info = $this->getDbConnection()->where($this->primaryKey, $bean->getUserId())->getOne($this->table,$field);
-		if (empty($info)) {
-		    return null;
-		}
-		return new UserBean($info);
-	}
-
-	public function getOneByPhone($phone,$field='*'): ?UserBean
-	{
-		$info = $this->getDbConnection()->where('phone', $phone)->getOne($this->table,$field);
-		if (empty($info)) {
-		    return null;
-		}
-		return new UserBean($info);
-	}
+    /**
+     * @getAll
+     * @keyword userName
+     * @param  int  page  1
+     * @param  string  keyword
+     * @param  int  pageSize  10
+     * @return array[total,list]
+     */
+    public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
+    {
+        $where = [];
+        if (!empty($keyword)) {
+            $where['userAccount'] = ['%' . $keyword . '%','like'];
+        }
+        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $total = $this->lastQueryResult()->getTotalCount();
+        return ['total' => $total, 'list' => $list];
+    }
 
 
-	/**
-	 * 默认根据bean数据进行插入数据
-	 * @add
-	 * @param  UserBean $bean
-	 * @return bool
-	 */
-	public function add(UserBean $bean): bool
-	{
-		return $this->getDbConnection()->insert($this->table, $bean->toArray(null, $bean::FILTER_NOT_NULL));
-	}
-
-
-	/**
-	 * 默认根据主键(userId)进行删除
-	 * @delete
-	 * @param  UserBean $bean
-	 * @return bool
-	 */
-	public function delete(UserBean $bean): bool
-	{
-		return  $this->getDbConnection()->where($this->primaryKey, $bean->getUserId())->delete($this->table);
-	}
-
-
-	/**
-	 * 默认根据主键(userId)进行更新
-	 * @delete
-	 * @param  UserBean $bean
-	 * @param  array    $data
-	 * @return bool
-	 */
-	public function update(UserBean $bean, array $data): bool
-	{
-		if (empty($data)){
-		    return false;
-		}
-		return $this->getDbConnection()->where($this->primaryKey, $bean->getUserId())->update($this->table, $data);
-	}
+    public function getOneByPhone($field='*'): ?UserModel
+    {
+        $info = $this->field($field)->get(['phone'=>$this->phone]);
+        return $info;
+    }
 
     /*
      * 登录成功后请返回更新后的bean
      */
-    function login(UserBean $userBean): ?UserBean
+    function login():?UserModel
     {
-        $user = $this->getDbConnection()
-            ->where('userAccount', $userBean->getUserAccount())
-            ->where('userPassword', $userBean->getUserPassword())
-            ->getOne($this->table);
-        if (empty($user)) {
-            return null;
-        }
-        return new UserBean($user);
+        $info = $this->get(['userAccount'=>$this->userAccount,'userPassword'=>$this->userPassword]);
+        return $info;
     }
 
 
-    function getOneBySession($session)
+    function getOneBySession($field='*'):?UserModel
     {
-        $user = $this->getDbConnection()
-            ->where('userSession', $session)
-            ->getOne($this->table);
-        if (empty($user)) {
-            return null;
-        }
-        return new UserBean($user);
+        $info = $this->field($field)->get(['userSession'=>$this->userSession]);
+        return $info;
     }
 
-    function logout(UserBean $bean){
-        $update = [
-            'userSession'=>'',
-        ];
-        return $this->getDbConnection()->where($this->primaryKey, $bean->getUserId())->update($this->table, $update);
+    function logout(){
+        return $this->update(['userSession'=>'']);
     }
 
 }
+
 ```
 
 ### banner模型
@@ -856,310 +363,66 @@ CREATE TABLE `banner_list` (
   PRIMARY KEY (`bannerId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ```
-#### 新增bean文件
-新增 `App/Model/Admin/BannerBean.php` 文件:  
 
-```php
-<?php
-
-namespace App\Model\Admin;
-
-/**
- * Class BannerBean
- * Create With Automatic Generator
- * @property int bannerId |
- * @property string bannerImg | banner图片
- * @property string bannerUrl | 跳转地址
- * @property int state | 状态0隐藏 1正常
- */
-class BannerBean extends \EasySwoole\Spl\SplBean
-{
-    protected $bannerId;
-    protected $bannerImg;
-    protected $bannerUrl;
-    protected $bannerName;
-    protected $bannerDescription;
-    protected $state;
-
-
-    public function setBannerId($bannerId)
-    {
-        $this->bannerId = $bannerId;
-    }
-
-
-    public function getBannerId()
-    {
-        return $this->bannerId;
-    }
-
-
-    public function setBannerImg($bannerImg)
-    {
-        $this->bannerImg = $bannerImg;
-    }
-
-
-    public function getBannerImg()
-    {
-        return $this->bannerImg;
-    }
-
-
-    public function setBannerUrl($bannerUrl)
-    {
-        $this->bannerUrl = $bannerUrl;
-    }
-
-
-    public function getBannerUrl()
-    {
-        return $this->bannerUrl;
-    }
-
-
-    public function setState($state)
-    {
-        $this->state = $state;
-    }
-
-
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBannerName()
-    {
-        return $this->bannerName;
-    }
-
-    /**
-     * @param mixed $bannerName
-     */
-    public function setBannerName($bannerName): void
-    {
-        $this->bannerName = $bannerName;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBannerDescription()
-    {
-        return $this->bannerDescription;
-    }
-
-    /**
-     * @param mixed $bannerDescription
-     */
-    public function setBannerDescription($bannerDescription): void
-    {
-        $this->bannerDescription = $bannerDescription;
-    }
-}
-```
 
 #### 新增model文件
 新增 `App/Model/Admin/BannerModel.php` 文件:  
 
 ```php
 <?php
+<?php
 
 namespace App\Model\Admin;
+
+use EasySwoole\ORM\AbstractModel;
 
 /**
  * Class BannerModel
  * Create With Automatic Generator
+ * @property $bannerId
+ * @property $bannerImg
+ * @property $bannerUrl
+ * @property $state
  */
-class BannerModel extends \App\Model\BaseModel
+class BannerModel extends AbstractModel
 {
-	protected $table = 'banner_list';
+    protected $tableName = 'banner_list';
 
-	protected $primaryKey = 'bannerId';
+    protected $primaryKey = 'bannerId';
 
-
-	/**
-	 * @getAll
-	 * @keyword bannerUrl
-	 * @param  int  page  1
-	 * @param  string  keyword
-	 * @param  int  pageSize  10
-	 * @return array[total,list]
-	 */
-	public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
-	{
-		if (!empty($keyword)) {
-		    $this->getDbConnection()->where('bannerUrl', '%' . $keyword . '%', 'like');
-		}
-
-		$list = $this->getDbConnection()
-		    ->withTotalCount()
-		    ->orderBy($this->primaryKey, 'DESC')
-		    ->get($this->table, [$pageSize * ($page  - 1), $pageSize]);
-		$total = $this->getDbConnection()->getTotalCount();
-		return ['total' => $total, 'list' => $list];
-	}
-
-    /**
-     * getAllByState
-     * @param int         $page
-     * @param int|null    $state
-     * @param string|null $keyword
-     * @param int         $pageSize
-     * @return array
-     * @throws \EasySwoole\Mysqli\Exceptions\ConnectFail
-     * @throws \EasySwoole\Mysqli\Exceptions\Option
-     * @throws \EasySwoole\Mysqli\Exceptions\OrderByFail
-     * @throws \EasySwoole\Mysqli\Exceptions\PrepareQueryFail
-     * @author Tioncico
-     * Time: 15:13
-     */
-	public function getAllByState(int $page = 1, ?int $state = null, string $keyword = null, int $pageSize = 10): array
-	{
-		if (!empty($keyword)) {
-		    $this->getDbConnection()->where('bannerUrl', '%' . $keyword . '%', 'like');
-		}
-		if ($state!==null) {
-		    $this->getDbConnection()->where('state', $state);
-		}
-
-		$list = $this->getDbConnection()
-		    ->withTotalCount()
-		    ->orderBy($this->primaryKey, 'DESC')
-		    ->get($this->table, [$pageSize * ($page  - 1), $pageSize]);
-		$total = $this->getDbConnection()->getTotalCount();
-		return ['total' => $total, 'list' => $list];
-	}
-
-
-	/**
-	 * 默认根据主键(bannerId)进行搜索
-	 * @getOne
-	 * @param  BannerBean $bean
-	 * @return BannerBean
-	 */
-	public function getOne(BannerBean $bean): ?BannerBean
-	{
-		$info = $this->getDbConnection()->where($this->primaryKey, $bean->getBannerId())->getOne($this->table);
-		if (empty($info)) {
-		    return null;
-		}
-		return new BannerBean($info);
-	}
-
-
-	/**
-	 * 默认根据bean数据进行插入数据
-	 * @add
-	 * @param  BannerBean $bean
-	 * @return bool
-	 */
-	public function add(BannerBean $bean): bool
-	{
-		return $this->getDbConnection()->insert($this->table, $bean->toArray(null, $bean::FILTER_NOT_NULL));
-	}
-
-
-	/**
-	 * 默认根据主键(bannerId)进行删除
-	 * @delete
-	 * @param  BannerBean $bean
-	 * @return bool
-	 */
-	public function delete(BannerBean $bean): bool
-	{
-		return  $this->getDbConnection()->where($this->primaryKey, $bean->getBannerId())->delete($this->table);
-	}
-
-
-	/**
-	 * 默认根据主键(bannerId)进行更新
-	 * @delete
-	 * @param  BannerBean $bean
-	 * @param  array $data
-	 * @return bool
-	 */
-	public function update(BannerBean $bean, array $data): bool
-	{
-		if (empty($data)){
-		    return false;
-		}
-		return $this->getDbConnection()->where($this->primaryKey, $bean->getBannerId())->update($this->table, $data);
-	}
+    public function getAll(int $page = 1,int $state=1, string $keyword = null, int $pageSize = 10): array
+    {
+        $where = [];
+        if (!empty($keyword)) {
+            $where['bannerUrl'] = ['%' . $keyword . '%','like'];
+        }
+        $where['state'] = $state;
+        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $total = $this->lastQueryResult()->getTotalCount();
+        return ['total' => $total, 'list' => $list];
+    }
 }
-
 ```
 
 ## 控制器定义
 
 ### 全局基础控制器定义
-新增 `App/Httpcontroller/Api/ApiBase.php` 文件:   
-
+新增 `App/Httpcontroller/BaseController` 文件:
 
 ```php
 <?php
-namespace App\HttpController\Api;
-use EasySwoole\EasySwoole\Core;
+namespace App\HttpController;
+
+
 use EasySwoole\EasySwoole\ServerManager;
-use EasySwoole\EasySwoole\Trigger;
-use EasySwoole\Http\AbstractInterface\Controller;
-use EasySwoole\Http\Message\Status;
-use EasySwoole\Validate\Validate;
-abstract class ApiBase extends Controller
+use EasySwoole\Http\AbstractInterface\AnnotationController;
+
+class BaseController extends AnnotationController
 {
+
     function index()
     {
-        // TODO: Implement index() method.
         $this->actionNotFound('index');
-    }
-
-    protected function actionNotFound(?string $action): void
-    {
-        $this->writeJson(Status::CODE_NOT_FOUND);
-    }
-
-    function onRequest(?string $action): ?bool
-    {
-        if (!parent::onRequest($action)) {
-            return false;
-        };
-        /*
-         * 各个action的参数校验
-         */
-        $v = $this->getValidateRule($action);
-        if ($v && !$this->validate($v)) {
-            $this->writeJson(Status::CODE_BAD_REQUEST, ['errorCode' => 1, 'data' => []], $v->getError()->__toString());
-            return false;
-        }
-        return true;
-    }
-
-    abstract protected function getValidateRule(?string $action): ?Validate;
-
-
-    protected function onException(\Throwable $throwable): void
-    {
-        Trigger::getInstance()->throwable($throwable);
-        $this->writeJson(Status::CODE_INTERNAL_SERVER_ERROR, null, $throwable->getMessage() . " at file {$throwable->getFile()} line {$throwable->getLine()}");
-    }
-
-    /**
-     * 获取用户的get/post的一个值,可设定默认值
-     * input
-     * @param      $key
-     * @param null $default
-     * @return array|mixed|null
-     * @author Tioncico
-     * Time: 17:27
-     */
-    protected function input($key, $default = null)
-    {
-        $value = $this->request()->getRequestParam($key);
-        return $value ?? $default;
     }
 
     /**
@@ -1184,13 +447,86 @@ abstract class ApiBase extends Controller
         }
         return $clientAddress;
     }
+
+    protected function input($name, $default = null) {
+        $value = $this->request()->getRequestParam($name);
+        return $value ?? $default;
+    }
 }
 ```
 
 
-::: warning 
+::: warning
  新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
 :::
+
+::: warning
+ 基础控制器继承了`EasySwoole\Http\AbstractInterface\AnnotationController`,这个是注解支持控制器,可查看注解章节
+:::
+
+
+### api基础控制器定义
+新增 `App/Httpcontroller/Api/ApiBase.php` 文件:
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/3/29 0029
+ * Time: 10:45
+ */
+
+namespace App\HttpController\Api;
+
+
+use App\HttpController\BaseController;
+use EasySwoole\EasySwoole\Core;
+use EasySwoole\EasySwoole\Trigger;
+use EasySwoole\Http\Exception\ParamAnnotationValidateError;
+use EasySwoole\Http\Message\Status;
+
+abstract class ApiBase extends BaseController
+{
+    function index()
+    {
+        // TODO: Implement index() method.
+        $this->actionNotFound('index');
+    }
+
+    protected function actionNotFound(?string $action): void
+    {
+        $this->writeJson(Status::CODE_NOT_FOUND);
+    }
+
+    function onRequest(?string $action): ?bool
+    {
+        if (!parent::onRequest($action)) {
+            return false;
+        };
+        return true;
+    }
+
+    protected function onException(\Throwable $throwable): void
+    {
+        if ($throwable instanceof ParamAnnotationValidateError) {
+            $msg = $throwable->getValidate()->getError()->getErrorRuleMsg();
+            $this->writeJson(400, null, "{$msg}");
+        } else {
+            if (Core::getInstance()->isDev()) {
+                $this->writeJson(500, null, $throwable->getMessage());
+            } else {
+                Trigger::getInstance()->throwable($throwable);
+                $this->writeJson(500, null, '系统内部错误，请稍后重试');
+            }
+        }
+    }
+}
+```
+
+::: warning
+ api基类控制器,用于拦截注解异常,以及api异常,给用户返回一个json格式错误信息
+:::
+
 
 
 ### 公共基础控制器定义
@@ -1199,23 +535,12 @@ abstract class ApiBase extends Controller
 ```php
 <?php
 namespace App\HttpController\Api\Common;
+
 use App\HttpController\Api\ApiBase;
 use EasySwoole\Validate\Validate;
+
 class CommonBase extends ApiBase
 {
-    function onRequest(?string $action): ?bool
-    {
-        if (parent::onRequest($action)) {
-            return true;
-        }
-        return false;
-    }
-
-    protected function getValidateRule(?string $action): ?Validate
-    {
-        return null;
-        // TODO: Implement getValidateRule() method.
-    }
 }
 ```
 
@@ -1226,21 +551,37 @@ class CommonBase extends ApiBase
 #### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
 ```php
 <?php
+
 namespace App\HttpController\Api\Common;
+
 use App\Model\Admin\BannerBean;
 use App\Model\Admin\BannerModel;
+use EasySwoole\Http\Annotation\Param;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Validate\Validate;
+
+/**
+ * Class Banner
+ * Create With Automatic Generator
+ */
 class Banner extends CommonBase
 {
 
-	public function getOne()
+    /**
+     * getOne
+     * @Param(name="bannerId", alias="主键id", required="", integer="")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 14:03
+     */
+    public function getOne()
 	{
-		$db = Mysql::defer('mysql');
 		$param = $this->request()->getRequestParam();
-		$model = new BannerModel($db);
-		$bean = $model->getOne(new BannerBean(['bannerId' => $param['bannerId']]));
+		$model = new BannerModel();
+		$model->bannerId = $param['bannerId'];
+		$bean = $model->get();
 		if ($bean) {
 		    $this->writeJson(Status::CODE_OK, $bean, "success");
 		} else {
@@ -1248,40 +589,33 @@ class Banner extends CommonBase
 		}
 	}
 
-	public function getAll()
+    /**
+     * getAll
+     * @Param(name="page", alias="页数", optional="", integer="")
+     * @Param(name="limit", alias="每页总数", optional="", integer="")
+     * @Param(name="keyword", alias="关键字", optional="", lengthMax="32")
+     * @author Tioncico
+     * Time: 14:02
+     */
+    public function getAll()
 	{
-        $db = Mysql::defer('mysql');
         $param = $this->request()->getRequestParam();
 		$page = $param['page']??1;
 		$limit = $param['limit']??20;
-		$model = new BannerModel($db);
-		$data = $model->getAllByState($page, 1,$param['keyword']??null, $limit);
+		$model = new BannerModel();
+		$data = $model->getAll($page, 1,$param['keyword']??null, $limit);
 		$this->writeJson(Status::CODE_OK, $data, 'success');
 	}
-
-    function getValidateRule(?string $action): ?Validate
-    {
-        $validate = null;
-        switch ($action) {
-            case 'getAll':
-                $validate = new Validate();
-                $validate->addColumn('page', '页数')->optional();
-                $validate->addColumn('limit', 'limit')->optional();
-                $validate->addColumn('keyword', '关键词')->optional();
-                break;
-            case 'getOne':
-                $validate = new Validate();
-                $validate->addColumn('bannerId', '主键id')->required()->lengthMax(11);
-                break;
-        }
-        return $validate;
-    }
 }
 ```
 
 
 ::: warning 
-测试链接:127.0.0.1:9501/api/common/banner/getAll 
+ 可看到,在getAll方法中,有着`@Param(name="page", alias="页数", optional="", integer="")`的注释,这个是注解支持写法,可写也不可以不写,当写上这个注释之后,将会约束page参数必须是int,具体的验证机制可查看[validate验证器](../HttpServer/validate.md)
+:::
+
+::: warning
+测试链接:127.0.0.1:9501/api/common/banner/getAll
 :::
 
 
@@ -1297,21 +631,39 @@ class Banner extends CommonBase
  
 ```php
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2018/10/26
+ * Time: 5:39 PM
+ */
+
 namespace App\HttpController\Api\Admin;
+
 use App\HttpController\Api\ApiBase;
 use App\Model\Admin\AdminBean;
 use App\Model\Admin\AdminModel;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Validate\Validate;
+
 class AdminBase extends ApiBase
 {
-    protected $who;
+    //public才会根据协程清除
+    public $who;
     //session的cookie头
     protected $sessionKey = 'adminSession';
     //白名单
-    protected $whiteList = ['login'];
+    protected $whiteList = [];
 
+    /**
+     * onRequest
+     * @param null|string $action
+     * @return bool|null
+     * @throws \Throwable
+     * @author yangzhenyu
+     * Time: 13:49
+     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1329,9 +681,15 @@ class AdminBase extends ApiBase
         return false;
     }
 
-    function getWho(): ?AdminBean
+    /**
+     * getWho
+     * @return bool
+     * @author yangzhenyu
+     * Time: 13:51
+     */
+    function getWho(): ?AdminModel
     {
-        if ($this->who instanceof AdminBean) {
+        if ($this->who instanceof AdminModel) {
             return $this->who;
         }
         $sessionKey = $this->request()->getRequestParam($this->sessionKey);
@@ -1341,9 +699,9 @@ class AdminBase extends ApiBase
         if (empty($sessionKey)) {
             return null;
         }
-        $db = Mysql::defer('mysql');
-        $adminModel = new AdminModel($db);
-        $this->who = $adminModel->getOneBySession($sessionKey);
+        $adminModel = new AdminModel();
+        $adminModel->adminSession = $sessionKey;
+        $this->who = $adminModel->getOneBySession();
         return $this->who;
     }
 
@@ -1353,41 +711,57 @@ class AdminBase extends ApiBase
         // TODO: Implement getValidateRule() method.
     }
 }
+
 ```
 
 ### 管理员登录控制器
 新增 `App/HttpController/Api/Admin/Auth.php` 文件:   
 ```php
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2018/10/26
+ * Time: 5:39 PM
+ */
+
 namespace App\HttpController\Api\Admin;
-use App\Model\Admin\AdminBean;
+
 use App\Model\Admin\AdminModel;
+use EasySwoole\Http\Annotation\Param;
 use EasySwoole\Http\Message\Status;
-use EasySwoole\MysqliPool\Mysql;
-use EasySwoole\Spl\SplBean;
-use EasySwoole\Validate\Validate;
+
 class Auth extends AdminBase
 {
     protected $whiteList=['login'];
 
+
+    /**
+     * login
+     * 登陆,参数验证注解写法
+     * @Param(name="account", alias="帐号", required="", lengthMax="20")
+     * @Param(name="password", alias="密码", required="", lengthMin="6", lengthMax="16")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 10:18
+     */
     function login()
     {
         $param = $this->request()->getRequestParam();
-        $db = Mysql::defer('mysql');
-        $model = new AdminModel($db);
-        $bean = new AdminBean();
-        $bean->setAdminAccount($param['account']);
-        $bean->setAdminPassword(md5($param['password']));
+        $model = new AdminModel();
+        $model->adminAccount = $param['account'];
+        $model->adminPassword = md5($param['password']);
 
-        if ($rs = $model->login($bean)) {
-            $bean->restore(['adminId' => $rs->getAdminId()]);
-            $sessionHash = md5(time() . $rs->getAdminId());
-            $model->update($bean, [
+        if ($user = $model->login()) {
+            $sessionHash = md5(time() . $user->adminId);
+            $user->update([
                 'adminLastLoginTime' => time(),
                 'adminLastLoginIp'   => $this->clientRealIP(),
                 'adminSession'       => $sessionHash
             ]);
-            $rs = $rs->toArray(null, SplBean::FILTER_NOT_NULL);
+
+            $rs = $user->toArray();
             unset($rs['adminPassword']);
             $rs['adminSession'] = $sessionHash;
             $this->response()->setCookie('adminSession', $sessionHash, time() + 3600, '/');
@@ -1398,6 +772,14 @@ class Auth extends AdminBase
 
     }
 
+    /**
+     * logout
+     * 退出登录,参数注解写法
+     * @Param(name="adminSession", from={COOKIE}, required="")
+     * @return bool
+     * @author Tioncico
+     * Time: 10:23
+     */
     function logout()
     {
         $sessionKey = $this->request()->getRequestParam($this->sessionKey);
@@ -1408,9 +790,7 @@ class Auth extends AdminBase
             $this->writeJson(Status::CODE_UNAUTHORIZED, '', '尚未登入');
             return false;
         }
-        $db = Mysql::defer('mysql');
-        $adminModel = new AdminModel($db);
-        $result = $adminModel->logout($this->getWho());
+        $result = $this->getWho()->logout();
         if ($result) {
             $this->writeJson(Status::CODE_OK, '', "登出成功");
         } else {
@@ -1420,25 +800,14 @@ class Auth extends AdminBase
 
     function getInfo()
     {
-        $this->writeJson(200, $this->getWho(), 'success');
-    }
-
-    protected function getValidateRule(?string $action): ?Validate
-    {
-        $validate = null;
-        switch ($action) {
-            case 'login':
-                $validate = new Validate();
-                $validate->addColumn('account')->required()->lengthMax(32);
-                $validate->addColumn('password')->required()->lengthMax(32);
-                break;
-            case 'logout':
-                break;
-        }
-        return $validate;
+        $this->writeJson(200, $this->getWho()->toArray(), 'success');
     }
 }
 ```
+
+::: warning
+ 可看到,在getAll方法中,有着`@Param(name="account", alias="帐号", required="", lengthMax="20")`的注释,这个是注解支持写法,可写也不可以不写,当写上这个注释之后,将会约束page参数必须是int,具体的验证机制可查看[validate验证器](../HttpServer/validate.md)
+:::
 
 ::: warning 
 请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
@@ -1465,33 +834,55 @@ class Auth extends AdminBase
 
 ```php
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2018/10/26
+ * Time: 5:39 PM
+ */
+
 namespace App\HttpController\Api\Admin;
 
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
+use EasySwoole\Http\Annotation\Param;
 use EasySwoole\Http\Message\Status;
-use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Validate\Validate;
 
 class User extends AdminBase
 {
+    /**
+     * getAll
+     * @Param(name="page", alias="页数", optional="", integer="")
+     * @Param(name="limit", alias="每页总数", optional="", integer="")
+     * @Param(name="keyword", alias="关键字", optional="", lengthMax="32")
+     * @author Tioncico
+     * Time: 14:01
+     */
     function getAll()
     {
-        $db = Mysql::defer('mysql');
         $page = (int)$this->input('page', 1);
         $limit = (int)$this->input('limit', 20);
-        $model = new UserModel($db);
+        $model = new UserModel();
         $data = $model->getAll($page, $this->input('keyword'), $limit);
         $this->writeJson(Status::CODE_OK, $data, 'success');
     }
 
+
+    /**
+     * getOne
+     * @Param(name="userId", alias="用户id", required="", integer="")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 11:48
+     */
     function getOne()
     {
-        $db = Mysql::defer('mysql');
         $param = $this->request()->getRequestParam();
-        $data['userId'] = intval($param['userId']);
-        $model = new UserModel($db);
-        $rs = $model->getOne(new UserBean($data));
+        $model = new UserModel();
+        $model->userId = $param['userId'];
+        $rs = $model->get();
         if ($rs) {
             $this->writeJson(Status::CODE_OK, $rs, "success");
         } else {
@@ -1500,99 +891,89 @@ class User extends AdminBase
 
     }
 
+    /**
+     * add
+     * @Param(name="userName", alias="用户昵称", optional="", lengthMax="32")
+     * @Param(name="userAccount", alias="用户名", required="", lengthMax="32")
+     * @Param(name="userPassword", alias="用户密码", required="", lengthMin="6",lengthMax="18")
+     * @Param(name="phone", alias="手机号码", optional="", lengthMax="18",numeric="")
+     * @Param(name="state", alias="用户状态", optional="", inArray="{0,1}")
+     * @author Tioncico
+     * Time: 11:48
+     */
     function add()
     {
-        $db = Mysql::defer('mysql');
         $param = $this->request()->getRequestParam();
-        $model = new UserModel($db);
-        $bean = new UserBean($param);
-        $bean->setUserPassword(md5($param['userPassword']));
-        $bean->setState($this->input('state',1));
-        $bean->setMoney(0);
-        $bean->setAddTime(time());
-        $rs = $model->add($bean);
+        $model = new UserModel($param);
+        $model->userPassword = md5($param['userPassword']);
+        $rs = $model->save();
         if ($rs) {
             $this->writeJson(Status::CODE_OK, $rs, "success");
         } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, [], $db->getLastError());
+            $this->writeJson(Status::CODE_BAD_REQUEST, [], $model->lastQueryResult()->getLastError());
         }
     }
 
+    /**
+     * update
+     * @Param(name="userId", alias="用户id", required="", integer="")
+     * @Param(name="userPassword", alias="会员密码", optional="", lengthMin="6",lengthMax="18")
+     * @Param(name="userName", alias="会员名", optional="",  lengthMax="32")
+     * @Param(name="state", alias="状态", optional="", inArray="{0,1}")
+     * @Param(name="phone", alias="手机号", optional="",  lengthMax="18")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 11:54
+     */
     function update()
     {
-        $db = Mysql::defer('mysql');
-        $model = new UserModel($db);
-        $userInfo = $model->getOne( new UserBean(['userId' => $this->input('userId')]));
-        if (!$userInfo){
+        $model = new UserModel();
+        $model->userId = $this->input('userId');
+        /**
+         * @var $userInfo UserModel
+         */
+        $userInfo = $model->get();
+        if (!$userInfo) {
             $this->writeJson(Status::CODE_BAD_REQUEST, [], '未找到该会员');
         }
         $password = $this->input('userPassword');
-        $updateBean = new UserBean();
-        $updateBean->setUserName($this->input('userName',$userInfo->getUserName()));
-        $updateBean->setUserPassword($password?md5($password):$userInfo->getUserPassword());
-        $updateBean->setState($this->input('state',$userInfo->getState()));
-        $updateBean->setPhone($this->input('phone',$userInfo->getPhone()));
+        $update = [
+          'userName'=>$this->input('userName', $userInfo->userName),
+          'userPassword'=>$password ? md5($password) : $userInfo->userPassword,
+          'state'=>$this->input('state', $userInfo->state),
+          'phone'=>$this->input('phone', $userInfo->phone),
+        ];
 
-        $rs = $model->update($userInfo, $updateBean->toArray([], $updateBean::FILTER_NOT_EMPTY));
+        $rs = $model->update($update);
         if ($rs) {
             $this->writeJson(Status::CODE_OK, $rs, "success");
         } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, [], $db->getLastError());
+            $this->writeJson(Status::CODE_BAD_REQUEST, [], $model->lastQueryResult()->getLastError());
         }
 
     }
 
+    /**
+     * delete
+     * @Param(name="userId", alias="用户id", required="", integer="")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 14:02
+     */
     function delete()
     {
-        $db = Mysql::defer('mysql');
         $param = $this->request()->getRequestParam();
-        $model = new UserModel($db);
-        $bean = new UserBean(['userId' => intval($param['userId'])]);
-        $rs = $model->delete($bean);
+        $model = new UserModel();
+        $model->userId = $param['userId'];
+        $rs = $model->destroy();
         if ($rs) {
             $this->writeJson(Status::CODE_OK, $rs, "success");
         } else {
             $this->writeJson(Status::CODE_BAD_REQUEST, [], '删除失败');
         }
 
-    }
-
-    function getValidateRule(?string $action): ?Validate
-    {
-        $validate = null;
-        switch ($action) {
-            case 'getAll':
-                $validate = new Validate();
-                $validate->addColumn('page','页数')->optional();
-                $validate->addColumn('limit','limit')->optional();
-                $validate->addColumn('keyword','关键词')->optional();
-                break;
-            case 'getOne':
-                $validate = new Validate();
-                $validate->addColumn('userId', '会员id')->required()->lengthMax(11);
-                break;
-            case 'add':
-                $validate = new Validate();
-                $validate->addColumn('userName', '会员名')->required()->lengthMax(18);
-                $validate->addColumn('userAccount', '会员账号')->required()->lengthMax(32);
-                $validate->addColumn('userPassword', '会员密码')->required()->lengthMax(18);
-                $validate->addColumn('phone', '手机号')->optional()->lengthMax(18);
-                $validate->addColumn('state', '状态')->optional()->inArray([0,1]);
-                break;
-            case 'update':
-                $validate = new Validate();
-                $validate->addColumn('userId', '会员id')->required()->lengthMax(11);
-                $validate->addColumn('userName', '会员名')->optional()->lengthMax(18);
-                $validate->addColumn('userPassword', '会员密码')->optional()->lengthMax(18);
-                $validate->addColumn('phone', '手机号')->optional()->lengthMax(18);
-                $validate->addColumn('state', '状态')->optional()->inArray([0,1]);
-                break;
-            case 'delete':
-                $validate = new Validate();
-                $validate->addColumn('userId', '会员id')->required()->lengthMax(11);
-                break;
-        }
-        return $validate;
     }
 }
 ```
@@ -1614,7 +995,15 @@ class User extends AdminBase
 
 ```php
 <?php
+/**
+ * Created by PhpStorm.
+ * User: yf
+ * Date: 2018/10/26
+ * Time: 5:39 PM
+ */
+
 namespace App\HttpController\Api\User;
+
 use App\HttpController\Api\ApiBase;
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
@@ -1624,6 +1013,7 @@ use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
 use EasySwoole\Validate\Validate;
+
 class UserBase extends ApiBase
 {
     protected $who;
@@ -1632,6 +1022,14 @@ class UserBase extends ApiBase
     //白名单
     protected $whiteList = ['login', 'register'];
 
+    /**
+     * onRequest
+     * @param null|string $action
+     * @return bool|null
+     * @throws \Throwable
+     * @author yangzhenyu
+     * Time: 13:49
+     */
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
@@ -1652,9 +1050,14 @@ class UserBase extends ApiBase
         return false;
     }
 
-    function getWho(): ?UserBean
+    /**
+     * getWho
+     * @author yangzhenyu
+     * Time: 13:51
+     */
+    function getWho(): ?UserModel
     {
-        if ($this->who instanceof UserBean) {
+        if ($this->who instanceof UserModel) {
             return $this->who;
         }
         $sessionKey = $this->request()->getRequestParam($this->sessionKey);
@@ -1664,16 +1067,10 @@ class UserBase extends ApiBase
         if (empty($sessionKey)) {
             return null;
         }
-        $db = Mysql::defer('mysql');
-        $userModel = new UserModel($db);
-        $this->who = $userModel->getOneBySession($sessionKey);
+        $userModel = new UserModel();
+        $userModel->userSession = $sessionKey;
+        $this->who = $userModel->getOneBySession();
         return $this->who;
-    }
-
-    protected function getValidateRule(?string $action): ?Validate
-    {
-        return null;
-        // TODO: Implement getValidateRule() method.
     }
 }
 ```
@@ -1695,9 +1092,12 @@ class UserBase extends ApiBase
 
 namespace App\HttpController\Api\User;
 
-
 use App\Model\User\UserBean;
 use App\Model\User\UserModel;
+use App\Service\Common\VerifyService;
+use App\Utility\Pool\MysqlPool;
+use App\Utility\SwooleApi\User\Login;
+use EasySwoole\Http\Annotation\Param;
 use EasySwoole\Http\Message\Status;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Spl\SplBean;
@@ -1707,24 +1107,30 @@ class Auth extends UserBase
 {
     protected $whiteList = ['login', 'register'];
 
+    /**
+     * login
+     * @Param(name="userAccount", alias="用户名", required="", lengthMax="32")
+     * @Param(name="userPassword", alias="密码", required="", lengthMin="6",lengthMax="18")
+     * @throws \EasySwoole\ORM\Exception\Exception
+     * @throws \Throwable
+     * @author Tioncico
+     * Time: 15:06
+     */
     function login()
     {
         $param = $this->request()->getRequestParam();
-        $db = Mysql::defer('mysql');
-        $model = new UserModel($db);
-        $bean = new UserBean();
-        $bean->setUserAccount($param['userAccount']);
-        $bean->setUserPassword(md5($param['userPassword']));
+        $model = new UserModel();
+        $model->userAccount = $param['userAccount'];
+        $model->userPassword = md5($param['userPassword']);
 
-        if ($rs = $model->login($bean)) {
-            $bean->restore(['userId' => $rs->getUserId()]);
-            $sessionHash = md5(time() . $rs->getUserId());
-            $model->update($bean, [
+        if ($userInfo = $model->login()) {
+            $sessionHash = md5(time() . $userInfo->userId);
+            $userInfo->update([
                 'lastLoginIp'   => $this->clientRealIP(),
                 'lastLoginTime' => time(),
                 'userSession'   => $sessionHash
             ]);
-            $rs = $rs->toArray(null, SplBean::FILTER_NOT_NULL);
+            $rs = $userInfo->toArray();
             unset($rs['userPassword']);
             $rs['userSession'] = $sessionHash;
             $this->response()->setCookie('userSession', $sessionHash, time() + 3600, '/');
@@ -1745,9 +1151,7 @@ class Auth extends UserBase
             $this->writeJson(Status::CODE_UNAUTHORIZED, '', '尚未登入');
             return false;
         }
-        $db = Mysql::defer('mysql');
-        $userModel = new UserModel($db);
-        $result = $userModel->logout($this->getWho());
+        $result = $this->getWho()->logout();
         if ($result) {
             $this->writeJson(Status::CODE_OK, '', "登出成功");
         } else {
@@ -1758,25 +1162,7 @@ class Auth extends UserBase
 
     function getInfo()
     {
-        $this->getWho()->setPhone(substr_replace($this->getWho()->getPhone(), '****', 3, 4));
         $this->writeJson(200, $this->getWho(), 'success');
-    }
-
-    protected function getValidateRule(?string $action): ?Validate
-    {
-        $validate = null;
-        switch ($action) {
-            case 'login':
-                $validate = new Validate();
-                $validate->addColumn('userAccount')->required()->lengthMax(32);
-                $validate->addColumn('userPassword')->required()->lengthMax(32);
-                break;
-            case 'getInfo':
-                break;
-            case 'logout':
-                break;
-        }
-        return $validate;
     }
 }
 ```
