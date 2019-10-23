@@ -44,42 +44,6 @@ DbManager::getInstance()->addConnection(new Connection($config));
 ```
 你可以在框架 `mainServerCreate` 主服务创建事件中注册连接, 之后你就可以使用你创建的ORM模型实例化后的对象进行数据库操作了(必须要先进行注册连接)
 
-### 连接多个数据库
-
-```php
-DbManager::getInstance()->addConnection(ConnectionInterface $con，string $connectionName = 'default');
-```
-可以存在多个连接,而多个连接通过不同的 `$connectionName` 值来当做唯一连接名,默认为源码中所定义的名称. 
-在模型类中 可以更改 `connectionName`属性，将当前模型指向不同的数据库连接(已注册连接)使用
-
-指定``` blank ```连接方式
-
-```php
-Class AdminModel extends \EasySwoole\ORM\AbstractModel {
-
-    protected $connectionName = 'blank';
-}
-```
-
-添加``` blank ```连接方式
-
-```php
-\co::create(function() {
-    $config = new Config();
-    $config->setDatabase('cry');
-    $config->setUser('root');
-    $config->setPassword('root');
-    $config->setHost('192.168.75.1');
-
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
-
-    $admin = AdminModel::create()->get(1);
-
-    print_r($admin->toArray());
-
-});
-```
-
 ### 自带连接池
 
 <!--Easyswoole中已经实现了 `\EasySwoole\ORM\Db\ConnectionInterface` 接口的数据库连接类: `EasySwoole\ORM\Db\Connection`

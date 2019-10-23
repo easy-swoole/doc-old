@@ -1,10 +1,10 @@
 ---
-title: 定义模型
+title: 定义表结构
 meta:
   - name: description
     content: Easyswoole ORM组件,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|定义表结构
 ---
 
 
@@ -17,14 +17,14 @@ $table = $model->getSchemaInfo();
 ```
 使用模型中的`getSchemaInfo()`方法可以获取当前模型指定数据表的结构返回一个`EasySwoole\ORM\Utility\Schema\Table`对象
 
-::: warning 
-本身会自动生成table,但每次启动Easyswoole,都会去重新获取一次table信息,并且在这次服务中缓存,直到easyswoole服务停止或者重启
+::: tip 
+模型本身会**自动**生成表结构,但每次启动Easyswoole,都会去重新获取一次表结构信息,并且在这次服务中缓存,直到Easyswoole服务停止或者重启
 如果不希望每次重启都去请求一次数据库,可自行定义该方法,返回Table对象
 :::
 
 ## 自定义表结构
 
-在模型类中，我们实现一个`function schemaInfo(): Table`方法，要求返回一个`EasySwoole\ORM\Utility\Schema\Table`类
+在模型类中，我们实现一个`getSchemaInfo`方法，要求返回一个`EasySwoole\ORM\Utility\Schema\Table`实例化对象
 
 ```php
 class User extends AbstractModel
