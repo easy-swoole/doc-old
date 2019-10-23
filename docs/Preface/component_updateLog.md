@@ -8,7 +8,7 @@ meta:
 ---
 
 
-# 2019-10-23
+# 2019-10
 
 ## 新增
 - [#14](https://github.com/easy-swoole/orm/pull/14) `ORM` 增加 `连贯操作`、`聚合查询`
