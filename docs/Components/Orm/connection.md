@@ -65,7 +65,7 @@ $config = new Config();
     $config->setPassword('root');
     $config->setHost('192.168.75.1');
 
-    DbManager::getInstance()->addConnection(new Connection($config))->getConnection();
+    DbManager::getInstance()->addConnection(new Connection($config));
     
     try {
         DbManager::getInstance()->startTransaction();
