@@ -23,85 +23,132 @@ composer require easyswoole/jwt
 * easyswoole 组件包括 spl 与 utility
 :::
 
-## 使用示例
+## publish 初始化
+
+初始化一个没有附带信息的token的JwtObject
+
+```php
+use EasySwoole\Jwt\JwtObject;
+    
+$jwtObject = JwtObject::getInstance()->publish();
+```
+
+## 设置信息
+
+以下为`JwtObject`类拥有的方法，可以通过这些方法设置属性
+
+```php
+/** 
+ * 设置加密方式:AES/HMACSHA256，默认HMACSHA256 
+ */
+public function setAlg($alg): void
+/** 
+ * 设置签发者.默认为EasySwoole 
+ */
+public function setIss(string $iss): void
+/** 
+ * 设置过期时间戳 默认为当前时间加2小时 
+ */
+public function setExp($exp): void
+/** 
+ * 设置主题（Subject） 
+ */
+public function setSub($sub): void
+/** 
+ * 设置在此时间戳之前不可用（Not Before），默认time()
+ */
+public function setNbf($nbf): void
+/** 
+ * 设置用户（Audience）
+ */
+public function setAud($aud): void
+/** 
+ * 设置签发时间,默认time()
+ */
+public function setIat($iat): void
+/**
+ * 设置JWT ID用于标识该JWT 
+ */
+public function setJti($jti): void
+/** 
+ * 设置数据 
+ */
+public function setData($data): void
+```
+
+## encode示例
+
 ```php
 <?php
-
-require 'vendor/autoload.php';
 
 /** @var \EasySwoole\Jwt\JwtObject $obj */
 //设置加密方式 支持AES 与 HMACSHA256 设置密钥默认为EasySwoole
 $obj = \EasySwoole\Jwt\Jwt::getInstance()->algMethod('AES')->setSecretKey('测试呀')->publish();
 
-$data = '测试用例';
-
-### 设置Payload ###
-
-//设置过期时间 默认为当前时间加2小时
-$obj->setExp(time()+3600);
-//设置签发时间,默认time()
-$obj->setIat(time());
-//设置签发者.默认为EasySwoole
-$obj->setIss('测试');
+$obj->setExp(time() + 3600);
+$obj->setData('测试数据a');
 
 $token = $obj->__toString();
-
-var_dump($token);
-
-//decode token
-$jwt =  \EasySwoole\Jwt\Jwt::getInstance();
-
-try{
-    //验证token,解密并验证签名验证过期时间
-    /** @var \EasySwoole\Jwt\JwtObject $result */
-    $result = $jwt -> decode($token);
-    
-    var_dump($result);
-    
-    switch ($result->getStatus())
-    {
-        case  1:
-            echo '验证通过';
-            break;
-        case  2:
-            echo '验证失败';
-            break;
-        case  3:
-            echo 'token过期';
-            break;
-    }
-    //根据解密之后的结果完善业务逻辑
-}catch (\Exception $e){
-
-}
+echo $token;
+```
+### 输出结果
 
 ```
-### 输出结果:
+eyJhbGciOiJBRVMiLCJpc3MiOiJtZSIsImV4cCI6MTU3MTgwMDc0OSwic3ViIjoi5Li76aKYIiwibmJmIjoxNTcxNzI3NjA1LCJhdWQiOiJ5b3UiLCJpYXQiOjE1NzE3OTcxNDksImp0aSI6IjVkYWZiODlkNjM2ZjQiLCJzaWduYXR1cmUiOiI2dnVMTGRNWXI0bEFLcVhOeVMvbVVFa2lISVFQc2wzWUUyNFV1aFpKQzBhM25mRC9mc3dGeTFkWmdYRGN1cUZ6NUdkeEgybVBuY25IdWhXY1ZMeWZFa3plZVRzVGFscy9VeXVEalN2WFZqWTJxendoSCt1K203RDZBVVRFN1VGaFFtM2xvb2pBZklERVc3bHJtWWxCYXpqUldQV0dlaWYraGZTU05JY1FqYWhxSCtobkp6QWVxbUJ3cVBrVEYzZ044Znp2b2plWTRlWmhQaGpSNlhGaHZBPT0iLCJzdGF0dXMiOjEsImRhdGEiOiLmtYvor5XmlbDmja5hIn0%3D
+```
+
+## decode示例
+
+通过客户端或者其他地方传递过来的token，可以解析，得到其中的附带数据
+
 ```php
-string(470) "eyJhbGciOiJBRVMiLCJpc3MiOiLmtYvor5UiLCJleHAiOjE1NjgyODg5MTMsInN1YiI6bnVsbCwibmJmIjoxNTY4Mjg1MzEzLCJhdWQiOm51bGwsImlhdCI6MTU2ODI4NTMxMywianRpIjoicDlhQVo0RnhxbyIsInNpZ25hdHVyZSI6IjZ2dUxMZE1ZcjRsQUtxWE55Uy9tVUlKb3hxV1FwblZXRGZFWkFXcUtNbXFzV002UENkbTZJZDlhZ0EzL3J6Y3pxd295UWdrR291eGdLdVlUTThnNVluZ2NZVnhGeFErYVY4U1lqZ256dGZYMlN2cXBYNnhDaVBNQnZ5K3c1Qi9Dc2I0VzBDelEwMXQ1STNFeVo5Uy9PRjBtQzdhaTN6TElIdkhvQkxRbEQvM3pmY09maHhnVUZGSXlLOG1adERYKyIsInN0YXR1cyI6MSwiZGF0YSI6bnVsbH0%3D"
-object(EasySwoole\Jwt\Object)#4 (11) {
-  ["alg":protected]=>
-  string(3) "AES"
-  ["iss":protected]=>
-  string(6) "测试"
-  ["exp":protected]=>
-  int(1568288913)
-  ["sub":protected]=>
-  NULL
-  ["nbf":protected]=>
-  int(1568285313)
-  ["aud":protected]=>
-  NULL
-  ["iat":protected]=>
-  int(1568285313)
-  ["jti":protected]=>
-  string(10) "p9aAZ4Fxqo"
-  ["signature":protected]=>
-  string(192) "6vuLLdMYr4lAKqXNyS/mUIJoxqWQpnVWDfEZAWqKMmqsWM6PCdm6Id9agA3/rzczqwoyQgkGouxgKuYTM8g5YngcYVxFxQ+aV8SYjgnztfX2SvqpX6xCiPMBvy+w5B/Csb4W0CzQ01t5I3EyZ9S/OF0mC7ai3zLIHvHoBLQlD/3zfcOfhxgUFFIyK8mZtDX+"
-  ["status":protected]=>
-  int(1)
-  ["data":protected]=>
-  NULL
+<?php
+$jwt = \EasySwoole\Jwt\Jwt::getInstance();
+
+// 实际可能是通过传参等方式获取token
+$token = 'eyJhbGciOiJBRVMiLCJpc3MiOiJtZSIsImV4cCI6MTU3MTgwMDc0OSwic3ViIjoi5Li76aKYIiwibmJmIjoxNTcxNzI3NjA1LCJhdWQiOiJ5b3UiLCJpYXQiOjE1NzE3OTcxNDksImp0aSI6IjVkYWZiODlkNjM2ZjQiLCJzaWduYXR1cmUiOiI2dnVMTGRNWXI0bEFLcVhOeVMvbVVFa2lISVFQc2wzWUUyNFV1aFpKQzBhM25mRC9mc3dGeTFkWmdYRGN1cUZ6NUdkeEgybVBuY25IdWhXY1ZMeWZFa3plZVRzVGFscy9VeXVEalN2WFZqWTJxendoSCt1K203RDZBVVRFN1VGaFFtM2xvb2pBZklERVc3bHJtWWxCYXpqUldQV0dlaWYraGZTU05JY1FqYWhxSCtobkp6QWVxbUJ3cVBrVEYzZ044Znp2b2plWTRlWmhQaGpSNlhGaHZBPT0iLCJzdGF0dXMiOjEsImRhdGEiOiLmtYvor5XmlbDmja5hIn0%3D';
+
+try {
+  /** @var \EasySwoole\Jwt\JwtObject $result */
+  $result = $jwt->decode($token);
+
+  switch ($result->getStatus()) {
+    case -1:
+      echo 'token无效';
+    case  1:
+      echo '验证通过';
+      break;
+    case  2:
+      echo '验证失败';
+      break;
+    case  3:
+      echo 'token过期';
+      break;
+  }
+    
+  // 根据解密之后的结果完善业务逻辑
+  var_dump($result);
+} catch (\Exception $e) {
+  // TODO: 处理异常
 }
-验证通过
 ```
+
+### 获取附带数据
+
+```php
+echo $result->getNbf() . PHP_EOL;
+echo $result->getAlg() . PHP_EOL;
+echo $result->getExp() . PHP_EOL;
+echo $result->getIat() . PHP_EOL;
+echo $result->getIss() . PHP_EOL;
+echo $result->getSignature() . PHP_EOL;
+// 若未set，以下值默认未null
+echo $result->getAud() . PHP_EOL;
+echo $result->getData() . PHP_EOL;
+echo $result->getJti() . PHP_EOL;
+echo $result->getSub() . PHP_EOL;
+
+// 此外还可根据属性名解密，nbf/alg/exp/iat/iss/signature/aud/data/jti/sub
+echo $result->getProperty('signature') . PHP_EOL;
+```
+

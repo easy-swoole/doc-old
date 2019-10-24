@@ -96,7 +96,6 @@ project                   项目部署目录
 ├─composer.lock           Composer锁定
 ├─EasySwooleEvent.php     框架全局事件
 ├─easyswoole              框架管理脚本
-├─easyswoole.install      框架安装锁定文件
 ├─dev.php                 开发配置文件
 ├─produce.php             生产配置文件
 ```

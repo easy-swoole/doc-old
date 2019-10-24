@@ -7,9 +7,10 @@ const sidebarCn = [
             ['/Preface/introduction', '项目介绍'],
             ['/Preface/developerRead', '开发者必读'],
             ['/Preface/updateLog', '更新记录'],
+            ['/Preface/component_updateLog', '组件更新记录'],
             ['/Preface/donation', '捐赠'],
             ['/Preface/contactAuthor', '联系作者'],
-
+            ['/Preface/team', '文档维护团队'],
         ]
     },
     {
@@ -152,7 +153,7 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Mysqli/builder', '基本使用'],
-                            
+
                             ['/Components/Mysqli/query', '查询数据'],
                             ['/Components/Mysqli/insert', '添加数据'],
                             ['/Components/Mysqli/update', '更新数据'],
@@ -185,19 +186,15 @@ const sidebarCn = [
 
                                     ['/Components/Mysqli/Chain/setPrefix_method', 'setPrefix'],
                                     ['/Components/Mysqli/Chain/withTotalCount_method', 'withTotalCount'],
-                                    ['/Components/Mysqli/Chain/get_method', 'get'],
-                                    ['/Components/Mysqli/Chain/getOne_method', 'getOne'],
-                                    ['/Components/Mysqli/Chain/insert_method', 'insert'],
+                                    // ['/Components/Mysqli/Chain/get_method', 'get'],
+                                    // ['/Components/Mysqli/Chain/getOne_method', 'getOne'],
+                                    // ['/Components/Mysqli/Chain/insert_method', 'insert'],
                                     ['/Components/Mysqli/Chain/replace_method', 'replace'],
                                     ['/Components/Mysqli/Chain/onDuplicate_method', 'onDuplicate'],
 
-                                    ['/Components/Mysqli/Chain/update_method', 'update'],
-                                    ['/Components/Mysqli/Chain/delete_method', 'delete'],
-                                    ['/Components/Mysqli/Chain/getLastPrepareQuery_method', 'getLastPrepareQuery'],
-                                    ['/Components/Mysqli/Chain/getLastBindParams_method', 'getLastBindParams'],
-                                    ['/Components/Mysqli/Chain/getLastQueryOptions_method', 'getLastQueryOptions'],
-                                    ['/Components/Mysqli/Chain/getLastQuery_method', 'getLastQuery'],
-                                    ['/Components/Mysqli/Chain/getSubQuery_method', 'getSubQuery']
+                                    // ['/Components/Mysqli/Chain/update_method', 'update'],
+                                    // ['/Components/Mysqli/Chain/delete_method', 'delete'],
+
                                 ]
                             },
 
@@ -211,8 +208,36 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Orm/install', '安装'],
-                    ['/Components/Orm/connection', '连接管理'],
-                    ['/Components/Orm/model', '模型对象']
+                    // ['/Components/Orm/popular_science_concept', '科普概念'],
+                    ['/Components/Orm/configuration_register', '配置信息注册'],
+                    {
+                        title: '定义模型',
+                        path: '/Components/Orm/define_model',
+                        collapsable: false,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/DefineModel/define_table_structure', '定义表结构'],
+                            ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
+                        ]
+                    },
+                    ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
+                    ['/Components/Orm/transaction_operations', '事务操作'],
+
+                    ['/Components/Orm/query', '查询'],
+                    ['/Components/Orm/add', '新增'],
+                    ['/Components/Orm/delete', '删除'],
+                    ['/Components/Orm/update', '更新'],
+                    ['/Components/Orm/getter', '获取器'],
+                    ['/Components/Orm/modifier', '修改器'],
+                    {
+                        title: '关联',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/Associat/one_to_one_associations', '一对一关联'],
+                            ['/Components/Orm/Associat/one_to_many_associations', '一对多关联'],
+                        ]
+                    },
                 ]
             }
         ]
