@@ -227,6 +227,8 @@ const sidebarCn = [
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
+                    ['/Components/Orm/coherent_operation', '连贯操作'],
+                    ['/Components/Orm/aggregation', '聚合'],
                     ['/Components/Orm/getter', '获取器'],
                     ['/Components/Orm/modifier', '修改器'],
                     {

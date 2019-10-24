@@ -36,7 +36,7 @@ class User extends AbstractModel
      */
     public function getSchemaInfo(): Table
     {
-        $table = new Table('siam');
+        $table = new Table();
         $table->colInt('id')->setIsPrimaryKey(true);
         $table->colChar('name', 255);
         $table->colInt('age');

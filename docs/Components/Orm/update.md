@@ -11,13 +11,20 @@ meta:
 
 # 更新
 
-```php
-<?php
 
+更新时指定 `id` 为 `1` 的 where 条件
+
+```php
 // 可以直接静态更新
 $res = UserModel::create()->update([
     'name' => 'new'
 ], ['id' => 1]);
+```
+
+先获取后更新
+
+```php
+<?php
 
 // 根据模型对象进行更新（无需写更新条件）
 $model = UserModel::create()->get(1);
