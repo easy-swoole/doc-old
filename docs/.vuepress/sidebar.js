@@ -372,6 +372,7 @@ const sidebarCn = [
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
 
+
             {
                 title: '杂项工具',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -386,6 +387,8 @@ const sidebarCn = [
                     // ['/Components/Sundries/Time', 'Time']
                 ]
             },
+
+            ['/Components/keyword', '关键词检测']
         ]
     },
     {
