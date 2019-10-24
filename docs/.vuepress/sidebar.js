@@ -378,8 +378,8 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Sundries/arrayToTextTable', 'ArrayToTextTable']
-                    // ['/Components/Sundries/file', 'File'],
+                    ['/Components/Sundries/arrayToTextTable', 'ArrayToTextTable'],
+                    ['/Components/Sundries/file', 'File']
                     // ['/Components/Sundries/hash', 'Hash'],
                     // ['/Components/Sundries/random', 'Random'],
                     // ['/Components/Sundries/SnowFlake', 'SnowFlake'],
