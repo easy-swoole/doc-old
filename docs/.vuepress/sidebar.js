@@ -379,12 +379,12 @@ const sidebarCn = [
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
                     ['/Components/Sundries/arrayToTextTable', 'ArrayToTextTable'],
-                    ['/Components/Sundries/file', 'File']
-                    // ['/Components/Sundries/hash', 'Hash'],
-                    // ['/Components/Sundries/random', 'Random'],
-                    // ['/Components/Sundries/SnowFlake', 'SnowFlake'],
-                    // ['/Components/Sundries/Str', 'Str'],
-                    // ['/Components/Sundries/Time', 'Time']
+                    ['/Components/Sundries/file', 'File'],
+                    ['/Components/Sundries/hash', 'Hash'],
+                    ['/Components/Sundries/random', 'Random'],
+                    ['/Components/Sundries/snow_flake', 'SnowFlake'],
+                    ['/Components/Sundries/str', 'Str'],
+                    ['/Components/Sundries/time', 'Time']
                 ]
             },
 
