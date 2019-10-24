@@ -371,6 +371,23 @@ const sidebarCn = [
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
+
+
+            {
+                title: '杂项工具',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Sundries/arrayToTextTable', 'ArrayToTextTable']
+                    // ['/Components/Sundries/file', 'File'],
+                    // ['/Components/Sundries/hash', 'Hash'],
+                    // ['/Components/Sundries/random', 'Random'],
+                    // ['/Components/Sundries/SnowFlake', 'SnowFlake'],
+                    // ['/Components/Sundries/Str', 'Str'],
+                    // ['/Components/Sundries/Time', 'Time']
+                ]
+            },
+
             ['/Components/keyword', '关键词检测']
         ]
     },
