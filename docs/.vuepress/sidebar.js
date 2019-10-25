@@ -340,7 +340,7 @@ const sidebarCn = [
                     ['/Components/Kafka/producer', '生产者']
                 ]
             },
-              {
+            {
                 title: '关键词检测',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
@@ -348,7 +348,7 @@ const sidebarCn = [
                   ['/Components/Keyword/keyword', '关键词检测'],
                   ['/Components/Keyword/ab', '压测结果']
                 ]
-              },
+            },
             ['/Components/whoops', 'Whoops'],
             ['/Components/syncInvoker', 'SyncInvoker'],
             ['/Components/tracker', '链路追踪'],
