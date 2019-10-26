@@ -170,3 +170,19 @@ function onReceive($serv, $fd, $reactorId, $data)
 
 - 项目中类名称与类文件(文件夹)命名，均为大驼峰，变量与类方法为小驼峰。
 - 在HTTP响应中，于业务逻辑代码中echo $var 并不会将$var内容输出至相应内容中，请调用Response实例中的wirte()方法实现。
+
+<script>
+  export default {
+    mounted () {
+        if(localStorage.getItem('isNew') != 1){
+            localStorage.setItem('isNew',1);
+            layer.confirm('是否给EasySwoole点个赞',function (index) {
+                 layer.msg('感谢您的支持');
+                     setTimeout(function () {
+                         window.open('https://github.com/easy-swoole/easyswoole');
+                  },1500);
+             });              
+        }
+    }
+  }
+</script>
