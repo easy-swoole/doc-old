@@ -124,3 +124,17 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
         
   - 持续和深入地开发
   - 文档和社区的建设和维护
+
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script>
+    isNew = localStorage.getItem('isNew', 1); 
+    if (isNew != 1){
+        localStorage.setItem('isNew', 1);
+        let r = confirm('是否给EasySwoole点个赞？');
+        if (r == true){
+            setTimeout(function(){
+                window.open("https://github.com/easy-swoole/easyswoole");
+            }, 300);
+        }
+    }
+</script>
