@@ -86,4 +86,22 @@ php easyswoole start
         
   - 持续和深入地开发
   - 文档和社区的建设和维护
+
+<script>
+  export default {
+    mounted () {
+        if(localStorage.getItem('isNew') != 1){
+             localStorage.setItem('isNew',1);
+             window.onload = function () {
+             layer.confirm('是否给EasySwoole点个赞',function (index) {
+                 layer.msg('感谢您的支持');
+                     setTimeout(function () {
+                         window.open('https://github.com/easy-swoole/easyswoole');
+                  },1500);
+             });
+        };  
+      }
+    }
+  }
+</script>
   
