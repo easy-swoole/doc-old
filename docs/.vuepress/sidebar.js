@@ -396,6 +396,14 @@ const sidebarCn = [
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
                 ]
+            },
+            {
+                title: 'MonggoDb客户端案例',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/MonggoDb/syncInvoker', 'SyncInvoker'],
+                ]
             }
         ]
     },
