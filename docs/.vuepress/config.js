@@ -26,7 +26,7 @@ module.exports = {
                 editLinkText: '在 GitHub 上编辑此页',
                 sidebar: sidebar.sidebarCn,
                 nav: [
-                    {text: '源码仓库', link: 'https://github.com/easy-swoole'},
+                    {text: 'Websocket调试工具', link: 'http://www.easyswoole.com/wstool.html'},
                 ],
             },
             '/En/': {
@@ -35,9 +35,14 @@ module.exports = {
                 editLinkText: 'Edit this page on GitHub',
                 sidebar: sidebar.sidebarEn,
                 nav: [
-                    {text: 'Repository', link: 'https://github.com/easy-swoole'},
+                    {text: 'Websocket Test Tool', link: 'http://www.easyswoole.com/wstool.html'},
                 ]
             },
         }
-    }
+    },
+    head: [
+        ['script', {src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'}],
+        ['script', {src: 'https://cdn.bootcss.com/layer/2.3/layer.js'}],
+        ['href', {src: 'https://cdn.bootcss.com/layer/2.3/skin/layer.css',rel:"stylesheet"}],
+    ]
 };
