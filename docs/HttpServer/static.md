@@ -7,6 +7,7 @@ meta:
     content: swoole静态文件处理|Easyswoole静态文件处理
 ---
 
+
 # 如何处理静态资源
 ## Apache URl rewrite
 ```apacheconf
@@ -44,3 +45,23 @@ $server->set([
 ]);
 ```
 Swoole 有自带的静态文件处理器。文档请见 https://wiki.swoole.com/wiki/page/783.html
+
+## 关于跨域处理
+
+在全局事件添加以下代码 拦截所有请求添加跨域头
+
+```php
+public static function onRequest(Request $request, Response $response): bool
+{
+    // TODO: Implement onRequest() method.
+    $response->withHeader('Access-Control-Allow-Origin', '*');
+    $response->withHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    $response->withHeader('Access-Control-Allow-Credentials', 'true');
+    $response->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    if ($request->getMethod() === 'OPTIONS') {
+        $response->withStatus(Status::CODE_OK);
+        return false;
+    }
+    return true;
+}
+```

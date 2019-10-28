@@ -118,7 +118,8 @@ const sidebarCn = [
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
-            ['/HttpServer/static', '静态资源处理'],
+            ['/HttpServer/static', '静态资源与跨域处理'],
+            ['/HttpServer/problem', '常见问题'],
         ]
     },
     {
