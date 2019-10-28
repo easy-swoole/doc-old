@@ -455,6 +455,16 @@ const sidebarCn = [
             }
         ]
     },
+{
+        title: '公开文章',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            ['/Article/learnSwoole', '如何学习swoole'],
+            ['/Article/swooleIpLimit', 'swoole如何对ip限制访问频率'],
+            ['/Article/degradedService', '微服务开发中的服务限流与降级'],
+        ]
+    },
     {
         title: '常见问题',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
