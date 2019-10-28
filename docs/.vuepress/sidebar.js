@@ -4,13 +4,13 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Preface/introduction', '项目介绍'],
-            ['/Preface/developerRead', '开发者必读'],
-            ['/Preface/updateLog', '更新记录'],
-            ['/Preface/component_updateLog', '组件更新记录'],
+            ['/Preface/Introduction', '项目介绍'],
+            ['/Preface/DeveloperRead', '开发者必读'],
+            ['/Preface/UpdateLog', '更新记录'],
+            ['/Preface/ComponentUpdateLog', '组件更新记录'],
             ['/Preface/Donation', '捐赠'],
             ['/Preface/ContactAuthor', '联系作者'],
-            ['/Preface/team', '文档维护团队'],
+            ['/Preface/Team', '文档维护团队'],
         ]
     },
     {
