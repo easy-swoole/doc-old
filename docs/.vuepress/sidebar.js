@@ -118,7 +118,8 @@ const sidebarCn = [
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
-            ['/HttpServer/static', '静态资源处理'],
+            ['/HttpServer/static', '静态资源与跨域处理'],
+            ['/HttpServer/problem', '常见问题'],
         ]
     },
     {
@@ -153,7 +154,6 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Mysqli/builder', '基本使用'],
-
                             ['/Components/Mysqli/query', '查询数据'],
                             ['/Components/Mysqli/insert', '添加数据'],
                             ['/Components/Mysqli/update', '更新数据'],
@@ -175,7 +175,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/join_method', 'join'],
                                     ['/Components/Mysqli/Chain/join_where_method', 'joinWhere'],
                                     ['/Components/Mysqli/Chain/join_or_where_method', 'joinOrWhere'],
-
                                     ['/Components/Mysqli/Chain/union_method', 'union'],
                                     ['/Components/Mysqli/Chain/lockInShareMode_method', 'lockInShareMode'],
                                     ['/Components/Mysqli/Chain/selectForUpdate_method', 'selectForUpdate'],
@@ -183,7 +182,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/lockTable_method', 'lockTable'],
                                     ['/Components/Mysqli/Chain/unlockTable_method', 'unlockTable'],
                                     ['/Components/Mysqli/Chain/setQueryOption_method', 'setQueryOption'],
-
                                     ['/Components/Mysqli/Chain/setPrefix_method', 'setPrefix'],
                                     ['/Components/Mysqli/Chain/withTotalCount_method', 'withTotalCount'],
                                     // ['/Components/Mysqli/Chain/get_method', 'get'],
@@ -191,7 +189,6 @@ const sidebarCn = [
                                     // ['/Components/Mysqli/Chain/insert_method', 'insert'],
                                     ['/Components/Mysqli/Chain/replace_method', 'replace'],
                                     ['/Components/Mysqli/Chain/onDuplicate_method', 'onDuplicate'],
-
                                     // ['/Components/Mysqli/Chain/update_method', 'update'],
                                     // ['/Components/Mysqli/Chain/delete_method', 'delete'],
 
@@ -208,26 +205,26 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Orm/install', '安装'],
-                    // ['/Components/Orm/popular_science_concept', '科普概念'],
-                    ['/Components/Orm/configuration_register', '配置信息注册'],
+                    // ['/Components/Orm/popularScienceConcept', '科普概念'],
+                    ['/Components/Orm/configurationRegister', '配置信息注册'],
                     {
                         title: '定义模型',
-                        path: '/Components/Orm/define_model',
+                        path: '/Components/Orm/defineModel',
                         collapsable: false,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/DefineModel/define_table_structure', '定义表结构'],
-                            ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
+                            ['/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
+                            ['/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
                         ]
                     },
-                    ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
-                    ['/Components/Orm/transaction_operations', '事务操作'],
-
+                    ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
+                    ['/Components/Orm/transactionOperations', '事务操作'],
+                    ['/Components/Orm/ReadWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
-                    ['/Components/Orm/coherent_operation', '连贯操作'],
+                    ['/Components/Orm/coherentOperation', '连贯操作'],
                     ['/Components/Orm/aggregation', '聚合'],
                     ['/Components/Orm/getter', '获取器'],
                     ['/Components/Orm/modifier', '修改器'],
@@ -236,8 +233,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Associat/one_to_one_associations', '一对一关联'],
-                            ['/Components/Orm/Associat/one_to_many_associations', '一对多关联'],
+                            ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
+                            ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
                         ]
                     },
                 ]
@@ -395,6 +392,14 @@ const sidebarCn = [
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
                 ]
+            },
+            {
+                title: 'MonggoDb客户端案例',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/MonggoDb/syncInvoker', 'SyncInvoker'],
+                ]
             }
         ]
     },
@@ -452,6 +457,16 @@ const sidebarCn = [
                     ['/Components/apollo', 'Appolo配置中心'],
                 ]
             }
+        ]
+    },
+    {
+        title: '公开文章',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            ['/Article/learnSwoole', '如何学习swoole'],
+            ['/Article/swooleIpLimit', 'swoole如何对ip限制访问频率'],
+            ['/Article/degradedService', '微服务开发中的服务限流与降级'],
         ]
     },
     {
