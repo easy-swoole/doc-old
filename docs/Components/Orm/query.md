@@ -9,12 +9,32 @@ meta:
 
 
 # 查询
+
+## 从数据表中获取单行或单列
+
+如果你只需要从数据表中获取一行数据，你可以使用 `get` 方法, 该方法可以传入多种类型值。该方法返回一个 `EasySwoole\ORM\AbstractModel` 实例可以**复用**进行模型的其他操作：
+
+### 主键类型(int)
+```php
+$res = UserModel::create()->get(1);
+
+$model = new UserModel();
+$res = $model->get(1);
+$res->destroy();
+```
+
+### 隐式 where 条件(array)
+```php
+$res = UserModel::create()->get(['emp_no' => 10001]);
+```
+
 ```php
 <?php
 
 // 获取单条(返回一个模型)
 $res = UserModel::create()->get(10001);
 $res = UserModel::create()->get(['emp_no' => 10001]);
+$res = UserModel::create()->findOne(['emp_no' => 10001]);
 var_dump($res); // 如果查询不到则为null
 // 不同获取字段方式
 var_dump($res->emp_no);
