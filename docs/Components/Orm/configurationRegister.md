@@ -11,7 +11,7 @@ meta:
 
 ORM 的连接配置信息（数据库连接信息）需要注册到`连接管理器`中。
 
-## 连接管理器
+## 数据库连接管理器
 
 ORM的连接管理由```EasySwoole\ORM\DbManager```类完成，它是一个单例类。
 
@@ -21,27 +21,35 @@ use EasySwoole\ORM\DbManager;
 DbManager::getInstance();
 ```
 
-## 自带连接池
 
-可以看到，注册到管理器中的配置需要实现 `ConnectionInterface` 接口 
+## 注册数据库连接配置
+
+你**可以**在框架 `mainServerCreate` 主服务创建事件中注册连接
 
 ```php
-use EasySwoole\ORM\Db\ConnectionInterface;
+use EasySwoole\ORM\DbManager;
+use EasySwoole\ORM\Db\Connection;
+use EasySwoole\ORM\Db\Config;
 
-DbManager::getInstance()->addConnection(ConnectionInterface $con，string $connectionName = 'default');
+
+public static function mainServerCreate($register)
+{
+    $config = new Config();
+    $config->setDatabase('easyswoole_orm');
+    $config->setUser('root');
+    $config->setPassword('');
+    $config->setHost('127.0.0.1');
+
+    DbManager::getInstance()->addConnection(new Connection($config));
+}
 ```
 
-在EasySwoole的默认实现中，ORM自带了一个`基于连接池`实现的连接对象
 
-`EasySwoole\ORM\Db\Config` 类继承了 `\EasySwoole\Pool\Config` 类，所以关于连接池部分的配置参数也可以设置到 Db\Config 中
+## 数据库连接自带连接池说明
 
-::: tip 提示
-详细的连接池属性介绍[点击查看](../Pool/config.md)
-:::
+在默认实现中，ORM自带了一个`基于连接池`实现的连接类
 
-## 注册连接配置
-
-你可以在框架 `mainServerCreate` 主服务创建事件中注册连接
+`EasySwoole\ORM\Db\Connection` 实现了连接池的使用
 
 ```php
 use EasySwoole\ORM\DbManager;
@@ -66,4 +74,10 @@ public static function mainServerCreate($register)
     DbManager::getInstance()->addConnection(new Connection($config));
 }
 ```
+
+::: tip 提示
+详细的连接池属性介绍[点击查看](../Pool/config.md)
+:::
+
+
 

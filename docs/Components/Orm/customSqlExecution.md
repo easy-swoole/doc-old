@@ -12,7 +12,7 @@ meta:
 
 有时候你可能需要在查询中使用原生表达式。你可以使用 `QueryBuilder` 构造一个原生 `SQL` 表达式
 
-ORM 内部依赖的是 `mysqli` 组件的`QueryBuilder`构造的 `SQL`
+ORM 内部依赖的是 `mysqli` 组件的`QueryBuilder`
 
 ```php
 use EasySwoole\Mysqli\QueryBuilder;

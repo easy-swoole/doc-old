@@ -209,26 +209,26 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Orm/install', '安装'],
-                    // ['/Components/Orm/popular_science_concept', '科普概念'],
-                    ['/Components/Orm/configuration_register', '配置信息注册'],
+                    // ['/Components/Orm/popularScienceConcept', '科普概念'],
+                    ['/Components/Orm/configurationRegister', '配置信息注册'],
                     {
                         title: '定义模型',
-                        path: '/Components/Orm/define_model',
+                        path: '/Components/Orm/defineModel',
                         collapsable: false,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/DefineModel/define_table_structure', '定义表结构'],
-                            ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
+                            ['/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
+                            ['/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
                         ]
                     },
-                    ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
-                    ['/Components/Orm/transaction_operations', '事务操作'],
+                    ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
+                    ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/ReadWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
-                    ['/Components/Orm/coherent_operation', '连贯操作'],
+                    ['/Components/Orm/coherentOperation', '连贯操作'],
                     ['/Components/Orm/aggregation', '聚合'],
                     ['/Components/Orm/getter', '获取器'],
                     ['/Components/Orm/modifier', '修改器'],
@@ -237,8 +237,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Associat/one_to_one_associations', '一对一关联'],
-                            ['/Components/Orm/Associat/one_to_many_associations', '一对多关联'],
+                            ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
+                            ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
                         ]
                     },
                 ]
