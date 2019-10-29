@@ -154,7 +154,6 @@ const sidebarCn = [
                         sidebarDepth: 0,
                         children: [
                             ['/Components/Mysqli/builder', '基本使用'],
-
                             ['/Components/Mysqli/query', '查询数据'],
                             ['/Components/Mysqli/insert', '添加数据'],
                             ['/Components/Mysqli/update', '更新数据'],
@@ -176,7 +175,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/join_method', 'join'],
                                     ['/Components/Mysqli/Chain/join_where_method', 'joinWhere'],
                                     ['/Components/Mysqli/Chain/join_or_where_method', 'joinOrWhere'],
-
                                     ['/Components/Mysqli/Chain/union_method', 'union'],
                                     ['/Components/Mysqli/Chain/lockInShareMode_method', 'lockInShareMode'],
                                     ['/Components/Mysqli/Chain/selectForUpdate_method', 'selectForUpdate'],
@@ -184,7 +182,6 @@ const sidebarCn = [
                                     ['/Components/Mysqli/Chain/lockTable_method', 'lockTable'],
                                     ['/Components/Mysqli/Chain/unlockTable_method', 'unlockTable'],
                                     ['/Components/Mysqli/Chain/setQueryOption_method', 'setQueryOption'],
-
                                     ['/Components/Mysqli/Chain/setPrefix_method', 'setPrefix'],
                                     ['/Components/Mysqli/Chain/withTotalCount_method', 'withTotalCount'],
                                     // ['/Components/Mysqli/Chain/get_method', 'get'],
@@ -192,7 +189,6 @@ const sidebarCn = [
                                     // ['/Components/Mysqli/Chain/insert_method', 'insert'],
                                     ['/Components/Mysqli/Chain/replace_method', 'replace'],
                                     ['/Components/Mysqli/Chain/onDuplicate_method', 'onDuplicate'],
-
                                     // ['/Components/Mysqli/Chain/update_method', 'update'],
                                     // ['/Components/Mysqli/Chain/delete_method', 'delete'],
 
@@ -463,7 +459,7 @@ const sidebarCn = [
             }
         ]
     },
-{
+    {
         title: '公开文章',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
