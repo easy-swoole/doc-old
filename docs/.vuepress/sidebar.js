@@ -4,13 +4,13 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Preface/Introduction', '项目介绍'],
-            ['/Preface/DeveloperRead', '开发者必读'],
-            ['/Preface/UpdateLog', '更新记录'],
-            ['/Preface/ComponentUpdateLog', '组件更新记录'],
-            ['/Preface/Donation', '捐赠'],
-            ['/Preface/ContactAuthor', '联系作者'],
-            ['/Preface/Team', '文档维护团队'],
+            ['/Preface/introduction', '项目介绍'],
+            ['/Preface/developerRead', '开发者必读'],
+            ['/Preface/updateLog', '更新记录'],
+            ['/Preface/componentUpdateLog', '组件更新记录'],
+            ['/Preface/donation', '捐赠'],
+            ['/Preface/contactAuthor', '联系作者'],
+            ['/Preface/team', '文档维护团队'],
         ]
     },
     {
@@ -32,7 +32,7 @@ const sidebarCn = [
         children: [
             ['/Introduction/environment', '环境要求'],
             ['/Introduction/install', '框架安装'],
-            ['/Introduction/hello_world', 'Hello World'],
+            ['/Introduction/helloWorld', 'Hello World'],
             ['/Introduction/docker', 'Docker镜像'],
             ['/Introduction/config', '配置文件'],
             ['/Introduction/server', '服务管理'],
@@ -42,8 +42,8 @@ const sidebarCn = [
                 collapsable: false, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Introduction/coroutine_create', '创建协程'],
-                    ['/Components/Component/waitgroup', 'WaitGroup等待'],
+                    ['/Introduction/coroutineCreate', '创建协程'],
+                    ['/Components/Component/waitGroup', 'WaitGroup等待'],
                     ['/Components/Component/csp', 'Csp并发'],
                 ]
             },
@@ -98,7 +98,7 @@ const sidebarCn = [
         collapsable: true,
         sidebarDepth: 0,
         children: [
-            ['/HttpServer/fast_route', '路由'],
+            ['/HttpServer/fastRoute', '路由'],
             ['/HttpServer/controller', '控制器'],
             ['/HttpServer/annotation', '注解控制器'],
             ['/HttpServer/request', '请求'],
@@ -111,7 +111,7 @@ const sidebarCn = [
                 path: '/Components/VerifyCode/introduction',
                 children: [
                     ['/Components/VerifyCode/config', '配置'],
-                    ['/Components/VerifyCode/verify_code', '使用'],
+                    ['/Components/VerifyCode/verifyCode', '使用'],
                 ]
             },
             ['/HttpServer/uploadFile', '文件上传'],
@@ -129,9 +129,9 @@ const sidebarCn = [
         children: [
             ['/Socket/tcp', 'TCP服务器'],
             ['/Socket/tcpSticky', 'TCP服务器处理粘包'],
-            ['/Socket/websocket', 'Websocket服务器'],
-            ['/Socket/websocketWss', 'Websocket支持wss'],
-            ['/Socket/websocketShake', 'Websocket自定义握手'],
+            ['/Socket/webSocket', 'Websocket服务器'],
+            ['/Socket/webSocketWss', 'Websocket支持wss'],
+            ['/Socket/webSocketShake', 'Websocket自定义握手'],
             ['/Socket/udp', 'UDP服务器'],
             ['/Socket/question', '常见问题'],
         ]
@@ -165,33 +165,33 @@ const sidebarCn = [
                                 sidebarDepth: 0,
                                 children: [
                                     // 要加_method 不然很多都是关键词
-                                    ['/Components/Mysqli/Chain/limit_method', 'limit'],
-                                    ['/Components/Mysqli/Chain/fields_method', 'fields'],
-                                    ['/Components/Mysqli/Chain/where_method', 'where'],
-                                    ['/Components/Mysqli/Chain/or_where_method', 'orWhere'],
-                                    ['/Components/Mysqli/Chain/orderby_method', 'orderBy'],
-                                    ['/Components/Mysqli/Chain/groupby_method', 'groupBy'],
-                                    ['/Components/Mysqli/Chain/having_method', 'having'],
-                                    ['/Components/Mysqli/Chain/or_having_method', 'orHaving'],
-                                    ['/Components/Mysqli/Chain/join_method', 'join'],
-                                    ['/Components/Mysqli/Chain/join_where_method', 'joinWhere'],
-                                    ['/Components/Mysqli/Chain/join_or_where_method', 'joinOrWhere'],
+                                    ['/Components/Mysqli/Chain/limitMethod', 'limit'],
+                                    ['/Components/Mysqli/Chain/fieldsMethod', 'fields'],
+                                    ['/Components/Mysqli/Chain/whereMethod', 'where'],
+                                    ['/Components/Mysqli/Chain/orWhereMethod', 'orWhere'],
+                                    ['/Components/Mysqli/Chain/orderbyMethod', 'orderBy'],
+                                    ['/Components/Mysqli/Chain/groupbyMethod', 'groupBy'],
+                                    ['/Components/Mysqli/Chain/havingMethod', 'having'],
+                                    ['/Components/Mysqli/Chain/orHavingMethod', 'orHaving'],
+                                    ['/Components/Mysqli/Chain/joinMethod', 'join'],
+                                    ['/Components/Mysqli/Chain/joinWhereMethod', 'joinWhere'],
+                                    ['/Components/Mysqli/Chain/joinOrWhereMethod', 'joinOrWhere'],
 
-                                    ['/Components/Mysqli/Chain/union_method', 'union'],
-                                    ['/Components/Mysqli/Chain/lockInShareMode_method', 'lockInShareMode'],
-                                    ['/Components/Mysqli/Chain/selectForUpdate_method', 'selectForUpdate'],
-                                    ['/Components/Mysqli/Chain/setLockTableMode_method', 'setLockTableMode'],
-                                    ['/Components/Mysqli/Chain/lockTable_method', 'lockTable'],
-                                    ['/Components/Mysqli/Chain/unlockTable_method', 'unlockTable'],
-                                    ['/Components/Mysqli/Chain/setQueryOption_method', 'setQueryOption'],
+                                    ['/Components/Mysqli/Chain/unionMethod', 'union'],
+                                    ['/Components/Mysqli/Chain/lockInShareModeMethod', 'lockInShareMode'],
+                                    ['/Components/Mysqli/Chain/selectForUpdateMethod', 'selectForUpdate'],
+                                    ['/Components/Mysqli/Chain/setLockTableModeMethod', 'setLockTableMode'],
+                                    ['/Components/Mysqli/Chain/lockTableMethod', 'lockTable'],
+                                    ['/Components/Mysqli/Chain/unlockTableMethod', 'unlockTable'],
+                                    ['/Components/Mysqli/Chain/setQueryOptionMethod', 'setQueryOption'],
 
-                                    ['/Components/Mysqli/Chain/setPrefix_method', 'setPrefix'],
-                                    ['/Components/Mysqli/Chain/withTotalCount_method', 'withTotalCount'],
+                                    ['/Components/Mysqli/Chain/setPrefixMethod', 'setPrefix'],
+                                    ['/Components/Mysqli/Chain/withTotalCountMethod', 'withTotalCount'],
                                     // ['/Components/Mysqli/Chain/get_method', 'get'],
                                     // ['/Components/Mysqli/Chain/getOne_method', 'getOne'],
                                     // ['/Components/Mysqli/Chain/insert_method', 'insert'],
-                                    ['/Components/Mysqli/Chain/replace_method', 'replace'],
-                                    ['/Components/Mysqli/Chain/onDuplicate_method', 'onDuplicate'],
+                                    ['/Components/Mysqli/Chain/replaceMethod', 'replace'],
+                                    ['/Components/Mysqli/Chain/onDuplicateMethod', 'onDuplicate'],
 
                                     // ['/Components/Mysqli/Chain/update_method', 'update'],
                                     // ['/Components/Mysqli/Chain/delete_method', 'delete'],
@@ -210,25 +210,25 @@ const sidebarCn = [
                 children: [
                     ['/Components/Orm/install', '安装'],
                     // ['/Components/Orm/popular_science_concept', '科普概念'],
-                    ['/Components/Orm/configuration_register', '配置信息注册'],
+                    ['/Components/Orm/configurationRegister', '配置信息注册'],
                     {
                         title: '定义模型',
-                        path: '/Components/Orm/define_model',
+                        path: '/Components/Orm/defineModel',
                         collapsable: false,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/DefineModel/define_table_structure', '定义表结构'],
-                            ['/Components/Orm/DefineModel/specify_connection_name', '指定连接名'],
+                            ['/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
+                            ['/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
                         ]
                     },
-                    ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
-                    ['/Components/Orm/transaction_operations', '事务操作'],
-                    ['/Components/Orm/ReadWriteSeparation', '读写分离'],
+                    ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
+                    ['/Components/Orm/transactionOperations', '事务操作'],
+                    ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
-                    ['/Components/Orm/coherent_operation', '连贯操作'],
+                    ['/Components/Orm/coherentOperation', '连贯操作'],
                     ['/Components/Orm/aggregation', '聚合'],
                     ['/Components/Orm/getter', '获取器'],
                     ['/Components/Orm/modifier', '修改器'],
@@ -237,8 +237,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Associat/one_to_one_associations', '一对一关联'],
-                            ['/Components/Orm/Associat/one_to_many_associations', '一对多关联'],
+                            ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
+                            ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
                         ]
                     },
                 ]
@@ -290,8 +290,8 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/FastCache/fastcache', '基础使用'],
-                    ['/Components/FastCache/fastcache-queue', '队列'],
+                    ['/Components/FastCache/fastCache', '基础使用'],
+                    ['/Components/FastCache/fastCacheQueue', '队列'],
                 ]
             }
         ]
@@ -307,8 +307,8 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Component/singleton', '单例'],
-                    ['/Components/Component/ready_scheduler', '就绪等待'],
-                    ['/Components/Component/table_manager', 'Swoole Table'],
+                    ['/Components/Component/readyScheduler', '就绪等待'],
+                    ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
                 ]
             },
@@ -317,12 +317,12 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Spl/spl_array', 'SplArray'],
-                    ['/Components/Spl/spl_bean', 'SplBean'],
-                    ['/Components/Spl/spl_enum', 'SplEnum'],
-                    ['/Components/Spl/spl_stream', 'SplStream'],
-                    ['/Components/Spl/spl_filestream', 'SplFileStream'],
-                    ['/Components/Spl/spl_string', 'SplString'],
+                    ['/Components/Spl/splArray', 'SplArray'],
+                    ['/Components/Spl/splBean', 'SplBean'],
+                    ['/Components/Spl/splEnum', 'SplEnum'],
+                    ['/Components/Spl/splStream', 'SplStream'],
+                    ['/Components/Spl/splFileStream', 'SplFileStream'],
+                    ['/Components/Spl/splString', 'SplString'],
                 ]
             },
             {
@@ -333,8 +333,8 @@ const sidebarCn = [
                     ['/Components/Pool/introduction', '介绍'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
-                    ['/Components/Pool/pool_manage', '池管理器'],
-                    ['/Components/Pool/abstract_pool', '池对象方法']
+                    ['/Components/Pool/poolManage', '池管理器'],
+                    ['/Components/Pool/abstractPool', '池对象方法']
                 ]
             },
             ['/Components/redisPool', 'redis-pool连接池'],
@@ -346,7 +346,7 @@ const sidebarCn = [
                 children: [
                     ['/Components/HttpClient/request', '请求'],
                     ['/Components/HttpClient/response', '响应'],
-                    ['/Components/HttpClient/websocket', 'WebsocketClient'],
+                    ['/Components/HttpClient/webSocket', 'WebsocketClient'],
                 ]
             },
             {
@@ -392,7 +392,7 @@ const sidebarCn = [
                     ['/Components/Sundries/file', 'File'],
                     ['/Components/Sundries/hash', 'Hash'],
                     ['/Components/Sundries/random', 'Random'],
-                    ['/Components/Sundries/snow_flake', 'SnowFlake'],
+                    ['/Components/Sundries/snowFlake', 'SnowFlake'],
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
                 ]
@@ -426,8 +426,8 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Wechat/mini_program', '公众号'],
-                    ['/Components/Wechat/official_account', '小程序'],
+                    ['/Components/Wechat/miniProgram', '公众号'],
+                    ['/Components/Wechat/officialAccount', '小程序'],
                 ]
             },
         ]
@@ -437,9 +437,9 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Distribute/micro_service', '什么是微服务？'],
+            ['/Distribute/microService', '什么是微服务？'],
             ['/Distribute/loadbalance', '如何实现分布式？'],
-            ['/Distribute/atomic_limit', '服务限流'],
+            ['/Distribute/atomicLimit', '服务限流'],
             {
                 title: 'Rpc服务',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -448,8 +448,8 @@ const sidebarCn = [
                 children: [
                     ['/Components/Rpc/server', '服务端'],
                     ['/Components/Rpc/client', '客户端'],
-                    ['/Components/Rpc/other_platform', '跨语言'],
-                    ['/Components/Rpc/register_center', '服务注册中心'],
+                    ['/Components/Rpc/otherPlatform', '跨语言'],
+                    ['/Components/Rpc/registerCenter', '服务注册中心'],
                 ]
             },
             ['/Components/consul', 'Concul客户端'],
