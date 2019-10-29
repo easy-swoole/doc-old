@@ -4,13 +4,13 @@ const sidebarCn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-            ['/Preface/introduction', '项目介绍'],
-            ['/Preface/developerRead', '开发者必读'],
-            ['/Preface/updateLog', '更新记录'],
-            ['/Preface/component_updateLog', '组件更新记录'],
-            ['/Preface/donation', '捐赠'],
-            ['/Preface/contactAuthor', '联系作者'],
-            ['/Preface/team', '文档维护团队'],
+            ['/Preface/Introduction', '项目介绍'],
+            ['/Preface/DeveloperRead', '开发者必读'],
+            ['/Preface/UpdateLog', '更新记录'],
+            ['/Preface/ComponentUpdateLog', '组件更新记录'],
+            ['/Preface/Donation', '捐赠'],
+            ['/Preface/ContactAuthor', '联系作者'],
+            ['/Preface/Team', '文档维护团队'],
         ]
     },
     {
@@ -118,7 +118,8 @@ const sidebarCn = [
             ['/HttpServer/validate', '验证器'],
             ['/HttpServer/session', 'Session'],
             ['/HttpServer/exception', '错误与异常'],
-            ['/HttpServer/static', '静态资源处理'],
+            ['/HttpServer/static', '静态资源与跨域处理'],
+            ['/HttpServer/problem', '常见问题'],
         ]
     },
     {
@@ -222,7 +223,7 @@ const sidebarCn = [
                     },
                     ['/Components/Orm/custom_sql_execution', '自定义SQL执行'],
                     ['/Components/Orm/transaction_operations', '事务操作'],
-
+                    ['/Components/Orm/ReadWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
@@ -372,7 +373,38 @@ const sidebarCn = [
             ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
-            ['/Components/atomicLimit', 'atomic限流器']
+            ['/Components/atomicLimit', 'atomic限流器'],
+            {
+                title: '关键词检测',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Keyword/keyword', '关键词检测'],
+                    ['/Components/Keyword/ab', '压测结果']
+                ]
+            },
+            {
+                title: '杂项工具',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/Sundries/arrayToTextTable', 'ArrayToTextTable'],
+                    ['/Components/Sundries/file', 'File'],
+                    ['/Components/Sundries/hash', 'Hash'],
+                    ['/Components/Sundries/random', 'Random'],
+                    ['/Components/Sundries/snow_flake', 'SnowFlake'],
+                    ['/Components/Sundries/str', 'Str'],
+                    ['/Components/Sundries/time', 'Time']
+                ]
+            },
+            {
+                title: 'MonggoDb客户端案例',   // 必要的
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/MonggoDb/syncInvoker', 'SyncInvoker'],
+                ]
+            }
         ]
     },
     {
@@ -429,6 +461,16 @@ const sidebarCn = [
                     ['/Components/apollo', 'Appolo配置中心'],
                 ]
             }
+        ]
+    },
+{
+        title: '公开文章',   // 必要的
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            ['/Article/learnSwoole', '如何学习swoole'],
+            ['/Article/swooleIpLimit', 'swoole如何对ip限制访问频率'],
+            ['/Article/degradedService', '微服务开发中的服务限流与降级'],
         ]
     },
     {

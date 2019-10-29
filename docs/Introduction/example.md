@@ -92,26 +92,25 @@ composer require easyswoole/orm
 namespace EasySwoole\EasySwoole;
 
 
-use EasySwoole\Component\Timer;
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;
 use EasySwoole\Http\Response;
+use EasySwoole\ORM\Db\Connection;
+use EasySwoole\ORM\DbManager;
 
 class EasySwooleEvent implements Event
 {
 
     public static function initialize()
     {
-        // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
-
-        $config = new \EasySwoole\ORM\Db\Config(Config::getInstance()->getConf('MYSQL'));
-        DbManager::getInstance()->addConnection(new Connection($config));
     }
 
     public static function mainServerCreate(EventRegister $register)
     {
+        $config = new \EasySwoole\ORM\Db\Config(Config::getInstance()->getConf('MYSQL'));
+        DbManager::getInstance()->addConnection(new Connection($config));
     }
 
     public static function onRequest(Request $request, Response $response): bool
@@ -137,7 +136,7 @@ class EasySwooleEvent implements Event
 ### 管理员模型
 #### 新增管理员用户表:  
 ```sql
-CREATE TABLE `admin_list` (
+CREATE TABLE  if not exists  `admin_list` (
   `adminId` int(11) NOT NULL AUTO_INCREMENT,
   `adminName` varchar(15) DEFAULT NULL,
   `adminAccount` varchar(18) DEFAULT NULL,
@@ -245,23 +244,25 @@ class AdminModel extends AbstractModel
 普通用户模型和管理员模型同理
 #### 建表
 ```sql
-CREATE TABLE `user_list` (
-  `userId` int(11) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(32) NOT NULL,
-  `userAccount` varchar(18) NOT NULL,
-  `userPassword` varchar(32) NOT NULL,
-  `phone` varchar(18) NOT NULL,
-  `addTime` int(11) DEFAULT NULL,
-  `lastLoginIp` varchar(20) DEFAULT NULL,
-  `lastLoginTime` int(10) DEFAULT NULL,
-  `userSession` varchar(32) DEFAULT NULL,
-  `state` tinyint(2) DEFAULT NULL,
-  `money` int(10) NOT NULL DEFAULT '0' COMMENT '用户余额',
-  `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT '冻结余额',
-  PRIMARY KEY (`userId`),
-  UNIQUE KEY `pk_userAccount` (`userAccount`),
-  KEY `userSession` (`userSession`)
+CREATE  TABLE if not exists `user_list` (
+                           `userId` int(11) NOT NULL AUTO_INCREMENT,
+                           `userName` varchar(32) NOT NULL,
+                           `userAccount` varchar(18) NOT NULL,
+                           `userPassword` varchar(32) NOT NULL,
+                           `phone` varchar(18) NOT NULL,
+                           `addTime` int(11) DEFAULT NULL,
+                           `lastLoginIp` varchar(20) DEFAULT NULL,
+                           `lastLoginTime` int(10) DEFAULT NULL,
+                           `userSession` varchar(32) DEFAULT NULL,
+                           `state` tinyint(2) DEFAULT NULL,
+                           `money` int(10) NOT NULL DEFAULT '0' COMMENT '用户余额',
+                           `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT '冻结余额',
+                           PRIMARY KEY (`userId`),
+                           UNIQUE KEY `pk_userAccount` (`userAccount`),
+                           KEY `userSession` (`userSession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO `user_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1','1566279458','',1,'1','1');
 
 ```
 
@@ -353,15 +354,17 @@ class UserModel extends AbstractModel
 #### 建表
 
 ```sql
-CREATE TABLE `banner_list` (
-  `bannerId` int(11) NOT NULL AUTO_INCREMENT,
-  `bannerName` varchar(32) DEFAULT NULL,
-  `bannerImg` varchar(255) NOT NULL COMMENT 'banner图片',
-  `bannerDescription` varchar(255) DEFAULT NULL,
-  `bannerUrl` varchar(255) DEFAULT NULL COMMENT '跳转地址',
-  `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
-  PRIMARY KEY (`bannerId`)
+CREATE TABLE if not exists `banner_list` (
+                             `bannerId` int(11) NOT NULL AUTO_INCREMENT,
+                             `bannerName` varchar(32) DEFAULT NULL,
+                             `bannerImg` varchar(255) NOT NULL COMMENT 'banner图片',
+                             `bannerDescription` varchar(255) DEFAULT NULL,
+                             `bannerUrl` varchar(255) DEFAULT NULL COMMENT '跳转地址',
+                             `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
+                             PRIMARY KEY (`bannerId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO `banner_list` VALUES ('1', '测试banner', 'asdadsasdasd.jpg', '测试的banner数据', 'www.php20.cn',1);
 ```
 
 
@@ -369,7 +372,6 @@ CREATE TABLE `banner_list` (
 新增 `App/Model/Admin/BannerModel.php` 文件:  
 
 ```php
-<?php
 <?php
 
 namespace App\Model\Admin;
@@ -537,7 +539,6 @@ abstract class ApiBase extends BaseController
 namespace App\HttpController\Api\Common;
 
 use App\HttpController\Api\ApiBase;
-use EasySwoole\Validate\Validate;
 
 class CommonBase extends ApiBase
 {
@@ -641,11 +642,8 @@ class Banner extends CommonBase
 namespace App\HttpController\Api\Admin;
 
 use App\HttpController\Api\ApiBase;
-use App\Model\Admin\AdminBean;
 use App\Model\Admin\AdminModel;
 use EasySwoole\Http\Message\Status;
-use EasySwoole\MysqliPool\Mysql;
-use EasySwoole\Validate\Validate;
 
 class AdminBase extends ApiBase
 {
@@ -683,7 +681,7 @@ class AdminBase extends ApiBase
 
     /**
      * getWho
-     * @return bool
+     * @return null|AdminModel
      * @author yangzhenyu
      * Time: 13:51
      */
@@ -703,12 +701,6 @@ class AdminBase extends ApiBase
         $adminModel->adminSession = $sessionKey;
         $this->who = $adminModel->getOneBySession();
         return $this->who;
-    }
-
-    protected function getValidateRule(?string $action): ?Validate
-    {
-        return null;
-        // TODO: Implement getValidateRule() method.
     }
 }
 
@@ -1169,3 +1161,9 @@ class Auth extends UserBase
 访问 127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456  即可登陆成功
 
 
+
+::: warning
+管理员登陆:127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456
+公共请求banner:127.0.0.1:9501/Api/Common/Banner/getAll
+会员登陆:127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456
+:::
