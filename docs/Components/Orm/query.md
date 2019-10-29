@@ -131,29 +131,3 @@ $result = $model->lastQueryResult();
 // 总条数
 $total = $result->getTotalCount();
 ```
-
-## 获取序列化记录数据
-
-jsonSerialize，获取序列化记录数据。
-
-```php
-$model = AdminModel::create();
-
-$admin = $model->get(1);
-
-$data = $admin->jsonSerialize();
-```
-
-## 获取字符串json数据
-
-__toString，将数据转化成字符串json数据并返回。
-
-```php
-$model = AdminModel::create();
-
-$admin = $model->get(1);
-
-$data = $admin->__toString();
-
-var_dump($data);
-```

@@ -56,5 +56,25 @@ select 方法使用和[查询](/Components/Orm/query)中的 all 方法相同：
 ```php
 $groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->select();
 ```
+## join
 
+join通常有下面几种类型，不同类型的join操作会影响返回的数据结果。
 
+- INNER JOIN: 等同于 JOIN（默认的JOIN类型）,如果表中有至少一个匹配，则返回行
+- LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行
+- RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行
+- FULL JOIN: 只要其中一个表中存在匹配，就返回行
+
+```php
+object join ( mixed $joinTable , string $joinCondition = null [, string $type = 'INNER'] )
+```
+
+$joinTable 要关联的（完整）表名以及别名
+$joinCondition 关联条件.
+$type 关联类型。可以为:'LEFT', 'RIGHT', 'OUTER', 'INNER', 'LEFT OUTER', 'RIGHT OUTER', 'NATURAL'，不区分大小写，默认为INNER(数据库软件 默认)。
+
+```php
+$join = TestUserListModel::create()->join('table2','table2.col1 = user_list.col2')->get();
+
+$join2 = TestUserListModel::create()->alias('list')->join('table2 as t2','t2.col1 = list.col2')->get();
+```

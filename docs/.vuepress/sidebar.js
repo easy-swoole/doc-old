@@ -210,7 +210,7 @@ const sidebarCn = [
                 children: [
                     ['/Components/Orm/install', '安装'],
                     // ['/Components/Orm/popularScienceConcept', '科普概念'],
-                    ['/Components/Orm/configurationInformationToRegister', '配置信息注册'],
+                    ['/Components/Orm/configurationRegister', '配置信息注册'],
                     {
                         title: '定义模型',
                         path: '/Components/Orm/defineModel',
