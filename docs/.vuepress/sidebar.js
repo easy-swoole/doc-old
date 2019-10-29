@@ -328,13 +328,13 @@ const sidebarCn = [
             {
                 title: '通用连接池',
                 collapsable: true,
-                sidebarDepth: 2,
+                sidebarDepth: 0,
                 children: [
                     ['/Components/Pool/introduction', '介绍'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
                     ['/Components/Pool/poolManage', '池管理器'],
-                    ['/Components/Pool/abstractPool', '池对象方法']
+                    ['/Components/Pool/abstractPool', '池对象方法'],
                 ]
             },
             ['/Components/redisPool', 'redis-pool连接池'],
@@ -369,7 +369,15 @@ const sidebarCn = [
                 ]
             },
             ['/Components/whoops', 'Whoops'],
-            ['/Components/syncInvoker', 'SyncInvoker'],
+            {
+                title: 'SyncInvoker',
+                path: '/Components/syncInvoker',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+                    ['/Components/SyncInvoker/monggoDb', 'MonggoDb客户端案例'],
+                ]
+            },
             ['/Components/tracker', '链路追踪'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
@@ -395,14 +403,6 @@ const sidebarCn = [
                     ['/Components/Sundries/snowFlake', 'SnowFlake'],
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
-                ]
-            },
-            {
-                title: 'MonggoDb客户端案例',   // 必要的
-                collapsable: true, // 可选的, 默认值是 true,
-                sidebarDepth: 0,    // 可选的, 默认值是 1
-                children: [
-                    ['/Components/MonggoDb/syncInvoker', 'SyncInvoker'],
                 ]
             }
         ]
