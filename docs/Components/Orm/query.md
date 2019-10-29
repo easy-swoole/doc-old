@@ -12,44 +12,73 @@ meta:
 
 ## 从数据表中获取单行或单列
 
-如果你只需要从数据表中获取一行数据，你可以使用 `get` 方法, 该方法可以传入多种类型值。该方法返回一个 `EasySwoole\ORM\AbstractModel` 实例可以**复用**进行模型的其他操作：
+如果你只需要从数据表中获取一行数据，你可以使用 `get` 方法, 该方法可以传入多种类型值。
 
-### 主键类型(int)
+该方法返回一个 `EasySwoole\ORM\AbstractModel` 实例可以**复用**进行模型的其他操作, 当没有查询结果时返回 `null` 
+
+### 通过主键查询
 ```php
 $res = UserModel::create()->get(1);
 
 $model = new UserModel();
 $res = $model->get(1);
-$res->destroy();
+$res->destroy();//删除获取的单条记录
 ```
 
-### 隐式 where 条件(array)
+### 通过 where 条件查询
+
+传入一个条件数组格式为: `[字段=>字段值]`
 ```php
 $res = UserModel::create()->get(['emp_no' => 10001]);
+
+$model =  UserModel::create();
+$getCoherent = $model->where(['state' => 1])->get();
 ```
 
+### 其他方法
+
+语义化 `findOne` 方法, 使用方式同 `get` 方法. 不同的是返回值为 `array` 类型 `[字段 => 字段值, ...]`
+
+```php
+$res = UserModel::create()->findOne(['emp_no' => 10001]);
+```
+
+## 从数据表中获取多条
+
+使用 `all` 方法, 该方法可以传入多种类型值。
+
+该方法返回一个数组 `[ EasySwoole\ORM\AbstractModel实例, ...]` 每个键的值可以**复用**进行模型的其他操作, 当没有查询结果时返回空数组`[]` 
+
+### 通过主键查询
 ```php
 <?php
-
-// 获取单条(返回一个模型)
-$res = UserModel::create()->get(10001);
-$res = UserModel::create()->get(['emp_no' => 10001]);
-$res = UserModel::create()->findOne(['emp_no' => 10001]);
-var_dump($res); // 如果查询不到则为null
-// 不同获取字段方式
-var_dump($res->emp_no);
-var_dump($res['emp_no']);
-
-// 批量获取 返回一个数组  每一个元素都是一个模型对象
+// 
 $res = UserModel::create()->all([1, 3, 10003]);
 $res = UserModel::create()->all('1, 3, 10003');
-$res = UserModel::create()->all(['name' => 'siam']);
-$res = UserModel::create()->all(function (QueryBuilder $builder) {
-    $builder->where('name', 'siam');
-});
-var_dump($res);
-
 ```
+
+### 通过 where 条件查询
+
+传入一个条件数组格式为: `[字段=>字段值]`
+
+```php
+$res = UserModel::create()->all(['name' => 'siam']);
+
+$model =  UserModel::create();
+$getCoherent = $model->where(['state' => 1])->all();
+```
+
+### 其他方法
+
+语义化 `findAll` 方法, 使用方式同 `all` 方法. 不同的是返回值为 `array` 类型 `[[字段名称=>值], ...]`
+
+```php
+$res = UserModel::create()->findAll(['emp_no' => 10001]);
+
+$model =  UserModel::create();
+$getCoherent = $model->where(['state' => 1])->findAll();
+```
+
 
 ## 复杂查询
 
@@ -58,6 +87,10 @@ var_dump($res);
 支持方法列表查看Mysqli。
 
 ```php
+$res = UserModel::create()->get(function (QueryBuilder $builder) {
+    $builder->where('name', 'siam');
+});
+
 $res = UserModel::create()->all(function (QueryBuilder $builder) {
     $builder->where('name', 'siam');
     $builder->order('id');
@@ -68,16 +101,14 @@ $res = UserModel::create()->all(function (QueryBuilder $builder) {
 
 ## 指定字段获取
 
-field，其作用是获取指定的数据库字段数据。
+field，作用于数据库 `select` 语句是获取指定的数据库列数据,也可以使用原生语句
 
 获取``` admin_id ```，``` admin_name ```数据
 
 ```php
 $admin = AdminModel::create()->field(['admin_id', 'admin_name'])->get(1);
 
-print_r($admin->toArray());
-
-});
+$res = AdminModel::create()->field('sum(age) as siam, `name`')->get(1);
 ```
 
 ## 分页
@@ -99,7 +130,6 @@ $result = $model->lastQueryResult();
 
 // 总条数
 $total = $result->getTotalCount();
-});
 ```
 
 ## 获取序列化记录数据
@@ -112,7 +142,6 @@ $model = AdminModel::create();
 $admin = $model->get(1);
 
 $data = $admin->jsonSerialize();
-});
 ```
 
 ## 获取字符串json数据

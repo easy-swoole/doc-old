@@ -21,6 +21,18 @@ $getCoherent = $model->where(['state' => 1])->get();//数组方式
 $getCoherent2 = $model->where($getCoherent->id)->get();//主键方式
 ```
 
+## alias
+
+alias用于设置当前数据表的别名
+
+```php
+$res = TestUserListModel::create()->alias('siam')->where(['siam.name' => '仙士可'])->all();
+
+if($res[0]->name === '仙士可') {
+
+}
+```
+
 ## group
 
 group 方法可以将结果分组。

@@ -10,26 +10,25 @@ meta:
 
 # 获取器
 
+获取器的作用是在获取数据的字段值后自动进行处理
 
-getter，获取器的作用是在获取数据的字段值后自动进行处理
+若要定义一个获取器，则须在你的模型上创建一个 「`get` 字段名 `Attr`」 方法。
 
+要访问的字段的获取器方法需使用「小驼峰」来命名。在这个例子中，我们将为 `status` 属性定义一个访问器。
+
+::: tip
+数据表的字段会在使用获取器时自动转换为驼峰法访问
+:::
+
+当 ORM实例 尝试获取 status 的值时，将会自动调用此访问器：
 ```php
 class UserModel extends AbstractModel
-{
+{ 
     /**
      * $value mixed 是原值
      * $data  array 是当前model所有的值 
      */
-    protected function getIdAttr($value, $data)
-    {
-        // id = 1 管理员
-        if ($value == 1){
-            return '管理员';
-        }
-        return '普通账号';
-    }
-    
-    protected function getStatusAttr($value)
+    protected function getStatusAttr($value, $data)
     {
         $status = [-1=>'删除',0=>'禁用',1=>'正常',2=>'待审核'];
         return $status[$value];
@@ -50,6 +49,4 @@ $res = UserModel::create()->get(4);
 var_dump($res->easyswoole);
 ```
 
-::: warning 
-数据表的字段会自动转换为驼峰法
-:::
+
