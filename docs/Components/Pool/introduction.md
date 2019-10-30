@@ -62,6 +62,23 @@ class StdPool extends \EasySwoole\Pool\AbstractPool{
 ```
 > 不一定非要创建返回 ```EasySwoole\Pool\ObjectInterface``` 对象，任意类型对象均可
 
+在pool组件版本`>= 1.0.2 `后，提供了`魔术池`支持，可以快速进行定义池
+
+```php
+use \EasySwoole\Pool\MagicPool;
+$magic = new MagicPool(function (){
+    return new \stdClass(); // 示例，可以返回实现了 ObjectInterface 的对象
+});
+
+// 注册后获取
+$test = $magic->getObj();
+// 归还
+$magic->recycleObj($test);
+```
+
+魔术池构造方法的第二个参数，可以接收一个 config（EasySwoole\Pool\Config类），用于定义池数量等配置。
+
+
 ### 使用
 ```php
 

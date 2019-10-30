@@ -1,4 +1,7 @@
 # EasySwoole版本更新记录
+## 3.2.x旧文档地址
+
+https://github.com/easy-swoole/doc/tree/3.x-old
 
 ## V3.3.0-dev(2019年8月15)
 ------------
@@ -21,7 +24,7 @@
 
 ## V3.2.5 (2019年7月15日)
 ------------
-
+  
 - 支持修改配置项存储驱动，默认为swoole table，可以修改动态配置
 - 支持bootstrap，在外部做最高一层级的hook 
 - 默认支持phpunit
