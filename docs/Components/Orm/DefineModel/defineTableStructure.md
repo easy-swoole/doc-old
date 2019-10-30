@@ -13,9 +13,9 @@ meta:
 ## 自动生成表结构
 ```php
 $model = new User();
-$table = $model->getSchemaInfo();
+$table = $model->schemaInfo();
 ```
-使用模型中的`getSchemaInfo()`方法可以获取当前模型指定数据表的结构返回一个`EasySwoole\ORM\Utility\Schema\Table`对象
+使用模型中的`schemaInfo()`方法可以获取当前模型指定数据表的结构返回一个`EasySwoole\ORM\Utility\Schema\Table`对象
 
 ::: tip 
 模型本身会**自动**生成表结构,但每次启动Easyswoole,都会去重新获取一次表结构信息,并且在这次服务中缓存,直到Easyswoole服务停止或者重启
@@ -27,6 +27,8 @@ $table = $model->getSchemaInfo();
 在模型类中，我们实现一个`getSchemaInfo`方法，要求返回一个`EasySwoole\ORM\Utility\Schema\Table`实例化对象
 
 ```php
+use EasySwoole\ORM\Utility\Schema\Table;
+
 class User extends AbstractModel
 {
     /**
@@ -34,7 +36,7 @@ class User extends AbstractModel
      * 此处需要返回一个 EasySwoole\ORM\Utility\Schema\Table
      * @return Table
      */
-    public function getSchemaInfo(): Table
+    public function schemaInfo(bool $isCache = true): Table
     {
         $table = new Table();
         $table->colInt('id')->setIsPrimaryKey(true);
