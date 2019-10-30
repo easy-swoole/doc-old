@@ -297,6 +297,35 @@ const sidebarCn = [
         ]
     },
     {
+        title: '队列服务',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            {
+                title: 'Queue组件',
+                collapsable: false,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Queue/install', '安装'],
+                    ['/Components/Queue/driver', '自定义驱动'],
+                    ['/Components/Queue/producer', '生产者'],
+                    ['/Components/Queue/consumer', '消费者'],
+                ]
+            },
+            {
+                title: 'Kafka组件',
+                collapsable: false,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Kafka/install', '安装'],
+                    ['/Components/Kafka/producer', '生产者'],
+                    ['/Components/Kafka/consumer', '消费者'],
+                ]
+            },
+            ['/QueueServer/fastCacheQueue', 'FastCacheQueue'],
+        ]
+    },
+    {
         title: '组件库',
         collapsable: true,
         sidebarDepth: 0,
@@ -356,16 +385,6 @@ const sidebarCn = [
                 children: [
                     ['/Components/Actor/actor', '安装与使用'],
                     ['/Components/Actor/analysis', '设计解读'],
-                ]
-            },
-            {
-                title: 'Kafka',   // 必要的
-                collapsable: true, // 可选的, 默认值是 true,
-                sidebarDepth: 0,    // 可选的, 默认值是 1
-                children: [
-                    ['/Components/Kafka/install', '安装'],
-                    ['/Components/Kafka/consumer', '消费者'],
-                    ['/Components/Kafka/producer', '生产者']
                 ]
             },
             ['/Components/whoops', 'Whoops'],
