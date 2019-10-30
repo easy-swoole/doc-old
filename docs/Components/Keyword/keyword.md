@@ -74,11 +74,10 @@ class EasySwooleEvent implements Event
     public static function onRequest(Request $request, Response $response): bool
     {
         // TODO: Implement onRequest() method.
-        KeywordClient::getInstance()->append('哈哈',[]);
-        KeywordClient::getInstance()->remove('哈哈');
-        KeywordClient::getInstance()->search('哈哈');
-        KeywordClient::getInstance()->import('import.txt');
-        KeywordClient::getInstance()->export('export.txt', ',');
+        KeywordClient::getInstance()->append('我叫Easyswoole', []);
+        KeywordClient::getInstance()->append('我叫Es', []);
+        $res = KeywordClient::getInstance()->search('我叫Easyswoole');
+        var_dump($res);
         return true;
     }
 
