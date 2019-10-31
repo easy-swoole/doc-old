@@ -302,7 +302,7 @@ const sidebarCn = [
         children: [
             {
                 title: 'Queue组件',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Queue/install', '安装'],
@@ -312,7 +312,7 @@ const sidebarCn = [
             },
             {
                 title: 'Kafka组件',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Kafka/install', '安装'],
