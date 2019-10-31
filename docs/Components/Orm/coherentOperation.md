@@ -15,10 +15,31 @@ ORM提供的链式操作方法，可以有效的提高数据存取的代码清�
 ## where
 你可以使用 where 方法。调用 where 最基本的方式是需要传递一个参数这个参数可以传递多种不同表现:
 
+### 主键
+
 ```php
 $model =  UserListModel::create();
-$getCoherent = $model->where(['state' => 1])->get();//数组方式
-$getCoherent2 = $model->where($getCoherent->id)->get();//主键方式
+$getCoherent1 = $model->where($getCoherent->id)->get();//主键方式
+```
+
+### 数组
+
+```php
+$model =  UserListModel::create();
+$getCoherent2 = $model->where(['state' => 1])->get();//[字段名=> 字段值]数组方式
+$getCoherent3 = TestUserListModel::create()->where([$getCoherent1->id, $getCoherent2->id])->all(); //多个主键方式
+```
+
+### 其他**Mysqli**链式操作里的where传参
+
+实现 `EasySwoole\Mysqli\QueryBuilder` 中 where 传参
+
+更多操作还可以查阅**Mysqli**链式操作里的where章节
+
+```php
+// 走builder原生的where
+$getCoherent5 = UserListModel::create()->where('id', $getCoherent3->id, '=')->get();
+$getCoherent6 = UserListModel::create()->where('id', $getCoherent3->id, '!=')->get();
 ```
 
 ## alias
