@@ -35,7 +35,7 @@ composer require easyswoole/keyword
 
 ## 代码示例
 
-```
+```php
 <?php
 namespace EasySwoole\EasySwoole;
 
@@ -60,13 +60,15 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement mainServerCreate() method.
         KeywordServer::getInstance()
-            ->setMaxMem('1024M')
-            ->setProcessNum(5)
-            ->setServerName('Easyswoole 关键词检测')
-            ->setTempDir(EASYSWOOLE_TEMP_DIR)
-            ->setKeywordPath('/Users/xx/xx/xx/keyword.txt')
-            ->attachToServer(ServerManager::getInstance()
-            ->getSwooleServer());
+                ->setMaxMem('1024M') // 每个进程最大内存
+                ->setServerName('Easyswoole 关键词检测') // 服务名称
+                ->setTempDir(EASYSWOOLE_TEMP_DIR) // temp地址
+                ->setDefaultPath('xxx') // 默认路径
+                ->setDefaultWordBank('xxx/xxx.txt') // 默认词库
+                ->setExportPath('xxx') // 默认导出路径，没有则使用默认路径
+                ->setImportPath('xx') // 默认导入路径，没有则使用默认路径
+                ->setSeparator('@es@') // 关键词和其它信息分隔符
+                ->attachToServer(ServerManager::getInstance()->getSwooleServer());
     }
 
     public static function onRequest(Request $request, Response $response): bool
@@ -140,7 +142,7 @@ array(3) {
 
 ## 支持的方法
 
-#### KeywordServer
+### KeywordServer
 
 设置临时目录
 ```
@@ -167,9 +169,9 @@ public function setBacklog(?int $backlog = null)
 public function setServerName(string $serverName): KeywordServer
 ```
 
-设置词库路径
+默认加载的词库
 ```
-public function setKeywordPath(string $keywordPath): KeywordServer
+public function setDefaultWordBank(string $defaultWordBank): KeywordServer
 ```
 
 绑定到当前主服务
@@ -177,7 +179,27 @@ public function setKeywordPath(string $keywordPath): KeywordServer
 function attachToServer(swoole_server $server)
 ```
 
-#### KeywordClient
+关键词和其它信息的分隔符
+```
+public function setSeparator(string $separator): KeywordServer
+```
+
+关键词默认路径，导入导出时如果没有指定路径则使用此路径
+```
+public function setDefaultPath(string $path): KeywordServer
+```
+
+导出路径
+```
+public function setExportPath(string $exportPath): KeywordServer
+```
+
+导入路径
+```
+public function setImportPath(string $importPath): KeywordServer
+```
+
+### KeywordClient
 
 向字典树中添加关键词
 ```
@@ -200,4 +222,12 @@ public function remove($keyword, float $timeout = 1.0)
 public function search($keyword, float $timeout = 1.0)
 ```
 
+导入词库
+```
+public function import($fileName, $separator='@es@', $isCover=false, float $timeout=1.0)
+```
 
+导出词库
+```
+public function export($fileName, $separator='@es@', float $timeout=1.0)
+```
