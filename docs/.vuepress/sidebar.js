@@ -290,8 +290,7 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/FastCache/fastCache', '基础使用'],
-                    ['/Components/FastCache/fastCacheQueue', '队列'],
+                    ['/Components/FastCache/fastCache', '基础使用']
                 ]
             }
         ]
@@ -322,7 +321,7 @@ const sidebarCn = [
                     ['/Components/Kafka/consumer', '消费者'],
                 ]
             },
-            ['/QueueServer/fastCacheQueue', 'FastCacheQueue'],
+            ['/QueueServer/fastCacheQueue', 'FastCache队列'],
         ]
     },
     {
