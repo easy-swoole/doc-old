@@ -17,7 +17,7 @@ interface QueueDriverInterface
 }
 ```
 
-## redis队列驱动示例
+## 自带的redis驱动
 
 ```php
 namespace EasySwoole\Queue\Driver;

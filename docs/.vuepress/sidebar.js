@@ -307,8 +307,7 @@ const sidebarCn = [
                 children: [
                     ['/Components/Queue/install', '安装'],
                     ['/Components/Queue/driver', '自定义驱动'],
-                    ['/Components/Queue/producer', '生产者'],
-                    ['/Components/Queue/consumer', '消费者'],
+                    ['/Components/Queue/usage', '使用示例']
                 ]
             },
             {
@@ -321,7 +320,7 @@ const sidebarCn = [
                     ['/Components/Kafka/consumer', '消费者'],
                 ]
             },
-            ['/QueueServer/fastCacheQueue', 'FastCache队列'],
+            ['/Components/FastCache/fastCacheQueue', 'FastCache队列'],
         ]
     },
     {
