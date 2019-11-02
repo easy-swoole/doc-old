@@ -11,7 +11,16 @@ meta:
 
 删除记录使用 `destroy` 方法, 方法可以传入多种表达类型参数. 执行后返回影响的记录数
 
-## 通过主键方式
+## 通过 已有Model
+
+这种方式是我们最推荐的，也是ORM这种组件的核心思想，把数据的操作映射为对对象的操作。
+
+```php
+$user = UserModel::create()->get(1);
+$user->destroy();
+```
+
+## 通过 主键 
 
 ```php
 $res = UserModel::create()->destroy(1); //通过直接指定主键(如果存在)
@@ -22,8 +31,6 @@ $res = UserModel::create()->destroy([3, 7]);//数组指定多个主键
 ### 通过 where 条件
 
 ```php
-<?php
-// 
 $res = UserModel::create()->destroy(['age' => 21]);//数组指定 where 条件结果来删除
 $res = UserModel::create()->destroy(function (QueryBuilder $builder) {
     $builder->where('id', 1);
