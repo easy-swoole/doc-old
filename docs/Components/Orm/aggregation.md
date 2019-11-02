@@ -27,6 +27,7 @@ $min = TestUserListModel::create()->min('age');
 ## count
 
 ```php
+// count 不必传字段名
 $count = TestUserListModel::create()->count();
 ```
 

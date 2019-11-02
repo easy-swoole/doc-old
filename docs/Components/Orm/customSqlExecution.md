@@ -21,8 +21,19 @@ use EasySwoole\Mysqli\QueryBuilder;
 $queryBuild = new QueryBuilder();
 $queryBuild->raw("show tables");
 
-$data = DbManager::getInstance()->query($queryBuild, $raw = true, $connectionName = 'default');
+// 第二个参数 raw  指定true，表示执行原生sql
+// 第三个参数 connectionName 指定使用的连接名，默认 default
+$data = DbManager::getInstance()->query($queryBuild, true, 'default');
 
+```
+
+通过Model执行
+```php
+// 需要注意的是，这里的sql语句仅仅是示例
+// 正确推荐的做法应该仍然是查询Model类对应的表，得到表结构字段的数据
+$data = Model::create()->get(function ($queryBuild){
+    $queryBuild->raw("shwo tables");
+});
 ```
 
 ::: warning

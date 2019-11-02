@@ -11,9 +11,26 @@ meta:
 
 # 更新
 
-更新时指定 `id` 为 `1` 的 where 条件
+## 通过 已有Model
 
-## 静态更新
+这种方式是我们最推荐的，也是ORM这种组件的核心思想，把数据的操作映射为对对象的操作。
+
+```php
+$user = UserModel::create()->get(1);
+$user->update([
+  'is_vip' => 1
+]);
+```
+
+```php
+
+$user = UserModel::create()->get(1);
+//获取后指定字段赋值
+$user->is_vip = 1;
+$user->update();
+```
+
+## 通过 where 更新
 
 `update` 参数1传入更新数组`[字段名=>字段值]`,参数2传递 where 条件数组
 
@@ -21,25 +38,4 @@ meta:
 $res = UserModel::create()->update([
     'name' => 'new'
 ], ['id' => 1]);
-```
-
-## 先获取后更新
-
-```php
-<?php
-// 根据模型对象进行更新（无需写更新条件）
-$model = UserModel::create()->get(1);
-
-// 获取后传入更新数组
-$res = $model->update([
-    'name' => 123,
-]);
-
-//获取后指定字段赋值
-$model->name = 323;
-$model['name'] = 333;
-
-// 调用保存  返回bool 成功失败
-$res = $model->update();
-var_dump($res);
 ```
