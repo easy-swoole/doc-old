@@ -310,16 +310,7 @@ const sidebarCn = [
                     ['/Components/Queue/usage', '使用示例']
                 ]
             },
-            {
-                title: 'Kafka组件',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/Kafka/install', '安装'],
-                    ['/Components/Kafka/producer', '生产者'],
-                    ['/Components/Kafka/consumer', '消费者'],
-                ]
-            },
+            ['/Components/kafka', 'Kafka'],
             ['/Components/FastCache/fastCacheQueue', 'FastCache队列'],
         ]
     },
