@@ -11,13 +11,12 @@ meta:
 
 要往数据库新增一条记录，先创建新模型实例，给实例设置属性，然后调用 save 方法：
 
-## 模型创建后新增
 ```php
-<?php
 $model = new UserModel();
 // 不同设置值的方式
 $model->setAttr('id', 7);
 $model->name = 'name';
+$model['name'] = 'name';
 
 $res = $model->save();
 var_dump($res); // 返回自增id 或者主键的值  失败则返回null
@@ -25,17 +24,24 @@ var_dump($res); // 返回自增id 或者主键的值  失败则返回null
 在这个示例中，我们将 `id` 和 `name` 赋值给了 UserModel 模型实例的 `id` 和 `name` 属性。当调用 `save` 方法时，将会插入一条新记录
 
 
-### 创建时赋值(批量赋值)
+### 数组赋值
 
-创建时可以传入数组`[字段名=>字段值]` 再调用 `save` 方法保存
+可以传入数组`[字段名=>字段值]` 再调用 `save` 方法保存
+
 ```php
-<?php
-$model = new UserModel([
+$model = UserModel::create([
     'name' => 'siam',
     'age'  => 21,
 ]);
 
 $res = $model->save();
-var_dump($res); // 返回自增id 或者主键的值  失败则返回null
 ```
-在这个示例中，我们将 `name` 和 `age` 放置在数组中赋值给了 UserModel 模型实例创建参数中。当调用 `save` 方法时，将数组以键为字段名值为字段值方式插入一条新记录
+
+```php
+// data($data, $setter = true)  
+// 第二个参数 可以决定是否要调用修改器（如果要设置的话   下面的文档有说明）
+$user = UserModel::create()->data([
+    'name' => 'siam',
+    'age'  => 21,
+], false)->save();
+```

@@ -10,36 +10,22 @@ meta:
 
 # 指定连接名
 
+从 [配置信息注册](/Components/Orm/configurationRegister) 章节，我们已经知道了，在注册配置信息的时候，可以给这份配置指定一个`连接名`
+
+
+可以通过模型类自定义属性 `connectionName` 来指定使用的连接配置，默认为 `default`
+
+
+假设已经通过 配置信息注册 章节注册了一个 `read` 连接名的配置
+
+那么我们可以在Model中定义指定``` read ```连接名
+
 ```php
-DbManager::getInstance()->addConnection(ConnectionInterface $con，string $connectionName = 'default');
-```
-可以存在多个连接,而多个连接通过模型类自定义属性 `connectionName` 值来当做唯一连接名,默认为源码中所定义的名称. 
-在模型类中 可以更改 `connectionName`属性，将当前模型指向不同的数据库连接(已注册连接)使用
-
-指定``` blank ```连接方式
-
-```php
-Class AdminModel extends \EasySwoole\ORM\AbstractModel {
-
-    protected $connectionName = 'blank';
+Class AdminModel extends \EasySwoole\ORM\AbstractModel 
+{
+    protected $connectionName = 'read';
 }
 ```
 
-添加``` blank ```连接方式
 
-```php
-\co::create(function() {
-    $config = new Config();
-    $config->setDatabase('cry');
-    $config->setUser('root');
-    $config->setPassword('root');
-    $config->setHost('192.168.75.1');
-
-    DbManager::getInstance()->addConnection(new Connection($config), 'blank');
-
-    $admin = AdminModel::create()->get(1);
-
-    print_r($admin->toArray());
-
-});
-```
+可以继续查看 [读写分离](/Components/Orm/readWriteSeparation) 章节，进一步查看如何使用不同数据库配置。
