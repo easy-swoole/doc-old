@@ -4,14 +4,14 @@ meta:
   - name: description
     content: Easyswoole提供了一个基于字典树算法的内容检测组件
   - name: keywords
-    content: easyswoole,关键词,关键词检测
+    content: easyswoole,敏感词,敏感词检测
 ---
 
 # 文本检测(words-match)
 
 `感谢Easyswoole开发组的其它小伙伴的耐心指导和AbelZhou开源的字典树供我学习`
 
-words-match组件是基于字典树(DFA)并利用UnixSock通讯和自定义进程实现，开发本组件的目的是帮小伙伴们快速部署关键词检测服务，这对于内容型产品来说非常重要。
+words-match组件是基于字典树(DFA)并利用UnixSock通讯和自定义进程实现，开发本组件的目的是帮小伙伴们快速部署敏感词检测服务，这对于内容型产品来说非常重要。
 
 ::: warning 
  此组件稳定后，会尝试使用AC自动机或其它检测方式，提供底层可配置化检测服务
@@ -36,7 +36,7 @@ composer require easyswoole/words-match
 服务启动的时候会一行一行将数据读出来，每一行的第一列为敏感词，其它列为附属信息
 
 ```
-php@es@是世界上@es@最好的语言
+php,是世界上,最好的语言
 java
 golang
 程序员
@@ -75,13 +75,12 @@ class EasySwooleEvent implements Event
         // TODO: Implement mainServerCreate() method.
         WordsMatchServer::getInstance()
                 ->setMaxMem('1024M') // 每个进程最大内存
-                ->setServerName('Easyswoole 内容检测') // 服务名称
-                ->setTempDir(EASYSWOOLE_TEMP_DIR) // temp地址
-                ->setDefaultPath('xxx') // 默认路径
-                ->setDefaultWordBank('xxx/xxx.txt') // 服务启动时默认导入的词库文件路径
-                ->setExportPath('xxx') // 默认导出路径，没有则使用默认路径
-                ->setImportPath('xx') // 默认导入路径，没有则使用默认路径
-                ->setSeparator('@es@') // 敏感词和其它信息分隔符
+                ->setProcessNum(5) // 设置进程数量
+                ->setServerName('Easyswoole words-match')// 服务名称
+                ->setTempDir(EASYSWOOLE_TEMP_DIR)// temp地址
+                ->setWordsMatchPath(EASYSWOOLE_ROOT.'/WordsMatch/')
+                ->setDefaultWordBank('comment.txt')// 服务启动时默认导入的词库文件路径
+                ->setSeparator(',')// 词和其它信息分隔符
                 ->attachToServer(ServerManager::getInstance()->getSwooleServer());
     }
 
@@ -198,19 +197,9 @@ function attachToServer(swoole_server $server)
 public function setSeparator(string $separator): WordsMatchServer
 ```
 
-词库默认路径，导入导出时如果没有指定路径则使用此路径
+组件根路径
 ```
-public function setDefaultPath(string $path): WordsMatchServer
-```
-
-词库导出路径
-```
-public function setExportPath(string $exportPath): WordsMatchServer
-```
-
-词库导入路径
-```
-public function setImportPath(string $importPath): WordsMatchServer
+public function setWordsMatchPath(string $path): WordsMatchServer
 ```
 
 ### WordsMatchClient
@@ -238,7 +227,7 @@ public function search($word, float $timeout = 1.0)
 
 导入词库，此方法可以将新词库追加到正在运行的字典树中也可以覆盖字典树，这样就可以做到实时的词库切换
 ```
-public function import($fileName, $separator='@es@', $isCover=false, float $timeout=1.0)
+public function import($fileName, $separator=',', $isCover=false, float $timeout=1.0)
 ```
 ::: warning 
 导入词库后各进程会同步
@@ -247,5 +236,5 @@ public function import($fileName, $separator='@es@', $isCover=false, float $time
 
 导出词库，此方法可以将字典树正在运行中的敏感词落地到文件中
 ```
-public function export($fileName, $separator='@es@', float $timeout=1.0)
+public function export($fileName, $separator=',', float $timeout=1.0)
 ```
