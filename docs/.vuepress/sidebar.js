@@ -310,16 +310,7 @@ const sidebarCn = [
                     ['/Components/Queue/usage', '使用示例']
                 ]
             },
-            {
-                title: 'Kafka组件',
-                collapsable: true,
-                sidebarDepth: 0,
-                children: [
-                    ['/Components/Kafka/install', '安装'],
-                    ['/Components/Kafka/producer', '生产者'],
-                    ['/Components/Kafka/consumer', '消费者'],
-                ]
-            },
+            ['/Components/kafka', 'Kafka'],
             ['/Components/FastCache/fastCacheQueue', 'FastCache队列'],
         ]
     },
@@ -400,12 +391,12 @@ const sidebarCn = [
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
             {
-                title: '关键词检测',   // 必要的
+                title: 'words-match',   // 必要的
+                path: '/Components/WordsMatch/WordsMatch',
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/Keyword/keyword', '关键词检测'],
-                    ['/Components/Keyword/ab', '压测结果']
+                    ['/Components/WordsMatch/ab', '性能测试']
                 ]
             },
             {
