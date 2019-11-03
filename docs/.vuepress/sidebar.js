@@ -290,8 +290,7 @@ const sidebarCn = [
                 collapsable: true,
                 sidebarDepth: 0,
                 children: [
-                    ['/Components/FastCache/fastCache', '基础使用'],
-                    ['/Components/FastCache/fastCacheQueue', '队列'],
+                    ['/Components/FastCache/fastCache', '基础使用']
                 ]
             }
         ]
@@ -303,18 +302,17 @@ const sidebarCn = [
         children: [
             {
                 title: 'Queue组件',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Queue/install', '安装'],
                     ['/Components/Queue/driver', '自定义驱动'],
-                    ['/Components/Queue/producer', '生产者'],
-                    ['/Components/Queue/consumer', '消费者'],
+                    ['/Components/Queue/usage', '使用示例']
                 ]
             },
             {
                 title: 'Kafka组件',
-                collapsable: false,
+                collapsable: true,
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Kafka/install', '安装'],
@@ -322,7 +320,7 @@ const sidebarCn = [
                     ['/Components/Kafka/consumer', '消费者'],
                 ]
             },
-            ['/QueueServer/fastCacheQueue', 'FastCacheQueue'],
+            ['/Components/FastCache/fastCacheQueue', 'FastCache队列'],
         ]
     },
     {

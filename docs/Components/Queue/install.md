@@ -18,19 +18,36 @@ composer require easyswoole/queue
 - 设置消费进程
 - 生产者投递任务
 
-# 定义单例
+## Redis 驱动示例
 
 ```php
-namespace App\Utility;
+use EasySwoole\Redis\Config\RedisConfig;
+use EasySwoole\RedisPool\RedisPool;
+use EasySwoole\Queue\Driver\Redis;
+use EasySwoole\Queue\Queue;
+use EasySwoole\Queue\Job;
 
-use EasySwoole\Component\Singleton;
+$config = new RedisConfig([
+    'host'=>'127.0.0.1'
+]);
+$redis = new RedisPool($config);
 
-class Queue extends \EasySwoole\Queue\Queue
-{
-    use Singleton;
-}
+$driver = new Redis($redis);
+$queue = new Queue($driver);
+
+go(function ()use($queue){
+    while (1){
+        $job = new Job();
+        $job->setJobData(time());
+        $id = $queue->producer()->push($job);
+        var_dump('job create for Id :'.$id);
+        \co::sleep(3);
+    }
+});
+
+go(function ()use($queue){
+    $queue->consumer()->listen(function (Job $job){
+        var_dump($job->toArray());
+    });
+});
 ```
-
-::: tip 提示
-这样做是为了方便快速调用，而默认库不单例，是为了方便用户实现多个队列
-:::

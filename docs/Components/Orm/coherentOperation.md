@@ -13,12 +13,51 @@ meta:
 ORM提供的链式操作方法，可以有效的提高数据存取的代码清晰度和开发效率。
 
 ## where
-你可以使用 where 方法。调用 where 最基本的方式是需要传递一个参数这个参数可以传递多种不同表现:
+
+你可以使用 where 方法。调用 where 最基本的方式是需要传递一个参数
+
+这个参数可以传递多种不同表现:
+
+### 主键
 
 ```php
-$model =  UserListModel::create();
-$getCoherent = $model->where(['state' => 1])->get();//数组方式
-$getCoherent2 = $model->where($getCoherent->id)->get();//主键方式
+// 主键
+$user = UserListModel::create()->where(1)->get();
+
+// 多个主键
+$user = UserListModel::create()->where([1,2,3])->all();
+```
+
+### 数组
+
+```php
+// [字段名=> 字段值]数组方式
+$user = UserListModel::create()->where(['state' => 1])->get();
+
+// 复杂条件数组
+$user = UserListModel::create()->where([
+    'age'  => [[18,23], 'between'],
+    'name' => ['siam', 'like', 'or'],
+])
+```
+
+### 原生sql
+
+```php
+$user = UserListModel::create()->where("sql 语句 需要自己注意注入风险")->get();
+```
+
+### 其他**Mysqli**链式操作里的where传参
+
+实现 `EasySwoole\Mysqli\QueryBuilder` 中 where 传参
+
+更多操作还可以查阅**Mysqli**链式操作里的where章节
+
+```php
+// 走builder原生的where
+$getCoherent5 = UserListModel::create()->where('id', 1, '=')->get();
+$getCoherent6 = UserListModel::create()->where('id', 1, '!=')->get();
+$getCoherent6 = UserListModel::create()->where('id', 1, 'like')->get();
 ```
 
 ## alias
@@ -26,11 +65,7 @@ $getCoherent2 = $model->where($getCoherent->id)->get();//主键方式
 alias用于设置当前数据表的别名
 
 ```php
-$res = TestUserListModel::create()->alias('siam')->where(['siam.name' => '仙士可'])->all();
-
-if($res[0]->name === '仙士可') {
-
-}
+$res = TestUserListModel::create()->alias('siam')->where(['siam.name' => 'test'])->all();
 ```
 
 ## group
@@ -49,13 +84,6 @@ order 方法可用于将原生字符串设置为 order by 子句的值：
 $order = TestUserListModel::create()->order('id', 'DESC')->get();
 ```
 
-## select
-
-select 方法使用和[查询](/Components/Orm/query)中的 all 方法相同：
-
-```php
-$groupDivField = TestUserListModel::create()->field('sum(age), `name`')->group('name')->select();
-```
 ## join
 
 join通常有下面几种类型，不同类型的join操作会影响返回的数据结果。
