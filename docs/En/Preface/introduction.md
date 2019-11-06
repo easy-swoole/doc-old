@@ -2,9 +2,9 @@
 title: easyswoole
 meta:
   - name: description
-    content: EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP框架，专为API而生，摆脱传统PHP运行模式在进程唤起和文件加载上带来的性能损失。
+    content: EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is designed for APIs and gets rid of the performance loss caused by process evoke and file loading in traditional PHP running mode.
   - name: keywords
-    content: easyswoole|swoole框架|swoole协程框架|php框架
+    content: Easyswoole|swoole framework|swoole coroutine framework|php framework
 ---
 
 ```
@@ -14,7 +14,7 @@ meta:
  |  __|    / _` | / __| | | | |  \___ \  \ \ /\ / /  / _ \   / _ \  | |  / _ \
  | |____  | (_| | \__ \ | |_| |  ____) |  \ V  V /  | (_) | | (_) | | | |  __/
  |______|  \__,_| |___/  \__, | |_____/    \_/\_/    \___/   \___/  |_|  \___|
-                          __/ |                                                
+                          __/ |                                               
                          |___/                                                
 ```
 # EasySwoole
@@ -24,69 +24,69 @@ meta:
 [![License](https://poser.pugx.org/easyswoole/easyswoole/license)](https://packagist.org/packages/easyswoole/easyswoole)
 [![Monthly Downloads](https://poser.pugx.org/easyswoole/easyswoole/d/monthly)](https://packagist.org/packages/easyswoole/easyswoole)
 
-EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP框架，专为API而生，摆脱传统PHP运行模式在进程唤起和文件加载上带来的性能损失。
-EasySwoole 高度封装了 Swoole Server 而依旧维持 Swoole Server 原有特性，支持同时混合监听HTTP、自定义TCP、UDP协议，让开发者以最低的学习成本和精力编写出多进程，可异步，高可用的应用服务。在开发上，我们为您准备了以下常用组件：
+EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is designed for APIs and gets rid of the performance loss caused by process evoke and file loading in traditional PHP running mode.
+EasySwoole highly encapsulates the Swoole Server and still maintains the original features of the Swoole Server. It supports simultaneous mixing of HTTP, custom TCP, and UDP protocols, allowing developers to write multi-process, asynchronous, and highly available applications with minimal learning cost and effort. service. In development, we have prepared the following common components for you:
 
-- HTTP WEB 组件
-- TCP、UDP、WEB_SOCKET 组件
-- redis连接池
-- mysql 连接池
-- 自定义进程
-- 分布式跨平台RPC组件
-- 微信公众号与小程序SDK
-- 协程版微信、支付宝支付SDK
-- 模板渲染引擎
-- Tracker链路跟踪
-- 限流器
-- 消息队列
-- 协程HTTP客户端组件
-- apollo配置中心
-- validate验证器
-- 验证码
-- fast-cache组件
-- Policy权限组件
-- IOC、协程上下文管理器
+- HTTP WEB component
+- TCP, UDP, WEB_SOCKET components
+- redis connection pool
+- mysql connection pool
+- Custom process
+- Distributed cross-platform RPC components
+- WeChat public number and applet SDK
+- Correspondence version WeChat, Alipay payment SDK
+- Template rendering engine
+- Tracker link tracking
+- Current limiter
+- message queue
+- Coroutine HTTP client component
+- apollo configuration center
+- validate validator
+- Verification code
+- fast-cache component
+- Policy permission component
+- IOC, coroutine context manager
 
 
 ::: warning 
- 以上组件为常用组件，更多组件请看组件库文档
+ The above components are common components, and more components can be found in the component library documentation.
 :::
 
-## 生产可用
-Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如今的EasySwoole 3.x版本，多年时间在众多社区小伙伴的共同努力下，EasySwoole的稳定与可靠已经经历了非常多的大企业检验。
+## Production available
+From the earliest predecessor EasyPHP-Swoole, to the name Easyswoole, and now to the EasySwoole 3.x version, EasySwoole has experienced many stable and reliable companies under the joint efforts of many community partners.
 
-例如：
+E.g:
 
-- 腾讯公司的IEG部门
-- WEGAME部门
-- 网宿科技（国内CDN厂家）
-- 360金融
-- 360小游戏（Actor）
-- 9377小游戏
-- 厦门美图网
-- 蝉大师
+- Tencent's IEG department
+- WEGAME department
+- Nets Technology (domestic CDN manufacturers)
+- 360 Finance
+- 360 games (Actor)
+- 9377 games
+- Xiamen Meitu Net
+- Chan Dashi
 
-等公司都在使用EasySwoole。
+These companies are using EasySwoole.
 
-## 特性
+## Features
 
-- 强大的 TCP/UDP Server 框架，多线程，EventLoop，事件驱动，异步，Worker进程组，Task异步任务，毫秒定时器，SSL/TLS隧道加密
-- EventLoop API，让用户可以直接操作底层的事件循环，将socket，stream，管道等Linux文件加入到事件循环中
-- 定时器、协程对象池、HTTP\SOCK控制器、分布式微服务、RPC支持
+- Powerful TCP/UDP Server framework, multithreading, EventLoop, event driven, asynchronous, Worker process group, Task asynchronous task, millisecond timer, SSL/TLS tunnel encryption
+- The EventLoop API allows users to directly manipulate the underlying event loop and add Linux files such as sockets, streams, and pipes to the event loop.
+- Timer, coroutine object pool, HTTP\SOCK controller, distributed microservice, RPC support
 
-## 优势
+## Advantage
 
-- 简单易用开发效率高
-- 并发百万TCP连接
+- Easy to use and high development efficiency
+- Concurrent million TCP connections
 - TCP/UDP/UnixSock
-- 支持异步/同步/协程
-- 支持多进程/多线程
-- CPU亲和性/守护进程
+- Support for asynchronous / synchronous / coroutine
+- Support multi-process / multi-threading
+- CPU affinity / daemon
 
-## 维护团队
-- 作者
-    - 如果的如果 admin@fosuss.com   
-- 团队成员
+## Maintenance Team
+- Author
+    - 如果的如果 admin@fosuss.com
+- team member
     - 阿正 1589789807@qq.com
     - 不忘初心 2788828128@qq.com
     - 北溟有鱼 1769360227@qq.com
@@ -98,29 +98,29 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     
 
 ::: warning 
- 以上排名不分先后        
+ The above rankings are in no particular order        
 :::
 
-## 其他
-- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个***star***
+## Other
+- [GitHub](https://github.com/easy-swoole/easyswoole)  Leave a star if you like
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
 - [DEMO](https://github.com/easy-swoole/demo/)
 
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
     - EMAIL admin@fosuss.com   
-- 作者微信
+- Author WeChat
 
     ![](/resources/authWx.png)    
     
-- [捐赠](../Preface/donation.md)
-  您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
+  - Continuous and in-depth development
+  - Document and community construction and maintenance

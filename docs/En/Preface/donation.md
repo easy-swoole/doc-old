@@ -1,33 +1,33 @@
 ---
-title: 捐赠
+title: Donation
 meta:
   - name: description
-    content: easyswoole捐赠
+    content: easyswooleDonation
   - name: keywords
-    content: easyswoole|捐赠|easyswoole
+    content: easyswoole|Donation|easyswoole
 ---
 
-# 捐赠
-您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于：
+# Donation
+Donating your donation is the greatest encouragement and support for the EasySwoole project development team. We will insist on development and maintenance. Your donation will be used for:
 
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
-## 支付宝
-![捐赠](/resources/donate.png)
+  - Continuous and in-depth development
+  - Document and community building and maintenance
+## Alipay
+![Donation](/resources/donate.png)
  
 ::: warning 
- 支付宝二维码支持花呗、信用卡分期付款
+ Alipay QR code supports flower card, credit card installment payment
 :::
 
-## 微信
-![捐赠](/resources/wx_donate.png)
+## WeChat
+![Donation](/resources/wx_donate.png)
 
 
 ::: warning 
- 通过微信捐赠的用户，请捐赠时留言您的名字，否则不知道您的大名
+ If you donate through WeChat, please leave your message when you donate, otherwise you will not know your name.
 :::
 
-## 捐赠者列表
+## Donor list
 - *章进
 - *晓博
 - *振宇
@@ -75,5 +75,5 @@ meta:
 
 
 ::: warning 
- 以上名单为按照时间排序，与捐赠金额无关(多次捐赠者未避免重复也只写一次)，如果您不希望出现在该列表，或者是被遗漏了，请与291323003@qq.com联系。
+ The above list is sorted by time and has nothing to do with the donation amount (multiple donors do not avoid repeating and only write once). If you do not wish to appear on the list or are omitted, please contact 291323003@qq.com.
 :::

@@ -1,39 +1,39 @@
 ---
-title: 文档维护团队
+title: Document maintenance team
 meta:
   - name: description
-    content: EasySwoole开源团队，文档维护团队介绍，EasySwoole社区
+    content: EasySwoole Open source team, Document Maintenance Team Introduction, EasySwoole Community
   - name: keywords
-    content:  EasySwoole | EasySwoole开源团队 | EasySwoole社区 | 文档维护团队
+    content:  EasySwoole | EasySwoole open source team | EasySwoole Community | Document maintenance team
 ---
 
 
-# 共建EasySwoole社区计划
+# Building the EasySwoole Community Program
 
-邀您加入EasySwoole社区维护团队
+Invite you to join the EasySwoole Community Maintenance Team
 
-你能获得
+You can get
 
-- EasySwoole相关问题的指导
-- EasySwoole贡献者标识
-- Swoole相关的基础知识指导
+- Guidance on EasySwoole related issues
+- EasySwoole Contributor Logo
+- Basic knowledge related to Swoole
   
-我们希望你能
+We hope that you can
 
-- 查找EasySwoole文档中的问题
-- 反馈EasySwoole文档中的问题
-- 编写和修改EasySwoole文档 
-- 维护社区系统内容
+- Find issues in the EasySwoole documentation
+- Feedback on issues in the EasySwoole documentation
+- Write and modify EasySwoole documentation 
+- Maintain community system content
 
-# 加入我们
+# Join us
 
-联系宣言
+Contact
 
 - QQ: 59419979
 - Email: 59419979@qq.com
 
 
-# 文档维护团队
+# Document maintenance team
 
-待补充
+To be added
 
