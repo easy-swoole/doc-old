@@ -1,22 +1,22 @@
 ---
-title: 联系作者
+title: Contact author
 meta:
   - name: description
-    content: 联系easyswoole作者
+    content: Contact easyswoole author
   - name: keywords
-    content: easyswoole|easyswoole联系我们|easyswoole作者
+    content: easyswoole | easyswoole contact us | easyswoole author
 ---
-# 联系作者
+# Contact author
 
-- 作者微信
+- Author WeChat
  
     ![](/resources/authWx.png)
       
-- 商业支持：
+- Commercial support：
     - QQ 291323003
     - EMAIL admin@fosuss.com  
      
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628    
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628   
