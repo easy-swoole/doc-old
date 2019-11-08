@@ -1,55 +1,51 @@
 ---
-title: 配置文件
+title: easyswoole | Environmental requirements
 meta:
   - name: description
-    content: EasySwoole的基础环境要求与swoole的安装
+    content: EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is designed for APIs and gets rid of the performance loss caused by process evoke and file loading in traditional PHP running mode.
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: Easyswoole|swoole framework|swoole coroutine framework|php framework
 ---
 
-# 环境要求
+# Environmental requirements 1
 
-满足基本的环境要求才能运行框架，easySwoole 框架对环境的要求十分简单，只需要满足运行 Swoole 拓展的条件，并且 PHP 版本在 7.1 以上即可
+The basic environment requirements are met to run the framework. The `EasySwoole` framework is very simple to the environment. It only needs to meet the conditions for running `Swoole` extension, and the PHP version is above 7.1.
 
-- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个 ***star***
+- [GitHub](https://github.com/easy-swoole/easyswoole)  Leave a star if you like
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
-## 基础运行环境
+## Basic operating environment
 
-- 保证 **PHP** 版本大于等于 **7.1**
-
-
-- 保证 **Swoole** 拓展版本大于等于 **4.4.0**
-- 需要 **pcntl** 拓展的任意版本
-- 使用 **Linux** / **FreeBSD** / **MacOS** 这三类操作系统
-- 使用 **Composer** 作为依赖管理工具
-
+- Guaranteed **PHP** version is greater than or equal to **7.1**
+- Guaranteed Swoole extended version is greater than or equal to 4.4.0
+- Need any version of **pcntl** extension
+- Use **Linux** / **FreeBSD** / **MacOS** These three types of operating systems
+- Use **Composer** as a dependency management tool
 
 ::: warning 
- 参考下面的建议，它们都不是必须的，但是有助于更高效的使用框架和进行开发
+ Refer to the suggestions below, they are not required, but help to use the framework and develop more efficiently.
 :::
 
-- 使用 **Ubuntu14** / **CentOS 7.0** 或更高版本操作系统
+- Use **Ubuntu14** / **CentOS 7.0** or higher operating system
 
-## 其他
+## other
 
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
-- 作者微信
+    - EMAIL admin@fosuss.com   
+- Author WeChat
 
     ![](/resources/authWx.png)
     
-- [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
-  
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
+  - Continuous and in-depth development
+  - Document and community construction and maintenance
+
+- `EasySwoole` The document uses `GitBook` as the document writing tool. If you find that the document needs to be corrected or supplemented during use, please `fork` project document warehouse, modify and supplement, submit `Pull Request` and contact us

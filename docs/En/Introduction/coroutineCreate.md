@@ -1,32 +1,32 @@
 ---
-title: 配置文件
+title: Coroutine
 meta:
   - name: description
-    content: swoole,easyswoole协程介绍
+    content: Swoole, easyswoole coroutine introduction
   - name: keywords
-    content: easyswoole 协程|swoole 协程|协程
+    content: Easyswoole coroutine|swoole coroutine|coroutine
 ---
 
-# 协程
+# Coroutine
 
 ::: tip
-从4.0版本开始`Swoole`提供了完整的协程（Coroutine）+ 通道（Channel）特性，带来全新的CSP编程模型。应用层可使用完全同步的编程方式，底层自动实现异步IO。
+Starting with version 4.0, `Swoole` provides a complete Coroutine + Channel feature that brings a new CSP programming model. The application layer can use fully synchronous programming, and the underlying layer automatically implements asynchronous IO.
 :::
 
-协程可以理解为纯用户态的线程，其通过协作而不是抢占来进行切换。相对于进程或者线程，协程所有的操作都可以在用户态完成，创建和切换的消耗更低。Swoole可以为每一个请求创建对应的协程，根据IO的状态来合理的调度协程，这会带来了以下优势：
+A coroutine can be understood as a thread of pure user mode, which switches by cooperation rather than preemption. Relative to the process or thread, all operations of the coroutine can be completed in the user mode, and the consumption of creation and switching is lower. Swoole can create a corresponding coroutine for each request, and reasonably schedule the coroutine according to the state of IO, which brings the following advantages:
 
-开发者可以无感知的用同步的代码编写方式达到异步IO的效果和性能，避免了传统异步回调所带来的离散的代码逻辑和陷入多层回调中导致代码无法维护
-同时由于底层封装了协程，所以对比传统的PHP层协程框架，开发者不需要使用yield关键词来标识一个协程IO操作，所以不再需要对yield的语义进行深入理解以及对每一级的调用都修改为yield，这极大的提高了开发效率
-可以满足大部分开发者的需求。对于私有协议，开发者可以使用协程的TCP或者UDP接口去方便的封装。
-
-
-# 注意事项
-
-- 全局变量：协程使得原有的异步逻辑同步化，但是在协程的切换是隐式发生的，所以在协程切换的前后不能保证全局变量以及static变量的一致性。
-- 与xdebug、xhprof、blackfire等zend扩展不兼容，例如不能使用xhprof对协程server进行性能分析采样。
+Developers can achieve asynchronous IO effects and performance in a non-perceived way with synchronous code writing, avoiding the discrete code logic and the multi-layer callbacks caused by traditional asynchronous callbacks.
+At the same time, because the underlying package is packaged, the developer does not need to use the yield keyword to identify a coroutine IO operation compared to the traditional PHP layer coroutine framework, so there is no need to deeply understand the semantics of yield and for each level. The calls are all modified to yield, which greatly improves the development efficiency.
+Can meet the needs of most developers. For proprietary protocols, developers can use the TCP or UDP interface of the coroutine for convenient encapsulation.
 
 
-# 创建协程
+# Precautions
+
+- Global variables: Coroutines synchronize the original asynchronous logic, but the switching of the coroutines occurs implicitly, so the consistency of global variables and static variables cannot be guaranteed before and after coroutine switching.
+- It is not compatible with zend extensions such as xdebug, xhprof, and blackfire. For example, you cannot use xhprof to perform performance analysis sampling on the coroutine server.
+
+
+# Create a coroutine
 
 ```php
 go(function () {
