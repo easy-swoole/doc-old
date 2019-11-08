@@ -40,7 +40,7 @@ meta:
 
 ### [Words-match 约20分钟](http://video-oss.easyswoole.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/words-match.mp4)
 1. 服务的注册
-2. 客户端的使用
+2. 客户端的使用 
 
 ## 其他视频
 - [CSP编程](https://www.easyswoole.com/playVideo.html?video=aHR0cDovdmlkZW8tb3NzLmVhc3lzd29vbGUuY29tLyVFNSU4NSVBNSVFOSU5NyVBOCVFNiU5NSU5OSVFNyVBOCU4QjEvJUU1JTg1JUE1JUU5JTk3JUE4Y3NwLm1wNA==)
