@@ -413,7 +413,8 @@ const sidebarCn = [
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
                 ]
-            }
+            },
+            ['/Components/smtp', 'Smtp']
         ]
     },
     {
