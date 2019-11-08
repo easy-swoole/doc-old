@@ -7,7 +7,7 @@ meta:
     content: easyswoole|swoole 扩展|swoole框架|php协程框架
 ---
 
-# 环境要求
+# 环境要求1
 
 满足基本的环境要求才能运行框架，easySwoole 框架对环境的要求十分简单，只需要满足运行 Swoole 拓展的条件，并且 PHP 版本在 7.1 以上即可
 

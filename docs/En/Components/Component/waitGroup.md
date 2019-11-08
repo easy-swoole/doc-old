@@ -9,7 +9,7 @@ meta:
 
 # waitgroup
 
-示例代码：
+Sample code：
 
 ```php
 go(function (){

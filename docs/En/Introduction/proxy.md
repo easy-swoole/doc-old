@@ -1,13 +1,13 @@
 ---
-title: swoole代理方案
+title: Swoole proxy solution
 meta:
   - name: description
-    content: 通过apache,nginx等对swoole server服务的代理
+    content: Agent for swoole server service through apache, nginx, etc.
   - name: keywords
-    content: easyswoole|swoole 服务代理|服务代理
+    content: Easyswoole|swoole service agent|service agent
 ---
 # Proxy
-由于 Swoole Server 对 HTTP 协议的支持并不完整，建议仅将 EasySwoole 作为后端服务，并且在前端增加 NGINX 或 APACHE 作为代理，参照下面的例子添加转发规则
+Since Swoole Server does not support HTTP protocol, it is recommended to use EasySwoole as a backend service and add NGINX or APACHE as a proxy on the front end. Add forwarding rules by referring to the following example.
 
 
 ## Nginx
@@ -27,7 +27,7 @@ server {
 ```
 
 ::: warning 
-代理之后,可通过`$request->getHeader('x-real-ip')[0]`获取客户端真实ip 
+After the proxy, you can get the real ip of the client through `$request->getHeader('x-real-ip')[0]`
 :::
 
 ## Apache
@@ -43,30 +43,28 @@ server {
 </IfModule>
 ```
 
-## 其他
+## other
 
-- [项目文档仓库](https://github.com/easy-swoole/doc)
+- [Project document repository](https://github.com/easy-swoole/doc)
 
 - [DEMO](https://github.com/easy-swoole/demo/)
 
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
-- 作者微信
+    - EMAIL admin@fosuss.com   
+- Author WeChat
 
      ![](/resources/authWx.png)
     
-- [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
+  - Continuous and in-depth development
+  - Document and community construction and maintenance
   
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
-
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository, modify and supplement it. Submit **Pull Request** and contact us

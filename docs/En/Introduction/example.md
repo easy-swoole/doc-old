@@ -1,23 +1,23 @@
 ---
-title: 配置文件
+title: Basic development example
 meta:
   - name: description
-    content: EasySwoole基础开发示例,手把手教你怎么用easyswoole实现一个api接口网站
+    content: EasySwoole basic development example, teach you how to implement an api interface website with easyswoole
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: Easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
-# 基础开发示例
-## demo地址
-基础开发示例已经开源,地址:https://github.com/easy-swoole/demo/tree/3.x
+# Basic development example
+## Demo address
+The base development example is open source, address: https://github.com/easy-swoole/demo/tree/3.x
 
-## 安装
-### 框架安装
-- 我们先安装好swooole拓展，执行 `php --ri swoole` 确保可以看到swoole拓展最版本为4.4.8
-- 建立一个目录，名为 `Test` ,执行 `composer require easyswoole/easyswoole=3.x` 引入easyswoole
-- 执行```php vendor/bin/easyswoole install``` 进行安装
+## Installation
+### Frame installation
+- We first install the swooole extension, execute `php --ri swoole` to make sure you can see the swoole extension version is 4.4.8.
+- Create a directory called `Test` and execute `composer require easyswoole/easyswoole=3.x` to introduce easyswoole
+  - Execute ```php vendor/bin/easyswoole install``` to install
 
-### 命名空间注册
-编辑```Test```根目录下的 composer.json 文件，加入```"App\\": "App/"``` ，大体结构如下：
+### Namespace registration
+Edit the composer.json file in the ```Test``` root directory and add ```"App\\": "App/"```. The general structure is as follows:
 
 ```json
 {
@@ -32,32 +32,32 @@ meta:
 }
 ```
 
-### 安装后目录结构
+### Post-installation directory structure
 
 ```
-Test                   项目部署目录
-├─App                     应用目录
-│  ├─HttpController       控制器目录(需要自己创建)
-├─Log                     日志文件目录（启动后创建）
-├─Temp                    临时文件目录（启动后创建）
-├─vendor                  第三方类库目录
-├─composer.json           Composer架构
-├─composer.lock           Composer锁定
-├─EasySwooleEvent.php     框架全局事件
-├─easyswoole              框架管理脚本
-├─easyswoole.install      框架安装锁定文件
-├─dev.php                 开发配置文件
-├─produce.php             生产配置文件
+Test                   Project deployment directory
+├─App                     Application directory
+│  ├─HttpController       Controller directory (need to create it yourself)
+├─Log                     Log file directory (created after startup)
+├─Temp                    Temporary file directory (created after startup)
+├─vendor                  Third-party class library directory
+├─composer.json           Composer architecture
+├─composer.lock           Composer lock
+├─EasySwooleEvent.php     Framework global event
+├─easyswoole              Framework management script
+├─easyswoole.install      Frame installation lock file
+├─dev.php                 Development configuration file
+├─produce.php             Production profile
 ```
 
-执行以下命令进行名称空间的更新：
+Execute the following command to update the namespace：
 ```
 composer dumpautoload 
 ```
 
-## 连接池实现
-### 配置项
-我们在dev.php 配置文件中，加入以下配置信息，注意：***请跟进自己的mysql服务器信息填写账户密码***。
+## Connection pool implementation
+### Configuration item
+In the dev.php configuration file, add the following configuration information, note: *** Please follow your own mysql server information to fill in the account password ***.
 ```php
  'MYSQL'  => [
         'host'          => '',
@@ -70,16 +70,16 @@ composer dumpautoload
  ]
 ```
 
-### 引入ORM库
+### Introducing the ORM library
 
-执行以下命令用于实现ORM库的引入
+Execute the following command to implement the introduction of the ORM library.
 ```
 composer require easyswoole/orm
 ```
 
-### 事件注册
+### Event registration
 
-我们编辑根目录下的```EasySwooleEvent.php```文件，在```mainServerCreate```事件中进行ORM的连接注册，大体结构如下：
+We edit the ```EasySwooleEvent.php``` file in the root directory and register the ORM connection in the ```mainServerCreate`` event. The general structure is as follows:
 ```php
 <?php
 /**
@@ -104,6 +104,7 @@ class EasySwooleEvent implements Event
 
     public static function initialize()
     {
+        // TODO: Time zone configuration
         date_default_timezone_set('Asia/Shanghai');
     }
 
@@ -128,13 +129,13 @@ class EasySwooleEvent implements Event
 ```
 
 ::: warning
-在initialize事件中注册数据库连接池,这个$config可同时配置连接池大小等
+Register the database connection pool in the initialize event, this $config can configure the connection pool size, etc.
 :::
 
 
-## 模型定义
-### 管理员模型
-#### 新增管理员用户表:  
+## Model definition
+### Administrator model
+#### Add administrator user table:  
 ```sql
 CREATE TABLE  if not exists  `admin_list` (
   `adminId` int(11) NOT NULL AUTO_INCREMENT,
@@ -149,11 +150,11 @@ CREATE TABLE  if not exists  `admin_list` (
   KEY `adminSession` (`adminSession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1');
+INSERT INTO `admin_list` VALUES ('1', 'Alan', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1');
 
 ```
-#### 新增model文件  
-新增 `App/Model/Admin/AdminModel.php`文件:  
+#### Add a model file  
+Add the `App/Model/Admin/AdminModel.php` file: 
 
 ```php
 <?php
@@ -199,7 +200,7 @@ class AdminModel extends AbstractModel
     }
 
     /*
-     * 登录成功后请返回更新后的bean
+     * After the login is successful, please return to the updated bean.
      */
     function login():?AdminModel
     {
@@ -208,7 +209,7 @@ class AdminModel extends AbstractModel
     }
 
     /*
-     * 以account进行查询
+     * Query by account
      */
     function accountExist($field='*'):?AdminModel
     {
@@ -231,18 +232,18 @@ class AdminModel extends AbstractModel
 ```
 
 ::: warning
- model的定义可查看orm章节
+ The definition of model can be viewed in the orm chapter
 :::
 ::: warning
- 关于ide自动提示,只要你在类上面注释中加上`@property $adminId` ide就可以自动提示类的这个属性
+ Regarding the ide automatic prompt, as long as you add `@property $adminId` ide to the class comment above, you can automatically prompt this property of the class.
 :::
 
 
 
 
-### 普通用户模型
-普通用户模型和管理员模型同理
-#### 建表
+### Ordinary user model
+Common user model and administrator model are the same
+#### Building a table
 ```sql
 CREATE  TABLE if not exists `user_list` (
                            `userId` int(11) NOT NULL AUTO_INCREMENT,
@@ -255,19 +256,19 @@ CREATE  TABLE if not exists `user_list` (
                            `lastLoginTime` int(10) DEFAULT NULL,
                            `userSession` varchar(32) DEFAULT NULL,
                            `state` tinyint(2) DEFAULT NULL,
-                           `money` int(10) NOT NULL DEFAULT '0' COMMENT '用户余额',
-                           `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT '冻结余额',
+                           `money` int(10) NOT NULL DEFAULT '0' COMMENT 'User balance',
+                           `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT 'Freeze balance',
                            PRIMARY KEY (`userId`),
                            UNIQUE KEY `pk_userAccount` (`userAccount`),
                            KEY `userSession` (`userSession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `user_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1','1566279458','',1,'1','1');
+INSERT INTO `user_list` VALUES ('1', 'Alan', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1','1566279458','',1,'1','1');
 
 ```
 
-#### 新增model文件
-新增 `App/Model/User/UserModel.php` 文件:  
+#### Add a model file
+Add the `App/Model/User/UserModel.php` file:
 
 ```php
 <?php
@@ -297,8 +298,8 @@ class UserModel extends AbstractModel
 
     protected $primaryKey = 'userId';
 
-    const STATE_PROHIBIT = 0;//禁用状态
-    const STATE_NORMAL = 1;//正常状态
+    const STATE_PROHIBIT = 0;//Disabled state
+    const STATE_NORMAL = 1;//normal status
 
     /**
      * @getAll
@@ -327,7 +328,7 @@ class UserModel extends AbstractModel
     }
 
     /*
-     * 登录成功后请返回更新后的bean
+     * After the login is successful, please return to the updated bean.
      */
     function login():?UserModel
     {
@@ -350,26 +351,26 @@ class UserModel extends AbstractModel
 
 ```
 
-### banner模型
-#### 建表
+### Banner model
+#### Building a table
 
 ```sql
 CREATE TABLE if not exists `banner_list` (
                              `bannerId` int(11) NOT NULL AUTO_INCREMENT,
                              `bannerName` varchar(32) DEFAULT NULL,
-                             `bannerImg` varchar(255) NOT NULL COMMENT 'banner图片',
+                             `bannerImg` varchar(255) NOT NULL COMMENT 'Banner image',
                              `bannerDescription` varchar(255) DEFAULT NULL,
-                             `bannerUrl` varchar(255) DEFAULT NULL COMMENT '跳转地址',
-                             `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
+                             `bannerUrl` varchar(255) DEFAULT NULL COMMENT 'Jump address',
+                             `state` tinyint(3) DEFAULT NULL COMMENT 'State 0 hidden 1 normal',
                              PRIMARY KEY (`bannerId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `banner_list` VALUES ('1', '测试banner', 'asdadsasdasd.jpg', '测试的banner数据', 'www.php20.cn',1);
+INSERT INTO `banner_list` VALUES ('1', 'Test banner', 'asdadsasdasd.jpg', 'Tested banner data', 'www.php20.cn',1);
 ```
 
 
-#### 新增model文件
-新增 `App/Model/Admin/BannerModel.php` 文件:  
+#### Add a model file
+Added `App/Model/Admin/BannerModel.php` file:  
 
 ```php
 <?php
@@ -406,10 +407,10 @@ class BannerModel extends AbstractModel
 }
 ```
 
-## 控制器定义
+## Controller definition
 
-### 全局基础控制器定义
-新增 `App/Httpcontroller/BaseController` 文件:
+### Global base controller definition
+Add the `App/Httpcontroller/BaseController` file:
 
 ```php
 <?php
@@ -428,8 +429,8 @@ class BaseController extends AnnotationController
     }
 
     /**
-     * 获取用户的真实IP
-     * @param string $headerName 代理服务器传递的标头名称
+     * Get the user's real IP
+     * @param string $headerName The header name passed by the proxy server
      * @return string
      */
     protected function clientRealIP($headerName = 'x-real-ip')
@@ -440,9 +441,9 @@ class BaseController extends AnnotationController
         $xri = $this->request()->getHeader($headerName);
         $xff = $this->request()->getHeader('x-forwarded-for');
         if ($clientAddress === '127.0.0.1') {
-            if (!empty($xri)) {  // 如果有xri 则判定为前端有NGINX等代理
+            if (!empty($xri)) {  // If there is xri, it is judged that the front end has an agent such as NGINX.
                 $clientAddress = $xri[0];
-            } elseif (!empty($xff)) {  // 如果不存在xri 则继续判断xff
+            } elseif (!empty($xff)) {  // If there is no xri, continue to judge xff
                 $list = explode(',', $xff[0]);
                 if (isset($list[0])) $clientAddress = $list[0];
             }
@@ -459,16 +460,16 @@ class BaseController extends AnnotationController
 
 
 ::: warning
- 新增基础控制器,里面的方法用于获取用户ip,以及获取api参数  
+ New base controller, the method inside is used to get user ip, and get api parameters  
 :::
 
 ::: warning
- 基础控制器继承了`EasySwoole\Http\AbstractInterface\AnnotationController`,这个是注解支持控制器,可查看注解章节
+ The base controller inherits `EasySwoole\Http\AbstractInterface\AnnotationController`, this is an annotation support controller, which can be viewed in the annotation section.
 :::
 
 
-### api基础控制器定义
-新增 `App/Httpcontroller/Api/ApiBase.php` 文件:
+### Api base controller definition
+Added `App/Httpcontroller/Api/ApiBase.php` file:
 ```php
 <?php
 /**
@@ -518,7 +519,7 @@ abstract class ApiBase extends BaseController
                 $this->writeJson(500, null, $throwable->getMessage());
             } else {
                 Trigger::getInstance()->throwable($throwable);
-                $this->writeJson(500, null, '系统内部错误，请稍后重试');
+                $this->writeJson(500, null, 'Internal system error, please try again later');
             }
         }
     }
@@ -526,13 +527,13 @@ abstract class ApiBase extends BaseController
 ```
 
 ::: warning
- api基类控制器,用于拦截注解异常,以及api异常,给用户返回一个json格式错误信息
+ Api base class controller for intercepting annotation exceptions and api exceptions, returning a json format error message to the user
 :::
 
 
 
-### 公共基础控制器定义
-新增 `App/Httpcontroller/Api/Common/CommonBase.php`文件:   
+### Common base controller definition
+Added `App/Httpcontroller/Api/Common/CommonBase.php` file: 
 
 ```php
 <?php
@@ -546,10 +547,10 @@ class CommonBase extends ApiBase
 ```
 
 
-### 公共控制器
-公共控制器放不需要登陆即可查看的控制器,例如banner列表查看:  
+### Public controller
+The public controller puts the controller that can be viewed without logging in, such as the banner list view: 
 
-#### 新增 `App/HttpController/Api/Common/Banner.php` 文件:  
+#### Added `App/HttpController/Api/Common/Banner.php` file:
 ```php
 <?php
 
@@ -571,7 +572,7 @@ class Banner extends CommonBase
 
     /**
      * getOne
-     * @Param(name="bannerId", alias="主键id", required="", integer="")
+     * @Param(name="bannerId", alias="Primary key id", required="", integer="")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -592,9 +593,9 @@ class Banner extends CommonBase
 
     /**
      * getAll
-     * @Param(name="page", alias="页数", optional="", integer="")
-     * @Param(name="limit", alias="每页总数", optional="", integer="")
-     * @Param(name="keyword", alias="关键字", optional="", lengthMax="32")
+     * @Param(name="page", alias="Number of pages", optional="", integer="")
+     * @Param(name="limit", alias="Total number of pages", optional="", integer="")
+     * @Param(name="keyword", alias="Keyword", optional="", lengthMax="32")
      * @author Tioncico
      * Time: 14:02
      */
@@ -612,22 +613,22 @@ class Banner extends CommonBase
 
 
 ::: warning 
- 可看到,在getAll方法中,有着`@Param(name="page", alias="页数", optional="", integer="")`的注释,这个是注解支持写法,可写也不可以不写,当写上这个注释之后,将会约束page参数必须是int,具体的验证机制可查看[validate验证器](../HttpServer/validate.md)
+ It can be seen that in the getAll method, there is a comment of `@Param(name="page", alias="page number", optional="", integer="")`, this is an annotation support writing method, and can be written. Can not write, after writing this comment, will constrain the page parameter must be int, the specific verification mechanism can be viewed [validate validator](../HttpServer/validate.md)
 :::
 
 ::: warning
-测试链接:127.0.0.1:9501/api/common/banner/getAll
+Test link: 127.0.0.1:9501/api/common/banner/getAll
 :::
 
 
 ::: warning 
- 需要有数据才能看到具体输出
+ Need to have data to see the specific output
 :::
 
 
 
-### 管理员基础控制器定义
-新增 `App/HttpController/Api/Admin/AdminBase.php` 文件:   
+### Administrator base controller definition
+Add the `App/HttpController/Api/Admin/AdminBase.php` file: 
 
  
 ```php
@@ -647,11 +648,11 @@ use EasySwoole\Http\Message\Status;
 
 class AdminBase extends ApiBase
 {
-    //public才会根据协程清除
+    //Public will be cleared according to the coroutine
     public $who;
-    //session的cookie头
+    //Session cookie header
     protected $sessionKey = 'adminSession';
-    //白名单
+    //whitelist
     protected $whiteList = [];
 
     /**
@@ -665,13 +666,13 @@ class AdminBase extends ApiBase
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
-            //白名单判断
+            //White list judgment
             if (in_array($action, $this->whiteList)) {
                 return true;
             }
-            //获取登入信息
+            //Get login information
             if (!$this->getWho()) {
-                $this->writeJson(Status::CODE_UNAUTHORIZED, '', '登入已过期');
+                $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'Login has expired');
                 return false;
             }
             return true;
@@ -706,8 +707,8 @@ class AdminBase extends ApiBase
 
 ```
 
-### 管理员登录控制器
-新增 `App/HttpController/Api/Admin/Auth.php` 文件:   
+### Administrator login controller
+Added `App/HttpController/Api/Admin/Auth.php` file:   
 ```php
 <?php
 /**
@@ -730,9 +731,9 @@ class Auth extends AdminBase
 
     /**
      * login
-     * 登陆,参数验证注解写法
-     * @Param(name="account", alias="帐号", required="", lengthMax="20")
-     * @Param(name="password", alias="密码", required="", lengthMin="6", lengthMax="16")
+     * Login, parameter verification annotation
+     * @Param(name="account", alias="account number", required="", lengthMax="20")
+     * @Param(name="password", alias="password", required="", lengthMin="6", lengthMax="16")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -759,14 +760,14 @@ class Auth extends AdminBase
             $this->response()->setCookie('adminSession', $sessionHash, time() + 3600, '/');
             $this->writeJson(Status::CODE_OK, $rs);
         } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, '', '密码错误');
+            $this->writeJson(Status::CODE_BAD_REQUEST, '', 'wrong password');
         }
 
     }
 
     /**
      * logout
-     * 退出登录,参数注解写法
+     * Logout, parameter annotation
      * @Param(name="adminSession", from={COOKIE}, required="")
      * @return bool
      * @author Tioncico
@@ -779,12 +780,12 @@ class Auth extends AdminBase
             $sessionKey = $this->request()->getCookieParams('adminSession');
         }
         if (empty($sessionKey)) {
-            $this->writeJson(Status::CODE_UNAUTHORIZED, '', '尚未登入');
+            $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'Not logged in');
             return false;
         }
         $result = $this->getWho()->logout();
         if ($result) {
-            $this->writeJson(Status::CODE_OK, '', "登出成功");
+            $this->writeJson(Status::CODE_OK, '', "exit successfully");
         } else {
             $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'fail');
         }
@@ -798,11 +799,11 @@ class Auth extends AdminBase
 ```
 
 ::: warning
- 可看到,在getAll方法中,有着`@Param(name="account", alias="帐号", required="", lengthMax="20")`的注释,这个是注解支持写法,可写也不可以不写,当写上这个注释之后,将会约束page参数必须是int,具体的验证机制可查看[validate验证器](../HttpServer/validate.md)
+ It can be seen that in the getAll method, there is a comment of `@Param(name="account", alias="account", required="", lengthMax="20")`, this is an annotation support writing method, and can be written as well. Can not write, after writing this comment, will constrain the page parameter must be int, the specific verification mechanism can be viewed [validate validator](../HttpServer/validate.md)
 :::
 
 ::: warning 
-请求127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456  即可返回:
+Request 127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456 to return:
 :::
 
 ```
@@ -810,7 +811,7 @@ class Auth extends AdminBase
     "code": 200,
     "result": {
         "adminId": 1,
-        "adminName": "仙士可",
+        "adminName": "Alan",
         "adminAccount": "xsk",
         "adminSession": "d45de0cd6dd91122db4bd7e976c7deb8",
         "adminLastLoginTime": 1566279458,
@@ -820,8 +821,8 @@ class Auth extends AdminBase
 }
 ```
 
-### 管理员用户管理控制器
-新增 `App/httpController/Api/Admin/User.php` 文件:   
+### Administrator user management controller
+Add the `App/httpController/Api/Admin/User.php` file:
 
 
 ```php
@@ -845,9 +846,9 @@ class User extends AdminBase
 {
     /**
      * getAll
-     * @Param(name="page", alias="页数", optional="", integer="")
-     * @Param(name="limit", alias="每页总数", optional="", integer="")
-     * @Param(name="keyword", alias="关键字", optional="", lengthMax="32")
+     * @Param(name="page", alias="Number of pages", optional="", integer="")
+     * @Param(name="limit", alias="Total number of pages", optional="", integer="")
+     * @Param(name="keyword", alias="Keyword", optional="", lengthMax="32")
      * @author Tioncico
      * Time: 14:01
      */
@@ -863,7 +864,7 @@ class User extends AdminBase
 
     /**
      * getOne
-     * @Param(name="userId", alias="用户id", required="", integer="")
+     * @Param(name="userId", alias="User id", required="", integer="")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -885,11 +886,11 @@ class User extends AdminBase
 
     /**
      * add
-     * @Param(name="userName", alias="用户昵称", optional="", lengthMax="32")
-     * @Param(name="userAccount", alias="用户名", required="", lengthMax="32")
-     * @Param(name="userPassword", alias="用户密码", required="", lengthMin="6",lengthMax="18")
-     * @Param(name="phone", alias="手机号码", optional="", lengthMax="18",numeric="")
-     * @Param(name="state", alias="用户状态", optional="", inArray="{0,1}")
+     * @Param(name="userName", alias="User's Nickname", optional="", lengthMax="32")
+     * @Param(name="userAccount", alias="username", required="", lengthMax="32")
+     * @Param(name="userPassword", alias="user password", required="", lengthMin="6",lengthMax="18")
+     * @Param(name="phone", alias="cellphone number", optional="", lengthMax="18",numeric="")
+     * @Param(name="state", alias="user status", optional="", inArray="{0,1}")
      * @author Tioncico
      * Time: 11:48
      */
@@ -908,11 +909,11 @@ class User extends AdminBase
 
     /**
      * update
-     * @Param(name="userId", alias="用户id", required="", integer="")
-     * @Param(name="userPassword", alias="会员密码", optional="", lengthMin="6",lengthMax="18")
-     * @Param(name="userName", alias="会员名", optional="",  lengthMax="32")
-     * @Param(name="state", alias="状态", optional="", inArray="{0,1}")
-     * @Param(name="phone", alias="手机号", optional="",  lengthMax="18")
+     * @Param(name="userId", alias="User id", required="", integer="")
+     * @Param(name="userPassword", alias="member password", optional="", lengthMin="6",lengthMax="18")
+     * @Param(name="userName", alias="Member name", optional="",  lengthMax="32")
+     * @Param(name="state", alias="status", optional="", inArray="{0,1}")
+     * @Param(name="phone", alias="phone number", optional="",  lengthMax="18")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -927,7 +928,7 @@ class User extends AdminBase
          */
         $userInfo = $model->get();
         if (!$userInfo) {
-            $this->writeJson(Status::CODE_BAD_REQUEST, [], '未找到该会员');
+            $this->writeJson(Status::CODE_BAD_REQUEST, [], 'This member was not found');
         }
         $password = $this->input('userPassword');
         $update = [
@@ -948,7 +949,7 @@ class User extends AdminBase
 
     /**
      * delete
-     * @Param(name="userId", alias="用户id", required="", integer="")
+     * @Param(name="userId", alias="User id", required="", integer="")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -963,7 +964,7 @@ class User extends AdminBase
         if ($rs) {
             $this->writeJson(Status::CODE_OK, $rs, "success");
         } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, [], '删除失败');
+            $this->writeJson(Status::CODE_BAD_REQUEST, [], 'failed to delete');
         }
 
     }
@@ -973,17 +974,17 @@ class User extends AdminBase
 
 
 ::: warning 
-后台管理员登陆之后,可通过此文件的接口,去进行curd会员  
+After the background administrator logs in, you can use the interface of this file to perform the curd member.  
 :::
 
 
 ::: warning 
- 请求地址为: 127.0.0.1:9501/Api/Admin/User/getAll(等方法)  
+ The request address is: 127.0.0.1:9501/Api/Admin/User/getAll (etc.)  
 :::
 
 
-### 普通用户基础控制器定义  
-新增 `App/HttpController/Api/User/UserBase.php` 文件:    
+### Normal user base controller definition  
+Added `App/HttpController/Api/User/UserBase.php` file:  
 
 ```php
 <?php
@@ -1009,9 +1010,9 @@ use EasySwoole\Validate\Validate;
 class UserBase extends ApiBase
 {
     protected $who;
-    //session的cookie头
+    //Session cookie header
     protected $sessionKey = 'userSession';
-    //白名单
+    //whitelist
     protected $whiteList = ['login', 'register'];
 
     /**
@@ -1025,16 +1026,16 @@ class UserBase extends ApiBase
     function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
-            //白名单判断
+            //White list judgment
             if (in_array($action, $this->whiteList)) {
                 return true;
             }
-            //获取登入信息
+            //Get login information
             if (!$data = $this->getWho()) {
-                $this->writeJson(Status::CODE_UNAUTHORIZED, '', '登入已过期');
+                $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'Login has expired');
                 return false;
             }
-            //刷新cookie存活
+            //Refresh cookie survival
             $this->response()->setCookie($this->sessionKey, $data->getUserSession(), time() + 3600, '/');
 
             return true;
@@ -1067,10 +1068,10 @@ class UserBase extends ApiBase
 }
 ```
 
-### 普通用户登录控制器
+### Ordinary user login controller
 
 
-新增 `App/HttpController/Api/User/Auth.php`文件:    
+Added `App/HttpController/Api/User/Auth.php` file:   
 
 
 ```php
@@ -1101,8 +1102,8 @@ class Auth extends UserBase
 
     /**
      * login
-     * @Param(name="userAccount", alias="用户名", required="", lengthMax="32")
-     * @Param(name="userPassword", alias="密码", required="", lengthMin="6",lengthMax="18")
+     * @Param(name="userAccount", alias="username", required="", lengthMax="32")
+     * @Param(name="userPassword", alias="password", required="", lengthMin="6",lengthMax="18")
      * @throws \EasySwoole\ORM\Exception\Exception
      * @throws \Throwable
      * @author Tioncico
@@ -1128,7 +1129,7 @@ class Auth extends UserBase
             $this->response()->setCookie('userSession', $sessionHash, time() + 3600, '/');
             $this->writeJson(Status::CODE_OK, $rs);
         } else {
-            $this->writeJson(Status::CODE_BAD_REQUEST, '', '密码错误');
+            $this->writeJson(Status::CODE_BAD_REQUEST, '', 'wrong password');
         }
     }
 
@@ -1140,12 +1141,12 @@ class Auth extends UserBase
             $sessionKey = $this->request()->getCookieParams('userSession');
         }
         if (empty($sessionKey)) {
-            $this->writeJson(Status::CODE_UNAUTHORIZED, '', '尚未登入');
+            $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'Not signed');
             return false;
         }
         $result = $this->getWho()->logout();
         if ($result) {
-            $this->writeJson(Status::CODE_OK, '', "登出成功");
+            $this->writeJson(Status::CODE_OK, '', "Logout success");
         } else {
             $this->writeJson(Status::CODE_UNAUTHORIZED, '', 'fail');
         }
@@ -1158,12 +1159,12 @@ class Auth extends UserBase
     }
 }
 ```
-访问 127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456  即可登陆成功
+You can log in successfully by accessing 127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456
 
 
 
 ::: warning
-管理员登陆:127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456
-公共请求banner:127.0.0.1:9501/Api/Common/Banner/getAll
-会员登陆:127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456
+Administrator login: 127.0.0.1:9501/Api/Admin/Auth/login?account=xsk&password=123456
+Public request banner:127.0.0.1:9501/Api/Common/Banner/getAll
+Member login: 127.0.0.1:9501/Api/User/Auth/login?userAccount=xsk&userPassword=123456
 :::
