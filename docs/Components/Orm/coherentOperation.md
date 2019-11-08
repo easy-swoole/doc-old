@@ -32,7 +32,7 @@ $getCoherent3 = TestUserListModel::create()->where([$getCoherent1->id, $getCoher
 
 ### 其他**Mysqli**链式操作里的where传参
 
-实现 `EasySwoole\Mysqli\QueryBuilder` 中 where 传参
+ORM where 操作也可以实现 `EasySwoole\Mysqli\QueryBuilder` 中的 where 操作
 
 更多操作还可以查阅**Mysqli**链式操作里的where章节
 
