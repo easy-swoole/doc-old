@@ -1,100 +1,99 @@
 ---
-title: 配置文件
+title: Frame installation
 meta:
   - name: description
-    content: EasySwoole 安装，Composer安装EasySwoole，swoole快速入门
+    content: EasySwoole installation, Composer installation EasySwoole, swoole quick start
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: Easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
 
 
-# 框架安装
 
 
-- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得给我们点个 ***star***
+# Frame installation
+
+
+- [GitHub](https://github.com/easy-swoole/easyswoole)  Leave a star if you like
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
 ::: danger 
-注意事项，请看完再进行安装
+Please pay attention to the installation.
 :::
 
-- 框架使用 `Composer` 作为依赖管理工具，在开始安装框架前，请确保已经按上一章节的要求配置好环境并安装好了`Composer` 工具
-- 关于 Composer 的安装可以参照 [Composer中国全量镜像](https://pkg.phpcomposer.com/#how-to-install-composer) 的安装教程
-- 目前推荐的镜像为阿里云或者梯子拉取源站
-- 在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
-- 安装完成之后，不会自动生成App目录，请自行根据Hello World章节配置
-- 不可把虚拟机共享目录作为安装目录，否则会因为权限不足无法创建socket，产生报错：`listen xxxxxx.sock fail `
-- 共享目录产生以上报错，手动在dev.php配置文件里把Temp目录改为其他路径即可
+- The framework uses `Composer` as the dependency management tool. Before you start installing the framework, make sure you have configured the environment and installed the `Composer` tool as described in the previous section.
+- For the installation of Composer, please refer to the [Composer China Full Mirror] (https://pkg.phpcomposer.com/#how-to-install-composer) installation tutorial.
+- The currently recommended image is Alibaba Cloud or Source Station.
+- During the installation process, the files of the framework will be released to the project directory, please ensure that the project directory has writeable permissions.
+- After the installation is complete, the App directory will not be automatically generated. Please configure it according to the `Hello World` section.
+- Do not use the virtual machine shared directory as the installation directory. Otherwise, the socket cannot be created because of insufficient permissions, and an error is reported: `listen xxxxxx.sock fail `
+- The shared directory generates the above error, manually change the Temp directory to another path in the dev.php configuration file.
 
 
-## 切换阿里云镜像
+## Switch Ali cloud image
 ````
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 ````
-## Composer 安装
+## Composer installation
 
-按下面的步骤进行手动安装
+Follow the steps below to manually install
 
-(建议使用)
+(Recommended)
 ```bash
 composer require easyswoole/easyswoole=3.x
 php vendor/easyswoole/easyswoole/bin/easyswoole install
 ```
 
-
-或者(可能出错)
+Or (may be wrong)
 ```bash
 composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
 
-## 启动框架
+## Start frame
 
-中途没有报错的话，执行：
+If there is no error in the middle, you can execute:
 ```bash
-# 启动框架
+# Start frame
 php easyswoole start
 ```
-此时可以访问 `http://localhost:9501` 看到框架的欢迎页面，表示框架已经安装成功
+At this point you can visit `http://localhost:9501` to see the welcome page of the framework, indicating that the framework has been successfully installed.
 
 
 ## Docker
 
-[Easyswoole官方docker](docker.md)
+[Easyswoole official docker](docker.md)
 
 
 ::: warning 
- docker 知识请自行学习
+ Docker knowledge, please learn by yourself
 :::
 
-## 其他
-
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+## other
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
-- 作者微信
+    - EMAIL admin@fosuss.com   
+- Author WeChat
 
-     ![](/resources/authWx.png)
+    ![](/resources/authWx.png)    
     
-- [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
+  - Continuous and in-depth development
+  - Document and community construction and maintenance
 
 <script>
   export default {
     mounted () {
         if(localStorage.getItem('isNew') != 1){
             localStorage.setItem('isNew',1);
-            layer.confirm('是否给EasySwoole点个赞',function (index) {
-                 layer.msg('感谢您的支持');
+            layer.confirm('Do you like the EasySwoole?',function (index) {
+                 layer.msg('thank you for your support');
                      setTimeout(function () {
                          window.open('https://github.com/easy-swoole/easyswoole');
                   },1500);

@@ -1,119 +1,118 @@
 ---
-title: 开发者必读
+title: Developer reading
 meta:
   - name: description
-    content: easyswoole开发者必读,注意事项,进程隔离,协程问题
+    content: Easyswoole developers read, notes, process isolation, coroutine issues
   - name: keywords
-    content: easyswoole|Swoole开发注意事项
+    content: Easyswoole|Swoole development considerations
 ---
-# 开发者必读
 
-- [GitHub](https://github.com/easy-swoole/easyswoole)  喜欢记得点个 ***star***
+# Developer reading
+
+- [GitHub](https://github.com/easy-swoole/easyswoole)  Leave a star if you like
 - [GitHub for Doc](https://github.com/easy-swoole/doc)
 
-## 社区答疑
+## Community Q & A
 
-- QQ交流群 
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group 
+    - VIP group 579434607 (this group needs to pay 599 RMB)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
 
-- 商业支持：
+- Commercial support:
     - QQ 291323003
     - EMAIL admin@fosuss.com
       
-## 注意事项
-- 不要在代码中执行sleep以及其他睡眠函数，这样会导致整个进程阻塞
-    exit/die是危险的，会导致worker进程退出
-- 可通过register_shutdown_function来捕获致命错误，在进程异常退出时做一些请求工作。
-- PHP代码中如果有异常抛出，必须在回调函数中进行try/catch捕获异常，否则会导致工作进程退出
-- swoole不支持set_exception_handler，必须使用try/catch方式处理异常
-- 在控制器中不能写共享Redis或MySQL等网络服务客户端连接的逻辑,每次访问控制器都必须new一个连接
+## Precautions
+- Don't execute sleep and other sleep functions in your code, which will cause the entire process to block.
+    Exit/die is dangerous and will cause the worker process to exit
+- Fatal error can be caught by register_shutdown_function. Do some request work when the process exits abnormally.
+- If there is an exception thrown in the PHP code, the TRY/CATCH capture exception must be made in the callback function, otherwise the worker process will exit.
+- Swoole does not support set_exception_handler, you must use try/catch to handle exceptions.
+- You can't write the logic of sharing network service client connections such as Redis or MySQL in the controller. Every time you access the controller, you must connect a new one.
 
-## 类/函数重复定义
+## Class/function repeat definition
 
-- 新手非常容易犯这个错误，由于easySwoole是常驻内存的，所以加载类/函数定义的文件后不会释放。因此引入类/函数的php文件时必须要使用include_once或require_once，否会发生cannot redeclare function/class 的致命错误。
+- It is very easy for novices to make this mistake. Since easySwoole is resident in memory, it will not be released after loading the class/function definition file.Therefore, you must use include_once or require_once when importing php files of classes/functions. Otherwise a fatal error of cannot redeclare function/class will occur.
 
 ::: warning
-建议使用composer 做自动加载
+It is recommended to use composer for automatic loading.
 :::
 
 
-## 进程隔离与内存管理
+## Process isolation and memory management
 
-进程隔离也是很多新手经常遇到的问题。修改了全局变量的值，为什么不生效，原因就是全局变量在不同的进程，内存空间是隔离的，所以无效。  
-所以使用easySwoole开发Server程序需要了解进程隔离问题。
+Process isolation is also a problem that many newcomers often encounter. Modified the value of the global variable, why it does not take effect, the reason is that the global variable is in a different process, the memory space is isolated, so it is invalid.  
+So using the easySwoole development server program needs to understand the process isolation problem.
 
-- 不同的进程中PHP变量不是共享，即使是全局变量，在A进程内修改了它的值，在B进程内是无效的，如果需要在不同的Worker进程内共享数据，可以用Redis、MySQL、文件、Swoole\Table、APCu、shmget等工具实现Worker进程内共享数据
+- In different processes, the PHP variable is not shared. Even if it is a global variable, its value is modified in the A process. It is invalid in the B process. If you need to share data in different Worker processes, you can use Redis, MySQL, and files, Swoole\Table, APCu, shmget and other tools to achieve shared data within the Worker process
 
-- 不同进程的文件句柄是隔离的，所以在A进程创建的Socket连接或打开的文件，在B进程内是无效，即使是将它的fd发送到B进程也是不可用的。(句柄不能进程共享)
+- The file handles of different processes are isolated, so the Socket connection or open file created in the A process is invalid in the B process, even if it is sent to the B process is not available. (handles cannot be shared by the process)
 
-- 进程克隆。在Server启动时，主进程会克隆当前进程状态，此后开始进程内数据相互独立，互不影响。有疑问的新手可以先弄懂php的pcntl
+- Process clone. When the server starts, the main process will clone the current process state. After that, the in-process data will be independent of each other and will not affect each other. Novice newcomers can understand php's pcntl
 
-### easyswoole中对象的4层生命周期
+### 4-layer life cycle of objects in easyswoole
 
-开发swoole程序与普通LAMP下编程有本质区别。在传统的Web编程中，PHP程序员只需要关注request到达，request结束即可。而在swoole程序中程序员可以操控更大范围，变量/对象可以有四种生存周期。
+The development of the swoole program is fundamentally different from normal LAMP programming. In traditional Web programming, PHP programmers only need to pay attention to the request arrival, and the request ends. In the swoole program, the programmer can control a larger range, and variables/objects can have four life cycles.
 
 ::: warning  
-变量、对象、资源、require/include的文件等下面统称为对象
+Variables, objects, resources, require/include files, etc. are collectively referred to below as objects.
 :::
 
-#### 程序全局期
+#### Program global period
 
-在 `EasySwooleEvent.php`的`bootstrap`,和`initialize`和中创建好的对象，我们称之为程序全局生命周期对象。这些变量只要没有被作用域销毁,就会在程序启动后就会一直存在，直到整个程序结束运行才会销毁。
+Create a good object in `bootstrap` and `initialize` of `EasySwooleEvent.php`, which we call the program global lifecycle object. As long as these variables are not destroyed by the scope, they will persist after the program starts, and will not be destroyed until the entire program finishes running.
 
-有一些服务器程序可能会连续运行数月甚至数年才会关闭/重启，那么程序全局期的对象在这段时间持续驻留在内存中的。程序全局对象所占用的内存是Worker进程间共享的，不会额外占用内存。  
-例如:
+Some server programs may run for months or even years to shut down/restart, and the objects in the program's global period continue to reside in memory during this time. The memory occupied by the program global object is shared between the Worker processes and does not occupy additional memory.
+E.g:
+- `Initialize` the use of Di to inject an object, then after the program starts, the controller of the easyswoole or other places can directly call this object through Di.
+- Introduce a file `test.php` in `bootstrap.php` that defines a static variable that can be called by the controller of easyswoole or elsewhere.
 
-- 在`initialize`使用Di注入一个对象,那么在程序开始之后,easyswoole的控制器中,或者其他地方都可以通过Di 直接调用这个对象
-- 在`bootstrap.php`中引入一个文件`test.php`,该文件定义了一个静态变量,那么easyswoole的控制器,或者其他地方都可以调用这个静态变量
-
-这部分内存会在写时分离（COW），在Worker进程内对这些对象进行写操作时，会自动从共享内存中分离，变为进程全局对象。
-例如:
-- 在`initialize`使用Di注入一个对象,并在用户A访问控制器时修改了这个对象的属性,那么其他用户访问控制器的时候,获取这个对象属性时,可能是未改变的状态(因为不同用户访问的控制器所在的进程不同,其他进程不会修改到这个变,所以需要注意这个问题)
-- 在`bootstrap.php`中引入一个文件`test.php`,该文件定义了一个静态变量$a=1,用户A访问控制器时修改了变量$a=2,可能在其他用户访问时,依然还是$a=1的状态
+This part of the memory will be separated when writing(COW). When these objects are written in the Worker process, they are automatically separated from the shared memory and become process global objects.
+E.g:
+- In the `initialize`, use Di to inject an object, and modify the properties of the object when user A accesses the controller. When other users access the controller, the object property may be unchanged when it is accessed (because different users The process of accessing the controller is different, other processes will not modify this change, so you need to pay attention to this problem)
+- Introduce a file `test.php` in `bootstrap.php`, which defines a static variable $a=1. User A changes the variable $a=2 when accessing the controller, possibly while other users are accessing it. Still the state of $a=1
 
 ::: warning 
-程序全局期include/require的代码，必须在整个程序shutdown时才会释放，reload无效
+The code of the program global include/require must be released when the entire program is shutdown, reload is invalid.
 :::
 
-#### 进程全局期
-swoole拥有进程生命周期控制的机制,
-Worker进程启动后创建的对象（onWorkerStart中创建的对象或者在控制器中创建的对象），在这个子进程存活周期之内，是常驻内存的。  
-例如:
-- 程序全局生命周期对象被控制器修改之后,该对象会复制一份出来到控制器所属的进程,这个对象只能被这个进程访问,其他进程访问的依旧是全局对象.
-- 给服务注册`onWorkerStart`事件时(在`EasySwooleEvent.php`中的`mainServerCreate`事件中创建)时创建的对象,只会该worker进程才能获取到.
+#### Process global period
+Swoole has a mechanism for process lifecycle control. Objects created after the worker process is started (objects created in onWorkerStart or objects created in the controller) are resident memory within the lifetime of this child process.
+ 
+E.g:
+- After the program global lifecycle object is modified by the controller, the object will be copied out to the process to which the controller belongs. This object can only be accessed by this process, and other processes still access the global object.
+- The object created when the service registers the `onWorkerStart` event (created in the `mainServerCreate` event in `EasySwooleEvent.php`), only the worker process can get it.
 
 
 ::: warning 
-进程全局对象所占用的内存是在当前子进程内存堆的，并非共享内存。对此对象的修改仅在当前Worker进程中有效
-进程期include/require的文件，在reload后就会重新加载
+The memory occupied by the process global object is in the current child process, not shared memory. The modification of the object is only valid in the current Worker process. The process include/required files will be reloaded after reload.
 :::
 
-#### 会话期
+#### Session period
 
-会话期是在onConnect后创建，或者在第一次onReceive时创建，onClose时销毁。一个客户端连接进入后，创建的对象会常驻内存，直到此客户端离开才会销毁。  
-
-
-在LAMP中，一个客户端浏览器访问多次网站，就可以理解为会话期。但传统PHP程序，并不能感知到。只有单次访问时使用session_start，访问$_SESSION全局变量才能得到会话期的一些信息。
-
-swoole中会话期的对象直接是常驻内存，不需要session_start之类操作。可以直接访问对象，并执行对象的方法。
-
-#### 请求期
-
-请求期就是指一个完整的请求发来，也就是onReceive收到请求开始处理，直到返回结果发送response。这个周期所创建的对象，会在请求完成后销毁。
+The session is created after onConnect, or it is created on the first onReceive and destroyed on onClose. After a client connection comes in, the created object will be resident in memory until the client leaves. 
 
 
-swoole中请求期对象与普通PHP程序中的对象就是一样的。请求到来时创建，请求结束后销毁。
+In LAMP, a client browser accessing multiple websites can be understood as a session period. But traditional PHP programs don't perceive sessions. Only use session_start for a single access, access the $_SESSION global variable to get some information about the session.
+
+The object in the session period of swoole is directly resident memory, and does not require operations such as session_start. You can access the object directly and execute the method of the object.
+
+#### Request period
+
+The request period means that a complete request is sent, that is, `onReceive` receives the request and starts processing until the result is returned and the response is sent. Objects created during this cycle are destroyed after the request is completed.
 
 
-#### swoole_server中内存管理机制
+The request period object in swoole is the same as the object in the normal PHP program. Created when the request arrives, and destroyed after the request ends.
 
-swoole_server启动后内存管理的底层原理与普通php-cli程序一致。具体请参考Zend VM内存管理方面的文章。
 
-#### 局部变量
+#### Memory management mechanism in swoole_server
 
-在事件回调函数返回后，所有局部对象和变量会全部回收，不需要unset。如果变量是一个资源类型，那么对应的资源也会被PHP底层释放。
+The underlying principle of memory management after `swoole_server` startup is consistent with the normal `php-cli` program. Please refer to the `Zend VM` memory management article for details.
+
+#### Local variable
+
+After the event callback function returns, all local objects and variables are reclaimed, no `unset` is required. If the variable is a resource type, the corresponding resource will also be released by the underlying PHP.
 
 ```php
 function test()
@@ -127,18 +126,17 @@ function test()
 }
 
 ```
-$a, $b, $c 都是局部变量，当此函数return时，这3个变量会立即释放，对应的内存会立即释放，打开的IO资源文件句柄会立即关闭。
-$d 也是局部变量，但是return前将它保存到了全局变量$e，所以不会释放。当执行unset($e['client'])时，并且没有任何其他PHP变量仍然在引用$d变量，那么$d 就会被释放。
+`$a, $b, $c` are all local variables. When this function returns, these 3 variables will be released immediately, the corresponding memory will be released immediately, and the open IO resource file handle will be closed immediately. `$d` is also a local variable, but it is saved to the global variable $e before return, so it will not be released. When `unset($e['client'])` is executed and no other PHP variables are still referencing the $d variable, `$d` will be released.
 
-#### 全局变量
+#### Global variable
 
-在PHP中，有3类全局变量。
+In PHP, there are three types of global variables.
 
-- 使用global关键词声明的变量
-- 使用static关键词声明的类静态变量、函数静态变量
-- PHP的超全局变量，包括$_GET、$_POST、$GLOBALS等
+- Variable declared with the `global` keyword
+- Class static variables, function static variables declared using the `static` keyword
+- PHP super global variables, including `$_GET, $_POST, $GLOBALS` etc.
 
-全局变量和对象，类静态变量，保存在swoole_server对象上的变量不会被释放。需要程序员自行处理这些变量和对象的销毁工作。
+Global variables and objects, class static variables, variables stored on the swoole_server object are not released. The programmer needs to handle the destruction of these variables and objects.
 
 ```php
 class Test
@@ -154,22 +152,22 @@ function onReceive($serv, $fd, $reactorId, $data)
 }
 ```
 
-- 在事件回调函数中需要特别注意非局部变量的array类型值，某些操作如 TestClass::$array[] = "string" 可能会造成内存泄漏，严重时可能发生爆内存，必要时应当注意清理大数组。
-- 在事件回调函数中，非局部变量的字符串进行拼接操作是必须小心内存泄漏，如 TestClass::$string .= $data，可能会有内存泄漏，严重时可能发生爆内存。
+- In the event callback function, you need to pay special attention to the array type value of non-local variables. Some operations such as `TestClass::$array[] = "string"` may cause memory leaks. In severe cases, memory may burst. If necessary, you should pay attention to clean up `Array`.
+- In the event callback function, the string concatenation of non-local variables must be careful with memory leaks, such as `TestClass::$string .= $data`, there may be memory leaks, and in severe cases, burst memory may occur.
 
-解决方法
-- 同步阻塞并且请求响应式无状态的Server程序可以设置max_request，当Worker进程/Task进程结束运行时或达到任务上限后进程自动退出。该进程的所有变量/对象/资源均会被释放回收。
-- 程序内在onClose或设置定时器及时使用unset清理变量，回收资源
+Solution
+- The synchronous blocking and requesting responsive stateless server program can set `max_request`, and the process automatically exits when the `Worker Process/Task Process` ends running or reaches the upper limit of the task. All variables/objects/resources of the process are released for recycling.
+- In the program `onClose` or set the timer to use `unset` to clean up variables in time, recycle resources
 
 
 ::: warning 
-内存管理部分参照了swoole官方文档。
+The memory management section refers to the official swoole documentation.
 :::
 
-## 约定规范
+## Convention specification
 
-- 项目中类名称与类文件(文件夹)命名，均为大驼峰，变量与类方法为小驼峰。
-- 在HTTP响应中，于业务逻辑代码中echo $var 并不会将$var内容输出至相应内容中，请调用Response实例中的wirte()方法实现。
+- The class name and class file (folder) are named in the project, both are `upper camel case`, and the variable and class method is `lower camel case`.
+- In the `HTTP` response, `echo $var` does not output the $var content to the corresponding content in the business logic code. Please call the `wirte()` method in the `Response` instance.
 
 <script>
   export default {

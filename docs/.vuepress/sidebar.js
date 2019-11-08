@@ -219,6 +219,7 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
                             ['/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
+                            ['/Components/Orm/DefineModel/timestamp', '自动时间戳'],
                         ]
                     },
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
@@ -412,7 +413,8 @@ const sidebarCn = [
                     ['/Components/Sundries/str', 'Str'],
                     ['/Components/Sundries/time', 'Time']
                 ]
-            }
+            },
+            ['/Components/smtp', 'Smtp']
         ]
     },
     {
@@ -701,6 +703,7 @@ const sidebarEn = [
             children: [
               ['/En/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
               ['/En/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
+              ['/En/Components/Orm/DefineModel/timestamp', '时间戳'],
             ]
           },
           ['/En/Components/Orm/customSqlExecution', '自定义SQL执行'],
