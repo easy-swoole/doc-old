@@ -11,8 +11,7 @@ meta:
 
 ## CLI独立测试(注意命名空间以及自动加载引入)
 
-4.0.6版本后
-
+4.0.6版本后([demo](https://github.com/HeKunTong/rpc))
 
 ````php
 <?php
@@ -55,7 +54,7 @@ go(function () use ($rpc) {
 ````
 
 
-4.0.6版本前
+4.0.6版本前([demo](https://github.com/HeKunTong/rpc4.0.5))
 
 ````php
 <?php
