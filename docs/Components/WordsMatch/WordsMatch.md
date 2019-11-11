@@ -204,35 +204,34 @@ public function setWordsMatchPath(string $path): WordsMatchServer
 
 ### WordsMatchClient
 
-向字典树中添加敏感词
+添加敏感词
 ```
 public function append($word, array $otherInfo=[], float $timeout = 1.0)
 ```
-::: warning 
-添加一次各进程间会自动同步
-:::
 
-向字典树中移除敏感词
+移除敏感词
 ```
 public function remove($word, float $timeout = 1.0)
 ```
-::: warning 
-添加一次各进程间会自动同步
-:::
 
 检测内容
+
+`第二个参数默认无过滤，如果下面三种方式满足不了需求，可自行过滤。`
+
+`Package::FILTER_CEN`(只保留中文、英文、数字)
+
+`Package::FILTER_C`(只保留中文)
+
+`Package::FILTER_EMOJI`(过滤掉表情)
+
 ```
-public function search($word, float $timeout = 1.0)
+public function search(string $word, int $type, float $timeout=1.0);
 ```
 
 导入词库，此方法可以将新词库追加到正在运行的字典树中也可以覆盖字典树，这样就可以做到实时的词库切换
 ```
 public function import($fileName, $separator=',', $isCover=false, float $timeout=1.0)
 ```
-::: warning 
-导入词库后各进程会同步
-:::
-
 
 导出词库，此方法可以将字典树正在运行中的敏感词落地到文件中
 ```

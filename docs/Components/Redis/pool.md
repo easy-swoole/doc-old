@@ -8,11 +8,14 @@ meta:
 ---
 # Redis连接池示例
 ## redis-pool组件
-可直接安装[redis-pool组件](../redisPool.md)实现连接池:
+可直接安装[redis-pool组件](../redisPool.md)实现连接池: 
 
 ```shell
 composer require easyswoole/redis-pool
-```
+```  
+::: warning
+通过引入redis-pool组件,直接实现连接池,具体用法可查看[redis-pool组件](../redisPool.md)
+:::
 
 
 ## 安装 easyswoole/pool 组件自定义实现:
@@ -21,7 +24,7 @@ composer require easyswoole/redis-pool
 composer require easyswoole/pool
 ```
 
-## 新增redisPool管理器
+### 新增redisPool管理器
 新增文件`/App/Pool/RedisPool.php`
 
 ```php

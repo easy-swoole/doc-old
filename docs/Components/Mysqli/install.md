@@ -1,5 +1,3 @@
-# Mysqli
-
 ---
 title: Mysqli组件
 meta:
@@ -8,7 +6,7 @@ meta:
   - name: keywords
     content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
 ---
-
+# Mysqli
 
 ## 安装
 
