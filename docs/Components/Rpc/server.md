@@ -45,11 +45,9 @@ UserService类中serviceName定义当前得服务名字，register方法其实�
 
 Easyswoole中的rpc包已经写好了节点管理器，具体可以看```php EasySwoole\Rpc\NodeManager```实现方式。
 
-4.0.6版本后需要传redis连接池的方式。
+4.0.6版本后需要传redis连接池的方式，如果您得项目需要考虑到redis集群方式，可以参考[redis集群文档](../Redis/cluster.md)。
 
 4.0.6版本前需要传redis主机端口密码等参数。
-
-如果您得项目需要考虑到redis集群方式，可以参考[redis集群文档](../Redis/cluster.md)。
 
 
 # 服务端
