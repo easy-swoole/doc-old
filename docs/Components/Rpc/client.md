@@ -8,15 +8,20 @@ meta:
 ---
 
 # 客户端
+
 ## CLI独立测试(注意命名空间以及自动加载引入)
+
+4.0.6版本后([demo](https://github.com/HeKunTong/rpc))
+
 ````php
 <?php
 /**
  * Created by PhpStorm.
- * User: xcg
- * Date: 2019/5/30
- * Time: 9:19
+ * User: root
+ * Date: 19-10-14
+ * Time: 上午10:34
  */
+
 require_once 'vendor/autoload.php';
 
 use EasySwoole\Rpc\Config;
@@ -24,15 +29,58 @@ use EasySwoole\Rpc\Rpc;
 use EasySwoole\Rpc\NodeManager\RedisManager;
 use EasySwoole\Rpc\Response;
 
-//cli模拟，跨进程，重新new rpc对象
+$redisPool = new \EasySwoole\RedisPool\RedisPool(new \EasySwoole\Redis\Config\RedisConfig([
+    'host' => '127.0.0.1'
+]));
+$manager = new RedisManager($redisPool);
+
 $config = new Config();
-$nodeManager = new RedisManager('127.0.0.1');
-$config->setNodeManager($nodeManager);
+$config->setNodeManager($manager);
 $rpc = new Rpc($config);
 
 go(function () use ($rpc) {
     $client = $rpc->client();
-    $client->addCall('UserService', 'register', ['arg1', 'arg2'])
+    $client->addCall('user', 'register', ['arg1', 'arg2'])
+        ->setOnFail(function (Response $response) {
+            print_r($response->toArray());
+        })
+        ->setOnSuccess(function (Response $response) {
+            print_r($response->toArray());
+        });
+
+    $client->exec();
+});
+
+````
+
+
+4.0.6版本前([demo](https://github.com/HeKunTong/rpc4.0.5))
+
+````php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: root
+ * Date: 19-10-14
+ * Time: 上午10:34
+ */
+
+require_once 'vendor/autoload.php';
+
+use EasySwoole\Rpc\Config;
+use EasySwoole\Rpc\Rpc;
+use EasySwoole\Rpc\NodeManager\RedisManager;
+use EasySwoole\Rpc\Response;
+
+$manager = new RedisManager('127.0.0.1');
+
+$config = new Config();
+$config->setNodeManager($manager);
+$rpc = new Rpc($config);
+
+go(function () use ($rpc) {
+    $client = $rpc->client();
+    $client->addCall('user', 'register', ['arg1', 'arg2'])
         ->setOnFail(function (Response $response) {
             print_r($response->toArray());
         })
