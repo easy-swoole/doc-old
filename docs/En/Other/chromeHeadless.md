@@ -4,37 +4,37 @@ meta:
   - name: description
     content: easyswoole,Chrome Headless
   - name: keywords
-    content: easyswoole|Chrome Headless|无界面浏览器|chrome无界面
+    content: easyswoole|Chrome Headless|No interface browser | chrome no interface
 ---
 ## Chrome Headless
-## 什么是Chrome Headless
-Headless Chrome 是 Chrome 浏览器的无界面形态，可以在不打开浏览器的前提下，使用所有 Chrome 支持的特性运行你的程序,简而言之，除了没有图形界面，headless chrome具有所有现代浏览器的特性，可以像在其他现代浏览器里一样渲染目标网页，并能进行网页截图，获取cookie，获取html等操作。
-而对于写爬虫的同学，很多都会面临都一个问题，那就是数据都是通过动态渲染，甚至是加密得到的，普通的分析接口模式早已无法满足需求，因此我们引入Chrome Headless 来解决数据渲染问题。
+## What is Chrome Headless
+Headless Chrome is Chrome's no-interface form that lets you run your programs with all Chrome-supported features without opening your browser. In short, headless chrome has all modern browsers except for no graphical interface. Features, can render the target page as in other modern browsers, and can take screenshots, get cookies, get html and other operations.
+For the students who write reptiles, many of them will face a problem, that is, the data is obtained through dynamic rendering or even encryption. The common analytic interface mode can no longer meet the demand, so we introduce Chrome Headless to solve the data rendering problem.
 
-## 部署 Chrome Headless
-因为环境部署不是本文的重点，因此我们直接推荐docker。
+## Deploy Chrome Headless
+Because environment deployment is not the focus of this article, we recommend docker directly.
 ```
 docker pull alpeware/chrome-headless-trunk
 docker run -d -p 9222:9222 alpeware/chrome-headless-trunk
 ```
 
-访问debug 地址即可得到接口信息
+Access the debug address to get the interface information
 ```
 curl http://{HOST}:9222/josn
 ```
 
 ::: warning 
-以下例子中，{HOST}定义的IP主机响
+In the following example, the IP host defined by {HOST} rings.
 :::
 
 
-## 驱动Chrome Headless
+## Drive Chrome Headless
 
-Chrome Headless 可以通过websocket协议进行远程驱动debug。首先我们引入easyswoole的websocket客户端。
+Chrome Headless can remotely drive debug via the websocket protocol. First we introduce the websocket client of easyswoole.
 ```php
 composer require easyswoole/http-client
 ```
-我们以网站 https://datacenter.jin10.com/price 为例子，我们打开可以发现，里面的数据都是通过websocket实时刷新的，这个时候，通过传统手段抓接口的手段，是很难实现的。模拟实现如下：
+We take the website https://datacenter.jin10.com/price as an example. We can find out that the data in it is refreshed in real time through websocket. At this time, the means of grasping the interface by traditional means is difficult to achieve. The simulation is implemented as follows:
 
 ```php
 use EasySwoole\HttpClient\HttpClient;
@@ -43,7 +43,7 @@ use Swoole\WebSocket\Frame;
 
 static $i = 0;
 
-//定义命令bean,具体协议格式可以看 Chrome Headless 文档
+//Define the command bean. The specific protocol format can be seen in the Chrome Headless document.
 
 class Command extends SplBean{
     protected $method;
@@ -58,7 +58,7 @@ class Command extends SplBean{
         }
     }
 }
-//用websocket协议去驱动Chrome Headless
+//Use the websocket protocol to drive Chrome Headless
 go(function (){
     $targetUrl = 'https://datacenter.jin10.com/price';
     $ch = curl_init('http://{HOST}:9222/json');
@@ -66,7 +66,7 @@ go(function (){
     $data = json_decode( curl_exec($ch) ,true);
     $client = new HttpClient($data[0]['webSocketDebuggerUrl']);
     if($client->upgrade()){
-        //打开URL
+        //Open URL
         $command = new Command([
             'method'=>'Page.navigate',
             'params'=>[
@@ -75,9 +75,9 @@ go(function (){
         ]);
         $client->getClient()->push($command->__toString());
         $client->recv(1);
-        //模拟等待渲染
+        //Simulation waiting for rendering
         \co::sleep(2);
-        //实现 js 语句
+        //Implement the js statement
         $command = new Command([
             'method'=>'Runtime.evaluate',
             'params'=>[
@@ -85,7 +85,7 @@ go(function (){
             ]
         ]);
         $client->getClient()->push($command->__toString());
-        //此处就可以得到渲染后的数据了
+        //Here you can get the rendered data.
         $data = json_decode($client->recv()->data,true)['result']['result']['value'];
         var_dump($data);
 
@@ -97,6 +97,6 @@ go(function (){
 ```
 
 ::: warning 
-以上教程仅供学习之用，请勿用于非法用途
+The above tutorial is for learning purposes only, please do not use it for illegal purposes.
 :::
 

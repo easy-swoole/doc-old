@@ -1,16 +1,16 @@
 ---
-title: CURL SSL错误
+title: CURL SSL error
 meta:
   - name: description
-    content: easyswoole,CURL SSL错误
+    content: Easyswoole, CURL SSL error
   - name: keywords
-    content: easyswoole|CURL SSL错误
+    content: Easyswoole|CURL SSL error
 ---
-## CURL SSL错误
-在低版本的CURL中，若在服务启动前执行CURL一个ssl连接  那么此后在回调函数内再次执行该curl，会报错：
- A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot.
- 若不在服务启动前执行CURL SSL连接，则不报错。
-## 相关代码
+## CURL SSL error
+In the lower version of CURL, if the CURL is executed before the service is started, an ssl connection is executed. Then, after executing the curl again in the callback function, an error will be reported:
+ `A PKCS #11 module returned CKR_DEVICE_ERROR, indicating that a problem has occurred with the token or slot.`
+ If the CURL SSL connection is not executed before the service is started, no error is reported.
+## Related code
 ```php
 $a = function (){
     $ch = curl_init("https://www.baidu.com");
@@ -41,13 +41,13 @@ if(pcntl_fork()){
 
 ```
 ::: warning 
-swoole中同理。
+The same is true in swoole.
 :::
 
 
-## 解决方案
-更新libcurl至最新的7.5.x,并重新编译php curl拓展。
-查看拓展版本：
+## solution
+Update libcurl to the latest 7.5.x and recompile php curl extension.
+View the expanded version:
 ```
 php --ri curl
 ```

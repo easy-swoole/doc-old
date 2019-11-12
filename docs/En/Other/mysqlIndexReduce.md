@@ -1,20 +1,20 @@
 ---
-title: Mysql索引降维
+title: Mysql index dimension reduction
 meta:
   - name: description
-    content: easyswoole,Mysql索引降维
+    content: easyswoole,Mysql index dimension reduction
   - name: keywords
-    content: easyswoole|Mysql索引降维
+    content: easyswoole|Mysql index dimension reduction
 ---
-## Mysql索引降维
-很多人都知道，mysql有索引这个概念，但是却很少去较真，如何利用索引去对数据降维，以提高查询速度。
+## Mysql index dimension reduction
+Many people know that mysql has the concept of indexing, but it rarely goes to the truth. How to use indexes to reduce the dimension of data to improve the query speed.
 
-举个常见的场景，那就是用户日志（订单），例如，在中国移动的通话记录系统中，需要记录
-呼出手机号，被呼号码和呼出时间，而在该系统中，最常见或用的最多的需求，就是查询某个用户在某个时间段内的通话记录。我们做出以下数据特征模拟：
+A common scenario is the user log (order), for example, in China Mobile's call recording system, which needs to be recorded.
+The phone number, the called number and the outgoing time are called out, and in the system, the most common or used most demand is to query the call history of a certain user within a certain period of time. We made the following data feature simulation:
 
-- 一个月内，有一万个账户，每天打出三万通话记录。
+- Within a month, there are 10,000 accounts, and 30,000 call records are made every day.
 
-数据模拟生成代码：
+Data simulation generated code:
 ```php
 <?php
 
@@ -35,7 +35,7 @@ function generateTimeList(int $startTime,$max = 30000)
 {
     $list = [];
     for ($i=0;$i<=$max;$i++){
-        //模拟从早上7点到凌晨
+        //Simulation from 7 am to early morning
         $t = mt_rand(
             25200,86400
         );
@@ -48,7 +48,7 @@ function generateTimeList(int $startTime,$max = 30000)
 $config = \EasySwoole\EasySwoole\Config::getInstance()->getConf('MYSQL');
 $db = new \App\Utility\Pools\MysqlPoolObject($config);
 $phoneList = generatePhoneList();
-//模拟一个月的时间数据
+//Simulate one month's time data
 $start = strtotime('20180101');
 //
 for ($i = 0; $i<=30; $i++){
@@ -67,51 +67,51 @@ for ($i = 0; $i<=30; $i++){
 }
 ```
 ::: warning 
-在本次讲解中，以数据量50万为例子，懒得等数据生成。phone，callTime为索引字段。
+In this explanation, taking the data volume of 500,000 as an example, I am too lazy to wait for data generation. Phone, callTime is the index field.
 :::
 
 
 
-## 需求
-查询某个时间段内某个账户的全部通话记录。
-那么此刻，很多人可能就直接写：
+## Demand
+Query all call records for an account within a certain period of time.
+So at this moment, many people may write directly:
 ```
 SELECT * FROM test.user_phone_record where callTime >=  1514768050 and  callTime <= 1514871213 and  phone = 15587575857;
 ```
-以上语句在我的测试机中执行了0.26s，但是，若我调整一下where 的顺序：
+The above statement executed 0.26s in my test machine, but if I adjust the order of where:
 ```
 SELECT * FROM test.user_phone_record where phone = 15587575857 and callTime >=  1514768050 and  callTime <= 1514871213 ;
 ```
-那么久仅仅需要0.1s，节约了一半的时间。那么这两个看起来差不多的语句，为啥执行的时间不一样呢。
+It only takes 0.1s for a long time, saving half the time. Then these two seemingly similar statements are not the same for the execution time.
 
-## 直观解释
+## Intuitive interpretation
 
-首先，我们分别执行两个sql并查看结果(别说为啥不用explain和profiling解释，只想给你们最直观的解释)。
+First, we execute two sql and view the results separately (don't say why not explain and explain), just want to give you the most intuitive explanation.
 
 ::: warning 
 ```
  SELECT count(*) FROM test.user_phone_record where phone = 15587575857 
 ```
-结果为15条记录。
+The result was 15 records.
 ```
 SELECT count(*) FROM test.user_phone_record where callTime >=  1514768050 and  callTime <= 1514871213 
 ```
-结果为76491条记录。
+The result was 76,491 records.
 :::
 
 
-那么最直观的解释来了：先where callTime再where phone，那么mysql做的事情就是：
-先找出76491条记录，再从76491条记录中找出account为15587575857的记录。同理，先where phone，再筛选时间，肯定是更加快的了。
+Then the most intuitive explanation comes: first where callTime and then where phone, then what mysql does is:
+First find 76,491 records, and then find the record with an account of 15587575857 from 76,491 records. In the same way, the first where phone, and then the screening time, is definitely faster.
 
 
-## 为什么会这样？
-这是和特定的数据结构与场景才可以这样去调优的，由前提条件：
+## Why is this happening?
+This is the same as the specific data structure and scene can be tuned by the preconditions:
 
-- 一个月内，有一万个账户，每天打出三万通话记录
+- Within one month, there are 10,000 accounts, and 30,000 call records are made every day.
 
-可知，单用户的通话频度不高，因此，先定位phone索引集再排除时间的搜索方式，肯定比先定时间再定账户的效率高。
+It can be seen that the frequency of a single user's call is not high. Therefore, the search method of locating the phone index set and then excluding the time is definitely more efficient than setting the account at a predetermined time.
 
 ::: warning 
-注意，这是特定场景！！！具体请以explain与profiling去分析，MYSQL的执行解释器，没有这么简单。
+Note that this is a specific scene! ! ! Specifically, please use explain and profiling to analyze, MYSQL execution interpreter, not so simple.
 :::
 
