@@ -460,6 +460,7 @@ const sidebarCn = [
                     ['/Components/Rpc/client', '客户端'],
                     ['/Components/Rpc/otherPlatform', '跨语言'],
                     ['/Components/Rpc/registerCenter', '服务注册中心'],
+                    ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
             ['/Components/consul', 'Concul客户端'],
