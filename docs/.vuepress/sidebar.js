@@ -388,6 +388,7 @@ const sidebarCn = [
                 ]
             },
             ['/Components/tracker', '链路追踪'],
+            ['/Components/hotReload', '热重载监视器'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
