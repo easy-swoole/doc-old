@@ -1,13 +1,13 @@
 ---
-title: Trait与单例
+title: Trait and singleton
 meta:
   - name: description
-    content: easyswoole,Trait与单例
+    content: Easyswoole, Trait and singleton
   - name: keywords
-    content: easyswoole|Trait与单例
+    content: Easyswoole|Trait and singleton
 ---
 
-## Trait与单例
+## Trait and singleton
 
 ```php
 
@@ -55,7 +55,7 @@ $d->a();
 
 ```
 
-以上输出:
+Above output:
 ```php
 string(9) "call at B"
 string(9) "call at D"
