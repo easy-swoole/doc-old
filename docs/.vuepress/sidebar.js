@@ -414,7 +414,17 @@ const sidebarCn = [
                     ['/Components/Sundries/time', 'Time']
                 ]
             },
-            ['/Components/smtp', 'Smtp']
+            {
+              title: 'Smtp',
+              path: '/Components/Smtp/smtp',
+              collapsable: true,
+              sidebarDepth: 0,
+              children: [
+                ['/Components/Smtp/config', '配置'],
+                ['/Components/Smtp/content', '内容'],
+                ['/Components/Smtp/contentconfig', '内容配置']
+              ]
+            }
         ]
     },
     {
