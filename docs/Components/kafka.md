@@ -3,7 +3,7 @@
 
 # 安装
 ```php
-composer required easyswoole/kafka
+composer require easyswoole/kafka
 ```
 
 ### 注册kafka服务
