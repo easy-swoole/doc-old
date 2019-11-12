@@ -6,12 +6,13 @@ meta:
   - name: keywords
     content: EasySwoole|swoole|全局事件
 ---
-# 全局事件
+# Global vent
 
- 参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)
-EasySwoole有五个全局事件，全部位于框架安装后生成的EasySwooleEvent.php中。  
+ Refer to different ways of writing Demo branches event: [The demo branch](https://github.com/easy-swoole/demo/branches)
+EasySwoole has five global events, all in easyswooleevent.php, which is generated after the framework is installed。  
 
-- initialize 框架初始化事件
-- mainServerCreate 主服务创建事件
-- onRequest Http请求事件
-- afterRequest Http响应后事件
+- initialize [Framework initializes events]
+- mainServerCreate [The master service creates events]
+- onRequest Http [Request events]
+- afterRequest Http [After Request events]
+

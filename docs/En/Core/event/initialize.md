@@ -6,9 +6,9 @@ meta:
   - name: keywords
     content: EasySwoole|swoole|initialize
 ---
-# 框架初始化事件
+# Framework initializes Events
 
-## 函数原型
+## The function prototype
 
 ```php
 public static function initialize(): void
@@ -16,31 +16,31 @@ public static function initialize(): void
 }
 ```
 
-## 已完成工作
+## Finished work
 
-在执行框架初始化事件时，EasySwoole已经完成的工作有：
+EasySwoole has done the following when executing the framework initialization event: 
 
-- 全局常量EASYSWOOLE_ROOT的定义
-- 系统默认Log/Temp目录的定义
+- The definition of the global constant EASYSWOOLE_ROOT
+- System default Log/Temp directory definition
 
 
-## 可处理内容
+## Processable content
 
-在该事件中，可以进行一些系统常量的更改和全局配置，例如：
+In this event, some system constant changes and global configuration can be made, for example：
 
-- 修改并创建系统默认Log/Temp目录。
-- 引入用户自定义配置
-- 注册 数据库,redis 连接池
-- trace链追踪器注册
+- Modify and create the system default Log/Temp directory。
+- Introduce user-defined configurations
+- Register database,redis connection pool
+- trace registration
 
-## 启动前调用协程API
+## Call the coroutine API before starting
 ```php
 use Swoole\Coroutine\Scheduler;
 $scheduler = new Scheduler();
 $scheduler->add(function() {
-    /*  调用协程API */
+    /*  Call the coroutine API */
 });
 $scheduler->start();
-//清除全部定时器
+//Clear all timers
 \Swoole\Timer::clearAll();
 ```
