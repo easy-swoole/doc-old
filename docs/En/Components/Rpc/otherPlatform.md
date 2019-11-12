@@ -2,14 +2,14 @@
 title: Rpc跨平台
 meta:
   - name: description
-    content: EasySwoole中Rpc跨平台实现
+    content: RPC cross-platform implementation in EasySwoole
   - name: keywords
-    content: easyswoole|Rpc跨平台|swoole RPC|RPC
+    content: Easyswoole|Rpc cross-platform|swoole RPC|RPC
 ---
 
-# 跨平台
-Rpc的请求响应通过tcp协议,服务广播使用udp协议,我们只需要实现网络协议即可
-## PHP示例代码
+# Cross-platform
+Rpc's request response is through the tcp protocol, and the service broadcast uses the udp protocol. We only need to implement the network protocol.
+## PHP sample code
 ````php
 <?php
 /**
@@ -19,10 +19,10 @@ Rpc的请求响应通过tcp协议,服务广播使用udp协议,我们只需要实
  * Time: 14:30
  */
 $data = [
-    'command' => 1,//1:请求,2:状态rpc 各个服务的状态
+    'command' => 1,//1:Request, 2: status rpc status of each service
     'request' => [
         'serviceName' => 'UserService',
-        'action' => 'register',//行为名称
+        'action' => 'register',//Behavior name
         'arg' => [
             'args1' => 'args1',
             'args2' => 'args2'
@@ -30,28 +30,28 @@ $data = [
     ]
 ];
 
-//$raw = serialize($data);//注意序列化类型,需要和RPC服务端约定好协议 $serializeType
+//$raw = serialize($data);//Note the serialization type, you need to agree with the RPC server agreement $serializeType
 
 $raw = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 $fp = stream_socket_client('tcp://127.0.0.1:9600');
-fwrite($fp, pack('N', strlen($raw)) . $raw);//pack数据校验
+fwrite($fp, pack('N', strlen($raw)) . $raw);//Pack data check
 
 $data = fread($fp, 65533);
-//做长度头部校验
+//Length check
 $len = unpack('N', $data);
 $data = substr($data, '4');
 if (strlen($data) != $len[1]) {
     echo 'data error';
 } else {
     $data = json_decode($data, true);
-//    //这就是服务端返回的结果，
-    var_dump($data);//默认将返回一个response对象 通过$serializeType修改
+    // This is the result returned by the server.，
+    var_dump($data); // By default, a response object will be returned. Modify by $serializeType
 }
 fclose($fp);
 ````
 
-## Go示例代码
+## Go sample code
 ````
 package main
 
@@ -72,10 +72,10 @@ func sendEasyswooleMsg(conn *net.TCPConn) {
 	var sendData []byte
 	data := `{"command":1,"request":{"serviceName":"UserService","action":"register","arg":{"args1":"args1","args2":"args2"}}}`
 	b := []byte(data)
-	// 大端字节序(网络字节序)大端就是将高位字节放到内存的低地址端，低位字节放到高地址端。
-	// 网络传输中(比如TCP/IP)低地址端(高位字节)放在流的开始，对于2个字节的字符串(AB)，传输顺序为：A(0-7bit)、B(8-15bit)。
+	// The big endian (network byte order) big end is to put the high byte to the low address end of the memory, and the low byte to the high address end.
+	// In the network transmission (such as TCP/IP), the low address end (high byte) is placed at the beginning of the stream. For the 2-byte string (AB), the transmission order is:A(0-7bit)、B(8-15bit)。
 	sendData = int32ToBytes8(int32(len(data)))
-	// 将数据byte拼装到sendData的后面
+	// Assemble the data byte to the back of sendData
 	for _, value := range b {
 		sendData = append(sendData, value)
 	}
@@ -102,13 +102,13 @@ public class Main {
         byte[] head = Main.toLH(msg.length);
         byte[] data = Main.mergeByteArr(head, msg);
 
-        //创建Socket对象，连接服务器
+        //Create a Socket object and connect to the server
         Socket socket=new Socket("127.0.0.1",9600);
-        //通过客户端的套接字对象Socket方法，获取字节输出流，将数据写向服务器
+        //Get the byte output stream and write the data to the server through the socket object Socket method of the client.
         OutputStream out=socket.getOutputStream();
         out.write(data);
 
-        //读取服务器发回的数据，使用socket套接字对象中的字节输入流
+        //Read the data sent back by the server, using the byte input stream in the socket socket object
         InputStream in=socket.getInputStream();
         byte[] response=new byte[1024];
         int len=in.read(response);
@@ -136,5 +136,5 @@ public class Main {
 ````
 
 ::: warning 
- 其他语言只需要实现tcp协议即可
+ Other languages only need to implement the tcp protocol.
 :::
