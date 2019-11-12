@@ -1,41 +1,41 @@
 ---
-title: apollo配置中心
+title: Apollo configuration center
 meta:
   - name: description
-    content: EasySwoole apollo配置中心
+    content: EasySwoole Apollo configuration center
   - name: keywords
     content: easyswoole|apollo
 ---
-# apollo配置中心
-EasySwoole实现了对apollo数据中心的支持.可根据该组件,进行同步配置
+# Apollo configuration center
+EasySwoole supports apollo data center. Synchronization can be configured according to this component.
 # apollo
 
-## 安装
+## Installation
 
 ```
 composer require easyswoole/apollo
 ```
 
-## 使用
+## Use
 
 ```php
 go(function (){
-    //配置apollo服务器信息
+    //Configure apollo server information
     $server = new \EasySwoole\Apollo\Server([
         'server'=>'http://106.12.25.204:8080',
         'appId'=>'easyswoole'
     ]);
-    //创建apollo客户端
+    //Create an apollo client
     $apollo = new \EasySwoole\Apollo\Apollo($server);
-    //第一次同步
+    //First sync
     var_dump( $apollo->sync('mysql'));
-    //第二次同步，若服务端没有改变，那么返回的结果，isModify标记为fasle，并带有lastReleaseKey
+    //The second synchronization, if the server has not changed, then the result returned, isModify marked as fasle, with lastReleaseKey
     var_dump( $apollo->sync('mysql'));
 });
 ```
 
 
 ::: warning 
- 可以在进程中起一个定时器，实现自动定时更新
+ Can start a timer in the process to achieve automatic timing update
 :::
 

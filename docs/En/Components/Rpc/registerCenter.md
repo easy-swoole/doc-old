@@ -1,17 +1,17 @@
 ---
-title: EasySwoole RPC 自定义注册中心
+title: EasySwoole RPC Custom Registration Center
 meta:
   - name: description
-    content: EasySwoole中实现RPC 自定义注册中心
+    content: Implementing RPC Custom Registration Center in EasySwoole
   - name: keywords
-    content: easyswoole|Rpc服务注册中心|swoole RPC|RPC
+    content: Easyswoole|Rpc Service Registration Center|swoole RPC|RPC
 ---
 
-# EasySwoole RPC 自定义注册中心
+# EasySwoole RPC Custom Registration Center
 
-EasySwoole 默认为通过UDP广播的方式来实现无主化的服务发现。但有些情况，不方便用UDP广播的情况下，那么EasySwoole支持你自定义一个节点管理器，来变更服务发现方式。
+EasySwoole defaults to unaware service discovery through UDP broadcast. However, in some cases, it is not convenient to use UDP broadcast, then EasySwoole supports you to customize a node manager to change the service discovery mode.
 
-## 例如用Redis来实现
+## For example, using Redis to achieve
 ```php
 <?php
 
@@ -33,7 +33,7 @@ class RedisManager implements NodeManagerInterface
     function __construct(string $host, $port = 6379, $auth = null, string $hashKey = '__rpcNodes', int $maxRedisNum = 10)
     {
         $this->redisKey = $hashKey;
-        //注册匿名连接池
+        //Register anonymous connection pool
         PoolManager::getInstance()->registerAnonymous('__rpcRedis', function (PoolConf $conf) use ($host, $port, $auth, $maxRedisNum) {
             $conf->setMaxObjectNum($maxRedisNum);
             $redis = new Redis();
@@ -47,12 +47,12 @@ class RedisManager implements NodeManagerInterface
     }
     
     /**
-    *  获取某个服务的所有可用节点 
+    *  Get all available nodes of a service 
     */
     function getServiceNodes(string $serviceName, ?string $version = null): array
     {
         /** @var \Redis $redis */
-        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);//连接池取redis对象
+        $redis = PoolManager::getInstance()->getPool('__rpcRedis')->getObj(15);//Connection pool to take redis object
         try {
             $nodes = $redis->hGetAll($this->redisKey . md5($serviceName));
             $nodes = $nodes ?: [];
@@ -62,7 +62,7 @@ class RedisManager implements NodeManagerInterface
                  * @var  $nodeId
                  * @var  ServiceNode $node
                  */
-                if (time() - $node->getLastHeartBeat() > 30) {//检查节点最近一次的心跳时间
+                if (time() - $node->getLastHeartBeat() > 30) {//Check the node's last heartbeat time
                     $this->deleteServiceNode($node);
                 }
                 if ($version && $version != $node->getServiceVersion()) {
@@ -72,17 +72,17 @@ class RedisManager implements NodeManagerInterface
             }
             return $ret;
         } catch (\Throwable $throwable) {
-            //如果该redis断线则销毁
+            //If the redis is disconnected, it is destroyed.
             PoolManager::getInstance()->getPool('__rpcRedis')->unsetObj($redis);
         } finally {
-            //这边需要测试一个对象被unset后是否还能被回收
+            //Here you need to test whether an object can be recycled after it is unset.
             PoolManager::getInstance()->getPool('__rpcRedis')->recycleObj($redis);
         }
         return [];
     }
     
     /**
-    *  获取某个服务可用随机节点 
+    *  Get a random node available for a service 
     */
     function getServiceNode(string $serviceName, ?string $version = null): ?ServiceNode
     {
@@ -94,7 +94,7 @@ class RedisManager implements NodeManagerInterface
     }
     
     /**
-    *  删除节点 
+    *  Delete node 
     */
     function deleteServiceNode(ServiceNode $serviceNode): bool
     {
@@ -112,8 +112,8 @@ class RedisManager implements NodeManagerInterface
     }
     
     /**
-    *  刷新节点(
-    *  ps:由tick process进程定时器刷新(本节点)|监听广播消息(其他节点)来刷新节点信息，redis 节点管理器可以)
+    *  Refresh node(
+    *  Ps: refreshed by the tick process process timer (this node) | listen for broadcast messages (other nodes) to refresh node information, redis node manager can)
     */
     function serviceNodeHeartBeat(ServiceNode $serviceNode): bool
     {
@@ -126,10 +126,10 @@ class RedisManager implements NodeManagerInterface
             $redis->hSet($this->redisKey . md5($serviceNode->getServiceName()), $serviceNode->getNodeId(), $serviceNode);
             return true;
         } catch (\Throwable $throwable) {
-            //如果该redis断线则销毁
+            //If the redis is disconnected, it is destroyed.
             PoolManager::getInstance()->getPool('__rpcRedis')->unsetObj($redis);
         } finally {
-            //这边需要测试一个对象被unset后是否还能被回收
+            //Here you need to test whether an object can be recycled after it is unset.
             PoolManager::getInstance()->getPool('__rpcRedis')->recycleObj($redis);
         }
         return false;
@@ -139,5 +139,5 @@ class RedisManager implements NodeManagerInterface
 ```
 
 ::: warning 
- 注意，设置自定义节点管理器后，就不再需要启用UDP定时广播进程了。请在创建RPC实例后，自己创建一个ServiceNode对象，刷新到注册中心。节点下线也是同理，在你服务关闭的时候，向节点管理器下线该节点。
+ Note that once the custom node manager is set, it is no longer necessary to enable the UDP scheduled broadcast process. After creating an RPC instance, create a ServiceNode object and refresh it to the registry. The same is true for the node offline. When your service is closed, the node manager is taken offline.
 :::
