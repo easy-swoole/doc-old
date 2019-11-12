@@ -1,109 +1,60 @@
 ---
-title: Rpc客户端
+title: Rpc服务端
 meta:
   - name: description
-    content: EasySwoole中Rpc客户端实现
+    content: EasySwoole中用RPC实现分布式微服务架构
   - name: keywords
-    content: easyswoole|Rpc客户端|swoole RPC
+    content: easyswoole|Rpc服务端|swoole RPC|swoole微服务|swoole分布式|PHP 分布式
 ---
 
-# 客户端
+# 控制器聚合调用
+```php
+namespace App\HttpController;
 
-## CLI独立测试(注意命名空间以及自动加载引入)
 
-4.0.6版本后([demo](https://github.com/HeKunTong/rpc))
-
-````php
-<?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 19-10-14
- * Time: 上午10:34
- */
-
-require_once 'vendor/autoload.php';
-
-use EasySwoole\Rpc\Config;
-use EasySwoole\Rpc\Rpc;
-use EasySwoole\Rpc\NodeManager\RedisManager;
+use EasySwoole\Http\AbstractInterface\Controller;
 use EasySwoole\Rpc\Response;
-
-$redisPool = new \EasySwoole\RedisPool\RedisPool(new \EasySwoole\Redis\Config\RedisConfig([
-    'host' => '127.0.0.1'
-]));
-$manager = new RedisManager($redisPool);
-
-$config = new Config();
-$config->setNodeManager($manager);
-$rpc = new Rpc($config);
-
-go(function () use ($rpc) {
-    $client = $rpc->client();
-    $client->addCall('user', 'register', ['arg1', 'arg2'])
-        ->setOnFail(function (Response $response) {
-            print_r($response->toArray());
-        })
-        ->setOnSuccess(function (Response $response) {
-            print_r($response->toArray());
-        });
-
-    $client->exec();
-});
-
-````
-
-
-4.0.6版本前([demo](https://github.com/HeKunTong/rpc4.0.5))
-
-````php
-<?php
-/**
- * Created by PhpStorm.
- * User: root
- * Date: 19-10-14
- * Time: 上午10:34
- */
-
-require_once 'vendor/autoload.php';
-
-use EasySwoole\Rpc\Config;
 use EasySwoole\Rpc\Rpc;
-use EasySwoole\Rpc\NodeManager\RedisManager;
-use EasySwoole\Rpc\Response;
 
-$manager = new RedisManager('127.0.0.1');
+class Index extends Controller
+{
 
-$config = new Config();
-$config->setNodeManager($manager);
-$rpc = new Rpc($config);
+    function index()
+    {
+        $ret = [];
+        $client = Rpc::getInstance()->client();
+        /*
+         * 调用商品列表
+         */
+        $client->addCall('goods','list',['page'=>1])
+            ->setOnSuccess(function (Response $response)use(&$ret){
+                $ret['goods'] = $response->toArray();
+            })->setOnFail(function (Response $response)use(&$ret){
+                $ret['goods'] = $response->toArray();
+            });
+        /*
+         * 调用信箱公共
+         */
+        $client->addCall('common','mailBox')
+            ->setOnSuccess(function (Response $response)use(&$ret){
+                $ret['mailBox'] = $response->toArray();
+            })->setOnFail(function (Response $response)use(&$ret){
+                $ret['mailBox'] = $response->toArray();
+            });
+        /*
+        * 获取系统时间
+        */
+        $client->addCall('common','serverTime')
+            ->setOnSuccess(function (Response $response)use(&$ret){
+                $ret['serverTime'] = $response->toArray();
+            });
 
-go(function () use ($rpc) {
-    $client = $rpc->client();
-    $client->addCall('user', 'register', ['arg1', 'arg2'])
-        ->setOnFail(function (Response $response) {
-            print_r($response->toArray());
-        })
-        ->setOnSuccess(function (Response $response) {
-            print_r($response->toArray());
-        });
+        $client->exec(2.0);
 
-    $client->exec();
-});
+        $this->writeJson(200,$ret);
+    }
+}
+```
 
-````
-##easyswoole 框架下
-````php
-<?php
-$client=Rpc::getInstance()->client();
-go(function () use ($client) {
-    $client->addCall('UserService', 'register', ['arg1', 'arg2'])
-        ->setOnFail(function (Response $response) {
-            print_r($response->toArray());
-        })
-        ->setOnSuccess(function (Response $response) {
-            print_r($response->toArray());
-        });
-    $client->exec();
-});
-````
+> 注意，控制器中可以这样调用，是因为服务端章节中，在EasySwoole的全局启动事件已经对当前的Rpc实例定义注册了节点管理器。因此在控制器中调用的时候
+> 该Rpc实例可以找到对应的节点。一般来说，在做聚合网关的节点，是不需要注册服务进去的，仅需注册节点管理器即可。
