@@ -1,22 +1,22 @@
 ---
-title: 学习Swoole之如何避免成为被坑哭的程序员
+title: Learn how Swoole avoids being a programmer crying
 meta:
   - name: description
-    content: 如何学习swoole|swoole 采坑|swoole|swoole学习笔记
+    content: How to learn swoole|swoole pit | swoole|swoole study notes
   - name: keywords
-    content: easyswoole|swoole|如何学习swoole|swoole 采坑|swoole学习笔记
+    content: Easyswoole|swoole|How to learn swoole|swoole pits|swoole study notes
 ---
 
 
-# 学习Swoole之如何避免成为被坑哭的程序员
+# Learn how Swoole avoids being a programmer crying
 
-很多刚从传统fpm模式转到swoole内存常驻模式的phper，总会觉得内心委屈，甚至想哭，原因swoole总会让你怀疑人生，这真的是我之前所认知的那个php语言吗？怎么那么坑啊。
+Many phpers who have just switched from the traditional fpm mode to the swoole memory resident mode will always feel grievances and even want to cry. The reason why swoole always makes you doubt life, is this really the php language I have known before? Why are you so pit?
 
-## swoole下常见的"坑"
+## Common "pit" under swoole
 
-- 为何全局变量无法共享呢
+- Why can't global variables be shared?
   
-    例如，在以下代码中
+    For example, in the following code
     ```php
     $http = new swoole_http_server("127.0.0.1", 9501);
     $http->on("request", function ($request, $response) {
@@ -27,58 +27,54 @@ meta:
     
     $http->start();
     ```
-    就会有人发现在swoole下`static $i` 和在fpm下所理解的输出不一致。这是在于出现了进程克隆，而每个进程之间的数据都是不一致的。
+    Some people will find that the `static $i` under swoole is inconsistent with the output understood under fpm. This is due to the emergence of process cloning, and the data between each process is inconsistent.
 
-- echo var_dump 无法输出到浏览器(http响应)
+- Echo var_dump cannot be output to the browser (http response)
   
-    我们在fpm模式下，`echo $a` 是可以把结果输出到浏览器中的，为何在swoole中就不行呢，原因在于模式的变更，swoole的运行模式不再是fpm，而是cli，如果你需要把数据响应给浏览器，你只能
-    通过`Http request`回调中的`response`对象进行响应
+    In fpm mode, `echo $a` can output the result to the browser. Why can't it be in the swoole? The reason is that the mode change, the swoole mode is no longer fpm, but cli, if You need to respond to the data in the browser. You can only respond with the `response` object in the `Http request` callback.
 
-- http请求参数获取
+- Http request parameter acquisition
 
-    在同swoole的http服务的时候，很多人会发现$_GET、$_POST等常见全局变量无法使用。这是因为$_GET、$_POST等变量都是全局的，在swoole当中会出现问题，如果想获取请求参数，可以用swoole回调时提供的`Request`对象来进行获取
+    In the same swoole http service, many people will find that common global variables such as $_GET and $_POST cannot be used. This is because variables such as $_GET and $_POST are global, and there will be problems in the swoole. If you want to get the request parameters, you can use the `Request` object provided by the Swoole callback to get the result.
 
-- swoole不能使用die/exit
+- Swoole can't use die/exit
   
-    phper都习惯用die/exit来调试代码，这是因为这个命令会直接退出当前进程，对于fpm来讲，每个请求都对应一个独立进程，退出了问题不大，但是在swoole当中，可能一个进程中会有多个请求同时在处理，如果你exit或者die来退出当前进程，会导致数据丢失。
+    Phper is used to debugging code with die/exit. This is because this command will directly exit the current process. For fpm, each request corresponds to a separate process. Exiting the problem is not big, but in the swoole, there may be a process. There will be multiple requests being processed at the same time. If you exit or die to exit the current process, data will be lost.
 
-- swoole下为何需要断线重连      
+- Why do you need to disconnect after swoole     
   
-    很多程序员都习惯性的把数据库连接做单例化处理，这样很明显带来的好处就是节约了每次请求数据库需要连接多次的开销。那么为何在swoole下总是报错提示我数据库断线了呢？
-    原因在于，传统fpm下，请求结束了，那么就会执行进程清理，数据库连接也被清理了，下次进来的时候，才会执行重新连接。这样就保证了连接都是可用的状态。但是在swoole常驻内存的情况下，
-    请求结束后，该连接并不会被清理，依旧保留在内存空间内，而该连接若是长时间没有使用，或者是因为网络波动，那么就会断开。下次请求进来的时候，你没有判断连接状态，就直接去执行sql语句，那么就意味着你操作了一个断线的数据库连接，因此肯定会报错。
+    Many programmers are accustomed to single-handling database connections, which obviously has the advantage of saving the overhead of requiring multiple connections per request database. So why is the error in the swoole always prompting me that the database is disconnected? The reason is that under the traditional fpm, the request is over, then the process cleanup will be performed, the database connection will be cleaned up, and the reconnection will be performed the next time it comes in. This ensures that the connection is available. However, in the case of swoole resident memory, after the request ends, the connection will not be cleaned up and remain in the memory space, and if the connection is not used for a long time, or because the network fluctuates, it will be disconnected. The next time the request comes in, you don't judge the connection status, just go to execute the sql statement, then it means that you have operated a disconnected database connection, so it will definitely report an error.
 
-- 内存泄露
-    很多人用swoole写服务的时候，总是跑着跑着就莫名其妙的内存不足。这是因为swoole是一个常驻进程型的模型，在fpm下，请求结束之后会将进程内的变量进行清理，而swoole进程全局期的变量并不会因为请求的结束而被清理，会一直保存在内存中，一方面提高了效率，但是也让开发者必须注意到变量回收的必要性。
+- Memory leak
+    When many people use swoole to write services, they always run and run out of memory. This is because swoole is a resident process type model. Under fpm, the variables in the process will be cleaned up after the request ends, and the variables of the swoole process global period will not be cleaned up due to the end of the request, and will be saved. In memory, on the one hand, the efficiency is improved, but also the developer must pay attention to the necessity of variable recycling.
 
-- 协程上下文访问安全
-    使用swoole协程的时候，会有人遇到变量的值不符合预期的情况，这里面可能是变量污染在作祟，在传统php 同步阻塞的编程模式下，所有的执行都是强制顺序执行的。但是在swoole中，多个协程之间是交替执行的，可能a协程让出执行权的时候b协程对某个跨协程变量进行了修改，那么当a协程恢复执行权的时候这个跨协程变量将不是让出时的值了(如果你对mysql有一定了解，就会发现这个情况并不难理解)。
-    同时为了解决这个问题，我们通常在编程是要注意跨协程变量的使用，以及使用协程单例的方式来控制变量。
-## 使用swoole要学习的知识点
+- Coroutine context access security
+    When using the swoole coroutine, some people will encounter the value of the variable does not meet the expected situation, which may be the contamination of the variable. In the traditional php synchronous blocking programming mode, all executions are forced to execute sequentially. However, in the swoole, multiple coroutines are alternately executed. It is possible that when a coroutine gives up the execution right, the b coroutine modifies a cross-correlation variable, then when a coroutine resumes the execution right. This cross-correlation variable will not be the value of the timeout (if you have some knowledge of mysql, you will find this situation is not difficult to understand). At the same time, in order to solve this problem, we usually pay attention to the use of cross-correlation variables and the use of coroutine singletons to control variables.
+## Knowledge points to learn from using swoole
 
 ::: warning 
-以下内容中，`必须` 代表一定要先学习的部分，如果不懂会导致学习困难和跑偏，写的代码无法应用在生产环境； `应该` 代表建议学习的知识点，但是也可以只是了解； `可以` 代表推荐去学习，通常是开发者的弱点。
+In the following content, `must` represents the part that must be learned first. If you do not understand it will lead to learning difficulties and deviations, the code written cannot be applied in the production environment; `should` represent the knowledge points recommended for learning, but you can just understand ; `can` represents the recommendation to learn, usually the weakness of the developer.
 :::
 
-- 基础编程知识
-  - `应该`了解`阻塞`和`非阻塞`的区别
-  - `必须`清楚`PHP的GC机制` 这个必须清楚，大多数php开发者都不清楚
-  - `必须`清楚`php面向对象编程` 这里一定要搞清楚对象引用机制和对象与内存之间的关系
-  - `必须`清楚`资源及连接句柄`的相关知识
+- Basic programming knowledge
+  - ` should `understand the difference between `blocking` and `non-blocking`
+  - `Must be clear `PHP's GC mechanism' This must be clear, most php developers are not clear
+  - `Must`clear `php object-oriented programming` Here must be clear about the object reference mechanism and the relationship between objects and memory
+  - `Must be clear about the `resources and connection handles' knowledge
   
-- 多进程编程
-  - `必须`清楚`fpm`和`swoole`的多进程模型及其区别
-  - `必须`了解 `进程间通讯`和`进程隔离`，`应该`了解`进程信号量`
+- Multi-process programming
+  - `Must` clear the multi-process models of `fpm` and `swoole` and their differences
+  - `Must` understand `interprocess communication` and `process isolation`, `should` understand `process semaphore`
 
-- 基础的TCP/UDP认知
-  - `应该`清楚`TCP和UDP的区别`
-  - `应该`清楚`客户端和服务端`的区别
-  - `必须`了解`OSI七层模型中的上四层` 了解常见应用层协议如`http` `ftp` `smtp`等
+- Basic TCP/UDP awareness
+  - `should be clear` the difference between TCP and UDP.
+  - `should be clear` the difference between client and server
+  - `Must`Understand the upper four layers of the OSI seven-layer model. Learn about common application layer protocols such as `http` `ftp` `smtp`
 
-- 协程
-  - `必须`清楚swoole协程工作模式
-  - `必须`清楚如何判断变量是否会跨协程使用
+- Coroutine
+  - `Must' clear swoole coroutine working mode
+  - `Must`clear how to determine if a variable will be used across coroutines
 
-## 总结
+## Summary
 
-总而言之，大多数php开发者学习swoole时候都会觉得坑的原因是来自于自身知识储备的不足。对于很多其他语言开发者必须掌握的知识，php开发时可能就无需掌握，但是这也是欠的技术债，会在进一步提升的时候遇到的瓶颈；导致在使用swoole的时候出了各种各样的问题。实际上，swoole是一个很强大的php拓展，**他重新定义了php**，让php有了更强的生命力。
+All in all, most php developers think that the reason for the pit when they learn swoole is from the lack of their own knowledge reserves. For the knowledge that many other language developers must master, php development may not need to be mastered, but this is also a technical debt that is owed, and will encounter bottlenecks when it is further improved; resulting in various uses when using swoole The problem. In fact, swoole is a very powerful php extension, ** he redefines php**, so that php has a stronger vitality.

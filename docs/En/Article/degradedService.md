@@ -1,29 +1,28 @@
 ---
-title: swoole微服务开发中常见的服务降级
+title: Common downgrades in swoole microservice development
 meta:
   - name: description
-    content: 在微服务的架构下，为何需要降级与熔断保护
+    content: Why do you need downgrade and fuse protection under the microservice architecture
   - name: keywords
-    content: easyswoole|swoole 微服务|swoole降级|swoole熔断
+    content: Easyswoole|swoole microservices|swoole downgrade|swoole fuse protection
 ---
 
-# 服务熔断限流与降级
+# Service blown current limit and downgrade
 
-核心思想：就是做不到最好的，那就退而求其次来保障服务。
+The core idea: just do not get the best, then take a step back and use the general to guarantee the service.
 
-## 为什么要熔断限流
+## Why should fusible current limit
 
-首先，我们可以明确一件事情，无论算法，与运维再怎么优化，单台服务器的承载力，都是有限的。例如在常见的游戏服务器当中，假设我们的单机可以承载10万用户的正常游戏。某天
-由于市场做了推广，导致有20万的万的用户一下子涌入进来。那么在短时间内无法扩容的情况下我们该怎么办？那就是熔断限流。我们，依旧是接纳前10万明登录的用户，后面十万的用户让他们排队去。这样看起来好像依旧会让
-一半的用户不高兴，但是这也是最好的选择。如果不是这样，那么可能会导致20万，也就是全部的用户没有办法拥有一个良好的体验。
+First of all, we can clarify one thing, no matter how the algorithm and operation and maintenance are optimized, the carrying capacity of a single server is limited. For example, in a common game server, suppose that our stand-alone machine can carry a normal game of 100,000 users. One day
+As the market has been promoted, there have been 200,000 10,000 users coming in at once. So what should we do if we can't expand in a short time? That is the fuse current limit. We are still accepting the top 100,000 users who log in, and the next 100,000 users let them line up. It seems like it will still let
+Half of the users are not happy, but this is also the best option. If not, it could lead to 200,000, that is, all users have no way to have a good experience.
 
-## 为什么要降级
+## Why are you downgrading?
 
-举例一个应用场景，在某游戏服务中，有个实时统计的排行榜。正常情况下，请求进来了，都是实时转发给统计服务去统计的。而有天，因为做了活动，导致压力过大，统计服务器死机，或者是由于
-其他因素，导致统计服务下线了。这个时候，请求进来，那么肯定是返回了NULL数据给前端，导致用户体验很差。因此我们可以做降级服务，例如最简单的，实时统计不行了，那我拉取上一次统计的缓存结果，总可以了吧。
+For example, an application scenario has a real-time statistical leaderboard in a game service. Under normal circumstances, the request comes in, and is forwarded to the statistics service in real time for statistics. And one day, because of the activity, the pressure is too large, the statistics server crashes, or because
+Other factors have caused the statistical services to go offline. At this time, the request comes in, then it must return NULL data to the front end, resulting in a poor user experience. Therefore, we can do downgrade services, for example, the simplest, real-time statistics can not be done, then I pull the cache results of the last statistics, always.
 
 
-## 如何实现熔断
+## How to achieve fuse limiting
 
-说到熔断限流，大家在日常生活中接触最多的，应该就是令牌桶限流器了。EasySwoole 有提供一个令牌桶限流器，大家可以看文档组件库那边。那正常情况下，我们服务上线前会有一个压测。根据二八原则，服务器在负载达到百分之80左右，用户响应时间控制在200ms以下的时候，我们把
-此刻的用户承载量定义为最佳的承载量，因此此时，我们就把限流器的数量限制为这个最佳承载量。降级服务也是同理，当某个服务连续访问多次，出现服务不可用的时候，我们认为该服务需要降级。
+When it comes to fuse limiting, the most contacted in daily life, it should be the token bucket restrictor. EasySwoole provides a token bucket limiter, you can see the document component library. Under normal circumstances, there will be a pressure test before our service goes online. According to the 28th principle, when the load reaches 80% of the load and the user response time is controlled below 200ms, we define the user load at the moment as the optimal load, so at this time, we will limit the current limiter. The number is limited to this optimal load capacity. The same is true for downgrading services. When a service is accessed multiple times and a service is unavailable, we believe that the service needs to be downgraded.
