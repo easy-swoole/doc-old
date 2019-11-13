@@ -4,79 +4,79 @@ meta:
   - name: description
     content: EasySwoole Atomic
   - name: keywords
-    content: easyswoole|Atomic|Atomic计数器
+    content: easyswoole|Atomic|Atomic counter
 ---
 
 # Atomic
 
-[swoole_atomic](https://wiki.swoole.com/wiki/page/p-atomic.html)是swoole扩展提供的原子计数操作类，可以方便整数的无锁原子增减。
+[swoole_atomic](https://wiki.swoole.com/wiki/page/p-atomic.html) is an atomic count operation class provided by the swoole extension, which can facilitate the increase and decrease of integer-free lock-free atoms.
 
-- ```swoole_atomic```使用共享内存，可以在不同的进程之间操作计数
-- ```swoole_atomic```基于gcc提供的CPU原子指令，无需加锁
-- ```swoole_atomic```在服务器程序中必须在```swoole_server->start```前创建才能在Worker进程中使用
-- ```swoole_atomic```默认使用32位无符号类型，如需要64有符号整型，可使用```Swoole\Atomic\Long```
+- `swoole_atomic` uses shared memory to manipulate counts between different processes
+- `swoole_atomic` is based on the CPU atomic instructions provided by gcc, no need to lock
+- `swoole_atomic` must be created before the `swoole_server->start` in the server program to be used in the Worker process.
+- `swoole_atomic` uses 32-bit unsigned types by default. If you need 64-signed integers, you can use `Swoole\Atomic\Long`.
 
-***注意：请勿在onReceive等回调函数中创建原子数，否则底层的GlobalMemory内存会持续增长，造成内存泄漏。***
+***Note: Do not create atomic numbers in callback functions such as onReceive, otherwise the underlying GlobalMemory memory will continue to grow, causing memory leaks.***
 
-### 使用
+### Use
 
-初始化计数：
+Initialization count:
 
-- int `init_value` 初始值
+- Int `init_value` initial value
 
 ```php
 public function __construct($init_value)
 ```
 
-增加计数：
+Increase the count:
 
-- int `add_value` 增加的值
+- Int `add_value` increased value
 
 ```php
 public function add($add_value)
 ```
 
-减少计数：
+Reduce the count:
 
-- int `sub_value` 减少的值
+- Int `sub_value` reduced value
 
 ```php
 public function sub($sub_value)
 ```
 
-获取当前计数的值：
+Get the current count value:
 
 ```php
 public function get()
 ```
 
-将当前值设置为指定的数字：
+Set the current value to the specified number:
 
-- int `value` 计数值
+- int `value` count value
 
 ```php
 public function set($value)
 ```
 
-如果当前数值等于参数1，则将当前数值设置为参数2：
+If the current value is equal to parameter 1, the current value is set to parameter 2:
 
-- int `cmp_value`  被做比较的值
-- int `set_value`  当前数值等于被做比较的值后被设置为指定的计数值
+- int `cmp_value` is the value to be compared
+- int `set_value` is set to the specified count value after the current value is equal to the value being compared
 
 ```php
 public function cmpset($cmp_value, $set_value)
 ```
 
-### 例子
+### Examples
 
-在```EasySwooleEvent```初始化函数注册atomic对象。
+Register the atomic object in the ```EasySwooleEvent`` initialization function.
 
 ```php
-// 注册一个atomic对象
+// Register an atomic object
 AtomicManager::getInstance()->add('second');
 ```
 
-从AtomicManager获取atomic对象并使用。
+Get the atomic object from AtomicManager and use it.
 
 ```php
 <?php

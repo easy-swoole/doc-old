@@ -2,43 +2,43 @@
 title: ArrayToTextTable
 meta:
   - name: description
-    content: 用于输出表格信息。
+    content: Used to output table information.
   - name: keywords
-    content: easyswoole|组件库|杂项工具
+    content: Easyswoole|Component Library|Miscellaneous Tools
 ---
 
 # ArrayToTextTable
 
 
 
-## 用途
+## Use
 
-用于把数组数据转为表格输出。
+Used to convert array data to table output.
 
-## 核心对象类
+## Core Object Class
 
-实现该组件功能需加载核心类：
+To implement this component function you need to load the core class:
 `EasySwoole\Utility\ArrayToTextTable`
 
-## 核心对象方法
+## Core Object Method
 
 #### getTable
 
-获取表格
+Get the form
 
-- mixed $data 表格数据
+- mixed $data table data
 
 ```php
-public function getTable($data = null)
+Public function getTable($data = null)
 ```
 
 
 
 #### setIndentation
 
-设置表格缩进
+Set table indentation
 
-- mixed $indentation 设置缩进
+- mixed $indentation setting indentation
 
 ```php
 public function setIndentation($indentation)
@@ -48,45 +48,45 @@ public function setIndentation($indentation)
 
 #### isDisplayHeader
 
-设置表格头部
+Set the table header
 
-- bool $displayHeader 是否需要表格头部
+- bool $displayHeader Do you need a table header?
 
 ```php
-public function isDisplayHeader(bool $displayHeader)
+Public function isDisplayHeader(bool $displayHeader)
 ```
 
 
 
 #### setKeysAlignment
 
-设置表格头部对齐方式
+Set table header alignment
 
-- mixed $keysAlignment 表格头部对齐方式
+- mixed $keysAlignment table header alignment
 
 ```php
-public function setKeysAlignment($keysAlignment)
+Public function setKeysAlignment($keysAlignment)
 ```
 
 
 
 #### setValuesAlignment
 
-设置表格数据对齐方式
+Set table data alignment
 
-- mixed $keysAlignment 表格头部对齐方式
+- mixed $keysAlignment table header alignment
 
 ```php
-public function setValuesAlignment($valuesAlignment)
+Public function setValuesAlignment($valuesAlignment)
 ```
 
 
 
 #### setFormatter
 
-处理表格数据格式
+Processing tabular data format
 
-- mixed $formatter 数据方式
+- mixed $formatter data mode
 
 ```php
 public function setFormatter($formatter)
@@ -94,20 +94,16 @@ public function setFormatter($formatter)
 
 
 
+## how to use
 
-
-## 如何使用
-
-
-
-### 创建核心类的对象
+### Creating objects of the core class
 
 ```php
 $data = [
     [
         'name' => 'James',
         'age' => '20',
-        'sex'=>'男'
+        'sex'=>'man'
     ],
     [
         'name' => 'Tony',
@@ -115,25 +111,25 @@ $data = [
         'email' => '291323003@qq.com',
     ],
 ];
-//创建核心类的对象，并带入了数据参数  $data
+// Create a core class object, and bring in the data parameter $data
 $renderer = new \EasySwoole\Utility\ArrayToTextTable($data);
-//设置表格缩进
+// Set the table indentation
 $renderer->setIndentation("\t");
-//设置表格头部
+// Set the table header
 $renderer->isDisplayHeader(true);
-//设置表格头部对齐方式
+// Set the table header alignment
 $renderer->setKeysAlignment(\EasySwoole\Utility\ArrayToTextTable::AlignLeft);
-//设置表格数据对齐方式
+// Set the table data alignment
 $renderer->setValuesAlignment(\EasySwoole\Utility\ArrayToTextTable::AlignLeft);
-//处理表格数据格式
+// Processing table data format
 $renderer->setFormatter(function (&$value,$key){
     if($key == 'sex'){
         if(empty($value)){
-            $value = '未知性别';
+            $value = 'Unknown gender';
         }
     }else if($key == 'email'){
         if(empty($value)){
-            $value = '未知邮箱';
+            $value = 'Unknown mailbox';
         }
     }
 });
@@ -145,7 +141,7 @@ echo $renderer;
 
 ::: tip
 
-​		ps: 执行的时候请用命令行的模式运行；如若遇到表格的外框线没有对齐，请检查中文字体和英文的字体所占用的空间比是否为2：1。
+​		Ps: Please run in the command line mode. If the border of the table is not aligned, check whether the space ratio of the Chinese font and the English font is 2:1.
 
 :::
 

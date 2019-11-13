@@ -2,27 +2,27 @@
 title: Swoole Table
 meta:
   - name: description
-    content: EasySwoole对Swoole table进行了基础的封装用于共享内存
+    content: EasySwoole has a basic package for Swoole table for shared memory
   - name: keywords
     content: easyswoole|TableManager|Swoole Table
 ---
 
 # TableManager
 `EasySwoole\Component\TableManager`
-EasySwoole对Swoole table进行了基础的封装,用于共享内存
+EasySwoole has a basic package for Swoole table for shared memory
 
-## 方法列表
+## Method list
 
 ### getInstance()
-该方法用于获取TableManager管理器实例
+This method is used to get the TableManager manager instance.
 
 ### add($name,array $columns,$size = 1024)
-该方法用于创建一个table
+This method is used to create a table
 
 ### get($name):?Table
-该方法用于获取已经创建好的table
+This method is used to get the table that has been created.
 
-## 示例代码
+## Sample code
 
 ```php
 TableManager::getInstance()->add(
@@ -36,5 +36,5 @@ TableManager::getInstance()->add(
 
 
 ::: warning 
-注意事项：请勿在onRequest、OnReceive等回调位置创建swoole table,swoole table应该在服务启动前创建，比如在mainServerCreate事件中创建。
+Note: Do not create a swoole table in callback locations such as onRequest, OnReceive, etc. The swoole table should be created before the service is started, for example in the mainServerCreate event.
 :::

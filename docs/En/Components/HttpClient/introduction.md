@@ -2,22 +2,22 @@
 title: HTTPClient
 meta:
   - name: description
-    content: EasySwoole 协程HTTPClient组件
+    content: EasySwoole coroutine HTTPClient component
   - name: keywords
-    content: easyswoole|协程HTTPClient|curl组件|协程curl
+    content: Easyswoole| coroutine HTTPClient|curl component|coroutine curl
 ---
 
 
-## EasySwoole 协程HTTPClient组件
-协程httpClient组件,基于swoole [异步http client客户端](https://wiki.swoole.com/wiki/page/p-http_client.html)实现,可在协程内发起http请求不被阻塞,可用于下载文件,请求api,爬虫等一系列需求当中
+## EasySwoole coroutine HTTPClient component
+The coroutine httpClient component, based on the swoole [asynchronous http client client] (https://wiki.swoole.com/wiki/page/p-http_client.html), can initiate http requests in the coroutine without being blocked. In downloading files, requesting apis, crawlers, etc.
 
-## 安装
+## installation
 
 ```bash
 composer require easyswoole/http-client
 ```
 
-## 单次请求
+## Single request
 ```php
 <?php
 $url = 'http://docker.local.com/test.php/?get1=get1';
@@ -33,6 +33,6 @@ $ret = $test->postJSON(json_encode(['json'=>1]));
 var_dump($ret->getBody());
 ```
 
-## 并发请求
+## Concurrent request
 
-关于Http Client的并发请求章节，我们推荐用户使用 EasySwoole组件中提供的[Csp封装](../Component/csp.md)。
+For the Http Client Concurrency Request section, we recommend that users use the [Csp Package] (../Component/csp.md) provided in the EasySwoole component.
