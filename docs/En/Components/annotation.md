@@ -7,32 +7,33 @@ meta:
     content: EasySwoole|Annotation
 ---
 ## Annotation
-Easyswoole提供了一个轻量级的注解解析工具。
+Easyswoole provides a lightweight annotation resolution tool.
 
-## 安装
+## The installation
 ```shell
 composer require easyswoole/annotation
 ```
 
-## 实现原理
-- 约定
-    - 每个注解行为@字符开头，格式为
-    ```@METHOD(ARGS)```
-- 执行流程如下：
-    - 利用php反射得到注释信息
-    - 用explode用PHP_EOL分割每行
-    - 解析每行的数据，若存在对应的METHOD AnnotationTagInterface ，则把解析得到的ARGS传递给 AnnotationTagInterface 中的 assetValue 方法，
-      用户可以在该方法中对解析得到的值进行自定义解析。
-    - 若为严格模式，如果解析不到正确的数值，则报错。  
+### Implementation principle
 
-## 例子
+- convention
+    - Each annotation behavior starts with the @ character and is formatted as
+    ```@METHOD(ARGS)```
+- The execution process is as follows：
+    - Use PHP reflection to get comment information
+    - Explode and explode each line with PHP_EOL
+    - Parse the data of each line. If the corresponding METHOD AnnotationTagInterface exists, pass the parsed ARGS to the assetValue METHOD in the AnnotationTagInterface.
+      The user can perform custom parsing of the parsed values in this method.
+    - In strict mode, an error is reported if the correct value cannot be resolved.
+
+## example
 ```php
 <?php
 use EasySwoole\Annotation\Annotation;
 use EasySwoole\Annotation\AbstractAnnotationTag;
 
 /*
- * 定义param渲染方法
+ * Define the param rendering method
  */
 
 class param extends AbstractAnnotationTag
@@ -56,7 +57,7 @@ class param extends AbstractAnnotationTag
 }
 
 /*
- * 定义timeout渲染方法
+ * Define the timeout rendering method
  */
 
 class timeout extends AbstractAnnotationTag
@@ -101,11 +102,11 @@ class A
 }
 
 /**
- * 实例化渲染器,并注册要解析的渲染方法
+ * Instantiate the renderer and register the rendering method to parse
  */
 $annotation = new Annotation();
 $ref = new \ReflectionClass(A::class);
-//不注册fuck 解析
+//Do not register fuck parsing
 $annotation->addParserTag(new param());
 $annotation->addParserTag(new timeout());
 
@@ -120,14 +121,15 @@ foreach ($list['timeout'] as $item){
 }
 ```
 
-
 ::: warning  
-注释每行前3个字符若存在@,说明该行为需要解析注释行，默认为非严格模式，未注册的tag信息不会解析，严格模式下，若无法解析则会抛出异常。
+If @ exists in the first three characters of each comment line, it means that this behavior needs to parse the comment line. By default, it is in non-strict mode. Unregistered tag information will not be parsed.
 :::
 
-## 默认注解解析工具
+## Default annotation parsing tool
 
-Easyswoole 自带的字符串解析工具为 ```EasySwoole\Annotation\ValueParser```,支持格式如下单元测试代码所示：
+Easyswoole comes with a string parsing tool called```Easyswoole \Annotation\ValueParser```, which supports unit testing in the following format
+
+The code is shown in：
 
 ```php
 namespace EasySwoole\Annotation\Tests;
@@ -239,16 +241,15 @@ class ValueParserTest extends TestCase
     }
 }
 ```
-## IDE支持
+## IDE support
 
-需要为PHPStorm安装"PHP Annotation"插件以提供注解自动提示能力，插件可以在PHPStorm中直接搜索安装，也可以前往Github下载安装
-
+PHPStorm needs to install the "PHP Annotation" plug-in to provide Annotation autoprompt capability. The plug-in can be searched and installed directly in PHPStorm or downloaded and installed on Github
 
 ::: warning 
  https://github.com/Haehnchen/idea-php-annotation-plugin
 :::
 
-然后自己编写一个下面这样的注解提示类，重点在于使用@Annotation类注释，标记这是一个注解提示类，PHPStorm索引到该文件，就可以对类名和类的成员进行注解提示
+Then write one of the following Annotation prompt classes yourself, the focus is to use the @annotation class Annotation, mark this is an Annotation prompt class, PHPStorm index to this file, you can annotate the class name and class members
 
 ```php
 
@@ -258,26 +259,26 @@ class ValueParserTest extends TestCase
 namespace EasySwoole\Validate;
 
 /**
- * 注解标注文件
+ * Annotated document
  * @Annotation
- * 需要向上方这样使用Annotation标记这是一个注解提示类
+ * You need to use the Annotation tag up here which is an Annotation prompt class
  */
 final class ValidateRule
 {
     /**
-     * 括号内会提示这些字段
+     * These fields are prompted in parentheses
      * @var string
      */
     protected $name;
 
     /**
-     * 括号内会提示这些字段
+     * These fields are prompted in parentheses
      * @var string
      */
     protected $column;
 
     /**
-     * 括号内会提示这些字段
+     * These fields are prompted in parentheses
      * @var string
      */
     protected $alias;
@@ -285,7 +286,7 @@ final class ValidateRule
 
 ```
 
-即可实现下面aaa方法的自动注解提示
+You can implement the following aaa method automatic annotation prompt
 
 ```php
 <?php
@@ -295,7 +296,7 @@ use EasySwoole\Validate as Validate;
 class a
 {
     /**
-     * @Validate\ValidateRule(column="name",alias="账号名称")
+     * @Validate\ValidateRule(column="name",alias="The name of the account")
      */
     function aaa(){
 
