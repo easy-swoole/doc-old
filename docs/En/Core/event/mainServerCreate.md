@@ -6,9 +6,9 @@ meta:
   - name: keywords
     content: EasySwoole|swoole|mainServerCreate
 ---
-# 主服务创建事件
+# mainServerCreateEvent
 
-## 函数原型
+## The function prototype
 
 ```php
 @param \EasySwoole\EasySwoole\Swoole\EventRegister $register
@@ -17,20 +17,20 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-## 已完成工作
+## Finished work
 
-在执行该事件的时候，已经完成的工作有：
+At the time of executing the event, the following work has been completed:
 
-- 框架初始化事件
-- 配置文件加载完成
-- 主Swoole Server创建成功
-- 主Swoole Server 注册了默认的onRequest,onTask,onFinish事件。
+- Framework initializes events
+- The configuration file is loaded
+- The main Swoole Server is created successfully
+- Main Swoole Server registered its default onRequest, onTask, onFinish events.。
 
-## 可处理内容
+## Processable content
 
-### 注册主服务回调事件
+### Register the main service callback event
 
-例如为主服务注册onWorkerStart事件
+For example, register the onWorkerStart event for the main service
 
 ```php
 $register->add($register::onWorkerStart,function (\swoole_server $server,int $workerId){
@@ -38,23 +38,23 @@ $register->add($register::onWorkerStart,function (\swoole_server $server,int $wo
 });
 ```
 
-例如为主服务增加onMessage事件
+For example, add an onMessage event to the main service
 
 ```php
-  // 给server 注册相关事件 在 WebSocket 模式下  message 事件必须注册 并且交给 
+  // In WebSocket mode message events must be registered and handed in 
 $register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) {
     var_dump($frame);
 });
 ```
 
 ::: warning 
-set方法和add方法是不同的,set将会覆盖之前配置的事件回调,而add是增加一个新的回调
+The set method is different from the add method. The set method overrides the previously configured event callback, while the add method adds a new callback
 :::
 
-### 添加一个自定义进程
+### Add a custom process
 
 ::: tip
-具体详细操作可到 基础使用->自定义进程中查看
+Detailed operations can be viewed in the basic use -> custom process
 :::
 
 ```php
@@ -62,10 +62,10 @@ ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_proc
 ```
 
 ::: warning 
-Test 是 `EasySwoole\Component\Process\AbstractProcess` 抽象类的子类
+Test is a subclass of the ```EasySwoole\Component\Process\AbstractProcess'```abstract class
 :::
 
-### 添加一个子服务监听
+### Add a subservice listener
 
 ```php
 $subPort = ServerManager::getInstance()->getSwooleServer()->addListener('0.0.0.0',9503,SWOOLE_TCP);
@@ -74,19 +74,18 @@ $subPort->on('receive',function (\swoole_server $server, int $fd, int $reactor_i
 });
 ```
 
-
 ::: warning 
-参考不同的Demo分支event写法: [demo分支](https://github.com/easy-swoole/demo/branches)
+Refer to different ways of writing Demo branches event: [The demo branch](https://github.com/easy-swoole/demo/branches)
 :::
 
-## 启动前调用协程API
+## Call the coroutine API before starting
 ```php
 use Swoole\Coroutine\Scheduler;
 $scheduler = new Scheduler();
 $scheduler->add(function() {
-    /*  调用协程API */
+    /*  Call the coroutine API */
 });
 $scheduler->start();
-//清除全部定时器
+//Clear all timers
 \Swoole\Timer::clearAll();
 ```
