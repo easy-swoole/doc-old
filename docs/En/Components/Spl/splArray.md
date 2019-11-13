@@ -7,36 +7,36 @@ meta:
     content: easyswoole,SplArray
 ---
 
-## SplArray相关方法
+## SplArray related methods
 
-方法列表
+Method list
 
-| 方法名称     | 参数                       | 说明                   | 备注 |
+| Method name  | parameter                  | Description            | Remarks |
 | :----------- | :------------------------- | :--------------------- | :--- |
-| set          | $key,$value                | 设置参数               |      |
-| get          | $key                       | 获取参数               |      |
-| __toString   |                            | 转字符                 |      |
-| getArrayCopy |                            | 数组赋值               |      |
-| unset        | $key                       | 销毁数组元素           |      |
-| delete       | $key                       | 去除某个数据项         |      |
-| unique       |                            | 数组值唯一             |      |
-| multiple     |                            | 获取数组中重复的值     |      |
-| asort        |                            | 进行排序并保持索引关系 |      |
-| ksort        |                            | 按照键名排序           |      |
-| sort         | $sort_flags = SORT_REGULAR | 自定义排序             |      |
-| column       | $key                       | 取得某一列             |      |
-| flip         |                            | 交换数组中的键和值     |      |
-| filter       | $key,[$key2....],$bool     | 过滤数组数据           |      |
-| keys         | $key                       | 获取数组索引           |      |
-| values       |                            | 获取数组中所有的值     |      |
-| flush        |                            | 清空数据               |      |
-| loadArray    | $data                      | 重新加载数据           |      |
-| toXML        |                            | 转化成xml              |      |
+| set          | $key,$value                | Setting parameters     |      |
+| get          | $key                       | Get parameters         |      |
+| __toString   |                            | Transfer character     |      |
+| getArrayCopy |                            | Array assignment       |      |
+| unset        | $key                       | Destroy array elements |      |
+| delete       | $key                       | Remove a data item     |      |
+| unique       |                            | Array value unique     |      |
+| multiple     |                            | Get duplicate values in an array      |      |
+| asort        |                            | Sort and maintain index relationships |      |
+| ksort        |                            | Sort by key name       |      |
+| sort         | $sort_flags = SORT_REGULAR | Custom sort            |      |
+| column       | $key                       | Get a column           |      |
+| flip         |                            | Swap keys and values in an array   |      |
+| filter       | $key,[$key2....],$bool     | Filter array data      |      |
+| keys         | $key                       | Get array index        |      |
+| values       |                            | Get all the values in the array   |      |
+| flush        |                            | Clear data             |      |
+| loadArray    | $data                      | Reload data            |      |
+| toXML        |                            | Convert to xml         |      |
 
 
 
 
-easyswoole用于处理数组封装的基础工具,用法如下:
+The basic tools for easyswoole to handle array encapsulation are as follows:
 
 ```php
 /**
@@ -59,8 +59,8 @@ $data = [
         'green' => 6
     ],
     'name' => [
-        'name1' => '北溟有鱼QAQ',
-        'name2' => '北溟有鱼QAQ'
+        'name1' => 'LuffyQAQ',
+        'name2' => 'LuffyQAQ'
     ]
 ];
 $splArray = new \EasySwoole\Spl\SplArray($data);

@@ -1,28 +1,28 @@
 ---
-title: 关键词检测
+title: Pressure measurement result
 meta:
   - name: description
-    content: Easyswoole提供了一个基于字典树算法的关键词检测组件
+    content: Easyswoole Pressure measurement result
   - name: keywords
-    content: easyswoole,关键词,关键词检测
+    content: easyswoole,Pressure measurement result
 ---
 
-# 压测结果
-对此组件分别进行1.5万、13万等级的词库测试，服务默认开启3个进程。
-::: warning 
-仅做参考，具体还以线上验证
+# Pressure measurement result
+This component is tested with a lexicon of 15,000 and 130,000 levels, and the service starts with 3 processes by default.
+::: warning
+For reference only, specifically for online verification
 :::
 
-### 电脑配置
+### Computer Configuration
 ```
 MacBook Air (13-inch, 2017)
-处理器 1.8 GHz Intel Core i5
-内存 8 GB 1600 MHz DDR3
+Processor 1.8 GHz Intel Core i5
+Memory 8 GB 1600 MHz DDR3
 ```
 
-### 1.5万词
+### 1.5 million words
 
-##### 并发1总请求数10
+##### Concurrent 1 total requests 10
 
 ```
 Concurrency Level:      1
@@ -38,7 +38,7 @@ Time per request:       1.427 [ms] (mean, across all concurrent requests)
 Transfer rate:          118.40 [Kbytes/sec] received
 ```
 
-##### 并发10总请求数100
+##### Concurrent 10 total requests 100
 
 ```
 10 100
@@ -55,7 +55,7 @@ Time per request:       0.670 [ms] (mean, across all concurrent requests)
 Transfer rate:          252.15 [Kbytes/sec] received
 ```
 
-##### 并发100总请求数1000
+##### Concurrent 100 total requests 1000
 
 ```
 Concurrency Level:      100
@@ -71,9 +71,9 @@ Time per request:       0.239 [ms] (mean, across all concurrent requests)
 Transfer rate:          707.74 [Kbytes/sec] received
 ```
 
-### 13万词
+### 130,000 words
 
-##### 并发1总请求数10
+##### Concurrent 1 total requests 10
 
 ```
 Concurrency Level:      1
@@ -89,7 +89,7 @@ Time per request:       1.430 [ms] (mean, across all concurrent requests)
 Transfer rate:          118.17 [Kbytes/sec] received
 ```
 
-##### 并发10总请求数100
+##### Concurrent 10 total requests 100
 
 ```
 Concurrency Level:      10
@@ -105,7 +105,7 @@ Time per request:       0.571 [ms] (mean, across all concurrent requests)
 Transfer rate:          295.94 [Kbytes/sec] received
 ```
 
-##### 并发100总请求数1000
+##### Concurrent 100 total requests 1000
 
 ```
 Concurrency Level:      100

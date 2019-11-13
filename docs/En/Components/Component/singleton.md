@@ -1,21 +1,21 @@
 ---
-title: 单例
+title: Single case
 meta:
   - name: description
-    content: EasySwoole 单例模式
+    content: EasySwoole singleton mode
   - name: keywords
-    content: easyswoole|单例模式
+    content: Easyswoole|singleton mode
 ---
-# 单例
-单例模式确保类在全局只能有一个实例，因为它的实例是由自己保存，在类的外部也无法对该类进行实例化。  
+# Single case
+The singleton pattern ensures that a class can only have one instance globally, because its instances are saved by itself and cannot be instantiated outside of the class.  
 
-## 作用
-PHP的单例模式是为了避免重复创建对象带来的资源消耗。
+## Effect
+PHP's singleton mode is to avoid the resource consumption caused by repeated creation of objects.
 
-## 用途
-实际项目中像数据库查询，日志输出，全局回调，统一校验等模块。这些模块功能单一，但需要多次访问，如果能够全局唯一，多次复用会大大提升性能。
+## Use
+The actual project is like a database query, log output, global callback, unified check and other modules. These modules have a single function, but require multiple accesses. If they are globally unique, multiple reuses will greatly improve performance.
 
-## 例子
+## Example
 
 ```php
 
@@ -31,13 +31,13 @@ $mySingleton = Mysingleton::getInstance();
 ``` 
 
 
-## 核心对象方法
+## Core object method
 
-核心类：EasySwoole\Component\Singleton。
+Core class: EasySwoole\Component\Singleton。
 
-获取对象
+Get object
 
-* mixed     $args     参数
+* mixed     $args     parameter
 
 ```php
 static function getInstance(...$args)

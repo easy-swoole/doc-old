@@ -9,40 +9,40 @@ meta:
 
 # Policy
 
-Policy（即策略）是在特定模型或者资源中组织授权逻辑的类，用来处理用户授权动作。
+A policy is a class that organizes authorization logic in a specific model or resource to handle user authorization actions.
 
-## 安装
+## Installation
 ```bash
 composer require easyswoole/policy
 ```
 
-## 使用方法
+## Instructions
 
 ```php
 
 use EasySwoole\Policy\PolicyNode;
 use EasySwoole\Policy\Policy;
 
-//授权动作
-//PolicyNode::EFFECT_ALLOW   允许
-//PolicyNode::EFFECT_DENY    拒绝
-//PolicyNode::EFFECT_UNKNOWN 未知
+//Authorized action
+//PolicyNode::EFFECT_ALLOW      Allowed
+//PolicyNode::EFFECT_DENY       Refused
+//PolicyNode::EFFECT_UNKNOWN    Unknown
 
 
 $policy = new Policy();
-//添加节点授权   
+//Add node authorization   
 $policy->addPath('/user/add',PolicyNode::EFFECT_ALLOW);
 $policy->addPath('/user/update',PolicyNode::EFFECT_ALLOW);
 $policy->addPath('/user/delete',PolicyNode::EFFECT_DENY);
 $policy->addPath('/user/*',PolicyNode::EFFECT_DENY);
 
-//验证节点权限
+//Verify node permissions
 var_dump($policy->check('user/asdasd'));//deny
 var_dump($policy->check('user/add'));   //allow
 var_dump($policy->check('user/update'));//allow
 
 /*
- * 允许/api/*,但是唯独拒绝/api/order/charge,/api/order/info,/api/sys/*
+ * Allow /api/*, but only reject /api/order/charge, /api/order/info, /api/sys/*
  */
  
 $policy->addPath('/api/*',PolicyNode::EFFECT_ALLOW);
@@ -56,7 +56,7 @@ var_dump($policy->check('/api/order/info'));
 var_dump($policy->check('/api/sys/whatever'));
 
 
-//对象添加
+//Object addition
 $root = new PolicyNode('*');
 $userChild = $root->addChild('user');
 $userAddChild = $userChild->addChild('add');

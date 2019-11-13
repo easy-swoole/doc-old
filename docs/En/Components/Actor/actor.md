@@ -1,35 +1,35 @@
 ---
-title: ACTOR组件
+title: ACTOR component
 meta:
   - name: description
-    content: EasySwoole提供Actor模式支持，助力游戏行业开发
+    content: EasySwoole provides Actor mode support for game industry development
   - name: keywords
-    content: easyswoole|ACTOR组件
+    content: easyswoole|ACTOR component
 ---
 
 # ACTOR
 
-提供Actor模式支持，助力游戏行业开发。EasySwoole的Actor采用自定义process作为存储载体，以协程作为最小调度单位，利用协程Channel做mail box,而客户端与process之间的通讯，采用UnixSocket实现，并且借助TCP实现分布式的ActorClient，超高并发下也能轻松应对。
+Provides Actor mode support to help the game industry develop. EasySwoole's Actor uses a custom process as the storage carrier, with the coroutine as the minimum scheduling unit, the coroutine Channel as the mail box, and the communication between the client and the process, using UnixSocket, and implementing the distributed ActorClient via TCP. It can be easily handled with super high concurrency.
 
-## Actor如何工作
+## How Actors work
 
-一般来说有两种策略用来在并发线程中进行通信：共享数据和消息传递。使用共享数据方式的并发编程面临的最大的一个问题就是数据条件竞争，当两个实例需要访问同一个数据时，为了保证数据的一致性，通常需要为数据加锁，而Actor模型采用消息传递机制来避免数据竞争，无需复杂的加锁操作，各个实例只需要关注自身的状态以及处理收到的消息。
+There are generally two strategies for communicating in concurrent threads: sharing data and messaging. One of the biggest problems faced by concurrent programming using shared data is data condition competition. When two instances need to access the same data, in order to ensure data consistency, it is usually necessary to lock the data, and the Actor model uses the message passing mechanism. To avoid data competition, no complicated locking operations are required, and each instance only needs to pay attention to its own state and process the received messages.
 
-Actor是完全面向对象、无锁、异步、实例隔离、分布式的并发开发模式。Actor实例之间互相隔离，Actor实例拥有自己独立的状态，各个Actor之间不能直接访问对方的状态，需要通过消息投递机制来通知对方改变状态。由于每个实例的状态是独立的，没有数据被共享，所以不会发生数据竞争，从而避免了并发下的加锁问题。
+Actors are fully object-oriented, lock-free, asynchronous, instance-isolated, distributed, concurrent development models. Actor instances are isolated from each other. Actor instances have their own independent state. Each Actor cannot directly access the other party's state. You need to notify the other party to change the state through the message delivery mechanism. Since the state of each instance is independent and no data is shared, data competition does not occur, thus avoiding the locking problem under concurrent.
 
-举一个游戏场景的例子，在一个游戏房间中，有5个玩家，每个玩家都是一个PlayerActor，拥有自己的属性，比如角色ID，昵称，当前血量，攻击力等，游戏房间本身也是一个RoomActor，房间也拥有属性，比如当前在线的玩家，当前场景的怪物数量，怪物血量等。此时玩家A攻击某个怪物，则PlayerActor-A向RoomActor发送一个攻击怪物的指令，RoomActor经过计算，得出玩家A对怪物的伤害值，并给房间内的所有PlayerActor发送一个消息（玩家A攻击怪物A，造成175点伤害，怪物A剩余血量1200点），类似此过程，每个PlayerActor都可以得知房间内发生了什么事情，但又不会造成同时访问怪物A的属性，导致的共享加锁问题
+As an example of a game scene, in a game room, there are 5 players, each player is a PlayerActor, with its own attributes, such as character ID, nickname, current blood volume, attack power, etc. The game room itself is also a RoomActor, the room also has properties, such as the current online player, the number of monsters in the current scene, the amount of monster blood. At this time player A attacks a monster, PlayerActor-A sends an attack monster command to the RoomActor. The RoomActor calculates the damage value of player A to the monster and sends a message to all PlayerActors in the room. Monster A, causing 175 damage, monster A remaining 1200 points), similar to this process, each PlayerActor can know what is happening in the room, but will not cause simultaneous access to the properties of Monster A, resulting in sharing Lock problem
 
-## 基础用法
+## Basic usage
 
-Actor并没有作为内置组件，需要先引入包并进行基础配置才能够使用
+Actors are not built-in components. You need to import the package first and configure it to be able to use it.
 
 ```php
 composer require easyswoole/actor=2.x-dev
 ```
 
-##### 建立一个Actor
+##### Build an Actor
 
-每一种对象（玩家、房间、甚至是日志服务也可以作为一种Actor对象）都建立一个Actor来进行管理，一个对象可以拥有多个实例（Client）并且可以互相通过信箱发送消息来处理业务
+Each type of object (player, room, and even log service can also be used as an Actor object) to create an Actor to manage, an object can have multiple instances (Client) and can send messages to each other through the mailbox to handle the business.
 
 ```php
 <?php
@@ -40,14 +40,14 @@ use EasySwoole\Actor\AbstractActor;
 use EasySwoole\Actor\ActorConfig;
 
 /**
- * 玩家Actor
+ * Player Actor
  * Class PlayerActor
  * @package App\Player
  */
 class PlayerActor extends AbstractActor
 {
     /**
-     * 配置当前的Actor
+     * Configure the current Actor
      * @param ActorConfig $actorConfig
      */
     public static function configure(ActorConfig $actorConfig)
@@ -57,7 +57,7 @@ class PlayerActor extends AbstractActor
     }
 
     /**
-     * Actor首次启动时
+     * When the Actor first starts
      */
     protected function onStart()
     {
@@ -66,7 +66,7 @@ class PlayerActor extends AbstractActor
     }
 
     /**
-     * Actor收到消息时
+     * When the Actor receives the message
      * @param $msg
      */
     protected function onMessage($msg)
@@ -76,7 +76,7 @@ class PlayerActor extends AbstractActor
     }
 
     /**
-     * Actor即将退出前
+     * Actor is about to quit before
      * @param $arg
      */
     protected function onExit($arg)
@@ -86,7 +86,7 @@ class PlayerActor extends AbstractActor
     }
 
     /**
-     * Actor发生异常时
+     * When an Actor is abnormal
      * @param \Throwable $throwable
      */
     protected function onException(\Throwable $throwable)
@@ -98,15 +98,15 @@ class PlayerActor extends AbstractActor
 }
 ```
 
-##### 注册Actor服务
+##### Register Actor Service
 
-可以使用setListenAddress和setListenPort指定本机对外监听的端口，其他机器可以通过该端口向本机的Actor发送消息
+You can use setListenAddress and setListenPort to specify the port that the local machine listens to. Other machines can send messages to the Actor of this machine through this port.
 
 ```php
 
 public static function mainServerCreate(EventRegister $register) {
 
-    // 注册Actor管理器
+    // Register Actor Manager
     $server = ServerManager::getInstance()->getSwooleServer();
     Actor::getInstance()->register(PlayerActor::class);
     Actor::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)
@@ -115,26 +115,26 @@ public static function mainServerCreate(EventRegister $register) {
 }
 ```
 
-##### Actor实例管理
+##### Actor instance management
 
-服务启动后就可以进行Actor的操作，管理本机的Client实例，则不需要给client传入$node参数，默认的node为本机，管理其他机器时需要传入
+After the service is started, the Actor can be operated. If the Client instance of the machine is managed, the client does not need to pass the $node parameter to the client. The default node is the local machine, and the other machines need to be imported.
 
 ```php
 
-    // 管理本机的Actor则不需要声明节点
+    // Actors managing this machine do not need to declare nodes
     $node = new ActorNode;
     $node->setIp('127.0.0.1');
     $node->setListenPort(9900);
 
-    // 启动一个Actor并得到ActorId 后续操作需要依赖ActorId
+    // Start an Actor and get the ActorId. Subsequent operations need to rely on the ActorId.
     $actorId = PlayerActor::client($node)->create(['time' => time()]);   // 00101000000000000000001
-    // 给某个Actor发消息
+    // Send a message to an actor
     PlayerActor::client($node)->send($actorId, ['data' => 'data']);
-    // 给该类型的全部Actor发消息
+    // Send a message to all Actors of this type
     PlayerActor::client($node)->sendAll(['data' => 'data']);
-    // 退出某个Actor
+    // Exit an Actor
     PlayerActor::client($node)->exit($actorId, ['arg' => 'arg']);
-    // 退出全部Actor
+    // Exit all Actors
     PlayerActor::client($node)->exitAll(['arg' => 'arg']);
     
 ```

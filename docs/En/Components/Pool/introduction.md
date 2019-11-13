@@ -1,43 +1,43 @@
 ---
-title: EasySwoole通用连接池
+title: EasySwooleUniversal connection pool
 meta:
   - name: description
-    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+    content: EasySwooleUniversal connection pool,Universal connection pool,easyswooleUniversal connection pool
   - name: keywords
-    content: easyswoole|连接池|swoole 连接池|通用连接池
+    content: easyswoole|Universal connection pool|swoole Universal connection pool|Universal connection pool
 ---
-## 通用连接池
+## Universal connection pool
 
-EasySwoole通用的协程连接池管理。
+EasySwoole universal coroutine connection pool management.
 
-## 安装
+## Installation
 ```php
 composer require easyswoole/pool
 ```
 
 
-## 基础实例代码
-### 定义池对象
+## Base instance code
+### Defining pool objects
 ```php
 class Std implements \EasySwoole\Pool\ObjectInterface {
     function gc()
     {
         /*
-         * 本对象被pool执行unset的时候
+         * When this object is unset by the pool
          */
     }
 
     function objectRestore()
     {
         /*
-         * 回归到连接池的时候
+         * When returning to the connection pool
          */
     }
 
     function beforeUse(): ?bool
     {
         /*
-         * 取出连接池的时候，若返回false，则当前对象被弃用回收
+         * When the connection pool is taken out, if false is returned, the current object is discarded for recycling.
          */
         return true;
     }
@@ -48,7 +48,7 @@ class Std implements \EasySwoole\Pool\ObjectInterface {
     }
 }
 ```
-### 定义池
+### Definition pool
 ```php
 
 class StdPool extends \EasySwoole\Pool\AbstractPool{
@@ -60,26 +60,26 @@ class StdPool extends \EasySwoole\Pool\AbstractPool{
 }
 
 ```
-> 不一定非要创建返回 ```EasySwoole\Pool\ObjectInterface``` 对象，任意类型对象均可
+> It is not necessary to create a return `EasySwoole\Pool\ObjectInterface` object, any type of object can
 
-在pool组件版本`>= 1.0.2 `后，提供了`魔术池`支持，可以快速进行定义池
+After the pool component version `> = 1.0.2`, the `Magic Pool` support is provided, and the definition pool can be quickly defined.
 
 ```php
 use \EasySwoole\Pool\MagicPool;
 $magic = new MagicPool(function (){
-    return new \stdClass(); // 示例，可以返回实现了 ObjectInterface 的对象
+    return new \stdClass(); // For example, you can return an object that implements ObjectInterface
 });
 
-// 注册后获取
+// Get after registration
 $test = $magic->getObj();
-// 归还
+// return
 $magic->recycleObj($test);
 ```
 
-魔术池构造方法的第二个参数，可以接收一个 config（EasySwoole\Pool\Config类），用于定义池数量等配置。
+The second parameter of the magic pool constructor can receive a config (EasySwoole\Pool\Config class) to define the number of pools and other configurations.
 
 
-### 使用
+### Use
 ```php
 
 $config = new \EasySwoole\Pool\Config();

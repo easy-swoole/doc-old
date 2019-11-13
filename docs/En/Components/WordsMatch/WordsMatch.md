@@ -1,53 +1,53 @@
 ---
-title: 文本检测
+title: Text detection
 meta:
   - name: description
-    content: Easyswoole提供了一个基于字典树算法的内容检测组件
+    content: Easyswoole provides a content detection component based on dictionary tree algorithm
   - name: keywords
-    content: easyswoole,敏感词,敏感词检测
+    content: easyswoole,Sensitive word,Sensitive word detection
 ---
 
-# 文本检测(words-match)
+# Text detection(words-match)
 
-`感谢Easyswoole开发组的其它小伙伴的耐心指导和AbelZhou开源的字典树供我学习`
+`Thanks to the patient guidance of the other partners of the Easyswoole development team and the AbelZhou open source dictionary tree for me to learn.
 
-words-match组件是基于字典树(DFA)并利用UnixSock通讯和自定义进程实现，开发本组件的目的是帮小伙伴们快速部署敏感词检测服务，这对于内容型产品来说非常重要。
+The words-match component is based on the dictionary tree (DFA) and is implemented using UnixSock communication and custom processes. The purpose of developing this component is to help small partners quickly deploy sensitive word detection services, which is very important for content products.
 
-::: warning 
- 此组件稳定后，会尝试使用AC自动机或其它检测方式，提供底层可配置化检测服务
+::: warning
+  After the component is stable, it will try to use the AC automaton or other detection methods to provide the underlying configurable detection service.
 :::
 
-## 使用场景
+## scenes to be used
 
-博客:评论、文章
+Blog: comments, articles
 
-即时通讯: 聊天室中的消息
+Instant messaging: Messages in chat rooms
 
-只要和文本内容相关的都有应用场景
+As long as there is an application scenario related to the text content
 
-## 安装
-
-```
-composer require easyswoole/words-match
-```
-
-## 准备词库
-
-服务启动的时候会一行一行将数据读出来，每一行的第一列为敏感词，其它列为附属信息
+## Installation
 
 ```
-php,是世界上,最好的语言
-java
-golang
-程序员
-代码
-逻辑
+Composer require easyswoole/words-match
 ```
-::: warning 
- 注意!!!!!! 服务启动时可以用setDefaultWordBank 方法指定默认加载的词库。
+
+## Preparing the thesaurus
+
+When the service starts, the data will be read out line by line. The first column of each line is sensitive words, and the others are listed as subsidiary information.
+
+```
+Php, the best language in the world
+Java
+Golang
+programmer
+Code
+logic
+```
+::: warning
+  Note!!!!!! You can use the setDefaultWordBank method to specify the default loaded thesaurus when the service starts.
 :::
 
-## 代码示例
+## Code Example
 
 ```php
 <?php
@@ -74,20 +74,20 @@ class EasySwooleEvent implements Event
     {
         // TODO: Implement mainServerCreate() method.
         WordsMatchServer::getInstance()
-                ->setMaxMem('1024M') // 每个进程最大内存
-                ->setProcessNum(5) // 设置进程数量
-                ->setServerName('Easyswoole words-match')// 服务名称
-                ->setTempDir(EASYSWOOLE_TEMP_DIR)// temp地址
+                ->setMaxMem('1024M') // Maximum memory per process
+                ->setProcessNum(5) // Set the number of processes
+                ->setServerName('Easyswoole words-match')// service name
+                ->setTempDir(EASYSWOOLE_TEMP_DIR)// Temp address
                 ->setWordsMatchPath(EASYSWOOLE_ROOT.'/WordsMatch/')
-                ->setDefaultWordBank('comment.txt')// 服务启动时默认导入的词库文件路径
-                ->setSeparator(',')// 词和其它信息分隔符
+                ->setDefaultWordBank('comment.txt')// The lexicon file path imported by default when the service starts
+                ->setSeparator(',')// Word and other information separators
                 ->attachToServer(ServerManager::getInstance()->getSwooleServer());
     }
 
     public static function onRequest(Request $request, Response $response): bool
     {
         // TODO: Implement onRequest() method.
-        $res = WordsMatchClient::getInstance()->search('php是世界上最好的语言，其它类型的程序员不认可php的这句话，比如java、golang。');
+        $res = WordsMatchClient::getInstance()->search('Php is the best language in the world, other types of programmers do not recognize the php sentence, such as java, golang.');
         var_dump($res);
         return true;
     }
@@ -99,9 +99,9 @@ class EasySwooleEvent implements Event
 }
 ```
 
-## 命中结果
+## Hit result
 
-```
+```php
 array(4) {
   ["e1bfd762321e409cee4ac0b6e841963c"]=>
   array(3) {
@@ -110,9 +110,9 @@ array(4) {
     ["other"]=>
     array(2) {
       [0]=>
-      string(12) "是世界上"
+      string(12) "Is the world"
       [1]=>
-      string(15) "最好的语言"
+      string(15) "Best language"
     }
     ["count"]=>
     int(2)
@@ -120,7 +120,7 @@ array(4) {
   ["72d9adf4944f23e5efde37f6364c126f"]=>
   array(3) {
     ["word"]=>
-    string(9) "程序员"
+    string(9) "programmer"
     ["other"]=>
     array(0) {
     }
@@ -150,91 +150,91 @@ array(4) {
 }
 ```
 ::: warning 
- word:命中的敏感词，other：为其它信息，count：此敏感词在内容中命中的次数
+Word: the sensitive word of the hit, other: for other information, count: the number of times the sensitive word hits in the content
 :::
 
-## 支持的方法
+## Supported methods
 
 ### WordsMatchServer
 
-设置临时目录
+Set up a temporary directory
 ```
-public function setTempDir(string $tempDir): WordsMatchServer
-```
-
-设置进程数量，默认3
-```
-public function setProcessNum(int $num): WordsMatchServer
+Public function setTempDir(string $tempDir): WordsMatchServer
 ```
 
-设置每个进程最多所占内存大小
+Set the number of processes, default 3
 ```
-public function setMaxMem(string $maxMem='512M')
-```
-
-设置UnixSocket的Backlog队列长度
-```
-public function setBacklog(?int $backlog = null)
+Public function setProcessNum(int $num): WordsMatchServer
 ```
 
-设置服务名称
+Set the maximum memory size per process
 ```
-public function setServerName(string $serverName): WordsMatchServer
+Public function setMaxMem(string $maxMem='512M')
 ```
 
-服务启动时默认加载的词库
+Set the length of the UnixSocket Backlog queue
+```
+Public function setBacklog(?int $backlog = null)
+```
+
+Set the service name
+```
+Public function setServerName(string $serverName): WordsMatchServer
+```
+
+Thesaurus that is loaded by default when the service starts
 ```
 public function setDefaultWordBank(string $defaultWordBank): WordsMatchServer
 ```
 
-绑定到当前主服务
+Bind to the current main service
 ```
-function attachToServer(swoole_server $server)
-```
-
-敏感词和其它信息的分隔符
-```
-public function setSeparator(string $separator): WordsMatchServer
+Function attachToServer(swoole_server $server)
 ```
 
-组件根路径
+Separator of sensitive words and other information
 ```
-public function setWordsMatchPath(string $path): WordsMatchServer
+Public function setSeparator(string $separator): WordsMatchServer
+```
+
+Component root path
+```
+Public function setWordsMatchPath(string $path): WordsMatchServer
 ```
 
 ### WordsMatchClient
 
-向字典树中添加敏感词
+Add sensitive words to the dictionary tree
 ```
-public function append($word, array $otherInfo=[], float $timeout = 1.0)
+Public function append($word, array $otherInfo=[], float $timeout = 1.0)
 ```
-::: warning 
-添加一次各进程间会自动同步
+::: warning
+Add once and automatically synchronize between processes
 :::
 
-向字典树中移除敏感词
+Remove sensitive words from the dictionary tree
 ```
-public function remove($word, float $timeout = 1.0)
+Public function remove($word, float $timeout = 1.0)
 ```
-::: warning 
-添加一次各进程间会自动同步
+::: warning
+Add once and automatically synchronize between processes
 :::
 
-检测内容
+Test content
 ```
-public function search($word, float $timeout = 1.0)
+Public function search($word, float $timeout = 1.0)
 ```
 
-导入词库，此方法可以将新词库追加到正在运行的字典树中也可以覆盖字典树，这样就可以做到实时的词库切换
+Import the thesaurus, this method can append the new thesaurus to the running dictionary tree or overwrite the dictionary tree, so that real-time thesaurus can be switched.
 ```
-public function import($fileName, $separator=',', $isCover=false, float $timeout=1.0)
+Public function import($fileName, $separator=',', $isCover=false, float $timeout=1.0)
 ```
-::: warning 
-导入词库后各进程会同步
+::: warning
+Processes are synchronized after importing the thesaurus
 :::
 
 
-导出词库，此方法可以将字典树正在运行中的敏感词落地到文件中
+Export the thesaurus, this method can put sensitive words in the dictionary tree running into the file
 ```
 public function export($fileName, $separator=',', float $timeout=1.0)
 ```
