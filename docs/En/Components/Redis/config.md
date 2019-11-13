@@ -1,15 +1,15 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## 配置
+## Configuration
 
-### redis配置
-redis在实例化时,需要传入`\EasySwoole\Redis\Config\RedisConfig`实例:
+### redis configuration
+When redis is instantiated, you need to pass in the `\EasySwoole\Redis\Config\RedisConfig` instance:
 
 ```php
 $config = new \EasySwoole\Redis\Config\RedisConfig([
@@ -21,26 +21,26 @@ $config = new \EasySwoole\Redis\Config\RedisConfig([
     ]);
 ```
 
-配置项如下:
+The configuration items are as follows:
 
-| 配置名         | 默认参数           | 说明             | 备注                                               |
+| Configuration name         | Default parameter           | Description             | Notes                                               |
 |:---------------|:-------------------|:-----------------|:---------------------------------------------------|
-| host           | 127.0.0.1          | redis ip         |                                                    |
-| port           | 6379               | redis端口        |                                                    |
-| auth           |                    | auth密码         |                                                    |
-| db             | null               | redis数据库      | 当db配置不等于null时,在connect的时候会自动select该配置 |
-| timeout        | 3.0                | 超时时间         |                                                    |
-| reconnectTimes | 3                  | 客户端异常重连次数 |                                                    |
-| serialize      | SERIALIZE_NONE     | 数据是否序列化    |                                                    |
+| host           | 127.0.0.1          | Redis ip        |                                                    |
+| port           | 6379               | Redis port      |                                                    |
+| auth           |                    | Auth password      |                                                    |
+| db             | null               | Redis database     | When the db configuration is not equal to null, the configuration will be automatically selected when connected |
+| timeout        | 3.0                | overtime time         |                                                    |
+| reconnectTimes | 3                  | Client abnormal reconnection times |                                                    |
+| serialize      | SERIALIZE_NONE     | Whether the data is serialized  |                                                    |
 
 
 ::: warning
-序列化参数有:SERIALIZE_NONE,SERIALIZE_PHP,SERIALIZE_JSON
+Serialization parameters are: SERIALIZE_NONE, SERIALIZE_PHP, SERIALIZE_JSON
 :::
 
 
-### redis集群配置
-redis集群在实例化时,需要传入`\EasySwoole\Redis\Config\RedisConfig`实例:
+### redis cluster configuration
+When the redis cluster is instantiated, you need to pass in the `\EasySwoole\Redis\Config\RedisConfig` instance:
 
 ```php
 $config = new \EasySwoole\Redis\Config\RedisClusterConfig([
@@ -54,6 +54,6 @@ $config = new \EasySwoole\Redis\Config\RedisClusterConfig([
     ]);
 ```
 ::: warning
-集群配置先传入一个ip,port的多维数组,再传入其他配置项,其他配置项和redis配置一致
+The cluster configuration first passes a multi-dimensional array of ip and port, and then passes other configuration items. Other configuration items are consistent with redis configuration.
 :::
 

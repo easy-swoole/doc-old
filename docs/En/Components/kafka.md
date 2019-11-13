@@ -1,12 +1,12 @@
 # kafka
-本项目代码参考自 https://github.com/weiboad/kafka-php
+This project code is referenced from https://github.com/weiboad/kafka-php
 
-# 安装
+# Installation
 ```php
 composer required easyswoole/kafka
 ```
 
-### 注册kafka服务
+### Register kafka service
 ```php
 namespace EasySwoole\EasySwoole;
 
@@ -29,9 +29,9 @@ class EasySwooleEvent implements Event
     public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
-        // 生产者
+        // Producer
         ServerManager::getInstance()->getSwooleServer()->addProcess((new ProducerProcess())->getProcess());
-        // 消费者
+        // consumer
         ServerManager::getInstance()->getSwooleServer()->addProcess((new ConsumerProcess())->getProcess());
     }
     
@@ -40,7 +40,7 @@ class EasySwooleEvent implements Event
 }
 
 ```
-### 生产者
+### Producer
 ```php
 namespace App\Producer;
 
@@ -75,7 +75,7 @@ class Process extends AbstractProcess
 ```
 
 
-### 消费者
+### consumer
 ```php
 namespace App\Consumer;
 
@@ -98,7 +98,7 @@ class Process extends AbstractProcess
             $config->setOffsetReset('earliest');
 
             $kafka = new kafka($config);
-            // 设置消费回调
+            // Set consumption callback
             $func = function ($topic, $partition, $message) {
                 var_dump($topic);
                 var_dump($partition);
@@ -111,12 +111,12 @@ class Process extends AbstractProcess
 
 ```
 
-### 附赠
-1. Kafka 集群部署 docker-compose.yml 一份，使用方式如下
-    1. 保证2181,9092,9093,9000端口未被占用（占用后可以修改compose文件中的端口号）
-    2. 根目录下，docker-compose up -d
-    3. 访问localhost:9000，可以查看kafka集群状态。
-    
-### Any Question
-kafka使用问题及bug，欢迎到Easyswoole的kaka群中提问或反馈
-QQ群号：827432930
+### Bonus
+1. Kafka cluster deployment docker-compose.yml one, use as follows
+    1. Ensure that the ports 2181, 9092, 9093, and 9000 are not occupied (you can modify the port number in the compose file after occupying)
+    2. Under the root directory, docker-compose up -d
+    3. Visit localhost:9000 to view the kafka cluster status.
+    
+### any Question
+Kafka use questions and bugs, welcome to questions or feedback in the kaka group of Easyswoole
+QQ group number: 827432930

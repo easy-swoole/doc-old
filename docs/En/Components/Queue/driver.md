@@ -1,8 +1,8 @@
-# Queue驱动
+# QueueDrive
 
-我们可以自定义驱动，实现RabbitMQ等消费队列软件的封装。
+We can customize the driver to implement the packaging of consumer queue software such as RabbitMQ.
 
-定义类，并继承`EasySwoole\Queue\QueueDriverInterface`接口，实现几个方法即可。
+Define the class and inherit the `EasySwoole\Queue\QueueDriverInterface` interface to implement several methods.
 
 ## QueueDriverInterface
 
@@ -17,7 +17,7 @@ interface QueueDriverInterface
 }
 ```
 
-## 自带的redis驱动
+## Comes with redis drive
 
 ```php
 namespace EasySwoole\Queue\Driver;
