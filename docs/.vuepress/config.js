@@ -6,7 +6,7 @@ module.exports = {
         '/': {
             lang: 'zh-CN',
             title: 'EasySwoole,一款基于Swoole实现的高并发与开发效率共存的微服务分布式框架',
-            keywords:'easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket',
+            keywords: 'easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket',
             description: 'easySwoole是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者'
         },
         '/En/': {
@@ -43,6 +43,7 @@ module.exports = {
     head: [
         ['script', {src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'}],
         ['script', {src: 'https://cdn.bootcss.com/layer/2.3/layer.js'}],
-        ['href', {src: 'https://cdn.bootcss.com/layer/2.3/skin/layer.css',rel:"stylesheet"}],
+        ['href', {src: 'https://cdn.bootcss.com/layer/2.3/skin/layer.css', rel: "stylesheet"}],
+        ['link', {rel: "icon", type: "image/x-icon", href: "/favicon.ico"}]
     ]
 };
