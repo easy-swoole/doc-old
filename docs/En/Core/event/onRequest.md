@@ -6,26 +6,26 @@ meta:
   - name: keywords
     content: EasySwoole|swoole|onRequest
 ---
-## 收到请求事件
+## onRequestEvent
 
 ```php
  public static function onRequest(Request $request, Response $response): bool
 ```
 
-当EasySwoole收到任何的HTTP请求时，均会执行该事件。该事件可以对HTTP请求全局拦截。
+EasySwoole executes this event when it receives any HTTP request. This event can intercept HTTP requests globally。
 
 ```php
 <?php
  public static function onRequest(Request $request, Response $response): bool
     {
-        //不建议在这拦截请求,可增加一个控制器基类进行拦截
-        //如果真要拦截,判断之后return false即可
+        //It is not recommended to intercept requests here, but to add a controller base class for interception
+        //If you want to intercept, return false
         $code = $request->getRequestParam('code');
-        if (0/*empty($code)验证失败*/){
+        if (0/*empty($code)Validation fails*/){
             $data = Array(
                 "code" => Status::CODE_BAD_REQUEST,
                 "result" => [],
-                "msg" => '验证失败'
+                "msg" => 'Validation fails'
             );
             $response->write(json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
             $response->withHeader('Content-type', 'application/json;charset=utf-8');
@@ -39,6 +39,6 @@ meta:
 
 
 ::: warning 
- 若在该事件中，执行 $response->end(),则该次请求不会进入路由匹配阶段。
+ If $response->end() is executed in this event, the request will not enter the route matching phase.
 :::
 

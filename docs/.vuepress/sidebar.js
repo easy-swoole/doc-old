@@ -388,6 +388,7 @@ const sidebarCn = [
                 ]
             },
             ['/Components/tracker', '链路追踪'],
+            ['/Components/hotReload', '热重载监视器'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
@@ -414,7 +415,17 @@ const sidebarCn = [
                     ['/Components/Sundries/time', 'Time']
                 ]
             },
-            ['/Components/smtp', 'Smtp']
+            {
+              title: 'Smtp邮件客户端',
+              path: '/Components/Smtp/smtp',
+              collapsable: true,
+              sidebarDepth: 0,
+              children: [
+                ['/Components/Smtp/config', '配置(MailerConfig)'],
+                ['/Components/Smtp/content', '邮件内容'],
+                ['/Components/Smtp/contentconfig', '内容配置']
+              ]
+            }
         ]
     },
     {
@@ -460,6 +471,7 @@ const sidebarCn = [
                     ['/Components/Rpc/client', '客户端'],
                     ['/Components/Rpc/otherPlatform', '跨语言'],
                     ['/Components/Rpc/registerCenter', '服务注册中心'],
+                    ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
             ['/Components/consul', 'Concul客户端'],
