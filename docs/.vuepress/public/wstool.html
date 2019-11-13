@@ -15,6 +15,16 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/9.10.0/styles/qtcreator_light.min.css">
 
     <title>websocket/ws/wss在线调试测试工具</title>
+
+    <script>
+        var isHttps = 'https:' === document.location.protocol ? true : false;
+        var isBaidu = (navigator.userAgent.match(/(Baiduspider)/i));
+        if ( isHttps && !isBaidu ){
+            window.location.href = 'http://www.easyswoole.com/wstool.html'
+        }
+
+    </script>
+
 </head>
 <body>
 
