@@ -1,21 +1,21 @@
 ---
-title: memcache协程连接池
+title: Memcache coroutine connection pool
 meta:
   - name: description
-    content: memcache协程客户端,由swoole 协程client实现
+    content: Memcache coroutine client, implemented by swoole coroutine client
   - name: keywords
-    content:  EasySwoole memcache|Swoole memcache协程客户端|memcache连接池
+    content:  EasySwoole memcache|Swoole Memcache coroutine client|Memcache connection pool
 ---
-# Memcache连接池示例
+# Memcache connection pool example
 
-## 安装 easyswoole/pool 组件:
+## Install the easyswoole/pool component:
 
 ```shell
 composer require easyswoole/pool
 ```
 
-## 新增MemcachePool管理器
-新增文件`/App/Pool/MemcachePool.php`
+## Add MemcachePool Manager
+New file`/App/Pool/MemcachePool.php`
 
 ```php
 <?php
@@ -38,7 +38,7 @@ class MemcachePool extends AbstractPool
     protected $memcacheConfig;
 
     /**
-     * 重写构造函数,为了传入memcache配置
+     * Override the constructor in order to pass in the memcache configuration
      * RedisPool constructor.
      * @param Config      $conf
      * @param MemcacheConfig $memcacheConfig
@@ -52,13 +52,13 @@ class MemcachePool extends AbstractPool
 
     protected function createObject():Memcache
     {
-        //根据传入的memcache配置进行new 一个memcache客户端
+        //New a memcache client based on the incoming memcache configuration
         $memcache = new Memcache($this->memcacheConfig);
         return $memcache;
     }
 }
 ```
-注册到Manager中(在`initialize`事件中注册):
+Register into the Manager (registered in the `initialize` event):
 ```php
 
 $config = new \EasySwoole\Pool\Config();
@@ -68,10 +68,10 @@ $memcacheConfig1 = new \EasySwoole\Memcache\Config(Config::getInstance()->getCon
 
 $memcacheConfig2 = new \EasySwoole\Memcache\Config(Config::getInstance()->getConf('MEMCACHE2'));
 \EasySwoole\Pool\Manager::getInstance()->register(new \App\Pool\MemcachePool($config,$memcacheConfig2),'memcache2');
-    
+    
 ```
 
-调用(可在控制器中全局调用):
+Call (can be called globally in the controller):
 ```php
 go(function (){
     $memcachePool1 = Manager::getInstance()->get('memcache1');
@@ -79,21 +79,21 @@ go(function (){
     $memcache1 = $memcachePool1->getObj();
     $memcache2 = $memcachePool2->getObj();
     
-    var_dump($memcache1->set('name', '仙士可1'));
+    var_dump($memcache1->set('name', 'Alan'));
     $this->response()->write($memcache1->get('name'));
-    var_dump($memcache2->set('name', '仙士可2'));
+    var_dump($memcache2->set('name', 'Allan'));
     $this->response()->write($memcache2->get('name'));
     
-    //回收对象
+    //Recycling object
     $memcachePool1->recycleObj($memcache1);
     $memcachePool2->recycleObj($memcache2);
 });
 ```
 
 ::: warning
-详细用法可查看 [pool通用连接池](../Pool/introduction.md)
+For detailed usage, see [pool universal connection pool] (../Pool/introduction.md)
 :::
 
 ::: warning
-本文 memcache连接池 基于 [pool通用连接池](../Pool/introduction.md) 实现
+This article memcache connection pool is based on [pool universal connection pool] (../Pool/introduction.md)
 :::

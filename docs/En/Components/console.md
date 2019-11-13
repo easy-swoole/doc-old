@@ -11,7 +11,7 @@ meta:
 
 Easyswoole 提供了一个基于tcp的基础远程控制台，方便用户做开发阶段的调试或者是线上的一些远程管理。
 
-## 安装
+## Installation
 ```
 composer require easyswoole/console
 ```
@@ -136,7 +136,7 @@ class LogPusher implements ModuleInterface
 }
 ```
 
-### 服务注册
+### Service Registration
 重点是在easyswoole 全局的事件中进行注册
 
 ```php

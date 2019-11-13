@@ -1,33 +1,33 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## hash操作方法
-方法列表
+## Hash operation method
+Method list
 
-| 方法名称     | 参数                                      | 说明                              | 备注 |
+| Method name     | Parameter                                      | Description                              | Notes |
 |:-------------|:------------------------------------------|:---------------------------------|:----|
-| hDel         | $key, ...$field                           | 删除键,可多个                     |     |
-| hExists      | $key, $field                              | 查询字段是否存在                   |     |
-| hGet         | $key, $field                              | 获取一个字段值                     |     |
-| hGetAll      | $key                                      | 获取这个key的全部字段值            |     |
-| hSet         | $key, $field, $value                      | 设置key的字段值                   |     |
-| hValS        | $key                                      | 获取哈希表中所有值                 |     |
-| hKeys        | $key                                      | 获取所有哈希表中的字段              |     |
-| hLen         | $key                                      | 获取哈希表中字段的数量              |     |
-| hMGet        | $key, $hashKeys                           | 获取所有给定字段$hashKeys数组的值   |     |
-| hMSet        | $key, $data                               | 同时将多个$data键值对设置到$key中   |     |
-| hIncrBy      | $key, $field, $increment                  | 给指定字段增加$increment           |     |
-| hIncrByFloat | $key, $field, $increment                  | 给指定字段增加浮点数$increment     |     |
-| hSetNx       | $key, $field, $value                      | 只有在$filed不存在时,设置$field的值 |     |
-| hScan        | $key,&$cursor, $pattern=null, $count=null | 迭代哈希表中的键值对。              |     |
+| hDel         | $key, ...$field                           | Delete key, multiple    |     |
+| hExists      | $key, $field                              | Whether the query field exists   |     |
+| hGet         | $key, $field                              | Get a field value    |     |
+| hGetAll      | $key                                      | Get all the field values of this key |     |
+| hSet         | $key, $field, $value                      | Set the field value of the key    |     |
+| hValS        | $key                                      | Get all the values in the hash table  |     |
+| hKeys        | $key                                      | Get the fields in all hash tables |     |
+| hLen         | $key                                      | Get the number of fields in the hash table |     |
+| hMGet        | $key, $hashKeys                           | Get the value of all the given field $hashKeys array|     |
+| hMSet        | $key, $data                               | Set multiple $data key-value pairs to $key at the same time|     |
+| hIncrBy      | $key, $field, $increment                  | Add $increment to the specified field    |     |
+| hIncrByFloat | $key, $field, $increment                  | Add a floating point number to the specified field $increment |     |
+| hSetNx       | $key, $field, $value                      | Set the value of $field only if $filed does not exist |     |
+| hScan        | $key,&$cursor, $pattern=null, $count=null | Iterate over the key-value pairs in the hash table. |     |
 
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

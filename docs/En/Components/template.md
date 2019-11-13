@@ -19,7 +19,7 @@ EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过�
    
    以上流程我们可以发现，A请求的数据，被B给污染了。为了解决该问题，EasySwoole引入模板渲染驱动模式。
 
-## 安装
+## Installation
 ```php
 composer require easyswoole/template
 ```    

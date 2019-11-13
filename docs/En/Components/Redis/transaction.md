@@ -1,31 +1,31 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 
-## redis事务方法列表
+## Redis transaction method list
 
-| 方法名称 | 参数           | 说明                           | 备注                         |
+| Method name | Parameter           | Description                           | Notes                         |
 |:--------|:---------------|:------------------------------|:----------------------------|
-| discard |                | 取消事务(回滚)                  |                             |
-| exec    |                | 执行事务(获取事务结果)           |                             |
-| multi   |                | 开始事务                       |  |
-| unWatch |                | 取消 WATCH 命令对所有 key 的监视 |                             |
-| watch   | $key, ...$keys | 监视key                        |                             |
+| discard |                | Cancel transaction (rollback)    |                             |
+| exec    |                | Execute transaction (get transaction result) |                             |
+| multi   |                | Start transaction     |  |
+| unWatch |                | Cancel the monitoring of all keys by the WATCH command |             |
+| watch   | $key,...$keys | Monitoring key       |                             |
 
 ::: warning
-开始事务之后,操作命令都将返回"QUEUED",直到取消事务或者执行事务,执行exec之后,将返回所有命令结果
+After starting the transaction, the operation command will return "QUEUED" until the transaction is canceled or the transaction is executed. After executing exec, all command results will be returned.
 :::
 
 ::: warning
-在集群中事务并不可靠
+Transactions in the cluster are not reliable
 :::
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

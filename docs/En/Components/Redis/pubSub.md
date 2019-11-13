@@ -1,31 +1,31 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## 订阅/发布方法
+## Subscription/release method
 
 
 
-| 方法名称         | 参数                              | 说明                           | 备注                           |    |
+| Method name         | Parameter                              | Description                           | Notes                           |    |
 |:-----------------|:----------------------------------|:-------------------------------|:-------------------------------|:---|
-| pSubscribe       | $callback, $pattern, ...$patterns | 订阅一个或多个符合给定模式的频道。 | $callback是回调函数             |    |
-| pubSub           | $subCommand, ...$arguments        | 查看订阅与发布系统状态。         |                                |    |
-| publish          | $channel, $message                | 将信息发送到指定的频道。         |                                |    |
-| pUnSubscribe     | $pattern, ...$patterns            | 退订所有给定模式的频道。         |                                |    |
-|                  |                                   |                                |                                |    |
-| subscribe        | $callback, $channel, ...$channels | 订阅给定的一个或多个频道的信息。  |                                |    |
-|                  |                                   |                                |                                |    |
-| unsubscribe      | $channel, ...$channels            | 指退订给定的频道。               |                                |    |
-|                  |                                   |                                |                                |    |
-| setSubscribeStop | bool $subscribeStop               | 设置是否退出订阅                 | 当你回调函数想退出时,调用这个命令  |    |
-| isSubscribeStop  |                                   | 查看当前订阅状态                 |                                |    |
+| pSubscribe       | $callback, $pattern, ...$patterns | Subscribe to one or more channels that match a given pattern. | $callback is a callback function             |    |
+| pubSub           | $subCommand, ...$arguments        | View subscription and release system status.    |                                |    |
+| publish          | $channel, $message                | Send the message to the specified channel.    |                                |    |
+| pUnSubscribe     | $pattern, ...$patterns            | Unsubscribe from all channels in a given mode.    |                                |    |
+|                  |                                   |                                |                                |    |
+| subscribe        | $callback, $channel, ...$channels | Subscribe to information for a given channel or channels. |                                |    |
+|                  |                                   |                                |                                |    |
+| unsubscribe      | $channel, ...$channels            | Refers to unsubscribing to a given channel.       |                                |    |
+|                  |                                   |                                |                                |    |
+| setSubscribeStop | bool $subscribeStop               | Set whether to opt out of the subscription        | Call this command when your callback function wants to exit  |    |
+| isSubscribeStop  |                                   | View current subscription status        |                                |    |
 
 
-## 实例
+## Instance
 ```php
 
 defined("REDIS_HOST") ?: define('REDIS_HOST', '127.0.0.1');
@@ -39,7 +39,7 @@ go(function () {
         'serialize' => \EasySwoole\Redis\Config\RedisConfig::SERIALIZE_NONE
     ]));;
 
-    //新开协程进行订阅
+    //Open a new coroutine to subscribe
     go(function () {
         $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([
             'host' => REDIS_HOST,
@@ -54,7 +54,7 @@ go(function () {
         }, 'test', 'test1', 'test2');
     });
 
-    //新开协程进行订阅
+    //Open a new coroutine to subscribe
     go(function () {
         $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([
             'host' => REDIS_HOST,

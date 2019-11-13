@@ -9,7 +9,7 @@ meta:
 
 # DDL
 数据库模式定义语言DDL(Data Definition Language)，是用于描述数据库中要存储的现实世界实体的语言。Easyswoole提供了一个DDL库，方便用户用于定义一个数据库表结构。
-## 安装
+## Installation
 ```
 composer require easyswoole/ddl
 ```

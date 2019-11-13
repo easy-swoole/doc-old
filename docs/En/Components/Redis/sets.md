@@ -1,40 +1,40 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 
-## 集合操作方法
+## Collection operation method
 
-方法列表
+Method list
 
-| 方法名称    | 参数                                      | 说明                                              | 备注 |
+| Method name    | Parameter                                      | Description                                              | Notes |
 |:------------|:------------------------------------------|:-------------------------------------------------|:----|
-| sAdd        | $key, ...$data                            | 向集合添加一个或多个成员                            |     |
-| sCard       | $key                                      | 获取集合的成员数                                   |     |
-| sDiff       | $key1, ...$keys                           | 返回给定所有集合的差集                              |     |
-| sMembers    | $destination, ...$keys                    | 返回集合中的所有成员                               |     |
-| sDiffStore  | $key1, ...$keys                           | 返回给定所有集合的差集并存储在 destination 中        |     |
-| sInter      | $destination, ...$keys                    | 返回给定所有集合的交集                              |     |
-| sInterStore | $key, $member                             | 返回给定所有集合的交集并存储在 destination 中        |     |
-| sIsMember   | $key                                      | 判断 member 元素是否是集合 key 的成员               |     |
-| sMove       | $source, $destination, $member            | 将 member 元素从 source 集合移动到 destination 集合 |     |
-| sPop        | $key                                      | 移除并返回集合中的一个随机元素                      |     |
-| sRandMemBer | $key, $count = null                       | 返回集合中一个或多个随机数                          |     |
-| sRem        | $key, $member1, ...$members               | 移除集合中一个或多个成员                            |     |
-| sUnion      | $key1, ...$keys                           | 返回所有给定集合的并集                              |     |
-| sUnIonStore | $destination, $key1, ...$keys             | 所有给定集合的并集存储在 destination 集合中         |     |
-| sScan       | $key,&$cursor, $pattern=null, $count=null | 迭代集合中的元素                                   |     |
+| sAdd        | $key, ...$data                            | Add one or more members to the collection|     |
+| sCard       | $key                                      | Get the number of members of the collection   |     |
+| sDiff       | $key1, ...$keys                           | Returns the difference set for all sets |     |
+| sMembers    | $destination, ...$keys                    | Return all members in the collection |     |
+| sDiffStore  | $key1, ...$keys                           | Returns the difference set for all collections and stores them in destination |   |
+| sInter      | $destination, ...$keys                    | Returns the intersection of all the given sets |     |
+| sInterStore | $key, $member                             | Returns the intersection of all the collections given and stored in destination |   |
+| sIsMember   | $key                                      | Determine if the member element is a member of the collection key|     |
+| sMove       | $source, $destination, $member            | Move the member element from the source collection to the destination collection |     |
+| sPop        | $key                                      | Remove and return a random element in the collection |   |
+| sRandMemBer | $key, $count = null                       | Return one or more random numbers in the collection |     |
+| sRem        | $key, $member1, ...$members               | Remove one or more members from the collection|     |
+| sUnion      | $key1, ...$keys                           | Returns the union of all given collections |     |
+| sUnIonStore | $destination, $key1, ...$keys             | The union of all given collections is stored in the destination collection |   |
+| sScan       | $key,&$cursor, $pattern=null, $count=null | Iterating over the elements in the collection   |     |
 
 ::: warning
- 在集群模式中,sDiff,sDiffStore,sInter,sMove,sUnion,sUnIonStore等方法不能使用
+ In cluster mode, sDiff, sDiffStore, sInter, sMove, sUnion, sUnIonStore, etc. cannot be used.
 :::
 
 
-## 实例
+## Instance
 ```php
 go(function () {
 	 $redis =  new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([
