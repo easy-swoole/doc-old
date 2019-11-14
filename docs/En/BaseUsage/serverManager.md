@@ -9,47 +9,46 @@ meta:
 
 # ServerManager
 
-
 ::: warning 
- 服务管理类: EasySwoole\EasySwoole\ServerManager
+ ServerManagerClass: EasySwoole\EasySwoole\ServerManager
 :::
 
-ServerManager 它是一个单例类(use EasySwoole\Component\Singleton)
-## 创建主服务
-在`EasySwooleEvent`的`mainServerCreate`事件中可通过`createSwooleServer`监听子服务.
-该方法在框架底层自动调用,将创建一个swoole主服务(未开启服务),可通过`getSwooleServer`方法获取,并设置事件回调,调用原生swoole服务方法创建子服务,等
+ServerManager It is a singleton class (use EasySwoole\Component\Singleton)
+## Create main service
+In the ```mainServerCreate``` event of ```EasySwooleEvent``` the subservice can be listened on by ```createSwooleServer```.
+This method is automatically invoked at the bottom of the framework, which will create a swoole main service (not opened), which can be obtained through the ```getSwooleServer``` method, and set event callback, calling the original swoole service method to create sub-services, and so on
 
-## 创建子服务
-在`EasySwooleEvent`的`mainServerCreate`事件中可通过`addServer`监听子服务.
+## Create subservices
+In the ```mainServerCreate``` event of ```EasySwooleEvent```, a subservice can be listened on through ```addServer```.
 ````php
 <?php
 public static function mainServerCreate(EventRegister $register)
 {
-    ################# tcp 服务器1 没有处理粘包 #####################
+    ################# tcp Server 1 did not handle sticky packets #####################
     $tcp1ventRegister = $subPort1 = ServerManager::getInstance()->addServer('tcp1', 9502, SWOOLE_TCP, '0.0.0.0', [
-        'open_length_check' => false,//不验证数据包
+        'open_length_check' => false,//Unauthenticated packet
     ]);
     $tcp1ventRegister->set(EventRegister::onConnect,function (\swoole_server $server, int $fd, int $reactor_id) {
-        echo "tcp服务1  fd:{$fd} 已连接\n";
-        $str = '恭喜你连接成功服务器1';
+        echo "tcpServer 1  fd:{$fd} The connected\n";
+        $str = 'Congratulations on connecting to server 1';
         $server->send($fd, $str);
     });
     $tcp1ventRegister->set(EventRegister::onClose,function (\swoole_server $server, int $fd, int $reactor_id) {
-        echo "tcp服务1  fd:{$fd} 已关闭\n";
+        echo "tcpServer 1  fd:{$fd} closed\n";
     });
     $tcp1ventRegister->set(EventRegister::onReceive,function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
-        echo "tcp服务1  fd:{$fd} 发送消息:{$data}\n";
+        echo "tcpServer 1  fd:{$fd} Send a message:{$data}\n";
     });
 }
 ````
 
 ::: warning 
- addServer方法返回的是EventRegister方法注册类,可通过该类去注册/设置服务的事件回调
+ The addServer method returns the EventRegister method registration class, which is used to register/set up event callbacks for the service.
 :::
 
 
-## 获取服务
-通过`getSwooleServer`可获取当前创建的swoole服务以及监听的子服务   
+## getSwooleServer
+The swoole service you are currently creating and the child service you are listening to can be retrieved through ```getSwooleServer```.
 ````php
 <?php
 /**
