@@ -103,12 +103,12 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-## start和isStart
-`start`方法将处理配置的swoole主服务,子服务,以及回调事件,并开启服务,该方法由框架内部调用,调用成功代表着服务已经启动成功.
-`isStart` 方法将返回服务是否启动成功的bool变量
+## start And isStart
+The ```start``` method will handle the configured swoole main service, sub-service, and callback events, and will open the service. The method is called from within the framework, and the successful invocation indicates that the service has been started successfully..
+The 'isStart' method returns a bool variable that indicates whether the service started successfully.
 
 ## getSubServerRegister
-`getSubServerRegister`将获取到所有子服务创建的事件回调.
+'getSubServerRegister' gets all the event callbacks created by the subservice.
 
 
 
