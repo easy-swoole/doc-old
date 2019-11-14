@@ -1,33 +1,33 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## 键操作方法
-方法列表
+## key operation method
+Method list
 
-| 方法名称  | 参数                   | 说明                      | 备注           |
+| Method name  | Parameter                   | Description                      | Notes           |
 |:----------|:-----------------------|:--------------------------|:---------------|
-| del       | $key                   | 删除一个键                 |                |
-| dump      | $key                   | 序列化                    |                |
-| exists    | $key                   | 查询是否存在               |                |
-| expire    | $key, $expireTime = 60 | 给key设定过期时间(秒)      |                |
-| expireAt  | $key, $expireTime      | 给key设定过期时间(毫秒)     |                |
-| keys      | $pattern               | 匹配key                   |                |
-| move      | $key, $db              | 移动key                   | 集群模式不能使用 |
-| persist   | $key                   | 移除key的过期时间          |                |
-| pTTL      | $key                   | 返回毫秒过期时间           |                |
-| ttl       | $key                   | 返回过期时间               |                |
-| randomKey |                        | 随机返回一个key            |                 |
-| rename    | $key, $new_key         | 修改key的名字              |    集群模式不能使用|
-| renameNx  | $key, $new_key         | newkey不存在时,修改key名字 |    集群模式不能使用  |
-| type      | $key                   | 返回key储存的数据类型        |                 |
+| del       | $key                   | Delete a key    |                |
+| dump      | $key                   | Serialization                    |                |
+| exists    | $key                   | Whether the query exists   |                |
+| expire    | $key, $expireTime = 60 | Set the expiration time (in seconds) for the key |                |
+| expireAt  | $key, $expireTime      | Set the expiration time (in milliseconds) for the key |                |
+| keys      | $pattern               | Match key      |                |
+| move      | $key, $db              | Move key      | Cluster mode cannot be used |
+| persist   | $key                   | Remove the expiration time of the key  |                |
+| pTTL      | $key                   | Return millisecond expiration time |                |
+| ttl       | $key                   | Return expired time   |                |
+| randomKey |                        | Randomly return a key   |                 |
+| rename    | $key, $new_key         | Modify the name of the key    |    Cluster mode cannot be used|
+| renameNx  | $key, $new_key         | Modify the key name when newkey does not exist |    Cluster mode cannot be used  |
+| type      | $key                   | Returns the data type stored by the key  |                 |
 
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

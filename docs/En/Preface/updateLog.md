@@ -1,189 +1,189 @@
-# EasySwoole版本更新记录
-## 3.2.x旧文档地址
+# EasySwoole version update record
+## 3.2.x old document address
 
 https://github.com/easy-swoole/doc/tree/3.x-old
 
-## V3.3.0-dev(2019年8月15)
+## V3.3.0-dev(August 15, 2019)
 ------------
-- 更新异步任务实现为Task组件实现
-- 更新CronTab任务适配为Task任务
-老版本升级步骤：
-- 配置项删除  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
-- 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
+- Update asynchronous task implementation as Task component implementation
+- Update CronTab task adaptation to Task task
+Old version upgrade steps：
+- Configuration item delete MAIN_SERVER.SETTING.task_worker_num with MAIN_SERVER.SETTING.task_enable_coroutine
+- The configuration item adds MAIN_SERVER.TASK and the default value is ```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
 - 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
 
-- [异步任务适配](../Components/task.md)
-- [CronTab任务适配](../BaseUsage/crontab.md)
+- [Asynchronous task adaptation](../Components/task.md)
+- [CronTab task adaptation](../BaseUsage/crontab.md)
 
-## V3.2.6 (2019年7月31日)
+## V3.2.6 (July 31, 2019)
 ------------
 
-- 支持 swoole 4.4.0
-  - 强制要求swoole版本不低于4.4.0
+- Support swoole 4.4.0
+  - Mandatory swoole version is not lower than 4.4.0
 
 
-## V3.2.5 (2019年7月15日)
+## V3.2.5 (July 15, 2019)
 ------------
   
-- 支持修改配置项存储驱动，默认为swoole table，可以修改动态配置
-- 支持bootstrap，在外部做最高一层级的hook 
-- 默认支持phpunit
+- Support to modify the configuration item storage driver, the default is swoole table, you can modify the dynamic configuration
+- Support bootstrap, do the highest level of hooks on the outside 
+- Phpunit is supported by default
 
 
-## V3.2.1 (2019年4月22日)
+## V3.2.1 (April 22, 2019)
 ------------
 
-- 默认配置调整
-  - 启用 `max_wait_time` [详情参见](https://wiki.swoole.com/wiki/page/1082.html)
-- 修复 `Console Client` 问题
+- Default configuration adjustment
+  - start `max_wait_time` [See for details](https://wiki.swoole.com/wiki/page/1082.html)
+- renovate `Console Client` problem
 
-## V3.1.19 (2019年4月15日)
+## V3.1.19 (April 15, 2019)
 ------------
 
-- 主框架不再强制依赖 `Actor` 组件和 `Process` 组件，有需要可以单独引入并在 `mainServerCreate` 事件中自行创建
-- 默认配置调整
-  - `Task` 进程强制开启协程
-  - 去除 `max_request` 和 `task_max_request` 设置
-  - 启用异步安全重启配置 `reload_async` [详情参见](https://wiki.swoole.com/wiki/page/791.html)
-- 新增一个命令行辅助提示
+- The main frame no longer relies on the `Actor` component and the `Process` component, which can be introduced separately and created in the `mainServerCreate` event if needed.
+- Default configuration adjustment
+  - `Task` Process forced to open coroutine
+  - Remove the `max_request` and `task_max_request` settings
+  - Enable asynchronous secure restart configuration `reload_async` [See for details](https://wiki.swoole.com/wiki/page/791.html)
+- Add a new command line helper
 
-## V3.1.18 (2019年3月11日)
+## V3.1.18 (March 11, 2019)
 ------------
 
-- HttpController 池默认数量从单进程 `15` 提升至 `500`
-- 修复Console默认用户名和密码为空时无法正常启动的问题
-- Console 配置 `Host` 参数名修改为  `LISTEN_ADDRESS`
+- The default number of HttpController pools is increased from single process `15` to `500`
+- Fix the problem that the console default username and password cannot be started normally when it is empty.
+- Console configuration `Host` parameter name changed to `LISTEN_ADDRESS`
 
-## V3.1.17 (2019年3月9日)
+## V3.1.17 (March 9, 2019)
 ------------
-稳定性更新
+Stability update
 
-- 修复了Console相关bug
+- Fixed Console related bugs
 
-## V3.1.16 (2019年3月8日)
+## V3.1.16 (March 8, 2019)
 ------------
-Console组件不再是核心组件，现在他是一个独立的composer包
+The Console component is no longer a core component, now he is a standalone composer package
 
-- 发布Console组件 [GitHub](https://github.com/easy-swoole/console)
-	- Console 从核心组件移出
+- Publish the Console component [GitHub](https://github.com/easy-swoole/console)
+	- Console removed from core components
 
-## V3.1.15 (2019年2月25日)
+## V3.1.15 (February 25, 2019)
 ------------
-适配 swoole 4.2.13
+Adaptation swoole 4.2.13
 
-- 支持 swoole 4.2.13
-    - 根据swoole底层api变动进行了适配
-	- 强制要求swoole版本不低于 4.2.13
+- Support swoole 4.2.13
+    - Adapted according to the underlying api changes of the swoole
+	- Mandatory swoole version is not lower than 4.2.13
 
-## V3.1.14 (2019年1月29日)
+## V3.1.14 (January 29, 2019)
 ------------
-重构控制台
+Refactoring console
 
-- 重构控制台
-    - 优化了reload 和stop 命令
-	- 调整了reload时间类型
-	- 修复了produce load 时错误加载配置的问题
+- Refactoring console
+    - Optimized reload and stop commands
+	- Adjusted the reload time type
+	- Fixed an issue with incorrect loading configuration when `produce load`
     
-## V3.1.13 (2019年1月22日)
+## V3.1.13 (January 22, 2019)
 ------------
-合理性调整
+Rationality adjustment
 
-- 合理性调整，为cli单元测试做准备
+- Rationality adjustment to prepare for cli unit testing
 
-## V3.1.12 (2019年1月21日)
+## V3.1.12 (January 21, 2019)
 ------------
-合理性调整， 增加控制台权限配置
+Rationality adjustment, increase console permissions configuration
 
-- 新增控制台权限分配
+- Add console permission assignment
 
-## V3.1.11 (2019年1月18日)
+## V3.1.11 (January 18, 2019)
 ------------
-新增 `FastCache` 配置项， 重构控制台，增加用户自定义session处理
+Added `FastCache` configuration item, refactored console, added user-defined session processing
 
-- 新增 `FastCache` 配置项
-- 重构控制台，要求强制设置用户鉴权，支持多用户登陆
-- `Http` 组件支持自定义session处理
-- `Http` 组件调整自定义sessionHandle处理返回值
+- Added `FastCache` configuration item
+- Refactoring the console, requiring mandatory user authentication and multi-user login
+- `Http` component supports custom session processing
+- `Http` component adjusts custom sessionHandle to handle return value
 
-## V3.1.10 (2019年1月15日)
+## V3.1.10 (January 15, 2019)
 ------------
-合理性调整
+Rationality adjustment
 
-- 修改部分内部方法默认值，不影响用户
+- Modify some internal method defaults without affecting users
 
-## V3.1.9 (2019年1月15日)
+## V3.1.9 (January 15, 2019)
 ------------
-合理性调整
+Rationality adjustment
 
-- 将部分未遵循PSR-2的代码修改遵循PSR-2
-- 修复 `Http` 组件路径错误问题
+- Modify some code that does not follow PSR-2 to follow PSR-2
+- Fix `Http` component path error
 
-## V3.1.8 重构日志处理类! (2019年1月12日)
+## V3.1.8 Refactor the log processing class! (January 12, 2019)
 ------------
-重构了日志处理，对大部分用户无影响，之前使用了 **自定义日志类** 的需要重新适配
+Refactored log processing, no impact on most users, previously used ** custom log class ** need to be re-adapted
 
-- 重构日志处理
-    - 日志处理类不再需要继承 `\EasySwoole\Trace\Logger`
-    - 日志处理类现在需要实现 `\EasySwoole\Trace\AbstractInterface\LoggerInterface`
-- 新增配置项 `DISPLAY_ERROR` 默认 `false`， 如果需要Debug的用户 请设置为 `true`
+- Refactoring log processing
+    - The log processing class no longer needs to inherit `\EasySwoole\Trace\Logger`
+    - The log processing class now needs to implement `\EasySwoole\Trace\AbstractInterface\LoggerInterface`
+- Added configuration item `DISPLAY_ERROR` default `false`, if you need Debug user, please set it to `true`
 
-## V3.1.7 (2019年1月11日)
+## V3.1.7 (January 11, 2019)
 ------------
-适配 `Task` 投递闭包时无法正常执行的问题
+Adaptation `Task` can not be executed normally when delivering closures
 
-- 适配 `Task` 投递闭包时无法正常执行的问题
+- Adaptation `Task` can not be executed normally when delivering closures
 
-## V3.1.6 (2019年1月10日)
+## V3.1.6 (January 10, 2019)
 ------------
-适配 `Swoole 4.1.12`，  开启协程后onTask的回调支持，抽象任务模板新增flag参数。
+Adapt `Swoole 4.1.12`, enable callback onTask after coroutine, add flag parameter to abstract task template.
 
-- 适配 `Swoole 4.1.12`
-- 支持协程 `onTask` 回调 (**有升级新版本的用户请注意适配**)
-- 抽象任务模板新增 `flag` 参数
+- Adapted to `Swoole 4.1.12`
+- Support coroutine `onTask` callback (** users who have upgraded new version please pay attention to adaptation**)
+- Abstract task template added `flag` parameter
 
-## V3.1.5 (2019年1月7日)
+## V3.1.5 (January 7, 2019)
 ------------
-修复 `onMessage` 事件无法正常注册的问题
+Fixed an issue where the `onMessage` event could not be registered properly
 
-## V3.1.4 (2019年1月7日)
+## V3.1.4 (January 7, 2019)
 ------------
-新增全局事件`onPacket` `onMessage`
-新增主服务上下文自动清理 `onRequest` `onMessage` `onReceive` `onPacket`
+Add global event `onPacket` `onMessage`
+Added automatic main service context cleanup `onRequest` `onMessage` `onReceive` `onPacket`
 
-- 新增全局事件:
+- Add a global event:
     - `onPacket`
     - `onMessage`
-- 新增主服务上下文自动清理：
+- Added automatic cleaning of the main service context：
     - `onRequest`
     - `onMessage`
     - `onReceive`
     - `onPacket`
 
-## V3.1.3 (2019年1月3日)
+## V3.1.3 (January 3, 2019)
 ------------
-修复创建服务时错误的类型问题
+Fix the wrong type problem when creating a service
 
-- 修复创建服务时错误的类型问题
+- Fix the wrong type problem when creating a service
 
-## V3.1.2 (2019年1月1日)
+## V3.1.2 (January 1, 2019)
 ------------
-此版本修改了配置文件后缀和服务类型常量
+This release modifies configuration file suffixes and service type constants
 
-- 配置文件由 `dev.env` 和 `produce.env` 改为 `dev.php` 和 `produce.php`
-- 原配置文件 MYSQL.host = 127.0.0.1 的 `.` 连接格式修改为 MYSQL => ['host' => '127.0.0.1'] 的数组模式
-- 原服务模式常量 `SERVER` `WEB_SERVER` `WEB_SOCKET_SERVER` 修改为 `EASYSWOOLE_SERVER`  `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
+- The configuration file was changed from `dev.env` and `produce.env` to `dev.php` and `produce.php`
+- The original configuration file MYSQL.host = 127.0.0.1 The `.` connection format is changed to Array mode of MYSQL => ['host' => '127.0.0.1']
+- The original service mode constant `SERVER` `WEB_SERVER` `WEB_SOCKET_SERVER` is modified to `EASYSWOOLE_SERVER` `EASYSWOOLE_WEB_SERVER` `EASYSWOOLE_SOCKET_SERVER`
 
-## V3.1.1 大版本升级! (2018年12月27日)
+## V3.1.1 Large version upgrade! (December 27, 2018)
 ------------
-全面移除了内置 `AbstractProcess` 、 `Timer` 、 `FastCache` 、`Actor` 改为独立组件库实现。  
-如果在项目中使用了以上组件，可以将依赖分支修改为 `^3.0` (注): 之前为 `3.x-dev`。  
-后续会提供升级文档
+The built-in `AbstractProcess`, `Timer`, `FastCache`, and `Actor` have been completely removed from the stand-alone component library implementation.  
+If you use the above components in your project, you can change the dependency branch to `^3.0` (Note): Previously `3.x-dev`.
+Upgrade documentation will be provided later
 
-- 移除 `AbstractProcess`
-- 移除 `Timer`
-- 移除 `FastCache`
-- 移除 `Actor`
-- 新增组件 `FastCache` 仓库地址: [FastCache](https://github.com/easy-swoole/fast-cache)
-- 新增组件 `Actor` 仓库地址: [Actor](https://github.com/easy-swoole/actor)
-- `Component` 组件新增 `Process` 类 仓库地址:[Component-Process](https://github.com/easy-swoole/component/tree/master/src/Process)
-- `Component` 组件新增 `Timer` 类 仓库地址:[Component-Timer](https://github.com/easy-swoole/component/blob/master/src/Timer.php)
+- Remove `AbstractProcess`
+- Remove `Timer`
+- Remove `FastCache`
+- Remove `Actor`
+- New component `FastCache` Warehouse Address: [FastCache](https://github.com/easy-swoole/fast-cache)
+- New component `Actor` Warehouse Address: [Actor](https://github.com/easy-swoole/actor)
+- `Component` Component added `Process` class Warehouse Address:[Component-Process](https://github.com/easy-swoole/component/tree/master/src/Process)
+- `Component` Component added `Timer` class Warehouse Address:[Component-Timer](https://github.com/easy-swoole/component/blob/master/src/Timer.php)

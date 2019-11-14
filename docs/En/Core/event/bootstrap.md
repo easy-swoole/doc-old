@@ -6,17 +6,17 @@ meta:
   - name: keywords
     content: EasySwoole|swoole|bootstrap事件
 ---
-# bootstrap事件
+# bootstrapEvent
 
-bootstrap 允许在 框架未初始化之前,允许其他初始化业务
+Bootstrap allows other businesses to be initialized before the framework is initialized
 
-该事件是在`3.2.5版本之后`新增
+This event was added after ```version 3.2.5```
 
-在安装之后产生的easyswoole启动脚本文件中：
+In the easyswoole startup script file that is generated after installation:
 
-将会自动判断应用根目录下是否有`bootstrap.php`文件，如果有则加载。
+The ```bootstrap.php``` file in the application root directory will be automatically determined，If there is，Load。
 
-所以我们可以在应用根目录下创建该文件，并执行自己想要的初始化业务代码：如注册命令行支持、全局通用函数等功能。
+So we can create this file in the application root directory and execute the initialization business code we want：Such as register command line support, global general functions and other functions。
 
 ```php
 <?php
@@ -48,21 +48,21 @@ if(!empty($ret)){
 ```
 
 ::: warning
-如果你是旧版升级新版,需要删除`/easyswoole` 文件
+f you are an old swoole upgrade, you will need to delete the '/easyswoole' file.
 
-然后重新`php ./vendor/easyswoole/easyswoole/bin/easyswoole install` 安装(报错或者其他原因请重新看框架安装章节 执行安装步骤)
+Then again ` PHP/vendor/easyswoole/easyswoole/bin/easyswoole install ` installation(Report errors or other reasons.Please review the framework installation section to perform the installation steps)
 
-即可使用bootstrap事件
+can use the bootstrap event
 :::
 
-## 启动前调用协程API
+## Call the coroutine API before starting
 ```php
 use Swoole\Coroutine\Scheduler;
 $scheduler = new Scheduler();
 $scheduler->add(function() {
-    /*  调用协程API */
+    /*  Call the coroutine API */
 });
 $scheduler->start();
-//清除全部定时器
+//Clear all timers
 \Swoole\Timer::clearAll();
 ```

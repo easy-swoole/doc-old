@@ -2,28 +2,28 @@
 title: Whoops
 meta:
   - name: description
-    content: Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业务的错误与异常。
+    content: Easyswoole provides the Whoops driver for the development phase, friendly troubleshooting of HTTP business errors and exceptions.
   - name: keywords
     content: easyswoole|Whoops
 ---
 
 # Whoops
 
-Easyswoole 提供了Whoops驱动，用于开发阶段，友好的排除HTTP业务的错误与异常。
+Easyswoole provides the Whoops driver for the development phase, friendly troubleshooting of HTTP business errors and exceptions.
 
 ![](/resources/easyWhoops.png)
 
 
 ::: warning 
- 切勿用于生产阶段，否则造成代码泄露EasySwoole不负任何责任！！！
+ Do not use it in the production phase, otherwise the code leaks EasySwoole is not responsible for it! ! !
 :::
 
-## 安装
+## Installation
 ```
 composer require easyswoole/easy-whoops=3.x
 ```
-## 使用
-直接在EasySwoole 全局的事件中进行注册
+## Use
+Register directly in the event of EasySwoole global
 ```php
 use EasySwoole\EasySwoole\Swoole\EventRegister;
 use EasySwoole\EasySwoole\AbstractInterface\Event;
@@ -41,9 +41,9 @@ class EasySwooleEvent implements Event
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
         $whoops = new Run();
-        $whoops->pushHandler(new PrettyPageHandler);  // 输出一个漂亮的页面
+        $whoops->pushHandler(new PrettyPageHandler);  // Output a nice page
         $whoops->pushHandler(new CallbackHandler(function ($exception, $inspector, $run, $handle) {
-            // 可以推进多个Handle 支持回调做更多后续处理
+            // Can push multiple Handle support callbacks for more follow-up
         }));
         $whoops->register();
     }
@@ -56,7 +56,7 @@ class EasySwooleEvent implements Event
 
     public static function onRequest(Request $request, Response $response): bool
     {
-        //拦截请求
+        //Intercept request
         Run::attachRequest($request, $response);
         return true;
     }

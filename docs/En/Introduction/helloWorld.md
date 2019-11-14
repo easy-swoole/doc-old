@@ -1,26 +1,26 @@
 ---
-title: 配置文件
+title: Hello World
 meta:
   - name: description
-    content: EasySwoole hello world开发示例
+    Content: EasySwoole hello world development example
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    Content: easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
 
 # Hello World
 
-在项目根目录下创建如下的目录结构，这个目录是编写业务逻辑的应用目录，编辑 `Index.php` 文件，添加基础控制器的代码
+Create the following directory structure in the project root directory. This directory is the application directory for writing business logic. Edit the `Index.php` file and add the code of the base controller.
 
 ::: tip
-注意，安装后不会自动生成目录（这跟传统框架不同），需要创建并且加入composer加载配置才能生效，请耐心看完本篇内容
+Note that the directory will not be automatically generated after installation (this is different from the traditional framework), you need to create and add composer to load the configuration to take effect. Please read this content patiently.
 :::
 
 ```
-project              项目部署目录
+project                 Project deployment directory
 ----------------------------------
-├─App        应用目录
-│  └─HttpController      应用的控制器目录
-│     └─Index.php    默认控制器文件
+├─App                   Application directory
+│  └─HttpController     Application controller directory
+│     └─Index.php       Default controller file
 ----------------------------------
 ```
 
@@ -41,7 +41,7 @@ class Index extends Controller
     }
 }
 ```
-然后编辑根目录下的 composer.json 文件，注册应用的命名空间
+Then edit the composer.json file in the root directory to register the application's namespace.
 
 ```json
 {
@@ -58,54 +58,54 @@ class Index extends Controller
 
 
 ::: warning 
- 实际上就是注册App的名称空间
+ In fact, it is the name space of the registered app.
 :::
 
-最后执行 `composer dumpautoload` 命令更新命名空间，框架已经可以自动加载 **App** 目录下的文件了，此时框架已经安装完毕，可以开始编写业务逻辑
+Finally, the `composer dumpautoload` command is executed to update the namespace. The framework can automatically load the files in the **App** directory. At this point, the framework has been installed and you can start writing business logic.
 
 ```bash
-# 更新命名空间映射
+# Update namespace mapping
 composer dumpautoload
-# 启动框架
+# Start frame
 php easyswoole start
 ```
-启动框架后，访问 `http://localhost:9501`即可看到 Hello World 。
+After launching the framework, visit `http://localhost:9501` to see Hello World.
 
-## 关于IDE助手
+## About IDE Assistant
 
-由于 Swoole 的函数并不是PHP标准函数，IDE无法进行自动补全，为了方便开发，可以执行以下命令引入IDE助手，在IDE下即可自动补全 Swoole 相关的函数
+Since the function of Swoole is not a PHP standard function, the IDE cannot perform auto-completion. In order to facilitate development, you can execute the following command to introduce the IDE assistant, and the Swoole-related functions can be automatically completed under the IDE.
 
 ```bash
 composer require easyswoole/swoole-ide-helper
 ```
 
-## 目录结构
+## Directory Structure
 
-**EasySwoole** 的目录结构是非常灵活的，基本上可以任意定制，没有太多的约束，但是仍然建议遵循下面的目录结构，方便开发
+**EasySwoole**'s directory structure is very flexible, basically can be customized, there are not many constraints, but for the convenience of development, it is still recommended to follow the following directory structure.
 
 ```
-project                   项目部署目录
-├─App                     应用目录(可以有多个)
-│  ├─HttpController       控制器目录
-│  │  └─Index.php         默认控制器
-│  └─Model                模型文件目录
-├─Log                     日志文件目录
-├─Temp                    临时文件目录
-├─vendor                  第三方类库目录
-├─composer.json           Composer架构
-├─composer.lock           Composer锁定
-├─EasySwooleEvent.php     框架全局事件
-├─easyswoole              框架管理脚本
-├─dev.php                 开发配置文件
-├─produce.php             生产配置文件
+project                   Project deployment directory
+├─App                     Application directory (can have multiple)
+│  ├─HttpController       Controller directory
+│  │  └─Index.php         Default controller
+│  └─Model                Model file directory
+├─Log                     Log file directory
+├─Temp                    Temporary file directory
+├─vendor                  Third-party class library directory
+├─composer.json           Composer architecture
+├─composer.lock           Composer lock
+├─EasySwooleEvent.php     Framework global event
+├─easyswoole              Framework management script
+├─dev.php                 Development configuration file
+├─produce.php             Production profile
 ```
 
 
 ::: warning 
- 如果项目还需要使用其他的静态资源文件，建议使用 **Nginx** / **Apache** 作为前端Web服务，将请求转发至 easySwoole 进行处理，并添加一个 `Public` 目录作为Web服务器的根目录
+ If the project also needs to use other static resource files, it is recommended to use **Nginx** / **Apache** as the front-end web service, forward the request to easySwoole for processing, and add a `Public` directory as the root directory of the web server.
 :::
 
 
 ::: warning 
- 注意!请不要将框架主目录作为web服务器的根目录,否则dev.php,produce.php等根目录文件配置将会是可访问的,也可自行排除重要文件
+ Note! Please do not use the framework home directory as the root directory of the web server, otherwise the root directory file configuration such as dev.php,produce.php will be accessible, or you can exclude important files by yourself.
 :::

@@ -2,9 +2,9 @@
 title: Str
 meta:
   - name: description
-    content: Str字符串助手
+    content: Str string helper
   - name: keywords
-    content: easyswoole|组件库|杂项工具|Str
+    content: Easyswoole|Component Library|Miscellaneous Tools|Str
 ---
 
 
@@ -12,16 +12,14 @@ meta:
 # Str
 
 
+## Use
 
-## 用途
-
-Str字符串助手
-
+Str string helper
 
 
-## 核心对象类
+## Core Object Class
 
-实现该组件功能需加载核心类：
+To implement this component function you need to load the core class:
 
 ```php
 EasySwoole\Utility\Str
@@ -29,33 +27,32 @@ EasySwoole\Utility\Str
 
 
 
-## 核心对象方法
+## Core Object Method
 
 
 
-#### contains
+#### Contains
 
-检查字符串中是否包含另一字符串
+Check if another string is included in the string
 
-- mixed $haystack 被检查的字符串
-- mixed $needles 需要包含的字符串
-- mixed $strict 是否区分大小写
+- mixed $haystack checked string
+- mixed $needles need to contain the string
+- mixed $strict is case sensitive
 
 ```php
-static function contains($haystack, $needles, $strict = true)
+Static function contains($haystack, $needles, $strict = true)
 ```
 
 ::: tip
-例子
+Example
 :::
-
 ```php
 <?php
 /**
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -63,7 +60,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::contains('hello, easyswoole', 'Swoole', false));
 
 /**
- * 输出结果:
+ * Output results:
  * bool(true)
  */
 ```
@@ -72,20 +69,18 @@ var_dump(\EasySwoole\Utility\Str::contains('hello, easyswoole', 'Swoole', false)
 
 #### startsWith
 
-检查字符串是否以某个字符串开头
+Check if the string starts with a string
 
-- mixed $haystack 被检查的字符串
-- mixed $needles 需要包含的字符串
-- mixed $strict 是否区分大小写
+- mixed $haystack checked string
+- mixed $needles need to contain the string
+- mixed $strict is case sensitive
 
 ```php
 static function startsWith($haystack, $needles, $strict = true)
 ```
 
 :::tip
-
-例子
-
+Example
 :::
 
 ```php
@@ -94,7 +89,7 @@ static function startsWith($haystack, $needles, $strict = true)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -102,7 +97,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::startsWith('hello, easyswoole', 'Hello', false));
 
 /**
- * 输出结果:
+ * Output results:
  * bool(true)
  */
 ```
@@ -111,11 +106,11 @@ var_dump(\EasySwoole\Utility\Str::startsWith('hello, easyswoole', 'Hello', false
 
 #### endsWith
 
-检查字符串是否以某个字符串结尾
+Check if the string ends with a string
 
-- mixed $haystack 被检查的字符串
-- mixed $needles 需要包含的字符串
-- mixed $strict 是否区分大小写
+- mixed $haystack checked string
+- mixed $needles need to contain the string
+- mixed $strict is case sensitive
 
 ```php
 static function endsWith($haystack, $needles, $strict = true)
@@ -123,7 +118,7 @@ static function endsWith($haystack, $needles, $strict = true)
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -133,7 +128,7 @@ static function endsWith($haystack, $needles, $strict = true)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -141,7 +136,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::endsWith('hello, easyswoole', 'Swoole', false));
 
 /**
- * 输出结果:
+ * Output results:
  * bool(true)
  */
 ```
@@ -150,10 +145,10 @@ var_dump(\EasySwoole\Utility\Str::endsWith('hello, easyswoole', 'Swoole', false)
 
 #### snake
 
-驼峰转下划线
+Hump downline
 
-- mixed $value 待处理字符串
-- mixed $delimiter 分隔符
+- mixed $value pending string
+- mixed $delimiter separator
 
 ```php
 static function snake($value, $delimiter = '_')
@@ -161,7 +156,7 @@ static function snake($value, $delimiter = '_')
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -171,7 +166,7 @@ static function snake($value, $delimiter = '_')
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -179,7 +174,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::snake('EasySwoole'));
 
 /**
- * 输出结果:
+ * Output results:
  * string(11) "easy_swoole"
  */
 ```
@@ -188,9 +183,9 @@ var_dump(\EasySwoole\Utility\Str::snake('EasySwoole'));
 
 #### camel
 
-下划线转驼峰 (首字母小写)
+Underline to hump (lower initial)
 
-- mixed $value 待处理字符串
+- mixed $value pending string
 
 ```php
 static function camel($value)
@@ -198,7 +193,7 @@ static function camel($value)
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -208,7 +203,7 @@ static function camel($value)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -216,7 +211,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::camel('easy_swoole'));
 
 /**
- * 输出结果:
+ * Output results:
  * string(10) "easySwoole"
  */
 ```
@@ -225,9 +220,9 @@ var_dump(\EasySwoole\Utility\Str::camel('easy_swoole'));
 
 #### studly
 
-下划线转驼峰 (首字母大写)
+Underline to hump (initial capitalization)
 
-- mixed $value 待处理字符串
+- mixed $value pending string
 
 ```php
 static function studly($value)
@@ -235,7 +230,7 @@ static function studly($value)
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -245,7 +240,7 @@ static function studly($value)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -253,7 +248,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Str::studly('easy_swoole'));
 
 /**
- * 输出结果:
+ * Output results:
  * string(10) "EasySwoole"
  */
 ```

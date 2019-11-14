@@ -1,25 +1,25 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 ## geoHash方法
 
 
-| 方法名称          | 参数                                                                                                                                                                             | 说明                                                                                                                             | 备注                                                                                                                   |
-|:------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|
-| geoAdd            | $key, $locationData                                                                                                                                                              | 新增geohash数据                                                                                                                   | $locationData为一个数组,写法为:\[\[longitude=>'',latitude=>'',name=>'']] 或者 $locationData\[\[longitude,latitude,name]] |
-| geoDist           | $key, $location1, $location2, $unit = 'm'                                                                                                                                        | 返回排序集合表示的地理空间索引中两个成员之间的距离。                                                                                   |                                                                                                                       |
-| geoHash           | $key, $location, ...$locations                                                                                                                                                   | 返回表示地理空间索引的hash值                                                                                                        |                                                                                                                       |
-| geoPos            | $key, $location1, ...$locations                                                                                                                                                  | 返回按键处有序集合表示的地理空间索引的所有指定成员的位置（经度，纬度）。                                                                 |                                                                                                                       |
-| geoRadius         | $key, $longitude, $latitude, $radius, $unit = 'm', $withCoord = false, $withDist = false, $withHash = false, $count = null, $sort = null, $storeKey = null, $storeDistKey = null | 返回填充了地理空间信息的已排序集合的成员                                                                                             |                                                                                                                       |
-| geoRadiusByMember | $key, $location, $radius, $unit = 'm', $withCoord = false, $withDist = false, $withHash = false, $count = null, $sort = null, $storeKey = null, $storeDistKey = null             | 该命令与 GEORADIUS 完全相同，唯一的区别在于，它不是以查询区域的中心为经度和纬度值，而是采用已存在于有序集合所代表的地理空间索引内的成员的名称。 |                                                                                                                       |
+| Method name     | Parameter                | Description          | Notes                 |
+|:----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|
+| geoAdd          | $key, $locationData    | ## Instance...      | $locationData为一个数组,写法为:\[\[longitude=>'',latitude=>'',name=>'']] 或者 $locationData\[\[longitude,latitude,name]] |
+| geoDist         | $key, $location1, $location2, $unit = 'm'       | Returns the distance between two members in the geospatial index represented by the sorted collection.  |  |
+| geoHash           | $key, $location, ...$locations                | Returns a hash value representing the geospatial index    |    |
+| geoPos            | $key, $location1, ...$locations               | Returns the position (longitude, latitude) of all specified members of the geospatial index represented by the ordered collection at the button.  |  |
+| geoRadius         | $key, $longitude, $latitude, $radius, $unit = 'm', $withCoord = false, $withDist = false, $withHash = false, $count = null, $sort = null, $storeKey = null, $storeDistKey = null | Returns members of a sorted collection populated with geospatial information  |    |
+| geoRadiusByMember | $key, $location, $radius, $unit = 'm', $withCoord = false, $withDist = false, $withHash = false, $count = null, $sort = null, $storeKey = null, $storeDistKey = null             | This command is identical to GEORADIUS, except that it does not use the center of the query area as the longitude and latitude values, but the name of the member that already exists in the geospatial index represented by the ordered set. |  |
 
 
-## 实例
+## Instance
 ```php
 
 go(function () {

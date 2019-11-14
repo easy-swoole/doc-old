@@ -1,22 +1,22 @@
 ---
-title: EasySwoole通用连接池
+title: Redis connection pool example
 meta:
   - name: description
-    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+    content: Redis connection pool example,reids,Easyswoole connection pool
   - name: keywords
-    content: easyswoole|连接池|swoole 连接池|通用连接池
+    content: easyswoole|redis|swoole redis|Redis connection pool
 ---
 
-## Redis连接池示例
+## Redis connection pool example
 
-### 安装easyswoole/redis组件:
+### Install the easyswoole/redis component:
 
 ```shell
 composer require easyswoole/redis
 ```
 
-### 新增redisPool管理器
-新增文件`/App/Pool/RedisPool.php`
+### Add redisPool manager
+New file`/App/Pool/RedisPool.php`
 
 ```php
 <?php
@@ -39,7 +39,7 @@ class RedisPool extends AbstractPool
     protected $redisConfig;
 
     /**
-     * 重写构造函数,为了传入redis配置
+     * Override the constructor in order to pass in the redis configuration
      * RedisPool constructor.
      * @param Config      $conf
      * @param RedisConfig $redisConfig
@@ -53,13 +53,13 @@ class RedisPool extends AbstractPool
 
     protected function createObject()
     {
-        //根据传入的redis配置进行new 一个redis
+        //New redis based on the incoming redis configuration
         $redis = new Redis($this->redisConfig);
         return $redis;
     }
 }
 ```
-注册到Manager中:
+Register to the Manager:
 ```php
 $config = new \EasySwoole\Pool\Config();
 
@@ -73,20 +73,20 @@ $redisConfig2 = new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\
 
 ```
 
-调用(可在控制器中全局调用):
+Call (can be called globally in the controller):
 ```php
 go(function (){
    
     $redis1=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
     $redis2=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
 
-    $redis1->set('name','仙士可');
+    $redis1->set('name','Alan');
     var_dump($redis1->get('name'));
 
-    $redis2->set('name','仙士可2号');
+    $redis2->set('name','Allan');
     var_dump($redis2->get('name'));
 
-    //回收对象
+    //Recycling object
     \EasySwoole\Pool\Manager::getInstance()->get('redis1')->recycleObj($redis1);
     \EasySwoole\Pool\Manager::getInstance()->get('redis2')->recycleObj($redis2);
 });

@@ -2,9 +2,9 @@
 title: Time
 meta:
   - name: description
-    content: 时间戳助手
+    content: Timestamp assistant
   - name: keywords
-    content: easyswoole|组件库|杂项工具|Time
+    content: Easyswoole|Component Library|Miscellaneous Tools|Time
 ---
 
 
@@ -12,16 +12,15 @@ meta:
 # Time
 
 
+## Use
 
-## 用途
-
-时间戳助手
-
+Timestamp assistant
 
 
-## 核心对象类
 
-实现该组件功能需加载核心类：
+## Core Object Class
+
+To implement this component function you need to load the core class:
 
 ```php
 EasySwoole\Utility\Time
@@ -29,15 +28,15 @@ EasySwoole\Utility\Time
 
 
 
-## 核心对象方法
+## Core Object Method
 
 
 
-#### startTimestamp
+#### StartTimestamp
 
-返回某一天开始的时间戳
+Return the timestamp starting at a certain day
 
-- mixed $date 字符串日期或时间戳
+- mixed $date string date or timestamp
 
 ```php
 static function startTimestamp($date = '')
@@ -45,7 +44,7 @@ static function startTimestamp($date = '')
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -55,7 +54,7 @@ static function startTimestamp($date = '')
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -63,7 +62,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Time::startTimestamp('2019-4-15'));
 
 /**
- * 输出结果:
+ * Output results:
  * int(1555286400)
  */
 ```
@@ -72,9 +71,9 @@ var_dump(\EasySwoole\Utility\Time::startTimestamp('2019-4-15'));
 
 #### endTimestamp
 
-返回某一天结束的时间戳
-
-- mixed $date 字符串日期或时间戳
+返Back to the end of the day
+ 
+ - mixed $date string date or timestamp
 
 ```php
 static function endTimestamp($date = '')
@@ -82,7 +81,7 @@ static function endTimestamp($date = '')
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -92,7 +91,7 @@ static function endTimestamp($date = '')
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -100,7 +99,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Time::endTimestamp('2019-4-15'));
 
 /**
- * 输出结果:
+ * Output results:
  * int(1555372799)
  */
 ```
@@ -109,9 +108,9 @@ var_dump(\EasySwoole\Utility\Time::endTimestamp('2019-4-15'));
 
 #### endTimestamp
 
-从字符串创建出 Datetime 对象
+Create a Datetime object from a string
 
-- mixed $datetime 传入文本日期或者时间戳
+- mixed $datetime incoming text date or timestamp
 
 ```php
 static function createDateTimeClass($datetime = '')
@@ -119,7 +118,7 @@ static function createDateTimeClass($datetime = '')
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -129,7 +128,7 @@ static function createDateTimeClass($datetime = '')
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -137,7 +136,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Time::createDateTimeClass('2019-4-15'));
 
 /**
- * 输出结果:
+ * Output results:
  * object(DateTime)#3 (3) {
  *   ["date"]=>
  *   string(26) "2019-04-15 00:00:00.000000"
@@ -153,9 +152,9 @@ var_dump(\EasySwoole\Utility\Time::createDateTimeClass('2019-4-15'));
 
 #### parserDateTime
 
-从DateTime对象中获取年月日时分秒
+Get the year, month, day, hour, minute, and second from the DateTime object
 
-- mixed $datetime 传入文本日期或者时间戳
+- mixed $datetime incoming text date or timestamp
 
 ```php
 static function parserDateTime($dateTime)
@@ -163,7 +162,7 @@ static function parserDateTime($dateTime)
 
 :::tip
 
-例子
+Example
 
 :::
 
@@ -173,7 +172,7 @@ static function parserDateTime($dateTime)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -181,7 +180,7 @@ require './vendor/autoload.php';
 var_dump(\EasySwoole\Utility\Time::parserDateTime('2019-4-15'));
 
 /**
- * 输出结果:
+ * Output results:
  * array(6) {
  *   [0]=>
  *   string(2) "00"

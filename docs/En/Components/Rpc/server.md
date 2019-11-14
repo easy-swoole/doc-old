@@ -1,15 +1,15 @@
 ---
-title: Rpc服务端
+title: Rpc server
 meta:
   - name: description
-    content: EasySwoole中Rpc服务端实现
+    content: RPC server implementation in EasySwoole
   - name: keywords
-    content: easyswoole|Rpc服务端|swoole RPC
+    content: Easyswoole|Rpc server | swoole RPC
 ---
 
 
-# 服务端
-## 独立使用代码
+# Server
+## Independent code
 ````php
 <?php
 /**
@@ -28,33 +28,33 @@ use EasySwoole\Rpc\Test\OrderService;
 use EasySwoole\Rpc\Test\NodeService;
 
 $config = new Config();
-$config->setServerIp('127.0.0.1');//注册提供rpc服务的ip
+$config->setServerIp('127.0.0.1');//Register to provide ip service ip
 
-$config->setNodeManager(new RedisManager('127.0.0.1'));//注册节点管理器
-$config->getBroadcastConfig()->setSecretKey('lucky');    //设置秘钥
+$config->setNodeManager(new RedisManager('127.0.0.1'));//Register Node Manager
+$config->getBroadcastConfig()->setSecretKey('lucky');    //Set key
 
-$config->getBroadcastConfig()->setEnableBroadcast(false);     //是否启用广播    (ps:使用redis节点可以关闭)
-$config->getBroadcastConfig()->setEnableListen(false);        //是否启用监听广播(ps:使用redis节点可以关闭)
+$config->getBroadcastConfig()->setEnableBroadcast(false);     //Whether to enable broadcast (ps: use redis node to close)
+$config->getBroadcastConfig()->setEnableListen(false);        //Whether to enable listening broadcast (ps: use redis node to close)
 
 $rpc = new Rpc($config);
-$rpc->add(new UserService());  //注册服务
+$rpc->add(new UserService());  //Registration service
 $rpc->add(new OrderService());
 $rpc->add(new NodeService());
 
 $list = $rpc->generateProcess();   
-foreach ($list['worker'] as $p) {//启动rpc 进程
+foreach ($list['worker'] as $p) {//Start the rpc process
     $p->getProcess()->start();
 }
 
-foreach ($list['tickWorker'] as $p) { //启动定时进程(ps:定时广播，监听广播)
+foreach ($list['tickWorker'] as $p) { //Start the timing process (ps: timed broadcast, monitor broadcast)
     $p->getProcess()->start();
 }
 
-while ($ret = \Swoole\Process::wait()) {//回收子进程
+while ($ret = \Swoole\Process::wait()) {//Recycling child process
     echo "PID={$ret['pid']}\n";
 }
 ````
-## easyswoole框架下使用
+## Used under the easyswoole framework
 
 ````php
 <?php
@@ -66,15 +66,15 @@ use EasySwoole\Rpc\Test\OrderService;
 use EasySwoole\Rpc\Test\NodeService;
 use EasySwoole\EasySwoole\ServerManager;
 
-#在EasySwooleEvent.php  的全局 mainServerCreate 事件中注册
+#Register in the global mainServerCreate event of EasySwooleEvent.php
 
 $config = new Config();
-$config->setServerIp('127.0.0.1');//注册提供rpc服务的ip
-$config->setNodeManager(new RedisManager('127.0.0.1'));//注册节点管理器
-$config->getBroadcastConfig()->setSecretKey('lucky');        //设置秘钥        
+$config->setServerIp('127.0.0.1');//Register to provide ip service ip
+$config->setNodeManager(new RedisManager('127.0.0.1'));//Register Node Manager
+$config->getBroadcastConfig()->setSecretKey('lucky');        //Set key        
 
 $rpc = Rpc::getInstance($config);;
-$rpc->add(new UserService());  //注册服务
+$rpc->add(new UserService());  //Registration service
 $rpc->add(new OrderService());
 $rpc->add(new NodeService());
 

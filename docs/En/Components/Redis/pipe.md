@@ -1,32 +1,32 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## pipe管道方法
+## Pipe pipe method
 
-| 方法名称    | 参数 | 说明         | 备注 |
+| Method name    | Parameter | Description         | Notes |
 |:------------|:----|:-------------|:----|
-| discardPipe |     | 取消管道      |     |
-| execPipe    |     | 一次性发送命令 |     |
-| startPipe   |     | 管道开始记录  |     |
+| discardPipe |     | Cancel the pipeline   |     |
+| execPipe    |     | Send command once |     |
+| startPipe   |     | Pipeline starts recording |     |
 
 ::: warning
-开始管道之后,操作命令都将返回"PIPE",直到取消管道或者执行,执行exec之后,将返回所有命令结果
+After starting the pipeline, the operation command will return "PIPE" until the pipeline is canceled or executed. After executing exec, all command results will be returned.
 :::
 ::: warning
-管道开始后,所有命令调用之后并不会执行,而是会记录起来,然后等待exec的时候一次性发送给redis服务端
-所以需要注意内存,一次管道不要执行过多的命令
+After the pipeline starts, all commands will not be executed after the call, but will be recorded, and then sent to the redis server once waiting for exec.
+So you need to pay attention to memory, do not execute too many commands in one pipeline.
 :::
 
 ::: warning
-在集群中,只有execPipe命令会选中一个client发送数据,其他时候不管怎么调用都和client无关
+In the cluster, only the execPipe command will select a client to send data, and other times, regardless of how it is called, it has nothing to do with the client.
 :::
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

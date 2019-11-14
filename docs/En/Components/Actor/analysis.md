@@ -1,18 +1,18 @@
 ---
-title: ACTOR架构解读
+title: Interpretation of ACTOR architecture
 meta:
   - name: description
-    content: EasySwoole提供Actor模式支持，助力游戏行业开发
+    content: EasySwoole provides Actor mode support for game industry development
   - name: keywords
-    content: easyswoole|ACTOR组件|架构解读
+    content: Easyswoole|ACTOR components|Architecture interpretation
 ---
 
-## Actor2架构解读
+## Actor2 architecture interpretation
 
 ### Actor
-应该叫ActorManager更确切点，它用来注册Actor、启动Proxy和ActorWorker进程。
-当你在业务逻辑里定义了几种Actor，比如RoomActor、PlayerActor，我们需要在SwooleServer启动时注册它们。
-具体就是在EasySwooleEvent.mainServerCreate方法中添加如下代码。
+It should be called ActorManager more precisely, it is used to register Actor, start Proxy and ActorWorker process.
+When you define several Actors in the business logic, such as RoomActor, PlayerActor, we need to register them when SwooleServer starts.
+Specifically, add the following code in the EasySwooleEvent.mainServerCreate method.
 ```php
 $actor = Actor::getInstance();
 $actor->register(RoomActor::class);
@@ -23,136 +23,136 @@ $actor->setMachineId($actorConf['MACHINE_ID'])
     ->setListenPort($actorConf['PORT'])
     ->attachServer($server);
 ```
-其中ListenAddress、ListenPort为Proxy进程的监听地址端口，MachineId为ActorWorker进程的机器码。
-MachineId和IP:PORT对应。
-attachServer将开启相应数量的Proxy进程，以及前边register的ActorWorker进程。
+The ListenAddress and the ListenPort are the listening address ports of the Proxy process, and the MachineId is the machine code of the ActorWorker process.
+MachineId corresponds to IP:PORT.
+attachServer will open the corresponding number of Proxy processes, as well as the ActorWorker process registered in front.
 
-#### 工作原理
-Proxy进程做消息中转，Worker进程做消息分发推送。来看个具体的例子：
+#### working principle
+The Proxy process does the message relay, and the Worker process does the message distribution push. Let's look at a concrete example:
 
-游戏中玩家P请求进入房间R，抽象成Actor模型就是PlayerActor需要往RoomActor发送请求加入的命令。
-那么这时候需要这样写：
+In the game, the player P requests to enter the room R, abstracting into the Actor model is the PlayerActor needs to send a request to the RoomActor to join.
+Then this time you need to write like this:
 ```php
 RoomActor::client($node)->send($roomActorId, [
 	'user_actor_id' => $userActorId,
-	'data'	=> '其他进入房间的参数'
+	'data'	=> 'Other parameters to enter the room'
 ])
 ```
-其中$roomActorId和$userActorId是你事先xxActor::client()->create()出来的。
-上面那段代码的意思就是往$roomActorId的RoomActor实例推送了一条$userActorId玩家的UserActor实例要加入房间的消息。
-参数$node用来寻址Proxy，它由目标Actor实例的Worker.MachineId决定，在本例中就是$roomActorId被创建在了哪个MachineId的WorkerProcess。
-通过$roomActorId中的机器码找到IP:PORT，生成$node。
-send时会创建一个协程TcpClient，将消息发送给Proxy，然后Proxy将消息转发（UnixClient）至本机WorkerProcess，WorkerProcess收到消息，推送到具体的Actor实例。
-这样就完成了从PlayerActor到RoomActor的请求通讯，RoomActor收到请求消息并处理完成后，向PlayerActor回发处理结果，用的是同样的通讯流程。
-如果是单机部署，可以忽略$node参数，因为所有通讯都是在本机进行。
-多机的话，需要自己根据业务来实现Actor如何分布和定位。
+Where $roomActorId and $userActorId are your pre-xxActor::client()->create().
+The above code means that a $userActorId user's UserActor instance is pushed to the room in the RoomActor instance of $roomActorId.
+The parameter $node is used to address the Proxy, which is determined by the Worker.MachineId of the target Actor instance, which in this case is the MachineProcess for which MachineId is created.
+Find the IP:PORT via the machine code in $roomActorId and generate $node.
+When sending, a coroutine TcpClient is created, and the message is sent to the Proxy. Then the Proxy forwards the message (UnixClient) to the native WorkerProcess, and the WorkerProcess receives the message and pushes it to the specific Actor instance.
+This completes the request communication from the PlayerActor to the RoomActor. After receiving the request message and processing it, the RoomActor sends back the processing result to the PlayerActor, using the same communication flow.
+If it is a stand-alone deployment, you can ignore the $node parameter because all communication is done locally.
+For multi-machine, you need to implement how to distribute and locate Actors according to your business.
 
-#### 主要属性
+#### Main attribute
 
-*machineId* 机器码
+`machineId` machine code
 
-*proxyNum* 启动几个ProxyProcess
+`proxyNum` starts several ProxyProcess
 
-*listenPort* 监听端口
+`listenPort` listening port
 
-*listenAddress* 监听ip
+`listenAddress` listen ip
 
 ### AbstractActor
-Actor实例的基类，所有业务中用到的Actor都将继承于AbstractActor。例如游戏场景中的房间，你可以：
+The base class of the Actor instance, all the Actors used in the business will inherit from AbstractActor. For example, in a room in a game scene, you can:
 ```php
 class RoomActor extends AbstractActor
 ```
-#### 工作原理
-每个Actor实例都维护一份独立的数据和状态，当一个Actor实例通过client()->create()后，会开启协程循环，接收mailbox pop的消息，进而处理业务逻辑，更新自己的数据及状态。具体实现就是__run()这个方法。
+#### working principle
+Each Actor instance maintains a separate data and state. When an Actor instance passes client()->create(), it will start the coroutine loop, receive the message of mailbox pop, and then process the business logic and update its own data. And status. The concrete implementation is the __run() method.
 
-#### 静态方法 configure
-用来配置ActorCofig，只需要在具体的Actor（如RoomActor）去重写这个方法就行。
-关于ActorConfig具体属性可以看下边ActorConfig部分。
+#### Static method configure
+To configure ActorCofig, you only need to override this method in a specific Actor (such as RoomActor).
+For the specific properties of ActorConfig, see the ActorConfig section below.
 
-#### 几个虚拟方法
-以下几个虚拟方法需要在Actor子类中实现，这几个方法被用在__run()中来完成Actor的运行周期。
+#### Several virtual methods
+The following virtual methods need to be implemented in the Actor subclass. These methods are used in __run() to complete the Actor's run cycle.
 
-*onStart()* 在协程开启前执行，你可以在此进行Actor初始化的一些操作，比如获取房间的基础属性等。
+`onStart()` is executed before the coroutine is started. You can perform some operations on the Actor initialization, such as getting the basic properties of the room.
 
-*onMessage()* 当接收到消息时执行，一个Actor实例的生命周期基本上就是在收消息-处理-发消息，你需要在这里对消息进行解析处理。
+`onMessage()` When executed, the lifetime of an Actor instance is basically in the message-handling-message, where you need to parse the message.
 
-*onExit()* 当接收到退出命令时执行。比如你希望在一个Actor实例退出的时候，同时通知某些关联的其他Actor，可以在此处理。
+`onExit()` is executed when an exit command is received. For example, if you want to quit an Actor instance, you can also notify some related Actors at the same time, which can be handled here.
 
-#### 其他
-*exit()* 用于实例自己退出操作，会向自己发一条退出的命令。
+#### Other
+`exit()` is used to exit the operation itself, and will send an exit command to itself.
 
-*tick()、after()* 两个定时器，用于Actor实例的定时任务，比如游戏房间的定时刷怪（tick）；掉线后多长时间自动踢出(after)。
+`tick(), after()` Two timers, used for timed tasks of the Actor instance, such as the timing of the game room (tick); how long after the line is automatically kicked (after).
 
-*static client()* 用于创建一个ActorClient来进行对应Actor（实例）的通讯。
+`static client()` is used to create an ActorClient to communicate with the corresponding Actor.
 
 ### ActorClient
-Actor通讯客户端，调用xxActor::client()来创建一个ActorClient进行Actor通讯。
-上边已经大概讲过了Actor的通讯流程，本质就是TcpClient->Proxy进程->UnixClient->ActorWorker进程->xxActor。
-看下它实现了哪些方法：
+The Actor communication client calls xxActor::client() to create an ActorClient for Actor communication.
+The above has already talked about the Actor communication process, the essence is TcpClient->Proxy process->UnixClient->ActorWorker process->xxActor.
+See what methods it implements:
 
-*create()* 创建一个xxActor实例，返回actorId，在之后你可以使用这个actorId与此实例进行通讯。
+`create()` creates a xxActor instance and returns the actorId, which you can then use to communicate with this instance.
 
-*send()* 指定actorId，向其发送消息。
+`send()` specifies the actorId to send a message to.
 
-*exit()* 通知xxActor退出指定actorId的实例。
+`exit()` tells xxActor to exit the instance of the specified actorId.
 
-*sendAll()* 向所有的xxActor实例发送消息。
+`sendAll()` sends a message to all xxActor instances.
 
-*exitAll()* 退出所有xxActor实例。
+`exitAll()` exits all xxActor instances.
 
-*exist()* 当前是否存在指定actorId的xxActor实例。
+`exist()` Whether there is currently a xxActor instance of the specified actorId.
 
-*status()* 当前ActorWorker下xxActor的分布状态。
+`status()` The current state of the xxActor under ActorWorker.
 
 ### ActorConfig
-具体Actor的配置项，比如RoomActor、PlayerActor都有自己的配置。
+Configuration items for specific Actors, such as RoomActor and PlayerActor, have their own configuration.
 
-*actorName* 一般用类名就可以，注意在同一个服务中这个是不能重复的。
+`actorName` generally uses the class name. Note that this cannot be repeated in the same service.
 
-*actorClass* 在Actor->register()会将对应的类名写入。
+`actorClass` will write the corresponding class name in Actor->register().
 
-*workerNum* 为Actor开启几个进程，Actor->attachServer()时会根据这个参数为相应Actor启动WorkerNum个Worker进程
+`workerNum` starts several processes for the Actor. Actor->attachServer() will start the WorkerNum Worker process for the corresponding Actor according to this parameter.
 
 ### ActorNode
-上边提到过，xxActor::client($node)，这个$node就是ActorNode对象，属性为Ip和Port，用于寻址Proxy，就不多说了。
+As mentioned above, xxActor::client($node), this $node is the ActorNode object, and the attributes are Ip and Port, which are used to address the Proxy, so I won't say much.
 
 ### WorkerConfig
-WorkerProcess的配置项，WorkerProcess启动时用到。
+WorkerProcess configuration item, used when WorkerProcess starts.
 
-*workerId* worker进程Id，create Actor的时候用于生成actorId
+`workerId` worker process Id, used to generate actorId when creating Actor
 
-*machineId* worker进程机器码，create Actor的时候用于生成actorId
+`machineId` worker process machine code, used to generate actorId when creating Actor
 
-*trigger* 异常触发处理接口
+`trigger` exception trigger processing interface
 
 ### WorkerProcess
-Actor的重点在这里，每个注册的Actor（类）会启动相应数量的WorkerProcess。
-比如你注册了RoomActor、PlayerActor，workerNum都配置的是3，那么系统将启动3个RoomActor的Worker进程和3个PlayerActor的Worker进程。
-每个WorkerProcess维护一个ActorList，你通过client()->create()的Actor将分布在不同Worker进程里，由它的ActorList进行管理。
-WorkerProcess通过协程接收client（这个client就是Proxy做转发时的UnixClient）消息，区分消息类型，然后分发给对应的Actor实例。
-请仔细阅读下WorkerProcess的源码，它继承于AbstractUnixProcess。
+The focus of the Actor is here, and each registered Actor (class) will launch the corresponding number of WorkerProcess.
+For example, if you register RoomActor, PlayerActor, and WorkerNum are configured with 3, then the system will launch 3 RoomActor Worker processes and 3 PlayerActor Worker processes.
+Each WorkerProcess maintains an ActorList, and your Actors via client()->create() will be distributed among different Worker processes and managed by its ActorList.
+WorkerProcess receives the client (this client is the UnixClient when the proxy is forwarding) through the coroutine, distinguishes the message type, and then distributes it to the corresponding Actor instance.
+Please read the source code of WorkerProcess carefully, which inherits from AbstractUnixProcess.
 
 ### UnixClient
-UnixStream Socket，自行了解。Proxy转发消息给本机Actor所使用的Client。
+UnixStream Socket, understand it yourself. The Proxy forwards the message to the Client used by the native Actor.
 
 ### Protocol
-数据封包协议。
+Data packet protocol.
 
 ### ProxyCommand
-消息命令对象，Actor2将不同类型的消息封装成格式化的命令，最终传给WorkerProcess。
-你可以在ActorClient中了解一下方法和命令的对应关系，但这个不需要在业务层去更改。
+The message command object, Actor2 encapsulates different types of messages into formatted commands, which are ultimately passed to WorkerProcess.
+You can find out the correspondence between methods and commands in ActorClient, but this does not need to be changed at the business layer.
 
 ### ProxyConfig
-消息代理的配置项。
+The configuration item of the message broker.
 
-*actorList* 注册的actor列表。
+`actorList` Registered actor list.
 
-*machineId* 机器码
+`machineId` machine code
 
-*tempDir* 临时目录
+`tempDir` temporary directory
 
-*trigger* 错误触发处理接口 
+`trigger` error trigger processing interface
 
 ### ProxyProcess
-Actor->attachServer()会启动proxyNum个ProxyProcess。
-用于在Actor实例和WorkerProcess做消息中转。
+Actor->attachServer() will start proxyNum ProxyProcess.
+Used to make message relays in Actor instances and WorkerProcess.

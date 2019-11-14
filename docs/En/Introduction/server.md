@@ -1,19 +1,19 @@
 ---
-title: 服务管理
+title: Service management
 meta:
   - name: description
-    content: easyswoole的服务管理,启动服务,停止服务等
+    content: Easyswoole service management, start service, stop service, etc.
   - name: keywords
-    content: easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
+    content: Easyswoole|easyswoole installation|easyswoole startup|easyswoole soft restart|easyswoole restart
 ---
 
-# 服务管理脚本
-执行完框架安装后，可以在你的项目根目录下，看多一个easyswoole的文件。
-执行以下命令：
+# Service management script
+After performing the framework installation, you can see one more easywool file in your project root directory.
+Execute the following command:
 ```
 php easyswoole
 ```
-可见：
+visible：
 ```
  ______                          _____                              _
  |  ____|                        / ____|                            | |
@@ -24,95 +24,94 @@ php easyswoole
                           __/ |
                          |___/
 
-欢迎使用为API而生的 easySwoole 框架 当前版本: 3.x
+Welcome to the easySwoole framework for the API. Current version: 3.x
 
-使用:
-  easyswoole [操作] [选项]
+Use:
+  easyswoole [Operation] [Options]
 
-操作:
-  install       安装easySwoole
-  start         启动easySwoole
-  stop          停止easySwoole(守护模式下使用)
-  reload        热重启easySwoole(守护模式下使用)
-  restart       重启easySwoole(守护模式下使用)
-  help          查看命令的帮助信息
+operating:
+  install       Install EasySwoole
+  start         Start EasySwoole
+  stop          Stop EasySwoole (used in daemon mode)
+  reload        Hot restart EasySwoole (used in daemon mode)
+  restart       Restart EasySwoole (used in daemon mode)
+  help          View help information for the command
 
-有关某个操作的详细信息 请使用 help 命令查看 
-如查看 start 操作的详细信息 请输入 easyswoole help -start
+For more information on an operation, use the HELP command to view
+For details on the start operation, please enter easyswoole help -start
 ```
 
-## 服务启动
-开发模式： 
+## Service start
+Development model： 
 ```
 php easyswoole start
 ```
-## 守护模式启动
+## Daemon mode starts
 ```
 php easyswoole start d
 ```
-## 生产环境(默认配置加载dev.php,使用该命令加载produce.php  3.1.2之前是dev.env,produce.env)
+## Production environment (the default configuration is to load dev.php, use this command to load produce.php 3.1.2 before dev.env, produce.env)
 ```
 php easyswoole start produce
 ```
-## 服务停止(默认配置加载dev.php,使用该命令加载produce.php  3.1.2之前是dev.env,produce.env)
+## The service stops (the default configuration loads dev.php, using this command to load produce.php 3.1.2 before dev.env, produce.env)
 ```
 php easyswoole stop produce
 ```
 
 ::: warning 
- 注意，守护模式下才需要stop，不然control+c或者是终端断开就退出进程了
+ Note that stop is required in the daemon mode, otherwise control+c or the terminal disconnects to exit the process.
 :::
 
 ::: warning
- 注意,当命令增加produce之后,其他相关的 stop,reload,restart命令都需要增加produce参数,否则可能出错
+ Note that after the command is added, other related stop, reload, and restart commands need to increase the produce parameter, otherwise it may be wrong.
 :::
 
-## 热重启服务
+## Hot restart service
 ```
-php easyswoole reload 热重启
+php easyswoole reload   (Hot restart)
 ```
 
 ::: warning
- 注意，守护模式下才需要reload，不然control+c或者是终端断开就退出进程了，此处为热重启，可以用于更新worker start后才加载的文件（业务逻辑），主进程（如配置文件）不会被重启。 http 自定义路由配置不会被更新,需要restart;
+ Note that reload is required only in the daemon mode, otherwise control+c or the terminal disconnects to exit the process. Here is a hot restart, which can be used to update the file (business logic) that is loaded after the worker start, the main process (such as configuration File) will not be restarted. The http custom routing configuration will not be updated and needs to be restarted;
 :::
 
-## 重启服务
+## Restart service
 ```
-php easyswoole restart 强制停止服务,并重新启动
+php easyswoole restart (Force stop service and restart)
 ```
 
 ::: warning
-restart是强制停止服务并重新启动,所以在生产模式下禁用,否则进程中断可能有意想不到的损失
+`restart` is to force the service to stop and restart, so it is disabled in production mode, otherwise the process interruption may have unexpected loss.
 :::
 
 
-## 文件热加载
+## File hot loading
 
-由于 `swoole` 常驻内存的特性，修改文件后需要重启worker进程才能将被修改的文件重新载入内存中，我们可以自定义Process的方式实现文件变动自动进行服务重载
+Due to the characteristics of `swoole` resident memory, after modifying the file, you need to restart the worker process to reload the modified file into memory. We can customize the process to implement file change and automatically perform service overloading.
 
-相关示例请查看
+See related examples
 
-- [热重载实现原理](../Other/hotReload.md)
+- [Hot overload implementation principle](../Other/hotReload.md)
 
-## 其他
+## other
 
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
-- 作者微信
+    - EMAIL admin@fosuss.com   
+- Author WeChat
 
      ![](/resources/authWx.png)
     
-- [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
+  - Continuous and in-depth development
+  - Document and community construction and maintenance
   
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository, modify and supplement it. Submit **Pull Request** and contact us

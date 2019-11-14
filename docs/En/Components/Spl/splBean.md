@@ -9,31 +9,31 @@ meta:
 
 
 
-## 用途
+## Use
 
-用于定义表结构，过滤掉无效字段数据。
+Used to define the table structure and filter out invalid field data.
 
-# SplBean相关方法
+# SplBean related methods
 
-方法列表
+Method list
 
-| 方法名称           | 参数                                           | 说明                               | 备注 |
-| :----------------- | :--------------------------------------------- | :--------------------------------- | :--- |
-| __construct        | array $data = null,$autoCreateProperty = false | 构造函数，初始化bean数据           |      |
-| allProperty        |                                                | 过滤并转换成数组数据               |      |
-| toArray            | array $columns = null,$filter = null           | 转字符                             |      |
-| toArrayWithMapping | array $columns = null,$filter = null           | 获取过滤后带有字段别名的数组数据   |      |
-| arrayToBean        | array $data,$autoCreateProperty = false        | 设置类属性                         |      |
-| addProperty        | $name,$value = null                            | 设置类成员变量                     |      |
-| getProperty        | $name                                          | 获取类成员变量值                   |      |
-| jsonSerialize      |                                                | 获取类成员变量集合                 |      |
-| initialize         |                                                | 初始化操作                         |      |
-| setKeyMapping      |                                                | 设置keyMapping关系，也就是字段别名 |      |
-| setClassMapping    |                                                | 设置classMapping关系，也就是关联类 |      |
-| restore            | array $data = [], $autoCreateProperty = false  | 重新初始化bean数据                 |      |
-| classMap           |                                                | 绑定关联类                         |      |
+| Method Name | Parameters | Description | Notes |
+| :---------- | :--------- | :---------- | :---- |
+| __construct | array $data = null,$autoCreateProperty = false | Constructor, initialize bean data           |      |
+| allProperty        |                                                | Filter and convert to array data               |      |
+| toArray            | array $columns = null,$filter = null           | Transfer character                             |      |
+| toArrayWithMapping | array $columns = null,$filter = null           | Get filtered array data with field aliases   |      |
+| arrayToBean        | array $data,$autoCreateProperty = false        | Set class properties                         |      |
+| addProperty        | $name,$value = null                            | Set class member variables                     |      |
+| getProperty        | $name                                          | Get class member variable values                   |      |
+| jsonSerialize      |                                                | Get class member variable collection                 |      |
+| initialize         |                                                | Initialization operation                         |      |
+| setKeyMapping      |                                                | Set the keyMapping relationship, which is the field alias |      |
+| setClassMapping    |                                                | Set the classMapping relationship, which is the associated class. |      |
+| restore            | array $data = [], $autoCreateProperty = false  | Reinitialize bean data                 |      |
+| classMap           |                                                | Binding association class                         |      |
 
-## 如何使用
+## how to use
 
 ```php
 

@@ -1,25 +1,25 @@
 ---
-title: MonggoDb 协程使用
+title: MongoDb coroutine use
 meta:
   - name: description
-    content: EasySwoole 提供了一个同步程序协程调用转化驱动
+    content: EasySwoole provides a synchronization program coroutine call conversion driver
   - name: keywords
-    content: easyswoole|SyncInvoker MonggoDb 协程| MonggoDb 协程使用
+    content: easyswoole|SyncInvoker MonggoDb coroutine | MonggoDb coroutine use
 ---
 
 # MonggoDb
 
-目前，MongoDB并没有提供协程版本的php客户端，只有同步阻塞版本。
+Currently, MongoDB does not provide a coroutine version of the php client, only the sync blocking version.
 
-::: tip 提示
-EasySwoole 的协程版客户端已经在排期内。
+::: tip prompt
+EasySwoole's coroutine client is already in the flight.
 :::
 
-在实际生产中，直接 创建原生的mongoDB客户端来进行数据交互，也不是不可。
+In actual production, it is not impossible to directly create a native mongoDB client for data interaction.
 
-若希望将同步调用转为协程调用，可以用Easyswoole 提供的sync-invoker组件。
+If you want to convert a synchronous call to a coroutine call, you can use the sync-invoker component provided by Easyswoole.
 
-## 定义驱动
+## Define driver
 
 ```php
 namespace App\Mongodb;
@@ -49,7 +49,7 @@ class Driver extends AbstractInvoker
 }
 ```
 
-## 客户端
+## Client
 ```php
 namespace App\Mongodb;
 
@@ -62,15 +62,15 @@ class MongoClient extends SyncInvoker
 }
 ```
 
-## 服务注册
+## Service Registration
 
-在Easyswoole全局事件mainServerCreate中进行服务注册
+Service registration in the Easyswoole global event mainServerCreate
 
 ```php
 MongoClient::getInstance(new Driver())->attachServer(ServerManager::getInstance()->getSwooleServer());
 ```
 
-## 开始使用
+## Start using
 
 ```php
 $ret = MongoClient::getInstance()->client()->callback(function (Driver $driver){

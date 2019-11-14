@@ -2,30 +2,30 @@
 title: SyncInvoker
 meta:
   - name: description
-    content: EasySwoole 提供了一个同步程序协程调用转化驱动
+    content: EasySwoole provides a synchronization program coroutine call conversion driver
   - name: keywords
     content: easyswoole|SyncInvoker
 ---
 # SyncInvoker
 
-## 场景
+## Scenes
 
-Swoole4.x后，提供了非常强大的协程能力，让我们可以更好的压榨服务器性能，提高并发。然而，目前PHP在swoole协程生态上，并不是很完善，比如没有协程版本的monogodb客户端，而为了避免在worker中调用了同步阻塞的Api，例如在Http回调中使用了同步的芒果客户端，导致worker退化为同步阻塞，导致没办法完全的发挥协程的优势，
-EasySwoole 提供了一个同步程序协程调用转化驱动。
+After Swoole 4.x, it provides a very powerful coroutine capability, which allows us to better squeeze server performance and improve concurrency. However, currently PHP is not perfect in the swoole coroutine ecosystem, such as the monogodb client without the coroutine version, and in order to avoid calling the synchronous blocking API in the worker, for example, using the synchronized mango client in the Http callback. End, causing the worker to degenerate into a synchronous blocking, resulting in no way to fully exploit the advantages of the coroutine.
+EasySwoole provides a synchronous program coroutine call conversion driver.
 
-## 原理
+## Principle
 
-启动自定义进程监听UnixSocket，然后worker端调用协程客户端发送命令到自定义进程并处理，然后吧处理结果返回给worker的协程客户端。
+Start the custom process to listen to the UnixSocket, and then the worker side calls the coroutine client to send the command to the custom process and process it, and then the processing result is returned to the worker's coroutine client.
 
-## 安装
+## Installation
 
 ```
 composer require easyswoole/sync-invoker
 ```
 
-## 使用
+## Use
 
-定义一个驱动工作实例（可以定义多个）
+Define a driver work instance (you can define multiple)
 
 ```php
 namespace App;
@@ -59,7 +59,7 @@ class MyInvokerDriver extends AbstractInvoker{
     }
 }
 
-//注册一个对应的调用器
+//Register a corresponding caller
 
 class MyInvoker extends SyncInvoker
 {
@@ -67,12 +67,12 @@ class MyInvoker extends SyncInvoker
 }
 ```
 
-EasySwoole 全局事件中的mainServerCreate 进行注册
+mainServerCreate in the EasySwoole global event is registered
 ```
  MyInvoker::getInstance(new MyInvokerDriver())->attachServer(ServerManager::getInstance()->getSwooleServer());
 ```
 
-服务启动后，即可在任意位置调用
+Once the service is started, it can be called from anywhere
 ```php
 $ret = MyInvoker::getInstance()->client()->test(1,2);
 var_dump($ret);
@@ -90,7 +90,7 @@ $ret = MyInvoker::getInstance()->client()->callback(function (MyInvokerDriver $d
 });
 ```
 
-## 注意事项
+## Precautions
 
-- 尽量使用函数名调用方式，闭包方式调用会存在部分闭包函数序列化失败问题
-- 传递参数，返回结果尽量用数组或者字符串传递，资源对象无法序列化
+- Try to use the function name calling method, the closure mode call will have some closure function serialization failure problem
+- Pass parameters, return results as far as possible with arrays or strings, resource objects cannot be serialized

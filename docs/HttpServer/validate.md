@@ -122,12 +122,43 @@ function getError():?EasySwoole\Validate\Error
 
 给字段添加规则：
 
+1.1.9版本到目前
+
+- string `name`         字段key
+- string `alias`        别名
+- string `reset`        重置规则
+
+```php
+public function addColumn(string $name, ?string $alias = null,bool $reset = false):EasySwoole\Validate\Rule
+```
+
+1.1.0版本到1.1.8版本
+
+- string `name`         字段key
+- string `alias`        别名
+
+```php
+public function addColumn(string $name, ?string $alias = null):EasySwoole\Validate\Rule
+```
+
+1.0.1版本
+
 - string `name`         字段key
 - string `errorMsg`     错误信息
-    - string `alias`    别名
+- string `alias`        别名
 
 ```php
 public function addColumn(string $name,?string $errorMsg = null,?string $alias = null):EasySwoole\Validate\Rule
+```
+
+1.0.0版本
+
+- string `name`         字段key
+- string `alias`        别名
+- string `errorMsg`     错误信息
+
+```php
+public function addColumn(string $name,?string $alias = null,?string $errorMsg = null):EasySwoole\Validate\Rule
 ```
 
 返回一个Rule对象可以添加自定义规则。

@@ -70,7 +70,7 @@ public static function mainServerCreate(EventRegister $register)
 
 EasySwoole提供了一个解析的方案参考。（非强制，可自行扩展修改为符合业务所需）
 
-### 安装
+### Installation
 
 引入 socket 包:
 

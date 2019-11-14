@@ -1,39 +1,33 @@
 ---
-title: 配置文件
+title: Configuration file
 meta:
   - name: description
-    content: EasySwoole提供了非常灵活的全局配置功能，可自行扩展独立的配置文件和进行动态配置。
+    Content: EasySwoole provides a very flexible global configuration feature that allows you to extend your own profile and dynamically configure it.
   - name: keywords
-    content: easyswoole|配置文件|动态配置
+    Content: easyswoole|profile|dynamic configuration
 ---
 
 
-# 配置文件
+# Configuration file
 
-EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置。框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
-文件内容如下:
+The EasySwoole framework provides a very flexible and free global configuration function. The configuration file is defined by PHP return array. For some simple applications, no configuration needs to be modified. For complex requirements, you can also extend your own independent configuration files and dynamically configure. . After the framework is installed, the default global configuration file is the `produce.php`, `dev.php` file in the project root directory (before version 3.1.2 is dev.env, produce.env)
+The file contents are as follows:
 
 ```php
 <?php
-      /**
-       * Created by PhpStorm.
-       * User: yf
-       * Date: 2019-01-01
-       * Time: 20:06
-       */
       
       return [
-          'SERVER_NAME'   => "EasySwoole",//服务名
+          'SERVER_NAME'   => "EasySwoole",//Service Name
           'MAIN_SERVER'   => [
-              'LISTEN_ADDRESS' => '0.0.0.0',//监听地址
-              'PORT'           => 9501,//监听端口
-              'SERVER_TYPE'    => EASYSWOOLE_WEB_SERVER, //可选为 EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_WEB_SOCKET_SERVER
-              'SOCK_TYPE'      => SWOOLE_TCP,//该配置项当为SERVER_TYPE值为TYPE_SERVER时有效
-              'RUN_MODEL'      => SWOOLE_PROCESS,// 默认Server的运行模式
-              'SETTING'        => [// Swoole Server的运行配置（ 完整配置可见[Swoole文档](https://wiki.swoole.com/wiki/page/274.html) ）
-                  'worker_num'       => 8,//运行的  worker进程数量
-                  'reload_async' => true,//设置异步重启开关。设置为true时，将启用异步安全重启特性，Worker进程会等待异步事件完成后再退出。
-                  'task_enable_coroutine' => true,//开启后自动在onTask回调中创建协程
+              'LISTEN_ADDRESS' => '0.0.0.0',//Listening address
+              'PORT'           => 9501,//Listening port
+              'SERVER_TYPE'    => EASYSWOOLE_WEB_SERVER, //Optional EASYSWOOLE_SERVER  EASYSWOOLE_WEB_SERVER EASYSWOOLE_WEB_SOCKET_SERVER
+              'SOCK_TYPE'      => SWOOLE_TCP,//This configuration item is valid when the SERVER_TYPE value is TYPE_SERVER.
+              'RUN_MODEL'      => SWOOLE_PROCESS,// Default Server operating mode
+              'SETTING'        => [// Run configuration of Swoole Server (full configuration visible [Swoole documentation] (https://wiki.swoole.com/wiki/page/274.html))
+                  'worker_num'       => 8, // Number of worker processes running
+                  'reload_async' => true, // Set the asynchronous restart switch. When set to true, the asynchronous secure restart feature is enabled and the worker process waits for the asynchronous event to complete before exiting.
+                  'task_enable_coroutine' => true, //Automatically create coroutines in the onTask callback after opening
                   'max_wait_time'=>3
               ],
               'TASK'=>[
@@ -42,23 +36,22 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
                   'timeout'=>15
               ]
           ],
-          'TEMP_DIR'      => null,//临时文件存放的目录
-          'LOG_DIR'       => null,//日志文件存放的目录
+          'TEMP_DIR'      => null,//Temporary file storage directory
+          'LOG_DIR'       => null,//Directory where log files are stored
       ];
 ```
 
 
 ::: warning 
- EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive或message),否则将出错
+ EASYSWOOLE_SERVER, EASYSWOOLE_WEB_SOCKET_SERVER type, you need to set the callback (receive or message) in `EasySwooleEvent.php` `mainServerCreate`, otherwise it will be wrong
 :::
 
-## 配置操作类
+## Configuration operation class
 
-配置操作类为 `EasySwoole\Config` 类，使用非常简单，见下面的代码例子，操作类还提供了 `toArray` 方法获取全部配置，`load` 方法重载全部配置，基于这两个方法，可以自己定制更多的高级操作
-
+The configuration operation class is `EasySwoole\Config`, which is very simple to use. See the code example below. The operation class also provides the `toArray` method to get all the configuration. The `load` method overrides all configurations. Based on these two methods, you can Customize more advanced operations yourself
 
 ::: warning 
- 设置和获取配置项都支持点语法分隔，见下面获取配置的代码例子
+ Setting and getting configuration items support dot syntax separation. See the code example for getting the configuration below.
 :::
 
 ```php
@@ -66,16 +59,16 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
 
 $instance = \EasySwoole\EasySwoole\Config::getInstance();
 
-// 获取配置 按层级用点号分隔
+// Get configuration separated by level with level
 $instance->getConf('MAIN_SERVER.SETTING.task_worker_num');
 
-// 设置配置 按层级用点号分隔
+// Set configuration by level with a dot
 $instance->setConf('DATABASE.host', 'localhost');
 
-// 获取全部配置
+// Get all configurations
 $conf = $instance->getConf();
 
-// 用一个数组覆盖当前配置项
+// Overwrite the current configuration item with an array
 $conf['DATABASE'] = [
     'host' => '127.0.0.1',
     'port' => 13306
@@ -84,12 +77,12 @@ $instance->load($conf);
 ```
 
 ::: warning 
- 需要注意的是 由于进程隔离的原因 在Server启动后，动态新增修改的配置项，只对执行操作的进程生效，如果需要全局共享配置需要自己进行扩展
+ After the server is started, the newly added configuration items are valid only for the process that performs the operation. If you need to share the configuration globally, you need to expand the configuration.
 :::
 
-## 添加用户配置项
+## Add a user profile
 
-每个应用都有自己的配置项，添加自己的配置项非常简单，其中一种方法是直接在配置文件中添加即可，如下面的例子
+Each application has its own configuration items. Adding your own configuration items is very simple. One of the methods is to add them directly to the configuration file, as in the following example.
 
 ```php
 /*################ MYSQL CONFIG ##################*/
@@ -116,60 +109,61 @@ $instance->load($conf);
 ],
 ```
 
-## 生产与开发配置分离
-在php easyswoole start命令下,默认为开发模式,加载 `dev.php` (3.1.2之前为 `dev.env`)
-运行 php easyswoole start produce 命令时,为生产模式,加载 `produce.php` (3.1.2之前为 `produce.env`)
+## Production and development configuration separation
+Under the php easyswoole start command, the default is development mode, loading `dev.php` (previous to 3.dev.env` before 3.1.2)
+When running the php easyswoole start produce command, load `produce.php` for production mode (previously `produce.env` before 3.1.2)
 
 
-## DI注入配置
-es3.x提供了几个Di参数配置,可自定义配置脚本错误异常处理回调,控制器命名空间,最大解析层级等
+## DI injection configuration
+Es3.x provides several Di parameter configurations, custom configuration script error exception handling callbacks, controller namespace, maximum resolution level, etc.
 ```php
 <?php
-Di::getInstance()->set(SysConst::ERROR_HANDLER,function (){});//配置错误处理回调
-Di::getInstance()->set(SysConst::SHUTDOWN_FUNCTION,function (){});//配置脚本结束回调
-Di::getInstance()->set(SysConst::HTTP_CONTROLLER_NAMESPACE,'App\\HttpController\\');//配置控制器命名空间
-Di::getInstance()->set(SysConst::HTTP_CONTROLLER_MAX_DEPTH,5);//配置http控制器最大解析层级
-Di::getInstance()->set(SysConst::HTTP_EXCEPTION_HANDLER,function (){});//配置http控制器异常回调
-Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制器对象池最大数量
+Di::getInstance()->set(SysConst::ERROR_HANDLER,function (){});//Configuration error handling callback
+Di::getInstance()->set(SysConst::SHUTDOWN_FUNCTION,function (){});//Configuration script end callback
+Di::getInstance()->set(SysConst::HTTP_CONTROLLER_NAMESPACE,'App\\HttpController\\');//Configuring the controller namespace
+Di::getInstance()->set(SysConst::HTTP_CONTROLLER_MAX_DEPTH,5);//Configure the maximum resolution level of the http controller.
+Di::getInstance()->set(SysConst::HTTP_EXCEPTION_HANDLER,function (){});//Configure http controller exception callback
+Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//The maximum number of http controller object pools
 ```
 
-## 动态配置
+## Dynamic configuration
 
-EasySwoole在3.2.5版本后,将默认config存储驱动改为了swoole_table,只要修改配置,其他进程同样生效
+After the 3.2.5 version of EasySwoole, the default config storage driver was changed to swoole_table. As long as the configuration is modified, other processes are also effective.
 
 
-## Config驱动
-EasySwoole在3.2.5版本后,默认配置驱动存储 从SplArray改为了swoole_table,修改配置之后,所有进程同时生效
+## Config driver
+After EasySwoole is released in version 3.2.5, the default configuration of the driver storage is changed from SplArray to swoole_table. After the configuration is modified, all processes take effect at the same time.
 
 ### \EasySwoole\Config\AbstractConfig
-AbstractConfig 抽象类提供了以下几个方法,用于给其他config驱动继承
+The AbstractConfig abstract class provides the following methods for driving inheritance to other config drivers.
 - __construct(bool $isDev = true)
-  传入是否为开发环境的参数,根据该参数去加载dev.php或者produce.php
+  Pass in the parameters of the development environment, according to the parameter to load dev.php or produce.php
 - isDev() 
- 可通过该方法获得当前运行环境是否为开发环境
+ This method can be used to obtain whether the current operating environment is a development environment.
 - abstract function getConf($key = null);
-  获取一个配置
+  Get a configuration
 - abstract function setConf($key,$val):bool ;
-  设置一个参数
+  Set a parameter
 - abstract function load(array $array):bool ;
-  重新加载配置项
+  Reload configuration item
 - abstract function merge(array $array):bool ;
-  合并配置项
+  Merge configuration item
 - abstract function clear():bool ;
-  清除所有配置项
+  Clear all configuration items
   
-### 自定义配置
-在EasySwoole中,自带了SplArray和swoole_table驱动实现,可自行查看源码了解.   
-默认驱动为swoole_table  
+### Custom configuration
+In EasySwoole, it comes with SplArray and swoole_table driver implementation, you can check the source code to understand.
 
-如需要修改存储驱动,步骤如下:
-* 继承 AbstractConfig 实现各个方法
+The default driver is swoole_table
+
+If you need to modify the storage driver, the steps are as follows:
+* Inherit AbstractConfig to implement each method
 * 在
 ````php 
 <?php
 public static function initialize()
 {
-//获得原先的config配置项,加载到新的配置项中
+//Obtain the original config configuration item and load it into the new configuration item.
    $config = Config::getInstance()->getConf();
    Config::getInstance()->storageHandler(new SplArrayConfig())->load($config);
    // TODO: Implement initialize() method.
@@ -177,28 +171,27 @@ public static function initialize()
 }
 ````
 
-### 动态配置问题
-由于swoole是多进程的,如果使用SplArray方式存储,在单个进程修改配置后,其他进程将不会生效,使用swoole_table方式的则会全部生效,需要注意
+### Dynamic configuration problem
+Since swoole is multi-process, if you use SplArray to store, after a single process modifies the configuration, other processes will not take effect. If you use the swoole_table method, all of them will take effect.
 
-## 其他
+## other
 
-- QQ交流群
-    - VIP群 579434607 （本群需要付费599元）
-    - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+- QQ exchange group
+    - VIP group 579434607 (this group needs to pay 599 RMP)
+    - EasySwoole official group 633921431 (full)
+    - EasySwoole official two groups 709134628
     
-- 商业支持：
+- Business support:
     - QQ 291323003
-    - EMAIL admin@fosuss.com
-        
-- 作者微信
+    - EMAIL admin@fosuss.com   
+- Author WeChat
 
      ![](/resources/authWx.png)
     
-- [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+- [Donation](../Preface/donation.md)
+  Your donation is the greatest encouragement and support for the Swoole project development team. We will insist on development and maintenance. Your donation will be used to:
         
-  - 持续和深入地开发
-  - 文档和社区的建设和维护
+  - Continuous and in-depth development
+  - Document and community construction and maintenance
   
-- **easySwoole** 的文档采用 **GitBook** 作为文档撰写工具，若您在使用过程中，发现文档有需要纠正 / 补充的地方，请 **fork** 项目的文档仓库，进行修改补充，提交 **Pull Request** 并联系我们
+- **easySwoole**'s documentation uses **GitBook** as a document writing tool. If you find that the document needs to be corrected/supplemented during use, please **fork** project's document repository, modify and supplement it. Submit **Pull Request** and contact us
