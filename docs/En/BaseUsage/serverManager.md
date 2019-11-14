@@ -81,18 +81,19 @@ class Index extends Controller
     }
 }
 ````
-同样,也可以在`EasySwooleEvent`的`mainServerCreate`事件 通过这个获取到主服务之后,添加一个自定义进程
+Similarly, it is possible to add a custom process after the mainServerCreate event of EasySwooleEvent is fetched through this to the primary service.
 ```php
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Test('test_process'))->getProcess());
 ```
 
 ::: warning 
- 获取到的是swoole的服务,可使用swoole服务所有的方法.
+ You get Swoole services,All methods of the Swoole service are available.
 :::
 
-## 获取注册事件类 getMainEventRegister
-`getMainEventRegister`方法可获取主服务的事件注册类,该类可注册主服务的事件回调  
-该方法框架底层自动调用,在`mainServerCreate`事件中,传入到`EasySwooleEvent`的`mainServerCreate`方法作为参数使用,例如为主服务注册onWorkerStart事件
+## getMainEventRegister
+`getMainEventRegister`Method gets the event registration class for the master service, which registers event callbacks for the master service
+The method framework is automatically invoked at the bottom,In the ```mainServerCreate``` event, the```mainServerCreate``` method passed in to ```EasySwooleEvent``` is used as an argument, such as registering the onWorkerStart event for the primary service.
+
 ```php
 <?php
 public static function mainServerCreate(EventRegister $register)
