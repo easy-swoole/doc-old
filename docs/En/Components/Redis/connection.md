@@ -1,27 +1,27 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## 连接方法
-连接方法包括一些auth,echo,ping,类似的方法,列表如下:    
+## connection method
+The connection method includes some auth, echo, ping, and similar methods. The list is as follows:   
 
 
 
-| 方法名称   | 参数      | 说明       | 备注 |
+| Method name   | Parameter      | Description       | Notes |
 |:-----------|:----------|:----------|:----|
-| connect    | $timeout  | 连接       |     |
-| disconnect |           | 断开连接   |     |
-| auth       | $password | auth认证   |     |
-| echo       | $str      | echo      |     |
-| ping       |           | ping      |     |
-| select     | $db       | 选择数据库 |     |
+| connect    | $timeout  | Connection   |     |
+| disconnect |           | Disconnect   |     |
+| auth       | $password | Auth certification   |     |
+| echo       | $str      | Echo    |     |
+| ping       |           | Ping    |     |
+| select     | $db       | Select database|     |
 
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

@@ -1,36 +1,36 @@
 ---
-title: EasySwoole通用连接池
+title: EasySwoole universal connection pool
 meta:
   - name: description
-    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+    content: EasySwoole universal connection pool,Coroutine connection pool,Easyswoole connection pool
   - name: keywords
-    content: easyswoole|连接池|swoole 连接池|通用连接池
+    content: Easyswoole|connection pool|swoole connection pool|universal connection pool
 ---
 
 
-## 池对象方法
+## Pool object method
 
-| 方法名称      | 参数                                     | 说明                                                        | 备注                                         |
+| Method name      | parameter                                     | Description                                                        | Remarks                                         |
 |:--------------|:-----------------------------------------|:-----------------------------------------------------------|:--------------------------------------------|
-| createObject  |                                          | 抽象方法,创建连接对象                                        |                                             |
-| recycleObj    | $obj                                     | 回收一个连接                                                |                                             |
-| getObj        | float $timeout = null, int $tryTimes = 3 | 获取一个连接,超时时间$timeout,尝试获取$tryTimes次             |                                             |
-| unsetObj      | $obj                                     | 直接释放一个连接                                             |                                             |
-| idleCheck     | int $idleTime                            | 回收超过$idleTime未出队使用的连接                             |                                             |
-| intervalCheck |                                          | 回收连接,以及热启动方法,允许外部调用热启动                      |                                             |
-| keepMin       | ?int $num = null                         | 保持最小连接(热启动)                                         |                                             |
-| getConfig     |                                          | 获取连接池的配置信息                                         |                                             |
-| status        |                                          | 获取连接池状态信息                                           | 获取当前连接池已创建,已使用,最大创建,最小创建数据 |
-| isPoolObject  | $obj                                     | 查看$obj对象是否由该连接池创建                                |                                             |
-| isInPool      | $obj                                     | 获取当前连接是否在连接池内未使用                               |                                             |
-| destroyPool   |                                          | 销毁该连接池                                                |                                             |
-| reset         |                                          | 重置该连接池                                                |                                             |
-| invoke        | callable $call,float $timeout = null     | 获取一个连接,传入到$call回调函数中进行处理,回调结束后自动回收连接 |                                             |
-| defer         | float $timeout = null                    | 获取一个连接,协程结束后自动回收                               |                                             |
+| createObject  |                                          | Abstract method, create a connection object                                        |                                             |
+| recycleObj    | $obj                                     | Reclaim a connection                                                |                                             |
+| getObj        | float $timeout = null, int $tryTimes = 3 | Get a connection, timeout time $timeout, try to get $tryTimes times             |                                             |
+| unsetObj      | $obj                                     | Directly release a connection                                             |                                             |
+| idleCheck     | int $idleTime                            | Reclaim connections that are not used by $idleTime                            |                                             |
+| intervalCheck |                                          | Recycling connections, as well as hot-start methods, allowing external calls to hot start                      |                                             |
+| keepMin       | ?int $num = null                         | Keep the minimum connection (hot start)                                         |                                             |
+| getConfig     |                                          | Get the configuration information of the connection pool                                         |                                             |
+| status        |                                          | Get connection pool status information                                           | Get the current connection pool has been created, used, maximum creation, minimum creation data |
+| isPoolObject  | $obj                                     | Check if the $obj object is created by the connection pool                                |                                             |
+| isInPool      | $obj                                     | Get the current connection is not used in the connection pool                               |                                             |
+| destroyPool   |                                          | Destroy the connection pool                                                |                                             |
+| reset         |                                          | Reset the connection pool                                                |                                             |
+| invoke        | callable $call,float $timeout = null     | Get a connection, pass it to the $call callback function for processing, and automatically reclaim the connection after the callback ends |                                             |
+| defer         | float $timeout = null                    | Get a connection, automatically recycle after the end of the coroutine                               |                                             |
 
 
 ### getObj
-获取一个连接池的对象:
+Get an object for the connection pool:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -40,24 +40,24 @@ go(function (){
 });
 ```
 ::: warning
-通过getObj方法获取的对象,都必须调用unsetObj或者recycleObj进行回收,否则连接池对象会越来越少
+Objects obtained by the getObj method must be called with unsetObj or recycleObj, otherwise the connection pool object will be less and less.
 :::
 
 ### unsetObj
-直接释放一个连接池对象,其他协程不能再获取这个连接,而是会重新创建一个连接
+Directly release a connection pool object, other coroutines can no longer get the connection, but will re-create a connection
 
 ::: warning
-释放之后,并不会立即销毁该对象,而是会在作用域结束之后销毁
+After the release, the object will not be destroyed immediately, but will be destroyed after the scope ends.
 :::
 
 ### recycleObj
-回收一个连接对象,回收之后,其他协程可以正常获取这个连接.
+Retrieve a connection object, after the recovery, other coroutines can get this connection normally.
 ::: warning
-回收之后,其他协程可以正常获取这个连接,但在此时,该连接还处于当前协程中,如果再次调用该连接进行数据操作,将会协程混乱,所以需要开发人员自行约束,当recycleObj不能再操作这个对象
+After the recovery, other coroutines can obtain the connection normally, but at this time, the connection is still in the current coroutine. If the connection is called again for data operation, the coroutine will be confusing, so the developer needs to be bound by itself, when the recycleObj Can't manipulate this object anymore
 :::
 
 ### invoke
-获取一个连接,传入到$call回调函数中进行处理,回调结束后自动回收连接:
+Get a connection, pass it to the $call callback function for processing, and automatically reclaim the connection after the callback ends:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -68,11 +68,11 @@ go(function (){
 
 ```
 ::: warning
-通过该方法无需手动回收连接,在回调函数结束后,则自动回收
+This method eliminates the need to manually reclaim the connection, and automatically recycles after the callback function ends.
 :::
 
 ### defer
-获取一个连接,协程结束后自动回收
+Get a connection, automatically recycle after the end of the coroutine
 ```php
 go(function () {
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -81,26 +81,26 @@ go(function () {
 });
 ```
 ::: warning
-通过该方法无需手动回收连接,在协程结束后,则自动回收
+This method eliminates the need to manually recycle the connection, and automatically recycles after the end of the coroutine.
 :::
 
 ::: warning
-需要注意的事,defer方法是协程结束后才回收,如果你当前协程运行时间过长,则会一直无法回收,直到协程结束
+Need to pay attention to, the defer method is only after the end of the coroutine is recycled, if your current coroutine runs too long, it will not be able to recycle until the end of the coroutine
 :::
 
 ### keepMin
-保持最小连接(热启动)
-由于easyswoole/pool的
-当一启动服务,出现过大的并发时,可能会突然需要几十上百个连接,这个时候为了使创建连接的时间分散,可以通过调用keepMin进行预热启动连接  
-调用此方法后,将会预先创建n个连接,用于服务启动之后的控制器直接获取连接:
-在`EasySwooleEvent.php`中的`mainServerCreate`中,当worker进程启动后,热启动连接
+Keep the minimum connection (hot start)
+Thanks to easyswoole/pool
+When a service is started and there is too much concurrency, it may suddenly need tens of hundreds of connections. In this case, in order to make the connection creation time dispersed, the connection can be warmed up by calling keepMin.
+After calling this method, n connections will be created in advance for the controller to directly obtain the connection after the service is started:
+In `mainServerCreate` in `EasySwooleEvent.php`, when the worker process starts, the hot start connection
 ```php
 
 public static function mainServerCreate(EventRegister $register)
 {
     $register->add($register::onWorkerStart,function (\swoole_server $server,int $workerId){
         if ($server->taskworker == false) {
-            //每个worker进程都预创建连接
+            // Each worker process pre-creates a connection
             \EasySwoole\Pool\Manager::getInstance()->get('redis')->keepMin(10);
             var_dump(\EasySwoole\Pool\Manager::getInstance()->get('redis')->status());
         }
@@ -109,7 +109,7 @@ public static function mainServerCreate(EventRegister $register)
     // TODO: Implement mainServerCreate() method.
 }
 ```
-将会输出:
+Will output:
 ```
 array(4) {
   ["created"]=>
@@ -124,11 +124,11 @@ array(4) {
 ```
 
 ::: warning
- keepMin是根据不同进程,创建不同的连接的,比如你有10个worker进程,将会输出10次,总共创建10*10=100个连接
+ keepMin creates different connections according to different processes. For example, if you have 10 worker processes, it will output 10 times, and a total of 10*10=100 connections will be created.
 :::
 
 ### getConfig
-获取连接池的配置:
+Get the configuration of the connection pool:
 ```php
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
     var_dump($redisPool->getConfig());
@@ -136,8 +136,8 @@ array(4) {
 ```
 
 ### destroyPool
-销毁连接池  
-调用之后,连接池剩余的所有链接都会unsetObj,并且将关闭连接队列,调用之后getObj等方法都将失效:
+Destroy the connection pool
+After the call, all the remaining links in the connection pool will be unsetObj, and the connection queue will be closed. After the call, getObj and other methods will be invalidated:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -147,7 +147,7 @@ go(function (){
 });
 ```
 ### reset
-重置连接池,调用reset之后,会自动调用destroyPool销毁连接池,并在下一次getObj时重新初始化该连接池:
+Reset the connection pool, after calling reset, will automatically call destroyPool to destroy the connection pool, and re-initialize the connection pool the next time getObj:
 ```php
 go(function (){
     $redisPool = new \App\Pool\RedisPool(new \EasySwoole\Pool\Config(), new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\Config::getInstance()->getConf('REDIS')));
@@ -158,7 +158,7 @@ go(function (){
 ```
 
 ### status
-获取连接池当前状态,调用之后将输出:
+Get the current state of the connection pool, after the call will output:
 ```
 array(4) {
   ["created"]=>
@@ -172,10 +172,10 @@ array(4) {
 }
 ```
 ### idleCheck
-回收空闲超时的连接
+Reclaim idle timeout connections
 
 ### intervalCheck
-调用此方法后,将调用idleCheck和keepMin方法,用于手动回收空闲连接和手动热启动连接
+After calling this method, the idleCheck and keepMin methods are called to manually reclaim idle connections and manual hot start connections.
 ```php
 public function intervalCheck()
 {

@@ -9,24 +9,24 @@ meta:
 
 
 
-## 用途
-用于定义枚举一个集合，规范化枚举数据。
+## Use
+Used to define a collection of enumerations and normalize enumeration data.
 
-# SplEnum相关方法
+# SplEnum related methods
 
-方法列表
+Method list
 
-| 方法名称     | 参数         | 说明                   | 备注 |
+| Method Name | Parameters | Description | Notes |
 | :----------- | :----------- | :--------------------- | :--- |
-| __construct  | $val         | 构造函数               |      |
-| getName      |              | 获取定义常量的键       |      |
-| getValue     |              | 获取定义常量           |      |
-| isValidName  | string $name | 查找常量的键值是否有效 |      |
-| isValidValue | $val         | 查找常量的值是否有效   |      |
-| getEnumList  |              | 获取枚举集合           |      |
-| getConstants |              | 获取枚举集合           |      |
+| __construct | $val       | Constructor |      |
+| getName     |            | Get the key that defines the constant |        |
+| getValue    |            | Get defined constants |            |
+| isValidName | string $name | Finding if the constant's key value is valid |       |
+| isValidValue | $val       | Finding if the value of a constant is valid |     |
+| getEnumList  |            | Get Enumeration Collection |      |
+| getConstants |            | Get Enumeration Collection |      |
 
-## 如何使用
+## how to use
 
 ```php
 /**

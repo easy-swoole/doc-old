@@ -10,7 +10,7 @@ meta:
 ---
 
 
-## 安装
+## Installation
 
 ```php
 composer require easyswoole/mysqli

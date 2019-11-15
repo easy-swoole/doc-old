@@ -1,21 +1,21 @@
 ---
-title: memcache协程客户端
+title: Memcache coroutine client
 meta:
   - name: description
-    content: memcache协程客户端,由swoole 协程client实现 
+    content: Memcache coroutine client, implemented by swoole coroutine client 
   - name: keywords
-    content:  EasySwoole memcache| Swoole memcache协程客户端
+    content:  EasySwoole memcache| Swoole Memcache coroutine client
 ---
-## memcache协程客户端
-memcache协程客户端,由swoole 协程client实现   
-github地址: https://github.com/easy-swoole/memcache 
+## Memcache coroutine client
+Memcache coroutine client, implemented by swoole coroutine client   
+Github address: https://github.com/easy-swoole/memcache 
 
-## composer安装   
+## Composer installation   
 ```php
 composer require easyswoole/memcache
 ```
 
-## 使用客户端(需要协程环境):  
+## Use the client (requires a coroutine environment): 
 ```php
 $config = new \EasySwoole\Memcache\Config([
     'host' => '127.0.0.1',
@@ -24,7 +24,7 @@ $config = new \EasySwoole\Memcache\Config([
 $client = new EasySwoole\Memcache\Memcache($config);
 ```
 
-## 使用示例:  
+## Example of use: 
 ```php
 $config = new \EasySwoole\Memcache\Config([
     'host' => '127.0.0.1',
@@ -35,64 +35,64 @@ $client->set('a',1);
 $client->get('a');
 ```
 
-## 使用方法:   
-### touch摸一下(刷新有效期)  
+## Instructions:   
+### touchTouch (refresh validity period)
 
 ```php
-touch($key, $expiration, $timeout = null)
+Touch($key, $expiration, $timeout = null)
 ```
 
-### increment自增KEY  
+### Increment increment KEY
 
 ```php
-increment($key, $offset = 1, $initialValue = 0, $expiration = 0, $timeout = null)
+Increment($key, $offset = 1, $initialValue = 0, $expiration = 0, $timeout = null)
 ```
 
 
-### decrement自减KEY  
+### decrement decrement KEY
 ```php
-decrement($key, $offset = 1, $initialValue = 0, $expiration = 0, $timeout = null)
+Decrement($key, $offset = 1, $initialValue = 0, $expiration = 0, $timeout = null)
 ```
 
-### set设置KEY(覆盖)  
+### setSet KEY (overwrite)
 
 ```php
-set($key, $value, $expiration = 0, $timeout = null)
+Set($key, $value, $expiration = 0, $timeout = null)
 ```
 
-### add增加KEY(非覆盖)  
+### addAdd KEY (non-overwrite)
 ```php
-add($key, $value, $expiration = 0, $timeout = null)
+Add($key, $value, $expiration = 0, $timeout = null)
 ```
-### replace替换一个KEY  
+### replace replaces a KEY
 ```php
-replace($key, $value, $expiration = 0, $timeout = null)
+Replace($key, $value, $expiration = 0, $timeout = null)
 ```
-### append追加数据到末尾  
+### append append data to the end 
 ```php
 append($key, $value, $timeout = null)
 ```
-### prepend追加数据到开头  
+### prepend append data to the beginning
 ```php
-prepend($key, $value, $timeout = null)
+Prepend($key, $value, $timeout = null)
 ```
-### get获取KEY  
+### getGet KEY
 ```php
-get($key, $timeout = null)
+Get($key, $timeout = null)
 ```
-### delete删除一个key  
+### delete Delete a key
 ```php
-delete($key, $timeout = null)
+Delete($key, $timeout = null)
 ```
-### stats获取服务器状态 
-```php 
-stats($type = null, $timeout = null)
-```
-### version获取服务器版本  
+### statsGet server status
 ```php
-version(int $timeout = null)
+Stats($type = null, $timeout = null)
 ```
-### flush  清空缓存 
+### versionGet the server version
+```php
+Version(int $timeout = null)
+```
+### flush Clear the cache
 ```php 
 flush(int $expiration = null, int $timeout = null)
 ```

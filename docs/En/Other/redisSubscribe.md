@@ -1,14 +1,14 @@
 ---
-title: 自定义进程实现redis订阅
+title: Custom process implementation redis subscription
 meta:
   - name: description
-    content: easyswoole,自定义进程实现redis订阅
+    content: Easyswoole, custom process implementation redis subscription
   - name: keywords
-    content: easyswoole|自定义进程实现redis订阅
+    content: Easyswoole|Custom process implementation redis subscription
 ---
 
-## 自定义进程实现redis订阅
-## 实现代码
+## Custom process implementation redis subscription
+## Implementation code
 ```php
 <?php
 /**
@@ -29,7 +29,7 @@ class Subscribe extends AbstractProcess
     public function run($arg)
     {
         // TODO: Implement run() method.
-        $redis = new \Redis();//此处为伪代码，请自己建立连接或者维护
+        $redis = new \Redis();//Here is the pseudo code, please establish your own connection or maintenance
         $redis->connect('127.0.0.1');
         $redis->subscribe(['ch1'],function (){
             var_dump(func_get_args());
@@ -49,7 +49,7 @@ class Subscribe extends AbstractProcess
 }
 ```
 
-接下来，需要做的事情，就是到EasySwooleEvent.php的主服务创建事件中，注册该进程即可。
+Next, what needs to be done is to register the process in the main service creation event of EasySwooleEvent.php.
 ```php
 use App\Process;
 use EasySwoole\Core\Swoole\Process\ProcessManager;

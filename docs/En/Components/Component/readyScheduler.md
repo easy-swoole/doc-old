@@ -1,15 +1,15 @@
 ---
-title: 就绪等待
+title: Ready to wait
 meta:
   - name: description
     content: EasySwoole ReadyScheduler
   - name: keywords
-    content: easyswoole|ReadyScheduler|就绪等待
+    content: easyswoole|ReadyScheduler|Ready to wait
 ---
 # ReadyScheduler
-Easyswoole 基础组件1.8.7版本起，提供了一个基于Swoole Table实现的就绪计划程序，用于解决主服务启动时，部分子服务未就绪问题。
+Since the 1.8.7 release of the Easyswoole base component, a ready-to-plan program based on the Swoole Table implementation has been provided to resolve some sub-service not-ready issues when the main service starts.
 
-## 基础测试使用
+## Basic test use
 ```php
 namespace EasySwoole\Component\Tests;
 
@@ -39,8 +39,8 @@ class ReadySchedulerTest extends TestCase
 }
 ```
 
-## EasySwoole服务中使用
-以Http服务作为基础例子
+## Used in the EasySwoole service
+Take Http service as a basic example
 ```php
 namespace EasySwoole\EasySwoole;
 
@@ -63,17 +63,17 @@ class EasySwooleEvent implements Event
     public static function mainServerCreate(EventRegister $register)
     {
         /*
-         * 主进程初始化table
+         * Main process initialization table
          */
         ReadyScheduler::getInstance();
         /*
-         * 假设，服务启动的时候，依赖 serviceOne，serviceTwo 两个服务，例如链接第三方api等。
-         * 在服务未就绪的时候，我们不希望本机器开始对外服务
+         * Assume that when the service starts, it depends on serviceOne, serviceTwo and other services, such as linking third-party apis.
+         * When the service is not ready, we do not want this machine to start external service.
          */
         $register->add($register::onWorkerStart,function ($serv, $workerId){
             if($workerId == 0){
                 /*
-                 * 若不是强制准备，请注意addItem,unready，ready实现方法
+                 * If not mandatory, please pay attention to addItem, unready, ready implementation
                  */
                 Coroutine::sleep(3);
                 ReadyScheduler::getInstance()->ready('serviceOne',true);
@@ -89,8 +89,8 @@ class EasySwooleEvent implements Event
     public static function onRequest(Request $request, Response $response): bool
     {
         /*
-         * 链接进来的时候，判断依赖的服务是否就绪,等待时间为1s (tcp，ws服务也同理)
-         * 在服务未就绪的时候，我们先拒绝服务
+         * When the link comes in, determine if the dependent service is ready, and wait for 1s (tcp, ws service is also the same)
+         * When the service is not ready, we first refuse the service.
         */
         if(!ReadyScheduler::getInstance()->waitReady(['serviceOne','serviceTwo'],1.0)){
             $response->write('not ready,try again');

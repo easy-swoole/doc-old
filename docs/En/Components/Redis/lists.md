@@ -1,37 +1,37 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 
-## 列表操作方法
+## List operation method
 
-方法列表
+Method list
 
-| 方法名称   | 参数                            | 说明                                                                                                          | 备注                           |
+| Method name   | Parameter                            | Description                                                                                                          | Notes                           |
 |:-----------|:--------------------------------|:--------------------------------------------------------------------------------------------------------------|:------------------------------|
-| lPush      | $key, ...$data                  | 将一个或多个值插入到列表头部                                                                                     |                               |
-| bLPop      | $keys,$timeout                  | 移出并获取$keys列表的第一个元素， 如果$keys列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止                       | $keys可为string,也可以为一个数组 |
-| bRPop      | $keys,$timeout                  | 移出并获取$keys列表的最后一个元素， 如果$keys列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。                   | $keys可为string,也可以为一个数组 |
-| bRPopLPush | $source, $destination, $timeout | 从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。 |                               |
-| rPopLPush  | $source, $destination           | 移除列表的最后一个元素，并将该元素添加到另一个列表并返回                                                            |                               |
-| lIndex     | $key,$index                     | 通过索引获取列表中的元素                                                                                         |                               |
-| lLen       | $key                            | 获取列表长度                                                                                                   |                               |
-| lInsert    | $key,$bool,$pivot,$value        | 在列表的元素前或者后插入元素                                                                                     |                               |
-| rPush      | $key, ...$data                  | 在列表中添加一个或多个值                                                                                         |                               |
-| lRange     | $key,$start,$stop               | 获取列表指定范围内的元素                                                                                         |                               |
-| lPop       | $key                            | 移出并获取列表的第一个元素                                                                                       |                               |
-| rPop       | $key                            | 移出并获取列表的最后一个元素                                                                                     |                               |
-| lPuShx     | $key,$value                     | 将一个值插入到已存在的列表头部                                                                                   |                               |
-| rPuShx     | $key,$value                     | 为已存在的列表添加值                                                                                            |                               |
-| lRem       | $key,$count,$value              | 移除列表元素                                                                                                   |                               |
-| lSet       | $key,$index,$value              | 通过索引设置列表元素的值                                                                                         |                               |
-| lTrim      | $key,$start,$stop               | 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。                      |                               |
+| lPush      | $key, ...$data                  | Insert one or more values ​​into the list header                                     |                               |
+| bLPop      | $keys,$timeout                  | Move out and get the first element of the $keys list. If there are no elements in the $keys list, it will block the list until it waits for a timeout or finds that the element can be popped up.               | $keys can be either string or an array |
+| bRPop      | $keys,$timeout                  | Move out and get the last element of the $keys list. If there are no elements in the $keys list, it will block the list until it waits for a timeout or finds that the element can be popped up.             | $keys can be either string or an array |
+| bRPopLPush | $source, $destination, $timeout | Pops a value from the list, inserts the pop-up element into another list and returns it; if the list has no elements, it blocks the list until it waits for a timeout or finds a pop-up element. |                               |
+| rPopLPush  | $source, $destination           | Remove the last element of the list and add the element to another list and return                          |                               |
+| lIndex     | $key,$index                     | Get the elements in the list by index                                       |                               |
+| lLen       | $key                            | Get list length                                           |                               |
+| lInsert    | $key,$bool,$pivot,$value        | Insert elements before or after the elements of the list                                     |                               |
+| rPush      | $key, ...$data                  | Add one or more values ​​to the list                                       |                               |
+| lRange     | $key,$start,$stop               | Get the elements in the specified range of the list                                       |                               |
+| lPop       | $key                            | Move out and get the first element of the list                                      |                               |
+| rPop       | $key                            | Move out and get the last element of the list                                     |                               |
+| lPuShx     | $key,$value                     | Insert a value into the existing list header                                    |                               |
+| rPuShx     | $key,$value                     | Add a value to an existing list                                        |                               |
+| lRem       | $key,$count,$value              | Remove list element                                           |                               |
+| lSet       | $key,$index,$value              | Set the value of a list element by index                                       |                               |
+| lTrim      | $key,$start,$stop               | Trim a list, that is, let the list retain only the elements in the specified range, and elements that are not within the specified range will be deleted.            |                               |
 
-## 实例
+## Instance
 
 ```php
 
@@ -56,13 +56,13 @@ go(function () {
 
     $redis->flushAll();
 
-    //测试null的时候
+    //When testing null
     $data = $redis->bLPop([$key[0],$key[1]], 1);
     var_dump($data);
     $data = $redis->lPush($key[0], $value[0], $value[1]);
     var_dump($data);
 
-    //测试null的时候
+    //When testing null
     $data = $redis->bLPop([$key[1]], 1);
     var_dump($data);
     $data = $redis->bRPop([$key[1]], 1);

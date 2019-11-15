@@ -1,14 +1,14 @@
 ---
-title: Rpc客户端
+title: Rpc client
 meta:
   - name: description
-    content: EasySwoole中Rpc客户端实现
+    content: RPC client implementation in EasySwoole
   - name: keywords
-    content: easyswoole|Rpc客户端|swoole RPC
+    content: Easyswoole|Rpc client|swoole RPC
 ---
 
-# 客户端
-## CLI独立测试(注意命名空间以及自动加载引入)
+# Client
+## CLI independent testing (note the introduction of namespaces and autoloading)
 ````php
 <?php
 /**
@@ -24,7 +24,7 @@ use EasySwoole\Rpc\Rpc;
 use EasySwoole\Rpc\NodeManager\RedisManager;
 use EasySwoole\Rpc\Response;
 
-//cli模拟，跨进程，重新new rpc对象
+//Cli simulation, cross process, renew new rpc object
 $config = new Config();
 $nodeManager = new RedisManager('127.0.0.1');
 $config->setNodeManager($nodeManager);
@@ -44,7 +44,7 @@ go(function () use ($rpc) {
 });
 
 ````
-##easyswoole 框架下
+##Under the easyswoole framework
 ````php
 <?php
 $client=Rpc::getInstance()->client();

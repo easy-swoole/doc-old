@@ -7,15 +7,15 @@ meta:
     content: easyswoole|GraphQL
 ---
 ## GraphQL
-本文档假定你熟悉GraphQL的概念。如果不是这样，请首先在官方网站上面了解 GraphQL。
+This document assumes that you are familiar with the concept of GraphQL. If this is not the case, please first understand GraphQL on the official website.
 
-## 依赖类库
+## Dependent class library
 ```php
 composer require webonyx/graphql-php
 ```
 
-## EasySwoole Http 中使用
-其实在EasySwoole Http服务器中使用，本质问题在于，如何得到RAW_POST过来的json数据。我们直接贴代码：
+## Used in EasySwoole Http
+In fact, the essence of the use in the EasySwoole Http server is how to get the json data from RAW_POST. We paste the code directly:
 ```php
 namespace App\HttpController;
 

@@ -8,37 +8,37 @@ meta:
 ---
 # SplFileStream
 
-## 用途
-文件资源流数据操作
+## Use
+File resource stream data operation
 
-## 操作方法
+## How to operate
 
-| 方法名称           | 参数                          | 说明                              |
-|:------------------|:------------------------------|:---------------------------------|
-| __construct       | $file,$mode = 'c+'            | 初始化资源和读写操作               |
-| lock              | $mode = LOCK_EX               | 文件锁定                          |                    
-| unlock            | $mode = LOCK_UN               | 释放锁定                          |                                                                                                   
+| Method Name       | Parameters            | Description                      |
+|:------------------|:----------------------|:---------------------------------|
+| __construct       | $file,$mode = 'c+'    | Initialize resources and read and write operations |
+| lock              | $mode = LOCK_EX       | File Lock         |
+| unlock            | $mode = LOCK_UN       | Release Lock      |                                                                                                 
 
 ::: warning 
-SplFileStream类继承SplStream，其他相关方法参考[SplStream](./splStream.md)。
+The SplFileStream class inherits SplStream, and other related methods refer to [SplStream](./splStream.md)。
 :::
 
 
-## 例子
+## example
 
 ### __construct
 
-初始化资源和读写操作
+Initialize resources and read and write operations
 
-* mixed     $file       文件
-* mixed     $mode       读写操作类型
+* mixed $file file
+* mixed $mode read and write operation type
 
 ```php
 function __construct($file,$mode = 'c+')
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -57,7 +57,7 @@ $type = $fileStream->getMetadata('stream_type');
 var_dump($type);
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(5) "STDIO"
  */
 
@@ -65,21 +65,21 @@ var_dump($type);
 
 ### lock
 
-文件锁定
+File lock
 
-* mixed     $mode       锁定类型
+* mixed $mode lock type
 
-锁定类型:
+Lock type:
 
-* LOCK_SH  取得共享锁定（读取的程序）
-* LOCK_EX  取得独占锁定（写入的程序）
-* LOCK_UN  释放锁定（无论共享或独占）
+* LOCK_SH gets shared lock (read program)
+* LOCK_EX gets exclusive lock (written program)
+* LOCK_UN release lock (whether shared or exclusive)
 ```php
 function lock($mode = LOCK_EX)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -98,7 +98,7 @@ $lock = $fileStream->lock();
 var_dump($lock);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(true)
  */
 
@@ -106,15 +106,15 @@ var_dump($lock);
 
 ### unlock
 
-释放锁定
+Release lock
 
-* mixed     $mode       锁定类型
+* mixed     $mode       Lock type
 ```php
 function unlock($mode = LOCK_UN)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -133,7 +133,7 @@ $unlock = $fileStream->unlock();
 var_dump($unlock);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(true)
  */
 

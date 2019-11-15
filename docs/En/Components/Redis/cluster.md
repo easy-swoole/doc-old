@@ -1,13 +1,13 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client, implemented by swoole coroutine client, covering redis 99% method
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole redis coroutine client|swoole Redis|redis coroutine
 ---
-## redis集群配置
-redis集群在实例化时,需要传入`\EasySwoole\Redis\Config\RedisConfig`实例:
+## redis cluster configuration
+When the redis cluster is instantiated, you need to pass in the `\EasySwoole\Redis\Config\RedisConfig` instance:
 
 ```php
 $config = new \EasySwoole\Redis\Config\RedisClusterConfig([
@@ -21,15 +21,15 @@ $config = new \EasySwoole\Redis\Config\RedisClusterConfig([
     ]);
 ```
 ::: warning
-集群配置先传入一个ip,port的多维数组,再传入其他配置项,其他配置项和redis配置一致
+The cluster configuration first passes a multi-dimensional array of ip and port, and then passes other configuration items. Other configuration items are consistent with redis configuration.
 :::
 
 ::: warning
-需要注意,auth密码需要集群所有节点相同,只支持一个密码
+Note that the auth password needs to be the same for all nodes in the cluster, only one password is supported.
 :::
 
 
-## 调用示例:
+## Call example:
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\RedisCluster(new \EasySwoole\Redis\Config\RedisClusterConfig([
@@ -49,23 +49,23 @@ go(function () {
 ```
 
 
-## 集群兼容方法
-在正常情况下,有些方法是不能直接被集群客户端调用成功的,比如mSet方法,它涉及了多个键名的操作,而多个键名是会分配给其他节点的  
-目前redis集群客户端,实现了部分多键名操作方法的兼容,实现原理如下:  
-对多键名操作方法,进行拆分成单键名,然后通过键名去获取槽节点,再通过槽节点分配的client去执行,每次只会执行一个键名
+## Cluster Compatibility Method
+Under normal circumstances, some methods cannot be directly called by the cluster client, such as the mSet method, which involves multiple key name operations, and multiple key names are assigned to other nodes.
+At present, the redis cluster client implements compatibility of some multi-key name operation methods, and the implementation principle is as follows:
+For the multi-key name operation method, split into a single-key name, and then obtain the slot node by the key name, and then execute it through the client assigned by the slot node, and only execute one key name at a time.
 
-已经实现了兼容的方法:
+A compatible method has been implemented:
 
-| 方法名称 | 参数  | 说明           | 备注                                               |
-|:--------|:------|:---------------|:--------------------------------------------------|
-| mSet    | $data | 设置多个键值对  |                                                   |
-| mGet    | $keys | 获取多个键名的值 |                                                   |
-| mSetNx  | $data | 设置多个键值对  | 该方法将不能准确的判断"当所有key不存在时,设置多个key值" |
+| Method Name | Parameters | Description                            | Notes         |
+|:------------|:-----------|:---------------------------------------|:--------------|
+| mSet        | $data      | Setting multiple key-value pairs       |               |
+| mGet        | $keys      | Get the value of multiple key names    |               |
+| mSetNx      | $data      | Setting multiple key-value pairs       | This method will not accurately determine "set multiple key values when all keys do not exist" |
 
 
-## 集群客户端调度逻辑
-### 客户端默认调度
-集群客户端在调用redis方法的时候,自动默认一个客户端进行发送接收命令:
+## Cluster Client Scheduling Logic
+### Client default scheduling
+When the cluster client calls the redis method, it automatically defaults to a client to send and receive commands:
 ```php
 function sendCommand(array $com, ?ClusterClient $client = null): bool
 {
@@ -81,57 +81,57 @@ function recv($timeout = null, ?ClusterClient $client = null): ?Response
     return $this->recvByClient($client, $timeout);
 }
 ```
-当get,或者set的key值槽位不一致时,会自动切换客户端进行发送接收命令:
+When the get or set key value slots are inconsistent, the client will automatically switch the send and receive commands:
 ```php
- //节点转移客户端处理
+// Node transfer client processing
 if ($result->getErrorType() == 'MOVED') {
     $nodeId = $this->getMoveNodeId($result);
     $client = $this->getClient($nodeId);
     $this->clientConnect($client);
-    //只处理一次moved,如果出错则不再处理
+    //Only processed once, if it is wrong, it will not be processed
     $client->sendCommand($command);
     $result = $client->recv($timeout ?? $this->config->getTimeout());
 }
 ```
 ::: warning
-切换完成之后,下一次命令,依旧是默认客户端.  
+After the switch is completed, the next command is still the default client. 
 :::
 
-### 获取集群的客户端
-集群操作方法列表:
+### Get the client of the cluster
+List of cluster operation methods:
 
-| 方法名称             | 参数                             | 说明                                   | 备注                            |
-|:---------------------|:---------------------------------|:--------------------------------------|:-------------------------------|
-| getNodeClientList    |                                  | 获取集群客户端列表                      |                                |
-| getNodeList          |                                  | 获取集群节点信息数组                    |                                |
-| clientAuth           | ClusterClient $client, $password | 集群客户端auth验证                      |                                |
-| setDefaultClient     | ClusterClient $defaultClient     | 设置一个默认的客户端                    |                                |
-| getDefaultClient     |                                  | 获取一个默认的客户端(初始化会自动默认一个) |                                |
-| tryConnectServerList |                                  | 尝试重新获取客户端列表                   | 当调用命令返回false,可尝试重新获取 |
-| getClient            | $nodeKey = null                  | 根据nodeKey获取一个客户端               |                                |
-| getMoveNodeId        | Response $response               | 根据recv返回的Move消息获取一个nodeKey    |                                |
-| getSlotNodeId        | $slotId                          | 根据槽id获取 nodeKey                   |                                |
+| Method name         | Parameter                       | Description                            | Notes  |
+|:--------------------|:--------------------------------|:---------------------------------------|:------------|
+| getNodeClientList    |                                  | Get the cluster client list                      |             |
+| getNodeList          |                                  | Get cluster node information array                    |              |
+| clientAuth           | ClusterClient $client, $password | Cluster client auth verification                      |             |
+| setDefaultClient     | ClusterClient $defaultClient     | Set a default client                    |             |
+| getDefaultClient     |                                  | Get a default client (initialization will automatically default to one) |            |
+| tryConnectServerList |                                  | Try to get the client list again                   | When the call command returns false, try to retrieve it again. |
+| getClient            | $nodeKey = null                  | Get a client based on nodeKey               |            |
+| getMoveNodeId        | Response $response               | Get a nodeKey according to the Move message returned by recv   |             |
+| getSlotNodeId        | $slotId                          | Get nodeKey based on slot id                   |             |
 
 ::: warning
-这些方法用于用户自定义发送命令给redis服务端,或者是自己定义默认客户端进行发送
+These methods are used by the user to send commands to the redis server, or to define the default client to send.
 :::
 
 
-## 集群兼容管道方法
-由于管道的特性,开启管道后,之后执行的命令将会保存不会直接发送,直到最后执行execPipe才会一次性发送  
-在集群中,只能选择一个客户端,进行一次性发送命令:
+## Cluster compatible pipeline method
+Due to the characteristics of the pipeline, after the pipeline is opened, the commands executed later will not be sent directly until the last execution of execPipe will be sent once.
+In a cluster, you can only select one client and send a one-time command:
 
-| 方法名称    | 参数                          | 说明                    | 备注                                         |
+| Method name    | Parameter                          | Description                    | Notes                                         |
 |:------------|:------------------------------|:------------------------|:--------------------------------------------|
-| execPipe    | ?ClusterClient $client = null | 一次性执行管道中保存的方法 | 可通过获取客户端列表,自定义选择一个客户端进行发送 |
-| discardPipe |                               | 取消管道                 |                                             |
-| startPipe   |                               | 管道开始记录             |                                             |
+| execPipe    | ?ClusterClient $client = null | One-time execution of methods saved in the pipeline | You can customize a client to send by obtaining a client list. |
+| discardPipe |                               | Cancel the pipeline                 |                                             |
+| startPipe   |                               | Pipeline starts recording             |                                             |
 
 
-## 集群禁用方法
+## Cluster disable method
 
 ::: warning  
-由于集群的特性,不同的key分配到了不同的槽位,当你调用sUnion,sUnIonStore等涉及多个key操作的命令时,将会返回false,同时错误信息会在$redis->getErrorMsg()中显示:
+Due to the characteristics of the cluster, different keys are assigned to different slots. When you call sUnion, sUnIonStore and other commands involving multiple key operations, it will return false, and the error message will be displayed in $redis->getErrorMsg():
 :::
 ```php
 $redis = new \EasySwoole\Redis\RedisCluster(new \EasySwoole\Redis\Config\RedisClusterConfig([
@@ -147,7 +147,7 @@ $redis = new \EasySwoole\Redis\RedisCluster(new \EasySwoole\Redis\Config\RedisCl
 $data = $redis->sUnIonStore('a','v','c');
 var_dump($data,$redis->getErrorMsg());
 ```
-将输出:
+Will output:
 ```
 bool(false)
 string(53) "CROSSSLOT Keys in request don't hash to the same slot"

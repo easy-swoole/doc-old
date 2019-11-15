@@ -1,28 +1,28 @@
 ---
-title: Atomic限流器
+title: Atomic current limiter
 meta:
   - name: description
-    content: Easyswoole提供了一个基于Atomic计数器的限流器
+    content: Easyswoole provides a current limiter based on Atomic counters
   - name: keywords
-    content: easyswoole|Atomic|限流器
+    content: easyswoole|Atomic|Current limiter
 ---
 
 # AtomicLimit
 
-Easyswoole提供了一个基于Atomic计数器的限流器。
+Easyswoole provides a current limiter based on Atomic counters
 
-## 原理
+## principle
 
-通过限制某一个时间周期内的总请求数，从而实现基础限流。举个例子，设置5秒内，允许的最大请求量为200，那么理论平均并发为40，峰值并发为200。
+The basic current limit is achieved by limiting the total number of requests in a certain time period. For example, if the maximum number of requests allowed is 200 in 5 seconds, then the theoretical average is 40 and the peak is 200.
 
-## 安装
+## Installation
 
 ```
 composer require easyswoole/atomic-limit
 ```
 
-## 示例代码
-```
+## Sample code
+```php
 /*
  * egUrl http://127.0.0.1:9501/index.html?api=1
  */
@@ -57,14 +57,14 @@ $http->start();
 
 
 ::: warning 
- 注意，本例子是用一个自定义进程内加定时器来实现计数定时重置，实际上用一个进程来做这件事情有点不值得，因此实际生产可以指定一个worker,设置定时器来实现
+ Note that this example uses a custom process plus timer to implement the count timing reset. In fact, it is not worthwhile to use a process to do this. Therefore, the actual production can specify a worker and set a timer to implement.
 :::
 
 
-## 使用
-我们可以在Easyswoole全局的mainServerCreate事件中，进行限流器注册
+## Use
+We can register the current limiter in the mainServerCreate event of the Easyswoole global.
 
-```
+```php
 use EasySwoole\AtomicLimit\AtomicLimit;
 AtomicLimit::getInstance()->addItem('default')->setMax(200);
 AtomicLimit::getInstance()->addItem('api')->setMax(2);
@@ -72,8 +72,9 @@ AtomicLimit::getInstance()->enableProcessAutoRestore(ServerManager::getInstance(
 ```
 
 
-::: warning 
- 以上代码表示，default这个限流器在5秒内允许的最大流量为200，而api则个限流器的最大流量为2
+::: warning
+  The above code indicates that the default limiter allows a maximum flow of 200 in 5 seconds, while the api has a maximum flow of 2 in the limiter.
 :::
 
-后续，我们可以在Easyswoole的base控制器中，进行请求拦截，例如在onRequest事件中，先进行流量检验，如果校验通过，则进行下一步操作。
+Subsequently, we can perform request interception in the base controller of Easyswoole. For example, in the onRequest event, the traffic check is performed first. If the check passes, the next step is performed.
+

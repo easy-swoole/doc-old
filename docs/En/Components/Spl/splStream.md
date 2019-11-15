@@ -8,48 +8,48 @@ meta:
 ---
 # SplStream
 
-## 用途
-资源流数据操作
+## Use
+Resource flow data operation
 
-## 操作方法
+## How to operate
 
-| 方法名称           | 参数                                 | 说明                                       |
+| Method name       | parameter                            | Description                                       |
 |:------------------|:-------------------------------------|:-------------------------------------------|
-| __construct       | $resource = '',$mode = 'r+'          | 初始化资源和读写操作                         |
-| __toString        |                                      | 输出资源                                    |                    
-| close             |                                      | 关闭一个打开的文件指针                       |                    
-| detach            |                                      | 获取资源并重置资源对象                       |                       
-| getSize           | 获取资源大小                          | 编码转换                                    |                       
-| tell              |                                      | 返回文件指针读/写的位置                      |                        
-| eof               |                                      | 文件指针是否到了文件结束的位置                |                       
-| isSeekable        |                                      | 获取是否可以在当前流中定位                    |                       
-| seek              | $offset, $whence = SEEK_SET          | 在文件指针中定位                             |                       
-| rewind            |                                      | 倒回文件指针的位置                           |                      
-| isWritable        |                                      | 是否可写                                    |                       
-| write             | $string                              | 写入内容                                    |                       
-| isReadable        |                                      | 是否可读                                    |                       
-| read              | $length                              | 读取内容                                    |                       
-| length            |                                      | 获取字符串长度                              |                       
-| getContents       |                                      | 读取资源流到一个字符串                       |                       
-| getMetadata       | $key = null                          | 从封装协议文件指针中取得报头／元数据           |                       
-| getStreamResource |                                      | 获取资源                                    |                       
-| truncate          | $size = 0                            | 将文件截断到给定的长度                        |                                                                               
+| __construct       | $resource = '',$mode = 'r+'          | Initialize resources and read and write operations                         |
+| __toString        |                                      | Output resource                                    |                    
+| close             |                                      | Close an open file pointer                       |                    
+| detach            |                                      | Get resources and reset resource objects                       |                       
+| getSize           | Get resource size                          | Code conversion                                    |                       
+| tell              |                                      | Returns the location of the file pointer read/write                    |                        
+| eof               |                                      | Whether the file pointer has reached the end of the file                |                       
+| isSeekable        |                                      | Get can be positioned in the current stream                    |                       
+| seek              | $offset, $whence = SEEK_SET          | Positioning in the file pointer                             |                       
+| rewind            |                                      | Rewind the position of the file pointer                           |                      
+| isWritable        |                                      | Is it writable                                    |                       
+| write             | $string                              | Write content                                    |                       
+| isReadable        |                                      | Readable                                    |                       
+| read              | $length                              | Reading content                                    |                       
+| length            |                                      | Get the length of the string                              |                       
+| getContents       |                                      | Read resource stream to a string                       |                       
+| getMetadata       | $key = null                          | Get header/metadata from the package protocol file pointer           |                       
+| getStreamResource |                                      | Access to resources                                    |                       
+| truncate          | $size = 0                            | Truncate the file to the given length                        |                                                                               
 
 
-## 例子
+## example
 
 ### __construct
 
-初始化资源和读写操作
+Initialize resources and read and write operations
 
-* mixed     $resource       资源
-* mixed     $mode           读写操作类型
+* mixed $resource resource
+* mixed $mode read and write operation type
 ```php
 function __construct($resource = '',$mode = 'r+')
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -58,7 +58,7 @@ function __construct($resource = '',$mode = 'r+')
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -68,7 +68,7 @@ $stream = new \EasySwoole\Spl\SplStream($resource);
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(10) "Easyswoole"
  */
 
@@ -76,13 +76,13 @@ var_dump($stream->__toString());
 
 ### __toString
 
-输出资源
+Output resource
 ```php
 public function __toString()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -91,7 +91,7 @@ public function __toString()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -100,7 +100,7 @@ $stream = new \EasySwoole\Spl\SplStream('Easyswoole');
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(10) "Easyswoole"
  */
 
@@ -108,13 +108,13 @@ var_dump($stream->__toString());
 
 ### close
 
-关闭一个打开的文件指针
+Close an open file pointer
 ```php
 public function close()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -123,7 +123,7 @@ public function close()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -133,7 +133,7 @@ $stream->close();
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(0) ""
  */
 
@@ -141,13 +141,13 @@ var_dump($stream->__toString());
 
 ### detach
 
-获取资源并重置资源对象
+Get resources and reset resource objects
 ```php
 public function detach()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -156,7 +156,7 @@ public function detach()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -166,7 +166,7 @@ $stream->detach();
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(0) ""
  */
 
@@ -174,13 +174,13 @@ var_dump($stream->__toString());
 
 ### getSize
 
-获取资源大小
+Get resource size
 ```php
 public function getSize()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -189,7 +189,7 @@ public function getSize()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -199,7 +199,7 @@ $size = $stream->getSize();
 var_dump($size);
 
 /**
- * 输出结果过：
+ * The output is over:
  * int(10)
  */
 
@@ -207,13 +207,13 @@ var_dump($size);
 
 ### tell
 
-返回文件指针读/写的位置
+Returns the location of the file pointer read/write
 ```php
 public function tell()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -222,7 +222,7 @@ public function tell()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -232,7 +232,7 @@ $position = $stream->tell();
 var_dump($position);
 
 /**
- * 输出结果过：
+ * The output is over:
  * int(10)
  */
 
@@ -240,13 +240,13 @@ var_dump($position);
 
 ### eof
 
-文件指针是否到了文件结束的位置
+Whether the file pointer has reached the end of the file
 ```php
 public function eof()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -255,7 +255,7 @@ public function eof()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -268,7 +268,7 @@ $eof = $stream->eof();
 var_dump($eof);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(false)
  * bool(true)
  */
@@ -277,13 +277,13 @@ var_dump($eof);
 
 ### isSeekable
 
-获取是否可以在当前流中定位
+Get can be positioned in the current stream
 ```php
 public function isSeekable()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -292,7 +292,7 @@ public function isSeekable()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -302,7 +302,7 @@ $seekable = $stream->isSeekable();
 var_dump($seekable);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(true)
  */
 
@@ -310,21 +310,21 @@ var_dump($seekable);
 
 ### seek
 
-在文件指针中定位
+Positioning in the file pointer
 
-* mixed     $offset       偏移量
-* mixed     $whence       指定类型
+* mixed $offset offset
+* mixed $whence specified type
 ```php
 public function seek($offset, $whence = SEEK_SET)
 ```
-指定类型：
+Specified type:
 
-* SEEK_SET  设定位置等于 offset 字节
-* SEEK_CUR  设定位置为当前位置加上 offset
-* SEEK_END  设定位置为文件尾加上 offset
+* SEEK_SET set position equal to offset byte
+* SEEK_CUR sets the position to the current position plus offset
+* SEEK_END sets the position to the end of the file plus offset
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -333,7 +333,7 @@ public function seek($offset, $whence = SEEK_SET)
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -344,7 +344,7 @@ $position = $stream->tell();
 var_dump($position);
 
 /**
- * 输出结果过：
+ * The output is over:
  * int(2)
  */
 
@@ -352,13 +352,13 @@ var_dump($position);
 
 ### rewind
 
-倒回文件指针的位置
+Rewind the position of the file pointer
 ```php
 public function rewind()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -367,7 +367,7 @@ public function rewind()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -378,7 +378,7 @@ $position = $stream->tell();
 var_dump($position);
 
 /**
- * 输出结果过：
+ * The output is over:
  * int(0)
  */
 
@@ -386,13 +386,13 @@ var_dump($position);
 
 ### isWritable
 
-是否可写
+Is it writable
 ```php
 public function isWritable()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -401,7 +401,7 @@ public function isWritable()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -411,7 +411,7 @@ $writeAble = $stream->isWritable();
 var_dump($writeAble);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(true)
  */
 
@@ -419,15 +419,15 @@ var_dump($writeAble);
 
 ### write
 
-写入内容
+Write content
 
-* mixed     $string       内容
+* mixed $string content
 ```php
 public function write($string)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -436,7 +436,7 @@ public function write($string)
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -446,7 +446,7 @@ $stream->write(', 666');
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(15) "Easyswoole, 666"
  */
 
@@ -454,13 +454,13 @@ var_dump($stream->__toString());
 
 ### isReadable
 
-是否可读
+Whether to read
 ```php
 public function isReadable()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -469,7 +469,7 @@ public function isReadable()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -479,7 +479,7 @@ $readAble = $stream->isReadable();
 var_dump($readAble);
 
 /**
- * 输出结果过：
+ * The output is over:
  * bool(true)
  */
 
@@ -487,15 +487,15 @@ var_dump($readAble);
 
 ### read
 
-读取内容
+Reading content
 
-* mixed     $length       长度
+* mixed     $length       length
 ```php
 public function read($length)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -504,7 +504,7 @@ public function read($length)
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -515,7 +515,7 @@ $string = $stream->read(4);
 var_dump($string);
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(4) "Easy"
  */
 
@@ -523,13 +523,13 @@ var_dump($string);
 
 ### getContents
 
-读取资源流到一个字符串
+Read resource stream to a string
 ```php
 public function getContents()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -538,7 +538,7 @@ public function getContents()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -549,7 +549,7 @@ $string = $stream->getContents();
 var_dump($string);
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(10) "Easyswoole"
  */
 
@@ -557,13 +557,13 @@ var_dump($string);
 
 ### getMetadata
 
-从封装协议文件指针中取得报头／元数据
+Get header/metadata from the package protocol file pointer
 ```php
 public function getMetadata($key = null)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -572,7 +572,7 @@ public function getMetadata($key = null)
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -582,7 +582,7 @@ $meta = $stream->getMetadata();
 var_dump($meta['stream_type']);
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(6) "MEMORY"
  */
 
@@ -590,13 +590,13 @@ var_dump($meta['stream_type']);
 
 ### getStreamResource
 
-获取资源
+Access to resources
 ```php
 function getStreamResource()
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -605,7 +605,7 @@ function getStreamResource()
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25
  */
 
 require_once 'vendor/autoload.php';
@@ -616,7 +616,7 @@ fseek($resource, 0, SEEK_SET);
 var_dump(stream_get_contents($resource));
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(10) "Easyswoole"
  */
 
@@ -624,15 +624,15 @@ var_dump(stream_get_contents($resource));
 
 ### truncate
 
-将文件截断到给定的长度
+Truncate the file to the given length
 
-* mixed     $size       截取文件大小
+* mixed     $size       Intercept file size
 ```php
 function truncate($size = 0)
 ```
 
 ::: warning 
-例子
+example
 :::
 
 ```php
@@ -641,7 +641,7 @@ function truncate($size = 0)
  * Created by PhpStorm.
  * User: root
  * Date: 19-7-2
- * Time: 上午10:25
+ * Time: 10:25 am
  */
 
 require_once 'vendor/autoload.php';
@@ -651,13 +651,13 @@ $stream->truncate(4);
 var_dump($stream->__toString());
 
 /**
- * 输出结果过：
+ * The output is over:
  * string(4) "Easy"
  */
 
 ```
 
 ::: warning 
- ps: 资源和资源流是有区别的,这里说的资源也就是数据或是变量,资源流是一种文件流。
+ Ps: There is a difference between resources and resource flows. The resources mentioned here are data or variables. The resource flow is a file stream.
 :::
 

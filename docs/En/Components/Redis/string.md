@@ -1,50 +1,50 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 
-## 键操作方法
-方法列表
+## key operation method
+Method list
 
-| 方法名称    | 参数                                 | 说明                                       | 备注                                                                        |
+| Method name    | Parameter                                 | Description                                       | Notes                                                                        |
 |:------------|:-------------------------------------|:-------------------------------------------|:----------------------------------------------------------------------------|
-| set         | $key, $val, $timeout = 0             | 设置一个键,以及设置过期时间,单位秒            | $timeout值可为int(过期时间秒),可为string("NX","XX"),也可为array['NX','EX'=>10] |
-| get         | $key                                 | 获取一个键                                  |                                                                             |
-| getRange    | $key, $start, $end                   | 返回子字符串                                |                                                                             |
-| getSet      | $key, $value                         | 返回key旧值并设置新值                        |                                                                             |
-| getBit      | $key, $offset                        | 获取指定偏移量上的bit值                      |                                                                             |
-| mGet        | $keys                                | 获取多个key的值(参数可为string或者数组)       | 在集群中,将会分开处理                                                         |
-| setBit      | $key, $offset, $value                | 设置偏移量的bit值                           |                                                                             |
-| setEx       | $key, $expireTime, $value            | 设置值以及过期时间(秒)                       |                                                                             |
-| setNx       | $key, $value                         | key不存在时设置 key 的值。                   |                                                                             |
-| setRange    | $key, $offset, $value                | 设置偏移量的值                              |                                                                             |
-| strLen      | $key                                 | 返回 key 所储存的字符串值的长度               |                                                                             |
-| mSet        | $data                                | 设置多个key的值,参数为关联数组                |                                                                             |
-| mSetNx      | $data                                | 当所有key不存在时,设置多个key值,参数和mSet一样 | 在集群中,key将会分开处理                                                      |
-| pSetEx      | $key, $expireTime, $value            | 同setEx,过期时间为毫秒                       |                                                                             |
-| incr        | $key                                 | 自增1                                      |                                                                             |
-| incrBy      | $key, $value                         | 自增$value数值                              |                                                                             |
-| incrByFloat | $key, $value                         | 自增$value浮点值                            |                                                                             |
-| decr        | $key                                 | 自减1                                      |                                                                             |
-| decrBy      | $key, $value                         | 自减$value数值                              |                                                                             |
-| appEnd      | $key, $value                         | 追加字符串                                  |                                                                             |
-| scan        | &$cursor, $pattern=null, $count=null | 迭代string键名                              | 集群模式不能使用                                                             |
+| set         | $key, $val, $timeout = 0             | Set a key and set the expiration time in seconds | The $timeout value can be int (expiration time seconds), can be string("NX","XX"), or array['NX', 'EX'=>10] |
+| get         | $key                                 | Get a key          |                                                                             |
+| getRange    | $key, $start, $end                   | Return substring         |                                                                             |
+| getSet      | $key, $value                         | Return the old value of the key and set the new value       |                                                                             |
+| getBit      | $key, $offset                        | Get the bit value on the specified offset      |                                                                             |
+| mGet        | $keys                                | Get the value of multiple keys (parameters can be string or array)   | In the cluster, it will be handled separately                                                        |
+| setBit      | $key, $offset, $value                | Set the bit value of the offset        |                                                                             |
+| setEx       | $key, $expireTime, $value            | Set value and expiration time (seconds)      |                                                                             |
+| setNx       | $key, $value                         | Set the value of key when the key does not exist.       |                                                                             |
+| setRange    | $key, $offset, $value                | Set the value of the offset        |                                                                             |
+| strLen      | $key                                 | Returns the length of the string value stored by key    |                                                                             |
+| mSet        | $data                                | Set the value of multiple keys, the parameter is an associative array    |                                                                             |
+| mSetNx      | $data                                | When all keys do not exist, set multiple key values, the parameters are the same as mSet | In the cluster, the keys will be processed separately                                                      |
+| pSetEx      | $key, $expireTime, $value            | Same as setEx, the expiration time is milliseconds        |                                                                             |
+| incr        | $key                                 | Self-increase 1            |                                                                             |
+| incrBy      | $key, $value                         | Increase the value of $value           |                                                                             |
+| incrByFloat | $key, $value                         | Increase $value floating point value          |                                                                             |
+| decr        | $key                                 | Self-reduction 1            |                                                                             |
+| decrBy      | $key, $value                         | Self-decrementing $value           |                                                                             |
+| appEnd      | $key, $value                         | Append string          |                                                                             |
+| scan        | &$cursor, $pattern=null, $count=null | Iterate string key name                              | Cluster mode cannot be used                                                             |
 
 ::: warning
-  如果开启序列化配置,getRange,setRange,getBit,setBit,strLen,自增自减命令,append等都会失效
+  If the serialization configuration is enabled, getRange, setRange, getBit, setBit, strLen, self-incrementing and decrementing commands, append, etc. will be invalidated.
 :::
 
 ::: warning
-  在集群中,批量设置,批量获取都是拆数组一个个处理的,所以mSetNx 的特性将失效
+  In the cluster, batch settings, batch acquisition are all processed by splitting arrays, so the characteristics of mSetNx will be invalid.
 :::
 
 
 
-## 实例
+## Instance
 ```php
 
 go(function () {
@@ -183,16 +183,16 @@ go(function () {
     
     
     
-    //迭代测试
-    $cursor = 0;//迭代初始值0
+    //Iterative test
+    $cursor = 0;//Iteration initial value 0
     $redis->flushAll();
-    $redis->set('xxxa', '仙士可');
-    $redis->set('xxxb', '仙士可');
-    $redis->set('xxxc', '仙士可');
-    $redis->set('xxxd', '仙士可');
+    $redis->set('xxxa', 'Alan');
+    $redis->set('xxxb', 'Alan');
+    $redis->set('xxxc', 'Alan');
+    $redis->set('xxxd', 'Alan');
     $data = [];
     do {
-        //每次迭代都会设置一次$cursor,为0代表迭代完成
+        //$cursor is set once for each iteration, and 0 means iterative completion
         $keys = $redis->scan($cursor, 'xxx*', 1);
         $data = array_merge($data,$keys);
     } while ($cursor);

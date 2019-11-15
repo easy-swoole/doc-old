@@ -2,24 +2,21 @@
 title: File
 meta:
   - name: description
-    content: 用于操作文件或目录。
+    content: Used to manipulate files or directories.
   - name: keywords
-    content: easyswoole|组件库|杂项工具|File
+    content: Easyswoole|Component Library|Miscellaneous Tools|File
 ---
 
 # File
 
+## Use
+
+Used to manipulate files or directories.
 
 
-## 用途
+## Core Object Class
 
-用于操作文件或目录。
-
-
-
-## 核心对象类
-
-实现该组件功能需加载核心类：
+To implement this component function you need to load the core class:
 
 ```php
 EasySwoole\Utility\File
@@ -27,14 +24,14 @@ EasySwoole\Utility\File
 
 
 
-## 核心对象方法
+## Core Object Method
 
 #### createDirectory
 
-创建目录：
+Create a directory:
 
-- string $dirPath 目录路径
-- string $permissions 目录权限
+- string $dirPath directory path
+- string $permissions directory permissions
 
 ```php
 static function createDirectory($dirPath, $permissions = 0755):bool
@@ -44,10 +41,10 @@ static function createDirectory($dirPath, $permissions = 0755):bool
 
 #### cleanDirectory
 
-清空目录：
+Empty the directory:
 
-- string $dirPath 目录路径
-- string $keepStructure 是否保持目录结构
+- string $dirPath directory path
+- string $keepStructure whether to maintain the directory structure
 
 ```php
 static function cleanDirectory($dirPath, $keepStructure = false):bool
@@ -57,9 +54,9 @@ static function cleanDirectory($dirPath, $keepStructure = false):bool
 
 #### deleteDirectory
 
-删除目录：
+Delete directory:
 
-- string $dirPath 目录路径
+- string $dirPath directory path
 
 ```php
 static function deleteDirectory($dirPath):bool
@@ -69,11 +66,11 @@ static function deleteDirectory($dirPath):bool
 
 #### copyDirectory
 
-复制目录：
+Copy directory:
 
-- string $source 源位置
-- string $target 目标位置
-- bool $overwrite 是否覆盖
+- string $source source location
+- string $target target location
+- bool $overwrite whether to overwrite
 
 ```php
 static function copyDirectory($source, $target, $overwrite = true):bool
@@ -83,38 +80,38 @@ static function copyDirectory($source, $target, $overwrite = true):bool
 
 #### moveDirectory
 
-移动目录：
+Mobile directory:
 
-- string $source 源位置
-- string $target 目标位置
-- bool $overwrite 是否覆盖
+- string $source source location
+- string $target target location
+- bool $overwrite whether to overwrite
 
 ```php
-static function moveDirectory($source, $target ,$overwrite = true):bool
+Static function moveDirectory($source, $target ,$overwrite = true):bool
 ```
 
 
 
 #### copyFile
 
-复制文件：
+Copy the file:
 
-- string $source 源位置
-- string $target 目标位置
-- bool $overwrite 是否覆盖
+- string $source source location
+- string $target target location
+- bool $overwrite whether to overwrite
 
 ```php
-static function copyFile($source, $target, $overwrite = true):bool
+Static function copyFile($source, $target, $overwrite = true):bool
 ```
 
 
 
 #### touchFile
 
-创建空文件：
+Create an empty file:
 
-- string $filePath 文件名
-- bool $overwrite 是否覆盖
+- string $filePath filename
+- bool $overwrite whether to overwrite
 
 ```php
 static function touchFile($filePath, $overwrite = true):bool
@@ -124,28 +121,28 @@ static function touchFile($filePath, $overwrite = true):bool
 
 #### createFile
 
-创建有内容文件：
+Create a content file:
 
-- string $filePath 文件名
-- string $content 内容
-- bool $overwrite 是否覆盖
+- string $filePath filename
+- string $content content
+- bool $overwrite whether to overwrite
 
 ```php
-static function createFile($filePath, $content, $overwrite = true):bool
+Static function createFile($filePath, $content, $overwrite = true):bool
 ```
 
 
 
 #### moveFile
 
-移动文件：
+Move files:
 
-- string $source 源位置
-- string $target 目标位置
-- bool $overwrite 是否覆盖
+- string $source source location
+- string $target target location
+- bool $overwrite whether to overwrite
 
 ```php
-static function moveFile($source, $target, $overwrite = true):bool
+Static function moveFile($source, $target, $overwrite = true):bool
 
 ```
 
@@ -153,9 +150,9 @@ static function moveFile($source, $target, $overwrite = true):bool
 
 ### scanDir
 
-获得文件目录或目录文件数组：
+Get an array of file directories or directory files:
 
-- string $dirPath 目录路径
+- string $dirPath directory path
 
 ```php
 static function scanDir($dirPath)

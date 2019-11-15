@@ -1,1 +1,1 @@
-# 其他 待补充
+# Others to be added

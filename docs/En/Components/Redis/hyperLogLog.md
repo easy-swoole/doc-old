@@ -1,22 +1,22 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## HyperLog方法
+## HyperLog method
 
 
-| 方法名称 | 参数                        | 说明                                    | 备注           |
+| Method name | Parameter                        | Description                                    | Notes           |
 |:--------|:----------------------------|:----------------------------------------|:---------------|
-| pfAdd   | $key, $elements             | 添加指定元素到 HyperLogLog 中。           | 传入一个索引数组 |
-| pfCount | $key                        | 返回给定 HyperLogLog 的基数估算值。       |                |
-| pfMerge | $deStKey, array $sourceKeys | 将多个 HyperLogLog 合并为一个 HyperLogLog | 传入一个索引数组 |
+| pfAdd   | $key, $elements             | Add the specified element to the HyperLogLog.| Pass in an indexed array |
+| pfCount | $key                        | Returns the cardinality estimate for a given HyperLogLog. |               |
+| pfMerge | $deStKey, array $sourceKeys | Combine multiple HyperLogLogs into one HyperLogLog | Pass in an indexed array |
 
 
-## 实例
+## Instance
 ```php
 
 go(function () {
