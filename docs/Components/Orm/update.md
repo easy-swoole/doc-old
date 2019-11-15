@@ -39,3 +39,6 @@ $res = UserModel::create()->update([
     'name' => 'new'
 ], ['id' => 1]);
 ```
+::: tip
+ **更新一直返回 true, 实际以affectRows为准**
+:::
