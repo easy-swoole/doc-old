@@ -40,5 +40,6 @@ $res = UserModel::create()->update([
 ], ['id' => 1]);
 ```
 ::: tip
- **更新一直返回 true, 实际以affectRows为准**
+ 要说明  无论是否真实更新到数据，都返回true
+ 实际影响行数要以affectRows为准  然后附带affectRows的获取方式
 :::
