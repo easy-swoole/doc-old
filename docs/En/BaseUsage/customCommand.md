@@ -1,29 +1,29 @@
 ---
-title: 自定义命令
+title: Custom command
 meta:
   - name: description
-    content: EasySwoole自定义命令实现
+    content: EasySwoole Custom command implementation
   - name: keywords
-    content: Easyswoole 自定义命令|swoole 框架|swoole定时任务|php 定时
+    content: Easyswoole Custom command|swoole framework|swoole Timing task|php timing
 ---
 
-# 自定义命令
-EasySwoole 有着默认的5个命令:  
+# Custom command
+EasySwoole has five default commands:  
 ````
-php easyswoole help  命令帮助
-php easyswoole install 安装(需要在./vendor/easyswoole/easyswoole/bin/easyswoole 文件中调用)
-php easyswoole start  启动
-php easyswoole stop   停止(需要守护进程)
-php easyswoole reload  热重启(需要守护进程)
+php easyswoole help  Command assistance
+php easyswoole install (Need to be in./vendor/easyswoole/easyswoole/bin/easyswoole file calls)
+php easyswoole start  
+php easyswoole stop   (need daemons)
+php easyswoole reload  warm restart(need daemons)
 ````
 
 ::: warning 
-默认命令详细内容可查看[服务管理](../Introduction/server.md)
+Default command details can be viewed[service management](../Introduction/server.md)
 :::
 
-## 定义命令
+## Define the command
 
-通过实现`EasySwoole\EasySwoole\Command\CommandInterface`接口,可自定义命令:  
+Through the implementation of ```EasySwoole EasySwoole\Command\CommandInterface```interface, you can customize the Command:
 
 ````php
 <?php
@@ -32,7 +32,7 @@ public function exec(array $args):?string ;
 public function help(array $args):?string ;
 ````
 
-新建文件 App/Command/Test.php:
+Create new file App/Command/Test.php:
 
 ````php
 <?php
@@ -51,7 +51,7 @@ class Test implements CommandInterface
 
     public function exec(array $args): ?string
     {
-        //打印参数,打印测试值
+        //Print parameters and test values
         var_dump($args);
         echo 'test'.PHP_EOL;
         return null;
@@ -59,20 +59,20 @@ class Test implements CommandInterface
 
     public function help(array $args): ?string
     {
-        //输出logo
+        //return logo
         $logo = Utility::easySwooleLog();
         return $logo."this is test";
     }
 }
 ````
 
-## 注入命令
+## Injection the command
 
 ::: tip
-查看 [boostrap事件](../Core/event/bootstrap.md)
+check [boostrap event](../Core/event/bootstrap.md)
 :::
 
-新增`/bootstrap.php`文件:
+Added`/bootstrap.php` File:
 
 ````php
 <?php
@@ -81,10 +81,10 @@ class Test implements CommandInterface
 ````
 
 ::: warning 
- bootstrap是3.2.5新增的事件,它允许用户在框架初始化之前执行自定义事件
+ Bootstrap is a new 3.2.5 event that allows users to execute custom events before the framework is initialized.
 :::
 
-## 执行命令
+## Execute the command
 ````
 
 php easyswoole test
