@@ -51,7 +51,7 @@ class Test implements CommandInterface
 
     public function exec(array $args): ?string
     {
-        //打印参数,打印测试值
+        //Print parameters and test values
         var_dump($args);
         echo 'test'.PHP_EOL;
         return null;
@@ -59,7 +59,7 @@ class Test implements CommandInterface
 
     public function help(array $args): ?string
     {
-        //输出logo
+        //return logo
         $logo = Utility::easySwooleLog();
         return $logo."this is test";
     }
