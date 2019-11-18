@@ -40,7 +40,6 @@ $res = UserModel::create()->update([
 ], ['id' => 1]);
 ```
 
-
 ## 实际更新影响的行数
 ::: warning
 update返回的是执行语句是否成功,只有mysql语句出错时才会返回false,否则都为true
