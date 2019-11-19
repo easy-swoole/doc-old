@@ -1,21 +1,21 @@
 ---
-title: 自定义进程
+title: Custom process
 meta:
   - name: description
-    content: 本文主要讲述如何添加swoole的自定义进程，从而实现php多进程任务处理 
+    content: This article focuses on how to add swoole's custom process to enable PHP multi-process processing 
   - name: keywords
-    content: EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程
+    content: EasySwoole Custom process|swoole Custom process|swoole process|swoole Multiple processes|php Multiple processes
 ---
 
 
-# 进程
+# Process
 
-## 用途
-处理耗时任务，比如循环处理队列消息，清除多余redis中的token数据等等。
+## Useage
+Processing time-consuming tasks, such as looping through queue messages, clearing token data from redundant redis, and so on.
 
-## 例子
+## Example
 
-### 定义一个进程类
+### Define a process class
 ```php
 use EasySwoole\Component\Process\AbstractProcess;
 
@@ -24,7 +24,7 @@ class Process extends AbstractProcess
 
     protected function run($arg)
     {
-        //当进程启动后，会执行的回调
+        //The callback that is executed when the process starts
         var_dump($this->getProcessName()." run");
         var_dump($arg);
     }
@@ -32,34 +32,34 @@ class Process extends AbstractProcess
     protected function onPipeReadable(\Swoole\Process $process)
     {
         /*
-         * 该回调可选
-         * 当有主进程对子进程发送消息的时候，会触发的回调，触发后，务必使用
-         * $process->read()来读取消息
+         * This callback is optional
+         * Be sure to use the callback that is triggered when a primary process sends a message to a child process
+         * $process->read() Read the message
          */
     }
     
     protected function onShutDown()
     {
         /*
-         * 该回调可选
-         * 当该进程退出的时候，会执行该回调
+         * This callback is optional
+         * The callback is executed when the process exits
          */
     }
     
     protected function onException(\Throwable $throwable, ...$args)
     {
         /*
-         * 该回调可选
-         * 当该进程出现异常的时候，会执行该回调
+         * This callback is optional
+         * This callback is executed when an exception occurs in the process
          */
     }
 }
 ```
 
 
-### 注册进程
+### Registration process
 
-我们在EasySwoole全局的 `mainServerCreate` 事件中进行进程注册
+We register the process in the EasySwoole global ```mainServerCreate``` event
 ```php
 use App\Process;
 use EasySwoole\Component\Process\Config;
@@ -68,7 +68,7 @@ use EasySwoole\Component\Process\Config;
 $processConfig = new Config();
 $processConfig->setProcessName('testProcess');
 /*
- * 传递给进程的参数
+ * Parameters passed to the process
 */
 $processConfig->setArg([
     'arg1'=>time()
@@ -76,16 +76,15 @@ $processConfig->setArg([
 ServerManager::getInstance()->getSwooleServer()->addProcess((new Process($processConfig))->getProcess());
 ```
 
-
 ::: warning 
-注意，一个进程模型可以被注册N次，也就是创建N个相同类型的进程
+Note that a process model can be registered N times, that is, N processes of the same type can be created
 :::
 
-## 自定义进程热重启
-在Swoole 文档中，明确提及自定义进程无法像worker一样reload 。但想实现，终归有办法的，我们只要知道某个进程的pid，给他发送SIGTERM命令，
-这个进程自己就会推出。而再利用Swoole Manager会重新拉起进程的这个特性，绕一圈实现进程的热重启。
+## Custom process warm restart
+In the Swoole document, it is explicitly mentioned that custom processes cannot reload like workers. But there's a way to do that, we just need to know the pid of a process, send it the SIGTERM command,
+The process will push itself out. And Swoole Manager will pull up the feature of the process again, all the way around to allow a warm restart of the process.
 
-### 实例代码
+### The sample code
 ```
 namespace App\HttpController;
 
@@ -103,7 +102,7 @@ class Index extends Controller
     }
 }
 ```
-> 定义一个控制器，用来发送信号，当然，这个逻辑可有其他方式
+> Define a controller that sends signals, and of course, this logic can be used in other ways
 
 
 ```
@@ -125,7 +124,7 @@ class Work
 }
 ```
 
-> 定义一个任务类，注意，run方法为静态
+> Define a task class and note that the run method is static
 
 ```
 namespace App\ProcessReload;
@@ -153,17 +152,20 @@ class Process extends AbstractProcess
 }
 ```
 
-> 定义一个进程类，进程类的run方法静态调用任务类的静态方法即可。
+> Define a process class whose run method statically calls the static method of the task class.
 
-### 原理讲解
+### The principle of interpretation
 
-这里面主要的问题，在于自定义进程类还需要再去调用一个任务类。很多人可能不解。实际上的原理是因为，
-我要注册一个进程的时候，我需要new一个自定义进程类，因此，自定义进程的代码就在主进程中被require进去，因此以后续无论如何再怎么修改，
-manager进程重新克隆出来的进程还是之前的代码。而这里面就巧妙的利用了、当我new这个类的时候，因为php是解释性语言，run方法并未立即被执行。
-只有当我真的发生进程克隆的时候，也就是process start后，才会真正的去执行run()这个方法，
-而我进程类run方法里面的内容，当执行到Work::run（）的时候，才会真正的去加载worker类的代码，因此我每次杀掉这个自定义进程的时候，进程
-重新被主进程克隆出来的时候，都会重新去加载Work类的代码。
+The main problem is that the custom process class needs to call a task class。A lot of people might be confused。In fact, the principle is that.
 
-### Pid管理
+When I need to register a process, I need to new a custom process class, so the custom process code is required in the main process, so no matter how I change it later.
 
-很多方式，可以自己用swoole table或者是redis,文件等多种方式实现。
+The manager process reclones the process from the previous code. This is a clever use of the new class. Since PHP is an interpreted language, the run method is not executed immediately。
+Only when I do have a process clone, after process start, will I actually execute run().
+
+However, the contents in my process class run method will actually load the code of worker class when the Work::run () is executed. Therefore, every time I kill this custom process, the process will
+When cloned by the main process, the Work class code is reloaded.
+
+### Pid management
+
+In many ways, you can do it yourself in swoole table, redis, files, etc.

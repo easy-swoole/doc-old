@@ -22,10 +22,11 @@ meta:
 ## 返回值说明
 
 - `get`返回的是一个 `EasySwoole\ORM\AbstractModel` 实例，可以**复用**进行模型的其他操作 当没有查询结果时返回 `null` 
-- `findOne`返回的是一个数组
-
-
 - `all`返回的是一个数组，里面的每一个元素都是  `EasySwoole\ORM\AbstractModel` 实例
+
+- 当get/all有错误产生时，返回false，用户可以自行获取lastError。
+
+- `findOne`返回的是一个键值对数组
 - `select`、`findAll`方法返回的是一个二维数组，没有查询结果时返回`null`
 
 ## 多种传参方式
@@ -72,4 +73,13 @@ $result = $model->lastQueryResult();
 
 // 总条数
 $total = $result->getTotalCount();
+```
+
+## 错误获取
+
+```php
+$user = UserModel::create()->where(['不存在的字段等会产生错误的情况' => 1])->get();
+if ($user === false){
+    echo $user->lastQueryResult()->getLastError();
+}
 ```

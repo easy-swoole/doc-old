@@ -164,18 +164,15 @@ AbstractConfig 抽象类提供了以下几个方法,用于给其他config驱动�
 
 如需要修改存储驱动,步骤如下:
 * 继承 AbstractConfig 实现各个方法
-* 在
+* 在[bootstrap事件](../Core/event/bootstrap.md)事件中修改config驱动(直接在文件中加入这行代码即可)
+
 ````php 
 <?php
-public static function initialize()
-{
-//获得原先的config配置项,加载到新的配置项中
-   $config = Config::getInstance()->getConf();
-   Config::getInstance()->storageHandler(new SplArrayConfig())->load($config);
-   // TODO: Implement initialize() method.
-   date_default_timezone_set('Asia/Shanghai');
-}
+\EasySwoole\EasySwoole\Config::getInstance(new \EasySwoole\Config\SplArrayConfig());
 ````
+::: warning
+由于bootstrap事件是由easyswoole启动脚本执行,当你需要写cli脚本需要初始化easyswoole框架基础组件时,需要自行引入bootstrap.php文件
+:::
 
 ### 动态配置问题
 由于swoole是多进程的,如果使用SplArray方式存储,在单个进程修改配置后,其他进程将不会生效,使用swoole_table方式的则会全部生效,需要注意

@@ -223,6 +223,8 @@ const sidebarCn = [
                         ]
                     },
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
+                    ['/Components/Orm/lastResult', '模型执行结果'],
+                    ['/Components/Orm/lastQuery', '最后执行语句'],
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
