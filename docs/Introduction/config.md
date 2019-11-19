@@ -172,7 +172,7 @@ AbstractConfig 抽象类提供了以下几个方法,用于给其他config驱动�
 在EasySwoole中,自带了SplArray和swoole_table驱动实现,可自行查看源码了解.   
 默认驱动为swoole_table  
 
-如需要修改存储驱动,步骤如下:
+如需要修改存储驱动,步骤如下:  
 * 继承 AbstractConfig 实现各个方法
 * 在[bootstrap事件](../Core/event/bootstrap.md)事件中修改config驱动(直接在文件中加入这行代码即可)
 
