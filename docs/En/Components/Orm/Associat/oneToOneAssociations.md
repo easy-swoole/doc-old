@@ -1,16 +1,16 @@
 ---
-title: 一对一关联
+title: One-to-one association
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|一对一关联
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|One-to-one association
 ---
 
 
-# 一对一关联
+# One-to-one association
 
-在模型中定义方法
+Define methods in the model
 
 ```php
 public function setting()
@@ -28,19 +28,19 @@ public function settingWhere()
 }
 ```
 
-UserSettingModel 也是一个Model类，只是定义了一个简单的表结构
+UserSettingModel is also a Model class, just defines a simple table structure
 
-使用
+use
 ```php
 $res = UserModel::create()->get(1);
 
 /**
- * 关联 一对一
- */
-var_dump($res);
+  * Association One-to-one
+  */
+Var_dump($res);
 
-var_dump($res->setting); 
-var_dump($res->settingWhere); 
-// 如果查询不到则为null  查询得到则为一个UserSettingModel类的实例 可以继续调用ORM的方式 快速更新 删除等
+Var_dump($res->setting);
+Var_dump($res->settingWhere);
+// If the query is not available, it is null. The query is an instance of the UserSettingModel class. You can continue to call the ORM. Quick update Delete, etc.
 ```
 

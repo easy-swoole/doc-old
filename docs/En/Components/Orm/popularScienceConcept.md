@@ -1,12 +1,12 @@
 ---
-title: 科普概念
+title: Popular science concept
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
-# ORM 简介
+# ORM Introduction
 
-对象关系映射（Object Relational Mapping，简称ORM）是描述代码控制和数据库之间映射的元数据，将面向对象语言程序中的对象自动关联到相应数据库中。本质上就是将数数据库沟通操作以一种复杂组合操作形式转换到另外一种方便理解便捷操作的对象形式。 
-每个数据库表都有一个对应的「模型」用该模型的实例化一个新的对象来与该表交互。你可以通过模型查询数据表中的数据，以及在数据表中插入新记录。
+Object Relational Mapping (ORM) is metadata that describes the mapping between code control and database. Objects in an object-oriented language program are automatically associated with the corresponding database. Essentially, the number of database communication operations is transformed into another form of object that is convenient for understanding and convenient operations.
+Each database table has a corresponding "model" that instantiates a new object with the model to interact with the table. You can query the data in the data table through the model and insert new records in the data table.

@@ -2,14 +2,14 @@
 title: EasySwoole Socket
 meta:
   - name: description
-    content: php利用swoole，从而可以实现消息推送，和硬件消息交互
+    content: Php uses swoole to enable message push and hardware message interaction
   - name: keywords
     content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
-## udp应用
+## udp application
 
-### udp服务器开启,在EasySwooleEvent.php中进行创建子服务
+### udp server is enabled, create sub-services in EasySwooleEvent.php
 
 ```php
 
@@ -24,24 +24,24 @@ public static function mainServerCreate(EventRegister $register)
 ```
 
 
-### udp客户端
+### Udp client
 ```php
 
 public static function mainServerCreate(EventRegister $register)
 {
-  //添加自定义进程做定时udp发送
+  //Add a custom process to do regular udp send
     $server->addProcess(new \swoole_process(function (\swoole_process $process){
-        //服务正常关闭
+        //Service is closed normally
         $process::signal(SIGTERM,function ()use($process){
             $process->exit(0);
         });
-        //默认5秒广播一次
+        //Broadcast by default 5 seconds
         \Swoole\Timer::tick(5000,function (){
             if($sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP))
             {
                 socket_set_option($sock,SOL_SOCKET,SO_BROADCAST,true);
                 $msg= '123456';
-                socket_sendto($sock,$msg,strlen($msg),0,'255.255.255.255',9602);//广播地址
+                socket_sendto($sock,$msg,strlen($msg),0,'255.255.255.255',9602);//Broadcast address
                 socket_close($sock);
             }
         });

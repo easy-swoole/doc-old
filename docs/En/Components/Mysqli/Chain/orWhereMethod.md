@@ -1,16 +1,16 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # orWhere
 
-快速完成条件语句构建
+Quickly complete conditional statement construction
 
-下面两种方法等价
+The following two methods are equivalent
 
 ```php
 $builder->where('is_vip', 1)->where('id', [1,2], '=', 'OR')->get('getTable');
@@ -20,14 +20,14 @@ $builder->where('is_vip', 1)->where('id', [1,2], '=', 'OR')->get('getTable');
 $builder->where('is_vip', 1)->orWhere('id', [1,2])->get('getTable');
 ```
 
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 
 ```php
 function orWhere($whereProp, $whereValue = 'DBNULL', $operator = '=')
 ```
 
-- $whereProp string 支持索引数组、kv数组、或直接传递字符串
-- $whereValue string 条件值
-- $operator string 操作符
+- $whereProp string Support indexed arrays, kv arrays, or directly passed strings
+- $whereValue stringConditional value
+- $operator string Operator

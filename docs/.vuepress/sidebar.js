@@ -732,7 +732,7 @@ const sidebarEn = [
           ['/En/Components/Orm/getter', 'Getter'],
           ['/En/Components/Orm/modifier', 'Modifier'],
           {
-            title: '关联',
+            title: 'Association',
             collapsable: true,
             sidebarDepth: 0,
             children: [

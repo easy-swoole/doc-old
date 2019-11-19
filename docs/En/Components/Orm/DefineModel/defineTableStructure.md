@@ -1,30 +1,30 @@
 ---
-title: 定义表结构
+title: Defining the table structure
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|定义表结构
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Defining the table structure
 ---
 
 
-# 定义表结构
+# Defining the table structure
 
-## 自动生成表结构
+## Automatically generate table structure
 ```php
 $model = new User();
 $table = $model->schemaInfo();
 ```
-使用模型中的`schemaInfo()`方法可以获取当前模型指定数据表的结构返回一个`EasySwoole\ORM\Utility\Schema\Table`对象
+Use the `schemaInfo()` method in the model to get the structure of the current model specified data table and return an ʻEasySwoole\ORM\Utility\Schema\Table` object.
 
-::: tip 
-模型本身会**自动**生成表结构,但每次启动Easyswoole,都会去重新获取一次表结构信息,并且在这次服务中缓存,直到Easyswoole服务停止或者重启
-如果不希望每次重启都去请求一次数据库,可自行定义该方法,返回Table对象
+::: tip
+The model itself will automatically generate the table structure, but each time you start Easyswoole, it will re-acquire the table structure information and cache it in this service until the Easyswoole service stops or restarts.
+If you don't want to request the database every time you restart, you can define the method and return the Table object.
 :::
 
-## 自定义表结构
+## Custom Table Structure
 
-在模型类中，我们实现一个`getSchemaInfo`方法，要求返回一个`EasySwoole\ORM\Utility\Schema\Table`实例化对象
+In the model class, we implement a `getSchemaInfo` method that returns an ʻEasySwoole\ORM\Utility\Schema\Table` instantiated object.
 
 ```php
 use EasySwoole\ORM\Utility\Schema\Table;
@@ -32,8 +32,8 @@ use EasySwoole\ORM\Utility\Schema\Table;
 class User extends AbstractModel
 {
     /**
-     * 表的获取
-     * 此处需要返回一个 EasySwoole\ORM\Utility\Schema\Table
+     * Acquisition of the table
+     * Here you need to return an EasySwoole\ORM\Utility\Schema\Table
      * @return Table
      */
     public function schemaInfo(bool $isCache = true): Table
@@ -47,18 +47,18 @@ class User extends AbstractModel
 }
 
 ```
-### 表字段
+### Table Field
 
-在Table中，有colX系列方法，用于表示表字段的类型，如以上示例的Int,Char
+In the Table, there is a colX series method for representing the type of the table field, such as the Int, Char of the above example.
 
 ```php
-$table->colInt('id')；
+$table->colInt('id');
 $table->colChar('name', 255);
 ```
 
-### 表主键
+### Table primary key
 
-如果需要将某个字段指定为主键 则用连贯操作方式，在后续继续指定即可。
+If you need to specify a field as the primary key, you can use the continuous operation mode and continue to specify it later.
 
 ```php
 $table->colInt('id')->setIsPrimaryKey(true);
