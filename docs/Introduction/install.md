@@ -69,7 +69,7 @@ php vendor/bin/easyswoole install
 :::
 - 新版的easyswoole安装会默认提供App命名空间，还有index控制器
 - 在这里面需要填写n，不需要覆盖，已经有的 EasySwooleEvent.php，index.php dev.php produce.php
-
+- 当提示exec函数被禁用时,请自己手动执行 `composer dump-autoload` 命令更新命名空间
 ## 启动框架
 
 中途没有报错的话，执行：
