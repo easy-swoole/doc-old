@@ -1,58 +1,58 @@
 ---
-title: 读写分离
+title: Read and write separation
 meta:
   - name: description
-    content: Easyswoole ORM组件,读写分离
+    content: Easyswoole ORM component,Read and write separation
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|swoole 读写分离
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|swoole Read and write separation
 ---
 
 
-# 读写分离
+# Read and write separation
 
 
-## 注册读写链接配置信息
+## Register read and write link configuration information
 
-首先，我们需要按照 [配置信息注册](./configuration_register) 注册 读 / 写 两个链接的信息
+First, we need to register to read/write the information of the two links according to [Configuration Information Registration] (./En/configuration_register).
 
-主要代码大概如下
+The main code is probably as follows
 
 ```php
 DbManager::getInstance()->addConnection($con, 'read');
 DbManager::getInstance()->addConnection($con2, 'write');
 ```
 
-## 指定使用链接
+## Specify to use the link
 
-有两种方式可以使用 可以根据自己的需求选择
+There are two ways to use it. You can choose according to your needs.
 
-主要利用AbstractModel提供的`connection()`方法
+Mainly use the `connection()` method provided by AbstractModel
 
 ```php
-function connection(string $name, bool $isTemp = false)
+Function connection(string $name, bool $isTemp = false)
 ```
 
-::: tip  提示
-第二个参数需要传入为true，表示临时使用，否则该认定为固定使用<br/>（效果等同在类中定义 connectionName 属性）
+::: tip prompt
+The second parameter needs to be passed as true, indicating temporary use, otherwise it is considered to be fixed use (the effect is equivalent to defining the connectionName attribute in the class)
 :::
 
-### Model继承定义
+### Model inheritance definition
 
 ```php
-class Test extends AbstractModel{
-    /** 这里因为不是使用默认的配置链接名 所以需要指定 */
-    protected $connectionName = 'write';
-    
-    /** get 方法使用读链接 */
-    public function get($where = null, bool $returnAsArray)
-    {
-        $this->connection('read', true);
-        return parent::get($where, $returnAsArray);
-    } 
+Class Test extends AbstractModel{
+     /** This is because you are not using the default configuration link name, so you need to specify */
+     Protected $connectionName = 'write';
+    
+     /** get method uses read link */
+     Public function get($where = null, bool $returnAsArray)
+     {
+         $this->connection('read', true);
+         Return parent::get($where, $returnAsArray);
+     }
 }
 ```
 
-### 外部使用
+### External use
 
 ```php
 Test::create()->connection('read',true)->all();

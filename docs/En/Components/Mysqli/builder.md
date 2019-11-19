@@ -1,39 +1,39 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
-# 查询构造器
+# Query constructor
 
-QueryBuilder是一个SQL构造器，用来构造prepare sql。例如：
+QueryBuilder is a SQL constructor for constructing prepare sql. E.g:
 
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
 $builder = new QueryBuilder();
 
-//执行条件构造逻辑
+//Execution conditional construction logic
 $builder->where('col1',2)->get('my_table');
 
-//获取最后的查询参数
+//Get the last query parameter
 echo $builder->getLastQueryOptions();
 
-//获取子查询
+//Get subquery
 echo $builder->getSubQuery();
 
 
-//获取上次条件构造的预处理sql语句
+//Get the pre-processing sql statement of the last condition construct
 echo $builder->getLastPrepareQuery();
 // SELECT  * FROM whereGet WHERE  col1 = ? 
 
-//获取上次条件构造的预处理sql语句所以需要的绑定参数
+//Get the pre-processing sql statement of the last condition construct, so the required binding parameters
 echo $builder->getLastBindParams();
 //[2]
 
-//获取上次条件构造的sql语句
+//Get the sql statement of the last conditional construct
 echo $builder->getLastQuery();
 //SELECT  * FROM whereGet WHERE  col1 = 2 
 ```

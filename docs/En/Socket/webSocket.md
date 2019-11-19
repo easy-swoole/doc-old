@@ -2,58 +2,58 @@
 title: EasySwoole Socket
 meta:
   - name: description
-    content: php利用swoole，从而可以实现消息推送，和硬件消息交互
+    content: Php uses swoole to enable message push and hardware message interaction
   - name: keywords
     content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
-# WebSocket控制器
+# WebSocket controller
 
 
 ::: warning 
- 参考Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
+ Reference Demo: [WebSocketController](https://github.com/easy-swoole/demo/tree/3.x-websocketcontroller)
 :::
 
-EasySwoole 3.x支持以控制器模式来开发你的代码。
+EasySwoole 3.x supports developing your code in controller mode.
 
-首先，修改项目根目录下配置文件dev.php，修改SERVER_TYPE为:
+First, modify the configuration file dev.php in the root directory of the project, and modify the SERVER_TYPE to:
 ```php
-'SERVER_TYPE'    => EASYSWOOLE_WEB_SOCKET_SERVER,
+'SERVER_TYPE' => EASYSWOOLE_WEB_SOCKET_SERVER,
 ```
-并且引入 easyswoole/socket composer 包:
+And introduce the easyswoole/socket composer package:
 
-::: warning 
+::: warning
 *composer require easyswoole/socket*
 :::
 
-*警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题*
+*Warning: Please ensure that the version of easyswoole/socket you installed is large >= 1.0.7 Otherwise it will cause the problem that the ws message sending client cannot be resolved*
 
-## 新人帮助
+## Newcomer help
 
-* 本文遵循PSR-4自动加载类规范，如果你还不了解这个规范，请先学习相关规则。
-* 本节基础命名空间App 默认指项目根目录下App文件夹，如果你的App指向不同，请自行替换。
-* 只要遵循PSR-4规范，无论你怎么组织文件结构都没问题，本节只做简单示例。
+* This article follows the PSR-4 autoloading class specification. If you don't know the specification yet, please learn the rules first.
+* The basic namespace app in this section defaults to the App folder in the project root directory. If your App points to a different location, please replace it yourself.
+* As long as you follow the PSR-4 specification, no matter how you organize the file structure, this section is only a simple example.
 
-::: warning   
-这里的命令解析，其意思为根据请求信息解析为具体的执行命令;
+::: warning
+The command parsing here means that the request information is parsed into a specific execution command;
 :::
 
-::: warning 
-在easyswoole中，可以让TCP、WebSocket像传统框架那样按照控制器->方法这样去解析请求; 
+::: warning
+In easyswoole, TCP and WebSocket can be used to parse requests in the same way as the traditional framework in the controller->method;
 :::
 
 ::: danger
-请先阅读TCP控制器实现章节，将以简明的文字讲述原理，以下代码较多，主要提供示例。
+Please read the TCP controller implementation chapter first, and the principle will be described in concise text. The following codes are more, mainly providing examples.
 :::
 
-::: warning 
-解析器需要实现EasySwoole\Socket\AbstractInterface\ParserInterface 接口中的decode 和encode方法;
+::: warning
+The parser needs to implement the decode and encode methods in the EasySwoole\Socket\AbstractInterface\ParserInterface interface;
 :::
 
-## 实现命令解析
+## Implement command parsing
 
 
-**创建App/WebSocket/WebSocketParser.php文件，写入以下代码**
+**Create the App/WebSocket/WebSocketParser.php file and write the following code**
 
 ```php
 namespace App\WebSocket;
@@ -66,10 +66,10 @@ use EasySwoole\Socket\Bean\Response;
 /**
  * Class WebSocketParser
  *
- * 此类是自定义的 websocket 消息解析器
- * 此处使用的设计是使用 json string 作为消息格式
- * 当客户端消息到达服务端时，会调用 decode 方法进行消息解析
- * 会将 websocket 消息 转成具体的 Class -> Action 调用 并且将参数注入
+ * This class is a custom websocket message parser
+ * The design used here is to use json string as the message format
+ * When the client message arrives at the server, the decode method is called for message parsing.
+ * will convert the websocket message into a concrete Class -> Action call and inject the parameters
  *
  * @package App\WebSocket
  */
@@ -77,58 +77,58 @@ class WebSocketParser implements ParserInterface
 {
     /**
      * decode
-     * @param  string         $raw    客户端原始消息
-     * @param  WebSocket      $client WebSocket Client 对象
-     * @return Caller         Socket  调用对象
+     * @param string $raw client raw message
+     * @param WebSocket $client WebSocket Client object
+     * @return Caller Socket call object
      */
     public function decode($raw, $client) : ? Caller
     {
-        // 解析 客户端原始消息
+        // Parse the client raw message
         $data = json_decode($raw, true);
         if (!is_array($data)) {
             echo "decode message error! \n";
             return null;
         }
 
-        // new 调用者对象
+        // New caller object
         $caller =  new Caller();
         /**
-         * 设置被调用的类 这里会将ws消息中的 class 参数解析为具体想访问的控制器
-         * 如果更喜欢 event 方式 可以自定义 event 和具体的类的 map 即可
-         * 注 目前 easyswoole 3.0.4 版本及以下 不支持直接传递 class string 可以通过这种方式
+         * Set the called class. This will resolve the class parameter in the ws message to the controller you want to access.
+         * If you prefer the event method, you can customize the event and the map of the specific class.
+         * Note Currently, easyswoole 3.0.4 and below does not support direct pass class string can be used this way
          */
         $class = '\\App\\WebSocket\\'. ucfirst($data['class'] ?? 'Index');
         $caller->setControllerClass($class);
 
-        // 提供一个事件风格的写法
+        // Provide an event style
 //         $eventMap = [
 //             'index' => Index::class
 //         ];
 //         $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
 
-        // 设置被调用的方法
+        // Set the method to be called
         $caller->setAction($data['action'] ?? 'index');
-        // 检查是否存在args
+        // Check for the presence of args
         if (!empty($data['content'])) {
-            // content 无法解析为array 时 返回 content => string 格式
+            // Content cannot be resolved to array when returning content => string format
             $args = is_array($data['content']) ? $data['content'] : ['content' => $data['content']];
         }
 
-        // 设置被调用的Args
+        // Set the called Args
         $caller->setArgs($args ?? []);
         return $caller;
     }
     /**
      * encode
-     * @param  Response     $response Socket Response 对象
-     * @param  WebSocket    $client   WebSocket Client 对象
-     * @return string             发送给客户端的消息
+     * @param  Response     $response Socket Response Object
+     * @param  WebSocket    $client   WebSocket Client Object
+     * @return string             Message sent to the client
      */
     public function encode(Response $response, $client) : ? string
     {
         /**
-         * 这里返回响应给客户端的信息
-         * 这里应当只做统一的encode操作 具体的状态等应当由 Controller处理
+         * This returns information that is sent to the client.
+         * This should only be a unified encode operation. The specific state should be handled by the Controller.
          */
         return $response->getMessage();
     }
@@ -137,42 +137,42 @@ class WebSocketParser implements ParserInterface
 ```
 
 ::: warning 
- *注意，请按照你实际的规则实现，本测试代码与前端代码对应。*
+ *Note, please follow your actual rules, this test code corresponds to the front-end code. *
 :::
 
-## 注册服务
+## Registration service
 
-**新人提示**
+**Newcomer tips**
 
 ::: warning 
-如果你尚未明白easyswoole运行机制，那么这里你简单理解为，当easyswoole运行到一定时刻，会执行以下方法。
+If you don't understand the easyswoole operating mechanism, then you simply understand that when easyswoole runs to a certain moment, the following methods will be executed.
 :::
 
 ::: warning 
- 这里是指注册你上面实现的解析器。
+ This refers to registering the parser you implemented above.
 :::
 
-**在根目录下EasySwooleEvent.php文件mainServerCreate方法下加入以下代码**
+**In the root directory, add the following code under the mainServerCreate method of the EasySwooleEvent.php file.**
 
 ```php
-//注意：在此文件引入以下命名空间
+//Note: The following namespace is introduced in this file
 use EasySwoole\Socket\Dispatcher;
 use App\WebSocket\WebSocketParser;
 
 public static function mainServerCreate(EventRegister $register): void
 {
     /**
-     * **************** websocket控制器 **********************
+     * **************** Websocket controller **********************
      */
-    // 创建一个 Dispatcher 配置
-    $conf = new \EasySwoole\Socket\Config();
-    // 设置 Dispatcher 为 WebSocket 模式
-    $conf->setType(\EasySwoole\Socket\Config::WEB_SOCKET);
-    // 设置解析器对象
-    $conf->setParser(new WebSocketParser());
-    // 创建 Dispatcher 对象 并注入 config 对象
-    $dispatch = new Dispatcher($conf);
-    // 给server 注册相关事件 在 WebSocket 模式下  on message 事件必须注册 并且交给 Dispatcher 对象处理
+    // Create a Dispatcher configuration
+    $conf = new \EasySwoole\Socket\Config();
+    // Set Dispatcher to WebSocket mode
+    $conf->setType(\EasySwoole\Socket\Config::WEB_SOCKET);
+    // Set the parser object
+    $conf->setParser(new WebSocketParser());
+    // Create a Dispatcher object and inject the config object
+    $dispatch = new Dispatcher($conf);
+    // Register the relevant event for the server In the WebSocket mode, the on message event must be registered and passed to the Dispatcher object for processing.
     $register->set(EventRegister::onMessage, function (\swoole_websocket_server $server, \swoole_websocket_frame $frame) use ($dispatch) {
         $dispatch->dispatch($server, $frame->data, $frame);
     });
@@ -181,30 +181,30 @@ public static function mainServerCreate(EventRegister $register): void
 
 
 ::: warning 
- 在EasySwooleEvent中注册该服务。
+ Register the service in EasySwooleEvent.
 :::
 
-## 前端测试
+## Front End Test
 
-**友情提示**
+**friendly reminder**
 
-::: warning 
- easyswoole 提供了强大的WebSocket调试工具:[WEBSOCKET CLIEN](https://www.easyswoole.com/wstool.html)；
+::: warning
+  Easyswoole provides a powerful WebSocket debugging tool: [WEBSOCKET CLIEN] (https://www.easyswoole.com/wstool.html);
 :::
 
-## WebSocket 控制器
+## WebSocket Controller
 
-**新人提示**
+**Newcomer tips**
 
-::: warning 
-WebSocket控制器必须继承EasySwoole\Socket\AbstractInterface\Controller;
+::: warning
+The WebSocket controller must inherit EasySwoole\Socket\AbstractInterface\Controller;
 :::
 
-::: warning 
- actionNotFound方法提供了当找不到该方法时的返回信息，默认会传入本次请求的actionName。
+::: warning
+  The actionNotFound method provides a return message when the method is not found. By default, the actionName of this request is passed.
 :::
 
-**创建App/WebSocket/Index.php文件，写入以下内容**
+**Create an App/WebSocket/Index.php file and write the following**
 
 ```php
 <?php
@@ -223,7 +223,7 @@ use EasySwoole\Socket\AbstractInterface\Controller;
 /**
  * Class Index
  *
- * 此类是默认的 websocket 消息解析后访问的 控制器
+ * This class is the default websocket message that is accessed after parsing the controller
  *
  * @package App\WebSocket
  */
@@ -243,7 +243,7 @@ class Index extends Controller
         $this->response()->setMessage('this is delay action');
         $client = $this->caller()->getClient();
 
-        // 异步推送, 这里直接 use fd也是可以的
+        // Asynchronous push, here directly use fd is also possible
         TaskManager::getInstance()->async(function () use ($client){
             $server = ServerManager::getInstance()->getSwooleServer();
             $i = 0;
@@ -259,17 +259,17 @@ class Index extends Controller
 
 
 ::: warning 
-该控制器使用了task组件:https://www.easyswoole.com/Cn/Components/task.html
+The controller uses the task component: https://www.easyswoole.com/Cn/Components/task.html
 :::
 
 
-::: warning 
-composer require easyswoole/task
+::: warning
+Composer require easyswoole/task
 :::
 
-##测试
+##test
 
-*如果你按照本文配置，那么你的文件结构应该是以下形式*
+* If you follow the configuration of this article, then your file structure should be in the following form*
 
 ```
 App
@@ -281,81 +281,81 @@ App
 └── └── WebSocketParser.php
 ```
 
-首先在根目录运行easyswoole
+First run easyswoole in the root directory
 
 ```shell
-php easyswoole start
+Php easyswoole start
 ```
 
-如果没有错误此时已经启动了easyswoole服务;  
-访问 127.0.0.1:9501/WebSocket/index 可以看到之前写的测试html文件;
+If there is no error, the easyswoole service has been started at this time;
+Visit 127.0.0.1:9501/WebSocket/index to see the test html file written before;
 
 ::: warning
-*新人提示：这种访问方式会请求HttpController控制器下Index.php中的index方法*  
+* Newcomer Tip: This access method will request the index method in Index.php under the HttpController controller.
 :::
 
-## 扩展
+## Extension
 
-### 自定义解析器
+### Custom parser
 
-在上文的 WebSocketParser.php 中，已经实现了一个简单解析器；
-我们可以通过自定义解析器，实现自己需要的场景。
+In the above WebSocketParser.php, a simple parser has been implemented;
+We can implement the scenario we need through a custom parser.
 
 ```php
 /**
  * decode
- * @param  string         $raw    客户端原始消息
- * @param  WebSocket      $client WebSocket Client 对象
- * @return Caller         Socket  调用对象
+ * @param string $raw client raw message
+ * @param WebSocket $client WebSocket Client object
+ * @return Caller Socket call object
  */
 public function decode($raw, $client) : ? Caller
 {
-    // 解析 客户端原始消息
+    // Parse the client raw message
     $data = json_decode($raw, true);
     if (!is_array($data)) {
         echo "decode message error! \n";
         return null;
     }
 
-    // new 调用者对象
-    $caller =  new Caller();
-    /**
-     * 设置被调用的类 这里会将ws消息中的 class 参数解析为具体想访问的控制器
-     * 如果更喜欢 event 方式 可以自定义 event 和具体的类的 map 即可
-     * 注 目前 easyswoole 3.0.4 版本及以下 不支持直接传递 class string 可以通过这种方式
+    // new caller object
+    $caller = new Caller();
+    /**
+     * Set the called class. This will resolve the class parameter in the ws message to the controller you want to access.
+     * If you prefer the event method, you can customize the event and the map of the specific class.
+     * Note Currently, easyswoole 3.0.4 and below does not support direct pass class string can be used this way
      */
     $class = '\\App\\WebSocket\\'. ucfirst($data['class'] ?? 'Index');
     $caller->setControllerClass($class);
 
-    // 提供一个事件风格的写法
+    // Provide an event style
     // $eventMap = [
     //     'index' => Index::class
     // ];
     // $caller->setControllerClass($eventMap[$data['class']] ?? Index::class);
 
-    // 设置被调用的方法
+    // Set the method to be called
     $caller->setAction($data['action'] ?? 'index');
-    // 检查是否存在args
+    // Check for the presence of args
     if (!empty($data['content'])) {
-        // content 无法解析为array 时 返回 content => string 格式
+        // Content cannot be resolved to array when returning content => string format
         $args = is_array($data['content']) ? $data['content'] : ['content' => $data['content']];
     }
 
-    // 设置被调用的Args
+    // Set the called Args
     $caller->setArgs($args ?? []);
     return $caller;
 }
 /**
  * encode
- * @param  Response     $response Socket Response 对象
- * @param  WebSocket    $client   WebSocket Client 对象
- * @return string             发送给客户端的消息
+ * @param  Response     $response Socket Response Object
+ * @param  WebSocket    $client   WebSocket Client Object
+ * @return string             Message sent to the client
  */
 public function encode(Response $response, $client) : ? string
 {
     /**
-     * 这里返回响应给客户端的信息
-     * 这里应当只做统一的encode操作 具体的状态等应当由 Controller处理
+     * This returns information that is sent to the client.
+     * Here should only do a unified encode operation. The specific state should be handled by the Controller.
      */
     return $response->getMessage();
 }
@@ -363,14 +363,14 @@ public function encode(Response $response, $client) : ? string
 
 
 ::: warning 
-例如{"class":"Index","action":"hello"}  
+ E.g: {"class":"Index","action":"hello"}  
 :::
 
 
 ::: warning 
- 则会访问App/WebSocket/WebSocket/Index.php 并执行hello方法
+ Will access App/WebSocket/WebSocket/Index.php and execute the hello method
 :::
 
 ::: tip
- **当然这里是举例，你可以根据自己的业务场景进行设计**
+ **Of course, here is an example, you can design according to your own business scenario.**
 :::

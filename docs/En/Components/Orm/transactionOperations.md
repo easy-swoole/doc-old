@@ -1,59 +1,53 @@
 ---
-title: 事务操作
+title: Transaction operation
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|事务操作
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Transaction operation
 ---
 
-# 事务操作
+# Transaction operation
 
-## 开启事务
-传参说明
+## Open transaction
+Pass the instructions
 
-| 参数名          | 是否必须 | 参数说明                                                     |
-| --------------- | -------- | ------------------------------------------------------------ |
-| connectionNames | 否       | 开启事务的连接名称; string或者array<br/>在addConnection时指定。一般情况下无需特别设置 |
+| Parameter Name    | Required  | Parameter Description |
+| ---------------   | --------  | ------------------------------------------------------------ |
+| connectionNames   | No        | Open the connection name of the transaction; string or array<br/> is specified in addConnection. Under normal circumstances, no special settings are required.
 
-
-
-返回说明：bool  开启成功则返回true，开启失败则返回false
-
-
-
+Return Description: bool returns true if it is successful, false if it fails to open
 
 ```php
 DbManager::getInstance()->startTransaction($connectionNames = 'default');
 ```
 
-## 提交事务
+## Submitting a transaction
 
-传参说明
+Pass the instructions
 
-| 参数名      | 是否必须 | 参数说明                                                     |
-| ----------- | -------- | ------------------------------------------------------------ |
-| connectName | 否       | 指定提交一个连接名，若不传递，则自动提交当前协程内获取的事务连接。<br/>一般情况下无需特别设置 |
+| Parameter Name    | Required  | Parameter Description |
+| ----------------- | --------  | ------------------------------------------------------------ |
+|ConnectName        | No        | Specifies to submit a connection name, if not passed, automatically submit the transaction connection obtained in the current coroutine. In general, no special settings are required.
 
 
-
-返回说明：bool  提交成功则返回true，失败则返回false
+Return Description: bool returns true if the submission is successful, false if it fails
 
 ```php
 DbManager::getInstance()->commit($connectName = null);
 ```
 
-## 回滚事务
+## Rollback transaction
 
-传参说明
+Pass the instructions
 
-| 参数名      | 是否必须 | 参数说明                                                     |
-| ----------- | -------- | ------------------------------------------------------------ |
-| connectName | 否       | 指定提交一个连接名，若不传递，则自动提交当前协程内获取的事务连接。<br/>一般情况下无需特别设置 |
+| Parameter Name    | Required  | Parameter Description |
+| ----------------- | --------  | ------------------------------------------------------------ |
+|ConnectName        | No        | Specifies to submit a connection name, if not passed, automatically submit the transaction connection obtained in the current coroutine. In general, no special settings are required.
 
 
 
-返回说明：bool  提交成功则返回true，失败则返回false
+Return Description: bool returns true if the submission is successful, false if it fails
 
 ```php
 DbManager::getInstance()->rollback();
@@ -61,23 +55,23 @@ DbManager::getInstance()->rollback();
 
 
 
-## 事务用例
+## Transaction use case
 
 ```php 
 $user = UserModel::create()->get(4);
 
 $user->age = 4;
-// 开启事务
+/ / Open the transaction
 $strat = DbManager::getInstance()->startTransaction();
 
-// 更新操作
+// update operation
 $res = $user->update();
 
-// 不管更新成功还是失败，直接回滚
+// Roll back directly regardless of whether the update succeeded or failed
 $rollback = DbManager::getInstance()->rollback();
 
-// 返回false 因为连接已经回滚。事务关闭。
+// returns false because the connection has been rolled back. The transaction is closed.
 $commit = DbManager::getInstance()->commit();
-var_dump($commit);
+Var_dump($commit);
 ```
 

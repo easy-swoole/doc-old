@@ -1,34 +1,34 @@
 ---
-title: 一对多关联
+title: One-to-many association
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|一对多关联
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|One-to-many association
 ---
 
-# 一对多关联
+# One-to-many association
 
-在模型中定义方法
+Define methods in the model
 
 ```php
-public function orders()
+Public function orders()
 {
-    return $this->hasMany(OrdersModel::class, null, null, 'u_id');
+     Return $this->hasMany(OrdersModel::class, null, null, 'u_id');
 }
 ```
 
-OrdersModel 也是一个Model类，只是定义了一个简单的表结构
+OrdersModel is also a Model class, just defines a simple table structure
 
-使用
+use
 ```php
 $res = UserModel::create()->get(1);
 
 /**
- * 关联 一对多
- */
-var_dump($res);
-var_dump($res->orders); 
-// 如果查询不到则为null  
-// 查询得到则为一个数组，每一个子元素都是OrdersModel类的实例
+  * Association One-to-many
+  */
+Var_dump($res);
+Var_dump($res->orders);
+// null if the query is not available
+// The query gets an array, and each child element is an instance of the OrdersModel class.
 ```

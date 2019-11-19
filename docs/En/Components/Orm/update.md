@@ -1,19 +1,19 @@
 ---
-title: 更新
+title: Update
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|更新
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Update
 ---
 
 
 
-# 更新
+# Update
 
-## 通过 已有Model
+## By existing model
 
-这种方式是我们最推荐的，也是ORM这种组件的核心思想，把数据的操作映射为对对象的操作。
+This approach is our most recommended, and is the core idea of the ORM component, mapping the operation of the data to the operation of the object.
 
 ```php
 $user = UserModel::create()->get(1);
@@ -25,25 +25,25 @@ $user->update([
 ```php
 
 $user = UserModel::create()->get(1);
-//获取后指定字段赋值
+/ / After the specified field assignment
 $user->is_vip = 1;
 $user->update();
 ```
 
-## 通过 where 更新
+## via where update
 
-`update` 参数1传入更新数组`[字段名=>字段值]`,参数2传递 where 条件数组
+`update` parameter 1 is passed to the update array `[field name=>field value]`, parameter 2 is passed where condition array
 
 ```php
 $res = UserModel::create()->update([
-    'name' => 'new'
+     'name' => 'new'
 ], ['id' => 1]);
 ```
 
-## 实际更新影响的行数
+## The number of rows affected by the actual update
 ::: warning
-update返回的是执行语句是否成功,只有mysql语句出错时才会返回false,否则都为true
-,所以需要getAffectedRows来判断是否更新成功
+Update returns the execution statement is successful, only false when the mysql statement error, otherwise true
+, so you need getAffectedRows to determine if the update is successful.
 :::
 
 ```php
@@ -56,32 +56,32 @@ var_dump($user->lastQueryResult()->getAffectedRows());
 
 
 
-## 获取具体语法错误
+## Get specific syntax errors
 ::: warning
-update如果返回了false,那么代表你的语句有错误,可通过getLastError获取具体错误信息
+If update returns false, then there is an error on your statement, you can get specific error information through getLastError
 :::
 ```php
 $user = UserModel::create()->get(1);
 $suc = $user->update([
-  'is_vip' => 1
+   'is_vip' => 1
 ]);
-if($suc=== false){
-	var_dump($user->lastQueryResult()->getLastError());
+If($suc=== false){
+Var_dump($user->lastQueryResult()->getLastError());
 }
 
 ```
 
-## 生效字段说明
+## Effective field description
 
-模型内数据分为正常数据、附属数据两种。
+The data in the model is divided into normal data and auxiliary data.
 
-如果是表结构拥有字段的数据，则属于正常数据，其他则属于附属数据。
+If the table structure has data for the field, it belongs to normal data, and the others belong to the ancillary data.
 
-### 推荐更新用法
+### Recommended update usage
 
-先通过model映射出正确的数据对象，然后再改变值，更新。
+First map the correct data object through the model, then change the value and update.
 
-将会自动生效表结构内的字段。其他附属数据不会组成update sql。
+The fields within the table structure will be automatically validated. Other ancillary data does not make up update sql.
 
 ```php
 $user = UserModel::create()->get(1);
@@ -90,15 +90,15 @@ $user['vip_time'] = 15;
 $res = $user->update();
 ```
 
-### 批量更新
+### Batch update
 
-通过这种方式，不会过滤非表结构字段的数据，全部组成sql，可能造成mysql错误。
+In this way, the data of the non-table structure fields will not be filtered, and all of them constitute sql, which may cause mysql error.
 
 ```php
 $res = UserModel::create()->update([
-  'is_vip' => 0,
-  'test' => 3333,// 表结构不存在的字段
+   'is_vip' => 0,
+   'test' => 3333, / / table structure does not exist in the field
 ], [
-  'vip_time' => 0
+   'vip_time' => 0
 ]);
 ```

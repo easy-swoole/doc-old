@@ -1,12 +1,12 @@
 # Mysqli
 
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 
 
@@ -16,7 +16,7 @@ meta:
 composer require easyswoole/mysqli
 ```
 
-## Client 用法
+## Client usage
 ```php
 $config = new \EasySwoole\Mysqli\Config([
     'host'          => '',
@@ -31,13 +31,13 @@ $config = new \EasySwoole\Mysqli\Config([
 $client = new \EasySwoole\Mysqli\Client($config);
 
 go(function ()use($client){
-    //构建sql
+    //Build sql
     $client->queryBuilder()->get('user_list');
-    //执行sql
+    //Execute SQL
     var_dump($client->execBuilder());
 });
 ```
 
 ::: danger
-需要调用execBuilder()才会执行
+Need to call execBuilder () to execute
 :::

@@ -2,41 +2,41 @@
 title: EasySwoole Socket
 meta:
   - name: description
-    content: php利用swoole实现自定义tcp协议，从而可以实现消息推送，和硬件消息交互
+    content: Php uses swoole to implement custom tcp protocol, which can implement message push and hardware message interaction.
   - name: keywords
     content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
-# EasySwoole Tcp服务
-tcp 服务以及tcp客户端 demo
+# EasySwoole Tcp Service
+Tcp service and tcp client demo
 
 ::: tip
 https://github.com/easy-swoole/demo/tree/3.x-subtcp
 ::: 
 
-## 创建tcp服务
+## Create tcp service
 
-这里分为两种情况
+There are two cases here.
 
-- 项目只提供TCP服务器
-- 项目单独一个端口开启TCP服务器
+- The project only provides a TCP server
+- Open a TCP server on a separate port of the project
 
-如果是第一种情况，我们可以直接在配置文件中，将Swoole的启动类型声明为`EASYSWOOLE_SERVER`。
+In the first case, we can declare the Swoole startup type as `EASYSWOOLE_SERVER` directly in the configuration file.
 
-然后在`EasySwooleEvent.php`框架事件文件中`mainServerCreate`方法，进行TCP相关的回调注册
+Then in the `EasySwooleEvent.php` framework event file `mainServerCreate` method, TCP related callback registration
 
 ```php
-public static function mainServerCreate(EventRegister $register)
+Public static function mainServerCreate(EventRegister $register)
 {
-    $register->add($register::onReceive, function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
-        echo "fd:{$fd} 发送消息:{$data}\n";
-    });
+     $register->add($register::onReceive, function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
+         Echo "fd:{$fd} Send a message: {$data}\n";
+     });
 }
 ```
 
-单独端口开启TCP服务器，需要添加子服务。
+A separate port opens the TCP server and you need to add a subservice.
 
-通过`EasySwooleEvent.php`文件的`mainServerCreate` 事件,进行子服务监听,例如:
+Subservice listening via the `mainServerCreate` event of the `EasySwooleEvent.php` file, for example:
 
 ````php
 <?php
@@ -47,52 +47,52 @@ public static function mainServerCreate(EventRegister $register)
     $subPort1 = $server->addlistener('0.0.0.0', 9502, SWOOLE_TCP);
     $subPort1->set(
         [
-            'open_length_check' => false, //不验证数据包
+            'open_length_check' => false, //Do not verify the packet
         ]
     );
     $subPort1->on('connect', function (\swoole_server $server, int $fd, int $reactor_id) {
-        echo "fd:{$fd} 已连接\n";
-        $str = '恭喜你连接成功';
+        echo "fd:{$fd} connected\n";
+        $str = 'Congratulations on your successful connection';
         $server->send($fd, $str);
     });
     $subPort1->on('close', function (\swoole_server $server, int $fd, int $reactor_id) {
-        echo "fd:{$fd} 已关闭\n";
+        echo "fd:{$fd} closed\n";
     });
     $subPort1->on('receive', function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
-        echo "fd:{$fd} 发送消息:{$data}\n";
+        echo "fd:{$fd} Send a message:{$data}\n";
     });
 }
 ````
 
-## tcp控制器实现
+## tcpController Implementation
 
-在TCP中，我们如何实现像Http请求一样的路由，从而将请求分发到不同的控制器。
+In TCP, how do we implement the same route as an Http request to distribute the request to different controllers.
 
-EasySwoole提供了一个解析的方案参考。（非强制，可自行扩展修改为符合业务所需）
+EasySwoole provides a solution for a solution. (not mandatory, can be extended and modified to meet the needs of the business)
 
 ### Installation
 
-引入 socket 包:
+Introducing the socket package:
 
 ```
-composer require easyswoole/socket
+Composer require easyswoole/socket
 ```
 
 ::: danger
-警告：请保证你安装的 easyswoole/socket 版本大 >= 1.0.7 否则会导致ws消息发送客户端无法解析的问题
+Warning: Please ensure that the version of easyswoole/socket you installed is large >= 1.0.7. Otherwise, the problem that the ws message sending client cannot be resolved will be caused.
 :::
 
-### 协议规则与解析
+### Protocol Rules and Resolution
 
-在本实例中,传输json数据 使用pack N进行二进制处理,json数据有3个参数,例如:
+In this example, the json data is transferred using pack N for binary processing. The json data has three parameters, for example:
 
 ````json
 {"controller":"Index","action":"index","param":{"name":"\u4ed9\u58eb\u53ef"}}
 ````
 
-我们将在`onReceive`消息接收回调中，将数据转发给`解析器`
+We will forward the data to the `parser in the `onReceive` message receiving callback.
 
-解析器将按json字段，类似下面去初始化并执行请求。
+The parser will press the json field, similar to the following to initialize and execute the request.
 
 ```php
 $bean->setControllerClass($controller);
@@ -100,69 +100,69 @@ $bean->setAction($action);
 $bean->setArgs($param);
 ```
 
-TCP控制器需要继承`EasySwoole\Socket\AbstractInterface\Controller`类
+The TCP controller needs to inherit the `EasySwoole\Socket\AbstractInterface\Controller` class.
 
-其他的一般将按普通控制器一样去编写即可！ 可以在控制器中投递Task任务、转发给其他客户端、客户端下线等等...
+Others will generally be written as a normal controller! You can post Task tasks in the controller, forward them to other clients, go offline, etc...
 
 ::: tip
-可以在github的demo中看到完整的实现和代码（复制下来即可在项目中使用）
+You can see the complete implementation and code in the github demo (copy it and use it in your project)
 :::
 
-### 实现解析器[Parser.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Parser.php)
+### Implement the parser [Parser.php] (https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Parser.php)
 
-### 解析器接管服务 [EasySwooleEvent.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/EasySwooleEvent.php)
+### Parser Takeover Service [EasySwooleEvent.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/EasySwooleEvent.php)
 
-### 实现控制器[Index.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Index.php)
+### Implement Controller [Index.php](https://github.com/easy-swoole/demo/blob/3.x-subtcp/App/TcpController/Index.php)
 
-获取参数
+Get parameters
 ```php
-public function args()
+Public function args()
 {
-    $this->response()->setMessage('your args is:'.json_encode($this->caller()->getArgs()).PHP_EOL);
+     $this->response()->setMessage('your args is:'.json_encode($this->caller()->getArgs()).PHP_EOL);
 }
 ```
 
-回复数据
+Reply data
 ```php
-public function index(){
-    $this->response()->setMessage(time());
+Public function index(){
+     $this->response()->setMessage(time());
 }
 ```
 
-获取当前fd
+Get the current fd
 ```php
-public function who()
+Public function who()
 {
-    $this->caller()->getClient()->getFd()
+     $this->caller()->getClient()->getFd()
 }
 ```
 
-## HTTP往TCP推送
+## HTTP to TCP push
 
-在HTTP控制器，可以通过ServerManager获取Swoole实例，然后发送给指定FD客户端内容。
+In the HTTP controller, the Swoole instance can be obtained through the ServerManager and then sent to the specified FD client content.
 
 ```php
-function method(){
-    // 传参fd
-    $fd = intval($this->request()->getRequestParam('fd'));
+Function method(){
+    // pass the reference fd
+    $fd = intval($this->request()->getRequestParam('fd'));
 
-    // 通过Swoole实例拿连接信息
-    $info = ServerManager::getInstance()->getSwooleServer()->connection_info($fd);
+    / / Take the connection information through the Swoole instance
+    $info = ServerManager::getInstance()->getSwooleServer()->connection_info($fd);
 
-    if(is_array($info)){
-        ServerManager::getInstance()->getSwooleServer()->send($fd,'push in http at '.time());
-    }else{
-        $this->response()->write("fd {$fd} not exist");
-    }
+    If(is_array($info)){
+        ServerManager::getInstance()->getSwooleServer()->send($fd,'push in http at '.time());
+    }else{
+        $this->response()->write("fd {$fd} not exist");
+    }
 }
 ```
 
-::: warning 
-实际生产中，一般是用户TCP连接上来后，做验证，然后以userName=>fd的格式，存在redis中，需要http，或者是其他地方，
+::: warning
+In actual production, it is usually after the user TCP connection comes up, do the verification, and then in the format of userName=>fd, there is redis, need http, or other places,
 :::
 
-比如定时器往某个连接推送的时候，就是以userName去redis中取得对应的fd，再send。注意，通过addServer形式创建的子服务器，
+For example, when the timer pushes to a connection, it is to use the userName to get the corresponding fd in redis, and then send. Note that the child server created by the addServer form,
 
-::: warning 
-以再完全注册自己的网络事件，你可以注册onclose事件，然后在连接断开的时候，删除userName=>fd对应。
+::: warning
+To register your own network event completely, you can register the onclose event and then delete the userName=>fd when the connection is broken.
 :::
