@@ -7,7 +7,7 @@ meta:
     content: EasySwoole异步任务|swoole异步|swoole异步进程
 ---
 
-## 安装
+## 安装 
 ```
 composer require easyswoole/task
 ```
