@@ -19,3 +19,9 @@ Easyswoole提供的一个全新协程安全的ORM封装。
 ```php
 composer require easyswoole/orm
 ```
+
+::: tip 
+Orm的功能是依赖于mysqli 2.x组件的，update的$data参数将会传递给mysqli构造sql。
+
+所以我们可以直接使用大部分mysqli的功能
+:::
