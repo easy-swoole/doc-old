@@ -388,6 +388,7 @@ const sidebarCn = [
                 ]
             },
             ['/Components/tracker', '链路追踪'],
+            ['/Components/hotReload', '热重载监视器'],
             ['/Components/policy', 'Policy策略权限'],
             ['/Components/atomicLimit', 'atomic限流器'],
             {
@@ -480,6 +481,7 @@ const sidebarCn = [
                     ['/Components/Rpc/client', '客户端'],
                     ['/Components/Rpc/otherPlatform', '跨语言'],
                     ['/Components/Rpc/registerCenter', '服务注册中心'],
+                    ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
             ['/Components/consul', 'Concul客户端'],
@@ -714,36 +716,36 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Orm/install', 'Install'],
-          ['/En/Components/Orm/configurationRegister', '配置信息注册'],
+          ['/En/Components/Orm/configurationRegister', 'Configuration information registration'],
           {
-            title: '定义模型',
+            title: 'Defining model',
             path: '/En/Components/Orm/defineModel',
             collapsable: false,
             sidebarDepth: 0,
             children: [
-              ['/En/Components/Orm/DefineModel/defineTableStructure', '定义表结构'],
-              ['/En/Components/Orm/DefineModel/specifyConnectionName', '指定连接名'],
-              ['/En/Components/Orm/DefineModel/timestamp', '时间戳'],
+              ['/En/Components/Orm/DefineModel/defineTableStructure', 'Defining the table structure'],
+              ['/En/Components/Orm/DefineModel/specifyConnectionName', 'Specify the connection name'],
+              ['/En/Components/Orm/DefineModel/timestamp', 'Timestamp'],
             ]
           },
-          ['/En/Components/Orm/customSqlExecution', '自定义SQL执行'],
-          ['/En/Components/Orm/transactionOperations', '事务操作'],
-          ['/En/Components/Orm/readWriteSeparation', '读写分离'],
-          ['/En/Components/Orm/query', '查询'],
-          ['/En/Components/Orm/add', '新增'],
-          ['/En/Components/Orm/delete', '删除'],
-          ['/En/Components/Orm/update', '更新'],
-          ['/En/Components/Orm/coherentOperation', '连贯操作'],
-          ['/En/Components/Orm/aggregation', '聚合'],
-          ['/En/Components/Orm/getter', '获取器'],
-          ['/En/Components/Orm/modifier', '修改器'],
+          ['/En/Components/Orm/customSqlExecution', 'Custom SQL execution'],
+          ['/En/Components/Orm/transactionOperations', 'Transaction operation'],
+          ['/En/Components/Orm/readWriteSeparation', 'Read and write separation'],
+          ['/En/Components/Orm/query', 'Inquire'],
+          ['/En/Components/Orm/add', 'Add'],
+          ['/En/Components/Orm/delete', 'Delete'],
+          ['/En/Components/Orm/update', 'Update'],
+          ['/En/Components/Orm/coherentOperation', 'Coherent operation'],
+          ['/En/Components/Orm/aggregation', 'polymerization'],
+          ['/En/Components/Orm/getter', 'Getter'],
+          ['/En/Components/Orm/modifier', 'Modifier'],
           {
             title: '关联',
             collapsable: true,
             sidebarDepth: 0,
             children: [
-              ['/En/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
-              ['/En/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+              ['/En/Components/Orm/Associat/oneToOneAssociations', 'One-to-one association'],
+              ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
             ]
           },
         ]
@@ -816,7 +818,7 @@ const sidebarEn = [
         ]
       },
       ['/En/Components/kafka', 'Kafka'],
-      ['/En/Components/FastCache/fastCacheQueue', 'FastCache队列']
+      ['/En/Components/FastCache/fastCacheQueue', 'FastCache queue']
     ]
   },
   {

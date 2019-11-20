@@ -1,24 +1,24 @@
-# Queue介绍
+# Queue Introduction
 
-Easyswoole封装实现了一个轻量级的队列，默认以Redis作为队列驱动器。
+The Easyswoole package implements a lightweight queue, with Redis as the queue driver by default.
 
-可以自己实现一个队列驱动来实现用kafka或者启动方式的队列存储。
+You can implement a queue driver yourself to implement queue storage in kafka or boot mode.
 
-从上可知，Queue并不是一个单独使用的组件，它更像一个对不同驱动的队列进行统一封装的门面组件。
+As you can see, Queue is not a separate component, it is more like a facade component that uniformly encapsulates different driver queues.
 
-# 开始安装
+# start installation
 
 ```
-composer require easyswoole/queue
+Composer require easyswoole/queue
 ```
 
-# 使用流程
+# manual
 
-- 注册队列驱动器
-- 设置消费进程
-- 生产者投递任务
+- Register queue driver
+- Set the consumption process
+- Producer delivery task
 
-## Redis 驱动示例
+## Redis driver example
 
 ```php
 use EasySwoole\Redis\Config\RedisConfig;

@@ -1,26 +1,26 @@
 ---
-title: 分布式限流器
+title: Distributed current limiter
 meta:
   - name: description
-    content: Easyswoole提供了一个基于Atomic计数器的限流器，通过限制某一个时间周期内的总请求数，从而实现基础限流。
+    content: Easyswoole provides an Atomic counter-based current limiter that limits the total number of requests in a given time period to achieve a base current limit.
   - name: keywords
-    content: EasySwoole分布式|AtomicLimit|分布式限流器
+    content: EasySwoole Distributed | AtomicLimit|Distributed Current Limiter
 ---
 # AtomicLimit
 
-Easyswoole提供了一个基于Atomic计数器的限流器。
+Easyswoole provides a current limiter based on Atomic counters.
 
-## 原理
+## Principle
 
-通过限制某一个时间周期内的总请求数，从而实现基础限流。举个例子，设置5秒内，允许的最大请求量为200，那么理论平均并发为40，峰值并发为200。
+The basic current limit is achieved by limiting the total number of requests in a certain time period. For example, if the maximum number of requests allowed is 200 in 5 seconds, then the theoretical average is 40 and the peak is 200.
 
-## 安装
+## Installation
 
 ```
 composer require easyswoole/atomic-limit
 ```
 
-## 示例代码
+## Sample code
 ```
 /*
  * egUrl http://127.0.0.1:9501/index.html?api=1
@@ -54,4 +54,4 @@ $http->on("request", function ($request, $response) {
 $http->start();
 ```
 
-> 注意，本例子是用一个自定义进程内加定时器来实现计数定时重置，实际上用一个进程来做这件事情有点不值得，因此实际生产可以指定一个worker,设置定时器来实现。
+> Note that this example uses a custom process plus timer to implement the count timing reset. In fact, it is not worthwhile to use a process to do this. Therefore, the actual production can specify a worker and set a timer to implement.

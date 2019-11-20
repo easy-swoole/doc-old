@@ -1,6 +1,6 @@
-# Queue使用
-## 定义一个队列
-```
+# Queue use
+## Defining a queue
+```php
 namespace App\Utility;
 
 
@@ -13,8 +13,8 @@ class MyQueue extends Queue
 }
 ```
 
-## 定义消费进程
-```
+## Define the consumption process
+```php
 namespace App\Utility;
 
 
@@ -34,10 +34,10 @@ class QueueProcess extends AbstractProcess
     }
 }
 ```
-> 可以多进程，多协程消费
+> Can multi-process, multi-correlation consumption
 
 
-## 驱动注册
+## Driver registration
 
 ```php
 namespace EasySwoole\EasySwoole;
@@ -68,16 +68,16 @@ class EasySwooleEvent implements Event
 
     public static function mainServerCreate(EventRegister $register)
     {
-        //redis pool使用请看redis 章节文档
+        //Redis pool use please see redis chapter documentation
         $config = new RedisConfig([
             'host'=>'127.0.0.1'
         ]);
         $redis = new RedisPool($config);
         $driver = new Redis($redis);
         MyQueue::getInstance($driver);
-        //注册一个消费进程
+        //Register a consumer process
         ServerManager::getInstance()->addProcess(new QueueProcess());
-        //模拟生产者，可以在任意位置投递
+        //Simulated producers, can be delivered anywhere
         $register->add($register::onWorkerStart,function ($ser,$id){
             if($id == 0){
                 Timer::getInstance()->loop(3000,function (){

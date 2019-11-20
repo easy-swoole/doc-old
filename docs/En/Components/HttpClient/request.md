@@ -1,33 +1,33 @@
 ---
-title: 请求
+title: request
 meta:
   - name: description
-    content: EasySwoole 协程HTTPClient组件
+    content: EasySwoole Coroutine HTTPClient component
   - name: keywords
-    content: 请求|easyswoole|协程HTTPClient|curl组件|协程curl
+    content: request|easyswoole|Coroutine HTTPClient|Curl component|Coroutine curl
 ---
 
-## 请求
+## Request
 
-### 实例化客户端
+### Instantiate the client
 ````php
 <?php
 /**
  * Created by PhpStorm.
  * User: tioncico
  * Date: 19-6-22
- * Time: 下午2:43
+ * Time: 2:43
  */
 
 include "./vendor/autoload.php";
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 go(function () {
-    //实例化
+    //Instantiation
     $client = new \EasySwoole\HttpClient\HttpClient('http://easyswoole.com');
 });
 ````
 
-### 请求实例：
+### Request instance:
 
 ```php
 <?php
@@ -35,127 +35,127 @@ go(function () {
       * Created by PhpStorm.
       * User: tioncico
       * Date: 19-6-22
-      * Time: 下午2:43
+      * Time: 2:43
       */
      
      include "./vendor/autoload.php";
      \EasySwoole\EasySwoole\Core::getInstance()->initialize();
      go(function () {
-         //实例化
+         //Instantiation
          $client = new \EasySwoole\HttpClient\HttpClient('http://easyswoole.com');
      
-         //发起一个简单get请求
+         //Initiate a simple get request
          $response = $client->get();
          var_dump($response);
      
-         //发起一个简单head请求
+         //Initiate a simple head request
          $response = $client->head();
          var_dump($response);
      
-         //发起一个delete请求
+         //Initiate a delete request
          $response = $client->delete();
      
-         //发起一个put请求
+         //Initiate a put request
          $response = $client->put('testPut');
      
      
-         //发起一个post请求
+         //Initiate a post request
          $response = $client->post([
              'post1' => 'post1'
          ]);
      
-         //发起一个patch请求
+         //Initiate a patch request
          $response = $client->patch('testPath');
      
-         //发起一个option请求
+         //Initiate an option request
          $response = $client->options(['op' => 'op1'], ['head' => 'headtest']);
      
-         //发起post  xml格式请求
+         //Initiate a post, xml format request
          $response = $client->postXml('<xml></xml>');
      
-         //发起post json格式请求
+         //Initiate a post, json format request
          $response = $client->postJson(json_encode(['json' => 'json1']));
      
-         //发起下载请求，请求的内容将直接写入文件，节省一次读取写入的过程
+         //Initiate a download request, the requested content will be directly written to the file, saving one read and write process
          $response = $client->download('./test.html');
      
-         //发起一个post请求
+         //Initiate a post request
          $response = $client->post('postStr');
      
-         //发起一个post 新增文件的请求
+         //Initiate a post request for a new file
          $response = $client->post([
              'post1' => 'post1',
              'file'  => new \CURLFile(__FILE__)
          ]);
      
-         //设置head头
+         //Set the head
          $client->setHeaders([
              'head1' => 'head1',
              'head2' => 'head2'
          ]);
          $client->setHeader('head1', 'head1');
      
-         //设置cookie
+         //Set cookie
          $client->addCookies([
              'cookie1' => 'cookie1',
              'cookie2' => 'cookie2'
          ]);
          $client->addCookie('cookie1', 'cook');
-         //设置form data数据
+         // Set form data data
          $client->setContentTypeFormData();
-         ///设置当前要请求的URL
+         ///Set the current URL to request
          $client->setUrl('http://easyswoole.com');
-         //设置是否开启ssl
+         //Set whether to enable ssl
          $client->setEnableSSL(false);
-         //设置等待超时时间
+         //Set wait timeout
          $client->setTimeout(5);
-         //设置连接超时时间
+         //Set connection timeout
          $client->setConnectTimeout(10);
-         // 启用或关闭HTTP长连接
+         // Enable or disable HTTP long connections
          $client->setKeepAlive(true);
-         //启用或关闭服务器证书验证
-         //可以同时设置是否允许自签证书(默认不允许)
+         // Enable or disable server certificate verification
+         // Can be set at the same time whether to allow self-signed certificate (not allowed by default)
          $client->setSslVerifyPeer(true,true);
-         //设置服务器主机名称
-         //与ssl_verify_peer配置或Client::verifyPeerCert配合使用
+         // Set the server host name
+         // Use with ssl_verify_peer configuration or Client::verifyPeerCert
          $client->setSslHostName('');
-         //设置验证用的SSL证书
+         //Set the SSL certificate for verification
          $client->setSslCafile('');
-         //设置SSL证书目录(验证用)
+         //Set the SSL certificate directory (for verification)
          $client->setSslCapath('');
-         //设置请求使用的证书文件
+         //Set the certificate file used for the request
          $client->setSslCertFile('');
-         //设置请求使用的证书秘钥文件
+         //Set the certificate key file to be used for the request
          $client->setSslKeyFile('');
-         //设置HTTP代理
+         //Set up an HTTP proxy
          $client->setProxyHttp('127.0.0.1','8080','user','pass');
-         //设置Socks5代理
+         //Set up the Socks5 agent
          $client->setProxySocks5('127.0.0.1','8080','user','pass');
-         // 设置端口绑定
-         // 用于客户机有多张网卡的时候
-         // 设置本客户端底层Socket使用哪张网卡和端口进行通讯
+         // Set the port binding
+         // when the client has multiple network cards
+         // Set the client's underlying Socket using which network card and port to communicate
          $client->setSocketBind('127.0.0.1','8090');
-         //直接设置客户端配置
+         //Set client configuration directly
          $client->setClientSetting('timeout',1);
          $client->setClientSetting('keep_alive',true);
-         //直接批量设置客户端配置
+         //Directly set client configuration in batches
          $client->setClientSettings([
              'bind_address'=>'127.0.0.1',
              'bind_port'=>'8090',
          ]);
-         //设置请求方法
+         //Setting request method
          $client->setMethod('POST');
-         //设置为XMLHttpRequest请求
+         //Set to XMLHttpRequest request
          $client->setXMLHttpRequest();
-         //设置为Json请求
+         //Set to Json request
          $client->setContentTypeJson();
-         //设置为Xml请求
+         //Set to Xml request
          $client->setContentTypeXml();
-         //设置为FromData请求
+         //Set to FromData request
          $client->setContentTypeFormData();
-         //设置为FromUrlencoded请求
+         //Set to FromUrlencoded request
          $client->setContentTypeFormUrlencoded();
-         //设置ContentType
+         //Set ContentType
          $client->setContentType(\EasySwoole\HttpClient\HttpClient::CONTENT_TYPE_APPLICATION_XML);
          //
      });

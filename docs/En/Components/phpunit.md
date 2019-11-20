@@ -11,7 +11,7 @@ meta:
 
 Easyswoole/Phpunit 是对 Phpunit 的协程定制化封装，主要为解决自动协程化入口的问题。并屏蔽了Swoole ExitException
 
-## 安装 
+## Installation 
 ```
 composer require easyswoole/phpunit
 ```

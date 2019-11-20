@@ -1,59 +1,59 @@
 ---
-title: 如何实现分布式
+title: How to achieve distributed
 meta:
   - name: description
-    content: EasySwoole分布式负载均衡
+    content: EasySwoole Distributed Load Balancing
   - name: keywords
-    content: easyswoole|分布式|负载均衡
+    content: Easyswoole|distributed|load balancing
 ---
-# 如何实现分布式
-关于最近很多人在询问，如何利用EasySwoole做分布式负载均衡，复杂的就不讲解了，就讲解如何实现最简单的负载均衡。
+# How to achieve distributed
+Recently, many people are asking how to use EasySwoole for distributed load balancing. If the complexity is not explained, explain how to achieve the simplest load balancing.
 
-## 相关知识
+## related information
 
-### DNS轮训
+### DNS rotation
 
-一个域名针对多个ip A记录的解析，DNS服务器将解析请求按照A记录的顺序，逐一分配到不同的IP上，这样就完成了简单的负载均衡。
+A domain name resolves multiple ip A records. The DNS server allocates the resolution requests to different IPs in the order of A records, thus completing simple load balancing.
 
-#### DNS轮询的优点：
+#### Advantages of DNS polling:
 
-- 低成本：只是在DNS服务器上绑定几个A记录，域名注册商一般都免费提供解析服务。
-- 部署简单：就是在网络拓扑进行设备扩增，然后在DNS服务器上添加记录。
+- Low cost: Just bind several A records on the DNS server, and domain registrars generally provide resolution services for free.
+- Simple deployment: device amplification in the network topology, and then add records on the DNS server.
 
-#### DNS轮询的缺点：
+#### Disadvantages of DNS polling:
 
-- 可靠性低
+- Low reliability
     
-    假设一个域名DNS轮询多台服务器，如果其中的一台服务器发生故障，那么所有的访问该服务器的请求将不会有所回应，这是任何人都不愿意看到的。即使从DNS中去掉该服务器的IP，但在Internet上，各地区电信、网通等宽带接入商将众多的DNS存放在缓存中，以节省访问时间，DNS记录全部生效需要几个小时，甚至更久。所以，尽管DNS轮询在一定程度上解决了负载均衡问题，但是却存在可靠性不高的缺点。
+    Suppose a domain name DNS polls multiple servers. If one of the servers fails, all requests to access the server will not respond, which is unwilling to be seen by anyone. Even if the IP of the server is removed from the DNS, on the Internet, broadband access providers such as telecommunications and Netcom in various regions store a large number of DNS in the cache to save access time. It takes several hours or more for the DNS records to take effect. Long. Therefore, although DNS polling solves the load balancing problem to a certain extent, it has the disadvantage of low reliability.
 
-- 负载分配不均匀（有，但不会有那么大的影响）
+- Uneven load distribution (with, but not so much impact)
 
-    DNS负载均衡采用的是简单的轮询算法，不能区分服务器的差异，不能反映服务器的当前运行状态，不能做到为性能较好的服务器多分配请求，甚至会出现客户请求集中在某一台服务器上的情况。DNS服务器是按照一定的层次结构组织的，本地DNS服务器会缓存已解析的域名到IP地址的映射，这会导致使用该DNS服务器的用户在一段时间内访问的是同一台Web服务器，导致Web服务器间的负载不均匀。此外，用户本地计算机也会缓存已解析的域名到IP地址的映射。当多个用户计算机都缓存了某个域名到IP地址的映射时，而这些用户又继续访问该域名下的网页，这时也会导致不同Web服务器间的负载分配不均匀。负载不均匀可能导致的后果有：某几台服务器负荷很低，而另几台服务器负载很高、处理缓慢；配置高的服务器分配到的请求少，而配置低的服务器分配到的请求多。
+    DNS load balancing uses a simple polling algorithm. It does not distinguish between server differences. It does not reflect the current running state of the server. It cannot allocate more requests for servers with better performance. It may even result in client requests being concentrated on one server. On the situation. The DNS server is organized according to a certain hierarchical structure. The local DNS server caches the mapping of the resolved domain name to the IP address. This causes the user who uses the DNS server to access the same Web server for a period of time, resulting in the Web server. The load between the two is uneven. In addition, the user's local computer also caches the mapping of resolved domain names to IP addresses. When multiple user computers cache the mapping of a domain name to an IP address, and these users continue to access the web pages under the domain name, the load distribution between different web servers may also be uneven. The consequences of uneven load may be: some servers have low load, while others have high load and slow processing; high-configuration servers allocate fewer requests, while low-configuration servers allocate more requests.
 
-## 统一网关设计
-假设，一个系统中，可以拆分为A、B、C三个服务，为了从架构层对外统一暴露，那么一般的设立一个网关服务器，全部的应用请求全部从该网关服务器作为流量入口，而网关服务器则按照设定的规则，将请求分发给A、B、C三台服务器，并将结果返回给客户端。对于外界而言，该网关就是一个完整的应用服务。
-- 屏蔽内部实现
-- 做体力活,转发各种包
-- 负载均衡和广播消息的负载均衡(也是体力活)
-- 减少带宽需求.比如把好多个网关架设到一台服务器上.因为某讯的平台,就是每台机器收带宽费,而不是一起收多少带宽流量费.
-- 路由.可以控制客户端消息到内网的走向,分发到不同服务器上面去.
+## Unified gateway design
+Assume that in a system, it can be split into three services: A, B, and C. In order to be uniformly exposed from the architecture layer, a gateway server is generally set up, and all application requests are all from the gateway server as a traffic portal, and the gateway The server distributes the request to the three servers A, B, and C according to the set rules, and returns the result to the client. For the outside world, the gateway is a complete application service.
+- Shield internal implementation
+- Do physical work, forward various packages
+- Load balancing and load balancing of broadcast messages (also manual)
+- Reduce bandwidth requirements. For example, set up multiple gateways to one server. Because the platform of a certain communication is the bandwidth fee for each machine, instead of collecting bandwidth traffic fees together.
+- Routing. You can control the direction of client messages to the intranet and distribute them to different servers.
 
-## 数据中心
+## Data center
 
-典型的一个场景，某业务随着访问量的增长，单机场景下总出现CPU居高不下，甚至是面临死机的风险，为此，最简单粗暴的解决方案（数据库不是系统瓶颈为前提），就是将相同的代码部署到N台机器，利用网关，将请求平均分配到各台机器上。
-而这样处理后，又面临一个问题：用户状态如何在多台机器中共享（随机转发或者是某台机器突然下线的场景）。例如，在经典的HTTP应用中，某个用户在A机器中登录，若为A用户分配的token，只存在于A机器本地中，那么就面临当下次用户请求被分配到B机器的时候，token就会无效，需要用户重新再次登录，很显然，这是非常不合理的。
-而若再让我们自己去实现类似zookeeper一样的东西，来实现自动的数据调度迁移，显然是不现实的。因此，我们引入数据中心模式，实际上这是典型的分布式中master-slave的思想。以php Session为例子，我们可以为N台机器的Session handler设计为redis驱动，连接到一个redis集群。这样，用户不论在A还是B机器登录的token都存储到该redis数据中心中，
-因此不论用户请求被分配到A还是B机器，用户的token一样可以被真实有效的读取到。
+In a typical scenario, as a service grows with the number of visits, there is always a high CPU in the stand-alone scenario, and even the risk of crashing. For this reason, the simplest and most rude solution (the database is not a system bottleneck) is Deploy the same code to N machines and use the gateway to evenly distribute requests to each machine.
+After doing this, there is another problem: how the user state is shared among multiple machines (random forwarding or a scene where a machine suddenly goes offline). For example, in a classic HTTP application, a user logs in to the A machine. If the token assigned to the A user exists only in the local machine A, then the next time the user request is assigned to the B machine, the token is It will be invalid and requires the user to log in again. Obviously, this is very unreasonable.
+And if we let ourselves achieve things like zookeeper, to achieve automatic data scheduling migration, it is obviously unrealistic. Therefore, we introduce the data center model, which is actually the idea of a typical distributed master-slave. Taking php Session as an example, we can design a Session driver for N machines as a redis driver and connect to a redis cluster. In this way, the user's token registered in the A or B machine is stored in the redis data center.
+Therefore, regardless of whether the user request is assigned to the A or B machine, the user's token can be read as it is.
 
-## 实战操作
+## Practical operation
 
-### HTTP应用
-其实我觉得，大多数人的HTTP应用，基本上利用网关分发+数据中心设计，基本就可以解决了，而且大多网上也有相应的教程，因此我这里就不详细说明。
+### HTTP application
+In fact, I think that most people's HTTP applications basically use the gateway distribution + data center design, basically can be solved, and most of the online also have corresponding tutorials, so I will not elaborate here.
 
-### SOCKET 应用
+### SOCKET application
 
-我们以WEB SOCKET作为例子，假设在某游戏大型应用中，为了实现均衡负载，我们使用了网关，例如Nginx对用户连接进行随机分发到不同的机器。
-而此刻，一个问题就是，在swoole中，每个链接都是以一个自增的fd标识来标记的，多个swoole服务中，fd是会重复的。因此，在多机器的情况下，我们可以在redis或者是其他的存储中，存储以下数据结构：
+We take WEB SOCKET as an example. Let's assume that in a large application of a game, in order to achieve a balanced load, we use a gateway, such as Nginx, to randomly distribute user connections to different machines.
+At the moment, one problem is that in swoole, each link is marked with a self-incrementing fd identifier. In multiple swoole services, fd is repeated. Therefore, in the case of multiple machines, we can store the following data structures in redis or other storage:
 ```json
 {
     "userId":"xxxxxx",
@@ -66,5 +66,5 @@ meta:
     "fd":"fd"
 }
 ```
-而我们的Server，可以开一个Http服务，在action里面接收fd,参数，然后执行send(fd,data)操作。假设A、B用户分别连接到A1,B1这两台机器，而且此时，刚好，A,B两个人分配到的fd可能都是相同的，例如，都是1。
-=若此时，想给任意一个用户发消息，那么就去数据中心查询得到得到用户所在的机器信息，那么久可以通过Http调用或者是其他的RPC方式来实现跨机器推送
+And our Server, you can open an Http service, receive fd, parameters in the action, and then execute the send (fd, data) operation. Assume that the A and B users are connected to the two machines A1 and B1 respectively, and at this time, the fd assigned by the two people A and B may be the same, for example, all are 1.
+If you want to send a message to any user at this time, then go to the data center to get the information about the machine where the user is located. So, you can use the Http call or other RPC methods to achieve cross-machine push.

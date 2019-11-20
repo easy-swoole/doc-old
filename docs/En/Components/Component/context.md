@@ -8,10 +8,13 @@ meta:
 ---
 
 # Context
-ContextManager上下文管理器  
-在swoole中,由于多个协程是并发执行的，因此不能使用类静态变量/全局变量保存协程上下文内容。使用局部变量是安全的，因为局部变量的值会自动保存在协程栈中，其他协程访问不到协程的局部变量。  
+ContextManager
 
-##  基础例子
+In The swoole,Because multiple coroutines execute concurrently, you cannot use class static variables/global variables to store the coroutine context content.
+
+It is safe to use local variables，Because the value of the local variable is automatically stored in the coroutine stack, no other coroutine can access the local variable of the coroutine.
+
+##  Based on example
 ```php
 use EasySwoole\Component\Context\ContextManager;
 go(function (){
@@ -24,11 +27,11 @@ go(function (){
     var_dump(ContextManager::getInstance()->get('key')." out");
 });
 ```
-我们可以利用上下文管理器来实现协程上下文的隔离
+We can use the context manager to achieve the isolation of the coroutine context
 
-## 注册一个处理项
+## Register a processing item
 
-例如，当我们有一个key,希望在协程环境中，get的时候执行一次创建，在协程退出的时候可以进行回收，那么我们就可以注册一个上下文处理项来实现。该场景可以用于协程内数据库短连接管理。
+For example,When we have a key, we want to be in the coroutine environment，Perform a create when you get，It can be reclaimed when the coroutine exits，Then we can register a context processing item to do that.This scenario can be used for database short connection management within a coroutine.
 
 ```php
 use EasySwoole\Component\Context\ContextManager;
@@ -61,5 +64,5 @@ go(function (){
 });
 ```
 
-### 实现原理
-context上下文管理器,是通过协程id作为key,进程单例模式,实现的,确保每个协程操作的都是当前协程数据,并通过defer,实现了协程结束后自动销毁,用户无需进行任何的回收处理,只管用就行
+### Implementation principle
+Context manager,Is by the coroutine id as the key,Process singleton pattern implemented,Ensure that each coroutine operates on the current coroutine data,With defer, the process is automatically destroyed after the end of the process, so the user doesn't need to do any recycling, just use it.

@@ -1,46 +1,46 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 
-## 有序集合操作方法
+## Ordered collection operation method
 
-方法列表
+Method list
 
-| 方法名称         | 参数                                                               | 说明                                                          | 备注 |
+| Method name         | Parameter                                                               | Description                                                          | Notes |
 |:-----------------|:-------------------------------------------------------------------|:-------------------------------------------------------------|:----|
-| zAdd             | $key, $score1, $member1, ...$data                                  | 向有序集合添加一个或多个成员，或者更新已存在成员的分数             |     |
-| zCard            | $key                                                               | 获取有序集合的成员数                                            |     |
-| zCount           | $key, $min, $max                                                   | 计算在有序集合中指定区间分数的成员数                             |     |
-| zInCrBy          | $key, $increment, $member                                          | 有序集合中对指定成员的分数加上增量 increment                     |     |
-| zInTerStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | 计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中 |     |
-| zLexCount        | $key, $min, $max                                                   | 在有序集合中计算指定字典区间内成员数量                            |     |
-| zRange           | $key, $start, $stop, $withScores = false                           | 通过索引区间返回有序集合指定区间内的成员                          |     |
-| zRangeByLex      | $key, $min, $max, ...$data                                         | 通过字典区间返回有序集合的成员                                   |     |
-| zRangeByScore    | $key, $min, $max, array $options                                   | 通过分数返回有序集合指定区间内的成员                             |     |
-| zRank            | $key, $member                                                      | 返回有序集合中指定成员的索引                                     |     |
-| zRem             | $key, $member, ...$members                                         | 移除有序集合中的一个或多个成员                                   |     |
-| zRemRangeByLex   | $key, $min, $max                                                   | 移除有序集合中给定的字典区间的所有成员                            |     |
-| zRemRangeByRank  | $key, $start, $stop                                                | 移除有序集合中给定的排名区间的所有成员                            |     |
-| zRemRangeByScore | $key, $min, $max                                                   | 移除有序集合中给定的分数区间的所有成员                            |     |
-| zRevRange        | $key, $start, $stop, $withScores = false                           | 返回有序集中指定区间内的成员，通过索引，分数从高到低               |     |
-| zRevRangeByScore | $key, $max, $min, array $options                                   | 返回有序集中指定分数区间内的成员，分数从高到低排序                 |     |
-| zRevRank         | $key, $member                                                      | 返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序   |     |
-| zScore           | $key, $member                                                      | 返回有序集中，成员的分数值                                      |     |
-| zUnionStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | 计算给定的一个或多个有序集的并集，并存储在新的 key 中              |     |
-| zScan            | $key,&$cursor, $pattern=null, $count=null                          | 迭代有序集合中的元素（包括元素成员和元素分值）                     |     |
+| zAdd             | $key, $score1, $member1, ...$data                                  | Add one or more members to an ordered collection, or update the scores of existing members    |     |
+| zCard            | $key                                                               | Get the number of members of an ordered collection                  |     |
+| zCount           | $key, $min, $max                                                   | Calculate the number of members specifying the interval score in an ordered collection           |     |
+| zInCrBy          | $key, $increment, $member                                          | The fraction of the specified member in the ordered collection plus the increment increment            |     |
+| zInTerStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | Computes the intersection of a given set of one or more ordered sets and stores the result set in a new ordered set key |     |
+| zLexCount        | $key, $min, $max                                                   | Calculate the number of members in a specified dictionary interval in an ordered collection           |     |
+| zRange           | $key, $start, $stop, $withScores = false                           | Returns the members of the specified range in the ordered collection through the index interval          |     |
+| zRangeByLex      | $key, $min, $max, ...$data                                         | Returning members of an ordered collection through a dictionary interval              |     |
+| zRangeByScore    | $key, $min, $max, array $options                                   | Returning the members of the specified range by the ordered set by the score           |     |
+| zRank            | $key, $member                                                      | Returns the index of the specified member in the ordered collection               |     |
+| zRem             | $key, $member, ...$members                                         | Remove one or more members from an ordered collection              |     |
+| zRemRangeByLex   | $key, $min, $max                                                   | Remove all members of a given dictionary interval in an ordered collection           |     |
+| zRemRangeByRank  | $key, $start, $stop                                                | Remove all members of a given ranking interval from an ordered collection           |     |
+| zRemRangeByScore | $key, $min, $max                                                   | Remove all members of a given score interval in an ordered collection           |     |
+| zRevRange        | $key, $start, $stop, $withScores = false                           | Returns the members in the specified interval in the ordered set, through the index, the score is from high to low     |     |
+| zRevRangeByScore | $key, $max, $min, array $options                                   | Returns the members in the specified fractional interval in the ordered set, sorting the scores from high to low      |     |
+| zRevRank         | $key, $member                                                      | Returns the rank of the specified member in the ordered collection, the ordered members are sorted by the fractional value (large to small) |     |
+| zScore           | $key, $member                                                      | Returns the ordered set, the member's score               |     |
+| zUnionStore      | $destination, array $keys, array $weights = [], $aggregate = 'SUM' | Computes the union of a given set of one or more ordered sets and stores them in a new key       |     |
+| zScan            | $key,&$cursor, $pattern=null, $count=null                          | Iterate over the elements in an ordered collection (including element members and element scores)        |     |
 
 
 ::: warning
- 在集群模式中,zInTerStore,zUnionStore 等方法不能使用
+ In cluster mode, methods such as zInTerStore, zUnionStore cannot be used.
 :::
 
 
-## 实例
+## Instance
 ```php
 go(function (){
 	$redis =  new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([

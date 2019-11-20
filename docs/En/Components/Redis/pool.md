@@ -1,28 +1,28 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-# Redis连接池示例
-## redis-pool组件
-可直接安装[redis-pool组件](../redisPool.md)实现连接池:
+# Redis Connection Pool Example
+## redis-pool component
+The connection pool can be implemented by directly installing [redis-pool component] (../redisPool.md):
 
 ```shell
 composer require easyswoole/redis-pool
 ```
 
 
-## 安装 easyswoole/pool 组件自定义实现:
+## Install the easyswoole/pool component custom implementation:
 
 ```shell
 composer require easyswoole/pool
 ```
 
-## 新增redisPool管理器
-新增文件`/App/Pool/RedisPool.php`
+## Add redisPool manager
+Add file `/App/Pool/RedisPool.php`
 
 ```php
 <?php
@@ -45,7 +45,7 @@ class RedisPool extends AbstractPool
     protected $redisConfig;
 
     /**
-     * 重写构造函数,为了传入redis配置
+     * Override the constructor in order to pass in the redis configuration
      * RedisPool constructor.
      * @param Config      $conf
      * @param RedisConfig $redisConfig
@@ -59,13 +59,13 @@ class RedisPool extends AbstractPool
 
     protected function createObject()
     {
-        //根据传入的redis配置进行new 一个redis
+        //New redis based on the incoming redis configuration
         $redis = new Redis($this->redisConfig);
         return $redis;
     }
 }
 ```
-注册到Manager中:
+Register to the Manager:
 ```php
 $config = new \EasySwoole\Pool\Config();
 
@@ -79,29 +79,29 @@ $redisConfig2 = new \EasySwoole\Redis\Config\RedisConfig(\EasySwoole\EasySwoole\
 
 ```
 
-调用(可在控制器中全局调用):
+Call (can be called globally in the controller):
 ```php
 go(function (){
    
     $redis1=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
     $redis2=\EasySwoole\Pool\Manager::getInstance()->get('redis1')->getObj();
 
-    $redis1->set('name','仙士可');
+    $redis1->set('name','Alan');
     var_dump($redis1->get('name'));
 
-    $redis2->set('name','仙士可2号');
+    $redis2->set('name','Allan');
     var_dump($redis2->get('name'));
 
-    //回收对象
+    //Recycling object
     \EasySwoole\Pool\Manager::getInstance()->get('redis1')->recycleObj($redis1);
     \EasySwoole\Pool\Manager::getInstance()->get('redis2')->recycleObj($redis2);
 });
 ```
 
 ::: warning
-详细用法可查看 [pool通用连接池](../Pool/introduction.md)
+For detailed usage, see [pool universal connection pool] (../Pool/introduction.md)
 :::
 
 ::: warning
-本文 redis连接池 基于 [pool通用连接池](../Pool/introduction.md) 实现  
+This article redis connection pool is based on [pool universal connection pool] (../Pool/introduction.md)
 :::

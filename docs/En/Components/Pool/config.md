@@ -1,21 +1,21 @@
 ---
-title: EasySwoole通用连接池
+title: Connection pool configuration
 meta:
   - name: description
-    content: EasySwoole通用连接池,协程连接池,easyswoole连接池
+    content: Connection pool configuration
   - name: keywords
-    content: easyswoole|连接池|swoole 连接池|通用连接池
+    content: Connection pool configuration
 ---
 
-## 连接池配置
-在实例化一个连接池对象时,需要传入一个连接池配置对象`EasySwoole\Pool\Config`,该对象的属性如下:
+## Connection pool configuration
+When instantiating a connection pool object, you need to pass in a connection pool configuration object `EasySwoole\Pool\Config`. The properties of the object are as follows:
 
-| 配置项             | 默认值  | 说明                    | 备注                                                                                  |
-|:-------------------|:--------|:------------------------|:--------------------------------------------------------------------------------------|
-| $intervalCheckTime | 30*1000 | 定时器执行频率           | 用于定时执行连接池对象回收,创建操作                                                       |
-| $maxIdleTime       | 15      | 连接池对象最大闲置时间(秒) | 超过这个时间未使用的对象将会被定时器回收                                                  |
-| $maxObjectNum      | 20      | 连接池最大数量           | 每个进程最多会创建$maxObjectNum连接池对象,如果对象都在使用,则会返回空,或者等待连接空闲        |
-| $minObjectNum      | 5       | 连接池最小数量(热启动)    | 当连接池对象总数低于$minObjectNum时,会自动创建连接,保持连接的活跃性,让控制器能够尽快的获取连接 |
-| $getObjectTimeout  | 3.0     | 获取连接池的超时时间      | 当连接池为空时,会等待$getObjectTimeout秒,如果期间有连接空闲,则会返回连接对象,否则返回null    |
-| $extraConf         |         | 额外配置信息             | 在实例化连接池前,可把一些额外配置放到这里,例如数据库配置信息,redis配置等等                   |
+| Configuration Item | Default | Description | Notes |
+|:-------------------|:--------|:------------------------|:------------------------------------------------------|
+| $intervalCheckTime | 30*1000 | Timer Execution Frequency | Used to periodically perform connection pool object reclamation, create operations |
+| $maxIdleTime       | 15       | Connection pool object maximum idle time (seconds)        | Objects that are not used beyond this time will be reclaimed by the timer |
+| $maxObjectNum      | 20       | Maximum number of connection pools                        | Each process creates up to $maxObjectNum connection pool objects, or nulls if the objects are in use, or wait for connections to be idle |
+| $minObjectNum     | 5         | Minimum number of connection pools (hot start)            | When the total number of connection pool objects is less than $minObjectNum, the connection is automatically created, keeping the connection active and allowing the controller to get the connection as soon as possible |
+$getObjectTimeout   | 3.0       | Get the connection pool timeout                           | When the connection pool is empty, it will wait for $getObjectTimeout seconds, if there is a connection idle, the connection object will be returned, otherwise return null |
+| $extraConf        |           | Additional Configuration Information                      | Before you instantiate a connection pool, you can put some extra configuration here, such as database configuration information, redis configuration, etc. |
 

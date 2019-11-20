@@ -2,22 +2,22 @@
 title: Tracker
 meta:
   - name: description
-    content: Easyswoole提供了一个基础的追踪组件，方便用户实现基础的服务器状态监控，与调用链记录。
+    content: Easyswoole provides a basic tracking component that allows users to implement basic server status monitoring and call chain logging.
   - name: keywords
     content: easyswoole|Tracker
 ---
 
 # Tracker
 
-Easyswoole提供了一个基础的追踪组件，方便用户实现基础的服务器状态监控，与调用链记录。
+Easyswoole provides a basic tracking component that allows users to implement basic server status monitoring and call chain logging.
 
-## 安装
+## Installation
 ```
 composer require easyswoole/tracker
 ```
 
-## 调用链
-Easyswoole的调用链跟踪是一个以类似有序的树状链表的解构实现的，解构如下：
+## Call chain
+Easyswoole's call chain tracking is implemented by deconstruction of a similar ordered tree list, deconstructed as follows:
 
 ```php
 struct Point{
@@ -39,33 +39,33 @@ struct Point{
 }
 ```
 
-### 示例代码
+### Sample code
 ```php
 
 use EasySwoole\Tracker\Point;
 use EasySwoole\Component\WaitGroup;
 use EasySwoole\Tracker\PointContext;
 /*
- * 假设我们的调用链是这样的
+ * Suppose our call chain is like this
  * onRequest  ->> actionOne ->> actionOne call remote Api(1,2)  ->>  afterAction
  */
 
 go(function (){
     /*
-     * 创建入口
+     * Create an entry
      */
     $onRequest = new Point('onRequest');
-    //记录请求参数，并模拟access log
+    //Record request parameters and simulate access log
     \co::sleep(0.01);
     $onRequest->setStartArg([
         'requestArg' => 'requestArgxxxxxxxx',
         'accessLogId'=>'logIdxxxxxxxxxx'
     ]);
-    //onRequest完成
+    //onRequest completed
     $onRequest->end();
-    //进入 next actionOne
+    //Go to next actionOne
     $actionOne = $onRequest->next('actionOne');
-        //action one 进入子环节调用
+        //action one Enter the sub-link call
         $waitGroup = new WaitGroup();
         //sub pointOne
         $waitGroup->add();
@@ -75,7 +75,7 @@ go(function (){
                 $subOne->end();
                 $waitGroup->done();
         });
-        //sub pointTwo,并假设失败
+        //sub pointTwo,And assume failure
         $waitGroup->add();
         $subTwo = $actionOne->appendChild('subTwo');
             go(function ()use($subTwo,$waitGroup){
@@ -85,20 +85,20 @@ go(function (){
             });
         $waitGroup->wait();
     $actionOne->end();
-    //actionOne结束，进入afterAction
+    //End of actionOne，Enter afterAction
     $afterAction = $actionOne->next('afterAction');
-    //模拟响应记录
+    //Analog response record
     \co::sleep(0.01);
     $afterAction->end($afterAction::END_SUCCESS,['log'=>'success']);
     /*
-     * 从入口开始打印调用链
+     * Print the call chain from the entrance
      */
     echo Point::toString($onRequest);
 });
-//以上代码等价于如下
+//The above code is equivalent to the following
 go(function (){
     PointContext::getInstance()->createStart('onRequest')->next('actionOne')->next('afterAction');
-    //记录请求参数，并模拟access log
+    //Record request parameters and simulate access log
     \co::sleep(0.01);
     PointContext::getInstance()->find('onRequest')->setStartArg([
         'requestArg' => 'requestArgxxxxxxxx',
@@ -113,7 +113,7 @@ go(function (){
         $subOne->end();
         $waitGroup->done();
     });
-    //sub pointTwo,并假设失败
+    //sub pointTwo,And assume failure
     $waitGroup->add();
     go(function ()use($subTwo,$waitGroup){
         \co::sleep(1);
@@ -122,17 +122,17 @@ go(function (){
     });
     $waitGroup->wait();
     PointContext::getInstance()->find('actionOne')->end();
-    //模拟响应记录
+    //Analog response record
     \co::sleep(0.01);
     PointContext::getInstance()->find('afterAction')->end(Point::END_SUCCESS,['log'=>'success']);
     /*
-    * 从入口开始打印调用链
+    * Print the call chain from the entrance
     */
     echo Point::toString(PointContext::getInstance()->startPoint());
 });
 ```
 
-以上代码输出结果：
+The above code output results:
 ```php
 #
 PointName:onRequest
@@ -203,10 +203,10 @@ NextPoint:None
 
 
 ::: warning 
- 如果想以自己的格式记录到数据库，可以具体查看Point实现的方法，每个Point都有自己的Id
-:::
-
-### 基础实例之HTTP API请求追踪
+ If you want to record to the database in your own format, you can specifically look at the method implemented by Point. Each Point has its own Id.
+ :::
+ 
+ ### Basic API HTTP API Request Tracking
 
 EasySwooleEvent.php
 
@@ -269,10 +269,10 @@ class Index extends Controller
     protected function onRequest(?string $action): ?bool
     {
         /*
-         * 调用关系  HttpRequest->OnRequest
+         * Call relationship  HttpRequest->OnRequest
          */
         $point = PointContext::getInstance()->next('ControllerOnRequest');
-        //假设这里进行了权限验证，并模拟数据库耗时
+        //Assume that the permission verification is performed here and the time spent in the simulation database is simulated.
         \co::sleep(0.01);
         $point->setEndArg([
             'userId'=>'xxxxxxxxxxx'
@@ -283,7 +283,7 @@ class Index extends Controller
 
     function index()
     {
-        //模拟调用第三方Api,调用关系  OnRequest->sub(subApi1,subApi2)
+        //Simulation calls third-party Api, calling relationship  OnRequest->sub(subApi1,subApi2)
         $actionPoint = PointContext::getInstance()->next('indexAction');
         $wait = new WaitGroup();
         $subApi = $actionPoint->appendChild('subOne');
@@ -310,7 +310,7 @@ class Index extends Controller
 }
 ```
 
-以上每次请求会输出如下格式：
+Each request above will output the following format:
 ```php
 #
 PointName:onRequest
@@ -383,11 +383,11 @@ Children:
         NextPoint:None
 NextPoint:None
 ```
-### Api调用链记录
+### Api call chain record
 ```
 $array = Point::toArray($point);
 ```
-可以把一个入口点转为一个数组。例如我们可以在MYSQL数据库中存储以下关键结构：
+You can turn an entry point into an array. For example, we can store the following key structures in the MYSQL database:
 ```php
 CREATE TABLE `api_tracker_point_list` (
   `pointd` varchar(18) NOT NULL,
@@ -405,32 +405,32 @@ CREATE TABLE `api_tracker_point_list` (
 ```
 
 ::: warning 
- 其余请求参数可以自己记录。
+ The remaining request parameters can be recorded by themselves.
 :::
 
-核心字段在pointId，parentId与isNext，status 这四个个字段,例如，我想得到哪次调用链超时，那么就是直接
+The core fields are in the four fields of pointId, parentId and isNext, status. For example, I want to get the call chain timeout, then it is directly
 ```
 where status = fail
 ```
-如果想看哪次调用耗时多少，那么可以
+If you want to see which call takes time, you can
 ```
 where spendTime > 3
 ```
 
 ::: warning 
- spendTime 是用startTime和endTime计算
+ spendTime is calculated with startTime and endTime
 :::
 
 
-## 基础服务器信息
-通过执行shell获取基础的服务器状态信息，例如获取硬盘分区信息：
+## Basic Server Information
+Obtain basic server state information by executing the shell, for example, obtaining hard disk partition information:
 ```php
 $list = \EasySwoole\Tracker\Shell\Shell::diskPartitions();
 foreach ($list as $item){
    var_dump($item->toArray());
 }
 ```
-支持的方法列表如下：
+The list of supported methods is as follows:
 
 - arpCache() 
 - bandWidth() 
@@ -449,5 +449,5 @@ foreach ($list as $item){
 
 
 ::: warning 
- 注意，以上方法可能需要root权限，另外对mac不兼容 
+ Note that the above method may require root privileges and is not compatible with mac.
 :::

@@ -46,3 +46,17 @@ var_dump($ip2);
     }
 ```
 
+## 如何启用Https
+通常建议使用Nginx 或者Lb来配置证书，将https请求解析为http 反代到swoole 
+如果你仅测试使用，可以在配置文件中添加和修改以下配置来启用https
+
+```php
+'MAIN_SERVER' => [
+        'SOCK_TYPE' => SWOOLE_TCP | SWOOLE_SSL, // 默认是 SWOOLE_TCP
+        'SETTING' => [
+            'ssl_cert_file' => '证书路径，仅支持.pem格式',
+            'ssl_key_file' => '私钥路径',
+        ]
+    ],
+
+```

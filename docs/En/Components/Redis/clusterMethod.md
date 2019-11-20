@@ -1,41 +1,41 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client, implemented by swoole coroutine client, covering redis 99% method
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole redis coroutine client|swoole Redis|redis coroutine
 ---
-## 集群相关方法
-方法列表
+## Cluster related methods
+Method list
 
-| 方法名称                   | 参数                               | 说明                                               | 备注 |
+| Method name                   | Parameter                               | Description                                               | Notes |
 |:---------------------------|:-----------------------------------|:--------------------------------------------------|:----|
-| clusterNodes               |                                    | 获取集群节点                                        |     |
-| clusterAddSlots            | $slots                             | 集群槽位变更,$slots可以为字符串,可以为数组            |     |
-| clusterCountFailureReports | $nodeId                            | 集群计数失败报告                                    |     |
-| clusterCountKeySinSlot     | $slot                              | 返回指定的 Redis Cluster 哈希槽中的键的数量。         |     |
-| clusterDelSlots            | $slot                              | 删除一个哈希槽                                      |     |
-| clusterFailOver            | $option = null                     | 手动故障转移                                        |     |
-| clusterForget              | $nodeId                            | 删除指定的节点。                                    |     |
-| clusterGetKeySinSlot       | $slot, $count                      | 返回存储节点中的密钥名称数组，并哈希到指定的哈希槽。    |     |
-| clusterInfo                |                                    | 集群信息                                           |     |
-| clusterKeySlot             | $key                               | 返回key的集群槽                                     |     |
-| clusterMeet                | $ip, $port                         | 节点连接到工作群集。                                |     |
-| clusterReplicate           | $nodeId                            | 集群复制                                           |     |
-| clusterReset               | $option = null                     | 集群重置                                           |     |
-| clusterSaveConfig          |                                    | 强制节点将nodes.conf配置保存到磁盘上。               |     |
-| clusterSetConfigEpoch      | $configEpoch                       | 在新节点中设置特定的配置时期                         |     |
-| clusterSetSlot             | $slot, $subCommand, $nodeId = null | 更改接收节点中散列槽的状态                           |     |
-| clusterSlaves              | $nodeId                            | 获取从指定主节点复制的从节点列表。                    |     |
-| clusterSlots               |                                    | 返回有关哪些集群插槽映射到哪些 Redis 实例的详细信息。。 |     |
-| readonly                   |                                    | 启用读取查询以连接到 Redis 群集从属节点。             |     |
-| readwrite                  |                                    | 禁用与 Redis 集群从属节点的连接的读取查询。                                                  |     |
+| clusterNodes               |                                    | Get cluster nodes                |     |
+| clusterAddSlots            | $slots                             | The cluster slot is changed. $slots can be a string and can be an array.       |     |
+| clusterCountFailureReports | $nodeId                            | Cluster count failure report              |     |
+| clusterCountKeySinSlot     | $slot                              | Returns the number of keys in the specified Redis Cluster hash slot.         |     |
+| clusterDelSlots            | $slot                              | Delete a hash slot               |     |
+| clusterFailOver            | $option = null                     | Manual failover                |     |
+| clusterForget              | $nodeId                            | Delete the specified node.              |     |
+| clusterGetKeySinSlot       | $slot, $count                      | Returns an array of key names in the storage node and hashes to the specified hash slot.|     |
+| clusterInfo                |                                    | Cluster information                 |     |
+| clusterKeySlot             | $key                               | Return the cluster slot of the key                |     |
+| clusterMeet                | $ip, $port                         | The node is connected to a working cluster.            |     |
+| clusterReplicate           | $nodeId                            | Cluster replication                 |     |
+| clusterReset               | $option = null                     | Cluster reset                 |     |
+| clusterSaveConfig          |                                    | Force the node to save the nodes.conf configuration to disk.         |     |
+| clusterSetConfigEpoch      | $configEpoch                       | Set a specific configuration period in the new node         |     |
+| clusterSetSlot             | $slot, $subCommand, $nodeId = null | Change the state of the hash slot in the receiving node          |     |
+| clusterSlaves              | $nodeId                            | Gets a list of slave nodes copied from the specified master node.       |     |
+| clusterSlots               |                                    | Returns details about which cluster slots are mapped to which Redis instances.。 |     |
+| readonly                   |                                    | Enable read queries to connect to Redis cluster slave nodes.       |     |
+| readwrite                  |                                    | A read query that disables connections to Redis cluster slave nodes.                                             |     |
 
 
 
 
-## 实例
+## Instance
 ```php
 go(function () {
     $redis = new \EasySwoole\Redis\RedisCluster(new \EasySwoole\Redis\Config\RedisClusterConfig([
@@ -86,5 +86,5 @@ go(function () {
 ```
 
 ::: warning
- 由于集群方法运行较为复杂,需要操作不同的客户端实现某种方法的实例,所以本示例只提供了部分代码,没有全部,可自行调用测试
+ Because the cluster method is more complicated and needs to operate different clients to implement an instance of a certain method, this example only provides some code, not all, you can call the test yourself.
 :::

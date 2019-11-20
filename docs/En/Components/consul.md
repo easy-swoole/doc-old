@@ -1,28 +1,28 @@
 ---
-title: consul协程客户端
+title: Consul coroutine client
 meta:
   - name: description
-    content: Easyswoole提供了一个协程安全的consul协程版本客户端
+    content: Easyswoole provides a coroutine secure console version client
   - name: keywords
-    content: easyswoole|consul|consul协程版本客户端
+    content: easyswoole|consul|Consul coroutine version client
 ---
 
 # Consul
 
-Easyswoole 提供了一个协程安全的consul协程版本客户端，方便用户做分布式的微服务开发。
+Easyswoole provides a coroutine secure console version client that facilitates distributed microservice development.
 
-## 安装
+## Installation
 ```
 composer require easyswoole/consul
 ```
-## 使用方式
-* 使用下面的接口方式，都需要先给Consul注入Config配置。
-* 接口只展示用法，具体的命名空间需要开发者自己引入
+## Way of use
+* Use the following interface methods, you need to first inject Config configuration into Consul.
+* Interfaces only show usage, specific namespaces need to be introduced by developers themselves
 ```php
 use EasySwoole\Consul\Config;
 use EasySwoole\Consul\Consul;
 
-// config默认  127.0.0.1:8500/v1
+// Config default  127.0.0.1:8500/v1
 $config = new Config([
     'IP'       => '127.0.0.1',
     'port'     => '8500',
@@ -30,7 +30,7 @@ $config = new Config([
 ]);
 $consul = new Consul($config);
 
-// 两种写法，结果相同
+// Two ways to write the same result
 $config = new Config();
 $config->setIP('127.0.0.1');
 $config->setPort('8500');
@@ -388,7 +388,7 @@ $this->consul->agent()->checks($checks);
 
 // Register Check
 $register = new Register([
-    'name' => 'Memory_utilization', // 不可以出现空格或者其他url中不允许出现的特殊字符，否则取消注册的check_id会报400 error
+    'name' => 'Memory_utilization', // No special characters such as spaces or other urls are allowed. Otherwise, the unchecked check_id will report 400 error.
     "notes" => "Ensure we don't oversubscribe memory",
     "DeregisterCriticalServiceAfter" => "90m",
     "Args" => ["/usr/local/bin/check_mem.py"],

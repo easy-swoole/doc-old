@@ -2,24 +2,24 @@
 title: Hash
 meta:
   - name: description
-    content: 用于快速处理哈希密码以及数据完整性校验等场景。
+    content: Used to quickly process hash passwords and data integrity check scenarios.
   - name: keywords
-    content: easyswoole|组件库|杂项工具|Hash
+    content: Easyswoole|Component Library|Miscellaneous Tools|Hash
 ---
 
 # Hash
 
 
 
-## 用途
+## Use
 
-用于快速处理哈希密码以及数据完整性校验等场景
+Used to quickly process hash passwords and data integrity check scenarios
 
 
 
-## 核心对象类
+## Core Object Class
 
-实现该组件功能需加载核心类：
+To implement this component function you need to load the core class:
 
 ```php
 EasySwoole\Utility\Hash
@@ -27,37 +27,36 @@ EasySwoole\Utility\Hash
 
 
 
-## 核心对象方法
+## Core Object Method
 
 
 
 #### makePasswordHash
 
-从一个明文值生产哈希
+Produce a hash from a plaintext value
 
-- mixed $value 需要生产哈希的原文
-- mixed $cost 递归的层数
+- mixed $value needs to produce the original text of the hash
+- mixed $cost recursive layers
 
 ```php
-static function makePasswordHash($value, $cost = 10)
+Static function makePasswordHash($value, $cost = 10)
 ```
 
 
 
 #### validatePasswordHash
 
-校验明文值与哈希是否匹配
+Check if the plaintext value matches the hash
 
-- mixed $value 原文
-- mixed $cost 哈希加密文
-
+- mixed $value
+- mixed $cost hash encrypted
 ```php
 static function validatePasswordHash($value, $hashValue)
 ```
 
 
 
-## 如何使用
+## How to use
 
 ```php
 <?php
@@ -65,7 +64,7 @@ static function validatePasswordHash($value, $hashValue)
  * Created by PhpStorm.
  * User: root
  * Date: 19-1-9
- * Time: 上午10:10
+ * Time: 10:10
  */
 
 require './vendor/autoload.php';
@@ -76,7 +75,7 @@ var_dump($hash);
 var_dump(\EasySwoole\Utility\Hash::validatePasswordHash($password, $hash));
 
 /**
- * 输出结果:
+ * Output results:
  * string(60) "$2y$10$ESx0z8TGSJpMI3Hgr6nJJOdbretS2TBqv4d5L0XjlTkSjSiCiq/f6"
  * bool(true) 
  */

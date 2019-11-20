@@ -1,18 +1,18 @@
 ---
-title: 服务热重启
+title: Service hot restart
 meta:
   - name: description
-    content: easyswoole,服务热重启
+    content: Easyswoole, service hot restart
   - name: keywords
-    content: easyswoole|服务热重启
+    content: Easyswoole|service hot restart
 ---
-## 服务热重启
+## Service hot restart
 
-由于 `swoole` 常驻内存的特性，修改文件后需要重启worker进程才能将被修改的文件重新载入内存中，我们可以自定义Process的方式实现文件变动自动进行服务重载
+Due to the characteristics of `swoole` resident memory, after modifying the file, you need to restart the worker process to reload the modified file into memory. We can customize the process to implement file change and automatically perform service overloading.
 
-## 热重载进程
+## Hot overload process
 
-新建文件 `App/Process/HotReload.php` 并添加如下内容，也可以放在其他位置，请对应命名空间
+Create a new file `App/Process/HotReload.php` and add the following content, or you can put it in another location, please correspond to the namespace.
 
 ```php
 <?php
@@ -33,7 +33,7 @@ use Swoole\Table;
 use Swoole\Timer;
 
 /**
- * 暴力热重载
+ * Violent hot overload
  * Class HotReload
  * @package App\Process
  */
@@ -43,26 +43,26 @@ class HotReload extends AbstractProcess
     protected $table;
     protected $isReady = false;
 
-    protected $monitorDir; // 需要监控的目录
-    protected $monitorExt; // 需要监控的后缀
+    protected $monitorDir; // Directory to be monitored
+    protected $monitorExt; // Suffix to be monitored
 
     /**
-     * 启动定时器进行循环扫描
+     * Start timer for cyclic scan
      */
     public function run($arg)
     {
-        // 此处指定需要监视的目录 建议只监视App目录下的文件变更
+        // Specify the directory to be monitored here. It is recommended to only monitor file changes in the App directory.
         $this->monitorDir = !empty($arg['monitorDir']) ? $arg['monitorDir'] : EASYSWOOLE_ROOT . '/App';
 
-        // 指定需要监控的扩展名 不属于指定类型的的文件 无视变更 不重启
+        // Specify the extension to be monitored, not the file of the specified type, ignore the change, do not restart
         $this->monitorExt = !empty($arg['monitorExt']) && is_array($arg['monitorExt']) ? $arg['monitorExt'] : ['php'];
 
         if (extension_loaded('inotify') && empty($arg['disableInotify'])) {
-            // 扩展可用 优先使用扩展进行处理
+            // Extension available, prioritize processing with extensions
             $this->registerInotifyEvent();
             echo "server hot reload start : use inotify\n";
         } else {
-            // 扩展不可用时 进行暴力扫描
+            // Violent scanning when extensions are not available
             $this->table = new Table(512);
             $this->table->column('mtime', Table::TYPE_INT, 4);
             $this->table->create();
@@ -75,7 +75,7 @@ class HotReload extends AbstractProcess
     }
 
     /**
-     * 扫描文件变更
+     * Scan file change
      */
     private function runComparison()
     {
@@ -86,23 +86,23 @@ class HotReload extends AbstractProcess
         $iterator = new \RecursiveIteratorIterator($dirIterator);
         $inodeList = array();
 
-        // 迭代目录全部文件进行检查
+        // Iterate through the directory of all files for inspection
         foreach ($iterator as $file) {
             /** @var \SplFileInfo $file */
             $ext = $file->getExtension();
             if (!in_array($ext, $this->monitorExt)) {
-                continue; // 只检查指定类型
+                continue; // Check only the specified type
             } else {
-                // 由于修改文件名称 并不需要重新载入 可以基于inode进行监控
+                // Since the file name is modified and does not need to be reloaded, it can be monitored based on the inode
                 $inode = $file->getInode();
                 $mtime = $file->getMTime();
                 array_push($inodeList, $inode);
                 if (!$this->table->exist($inode)) {
-                    // 新建文件或修改文件 变更了inode
+                    // New file or modified file, changed inode
                     $this->table->set($inode, ['mtime' => $mtime]);
                     $doReload = true;
                 } else {
-                    // 修改文件 但未发生inode变更
+                    // Modify the file, but no inode changes have occurred
                     $oldTime = $this->table->get($inode)['mtime'];
                     if ($oldTime != $mtime) {
                         $this->table->set($inode, ['mtime' => $mtime]);
@@ -113,7 +113,7 @@ class HotReload extends AbstractProcess
         }
 
         foreach ($this->table as $inode => $value) {
-            // 迭代table寻找需要删除的inode
+            // Iterating over the table to find the inode that needs to be deleted
             if (!in_array(intval($inode), $inodeList)) {
                 $this->table->del($inode);
                 $doReload = true;
@@ -125,11 +125,11 @@ class HotReload extends AbstractProcess
             $time = date('Y-m-d H:i:s');
             $usage = round(microtime(true) - $startTime, 3);
             if (!$this->isReady == false) {
-                // 监测到需要进行热重启
+                // It is monitored that a hot restart is required
                 echo "severReload at {$time} use : {$usage} s total: {$count} files\n";
                 ServerManager::getInstance()->getSwooleServer()->reload();
             } else {
-                // 首次扫描不需要进行重启操作
+                // The first scan does not require a reboot
                 echo "hot reload ready at {$time} use : {$usage} s total: {$count} files\n";
                 $this->isReady = true;
             }
@@ -137,12 +137,12 @@ class HotReload extends AbstractProcess
     }
 
     /**
-     * 注册Inotify监听事件
+     * Register the Inotify listen event
      */
     private function registerInotifyEvent()
     {
-        // 因为进程独立 且当前是自定义进程 全局变量只有该进程使用
-        // 在确定不会造成污染的情况下 也可以合理使用全局变量
+        // Because the process is independent and is currently a custom process, global variables are only used by the process.
+        // In the case of determining that it will not cause pollution, it is also possible to use global variables reasonably.
         global $lastReloadTime;
         global $inotifyResource;
 
@@ -152,17 +152,17 @@ class HotReload extends AbstractProcess
 
         $inotifyResource = inotify_init();
 
-        // 为当前所有的目录和文件添加事件监听
+        // Add event listeners for all current directories and files
         foreach ($files as $item) {
             inotify_add_watch($inotifyResource, $item, IN_CREATE | IN_DELETE | IN_MODIFY);
         }
 
-        // 加入事件循环
+        // Join the event loop
         swoole_event_add($inotifyResource, function () {
             global $lastReloadTime;
             global $inotifyResource;
             $events = inotify_read($inotifyResource);
-            if ($lastReloadTime < time() && !empty($events)) { // 限制1s内不能进行重复reload
+            if ($lastReloadTime < time() && !empty($events)) { // Repetitive reload cannot be performed within 1s
                 $lastReloadTime = time();
                 ServerManager::getInstance()->getSwooleServer()->reload();
             }
@@ -181,7 +181,7 @@ class HotReload extends AbstractProcess
 }
 ```
 
-添加好后在全局的 `EasySwooleEvent.php` 中，注册该自定义进程
+After adding it, register the custom process in the global `EasySwooleEvent.php`
 
 ```php
 public static function mainServerCreate(EventRegister $register)
@@ -192,5 +192,5 @@ public static function mainServerCreate(EventRegister $register)
 ```
 
 ::: warning 
-因为虚拟机中inotify无法监听到FTP/SFTP等文件上传的事件，将 disableInotify 设置为 true ，可以关闭inotify方式的热重启，使得虚拟机环境下，强制使用文件循环扫描来触发重载操作，同理 OSX 开发环境下，没有Inotify扩展，将自动使用扫描式重载
+Because inotify in the virtual machine cannot monitor the file uploading events such as FTP/SFTP, set disableInotify to true, you can disable the hot restart of inotify mode, so that the virtual machine environment will force the file loop scan to trigger the overload operation. In the OSX development environment, there is no Inotify extension, which will automatically use scan overloading.
 :::

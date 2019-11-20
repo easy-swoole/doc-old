@@ -1,39 +1,39 @@
 ---
-title: swoole如何对ip限制访问频率
+title: How does swoole limit access frequency to ip
 meta:
   - name: description
-    content: swoole|swoole学习笔记|swoole Ip访问限制
+    content: Swoole|swoole study notes|swoole Ip access restrictions
   - name: keywords
-    content: easyswoole|swoole|swoole学习笔记|swoole Ip访问限制
+    content: Easyswoole|swoole|swoole study notes|swoole Ip access restrictions
 ---
 
 
-# swoole如何对ip限制访问频率
+# How does swoole limit access frequency to ip
 
-在我们开发api的过程中，有的时候我们还需要考虑单个用户(ip)访问频率控制，避免被恶意调用。
+In the process of developing our api, sometimes we also need to consider the single user (ip) access frequency control to avoid being maliciously called.
 
-归根到底也就只有两个步骤：
+In the final analysis, there are only two steps:
 
-- 用户访问要统计次数
-- 执行操作逻辑之前要判断次数频率是否过高，过高则不执行
+- User access statistics
+- Before executing the operation logic, determine whether the frequency is too high. If it is too high, it will not be executed.
 
-## easyswoole中实现Ip访问频率限制
+## Ip access frequency limit in easyswoole
 
-本文章举例的是在easyswoole框架中实现的代码，在swoole原生中实现方式是一样的。
+This article is an example of the code implemented in the easyswoole framework, which is implemented the same way in swoole native.
 
-只要在对应的回调事件做判断拦截处理即可。
+Just make a judgment interception process in the corresponding callback event.
 
-- 使用swoole\Table，储存用户访问情况（也可以使用其他组件、方式储存）
-- 使用定时器，将前一周期的访问情况清空，统计下一周期
+- Use swoole\Table to store user access (can also be stored using other components and methods)
+- Use the timer to clear the access situation of the previous cycle and count the next cycle.
 
-如以下IpList类，实现了初始化Table、统计IP访问次数、获取一个周期内次数超过一定值的记录
+For example, the following IpList class implements initialization of the Table, counts the number of IP accesses, and obtains records whose number of times exceeds a certain value within a period.
 ```php
 <?php
 /**
- * Ip访问次数统计
+ * Ip visit statistics
  * User: Siam
  * Date: 2019/7/8 0008
- * Time: 下午 9:53
+ * Time: 9:53 PM
  */
 
 namespace App;
@@ -111,24 +111,24 @@ class IpList
 }
 ```
 
-封装完IP统计的操作之后
+After the operation of encapsulating the IP statistics
 
-我们可以在`EasySwooleEvent.php`的mainServerCreate回调事件中初始化IpList和定时器
+We can initialize IpList and timer in the mainServerCreate callback event of `EasySwooleEvent.php`
 
 ```php
 <?php
 
 public static function mainServerCreate(EventRegister $register)
 {
-    // 开启IP限流
+    // Enable IP current limit
     IpList::getInstance();
     $class = new class('IpAccessCount') extends AbstractProcess{
         protected function run($arg)
         {
             $this->addTick(5*1000, function (){
                 /**
-                 * 正常用户不会有一秒超过6次的api请求
-                 * 做列表记录并清空
+                 * Normal users won't have api requests more than 6 times a second.
+                 * Do list recording and empty
                  */
                 $list = IpList::getInstance()->accessList(30);
                 // var_dump($list);
@@ -139,7 +139,7 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-接着我们在OnRequest回调中，判断和统计Ip的访问
+Then we judge and count the access of Ip in the OnRequest callback.
 
 ```php
 <?php
@@ -149,26 +149,26 @@ public static function onRequest(Request $request, Response $response): bool
     $fd = $request->getSwooleRequest()->fd;
     $ip = ServerManager::getInstance()->getSwooleServer()->getClientInfo($fd)['remote_ip'];
     
-    // 如果当前周期的访问频率已经超过设置的值，则拦截
-    // 测试的时候可以将30改小，比如3
+    // Intercept if the access frequency of the current period has exceeded the set value
+    // When testing, you can change 30, such as 3
     if (IpList::getInstance()->access($ip) > 30) {
         /**
-         * 直接强制关闭连接
+         * Directly forcibly close the connection
          */
         ServerManager::getInstance()->getSwooleServer()->close($fd);
-        // 调试输出 可以做逻辑处理
-        echo '被拦截'.PHP_EOL;
+        // Debug output can be logically processed
+        echo 'Blocked'.PHP_EOL;
         return false;
     }
-    // 调试输出 可以做逻辑处理
-    echo '正常访问'.PHP_EOL;
+    // Debug output can do logic processing
+    echo 'Normal access'.PHP_EOL;
 }
 ```
 
-以上就实现了对同一IP访问频率的限制操作。
+The above implements the restriction operation on the same IP access frequency.
 
-具体还可以根据自身需求进行扩展，如对具体的某个接口再进行限流。
+Specifically, it can be extended according to its own needs, such as limiting traffic to a specific interface.
 
 ::: warning 
-Easyswoole提供了一个基于Atomic计数器的限流器组件。可以直接使用，使用教程请移步查看限流器文档。
+Easyswoole provides a current limiter component based on the Atomic counter. Can be used directly, use the tutorial, please step to view the flow restrictor documentation.
 :::

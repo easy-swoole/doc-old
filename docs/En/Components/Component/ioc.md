@@ -8,21 +8,23 @@ meta:
 ---
 
 
-# 依赖注入
+# Dependency Injection
 
-Dependency Injection  依赖注入
+Dependency Injection  
 
-EasySwoole实现了简单版的IOC，使用 IOC 容器可以很方便的存储/获取资源，实现解耦。
+EasySwooleA simple version of IOC is implemented，Using an IOC container makes it easy to store/retrieve resources and decouple them。
 
-使用依赖注入，最重要的一点好处就是有效的分离了对象和它所需要的外部资源，使得它们松散耦合，有利于功能复用，更重要的是使得程序的整个体系结构变得非常灵活。
+One of the most important benefits of using dependency injection is that it effectively separates the object from the external resources it needs, making them loosely coupled, facilitating functional reuse, and more importantly, making the overall architecture of the program very flexible。
 
-在我们的日常开发中，创建对象的操作随处可见以至于对其十分熟悉的同时又感觉十分繁琐，每次需要对象都需要亲手将其new出来，甚至某些情况下由于坏编程习惯还会造成对象无法被回收，这是相当糟糕的。但更为严重的是，我们一直倡导的松耦合，少入侵原则，这种情况下变得一无是处。于是前辈们开始谋求改变这种编程陋习，考虑如何使用编码更加解耦合，由此而来的解决方案是面向接口的编程。
+In our daily development, the creation of objects is so common that it is very familiar and tedious at the same time. Every time we need an object, we need to new it by ourselves. In some cases, the object cannot be recycled due to bad programming habits, which is quite bad。
+
+But what's more serious is that the principle of loose coupling and less intrusion, which we have been advocating, becomes useless in this case. So the predecessors began to seek to change this programming habit, and consider how to use coding to be more decoupled. The solution was interface oriented programming.
 
 ::: tip
- 注意：在服务启动后，对IOC容器的获取/注入仅限当前进程有效。不对其他worker进程产生影响。
+ Note: after the service starts, the fetch/injection to the IOC container is only valid for the current process. It does not affect other worker processes.
 :::
 
-## 方法列表
+## Methods list
 
 ### getInstance
 
@@ -32,28 +34,27 @@ $di = Di::getInstance();
 
 ### set
 
-函数原型：set($key, $obj,...$arg)
+The function prototype：set($key, $obj,...$arg)
 
-- key：键名
+- key：Key name
 
-- obj:要注入内容。支持注入对象名，对象实例,闭包，资源，字符串等各种常见变量。
+- obj:   To inject content. Support injection object name, object instance, closure, resource, string and other common variables。
 
-- $arg:若注入的内容为is_callable，则可以设置该参数以供callable执行时传入。
+- $arg:  If the injected content is is_callable, you can set this parameter to be passed in when the callable executes。
 
 ```php
 $di->set('test',new TestClass());
 $di->set('test',TestClass::class);
 
-// set的时候储存的是[类名, 方法名]的数组，需要自己手动调用call_user_func()执行 (不要因错误与异常章节的demo而误解会自动执行)
+// Set stores an array of [class name, method name]，You need to manually call call_user_func() execution yourself (Do not misunderstand that the error and exception section demo will be executed automatically)
 $di->set('test', [TestClass::class,'testFunction']);
 
-// set的时候传递了类名，get的时候才去new对象，并且将可变变量传递进构造函数，返回实例化后的对象
+// Set passes the class name，Go to the new object when it is get，The variable is passed into the constructor and returns the instantiated object
 $di->set('test', TestClass::class, $arg_one, $arg_tow);
 ```
 
-
 ::: warning 
- Di的set方法为懒惰加载模式，若set一个对象名或者闭包，则该对象不会马上被创建。
+Di's set method is lazy load mode, and if an object name or closure is set, the object is not immediately created.
 :::
 
 ### get
@@ -70,7 +71,7 @@ $di->delete('test');
 
 ### clear
 
-清空 IoC 容器的所有内容。
+Empty the IoC container of all contents.
 
 
 

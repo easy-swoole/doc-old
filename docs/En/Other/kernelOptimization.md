@@ -1,16 +1,16 @@
 ---
-title: 内核参数调整
+title: Kernel parameter adjustment
 meta:
   - name: description
-    content: easyswoole,内核参数调整
+    content: Easyswoole, kernel parameter adjustment
   - name: keywords
-    content: easyswoole|内核参数调整
+    content: Easyswoole|kernel parameter adjustment
 ---
-## 内核参数调整
+## Kernel parameter adjustment
 
-ulimit设置
+Ulimit setting
 ----
-ulimit -n 要调整为100000甚至更大。 命令行下执行 ulimit -n 100000即可修改。如果不能修改，需要设置  /etc/security/limits.conf，加入
+Ulimit -n should be adjusted to 100000 or more. Execute ulimit -n 100000 from the command line to modify it. If you can't modify it, you need to set /etc/security/limits.conf to join.
 ```text
 * soft nofile 262140
 * hard nofile 262140
@@ -21,27 +21,27 @@ root hard nofile 262140
 root soft core unlimited
 root hard core unlimited
 ```
-注意，修改`limits.conf`文件后，需要重启系统生效
+Note that after modifying the `limits.conf` file, you need to restart the system to take effect.
 
-内核设置
+Kernel settings
 ------
-`Linux`操作系统修改内核参数有3种方式：
+The `Linux` operating system has three ways to modify kernel parameters:
 
-* 修改`/etc/sysctl.conf`文件，加入配置选项，格式为`key = value`，修改保存后调用`sysctl -p`加载新配置
-* 使用`sysctl`命令临时修改，如：`sysctl -w net.ipv4.tcp_mem="379008       505344  758016"`
-* 直接修改`/proc/sys/`目录中的文件，如：`echo "379008       505344  758016" > /proc/sys/net/ipv4/tcp_mem`
+* Modify the `/etc/sysctl.conf` file, add configuration options, the format is `key = value`, modify the save and call `sysctl -p` to load the new configuration.
+* Use the `sysctl` command to temporarily modify it, such as: `sysctl -w net.ipv4.tcp_mem="379008 505344 758016"`
+* Directly modify the files in the `/proc/sys/` directory, such as: `echo "379008 505344 758016" > /proc/sys/net/ipv4/tcp_mem`
 
 ::: warning 
- 第一种方式在操作系统重启后会自动生效，第二和第三种方法重启后失效
+ The first method will take effect automatically after the operating system restarts, and the second and third methods will fail after restarting.
 :::
 
 
 ###net.unix.max_dgram_qlen = 100###
-swoole使用unix socket dgram来做进程间通信，如果请求量很大，需要调整此参数。系统默认为10，可以设置为100或者更大。  
-或者增加worker进程的数量，减少单个worker进程分配的请求量。
+Swoole uses unix socket dgram for interprocess communication. If the request volume is large, you need to adjust this parameter. The system defaults to 10 and can be set to 100 or greater.  
+Or increase the number of worker processes and reduce the amount of requests allocated by a single worker process.
 
 ### net.core.wmem_max###
-修改此参数增加socket缓存区的内存大小  
+Modify this parameter to increase the memory size of the socket cache. 
 
 ```
 net.ipv4.tcp_mem  =   379008       505344  758016
@@ -54,44 +54,44 @@ net.core.wmem_max = 16777216
 ```
 
 ### net.ipv4.tcp_tw_reuse ###
-是否socket reuse，此函数的作用是Server重启时可以快速重新使用监听的端口。如果没有设置此参数，会导致server重启时发生端口未及时释放而启动失败
+Whether socket reuse, the function of this function is to quickly re-use the listening port when the server restarts. If this parameter is not set, the port will not be released in time and the startup will fail when the server is restarted.
 ### net.ipv4.tcp_tw_recycle ###
-使用socket快速回收，短连接Server需要开启此参数。此参数表示开启TCP连接中TIME-WAIT sockets的快速回收，Linux系统中默认为0，表示关闭。打开此参数可能会造成NAT用户连接不稳定，请谨慎测试后再开启。
+Use socket to quickly recycle. Short connection server needs to enable this parameter. This parameter indicates that the fast recovery of TIME-WAIT sockets in the TCP connection is enabled. In Linux, the default is 0, which means it is closed. Turning on this parameter may cause the NAT user connection to be unstable. Please test it carefully before turning it on.
 
-消息队列设置
+Message queue settings
 -----
-当使用消息队列作为进程间通信方式时，需要调整此内核参数
+This kernel parameter needs to be adjusted when using Message Queuing as the interprocess communication method.
 
-* kernel.msgmnb = 4203520，消息队列的最大字节数
-* kernel.msgmni = 64，最多允许创建多少个消息队列
-* kernel.msgmax = 8192，消息队列单条数据最大的长度
+* kernel.msgmnb = 4203520, The maximum number of bytes in the message queue
+* kernel.msgmni = 64, How many message queues are allowed to be created
+* kernel.msgmax = 8192, Message queue single data maximum length
 
 FreeBSD/MacOS
 ----
 * sysctl -w net.local.dgram.maxdgram=8192
 * sysctl -w net.local.dgram.recvspace=200000
-修改Unix Socket的buffer区尺寸
+Modify the buffer area size of Unix Socket
 
-开启CoreDump
+Open CoreDump
 ------
-设置内核参数
+Set kernel parameters
 ```
 kernel.core_pattern = /data/core_files/core-%e-%p-%t
 ```
 
-通过ulimit -c命令查看当前coredump文件的限制
+View the current limit of the coredump file by using the ulimit -c command
 ```
 ulimit -c
 ```
-如果为0，需要修改/etc/security/limits.conf，进行limit设置。
+If it is 0, you need to modify /etc/security/limits.conf to set the limit.
 
 ::: warning 
-开启core-dump后，一旦程序发生异常，会将进程导出到文件。对于调查程序问题有很大的帮助
+After core-dump is turned on, the process is exported to a file once an exception occurs in the program. Great help for investigating procedural issues
 :::
   
 
 
-其他重要配置
+Other important configurations
 -----
 
 * net.ipv4.tcp_syncookies=1
@@ -106,10 +106,10 @@ ulimit -c
 * net.ipv4.tcp_max_tw_buckets = 200000
 * net.ipv4.route.max_size = 5242880
 
-查看配置是否生效
+Check whether the configuration takes effect
 ----
-如：修改net.unix.max_dgram_qlen = 100后，通过
+Such as: modify net.unix.max_dgram_qlen = 100, through
 ```
 cat /proc/sys/net/unix/max_dgram_qlen
 ```
-如果修改成功，这里是新设置的值。
+If the modification is successful, here is the newly set value.

@@ -1,21 +1,21 @@
 ---
-title: redis协程客户端
+title: Redis coroutine client
 meta:
   - name: description
-    content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
+    content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
-## redis协程客户端
-redis协程客户端,由swoole 协程client实现   
+## Redis coroutine client
+Redis coroutine client,Implemented by swoole coroutine client   
 github地址: https://github.com/easy-swoole/redis 
 
-## composer安装   
+## Composer installation   
 ```php
 composer require easyswoole/redis
 ```
 
-## 使用客户端(需要协程环境):  
+## Use the client (requires a coroutine environment): 
 ```php
 $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([
     'host' => '127.0.0.1',
@@ -25,7 +25,7 @@ $redis = new \EasySwoole\Redis\Redis(new \EasySwoole\Redis\Config\RedisConfig([
 ]));
 ```
 
-## redis使用示例
+## Redis usage example
 ```php
 <?php
 include "../vendor/autoload.php";
@@ -41,7 +41,7 @@ go(function (){
 });
 ```
 
-## redis集群使用示例
+## Redis cluster usage example
 ```php
 <?php
 include "../vendor/autoload.php";
