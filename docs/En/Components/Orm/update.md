@@ -102,3 +102,14 @@ $res = UserModel::create()->update([
    'vip_time' => 0
 ]);
 ```
+
+## 快捷更新
+
+```php
+TestUserModel::create()->update([
+    'age' => QueryBuilder::inc(3), // 自增3
+    'test' => QueryBuilder::dec(4), // 自降4
+], [
+    'name' => 'Siam222'
+]);
+```
