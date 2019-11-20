@@ -6,6 +6,13 @@ meta:
   - name: keywords
     content: EasySwoole异步任务|swoole异步|swoole异步进程
 ---
+# task组件
+3.3.0版本的EasySwoole异步任务抛弃了swoole的原生task,采用独立组件实现实现.
+相对于原生swoole task,easyswoole/task组件实现了：
+
+- 可以投递闭包任务
+- 可以在TaskWorker等其他自定义进程继续投递任务
+- 实现任务限流与状态监控  
 
 ## 安装 
 ```
@@ -22,15 +29,14 @@ use EasySwoole\Task\Task;
 */
 $config = new Config();
 $task = new Task($config);
-
-$http = new swoole_http_server("127.0.0.1", 9501);
-/*
-添加服务
-*/
+//添加swoole 服务
+$http = new swoole_http_server("0.0.0.0", 9501);
+//注入swoole服务,进行创建task进程
 $task->attachToServer($http);
-
-$http->on("request", function ($request, $response)use($task){
+//在onrequest事件中调用task(其他地方也可以,这只是示例)
+$http->on("request", function (Swoole\Http\Request  $request, $response)use($task){
     if(isset($request->get['sync'])){
+        //同步调用task
         $ret = $task->sync(function ($taskId,$workerIndex){
             return "{$taskId}.{$workerIndex}";
         });
@@ -38,6 +44,7 @@ $http->on("request", function ($request, $response)use($task){
     }else if(isset($request->get['status'])) {
         var_dump($task->status());
     }else{
+        //异步调用task
         $id = $task->async(function ($taskId,$workerIndex){
             \co::sleep(1);
             var_dump("async id {$taskId} task run");
@@ -45,71 +52,129 @@ $http->on("request", function ($request, $response)use($task){
         $response->end("async id {$id} ");
     }
 });
-
+//启动服务
 $http->start();
 ```
 
-# 框架中使用
-
-3.3.0版本的EasySwoole异步任务采用独立组件实现实现，用以实现异步任务，并解决：
-
-- 无法投递闭包任务
-- 无法在TaskWorker等其他自定义进程继续投递任务
-- 实现任务限流与状态监控  
-
-老版本过来的用户，请做以下操作进行升级：
-
-- 配置项删除  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
-- 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
-- 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
-
-## 任务管理器
-EasySwoole定义了一个任务管理器，完整名称空间为：
-`EasySwoole\EasySwoole\Task\TaskManager`
-他是一个继承了`EasySwoole\Task\Task`对象的单例对象，并在`Core.php`的主服务创建事件中被实例化。服务启动后的任意位置，均可调用
-
-### 投递闭包任务
+## 框架中使用
+### 配置项
+老版本用户升级,需要删除 `MAIN_SERVER.SETTING.task_worker_num`,`MAIN_SERVER.SETTING.task_enable_coroutine`配置项  
+请在`MAIN_SERVER`配置项中,增加TASK子配置项(如下图):
 ```php
-TaskManager::getInstance()->async(function (){
-    var_dump('r');
-});
+<?php
+return [
+            'MAIN_SERVER' => [
+                'TASK'=>[
+                    'workerNum'=>4,
+                    'maxRunningNum'=>128,
+                    'timeout'=>15
+                    ],
+            ],
+        ];
 ```  
+::: waring
+    注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
+:::
+
+
+### 用法
+在EasySwoole框架中,只需要配置好task配置项,即可在控制器,自定义进程内调用task实现异步任务:
+```php
+<?php
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class Index extends BaseController
+{
+    function index()
+    {
+        $task = TaskManager::getInstance();
+        $task->async(function (){
+            echo "异步调用task1\n";
+        });
+        $data =  $task->sync(function (){
+            echo "同步调用task1\n";
+            return "可以返回调用结果\n";
+        });
+        $this->response()->write($data);
+    }
+}
+```
+::: waring
+ `EasySwoole\EasySwoole\Task\TaskManager` 是EasySwoole的全局task管理对象,可以直接通过单例,在框架启动后的任意位置调用它进行任务投递
+:::
 
 ::: warning 
 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
 ::: 
 
-### 投递callable 
-
-```php
-TaskManager::getInstance()->async(callable);
-```
-
 ### 投递模板任务
-
+新建模板类文件
 ```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/11/20 0020
+ * Time: 10:44
+ */
+
+namespace App\Task;
+
+
 use EasySwoole\Task\AbstractInterface\TaskInterface;
 
-class Task implements TaskInterface
+class TestTask implements TaskInterface
 {
+    protected $data;
+    //通过构造函数,传入数据,获取该次任务的数据
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+
     function run(int $taskId, int $workerIndex)
     {
-        var_dump('c');
-        TaskManager::getInstance()->async(function (){
-           var_dump('r');
-        });
+        var_dump("模板任务运行");
+        var_dump($this->data);
+        //只有同步调用才能返回数据
+        return "返回值:".$this->data['name'];
+        // TODO: Implement run() method.
     }
 
     function onException(\Throwable $throwable, int $taskId, int $workerIndex)
     {
-        echo $throwable->getMessage();
+        // TODO: Implement onException() method.
     }
 }
-
-TaskManager::getInstance()->async(Task::class);
-//或者是
-TaskManager::getInstance()->async(new Task());
 ```                                                           
+调用:
+```php
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tioncico
+ * Date: 2019/11/20 0020
+ * Time: 10:14
+ */
+
+namespace App\HttpController;
+
+
+use App\Task\TestTask;
+use EasySwoole\EasySwoole\Task\TaskManager;
+
+class Index extends BaseController
+{
+    function index()
+    {
+        $task = TaskManager::getInstance();
+        $task->async(new TestTask(['name'=>'仙士可2号']));
+        $data =  $task->sync(new TestTask(['name'=>'仙士可1号']));
+        $this->response()->write($data);
+    }
+}
+```
+
 
 # 异步任务-3.3.0版本以下
 
