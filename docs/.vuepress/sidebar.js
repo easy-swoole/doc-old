@@ -448,6 +448,7 @@ const sidebarCn = [
                 title: '微信SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
+                path: '/Sdk/wechat',
                 children: [
                     ['/Components/Wechat/miniProgram', '公众号'],
                     ['/Components/Wechat/officialAccount', '小程序'],
