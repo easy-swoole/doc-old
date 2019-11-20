@@ -30,11 +30,7 @@ class UserShop extends AbstractModel
 
 ## Datasheet Name
 
-Please note that we did not tell ORM which data table our 'UserShop` model uses.
-The class's **underscore** form is used as the table name unless other names are explicitly specified.
-
-Therefore, in this case, the ORM will assume that the `UserShop` model stores the data in the `user_shop` data table.
-You can specify a custom data table name by defining the `tableName` attribute on the model:
+需要在Model中定义 $tableName 属性，指定表名，否则将会产生错误`Table name is require for model`
 
 ```php
 
@@ -51,7 +47,6 @@ use EasySwoole\ORM\AbstractModel;
 class UserShop extends AbstractModel
 {
      /**
-      * Data table name When the definition is not made, the class name is automatically converted to the underline format as the table name.
       * @var string 
       */
      protected $tableName = 'user_shop';
