@@ -1,31 +1,31 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # where
 
-快速完成条件语句构建。where方法的参数支持字符串和数组。
+Quickly complete the construction of conditional statements. The parameters of the where method support strings and arrays.
 
-## 普通查询+
+## General query
 
 ```php
 $builder->where('col1', 2)->get('getTable');
 ```
 
-## 字符串语句
+## String statement
 
-可以使用字符串语句构建比较复杂的条件
+You can use string statements to build more complex conditions
 
 ```php
-// 生成大概语句：where status = 1 AND (id > 10 or id < 2)
+// Generate a rough statement: where status = 1 AND (id > 10 or id < 2)
 $builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable);
 ```
 
-## 特殊操作符
+## Special operator
 
 ```php
 $builder->where('id', [1,2,3], 'IN')->get('getTable');
@@ -35,7 +35,7 @@ $builder->where('id', [1,2,3], 'IN')->get('getTable');
 $builder->where('age', 12, '>')->get('getTable');
 ```
 
-## 连接条件
+## Connection condition
 
 ### orWhere
 
@@ -47,15 +47,15 @@ $builder->where('is_vip', 1)->where('id', [1,2], '=', 'OR')->get('getTable');
 $builder->where('is_vip', 1)->orWhere('id', [1,2])->get('getTable');
 ```
 
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 
 ```php
 function where($whereProp, $whereValue = 'DBNULL', $operator = '=', $cond = 'AND')
 ```
 
-- $whereProp string 支持索引数组、kv数组、或直接传递字符串
-- $whereValue string 条件值
-- $operator string 操作符
-- $cond string 连接条件
+- $whereProp string Support indexed arrays, kv arrays, or directly passed strings
+- $whereValue stringConditional value
+- $operator string Operator
+- $cond string Connection condition

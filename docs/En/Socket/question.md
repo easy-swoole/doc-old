@@ -7,7 +7,7 @@ meta:
     content:  EasySwoole Socket|swoole tcp| swoole websocket| swoole udp|php websocket
 ---
 
-## 如何遍历全部链接
+## How to traverse all links
 ```php
 use EasySwoole\EasySwoole\ServerManager;
 $server = ServerManager::getInstance()->getSwooleServer();
@@ -34,30 +34,30 @@ while(true)
  https://wiki.swoole.com/wiki/page/p-connection_list.html
 :::
 
-## 如何获取链接信息
+## How to get the link information
 
 ```php
-use EasySwoole\EasySwoole\ServerManager;
+Use EasySwoole\EasySwoole\ServerManager;
 $server = ServerManager::getInstance()->getSwooleServer();
 $fdinfo = $server->getClientInfo($fd);
 ```
 
-::: warning 
- https://wiki.swoole.com/wiki/page/p-connection_info.html
+::: warning
+  Https://wiki.swoole.com/wiki/page/p-connection_info.html
 :::
 
-## Socket有哪些开发场景?
+## What are the development scenarios for Socket?
 
-### h5即时游戏
+### h5 instant game
 
-### 网页聊天室
+### Web chat room
 
-### 物联网开发
+### IoT development
 
-### 服务器udp广播
+### Server udp broadcast
 
-### 车联网
+### Car Networking
 
-### 智能家居
+### Smart Home
 
-### web网页服务器
+### web web server

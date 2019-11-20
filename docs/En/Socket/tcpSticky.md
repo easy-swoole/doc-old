@@ -1,25 +1,24 @@
+### Sticky bag problem
+Due to the nature of tcp, data sticking may occur, for example
+* A connection Server
+*A send hello
+*A sent another hello
+* Server may receive a "hellohello" data at a time
+* Server may also receive "he", "llohello" like this interrupt data
 
-### 粘包问题
-由于tcp的特性,可能会出现数据粘包情况,例如   
-* A连接Server
-* A发送 hello 
-* A又发送了一条 hello
-* Server可能会一次性收到一条"hellohello"的数据
-* Server也可能收到"he" ,"llohello"类似这样的中断数据
-
-### 粘包解决
-* 通过标识EOF,例如http协议,通过\r\n\r\n 的方式去表示该数据已经完结,我们可以自定义一个协议,例如当接收到 "结尾666" 字符串时,代表该字符串已经结束,如果没有获取到,则存入缓冲区,等待结尾字符串,或者如果获取到多条,则通过该字符串剪切出其他数据
-* 定义消息头,通过特定长度的消息头进行获取,例如我们定义一个协议,前面10位字符串都代表着之后数据主体的长度,那么我们传输数据时,只需要000000000512346(前10位为协议头,表示了这条数据的大小,后面的为数据),每次我们读取只先读取10位,获取到消息长度,再读取消息长度那么多的数据,这样就可以保证数据的完整性了.(但是为了不被混淆,协议头也得像EOF一样标识)
-* 通过pack二进制处理,相当于于方法2,将数据通过二进制封装拼接进消息中,通过验证二进制数据去读取信息,sw采用的就是这种方式
+### Sticky bag solution
+* By identifying the EOF, such as the http protocol, by \r\n\r\n to indicate that the data has been completed, we can customize a protocol, for example, when the "end 666" string is received, it represents the string. Has ended, if not obtained, then stored in the buffer, waiting for the end string, or if more than one is obtained, then cut out other data through the string
+* Define the message header, get it through the message header of a certain length. For example, we define a protocol. The first 10 digits of the string represent the length of the data body. Then we only need 000000000512346 when transferring data (the first 10 bits are the protocol header). , indicating the size of this data, the latter is the data), each time we read only read 10 bits, get the message length, and then read the message length as much data, so as to ensure the integrity of the data (but in order not to be confused, the protocol header has to be labeled like EOF)
+* By packet binary processing, equivalent to method 2, the data is spliced ​​into the message through the binary package, by verifying the binary data to read the information, sw is used this way
 
 
-::: warning 
-可查看swoole官方文档:https://wiki.swoole.com/wiki/page/287.html
+::: warning
+See the official swoole documentation: https://wiki.swoole.com/wiki/page/287.html
 :::
 
-## 实现粘包处理  
+## Achieve sticky package processing
 
-### 服务端:
+### Server:
 
 ````php
 <?php
@@ -34,20 +33,20 @@ $subPort2->set(
     ]
 );
 $subPort2->on('connect', function (\swoole_server $server, int $fd, int $reactor_id) {
-    echo "tcp服务2  fd:{$fd} 已连接\n";
-    $str = '恭喜你连接成功服务器2';
+    echo "Tcp service 2 fd:{$fd} connected\n";
+    $str = 'Congratulations on connecting to the successful server 2';
     $server->send($fd, pack('N', strlen($str)) . $str);
 });
 $subPort2->on('close', function (\swoole_server $server, int $fd, int $reactor_id) {
-    echo "tcp服务2  fd:{$fd} 已关闭\n";
+    echo "Tcp service 2  fd:{$fd} closed\n";
 });
 $subPort2->on('receive', function (\swoole_server $server, int $fd, int $reactor_id, string $data) {
-    echo "tcp服务2  fd:{$fd} 发送原始消息:{$data}\n";
-    echo "tcp服务2  fd:{$fd} 发送消息:" . substr($data, '4') . "\n";
+    echo "Tcp service 2  fd:{$fd} Send original message:{$data}\n";
+    echo "Tcp service 2  fd:{$fd} Send a message:" . substr($data, '4') . "\n";
 });
 ````
 
-### 客户端:
+### Client:
 
 ````php
 <?php
@@ -61,7 +60,7 @@ include "../vendor/autoload.php";
 define('EASYSWOOLE_ROOT', realpath(dirname(getcwd())));
 \EasySwoole\EasySwoole\Core::getInstance()->initialize();
 /**
- * tcp 客户端2,验证数据包,并处理粘包
+ * tcp Client 2, verify the packet, and process the sticky packet
  */
 go(function () {
     $client = new \Swoole\Client(SWOOLE_SOCK_TCP);
@@ -79,15 +78,15 @@ go(function () {
     }
     $str = 'hello world';
     $client->send(encode($str));
-    $data = $client->recv();//服务器已经做了pack处理
-    var_dump($data);//未处理数据,前面有4 (因为pack 类型为N)个字节的pack
-    $data = decode($data);//需要自己剪切解析数据
+    $data = $client->recv();//The server has done the package processing
+    var_dump($data);//Unprocessed data, preceded by 4 (because pack type is N) bytes of pack
+    $data = decode($data);//Need to cut the analytical data yourself
     var_dump($data);
 //    $client->close();
 });
 
 /**
- * 数据包 pack处理
+ * Packet pack processing
  * encode
  * @param $str
  * @return string

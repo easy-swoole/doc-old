@@ -1,60 +1,60 @@
 ---
-title: 连贯操作
+title: Coherent operation
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|连贯操作
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Coherent operation
 ---
 
 
-# 连贯操作
+# Coherent operation
 
-ORM提供的链式操作方法，可以有效的提高数据存取的代码清晰度和开发效率。
+The chain operation method provided by ORM can effectively improve the code definition and development efficiency of data access.
 
 ## where
 
-你可以使用 where 方法。调用 where 最基本的方式是需要传递一个参数
+You can use the where method. The most basic way to call where is to pass a parameter
 
-这个参数可以传递多种不同表现:
+This parameter can pass a variety of different performances:
 
-### 主键
+### Primary key
 
 ```php
-// 主键
+// Primary key
 $user = UserListModel::create()->where(1)->get();
 
-// 多个主键
+// Multiple primary keys
 $user = UserListModel::create()->where([1,2,3])->all();
 ```
 
-### 数组
+### Array
 
 ```php
-// [字段名=> 字段值]数组方式
+// [field name => field value] array mode
 $user = UserListModel::create()->where(['state' => 1])->get();
 
-// 复杂条件数组
+// Complex condition array
 $user = UserListModel::create()->where([
     'age'  => [[18,23], 'between'],
     'name' => ['siam', 'like', 'or'],
 ])
 ```
 
-### 原生sql
+### Native sql
 
 ```php
-$user = UserListModel::create()->where("sql 语句 需要自己注意注入风险")->get();
+$user = UserListModel::create()->where("Sql statement needs to pay attention to the injection risk")->get();
 ```
 
-### 其他**Mysqli**链式操作里的where传参
+### Other **Mysqli** chain operation where the reference parameter
 
-实现 `EasySwoole\Mysqli\QueryBuilder` 中 where 传参
+Implement the where in the `EasySwoole\Mysqli\QueryBuilder`
 
-更多操作还可以查阅**Mysqli**链式操作里的where章节
+More operations can also refer to the where section of the **Mysqli** chain operation
 
 ```php
-// 走builder原生的where
+// Take the builder where is the native
 $getCoherent5 = UserListModel::create()->where('id', 1, '=')->get();
 $getCoherent6 = UserListModel::create()->where('id', 1, '!=')->get();
 $getCoherent6 = UserListModel::create()->where('id', 1, 'like')->get();
@@ -62,7 +62,7 @@ $getCoherent6 = UserListModel::create()->where('id', 1, 'like')->get();
 
 ## alias
 
-alias用于设置当前数据表的别名
+`alias` is used to set the alias of the current data table
 
 ```php
 $res = TestUserListModel::create()->alias('siam')->where(['siam.name' => 'test'])->all();
@@ -70,7 +70,7 @@ $res = TestUserListModel::create()->alias('siam')->where(['siam.name' => 'test']
 
 ## group
 
-group 方法可以将结果分组。
+The group method can group the results.
 
 ```php
 $group = TestUserListModel::create()->field('sum(age) as age, `name`')->group('name')->all(null);
@@ -78,7 +78,7 @@ $group = TestUserListModel::create()->field('sum(age) as age, `name`')->group('n
 
 ## order
 
-order 方法可用于将原生字符串设置为 order by 子句的值：
+The order method can be used to set the native string to the value of the order by clause:
 
 ```php
 $order = TestUserListModel::create()->order('id', 'DESC')->get();
@@ -86,20 +86,20 @@ $order = TestUserListModel::create()->order('id', 'DESC')->get();
 
 ## join
 
-join通常有下面几种类型，不同类型的join操作会影响返回的数据结果。
+Joins usually have the following types, and different types of join operations can affect the returned data results.
 
-- INNER JOIN: 等同于 JOIN（默认的JOIN类型）,如果表中有至少一个匹配，则返回行
-- LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行
-- RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行
-- FULL JOIN: 只要其中一个表中存在匹配，就返回行
+- INNER JOIN: is equivalent to JOIN (the default JOIN type), returning rows if there is at least one match in the table
+- LEFT JOIN: returns all rows from the left table even if there is no match in the right table
+- RIGHT JOIN: returns all rows from the right table even if there is no match in the left table
+- FULL JOIN: return rows as long as there is a match in one of the tables
 
 ```php
 object join ( mixed $joinTable , string $joinCondition = null [, string $type = 'INNER'] )
 ```
 
-$joinTable 要关联的（完整）表名以及别名
-$joinCondition 关联条件.
-$type 关联类型。可以为:'LEFT', 'RIGHT', 'OUTER', 'INNER', 'LEFT OUTER', 'RIGHT OUTER', 'NATURAL'，不区分大小写，默认为INNER(数据库软件 默认)。
+$joinTable (complete) table name and alias to be associated
+$joinCondition association condition.
+$type association type. Can be: 'LEFT', 'RIGHT', 'OUTER', 'INNER', 'LEFT OUTER', 'RIGHT OUTER', 'NATURAL', case insensitive, defaults to INNER (database software default).
 
 ```php
 $join = TestUserListModel::create()->join('table2','table2.col1 = user_list.col2')->get();

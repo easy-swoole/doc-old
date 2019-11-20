@@ -1,45 +1,45 @@
 ---
-title: 修改器
+title: modifier
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|修改器
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|modifier
 ---
 
-# 修改器
+# modifier
 
-修改器的作用是在模型实例修改字段赋值时自动进行处理
+The role of the modifier is to automatically process when the model instance modifies the field assignment
 
-若要定义一个修改器，则须在你的模型上创建一个 「`set` 字段名 `Attr`」 方法。
+To define a modifier, you must create a "`set` field name `Attr`" method on your model.
 
-要定义的修改器方法需使用「小驼峰」来命名。在这个例子中，我们将为 `name` 属性定义一个修改器。
+The modifier method to be defined needs to be named using "Little Hump". In this example, we will define a modifier for the `name` property.
 
 ::: tip
-数据表的字段会在使用获取器时自动转换为驼峰法访问
+The fields of the data table are automatically converted to hump method access when using the getter
 :::
 
-当 模型实例 尝试修改 `name`字段的值时，将会自动调用此修改器：
+This modifier is called automatically when the model instance attempts to modify the value of the `name` field:
 
 ```php
-class UserModel extends AbstractModel
+Class UserModel extends AbstractModel
 {
-    /**
-     * $value mixed 是原值
-     * $data  array 是当前model所有的值 
-     */
-    protected function setNameAttr($value, $data)
-    {
-        return $value."_加一个统一后缀";
-    }
+     /**
+      * $value mixed is the original value
+      * $data array is the current model all values
+      */
+     Protected function setNameAttr($value, $data)
+     {
+         Return $value."_plus a uniform suffix";
+     }
 }
 ```
-如下代码在设置保存的时候将会被修改器处理后保存
+The following code will be saved by the modifier when the settings are saved.
 ```php
 $model = new UserModel([
-    'name' => 'siam',
-    'age'  => 21,
+     'name' => 'siam',
+     'age' => 21,
 ]);
 $model->save();
-//name 存入后值为: siam_加一个统一后缀
+//name is stored as: siam_ plus a uniform suffix
 ```

@@ -1,18 +1,18 @@
 ---
-title: 自定义SQL执行
+title: Custom SQL execution
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|自定义SQL执行
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Custom SQL execution
 ---
 
 
-# 自定义SQL执行
+# Custom SQL execution
 
-有时候你可能需要在查询中使用原生表达式。你可以使用 `QueryBuilder` 构造一个原生 `SQL` 表达式
+Sometimes you may need to use a native expression in your query. You can construct a native `SQL` expression using `QueryBuilder`
 
-ORM 内部依赖的是 `mysqli` 组件的`QueryBuilder`
+The ORM internally relies on the `QueryBuilder` of the `mysqli` component.
 
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
@@ -21,21 +21,21 @@ use EasySwoole\Mysqli\QueryBuilder;
 $queryBuild = new QueryBuilder();
 $queryBuild->raw("show tables");
 
-// 第二个参数 raw  指定true，表示执行原生sql
-// 第三个参数 connectionName 指定使用的连接名，默认 default
+// The second parameter raw specifies true, which means that the native sql is executed.
+// The third parameter connectionName specifies the connection name to use, the default default
 $data = DbManager::getInstance()->query($queryBuild, true, 'default');
 
 ```
 
-通过Model执行
+Executed by Model
 ```php
-// 需要注意的是，这里的sql语句仅仅是示例
-// 正确推荐的做法应该仍然是查询Model类对应的表，得到表结构字段的数据
+// Note that the sql statement here is just an example.
+/ / The correct recommended practice should still be to query the table corresponding to the Model class, get the data of the table structure field
 $data = Model::create()->get(function ($queryBuild){
     $queryBuild->raw("shwo tables");
 });
 ```
 
 ::: warning
-原生 SQL 表达式将会被当做字符串注入到查询中，因此你应该小心使用，避免创建 SQL 注入的漏洞。
+Native SQL expressions will be injected into the query as strings, so you should be careful to avoid creating SQL injection vulnerabilities.
 :::

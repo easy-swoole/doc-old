@@ -1,32 +1,32 @@
 ---
-title: 新增
+title: New
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|新增
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|New
 ---
 
-# 新增
+# New
 
-要往数据库新增一条记录，先创建新模型实例，给实例设置属性，然后调用 save 方法：
+To add a new record to the database, first create a new model instance, set the properties for the instance, and then call the save method:
 
 ```php
 $model = new UserModel();
-// 不同设置值的方式
+// Different ways of setting values
 $model->setAttr('id', 7);
 $model->name = 'name';
 $model['name'] = 'name';
 
 $res = $model->save();
-var_dump($res); // 返回自增id 或者主键的值  失败则返回null
+var_dump($res); // Returns the value of the self-incrementing id or primary key. If it fails, it returns null.
 ```
-在这个示例中，我们将 `id` 和 `name` 赋值给了 UserModel 模型实例的 `id` 和 `name` 属性。当调用 `save` 方法时，将会插入一条新记录
+In this example, we assign `id` and `name` to the `id` and `name` attributes of the UserModel model instance. When the `save` method is called, a new record will be inserted.
 
 
-### 数组赋值
+### Array assignment
 
-可以传入数组`[字段名=>字段值]` 再调用 `save` 方法保存
+You can pass in the array `[field name=>field value]` and call the `save` method to save it.
 
 ```php
 $model = UserModel::create([
@@ -39,7 +39,7 @@ $res = $model->save();
 
 ```php
 // data($data, $setter = true)  
-// 第二个参数 可以决定是否要调用修改器（如果要设置的话   下面的文档有说明）
+// The second parameter can determine whether you want to call the modifier (if you want to set it, the documentation below)
 $user = UserModel::create()->data([
     'name' => 'siam',
     'age'  => 21,
