@@ -1,10 +1,10 @@
 ---
-title: Task异步任务
+title: Asynchronous tasks
 meta:
   - name: description
-    content: 主要讲述php如何用swoole拓展进行异步任务投递，以及常见的swoole异步任务报错问题
+    content: Mainly about how to use swoole extension of PHP asynchronous task delivery, and the common swoole asynchronous task error
   - name: keywords
-    content: EasySwoole异步任务|swoole异步|swoole异步进程
+    content: EasySwoole Asynchronous tasks|swoolea synchronous|swoole Asynchronous process
 ---
 
 ## Installation
@@ -12,20 +12,20 @@ meta:
 composer require easyswoole/task
 ```
 
-## 独立使用示例
+## Standalone use example
 ```php
 use EasySwoole\Task\Config;
 use EasySwoole\Task\Task;
 
 /*
-    配置项中可以修改工作进程数、临时目录，进程名，最大并发执行任务数，异常回调等
+    The number of worker processes, temporary directory, process name, maximum number of concurrent tasks, exception callbacks and so on can be modified in the configuration item
 */
 $config = new Config();
 $task = new Task($config);
 
 $http = new swoole_http_server("127.0.0.1", 9501);
 /*
-添加服务
+Add the service
 */
 $task->attachToServer($http);
 
@@ -49,43 +49,43 @@ $http->on("request", function ($request, $response)use($task){
 $http->start();
 ```
 
-# 框架中使用
+# Used in the framework
 
-3.3.0版本的EasySwoole异步任务采用独立组件实现实现，用以实现异步任务，并解决：
+The 3.3.0 version of EasySwoole asynchronous tasks is implemented as a separate component to implement and resolve asynchronous tasks：
 
-- 无法投递闭包任务
-- 无法在TaskWorker等其他自定义进程继续投递任务
-- 实现任务限流与状态监控  
+- Undeliverable closure task
+- Unable to continue delivering tasks in other custom processes such as TaskWorker
+- Realize task flow limitation and state monitoring  
 
-老版本过来的用户，请做以下操作进行升级：
+For the old version, please do the following :
 
-- 配置项删除  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
-- 配置项新增 MAIN_SERVER.TASK ,默认值为```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
-- 注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
+- Configuration item deletion ：  MAIN_SERVER.SETTING.task_worker_num 与 MAIN_SERVER.SETTING.task_enable_coroutine
+- Configuration item added： MAIN_SERVER.TASK ,The default value is ```['workerNum'=>4,'maxRunningNum'=>128,'timeout'=>15]```
+- Note that EasySwoole's Temp directory cannot be in a Shared directory between the virtual machine and the host, which will result in a UnixSocket link being created without permission
 
-## 任务管理器
-EasySwoole定义了一个任务管理器，完整名称空间为：
+## Task manager
+EasySwoole defines a task manager with a full namespace of：
 `EasySwoole\EasySwoole\Task\TaskManager`
-他是一个继承了`EasySwoole\Task\Task`对象的单例对象，并在`Core.php`的主服务创建事件中被实例化。服务启动后的任意位置，均可调用
+It is a singleton that inherits an 'EasySwoole\Task\Task' object and is instantiated in the main service creation event of 'core.php'. Can be invoked anywhere after the service is started.
 
-### 投递闭包任务
+### Post closure tasks
 ```php
 TaskManager::getInstance()->async(function (){
     var_dump('r');
 });
-```  
+```
 
 ::: warning 
-由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+Since PHP itself cannot serialize closures, the closure post is done by reflecting the closure function, getting PHP code to serialize PHP code directly, and then eval code directly, so the post closure cannot use external object references and resource handles. For complex tasks, use task template methods.  
 ::: 
 
-### 投递callable 
+### Delivery callable
 
 ```php
 TaskManager::getInstance()->async(callable);
 ```
 
-### 投递模板任务
+### Delivery template task
 
 ```php
 use EasySwoole\Task\AbstractInterface\TaskInterface;
@@ -107,74 +107,73 @@ class Task implements TaskInterface
 }
 
 TaskManager::getInstance()->async(Task::class);
-//或者是
+//or
 TaskManager::getInstance()->async(new Task());
-```                                                           
+```
 
-# 异步任务-3.3.0版本以下
-
-
-::: warning 
- 参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
-:::
-
+# Asynchronous tasks - below version 3.3.0
 
 ::: warning 
- 异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
+ Refer to the Demo: [Asynchronous task handling demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 :::
 
-在服务启动后的任意一个地方，都可以进行异步任务的投递，为了简化异步任务的投递，框架封装了任务管理器，用于投递同步/异步任务，投递任务有两种方式，一是直接投递闭包，二是投递任务模板类
+::: warning 
+ Asynchronous task manager class：EasySwoole\EasySwoole\Swoole\Task\TaskManager
+:::
+
+Asynchronous task delivery can occur anywhere after the service is started. To simplify asynchronous task delivery, the framework encapsulates the task manager for synchronous/asynchronous task delivery，There are two ways to post a Task: directly post a closure and directly post a job template class
 
 
 
-## 直接投递闭包
+## Drop the closure directly
 
-任务比较简单的情况下可以直接投递闭包，任意地方包括控制器/定时器/服务启动后的各种回调中均可进行投递
+When the task is relatively simple, the closure can be directly posted anywhere including in various callbacks after the controller/timer/service starts
 
 ```php
-// 在控制器中投递的例子
+// Post in the controller example
 function index()
 {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        echo "执行异步任务...\n";
+        echo "Perform asynchronous tasks...\n";
         return true;
     }, function () {
-        echo "异步任务执行完毕...\n";
+        echo "Asynchronous task finished...\n";
     });
 }
 
-// 在定时器中投递的例子
+// An example of delivery in a timer
 \EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async(function () {
-        echo "执行异步任务...\n";
+        echo "Perform asynchronous tasks...\n";
     });
 });
 ```
 
 ::: warning 
- 由于php本身就不能序列化闭包,该闭包投递是通过反射该闭包函数,获取php代码直接序列化php代码,然后直接eval代码实现的 所以投递闭包无法使用外部的对象引用,以及资源句柄,复杂任务请使用任务模板方法  
+
+Since PHP itself cannot serialize closures, the closure post is done by reflecting the closure function, getting PHP code to serialize PHP code directly, and then eval code directly, so the post closure cannot use external object references and resource handles. For complex tasks, use task template methods.
+
 :::
 
-以下的使用方法是错误的:
+The following usage is incorrect:
 ```php
-$image = fopen('test.php', 'a');//使用外部资源句柄序列化数据将不存在
-$a=1;//使用外部变量将不存在
+$image = fopen('test.php', 'a');//Serializing data using an external resource handle will not exist
+$a=1;//Using external variables will not exist
 TaskManager::async(function ($image,$a) {
     var_dump($image);
     var_dump($a);
-    $this->testFunction();//使用外部对象的引用将出错
+    $this->testFunction();//Using a reference to an external object will cause an error
     return true;
 },function () {});
 ```
 
 
-## 投递任务模板类
+## Post the task template class
 
-当任务比较复杂，逻辑较多而且固定时，可以预先创建任务模板，并直接投递任务模板，以简化操作和方便在多个不同的地方投递相同的任务，首先需要创建一个任务模板
-
+When the task is complex, logical and fixed, you can create a task template in advance and post the task template directly to simplify the operation and facilitate the delivery of the same task in multiple different places. First, you need to create a task template
 
 ::: warning 
- 异步任务模板类：EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
+ Asynchronous task template class：EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
 :::
 
 ```php
@@ -182,52 +181,52 @@ class Task extends \EasySwoole\EasySwoole\Swoole\Task\AbstractAsyncTask
 {
 
     /**
-     * 执行任务的内容
-     * @param mixed $taskData     任务数据
-     * @param int   $taskId       执行任务的task编号
-     * @param int   $fromWorkerId 派发任务的worker进程号
+     * Execute the content of the task
+     * @param mixed $taskData     taskData
+     * @param int   $taskId       The task number of the execution task
+     * @param int   $fromWorkerId Assign the worker process number of the task
      * @author : evalor <master@evalor.cn>
      */
     function run($taskData, $taskId, $fromWorkerId,$flags = null)
     {
-        // 需要注意的是task编号并不是绝对唯一
-        // 每个worker进程的编号都是从0开始
-        // 所以 $fromWorkerId + $taskId 才是绝对唯一的编号
-        // !!! 任务完成需要 return 结果
+        // Note that the task number is not absolutely unique
+        // Each worker process is numbered from 0
+        // So $fromWorkerId + $taskId is the absolutely unique number
+        // !!! The return result is needed to complete the task
     }
 
     /**
-     * 任务执行完的回调
-     * @param mixed $result  任务执行完成返回的结果
-     * @param int   $task_id 执行任务的task编号
+     * A callback to the completion of a task
+     * @param mixed $result  The result returned when the task is completed
+     * @param int   $task_id The task number of the execution task
      * @author : evalor <master@evalor.cn>
      */
     function finish($result, $task_id)
     {
-        // 任务执行完的处理
+        // The processing of the end of task execution
     }
 }
 ```
 
-然后同上例，一样可以在服务启动后的任何地方进行投递，只是将闭包换成任务模板类的实例进行投递
+Then, as in the previous example, you can post anywhere after the service is started, just replace the closure with an instance of the task template class
 
 ```php
-// 在控制器中投递的例子
+// Post in the controller example
 function index()
 {
-    // 实例化任务模板类 并将数据带进去 可以在任务类$taskData参数拿到数据
+    // Instantiate the task template class and bring in the data to get the data in the task class $taskData parameter
   	$taskClass = new Task('taskData');
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 }
 
-// 在定时器中投递的例子
+// An example of delivery in a timer
 \EasySwoole\Component\Timer::getInstance()->loop(1000, function () {
     \EasySwoole\EasySwoole\Swoole\Task\TaskManager::async($taskClass);
 });
 ```
 
-###  使用快速任务模板
-可通过继承`EasySwoole\EasySwoole\Swoole\Task\QuickTaskInterface`,增加run方法,即可实现一个任务模板,通过直接投递类名运行任务:
+###  Use a quick task template
+By inheriting 'EasySwoole, EasySwoole, Swoole, Task, QuickTaskInterface', add the run method, you can achieve a Task template, through the direct post class name to run the Task:
 ```php
 <?php
 namespace App\Task;
@@ -237,89 +236,88 @@ class QuickTaskTest implements QuickTaskInterface
 {
     static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags = null)
     {
-        echo "快速任务模板";
+        echo "Quick task template";
 
         // TODO: Implement run() method.
     }
 }
 ```
-控制器调用:
+Controller call:
 ```php
 $result = TaskManager::async(\App\Task\QuickTaskTest::class);
 ```
 
-## 在自定义进程投递异步任务
+## Deliver asynchronous tasks in a custom process
 
-由于自定义进程的特殊性，不能直接调用Swoole的异步任务相关方法进行异步任务投递，框架已经封装好了相关的方法方便异步任务投递，请看下面的例子  
+Due to the particularity of custom process, it is not possible to directly call Swoole's asynchronous task-related method for asynchronous task delivery. The framework has encapsulated the relevant method to facilitate asynchronous task delivery, please see the following example
 
 ::: warning 
-自定义进程投递异步任务没有finish回调  
+Custom process post asynchronous task without finish callback  
 :::
 
 ```php
     public function run(Process $process)
     {
-        // 直接投递闭包
+        // Delivery the closure directly
         TaskManager::processAsync(function () {
             echo "process async task run on closure!\n";
         });
 
-        // 投递任务类
+        // Delivery task class
         $taskClass = new TaskClass('task data');
         TaskManager::processAsync($taskClass);
     }
 ```
 
-## 任务并发执行
+## Concurrent execution of tasks
 
-有时需要同时执行多个异步任务，最典型的例子是数据采集，采集完多个数据后集中进行处理，这时可以进行并发任务投递，底层会将任务逐个进行投递并执行，所有任务执行完后返回一个结果集
+Sometimes it is necessary to execute multiple asynchronous tasks at the same time. The most typical example is data collection. After collecting and processing multiple data, concurrent task delivery can be carried out，A result set is returned after all tasks are executed
 
 ```php
-// 多任务并发
-$tasks[] = function () { sleep(50000);return 'this is 1'; }; // 任务1
-$tasks[] = function () { sleep(2);return 'this is 2'; };     // 任务2
-$tasks[] = function () { sleep(50000);return 'this is 3'; }; // 任务3
+// multitasking
+$tasks[] = function () { sleep(50000);return 'this is 1'; }; // task1
+$tasks[] = function () { sleep(2);return 'this is 2'; };     // task2
+$tasks[] = function () { sleep(50000);return 'this is 3'; }; // task3
 
 $results = \EasySwoole\EasySwoole\Swoole\Task\TaskManager::barrier($tasks, 3);
 
 var_dump($results);
 ```
 
-
 ::: warning 
- 注意：Barrier为阻塞等待执行，所有的任务会被分发到不同Task进程(需要有足够的task进程,否则也会阻塞)同步执行， 直到所有的任务执行结束或超时才返回全部结果，默认的任务超时为0.5秒，以上示例中只有任务2能正常执行并返回结果。
+ Note: the Barrier is a block waiting for execution, and all tasks will be distributed to different Task processes (there should be enough Task processes, or they will also be blocked) to execute synchronously, and all results will not be returned until all tasks finish execution or timeout. The default Task timeout is 0.5 seconds，Only task 2 in the example above can execute properly and return results。
 :::
 
-## 类函数参考
+## Class function reference
 
 ```php
 /**
- * 投递一个异步任务
- * @param mixed $task           需要投递的异步任务
- * @param mixed $finishCallback 任务执行完后的回调函数
- * @param int   $taskWorkerId   指定投递的Task进程编号 (默认随机投递给空闲进程)
- * @return bool 投递成功 返回整数 $task_id 投递失败 返回 false
+ * Deliver an asynchronous task
+ * @param mixed $task           Asynchronous tasks that need to be delivered
+ * @param mixed $finishCallback The callback function after the task executes
+ * @param int   $taskWorkerId   Specify the Task process number to post (randomly post to idle process by default)
+ * @return bool Successful delivery returns the integer $task_id, Return false on delivery failure
  */
 static function async($task,$finishCallback = null,$taskWorkerId = -1)
 ```
 
 ```php
 /**
- * 投递一个同步任务
- * @param mixed $task         需要投递的异步任务
- * @param float $timeout      任务超时时间
- * @param int   $taskWorkerId 指定投递的Task进程编号 (默认随机投递给空闲进程)
- * @return bool|string 投递成功 返回整数 $task_id 投递失败 返回 false
+ * Deliver an asynchronous task
+ * @param mixed $task         Asynchronous tasks that need to be delivered
+ * @param float $timeout      Task timeout
+ * @param int   $taskWorkerId Specify the Task process number to post (randomly post to idle process by default)
+ * @return bool|string Successful delivery returns the integer $task_id, Return false on delivery failure
  */
 static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
 ```
 
 ```php
 /**
- * 异步进程内投递任务
- * @param array $taskList 需要执行的任务列表
- * @param float $timeout  任务执行超时
- * @return array|bool 每个任务的执行结果
+ * Deliver tasks in asynchronous processes
+ * @param array $taskList List of tasks to perform
+ * @param float $timeout  Task timeout
+ * @return array|bool The execution result of each task
  */
 static function barrier(array $taskList, $timeout = 0.5)
 ```

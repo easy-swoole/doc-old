@@ -88,7 +88,7 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
     - 如果的如果 admin@fosuss.com   
 - 团队成员
     - 阿正 1589789807@qq.com
-    - 不忘初心 2788828128@qq.com
+    - 会长 2788828128@qq.com
     - 北溟有鱼 1769360227@qq.com
     - 机器人 694050314@qq.com
     - Manlin 476295133@qq.com

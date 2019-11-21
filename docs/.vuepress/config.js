@@ -11,8 +11,9 @@ module.exports = {
         },
         '/En/': {
             lang: 'en-US',
-            title: 'EASYSWOOLE',
-            description: 'an height-performance base on swoole extension,which is fully support swoole coroutine'
+            title: 'easyswoole,an height-performance php framework which base on swoole extension',
+            keywords: 'easySwoole,swoole,swoole framework,swoole websocket,swoole rpc,swoole distribute',
+            description: 'easyswoole,an height-performance php framework which base on swoole extension'
         }
     },
     themeConfig: {

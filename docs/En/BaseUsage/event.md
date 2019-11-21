@@ -1,16 +1,16 @@
 ---
-title: 自定义事件
+title: Custom events
 meta:
   - name: description
-    content: EasySwoole自定义事件
+    content: EasySwoole Custom events
   - name: keywords
-    content: Easyswoole 自定义事件|swoole 框架|EasySwoole
+    content: Easyswoole Custom events|swoole frame|EasySwoole
 ---
 
-## 自定义事件
-easyswoole中,通过Container容器可实现自定义事件功能  
+## Custom Events
+In easyswoole, custom events can be implemented through the Container
 
-## 新增`App/Event/Event.php`文件
+## Add 'App/Event/ event.php' file
 ```php
 <?php
 namespace App\Event;
@@ -40,7 +40,7 @@ class Event extends Container
     }
 }
 ```
-在框架的initialize事件中进行注册事件:
+Register events in the initialize event of the framework:
 ```php
  public static function initialize()
     {
@@ -52,8 +52,8 @@ class Event extends Container
     }
 ```
 
-在其他任意位置调用:
+Call anywhere else:
 ```php
 Event::getInstance()->hook('test');
 ```
-即可触发事件
+Can trigger events
