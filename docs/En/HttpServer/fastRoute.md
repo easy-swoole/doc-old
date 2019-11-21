@@ -1,23 +1,23 @@
 ---
-title: 路由
+title: routing
 meta:
   - name: description
-    content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
+    content: easyswoole,routing,Swoole routing component,swoole api,Swoole custom routing,restful
   - name: keywords
-    content: easyswoole|路由|swoole 路由组件|swoole api|swoole自定义路由|restful
+    content: easyswoole|routing|Swoole routing component|swoole api|Swoole custom routing|restful
 ---
 
-## 自定义路由
+## Custom routing
 
 
 ::: warning 
- 参考Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
+ Reference Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 :::
 
-EasySwoole支持自定义路由,其路由利用[fastRoute](https://github.com/nikic/FastRoute)实现，因此其路由规则与其保持一致，该组件的详细文档请参考 [GitHub文档](https://github.com/nikic/FastRoute/blob/master/README.md) 
+EasySwoole supports custom routing, and its routing is implemented by [fastRoute] (https://github.com/nikic/FastRoute), so its routing rules are consistent with it. For detailed documentation of this component, please refer to [GitHub documentation] (https:/ /github.com/nikic/FastRoute/blob/master/README.md)
 
-### 示例代码:  
-新建文件App\HttpController\Router.php:  
+### Sample Code:
+Create a new file App\HttpController\Router.php:
 ```php
 <?php
 /**
@@ -47,58 +47,57 @@ class Router extends AbstractRouter
         });
         $routeCollector->get('/test', function (Request $request, Response $response) {
             $response->write('this router test');
-            return '/a';//重新定位到/a方法
+            return '/a';//Relocate to the /a method
         });
         $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $response) {
-            $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//获取到路由匹配的id
-            return false;//不再往下请求,结束此次响应
+            $response->write("this is router user ,your id is {$request->getQueryParam('id')}");//Get the id of the route match
+            return false;//No longer request, end this response
         });
 
     }
 }
 ```
-访问127.0.0.1:9501/rpc,对应为App\HttpController\Rpc.php->index()  
+Visit 127.0.0.1:9501/rpc, corresponding to App\HttpController\Rpc.php->index()
 
-::: warning 
- 如果使用回调函数方式处理路由,return false 代表着不在继续往下请求,并且不能触发`afterAction`,`gc`等方法
+::: warning
+  If the callback function is used to process the route, return false means that the request is not continued, and the method `afterAction`, `gc` cannot be triggered.
 :::
 
-> 实现原理可在源码中查看
+> Implementation principle can be viewed in the source code
 
 
-### 全局模式拦截
-在Router.php加入以下代码,即可开启全局模式拦截
+### Global Mode Intercept
+Add the following code in Router.php to enable global mode interception
 ```php
 $this->setGlobalMode(true);
 ```
-全局模式拦截下,路由将只匹配Router.php中的控制器方法响应,将不会执行框架的默认解析
+Under global mode interception, the route will only match the controller method response in Router.php, and the default parsing of the framework will not be performed.
 
-### 异常错误处理  
-通过以下2个方法,可设置路由匹配错误以及未找到方法的回调:
+### Exception error handling
+The following two methods can be used to set the route matching error and the callback of the method not found:
 ```php
 <?php
 $this->setMethodNotAllowCallBack(function (Request $request,Response $response){
-    $response->write('未找到处理方法');
-    return false;//结束此次响应
+    $response->write('No processing method found');
+    return false;//End this response
 });
 $this->setRouterNotFoundCallBack(function (Request $request,Response $response){
-    $response->write('未找到路由匹配');
-    return 'index';//重定向到index路由
+    $response->write('Route matching not found');
+    return 'index';//Redirect to index route
 });
 ```
 
 ::: warning 
-该回调函数只针对于fastRoute未匹配状况,如果回调里面不结束该请求响应,则该次请求将会继续进行Dispatch并尝试寻找对应的控制器进行响应处理。  
+The callback function is only for the fastRoute unmatched condition. If the callback does not end the request response, the request will continue to Dispatch and try to find the corresponding controller for response processing.
 :::
 
 
+### fastRoute use
 
-### fastRoute使用
-
-addRoute方法
+addRoute method
 ------
 
-定义路由的`addRoute`方法原型如下，该方法需要三个参数，下面围绕这三个参数我们对路由组件进行更深一步的了解
+The prototype of the `addRoute` method that defines the route is as follows. This method requires three parameters. Below we have a deeper understanding of the routing components.
 
 ```php
 $routeCollector->addRoute($httpMethod, $routePattern, $handler)
@@ -106,63 +105,62 @@ $routeCollector->addRoute($httpMethod, $routePattern, $handler)
 
 #### httpMethod
 ------
-该参数需要传入一个大写的HTTP方法字符串，指定路由可以拦截的方法，单个方法直接传入字符串，需要拦截多个方法可以传入一个一维数组，如下面的例子：
+This parameter needs to pass in an uppercase HTTP method string, specifying the method that the route can intercept. A single method directly passes the string. You need to intercept multiple methods to pass in a one-dimensional array, as in the following example:
 
 ```php
-// 拦截GET方法
+// Intercept GET method
 $routeCollector->addRoute('GET', '/router', '/Index');
 
-// 拦截POST方法
+// Intercept POST method
 $routeCollector->addRoute('POST', '/router', '/Index');
 
-// 拦截多个方法
+// Intercept multiple methods
 $routeCollector->addRoute(['GET', 'POST'], '/router', '/Index');
 
 ```
 
 #### routePattern
 ------
-传入一个路由匹配表达式，符合该表达式要求的路由才会被拦截并进行处理，表达式支持{参数名称:匹配规则}这样的占位符匹配，用于限定路由参数
+Passing a route matching expression, the route that meets the expression requirements will be intercepted and processed. The expression supports placeholder matching such as {parameter name: matching rule}, which is used to qualify routing parameters.
 
-#### 基本匹配
+#### Basic match
 
-下面的定义将会匹配 `http://localhost:9501/users/info`
+The following definition will match `http://localhost:9501/users/info`
 
 ```php
 $routeCollector->addRoute('GET', '/users/info', 'handler');
 ```
-
-#### 绑定参数
-下面的定义将`/users/`后面的部分作为参数，并且限定参数只能是数字`[0-9]`
+#### Binding parameters
+The following definition takes the part after `/users/` as a parameter, and the qualified parameter can only be the number `[0-9]`
 
 ```php
-// 可以匹配: http://localhost:9501/users/12667
-// 不能匹配: http://localhost:9501/users/abcde
+// can match: http://localhost:9501/users/12667
+// Can't match: http://localhost:9501/users/abcde
 
 $routeCollector->addRoute('GET', '/users/{id:\d+}', 'handler');
 
 ```
 
-下面的定义不做任何限定，仅将匹配到的URL部分获取为参数
+The following definitions are not restricted, only the matching URL part is taken as a parameter.
 
 ```php
-// 可以匹配: http://localhost:9501/users/12667
-// 可以匹配: http://localhost:9501/users/abcde
+// can match: http://localhost:9501/users/12667
+// can match: http://localhost:9501/users/abcde
 
 $routeCollector->addRoute('GET', '/users/{name}', 'handler');
 ```
 
-有时候路由的部分位置是可选的，可以像下面这样定义
+Sometimes the partial location of the route is optional and can be defined as follows
 
 ```php
-// 可以匹配: http://localhost:9501/users/to
-// 可以匹配: http://localhost:9501/users/to/username
+// can match: http://localhost:9501/users/to
+// can match: http://localhost:9501/users/to/username
 
 $routeCollector->addRoute('GET', '/users/to[/{name}]', 'handler');
 ```
 
-::: warning 
-绑定的参数将由框架内部进行组装到get数据之中,调用方法:
+::: warning
+The bound parameters will be assembled into the get data by the inside of the framework.
 :::
 
 ````php
@@ -176,25 +174,25 @@ $routeCollector->get('/user/{id:\d+}', function (Request $request, Response $res
 
 #### handler
 ------
-指定路由匹配成功后需要处理的方法，可以传入一个闭包，当传入闭包时一定要**注意处理完成之后要处理结束响应**否则请求会继续Dispatch寻找对应的控制器来处理，当然如果利用这一点，也可以对某些请求进行处理后再交给控制器执行逻辑
+Specify the method that needs to be processed after the route is successfully matched. You can pass in a closure. When passing in the closure, you must pay attention to the end of the response after processing. Otherwise, the request will continue to Dispatch to find the corresponding controller to handle. Of course, if you take advantage of this, you can also process some requests and then pass them to the controller execution logic.
 
 ```php
-// 传入闭包的情况
+// Incoming closures
 $routeCollector->addRoute('GET', '/router/{id:\d+}', function (Request $request, Response $response) {
-    $id = $request->getQueryParam('id');
-	$response->write('Userid : ' . $id);
-	return false;
+     $id = $request->getQueryParam('id');
+$response->write('Userid : ' . $id);
+Return false;
 });
 
 ```
 
-也可以直接传入控制器路径
+Can also be directly passed to the controller path
 
 ```php
 $routeCollector->addRoute('GET', '/router2/{id:\d+}', '/Index');
 ```
 
 
-::: warning 
- 更多使用详情请直接查看FastRouter。
+::: warning
+  For more details on usage, please check the FastRouter directly.
 :::

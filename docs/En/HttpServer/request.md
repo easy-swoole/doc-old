@@ -1,19 +1,19 @@
 ---
-title: 生命周期
+title: Life cycle
 meta:
   - name: description
-    content: easyswoole,生命周期
+    content: easyswoole,Life cycle
   - name: keywords
-    content: easyswoole|生命周期
+    content: easyswoole|Life cycle
 ---
-## 生命周期
-Request对象在系统中以单例模式存在，自收到客户端HTTP请求时自动创建，直至请求结束自动销毁。Request对象完全符合[PSR7](psr-7.md)中的所有规范。
-## 方法列表
+## Life cycle
+The Request object exists in the system in singleton mode, and is automatically created when the client HTTP request is received, until the request ends automatically. The Request object is fully compliant with all the specifications in [PSR7] (psr-7.md).
+##Method list
 ### getRequestParam()
-用于获取用户通过POST或者GET提交的参数（注意：若POST与GET存在同键名参数，则以GET为准）。
-示例：
+Used to get the parameters submitted by the user through POST or GET (Note: If POST and GET have the same key name parameter, GET will be used).
+Example:
 ```php
-// 在控制器中 可以通过 $this->request() 获取到Request对象
+// In the controller, the Request object can be obtained via $this->request()
 // $request = $this->request()；
 
 $data = $request->getRequestParam();
@@ -26,11 +26,11 @@ $mixData = $request->getRequestParam("orderId","type");
 var_dump($mixData);
 ```
 ### getSwooleRequest()
-该方法用于获取当前的swoole_http_request对象。
+This method is used to get the current swoole_http_request object.
 
-## PSR-7规范ServerRequest对象中常用方法
+## PSR-7 Specifications Common Methods in the ServerRequest Object
 ### getCookieParams()
-该方法用于获取HTTP请求中的cookie信息
+This method is used to obtain the cookie information in the HTTP request.
 ```php
 $all = $request->getCookieParams();
 var_dump($all);
@@ -38,43 +38,43 @@ $who = $request->getCookieParams('who');
 var_dump($who);
 ```
 ### getUploadedFiles()
-该方法用于获取客户端上传的全部文件信息。
+This method is used to obtain all file information uploaded by the client.
 ```php
-$img_file = $request->getUploadedFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
-$data = $request->getUploadedFiles();//获取全部上传文件返回包含\EasySwoole\Http\Message\UploadFile对象的数组
+$img_file = $request->getUploadedFile('img');//Get an upload file that returns an object of \EasySwoole\Http\Message\UploadFile
+$data = $request->getUploadedFiles();//Get all uploaded files and return an array containing the \EasySwoole\Http\Message\UploadFile object
 var_dump($data);
 #### \EasySwoole\Http\Message\UploadFile对象:
 ```
-点击查看[UploadFile对象](./uploadFile.md)
+Click to view [UploadFile object] (./uploadFile.md)
 
 ### getBody()
-该方法用于获取以非form-data或x-www-form-urlenceded编码格式POST提交的原始数据，相当于PHP中的$HTTP_RAW_POST_DATA。
+This method is used to get the raw data submitted by POST in non-form-data or x-www-form-urlenceded encoding format, which is equivalent to $HTTP_RAW_POST_DATA in PHP.
 
-### 获得get内容
+### Get get content
 ```php
 $get = $request->getQueryParams();
 ```
 
-### 获得post内容
+### Get post content
 ```php
 $post = $request->getParsedBody();
 ```
 
-### 获得raw内容
+### Get raw content
 ```php
 $content = $request->getBody()->__toString();
 $raw_array = json_decode($content, true);
 ```
 
-### 获得头部
+### Getting the head
 ```php
 $header = $request->getHeaders();
 ```
-### 获得server
+### Get the server
 ```php
 $server = $request->getServerParams();
 ```
-### 获得cookie
+### Get a cookie
 ```php
 $cookie = $request->getCookieParams();
 ```

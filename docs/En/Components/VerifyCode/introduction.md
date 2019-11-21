@@ -1,26 +1,26 @@
 ---
-title: 验证码
+title: Verification code
 meta:
   - name: description
-    content: EasySwoole验证码组件,可自定义生成二维码图形或者base64等编码.
+    content: EasySwoole verification code component,Can be customized to generate QR code graphics or base64 encoding.
   - name: keywords
-    content: easyswoole|验证码|swoole验证码
+    content: easyswoole|Verification code|swoole Verification code
 ---
-# EasySwoole 验证码组件  
+# EasySwoole verification code component 
 
 ::: warning 
-仓库地址: [验证码组件](https://github.com/easy-swoole/verifyCode)
+Warehouse Address: [Verification Code Component](https://github.com/easy-swoole/verifyCode)
 :::
 
 
-EasySwoole提供了独立的 `验证码组件` ,几行代码即可实现输出一个验证码
+EasySwoole provides a separate `verification code component`, which can output a verification code in a few lines of code.
 
-## composer 安装
+## composer installation
 ```php
 composer require easyswoole/verifycode=3.x
 ```
 
-### 示例:  
+### Example:  
 ```php
 <?php
 /**

@@ -1,29 +1,29 @@
 ---
-title: UploadFile对象
+title: UploadFile object
 meta:
   - name: description
-    content: UploadFile对象
+    content: UploadFile object
   - name: keywords
-    content: EasySwoole UploadFile对象
+    content: EasySwoole UploadFile object
 ---
-## UploadFile对象
+## UploadFile object
 
-该对象在用户上传文件时自动生成,可通过以下方法获取
+This object is automatically generated when the user uploads a file. It can be obtained by the following methods.
 ```php
 <?php
 $request=  $this->request();
-$img_file = $request->getUploadedFile('img');//获取一个上传文件,返回的是一个\EasySwoole\Http\Message\UploadFile的对象
+$img_file = $request->getUploadedFile('img');//Get an upload file that returns an object of \EasySwoole\Http\Message\UploadFile
 $data = $request->getUploadedFiles();
 ```
 
-### 实现代码:
+### Implementation code:
 ```php
 <?php
 /**
  * Created by PhpStorm.
  * User: yf
  * Date: 2018/5/24
- * Time: 下午3:20
+ * Time: 3:20
  */
 
 namespace EasySwoole\Http\Message;
