@@ -392,8 +392,18 @@ const sidebarCn = [
             ['/Components/tracker', '链路追踪'],
             ['/Components/hotReload', '热重载监视器'],
             ['/Components/policy', 'Policy策略权限'],
-            ['/Components/jwt', 'JWT令牌'],
             ['/Components/atomicLimit', 'atomic限流器'],
+            {
+                title: 'JWT令牌',
+                path: '/Components/Jwt/introduction',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Jwt/use', '使用'],
+                    ['/Components/Jwt/encode', '编码相关方法'],
+                    ['/Components/Jwt/decode', '解码相关方法']
+                ]
+            },
             {
                 title: 'words-match',   // 必要的
                 path: '/Components/WordsMatch/WordsMatch',
@@ -448,6 +458,7 @@ const sidebarCn = [
                 title: '微信SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
+                path: '/Sdk/wechat',
                 children: [
                     ['/Components/Wechat/miniProgram', '公众号'],
                     ['/Components/Wechat/officialAccount', '小程序'],

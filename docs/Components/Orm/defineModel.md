@@ -30,11 +30,7 @@ class UserShop extends AbstractModel
 
 ## 数据表名称
 
-请注意，我们并没有告诉 ORM 我们的 `UserShop` 模型使用哪个数据表。
-除非明确地指定了其它名称，否则将使用类的**下划线**形式来作为表名。
-
-因此，在这种情况下，ORM 将假设 `UserShop` 模型存储的是 `user_shop` 数据表中的数据。
-你可以通过在模型上定义 `tableName` 属性来指定自定义数据表名称：
+需要在Model中定义 $tableName 属性，指定表名，否则将会产生错误`Table name is require for model`
 
 ```php
 
@@ -51,7 +47,6 @@ use EasySwoole\ORM\AbstractModel;
 class UserShop extends AbstractModel
 {
      /**
-      * 数据表名 当没有做定义的时候,自动将类名转为下划线格式作为表名
       * @var string 
       */
      protected $tableName = 'user_shop';
