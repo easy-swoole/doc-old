@@ -171,11 +171,11 @@ class Smarty implements RenderInterface
 
 #### Calling in HTTP service
 ```
-/ / Create an event in the global main service, instantiate the Render, and inject your driver configuration
+// Create an event in the global main service, instantiate the Render, and inject your driver configuration
 Render::getInstance()->getConfig()->setRender(new Smarty());
 Render::getInstance()->getConfig()->setTempDir(EASYSWOOLE_TEMP_DIR);
 Render::getInstance()->attachServer(ServerManager::getInstance()->getSwooleServer());
-/ / Implement the response in the action
+// Implement the response in the action
 Render::getInstance()->render('a.html');
 
 ```

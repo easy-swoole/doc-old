@@ -14,7 +14,7 @@ meta:
  Reference Demo: [Router.php](https://github.com/easy-swoole/demo/blob/3.x/App/HttpController/Router.php)
 :::
 
-EasySwoole supports custom routing, and its routing is implemented by [fastRoute] (https://github.com/nikic/FastRoute), so its routing rules are consistent with it. For detailed documentation of this component, please refer to [GitHub documentation] (https:/ /github.com/nikic/FastRoute/blob/master/README.md)
+EasySwoole supports custom routing, and its routing is implemented by [fastRoute] (https://github.com/nikic/FastRoute), so its routing rules are consistent with it. For detailed documentation of this component, please refer to [GitHub documentation] (https://github.com/nikic/FastRoute/blob/master/README.md)
 
 ### Sample Code:
 Create a new file App\HttpController\Router.php:

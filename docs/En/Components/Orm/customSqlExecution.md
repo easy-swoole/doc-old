@@ -30,7 +30,7 @@ $data = DbManager::getInstance()->query($queryBuild, true, 'default');
 Executed by Model
 ```php
 // Note that the sql statement here is just an example.
-/ / The correct recommended practice should still be to query the table corresponding to the Model class, get the data of the table structure field
+// The correct recommended practice should still be to query the table corresponding to the Model class, get the data of the table structure field
 $data = Model::create()->get(function ($queryBuild){
     $queryBuild->raw("shwo tables");
 });

@@ -25,7 +25,7 @@ $user->update([
 ```php
 
 $user = UserModel::create()->get(1);
-/ / After the specified field assignment
+// After the specified field assignment
 $user->is_vip = 1;
 $user->update();
 ```
@@ -97,7 +97,7 @@ In this way, the data of the non-table structure fields will not be filtered, an
 ```php
 $res = UserModel::create()->update([
    'is_vip' => 0,
-   'test' => 3333, / / table structure does not exist in the field
+   'test' => 3333, // table structure does not exist in the field
 ], [
    'vip_time' => 0
 ]);
