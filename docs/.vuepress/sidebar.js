@@ -328,6 +328,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Component/singleton', '单例'],
+                    ['/Components/Component/coroutineSingleton', '协程单例'],
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
@@ -835,6 +836,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
+          ['/Components/Component/coroutineSingleton', '协程单例'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']
