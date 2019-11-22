@@ -1,16 +1,16 @@
 ---
-title: 错误与异常拦截
+title: Error and exception interception
 meta:
   - name: description
-    content: Easyswoole,错误与异常拦截
+    content: Easyswoole,Error and exception interception
   - name: keywords
-    content:  EasySwoole|错误与异常拦截|swoole 错误异常
+    content:  EasySwoole|Error and exception interception|Swoole error exception
 ---
-## 错误与异常拦截
+## Error and exception interception
 
-### http控制器错误异常
+### Http controller error exception
 
-在http控制器中出现错误,系统将使用默认异常处理进行输出至客户端,代码如下:
+An error occurs in the http controller, the system will use the default exception handling to output to the client, the code is as follows:
 ```php
 <?php
 protected function hookThrowable(\Throwable $throwable,Request $request,Response $response)
@@ -23,7 +23,7 @@ protected function hookThrowable(\Throwable $throwable,Request $request,Response
     }
 }
 ```
-可直接在控制器重写onException方法:
+Can override the onException method directly on the controller:
 ```php
 <?php
 namespace App\HttpController;
@@ -55,7 +55,7 @@ class Base extends ViewController
 
 ```
 
-也可自定义异常处理文件:
+Can also customize exception handling files:
 ```php
 <?php
 namespace App;
@@ -71,7 +71,7 @@ class ExceptionHandler
     }
 }
 ```
-在initialize事件中DI注册异常处理:
+DI registration exception handling in the initialize event:
 
 ```php
 public static function initialize()

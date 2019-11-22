@@ -36,13 +36,13 @@ In the above list of methods, the most important is the `$where` parameter, whic
 ```php
 // via the primary key
 $res = UserModel::create()->get(1);
-/ / Through the key => value array
+// Through the key => value array
 $res = UserModel::create()->get([
   'u_id' => 1,
   'u_state' => 0,
   'is_vip' ​​=> 1
 ]);
-/ / Through the closure method, construct a complex sql
+// Through the closure method, construct a complex sql
 // This is a very powerful and flexible way. The closure parameter is a mysqli component query constructor that can call all consecutive operations.
 // http://www.easyswoole.com/Components/Mysqli/builder.html
 $res = UserModel::create()->get(function(QueryBuilder $queryBuilder){

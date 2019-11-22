@@ -14,7 +14,7 @@ Use \EasySwoole\ORM\AbstractModel ;
 
 Class AdminModel extends AbstractModel
 {
-    / / are optional, the default value to see the document below
+    // are optional, the default value to see the document below
     Protected $autoTimeStamp = true;
     Protected $createTime = 'create_at';
     Protected $updateTime = 'update_at';

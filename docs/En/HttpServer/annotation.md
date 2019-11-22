@@ -1,22 +1,22 @@
 ---
-title: 注解控制器
+title: Annotation controller
 meta:
   - name: description
-    content: Easyswoole 提供轻量级的注解控制器支持
+    content: Easyswoole provides lightweight annotation controller support
   - name: keywords
-    content:  EasySwoole|注解控制器|注解参数验证
+    content:  EasySwoole|Annotation controller|Annotation parameter verification
 ---
-# 注解控制器
+# Annotation controller
 
-Easyswoole 提供轻量级的注解控制器支持。注解控制器在未添加注解项的时候，逻辑与普通控制器逻辑一致。
+Easyswoole provides lightweight annotation controller support. The annotation controller is logically consistent with the normal controller logic when no annotations are added.
 
 
 ::: warning 
- 本功能处于灰度测试中，想体验的同学可以在composer 中添require 配置项 ```"easyswoole/http": "master-dev as 1.3.0"```并执行composer up进行安装。
+ This function is in the grayscale test. Students who want to experience can add the require configuration item ```"easyswoole/http": "master-dev as 1.3.0"``` to composer and execute composer up to install.
 :::
 
 
-## 例子如下
+## Examples are as follows
 
 ```php
 use EasySwoole\Http\Annotation\Method;
@@ -42,7 +42,7 @@ class Test extends \EasySwoole\Http\AbstractInterface\AnnotationController
     /**
      * @Method(allow={GET,POST})
      * @\EasySwoole\Http\Annotation\Param(name="test",from={POST})
-     * @\EasySwoole\Http\Annotation\Param(name="msg",alias="消息字段",lengthMax="20|消息过长",required="消息不能为空")
+     * @\EasySwoole\Http\Annotation\Param(name="msg",alias="Message field",lengthMax="20|The message is too long",required="Message cannot be empty")
      * @\EasySwoole\Http\Annotation\Param(name="type",inArray="{1,2,3,4}")
      */
     function fuck($test,$msg)
@@ -64,5 +64,5 @@ class Test extends \EasySwoole\Http\AbstractInterface\AnnotationController
 
 
 ::: warning 
-Param注解支持的校验方法与Easyswoole自带的参数校验器一致，注解格式请见 [annotation](./../Components/annotation.md)
+The verification method supported by Param annotation is consistent with the parameter checker provided by Easyswoole. Please refer to [annotation](/En/Components/annotation.md) for the annotation format.
 :::

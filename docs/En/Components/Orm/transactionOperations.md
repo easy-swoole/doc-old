@@ -61,7 +61,7 @@ DbManager::getInstance()->rollback();
 $user = UserModel::create()->get(4);
 
 $user->age = 4;
-/ / Open the transaction
+// Open the transaction
 $strat = DbManager::getInstance()->startTransaction();
 
 // update operation
