@@ -36,4 +36,7 @@ echo $builder->getLastBindParams();
 //获取上次条件构造的sql语句
 echo $builder->getLastQuery();
 //SELECT  * FROM whereGet WHERE  col1 = 2 
+
+// 获取最后插入的insert_id 使用客户端从swoole mysql获取
+$client->mysqlClient()->insert_id
 ```
