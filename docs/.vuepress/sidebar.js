@@ -228,6 +228,7 @@ const sidebarCn = [
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
+                    ['/Components/Orm/specialQuery', '特殊条件查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
