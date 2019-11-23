@@ -22,7 +22,7 @@ $builder->where('col1', 2)->get('getTable');
 
 ```php
 // 生成大概语句：where status = 1 AND (id > 10 or id < 2)
-$builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable);
+$builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable');
 ```
 
 ## 特殊操作符
