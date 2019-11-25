@@ -2,58 +2,58 @@
 title: PSR-7
 meta:
   - name: description
-    content: easyswoole,easyswoole完全兼容PSR7 Http Message接口规范
+    content: easyswoole,Easyswoole is fully compatible with PSR7 Http Message Interface Specification
   - name: keywords
     content: easyswoole|PSR7
 ---
 
 #PSR-7 Http Message
-easyswoole完全兼容PSR7 Http Message接口规范。
-## 接口规范示例
+Easyswoole is fully compatible with the PSR7 Http Message interface specification.
+## Interface Specification Example
 [http://www.php-fig.org/psr/psr-7/](http://www.php-fig.org/psr/psr-7/)
 
-## 部分对象详解
-### Stream 对象
-easySwoole中利用php://memory实现Stream对象，(新手可以把Stream理解为一个字符串对象)，所有的操作均为二进制安全，且完全是内存IO，因此效率极高，不会由于磁盘IO问题影响执行速度。
+## Part of the object detailed
+### Stream Object
+easySwoole uses php://memory to implement Stream object, (newbie can understand Stream as a string object), all operations are binary security, and completely memory IO, so the efficiency is very high, not due to disk IO problem Affects execution speed.
    - __toString
-   返回Stream对象中完整的流数据。
+   Returns the complete stream data in the Stream object.
    - close
-   关闭当前流对象，流对象中的数据也随之清空。
+   The current stream object is closed, and the data in the stream object is also cleared.
    - detach
-   将流对象里面的资源（文件流句柄）从Stream对象中抽离。
-        > 注意：抽离后，该Stream对象将不再不可用。
+   The resources (file stream handles) in the stream object are extracted from the Stream object.
+        > Note: After the extraction, the Stream object will no longer be unavailable.
    - getSize
-   获取当前Stream对象中数据的大小（长度）。
+   Gets the size (length) of the data in the current Stream object.
    - tell
-   获取当前数据流指针所处位置。
+   Get the location of the current stream pointer.
    - eof
-   判断当数据流指针是否处于资源结束位置。
+   Determine if the data stream pointer is at the end of the resource.
    - isSeekable
    - seek
-   移动数据流指针到指定位置。
+   Move the data stream pointer to the specified location.
    - rewind
-   将数据流指针移动至开始位置。
+   Move the data stream pointer to the starting position.
    - isWritable
    - write
-   向当前数据流写入数据。
-        > 注意：写入时应该注意数据流指针所处位置。
+   Write data to the current data stream.
+        > Note: You should pay attention to the location of the data stream pointer when writing.
    - isReadable
    - read
    - getContents
    - getMetadata
    
-### UploadFile 对象
-easySwoole中，所有的文件均自动转化为UploadFile对象。
+### UploadFile object
+In easySwoole, all files are automatically converted to an UploadFile object.
    - getStream
-   返回上传文件的数据流。
+        Returns the data stream of the uploaded file.
    - moveTo
-   将上传文件存为实体文件。
-        >注意：moveTo以file_put_contents实现，因此请确保保存文件时，文件存储路劲已经存在且有写入权限。 
+        Save the uploaded file as an entity file.
+             >Note: moveTo is implemented as file_put_contents, so make sure that the file storage path already exists and has write access when saving the file.
    - getSize
-   获取文件大小。
+        Get the file size.
    - getError
-   获取文件上传时的错误信息。
+        Get the error message when the file is uploaded.
    - getClientFilename
-   获取文件的客户端文件名。
+        Get the client file name of the file.
    - getClientMediaType
    

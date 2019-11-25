@@ -2,21 +2,21 @@
 title: Session
 meta:
   - name: description
-    content: EasySwoole Session处理组件
+    content: EasySwoole Session processing component
   - name: keywords
-    content: EasySwoole Session处理组件|swoole session|php session
+    content: EasySwoole Session processing component|swoole session|php session
 ---
 # Session 
-Easyswoole 自3.2.x开始，不再提供默认的session服务，若需要使用的用户，请独立引入session组件。
+Easyswoole Since 3.2.x, the default session service is no longer available. If you need to use the user, please introduce the session component independently.
 
 ## Installation
 ```shell
 composer require easyswoole/session
 ```
 
-## 使用
-
-定义一个基础session控制器，并继承AbstractSessionController父类即可，其余的控制器，只需要继承基础session控制器，即可实现session调用
+## Use
+   
+Define a basic session controller, and inherit the AbstractSessionController parent class. The rest of the controllers only need to inherit the base session controller to implement the session call.
 ```php
 use EasySwoole\Session\FileSessionHandler;
 use EasySwoole\Session\Test\RedisHandler;
@@ -28,7 +28,7 @@ class RedisHandler extends AbstractSessionController
     protected function sessionHandler(): \SessionHandlerInterface
     {
         /*
-         * 此处应该由连接池拿链接，否则实际生产会导致不断创建链接
+         * The link should be taken here by the connection pool, otherwise the actual production will lead to the continuous creation of the link.
          */
         $redis = new \Redis();
         $redis->connect('127.0.0.1');
@@ -73,10 +73,10 @@ class FileHandler extends AbstractSessionController
 
 
 ::: warning 
- 自带的文件session实现是无锁的
+ The built-in file session implementation is lock-free.
 :::
 
-## 支持的方法列表
+## List of supported methods
 
 - gcMaxLifetime()
 - gcProbability()

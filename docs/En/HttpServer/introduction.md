@@ -1,19 +1,19 @@
 ---
-title: http服务
+title: Http service
 meta:
   - name: description
-    content: easyswoole,http服务
+    content: easyswoole,Http service
   - name: keywords
-    content: easyswoole|http服务
+    content: easyswoole|Http service
 ---
 
-# http服务
+# Http service
 
-http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它实现了控制器连接池,url解析以及url路由规则.  
-[http组件demo](https://github.com/easy-swoole/demo/tree/3.x-http)
+The http component is a component that is automatically enabled when `SERVER_TYPE` is `EASYSWOOLE_WEB_SERVER`. It implements the controller connection pool, url parsing, and url routing rules.
+[http component demo] (https://github.com/easy-swoole/demo/tree/3.x-http)
 
-## 命名空间
-我们首先需要在`composer.json`中注册应用目录的命名空间(控制器命名空间默认为`App\HttpController`)
+## Namespaces
+We first need to register the namespace of the application directory in `composer.json` (the controller namespace defaults to `App\HttpController`)
 ```json
 {
     "require": {
@@ -26,18 +26,18 @@ http组件是当`SERVER_TYPE`为`EASYSWOOLE_WEB_SERVER`自动启用的组件,它
     }
 }
 ```
-然后更新一下composer
+Then update the composer
 ````
-composer update
+Composer update
 ````
 
-## 约定规范
+## Convention specification
 
-- 项目中类名称与类文件(文件夹)命名，均为大驼峰，变量与类方法为小驼峰。
-- 在HTTP响应中，于业务逻辑代码中echo $var 并不会将$var内容输出至相应内容中，请调用Response实例中的wirte()方法实现。
+- The class name and class file (folder) in the project are named, both are big hump, and the variable and class method are small hump.
+- In the HTTP response, echo $var in the business logic code does not output the $var content to the corresponding content. Please call the wirte() method in the Response instance.
 
-## 默认控制器
-创建`App/HttpController/Index.php`文件:
+## Default controller
+Create the `App/HttpController/Index.php` file:
 ````php
 <?php
 /**
@@ -59,10 +59,10 @@ class Index extends Controller{
 }
 ````
 
-启动easyswoole:
+Start easyswoole:
 ````
-php easyswoole start
+Php easyswoole start
 ````
-访问ip:9501,即可看到输出"hello world";
+Access ip:9501, you can see the output "hello world";
 
 

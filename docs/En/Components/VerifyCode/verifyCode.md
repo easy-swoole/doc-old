@@ -1,31 +1,31 @@
 ---
-title: 验证码
+title: Verification code
 meta:
   - name: description
-    content: EasySwoole验证码组件,可自定义生成二维码图形或者base64等编码.
+    content: EasySwoole verification code component, can be customized to generate QR code graphics or base64 encoding.
   - name: keywords
-    content: easyswoole|验证码|swoole验证码
+    content: easyswoole|Verification code|Swoole verification code
 ---
 
-## 验证码生成
+## Verification code generation
  
 ### VerifyCode.php
-VerifyCode验证码操作类,如果不传入Config实例,则自动实例化一个  
+VerifyCode verification code operation class, if you do not pass in the Config instance, automatically instantiate a
 
-#### 调用方法:
+#### Calling method:
 ```php
 $config = new Conf();
 $code = new \EasySwoole\VerifyCode\VerifyCode($config);
-$code->DrawCode();//生成验证码,返回一个Result对象
+$code->DrawCode();//Generate a verification code and return a Result object
 ```
 
 ### Result.php
-验证码结果类,由VerifyCode验证码操作类调用 DrawCode() 方法时创建并返回  
+The captcha result class, created and returned by the VerifyCode captcha operation class when the DrawCode() method is called
 
-方法列表:
+Method list:
 ```php
     /**
-     * 获取验证码图片
+     * Get captcha image
      * @author : evalor <master@evalor.cn>
      * @return mixed
      */
@@ -35,7 +35,7 @@ $code->DrawCode();//生成验证码,返回一个Result对象
     }
 
     /**
-     * 返回图片Base64字符串
+     * Return image Base64 string
      * @author : evalor <master@evalor.cn>
      * @return string
      */
@@ -47,7 +47,7 @@ $code->DrawCode();//生成验证码,返回一个Result对象
     }
 
     /**
-     * 获取验证码内容
+     * Get verification code content
      * @author : evalor <master@evalor.cn>
      * @return mixed
      */
@@ -57,7 +57,7 @@ $code->DrawCode();//生成验证码,返回一个Result对象
     }
 
     /**
-     * 获取Mime信息
+     * Get Mime information
      * @author : evalor <master@evalor.cn>
      */
     function getImageMime()
@@ -66,7 +66,7 @@ $code->DrawCode();//生成验证码,返回一个Result对象
     }
 
     /**
-     * 获取验证码文件路径
+     * Get the verification code file path
      * @author: eValor < master@evalor.cn >
      */
     function getImageFile()

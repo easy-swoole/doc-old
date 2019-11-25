@@ -1,22 +1,22 @@
 ---
-title: EasySwoole验证器
+title: EasySwoole Verifier
 meta:
   - name: description
-    content: EasySwoole 验证器|swoole 参数验证器
+    content: EasySwoole Validator|swoole Parameter validator
   - name: keywords
-    content: EasySwoole 验证器|swoole 参数验证器
+    content: EasySwoole Validator|swoole Parameter validator
 ---
 
 
 ## Validate
 
-EasySwoole 提供了自带基础的验证类，默认在控制器中带有一个validate方法，如果希望用其他的方法或者是工具去做检验，可以在子类控制器中重写该方法，从而实现用其他工具进行校验
+EasySwoole provides a built-in validation class. By default, there is a validate method in the controller. If you want to use other methods or tools to do the verification, you can override this method in the subclass controller to implement other methods. Tool for verification
 
-::: warning 
- 验证器类: EasySwoole\Validate\Validate
+::: warning
+  Validator class: EasySwoole\Validate\Validate
 :::
 
-### 基础使用
+### Basic use
 
 ```php
 <?php
@@ -28,15 +28,15 @@ $data = [
 ];
 
 $valitor = new Validate();
-$valitor->addColumn('name', '名字不为空')->required('名字不为空')->lengthMin(10,'最小长度不小于10位');
+$valitor->addColumn('name', 'The name is not empty')->required('The name is not empty')->lengthMin(10,'Minimum length is not less than 10 digits');
 $bool = $valitor->validate($data);
 var_dump($bool?"true":$valitor->getError()->__toString());
 
-/* 结果：
- string(26) "最小长度不小于10位"
+/* result:
+     String(26) "Minimum length is not less than 10 digits"
 */
 ```
-### 控制器中封装使用
+### Package use in the controller
 ```php
 namespace App\HttpController;
 use EasySwoole\Http\Message\Status;
@@ -73,7 +73,7 @@ class BaseController extends Controller
 
 
 ::: warning 
- 我们定义了一个带有validateRule方法的基础控制器。
+ We define a base controller with the validateRule method.。
 :::
 
 ```php
@@ -97,8 +97,8 @@ class Common extends BaseController
         $v = new Validate();
         switch ($action){
             case 'sms':{
-                $v->addColumn('phone','手机号')->required('不能为空')->length(11,'长度错误');
-                $v->addColumn('verifyCode','验证码')->required('不能为空')->length(4,'长度错误');
+                $v->addColumn('phone','phone number')->required('Can not be empty')->length(11,'Wrong length');
+                $v->addColumn('verifyCode','Verification code')->required('Can not be empty')->length(4,'Wrong length');
                 break;
             }
         }
@@ -109,45 +109,76 @@ class Common extends BaseController
 
 
 ::: warning 
- 在需要验证的控制器方法中，我们给对应的action添加对应的校验规则，即可实现自动校验，这样控制器方法即可安心实现逻辑。
+ In the controller method that needs to be verified, we can add the corresponding verification rule to the corresponding action, so that the automatic verification can be realized, so that the controller method can realize the logic with peace of mind.
 :::
 
-### 方法列表
-
-获取Error：
+### Method list
+    
+Get Error:
 
 ```php
 function getError():?EasySwoole\Validate\Error
 ```
 
-给字段添加规则：
+Add a rule to the field:
 
-- string `name`         字段key
-- string `errorMsg`     错误信息
-    - string `alias`    别名
+Version 1.1.9 to the present
+
+- string `name` field key
+- string `alias` alias
+- string `reset` reset rule
+
+```php
+public function addColumn(string $name, ?string $alias = null,bool $reset = false):EasySwoole\Validate\Rule
+```
+
+Version 1.1.0 to 1.1.8
+
+- string `name` field key
+- string `alias` alias
+
+```php
+public function addColumn(string $name, ?string $alias = null):EasySwoole\Validate\Rule
+```
+
+Version 1.0.1
+
+- string `name` field key
+- string `errorMsg` error message
+- string `alias` alias
 
 ```php
 public function addColumn(string $name,?string $errorMsg = null,?string $alias = null):EasySwoole\Validate\Rule
 ```
 
-返回一个Rule对象可以添加自定义规则。
+Version 1.0.0
 
-数据验证：
-
-- array `data` 数据
+- string `name` field key
+- string `alias` alias
+- string `errorMsg` error message
 
 ```php
-function validate(array $data)
+public function addColumn(string $name,?string $alias = null,?string $errorMsg = null):EasySwoole\Validate\Rule
 ```
 
-#### 验证规则类
-目前验证器支持的规则如下
+Return a Rule object to add a custom rule.
+
+data verification:
+
+- array `data` data
+
+```php
+Function validate(array $data)
+```
+
+#### Validation rule class
+Currently the rules supported by the validator are as follows
 ````php
 namespace EasySwoole\Validate;
 
 /**
- * 校验规则
- * 请以首字母排序校验方法以便后期维护
+ * Verification rule
+ * Please sort the verification method in alphabetical order for post maintenance
  * Class Rule
  * @package EasySwoole\Validate
  */
@@ -161,7 +192,7 @@ class Rule
     }
 
     /**
-     * 给定的URL是否可以成功通讯
+     * Whether the given URL can communicate successfully
      * @param null|string $msg
      * @return $this
      */
@@ -175,7 +206,7 @@ class Rule
     }
 
     /**
-     * 给定的参数是否是字母 即[a-zA-Z]
+     * Whether the given parameter is a letter, ie [a-zA-Z]
      * @param null|string $msg
      * @return $this
      */
@@ -207,9 +238,9 @@ class Rule
     }
 
     /**
-     * 给定的参数是否在 $min $max 之间
-     * @param integer $min 最小值 不包含该值
-     * @param integer $max 最大值 不包含该值
+     * Whether the given parameter is between $min $max
+     * @param integer $min minimum does not contain this value
+     * @param integer $max maximum does not contain this value
      * @param null|string $msg
      * @return $this
      */
@@ -225,7 +256,7 @@ class Rule
     }
 
     /**
-     * 给定参数是否为布尔值
+     * Whether the given parameter is a boolean
      * @param null|string $msg
      * @return $this
      */
@@ -239,8 +270,8 @@ class Rule
     }
 
     /**
-     * 给定参数是否为小数格式
-     * @param null|integer $precision 规定小数点位数 null 为不规定
+     * Whether the given parameter is in decimal format
+     * @param null|integer $precision specifies the number of decimal places null is not specified
      * @param null $msg
      * @return $this
      */
@@ -254,7 +285,7 @@ class Rule
     }
 
     /**
-     * 给定参数是否在某日期之前
+     * Whether the given parameter is before a certain date
      * @param null|string $date
      * @param null|string $msg
      * @return $this
@@ -269,7 +300,7 @@ class Rule
     }
 
     /**
-     * 给定参数是否在某日期之后
+     * Whether the given parameter is after a certain date
      * @param null|string $date
      * @param null|string $msg
      * @return $this
@@ -284,7 +315,7 @@ class Rule
     }
 
     /**
-     * 验证值是否相等
+     * Verify that the values are equal
      * @param $compare
      * @param null|string $msg
      * @return $this
@@ -299,7 +330,7 @@ class Rule
     }
 
     /**
-     * 验证值是否一个浮点数
+     * Verify that the value is a floating point number
      * @param null|string $msg
      * @return $this
      */
@@ -313,7 +344,7 @@ class Rule
     }
 
     /**
-     * 调用自定义的闭包验证
+     * Call custom closure validation
      * @param callable $func
      * @param null|string $msg
      * @return $this
@@ -328,7 +359,7 @@ class Rule
     }
 
     /**
-     * 值是否在数组中
+     * Whether the value is in the array
      * @param array $array
      * @param bool $isStrict
      * @param null|string $msg
@@ -344,7 +375,7 @@ class Rule
     }
 
     /**
-     * 是否一个整数值
+     * Is it an integer value
      * @param null|string $msg
      * @return $this
      */
@@ -358,7 +389,7 @@ class Rule
     }
 
     /**
-     * 是否一个有效的IP
+     * Is it a valid IP?
      * @param array $array
      * @param null $msg
      * @return $this
@@ -373,7 +404,7 @@ class Rule
     }
 
     /**
-     * 是否不为空
+     * Is it not empty
      * @param null $msg
      * @return $this
      */
@@ -387,7 +418,7 @@ class Rule
     }
 
     /**
-     * 是否一个数字值
+     * Whether a numeric value
      * @param null $msg
      * @return $this
      */
@@ -401,7 +432,7 @@ class Rule
     }
 
     /**
-     * 不在数组中
+     * Not in the array
      * @param array $array
      * @param bool $isStrict
      * @param null $msg
@@ -417,7 +448,7 @@ class Rule
     }
 
     /**
-     * 验证数组或字符串的长度
+     * Verify the length of an array or string
      * @param int $len
      * @param null $msg
      * @return $this
@@ -432,7 +463,7 @@ class Rule
     }
 
     /**
-     * 验证数组或字符串的长度是否超出
+     * Verify the length of an array or string...
      * @param int $lengthMax
      * @param null $msg
      * @return $this
@@ -447,7 +478,7 @@ class Rule
     }
 
     /**
-     * 验证数组或字符串的长度是否达到
+     * Verify that the length of the array or string is reached
      * @param int $lengthMin
      * @param null $msg
      * @return $this
@@ -462,7 +493,7 @@ class Rule
     }
 
     /**
-     * 验证数组或字符串的长度是否在一个范围内
+     * Verify that the length of the array or string is within a range
      * @param null $msg
      * @return $this
      */
@@ -479,7 +510,7 @@ class Rule
     }
 
     /**
-     * 验证值不大于(相等视为不通过)
+     * Verification value is not greater than (equal is considered not passed)
      * @param int $max
      * @param null|string $msg
      * @return Rule
@@ -494,7 +525,7 @@ class Rule
     }
 
     /**
-     * 验证值不小于(相等视为不通过)
+     * The verification value is not less than (equal is considered not passed)
      * @param int $min
      * @param null|string $msg
      * @return Rule
@@ -509,9 +540,9 @@ class Rule
     }
 
     /**
-     * 验证值是合法的金额
+     * The verification value is a legal amount
      * 100 | 100.1 | 100.01
-     * @param integer|null $precision 小数点位数
+     * @param integer|null $precision Decimal point
      * @param string|null  $msg
      * @return Rule
      */
@@ -525,7 +556,7 @@ class Rule
     }
 
     /**
-     * 设置值为可选参数
+     * Setting value is optional
      * @return $this
      */
     function optional()
@@ -538,7 +569,7 @@ class Rule
     }
 
     /**
-     * 正则表达式验证
+     * Regular expression verification
      * @param $reg
      * @param null $msg
      * @return $this
@@ -553,7 +584,7 @@ class Rule
     }
 
     /**
-     * 必须存在值
+     * Must have a value
      * @param null $msg
      * @return $this
      */
@@ -567,7 +598,7 @@ class Rule
     }
 
     /**
-     * 值是一个合法的时间戳
+     * Value is a legal timestamp
      * @param null $msg
      * @return $this
      */
@@ -581,8 +612,8 @@ class Rule
     }
 
     /**
-     * 时间戳在某指定日期之前
-     * @param string $date 传入任意可被strtotime解析的字符串
+     * Timestamp before a specified date
+     * @param string $date Pass in any string that can be parsed by strtotime
      * @param null $msg
      * @return $this
      */
@@ -596,8 +627,8 @@ class Rule
     }
 
     /**
-     * 时间戳在某指定日期之后
-     * @param string $date 传入任意可被strtotime解析的字符串
+     * Timestamp after a specified date
+     * @param string $date Pass in any string that can be parsed by strtotime
      * @param null $msg
      * @return $this
      */
@@ -611,8 +642,8 @@ class Rule
     }
 
     /**
-     * 指定时间戳在某时间戳之前
-     * @param string|integer $beforeTimestamp 在该时间戳之前
+     * Specify a timestamp before a timestamp
+     * @param string|integer $beforeTimestamp before this timestamp
      * @param null $msg
      * @return $this
      */
@@ -626,8 +657,8 @@ class Rule
     }
 
     /**
-     * 指定时间戳在某时间戳之后
-     * @param string|integer $afterTimestamp 在该时间戳之后
+     * Specify the timestamp after a timestamp
+     * @param string|integer $afterTimestamp after this timestamp
      * @param null $msg
      * @return $this
      */
@@ -641,7 +672,7 @@ class Rule
     }
 
     /**
-     * 值是一个合法的链接
+     * Value is a legal link
      * @param null $msg
      * @return $this
      */
@@ -655,7 +686,7 @@ class Rule
     }
 
     /**
-     * 值是一个合法的链接
+     * Value is a legal link
      * @param null $msg
      * @return $this
      */

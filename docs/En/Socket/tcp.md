@@ -146,7 +146,7 @@ Function method(){
     // pass the reference fd
     $fd = intval($this->request()->getRequestParam('fd'));
 
-    / / Take the connection information through the Swoole instance
+    // Take the connection information through the Swoole instance
     $info = ServerManager::getInstance()->getSwooleServer()->connection_info($fd);
 
     If(is_array($info)){

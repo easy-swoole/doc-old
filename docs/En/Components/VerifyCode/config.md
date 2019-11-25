@@ -1,17 +1,17 @@
 ---
-title: 验证码
+title: Verification code
 meta:
   - name: description
-    content: EasySwoole验证码组件,可自定义生成二维码图形或者base64等编码.
+    content: EasySwoole verification code component, can be customized to generate QR code graphics or base64 encoding.
   - name: keywords
-    content: easyswoole|验证码|swoole验证码
+    content: easyswoole|Verification code|Swoole verification code
 ---
-## 配置
-
-生成验证码前需要传入Config的对象实例  
-Config类实例化后会有默认配置,无需配置也可生成验证码图片
-
-### 实现代码:
+## Configuration
+   
+An object instance that needs to be passed to Config before generating the verification code
+   After the Config class is instantiated, there will be a default configuration, and a verification code image can be generated without configuration.
+   
+### Implementation code:
 ```php
 <?php
 // +----------------------------------------------------------------------
@@ -36,18 +36,18 @@ class Conf extends SplBean
 {
 
     public $charset   = '1234567890AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz'; // 字母表
-    public $useCurve  = false;         // 混淆曲线
-    public $useNoise  = false;         // 随机噪点
-    public $useFont   = null;          // 指定字体
-    public $fontColor = null;          // 字体颜色
-    public $backColor = null;          // 背景颜色
-    public $imageL    = null;          // 图片宽度
-    public $imageH    = null;          // 图片高度
-    public $fonts     = [];            // 额外字体
-    public $fontSize  = 25;            // 字体大小
-    public $length    = 4;             // 生成位数
-    public $mime      = MIME::PNG;     // 设置类型
-    public $temp      = '/tmp';  // 设置缓存目录
+    public $useCurve  = false;         // Confusion curve
+    public $useNoise  = false;         // Random noise
+    public $useFont   = null;          // Specified font
+    public $fontColor = null;          // font color
+    public $backColor = null;          // background color
+    public $imageL    = null;          // Image width
+    public $imageH    = null;          // Picture height
+    public $fonts     = [];            // Extra font
+    public $fontSize  = 25;            // font size
+    public $length    = 4;             // Number of generated bits
+    public $mime      = MIME::PNG;     // Setting type
+    public $temp      = '/tmp';  // Set the cache directory
 
     public function setTemp($temp){
         if (!is_dir($temp)) mkdir($temp,0755) && chmod($temp,0755);
@@ -55,7 +55,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置图片格式
+     * Set image format
      * @param $MimeType
      * @author : evalor <master@evalor.cn>
      * @return Conf
@@ -68,7 +68,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置字符集
+     * Set character set
      * @param string $charset
      * @return Conf
      */
@@ -79,7 +79,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 开启混淆曲线
+     * Turn on the confusion curve
      * @param bool $useCurve
      * @return Conf
      */
@@ -90,7 +90,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 开启噪点生成
+     * Turn on noise generation
      * @param bool $useNoise
      * @return Conf
      */
@@ -101,7 +101,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 使用自定义字体
+     * Use custom fonts
      * @param string $useFont
      * @return Conf
      */
@@ -112,7 +112,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置文字颜色
+     * Set text color
      * @param array|string $fontColor
      * @return Conf
      */
@@ -124,7 +124,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置背景颜色
+     * Set the background color
      * @param null $backColor
      * @return Conf
      */
@@ -136,7 +136,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置图片宽度
+     * Set image width
      * @param int|string $imageL
      * @return Conf
      */
@@ -147,7 +147,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置图片高度
+     * Set picture height
      * @param null $imageH
      * @return Conf
      */
@@ -158,7 +158,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置字体集
+     * Set font set
      * @param array|string $fonts
      * @return Conf
      */
@@ -176,7 +176,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置字体尺寸
+     * Set the font size
      * @param int $fontSize
      * @return Conf
      */
@@ -187,7 +187,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 设置验证码长度
+     * Set the verification code length
      * @param int $length
      * @return Conf
      */
@@ -198,7 +198,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 获取配置值
+     * Get configuration values
      * @param $name
      * @author : evalor <master@evalor.cn>
      * @return mixed
@@ -209,7 +209,7 @@ class Conf extends SplBean
     }
 
     /**
-     * 十六进制转RGB
+     * Hex to RGB
      * @param $hexColor
      * @author : evalor <master@evalor.cn>
      * @return array

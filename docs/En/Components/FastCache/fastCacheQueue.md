@@ -284,7 +284,7 @@ var_dump($queueSize);
 ## Take from the buried queue
 
 ```php
-/ / Incoming queue name
+// Incoming queue name
 Var_dump(Cache::getInstance()->getBuryJob('LuffyQAQ_queue_bury'));
 
 ```

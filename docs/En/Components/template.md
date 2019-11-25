@@ -1,15 +1,15 @@
 ---
-title: EasySwoole 模板引擎
+title: EasySwoole Template engine
 meta:
   - name: description
-    content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
+    content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
   - name: keywords
-    content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
+    content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
 ---
 
-# 模板引擎
-## 渲染驱动
-EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过协程客户端投递到自定义的同步进程中进行渲染并返回结果。为何要如此处理，原因在于，市面上的一些模板引擎在Swoole协程下存在变量安全问题。例如以下流程：
+# Template engine
+## Rendering driver
+   EasySwoole introduces the form of the template rendering driver, and the data that needs to be rendered is delivered to the custom synchronization process through the coroutine client for rendering and returning the result. The reason for this is that some of the templating engines on the market have variable security issues under the Swoole coroutine. For example, the following process:
    
    - request A reached, static A assign requestA-data
    - compiled template 
@@ -17,15 +17,15 @@ EasySwoole引入模板渲染驱动的形式，把需要渲染的数据，通过�
    - request B reached，static A assign requestB-data
    - render static A data into complied template file
    
-   以上流程我们可以发现，A请求的数据，被B给污染了。为了解决该问题，EasySwoole引入模板渲染驱动模式。
+   The above process we can find that the data requested by A is polluted by B. To solve this problem, EasySwoole introduced a template rendering driver mode.
 
 ## Installation
 ```php
 composer require easyswoole/template
 ```    
 
-## 基础实现讲解
-### 实现渲染引擎
+## Basic implementation
+### Implementing the rendering engine
 ```php
 use EasySwoole\Template\Config;
 use EasySwoole\Template\Render;
@@ -67,24 +67,24 @@ $render->attachServer($http);
 $http->start();
 ```
 
-## 重启渲染引擎
-由于某些模板引擎会缓存模板文件
-导致可能出现以下情况：
- × 用户A请求1.tpl 返回‘a’
- × 开发者修改了1.tpl的数据，改成了‘b’
- × 用户B，C，D在之后的请求中，可能会出现‘a’，‘b’两种不同的值
- 
-那是因为模板引擎已经缓存了A所在进程的文件，导致后面的请求如果也分配到了A的进程，就会获取到缓存的值
+## Restart the rendering engine
+Because some template engines cache template files
+This may lead to the following situations:
+ * User A requests 1.tpl to return ‘a’
+ * The developer modified the 1.tpl data and changed it to ‘b’
+ * User B, C, D may have two different values of ‘a’ and ‘b’ in subsequent requests.
+ 
+That's because the template engine has already cached the file of the process in which A is located, causing subsequent requests to be cached if they are also assigned to A's process.
 
-解决方案如下：
-1：重启easyswoole，即可解决
-2：模板渲染引擎实现了重启方法`restartWorker`，直接调用即可
+The solution is as follows:
+1: Restart easyswoole, you can solve
+2: The template rendering engine implements the restart method `restartWorker`, which can be called directly.
 
 ````
 Render::getInstance()->restartWorker();
 ````
-用户可根据自己的逻辑，自行调用`restartWorker`方法进行重启
-例如在控制器新增reload方法：
+Users can call the `restartWorker` method to restart according to their own logic.
+For example, add a reload method to the controller:
 ````php
 <?php
 namespace App\HttpController;
@@ -116,8 +116,8 @@ class Index extends Controller
 
 
 
-## Smarty 渲染
-### 引入Smarty
+## Smarty rendering
+### Introducing Smarty
 ```
 composer require smarty/smarty   - request A reached, static A assign requestA-data
    - compiled template 
@@ -127,7 +127,7 @@ composer require smarty/smarty   - request A reached, static A assign requestA-d
 
 ```
 
-### 实现渲染引擎
+### Implement the rendering engine
 ```php
 use EasySwoole\Template\RenderInterface;
 use EasySwoole\Template\RenderInterface;
@@ -169,24 +169,24 @@ class Smarty implements RenderInterface
 ```
 
 
-#### HTTP服务中调用
+#### Called in HTTP service
 ```
-//在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
+// Create an event in the global main service, instantiate the Render, and inject your driver configuration
 Render::getInstance()->getConfig()->setRender(new Smarty());
 Render::getInstance()->getConfig()->setTempDir(EASYSWOOLE_TEMP_DIR);
 Render::getInstance()->attachServer(ServerManager::getInstance()->getSwooleServer());
-//在action中实现响应
+//Implement response in action
 Render::getInstance()->render('a.html');
 
 ```
  
-## 支持常用的模板引擎
- 
-下面列举一些常用的模板引擎包方便引入使用:
+## Support for common template engines
+    
+   Here are some common template engine packages for easy introduction:
  
 ### [smarty/smarty](https://github.com/smarty-php/smarty)
  
-Smarty是一个使用PHP写出来的模板引擎,是目前业界最著名的PHP模板引擎之一
+Smarty is a template engine written in PHP and is one of the most famous PHP template engines in the industry.
  
 
 ::: warning 
@@ -197,7 +197,7 @@ composer require smarty/smarty=~3.1
  
 ### [league/plates](https://github.com/thephpleague/plates)
  
-使用原生PHP语法的非编译型模板引擎，更低的学习成本和更高的自由度
+Lower cost of learning and higher freedom with a non-compiled template engine using native PHP syntax
  
 
 ::: warning 
@@ -207,7 +207,7 @@ composer require league/plates=3.*
  
 ### [duncan3dc/blade](https://github.com/duncan3dc/blade)
  
-Laravel框架使用的模板引擎
+Template engine used by the Laravel framework
  
 
 ::: warning 
@@ -217,7 +217,7 @@ composer require duncan3dc/blade=^4.5
  
 ### [topthink/think-template](https://github.com/top-think/think-template)
  
-ThinkPHP框架使用的模板引擎
+Template engine used by the ThinkPHP framework
  
 
 ::: warning 
