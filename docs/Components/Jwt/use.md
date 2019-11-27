@@ -60,6 +60,9 @@ try {
     $jwtObject = Jwt::getInstance()->decode($token);
 
     $status = $jwtObject->getStatus();
+    
+    // 如果encode设置了秘钥,decode 的时候要指定
+    // $status = $jwt->setSecretKey('easyswoole')->decode($token)
 
     switch ($status)
     {
