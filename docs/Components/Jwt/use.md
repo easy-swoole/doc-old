@@ -27,7 +27,6 @@ composer require easyswoole/jwt
 use EasySwoole\Jwt\Jwt;
 
 $jwtObject = Jwt::getInstance()
-    ->algMethod('AES') // 加密方式
     ->setSecretKey('easyswoole') // 秘钥
     ->publish();
 
