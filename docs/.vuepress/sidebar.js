@@ -245,6 +245,14 @@ const sidebarCn = [
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
                         ]
                     },
+                    {
+                        title: '事件',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/Event/onQuery', 'onQuery'],
+                        ]
+                    },
                 ]
             }
         ]
