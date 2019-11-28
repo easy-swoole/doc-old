@@ -1,27 +1,27 @@
 ---
-title: 全局回调
+title: onQuery
 meta:
   - name: description
     content: Easyswoole ORM组件,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|全局回调
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|onQuery
 ---
 
-# ORM全局回调
+# ORM onQuery
 
 设置全局回调事件方式如下:
 
 ```php
 // 注册ORM时, 调用回调函数
 public static function mainServerCreate(EventRegister $register)
-    {
-        ...
+{
+    ...
 
-        DbManager::getInstance()->addConnection(new Connection($config));
-        DbManager::getInstance()->onQuery(function ($res, $builder, $start) {
-            // 打印参数 OR 写入日志
-        });
-    }
+    DbManager::getInstance()->addConnection(new Connection($config));
+    DbManager::getInstance()->onQuery(function ($res, $builder, $start) {
+        // 打印参数 OR 写入日志
+    });
+}
 ```
 
 onQuery回调会注入三个参数

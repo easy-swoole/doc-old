@@ -250,7 +250,7 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Event/onQuery', '全局回调'],
+                            ['/Components/Orm/Event/onQuery', 'onQuery'],
                         ]
                     },
                 ]
