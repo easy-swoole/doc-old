@@ -12,6 +12,7 @@ var_dump($model->lastQuery());
 //打印最后执行的sql语句
 var_dump($model->lastQuery()->getLastQuery());
 ```
-::: waring
+
+::: warning
 $model->lastQuery() 返回的是query对象,具体文档可查看:[查询构造器](../Mysqli/builder.md) 文档
 :::
