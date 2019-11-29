@@ -245,6 +245,14 @@ const sidebarCn = [
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
                         ]
                     },
+                    {
+                        title: '事件',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/Event/onQuery', 'onQuery'],
+                        ]
+                    },
                 ]
             }
         ]
@@ -926,31 +934,6 @@ const sidebarEn = [
           ['/En/Components/Sundries/time', 'Time']
         ]
       }
-    ]
-  },
-  {
-    title: 'WeChat Alipay SDK',   // 必要的
-    collapsable: true, // 可选的, 默认值是 true,
-    sidebarDepth: 0,    // 可选的, 默认值是 1
-    children: [
-      {
-        title: 'Pay SDK',   // 必要的
-        collapsable: true, // 可选的, 默认值是 true,
-        sidebarDepth: 0,    // 可选的, 默认值是 1
-        children: [
-          ['/En/Components/Pay/ali', 'Alipay'],
-          ['/En/Components/Pay/wechat', 'WeChat']
-        ]
-      },
-      {
-        title: 'Wechat SDK',   // 必要的
-        collapsable: true, // 可选的, 默认值是 true,
-        sidebarDepth: 0,    // 可选的, 默认值是 1
-        children: [
-          ['/En/Components/Wechat/miniProgram', 'Official account'],
-          ['/En/Components/Wechat/officialAccount', 'Small program']
-        ]
-      },
     ]
   },
   {

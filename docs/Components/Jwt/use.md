@@ -27,7 +27,6 @@ composer require easyswoole/jwt
 use EasySwoole\Jwt\Jwt;
 
 $jwtObject = Jwt::getInstance()
-    ->algMethod('AES') // 加密方式
     ->setSecretKey('easyswoole') // 秘钥
     ->publish();
 
@@ -60,6 +59,9 @@ try {
     $jwtObject = Jwt::getInstance()->decode($token);
 
     $status = $jwtObject->getStatus();
+    
+    // 如果encode设置了秘钥,decode 的时候要指定
+    // $status = $jwt->setSecretKey('easyswoole')->decode($token)
 
     switch ($status)
     {
