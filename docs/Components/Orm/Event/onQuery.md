@@ -32,7 +32,7 @@ onQuery回调会注入三个参数
 
 - `builder`查询语句对象, 类名为`EasySwoole\Mysqli\QueryBuilder`
 
-- `start`查询的时间戳
+- `start`开始查询时间戳, 单位为`s`, 类型为`float`
 
 ::: tip
 如果查询过程中调用`withTotalCount()`方法, 那么还会产生第二个回调结果
@@ -41,3 +41,21 @@ onQuery回调会注入三个参数
 ::: warning
 需要注意的是, 此回调方法务必在注册ORM时调用, 否则不会产生任何结果
 :::
+
+# 记录慢日志
+
+我们可以通过手动判断执行时间, 来实现一个记录慢日志的功能
+```php
+public static function mainServerCreate(EventRegister $register)
+{
+    ...
+
+    DbManager::getInstance()->addConnection(new Connection($config));
+    DbManager::getInstance()->onQuery(function ($res, $builder, $start) {
+        $queryTime = 查询时间阈值;
+        if (bcsub(time(), $start, 3) > $queryTime) {
+            // 写入日志
+        }
+    });
+}
+```
