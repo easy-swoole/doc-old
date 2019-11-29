@@ -17,7 +17,7 @@ The basic environment requirements are met to run the framework. The `EasySwoole
 ## Basic operating environment
 
 - Guaranteed **PHP** version is greater than or equal to **7.1**
-- Guaranteed Swoole extended version is greater than or equal to 4.4.0
+- Guaranteed Swoole extended version is greater than or equal to 4.4.12
 - Need any version of **pcntl** extension
 - Use **Linux** / **FreeBSD** / **MacOS** These three types of operating systems
 - Use **Composer** as a dependency management tool
