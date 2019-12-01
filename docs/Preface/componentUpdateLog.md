@@ -7,8 +7,15 @@ meta:
     content: easyswoole|组件更新记录|框架更新
 ---
 
+# 2019-12
+
+## 新增
+
+## 修改
+- [#3](https://github.com/easy-swoole/jwt/pull/3) `Jwt` 删除 `algMethod`方法,统一使用`setAlg`
 
 # 2019-10
+- [#14](https://github.com/easy-swoole/orm/pull/14) `ORM` 增加 `连贯操作`、`聚合查询`
 
 ## 新增
 - [#14](https://github.com/easy-swoole/orm/pull/14) `ORM` 增加 `连贯操作`、`聚合查询`
