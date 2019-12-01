@@ -1,14 +1,14 @@
 ---
-title: 静态文件处理
+title: Static file processing
 meta:
   - name: description
-    content: swoole静态文件处理,Easyswoole静态文件处理
+    content: Swoole static file processing,EasySwoole static file processing
   - name: keywords
-    content: swoole静态文件处理|Easyswoole静态文件处理
+    content: Swoole static file processing|EasySwoole static file processing
 ---
 
 
-# 如何处理静态资源
+# How to handle static resources
 ## Apache URl rewrite
 ```apacheconf
 <IfModule mod_rewrite.c>
@@ -37,18 +37,18 @@ server {
     }
 }
 ```
-## Swoole静态文件处理器
+## Swoole static file processor
 ```php
 $server->set([
-    'document_root' => '/data/webroot/example.com', // v4.4.0以下版本, 此处必须为绝对路径
+    'document_root' => '/data/webroot/example.com', // V4.4.0 or lower, here must be an absolute path
     'enable_static_handler' => true,
 ]);
 ```
-Swoole 有自带的静态文件处理器。文档请见 https://wiki.swoole.com/wiki/page/783.html
+Swoole comes with its own static file processor. The documentation can be found at https://wiki.swoole.com/wiki/page/783.html
 
-## 关于跨域处理
+## About cross-domain processing
 
-在全局事件添加以下代码 拦截所有请求添加跨域头
+Add the following code in the global event to block all requests to add cross-domain headers
 
 ```php
 public static function onRequest(Request $request, Response $response): bool

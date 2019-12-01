@@ -24,7 +24,7 @@ meta:
 - 在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
 - 安装完成之后，不会自动生成App目录，请自行根据Hello World章节配置
 - 不可把虚拟机共享目录作为安装目录，否则会因为权限不足无法创建socket，产生报错：`listen xxxxxx.sock fail `
-- 共享目录产生以上报错，手动在dev.php配置文件里把Temp目录改为其他路径即可
+- 共享目录产生以上报错，手动在dev.php配置文件里把Temp目录改为其他路径即可,如：'/Tmp'
 
 
 ## 切换阿里云镜像
@@ -69,7 +69,7 @@ php vendor/bin/easyswoole install
 :::
 - 新版的easyswoole安装会默认提供App命名空间，还有index控制器
 - 在这里面需要填写n，不需要覆盖，已经有的 EasySwooleEvent.php，index.php dev.php produce.php
-
+- 当提示exec函数被禁用时,请自己手动执行 `composer dump-autoload` 命令更新命名空间
 ## 启动框架
 
 中途没有报错的话，执行：

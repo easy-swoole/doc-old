@@ -1,29 +1,29 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # limit
 
-limit方法主要用于指定查询和操作的数量，特别在分页查询的时候使用较多。
+The limit method is mainly used to specify the number of queries and operations, especially when using paging queries.
 
-## 查询数量
+## Number of queries
 
-查询10个用户数据：
+Query 10 user data:
 
 ```php
 $builder->limit(10)->get('user_list');
 ```
 
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 ```php
 function limit(int $one, ?int $two = null)
 ```
 
-- $one 若第二个参数不传，则代表取多少条数据；若第二个参数传递，则代表从第几行开始
-- $tow 可不传，若传递，则代表从$one开始，取$tow行数据
+- $one If the second parameter is not passed, it means how many pieces of data are taken; if the second parameter is passed, it means starting from the first line.
+- $tow Can not pass, if passed, it means starting from $one, taking $tow line data

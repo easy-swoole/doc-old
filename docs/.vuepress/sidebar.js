@@ -223,9 +223,12 @@ const sidebarCn = [
                         ]
                     },
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
+                    ['/Components/Orm/lastResult', '模型执行结果'],
+                    ['/Components/Orm/lastQuery', '最后执行语句'],
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
+                    ['/Components/Orm/specialQuery', '特殊条件查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
                     ['/Components/Orm/update', '更新'],
@@ -240,6 +243,14 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+                        ]
+                    },
+                    {
+                        title: '事件',
+                        collapsable: true,
+                        sidebarDepth: 0,
+                        children: [
+                            ['/Components/Orm/Event/onQuery', 'onQuery'],
                         ]
                     },
                 ]
@@ -326,6 +337,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Component/singleton', '单例'],
+                    ['/Components/Component/coroutineSingleton', '协程单例'],
                     ['/Components/Component/readyScheduler', '就绪等待'],
                     ['/Components/Component/tableManager', 'Swoole Table'],
                     ['/Components/Component/atomic', 'Atomic 计数器'],
@@ -456,6 +468,7 @@ const sidebarCn = [
                 title: '微信SDK',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
+                path: '/Sdk/wechat',
                 children: [
                     ['/Components/Wechat/miniProgram', '公众号'],
                     ['/Components/Wechat/officialAccount', '小程序'],
@@ -740,7 +753,7 @@ const sidebarEn = [
           ['/En/Components/Orm/getter', 'Getter'],
           ['/En/Components/Orm/modifier', 'Modifier'],
           {
-            title: '关联',
+            title: 'Association',
             collapsable: true,
             sidebarDepth: 0,
             children: [
@@ -832,6 +845,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
+          ['/Components/Component/coroutineSingleton', '协程单例'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']

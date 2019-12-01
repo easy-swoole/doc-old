@@ -10,7 +10,8 @@ meta:
 
 # 配置文件
 
-EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置。框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
+EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件采用PHP返回数组方式定义，对于一些简单的应用，无需修改任何配置，对于复杂的要求，还可以自行扩展自己独立的配置文件和进行动态配置。  
+框架安装完成后系统默认的全局配置文件是项目根目录下的 `produce.php`,`dev.php` 文件，(在3.1.2版本之前是dev.env,produce.env)
 文件内容如下:
 
 ```php
@@ -47,9 +48,12 @@ EasySwoole框架提供了非常灵活自由的全局配置功能，配置文件�
       ];
 ```
 
-
 ::: warning 
  EASYSWOOLE_SERVER,EASYSWOOLE_WEB_SOCKET_SERVER类型,都需要在`EasySwooleEvent.php`的`mainServerCreate`自行设置回调(receive或message),否则将出错
+:::
+
+::: warning 
+ 框架的配置驱动默认为 swoole_table,特性为多进程共享,快速存储,但只能存储少量配置文件,自定义配置驱动可查看本文最后章节
 :::
 
 ## 配置操作类
@@ -134,11 +138,17 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
 ```
 
 ## 动态配置
+当你在控制器(worker进程)中修改某一项配置时,由于进程隔离,修改的配置不会在其他进程生效,所以我们可以使用动态配置:
+动态配置将配置数据存储在swoole_table中,取/修改配置数据时是从swoole_table直接操作,所有进程都可以使用
+::: waring
+ 由于swoole_table的特性,不适合存储大量/大长度的配置,如果是存储支付秘钥,签名等大长度字符串,建议使用类常量方法定义,而不是通过dev.php存储
+:::
 
-EasySwoole在3.2.5版本后,将默认config存储驱动改为了swoole_table,只要修改配置,其他进程同样生效
+::: waring
+ 如果你非得用配置文件存储,请看本文下文的  自定义config驱动
+:::
 
-
-## Config驱动
+## 自定义Config驱动
 EasySwoole在3.2.5版本后,默认配置驱动存储 从SplArray改为了swoole_table,修改配置之后,所有进程同时生效
 
 ### \EasySwoole\Config\AbstractConfig
@@ -162,7 +172,7 @@ AbstractConfig 抽象类提供了以下几个方法,用于给其他config驱动�
 在EasySwoole中,自带了SplArray和swoole_table驱动实现,可自行查看源码了解.   
 默认驱动为swoole_table  
 
-如需要修改存储驱动,步骤如下:
+如需要修改存储驱动,步骤如下:  
 * 继承 AbstractConfig 实现各个方法
 * 在[bootstrap事件](../Core/event/bootstrap.md)事件中修改config驱动(直接在文件中加入这行代码即可)
 

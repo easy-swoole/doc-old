@@ -48,6 +48,27 @@ Or (may be wrong)
 composer require easyswoole/easyswoole=3.x
 php vendor/bin/easyswoole install
 ```
+```bash
+  php vendor/easyswoole/easyswoole/bin/easyswoole install
+  ______                          _____                              _        
+ |  ____|                        / ____|                            | |       
+ | |__      __ _   ___   _   _  | (___   __      __   ___     ___   | |   ___ 
+ |  __|    / _` | / __| | | | |  \___ \  \ \ /\ / /  / _ \   / _ \  | |  / _ \
+ | |____  | (_| | \__ \ | |_| |  ____) |  \ V  V /  | (_) | | (_) | | | |  __/
+ |______|  \__,_| |___/  \__, | |_____/    \_/\_/    \___/   \___/  |_|  \___|
+                          __/ |                                                
+                         |___/                                                
+  EasySwooleEvent.php has already existed. do you want to replace it? [ Y/N (default) ] : n
+  index.php has already existed. do you want to replace it? [ Y/N (default) ] : n
+  dev.php has already existed. do you want to replace it? [ Y/N (default) ] : n
+  produce.php has already existed. do you want to replace it? [ Y/N (default) ] : n
+```
+
+::: danger 
+新版安装注意事项
+:::
+- 新版的easyswoole安装会默认提供App命名空间，还有index控制器
+- 在这里面需要填写n，不需要覆盖，已经有的 EasySwooleEvent.php，index.php dev.php produce.php
 
 ## Start frame
 

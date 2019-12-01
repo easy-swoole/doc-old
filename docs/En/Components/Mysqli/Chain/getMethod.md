@@ -1,29 +1,29 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # get
 
-select 查询
+select Inquire
 
-## 查询用法
+## Query usage
 
-查询用户数据：
+Query user data:
 
 ```php
 $builder->get("user",null,"*");
 ```
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 ```php
 function get($tableName, $numRows = null, $columns = null): ?QueryBuilder
 ```
 
-- $tableName 表名
-- $numRows  所查询的条数
-- $columns 需要查询的字段
+- $tableName Table Name
+- $numRows  The number of queries
+- $columns Fields to be queried

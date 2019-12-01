@@ -1,19 +1,19 @@
 ---
-title: 配置信息注册
+title: Configuration information registration
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 
-# 配置信息注册
+# Configuration information registration
 
-ORM 的连接配置信息（数据库连接信息）需要注册到`连接管理器`中。
+The connection configuration information (database connection information) of the ORM needs to be registered in the "Connection Manager".
 
-## 数据库连接管理器
+## Database connection manager
 
-ORM的连接管理由```EasySwoole\ORM\DbManager```类完成，它是一个单例类。
+ORM's connection management is done by the ```EasySwoole\ORM\DbManager``` class, which is a singleton class.
 
 ```php
 use EasySwoole\ORM\DbManager;
@@ -22,9 +22,9 @@ DbManager::getInstance();
 ```
 
 
-## 注册数据库连接配置
+## Register database connection configuration
 
-你**可以**在框架 `mainServerCreate` 主服务创建事件中注册连接
+You can register the connection in the framework `mainServerCreate` main service creation event.
 
 ```php
 use EasySwoole\ORM\DbManager;
@@ -45,11 +45,11 @@ public static function mainServerCreate($register)
 ```
 
 
-## 数据库连接自带连接池说明
+## Database connection comes with a connection pool description
 
-在默认实现中，ORM自带了一个`基于连接池`实现的连接类
+In the default implementation, ORM comes with a connection class based on the connection pool `implementation.
 
-`EasySwoole\ORM\Db\Connection` 实现了连接池的使用
+`EasySwoole\ORM\Db\Connection` implements the use of the connection pool
 
 ```php
 use EasySwoole\ORM\DbManager;
@@ -64,19 +64,19 @@ public static function mainServerCreate($register)
     $config->setUser('root');
     $config->setPassword('');
     $config->setHost('127.0.0.1');
-    //连接池配置
-    $config->setGetObjectTimeout(3.0); //设置获取连接池对象超时时间
-    $config->setIntervalCheckTime(30*1000); //设置检测连接存活执行回收和创建的周期
-    $config->setMaxIdleTime(15); //连接池对象最大闲置时间(秒)
-    $config->setMaxObjectNum(20); //设置最大连接池存在连接对象数量
-    $config->setMinObjectNum(5); //设置最小连接池存在连接对象数量
+    //Connection pool configuration
+    $config->setGetObjectTimeout(3.0); //Set the timeout period for getting the connection pool object
+    $config->setIntervalCheckTime(30*1000); //Set the detection connection to survive the cycle of recycling and creation
+    $config->setMaxIdleTime(15); //Maximum idle time of the connection pool object (seconds)
+    $config->setMaxObjectNum(20); //Set the maximum number of connection objects in the connection pool
+    $config->setMinObjectNum(5); //Set the minimum connection pool to have the number of connected objects
 
     DbManager::getInstance()->addConnection(new Connection($config));
 }
 ```
 
-::: tip 提示
-详细的连接池属性介绍[点击查看](../Pool/config.md)
+::: tip prompt
+Detailed connection pool properties introduction [Click to view] (/En/Pool/config.md)
 :::
 
 

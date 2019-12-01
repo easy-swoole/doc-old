@@ -1,38 +1,38 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # fields
 
-主要目的是查询时标识要返回的字段值
+The main purpose is to identify the field value to be returned when querying
 
-## 指定字段
+## Specified field
 
 ```php
 $builder->fields(['id','title'])->get('user_list');
 ```
 
-## 设置别名
+## Set alias
 
 ```php
 $builder->fields(['id','title as notice'])->get('user_list');
 ```
 
-## 使用SQL函数
+## Using SQL functions
 
 ```php
 $builder->fields(['id','SUM(score)'])->get('user_list');
 ```
 
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 ```php
 function fields($fields)
 ```
 
-- $fields array|string 如果非数组时，只可传入一个字段名
+- $fields array|String can only pass in a field name if it is not an array

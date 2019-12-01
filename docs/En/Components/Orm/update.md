@@ -1,19 +1,19 @@
 ---
-title: 更新
+title: Update
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|更新
+    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Update
 ---
 
 
 
-# 更新
+# Update
 
-## 通过 已有Model
+## By existing model
 
-这种方式是我们最推荐的，也是ORM这种组件的核心思想，把数据的操作映射为对对象的操作。
+This approach is our most recommended, and is the core idea of the ORM component, mapping the operation of the data to the operation of the object.
 
 ```php
 $user = UserModel::create()->get(1);
@@ -25,17 +25,91 @@ $user->update([
 ```php
 
 $user = UserModel::create()->get(1);
-//获取后指定字段赋值
+// After the specified field assignment
 $user->is_vip = 1;
 $user->update();
 ```
 
-## 通过 where 更新
+## via where update
 
-`update` 参数1传入更新数组`[字段名=>字段值]`,参数2传递 where 条件数组
+`update` parameter 1 is passed to the update array `[field name=>field value]`, parameter 2 is passed where condition array
 
 ```php
 $res = UserModel::create()->update([
-    'name' => 'new'
+     'name' => 'new'
 ], ['id' => 1]);
+```
+
+## The number of rows affected by the actual update
+::: warning
+Update returns the execution statement is successful, only false when the mysql statement error, otherwise true
+, so you need getAffectedRows to determine if the update is successful.
+:::
+
+```php
+$user = UserModel::create()->get(1);
+$user->update([
+  'is_vip' => 1
+]);
+var_dump($user->lastQueryResult()->getAffectedRows());
+```
+
+
+
+## Get specific syntax errors
+::: warning
+If update returns false, then there is an error on your statement, you can get specific error information through getLastError
+:::
+```php
+$user = UserModel::create()->get(1);
+$suc = $user->update([
+   'is_vip' => 1
+]);
+If($suc=== false){
+Var_dump($user->lastQueryResult()->getLastError());
+}
+
+```
+
+## Effective field description
+
+The data in the model is divided into normal data and auxiliary data.
+
+If the table structure has data for the field, it belongs to normal data, and the others belong to the ancillary data.
+
+### Recommended update usage
+
+First map the correct data object through the model, then change the value and update.
+
+The fields within the table structure will be automatically validated. Other ancillary data does not make up update sql.
+
+```php
+$user = UserModel::create()->get(1);
+$user->is_vip = 1;
+$user['vip_time'] = 15;
+$res = $user->update();
+```
+
+### Batch update
+
+In this way, the data of the non-table structure fields will not be filtered, and all of them constitute sql, which may cause mysql error.
+
+```php
+$res = UserModel::create()->update([
+   'is_vip' => 0,
+   'test' => 3333, // table structure does not exist in the field
+], [
+   'vip_time' => 0
+]);
+```
+
+## 快捷更新
+
+```php
+TestUserModel::create()->update([
+    'age' => QueryBuilder::inc(3), // 自增3
+    'test' => QueryBuilder::dec(4), // 自降4
+], [
+    'name' => 'Siam222'
+]);
 ```

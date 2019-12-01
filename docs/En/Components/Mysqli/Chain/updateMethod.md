@@ -1,23 +1,23 @@
 ---
-title: Mysqli组件
+title: Mysqli component
 meta:
   - name: description
-    content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
+    content: The Easyswoole Mysqli library is designed to make it easy for users to make a database call in an object-oriented form. And provide basic support for advanced usage such as Orm components.
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 # update
 
-update更新
+Update
 
 
-## 传参说明
+## Pass the instructions
 
-方法原型
+Method prototype
 ```php
 function update($tableName, $tableData, $numRows = null)
 ```
 
-- $tableName 表名
-- $tableData 更新的数据
-- $numRows  可不传，若传入，更新$numRows行数据
+- $tableName Table Name
+- $tableData Updated data
+- $numRows  Can not pass, if passed, update the $numRows row data

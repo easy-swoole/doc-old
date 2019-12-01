@@ -27,6 +27,8 @@ public function relation()
 
 模型关联方法允许你向关联加入自定义限制
 
+以下案例表示：Relation表中的u_id等于当前模型(假设为User)的id值
+
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
