@@ -140,11 +140,12 @@ Di::getInstance()->set(SysConst::HTTP_CONTROLLER_POOL_MAX_NUM,15);//http控制�
 ## 动态配置
 当你在控制器(worker进程)中修改某一项配置时,由于进程隔离,修改的配置不会在其他进程生效,所以我们可以使用动态配置:
 动态配置将配置数据存储在swoole_table中,取/修改配置数据时是从swoole_table直接操作,所有进程都可以使用
-::: waring
+
+::: warning
  由于swoole_table的特性,不适合存储大量/大长度的配置,如果是存储支付秘钥,签名等大长度字符串,建议使用类常量方法定义,而不是通过dev.php存储
 :::
 
-::: waring
+::: warning
  如果你非得用配置文件存储,请看本文下文的  自定义config驱动
 :::
 
