@@ -96,7 +96,8 @@ php easyswoole start
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003
