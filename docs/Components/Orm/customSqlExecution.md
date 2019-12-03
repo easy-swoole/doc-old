@@ -32,7 +32,7 @@ $data = DbManager::getInstance()->query($queryBuild, true, 'default');
 // 需要注意的是，这里的sql语句仅仅是示例
 // 正确推荐的做法应该仍然是查询Model类对应的表，得到表结构字段的数据
 $data = Model::create()->get(function ($queryBuild){
-    $queryBuild->raw("shwo tables");
+    $queryBuild->raw("show tables");
 });
 ```
 
