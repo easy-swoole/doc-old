@@ -344,6 +344,14 @@ const sidebarCn = [
                 ]
             },
             {
+                title: 'MySqli组件',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Mysqli/mysqli', '示例'],
+                ]
+            },
+            {
                 title: 'Spl组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1

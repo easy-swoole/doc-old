@@ -57,7 +57,7 @@ $builder->where('col1', 2)->orWhere('col2', 'str')->get('getTable');
 $builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable');
 ```
 
-#### Join
+#### JOIN
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -70,7 +70,8 @@ $builder->join('table2', 'table2.col1 = getTable.col2', 'LEFT')->get('getTable')
 // join Where
 $builder->join('table2','table2.col1 = getTable.col2')->where('table2.col1', 2)->get('getTable');
 ```
-#### GroupBy Having
+
+#### GROUPBY HAVING
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -92,7 +93,7 @@ $builder->groupBy('col1')->having('col1', 1, '>')->orHaving('col2', 1, '>')->get
 $builder->groupBy('col1')->having('col1', 1, '>')->having('col2', 1, '>', 'OR')->get('whereGet');
 ```
 
-#### OrderBy
+#### ORDERBY
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -104,7 +105,7 @@ $builder->where('col1',2)->orderBy('col1', 'ASC')->get('getTable');
 
 ```
 
-#### Union
+#### UNION
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
