@@ -392,7 +392,7 @@ const sidebarCn = [
             ['/Components/whoops', 'Whoops'],
             {
                 title: 'SyncInvoker',
-                path: '/Components/syncInvoker',
+                path: '/Components/SyncInvoker/syncInvoker',
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
@@ -900,7 +900,7 @@ const sidebarEn = [
       ['/En/Components/whoops', 'Whoops'],
       {
         title: 'SyncInvoker',
-        path: '/En/Components/syncInvoker',
+        path: '/En/Components/SyncInvoker/syncInvoker',
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
