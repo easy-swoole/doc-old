@@ -396,7 +396,7 @@ const sidebarCn = [
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/SyncInvoker/monggoDb', 'MonggoDb客户端案例'],
+                    ['/Components/SyncInvoker/mongoDb', 'MongoDb客户端案例'],
                 ]
             },
             ['/Components/tracker', '链路追踪'],
@@ -904,7 +904,7 @@ const sidebarEn = [
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-          ['/En/Components/SyncInvoker/monggoDb', 'MonggoDb client case']
+          ['/En/Components/SyncInvoker/mongoDb', 'MongoDb client case']
         ]
       },
       ['/En/Components/tracker', 'Link tracking'],
