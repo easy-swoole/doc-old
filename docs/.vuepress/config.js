@@ -5,15 +5,15 @@ module.exports = {
     locales: {
         '/': {
             lang: 'zh-CN',
-            title: 'EasySwoole,一款基于Swoole实现的高并发与开发效率共存的微服务分布式框架',
+            title: 'EasySwoole框架,一款基于Swoole实现的高并发与开发效率共存的微服务分布式框架',
             keywords: 'easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket',
-            description: 'easySwoole是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者'
+            description: 'easySwoole框架是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者'
         },
         '/En/': {
             lang: 'en-US',
-            title: 'easyswoole,an height-performance php framework which base on swoole extension',
+            title: 'easyswoole framework,an height-performance php framework which base on swoole extension',
             keywords: 'easySwoole,swoole,swoole framework,swoole websocket,swoole rpc,swoole distribute',
-            description: 'easyswoole,an height-performance php framework which base on swoole extension'
+            description: 'easyswoole framework,an height-performance php framework which base on swoole extension'
         }
     },
     themeConfig: {
