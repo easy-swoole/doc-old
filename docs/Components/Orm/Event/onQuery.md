@@ -7,9 +7,9 @@ meta:
     content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|onQuery
 ---
 
-# ORM onQuery
+# 针对全局 onQuery
 
-设置全局回调事件方式如下:
+针对全局设置回调事件方式如下:
 
 ```php
 // 注册ORM时, 调用回调函数
@@ -40,6 +40,20 @@ onQuery回调会注入三个参数
 
 ::: warning
 需要注意的是, 此回调方法务必在注册ORM时调用, 否则不会产生任何结果
+:::
+
+# 针对特定模型 onQuery
+
+如果不想使用全局性的onQuery, 我们可以在执行操作的时候调用onQuery方法, 以此来实现针对特定模型的回调
+
+```php
+$res = User::create()->onQuery(function ($res, $builder, $start) {
+    // 打印参数 OR 写入日志
+})->get(1);
+```
+
+::: tip
+回调注入的三个参数与全局性onQuery相同
 :::
 
 # 记录慢日志
