@@ -399,6 +399,7 @@ const sidebarCn = [
                 ]
             },
             ['/Components/whoops', 'Whoops'],
+            ['/Components/oss', 'OSS协程客户端'],
             {
                 title: 'SyncInvoker',
                 path: '/Components/SyncInvoker/syncInvoker',
