@@ -1,9 +1,4 @@
 ---
-meta:
-  - name: description
-    content: easySwoole，Swoole 框架是一款高度封装了swoole拓展而依旧保持swoole原有特性的一个高性能分布式微服务框架，旨在提供一个高效、快速、优雅的框架给php开发者。
-  - name: keywords
-    content: easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket
 home: true
 heroSvg: /resources/hero.svg
 heroImage: /resources/hero.png

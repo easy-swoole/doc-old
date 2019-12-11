@@ -22,7 +22,7 @@ module.exports = {
         sidebar: 'auto',
         locales: {
             '/En/': {
-                selectText: 'translate',
+                selectText: 'Language',
                 label: 'ENGLISH',
                 editLinkText: 'Edit this page on GitHub',
                 sidebar: sidebar.sidebarEn,
@@ -31,7 +31,7 @@ module.exports = {
                 ]
             },
             '/': {
-                selectText: '选择语言',
+                selectText: 'Language',
                 label: '简体中文',
                 editLinkText: '在 GitHub 上编辑此页',
                 sidebar: sidebar.sidebarCn,
