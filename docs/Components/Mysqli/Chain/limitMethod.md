@@ -26,4 +26,4 @@ function limit(int $one, ?int $two = null)
 ```
 
 - $one 若第二个参数不传，则代表取多少条数据；若第二个参数传递，则代表从第几行开始
-- $tow 可不传，若传递，则代表从$one开始，取$tow行数据
+- $two 可不传，若传递，则代表从$one开始，取$two行数据
