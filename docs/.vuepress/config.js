@@ -11,7 +11,7 @@ module.exports = {
         },
         '/En/': {
             lang: 'en-US',
-            title: 'easyswoole framework,an height-performance php framework which base on swoole extension',
+            title: 'easyswoole,swoole framework,an height-performance php framework which base on swoole extension',
             keywords: 'easySwoole,swoole,swoole framework,swoole websocket,swoole rpc,swoole distribute',
             description: 'easyswoole framework,an height-performance php framework which base on swoole extension'
         }
@@ -21,15 +21,6 @@ module.exports = {
         theme: 'vuepress-theme-easyswoole',
         sidebar: 'auto',
         locales: {
-            '/': {
-                selectText: '选择语言',
-                label: '简体中文',
-                editLinkText: '在 GitHub 上编辑此页',
-                sidebar: sidebar.sidebarCn,
-                nav: [
-                    {text: 'Websocket调试工具', link: 'http://www.easyswoole.com/wstool.html'},
-                ],
-            },
             '/En/': {
                 selectText: 'translate',
                 label: 'ENGLISH',
@@ -38,6 +29,15 @@ module.exports = {
                 nav: [
                     {text: 'Websocket Test Tool', link: 'http://www.easyswoole.com/wstool.html'},
                 ]
+            },
+            '/': {
+                selectText: '选择语言',
+                label: '简体中文',
+                editLinkText: '在 GitHub 上编辑此页',
+                sidebar: sidebar.sidebarCn,
+                nav: [
+                    {text: 'Websocket调试工具', link: 'http://www.easyswoole.com/wstool.html'},
+                ],
             },
         }
     },
