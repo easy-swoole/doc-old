@@ -31,7 +31,7 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Connection "keep-alive";
         proxy_set_header X-Real-IP $remote_addr;
-        if (!-e $request_filename) {
+        if (!-f $request_filename) {
              proxy_pass http://127.0.0.1:9501;
         }
     }
