@@ -9,7 +9,7 @@ meta:
 # OSS云存储
 
 ## 阿里云调用
-根据阿里云官方sdk修改,全部方法都一致,走通了所有官方的client请求类单元测试,全部调用方法都和阿里云一直
+根据阿里云官方sdk修改,全部方法都一致,走通了所有官方的client请求类单元测试,全部调用方法都和阿里云一致
 文档可查看阿里云官方文档:https://help.aliyun.com/document_detail/32099.html?spm=a2c4g.11186623.2.17.de715d26YNLCah#concept-32099-zh
 ```php
 <?php
@@ -34,6 +34,18 @@ go(function (){
     var_dump($data);
 });
 ```
+### 部分方法没走通单元测试
+由于有些方法可能是测试环境问题,未走通,可能出现问题(一般不会有问题),需要大家注意  
+列出走不通单元测试的方法,以供大家参考:
+- addBucketCname 提示: NoSuchCnameInRecord: No such cname be found in record
+- testDeleteCname 提示: CnameDenied: The cname belongs to another user.
+
+以下2个方法为callback走不通,应该不影响
+- \EasySwoole\Oss\Tests\AliYun\CallbackTest::testMultipartUploadCallbackNormal 提示: CallbackFailed: Response body is not valid json format.
+- \EasySwoole\Oss\Tests\AliYun\CallbackTest::testPutObjectCallbackNormal 走不通 
+
+Symlink 类方法全走不通,应该不影响,提示: bucket is not allowed empty或者The specified key does not exist.
+
 
 ## 七牛云调用
 根据七牛云官方sdk修改,走通了oss的大部分单元测试,用法和七牛云oss完全一致
@@ -53,6 +65,11 @@ go(function (){
     var_dump($ret,$error);
 });
 ```
+### 部分方法没走通单元测试
+由于某些可能是测试环境问题,有部分方法未走通单元测试,需要大家注意,列出走不通的单元测试的方法,以供大家参考
+- \EasySwoole\Oss\Tests\QiNiu\BucketTest::testPrefetch 未走通,提示:{"error":"bucket source not set"}
+- PfopTest 类方法未走通,提示{"error":"no such bucket"} 
+- \EasySwoole\Oss\Tests\QiNiu\ResumeUpTest::test4ML2 方法未走通,一直卡住,不建议使用该方法上传文件,请使用 \EasySwoole\Oss\Tests\QiNiu\ResumeUpTest::test4ML  方法上传
 
 
 ## 腾讯云调用
