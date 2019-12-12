@@ -71,6 +71,13 @@ go(function (){
 - PfopTest 类方法未走通,提示{"error":"no such bucket"} 
 - \EasySwoole\Oss\Tests\QiNiu\ResumeUpTest::test4ML2 方法未走通,一直卡住,不建议使用该方法上传文件,请使用 \EasySwoole\Oss\Tests\QiNiu\ResumeUpTest::test4ML  方法上传
 
+### 七牛云设置超时
+官方sdk没有设置超时的逻辑,在本组件中新增加了,设置方法如下:
+```php
+\EasySwoole\Oss\QiNiu\Config::setTimeout(3);
+\EasySwoole\Oss\QiNiu\Config::setConnectTimeout(5);
+```
+
 
 ## 腾讯云调用
 腾讯云调用和原来的方法基本一致,操作文档可直接查看腾讯云官方文档:https://cloud.tencent.com/document/product/436/12266
