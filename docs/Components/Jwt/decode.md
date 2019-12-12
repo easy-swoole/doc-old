@@ -14,7 +14,7 @@ meta:
     public function decode(?string $raw):?JwtObject
 ```
 
-获取解码状态, -1:无效，1:通过, 2:失败, 3:token过期
+获取解码状态, 1:通过, -1:无效, -2:token过期
 ```php
     public function getStatus(): int
 ```
