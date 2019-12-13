@@ -11,11 +11,13 @@ meta:
 
 ## 新增
 
+- [#57](https://github.com/easy-swoole/orm/pull/57) `ORM` 增加 `invoke`支持，发布版本`1.2.1`
+- [#38](https://github.com/easy-swoole/mysqli/pull/38) `Mysqli` raw自定义语句支持`参数绑定`
+
 ## 修改
 - [#3](https://github.com/easy-swoole/jwt/pull/3) `Jwt` 删除 `algMethod`方法,统一使用`setAlg`
 
 # 2019-10
-- [#14](https://github.com/easy-swoole/orm/pull/14) `ORM` 增加 `连贯操作`、`聚合查询`
 
 ## 新增
 - [#14](https://github.com/easy-swoole/orm/pull/14) `ORM` 增加 `连贯操作`、`聚合查询`
