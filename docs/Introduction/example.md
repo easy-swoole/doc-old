@@ -59,15 +59,15 @@ composer dumpautoload
 ### 配置项
 我们在dev.php 配置文件中，加入以下配置信息，注意：***请跟进自己的mysql服务器信息填写账户密码***。
 ```php
- 'MYSQL'  => [
-        'host'          => '',
-        'port'          => 3300,
-        'user'          => '',
-        'password'      => '',
-        'database'      => '',
-        'timeout'       => 5,
-        'charset'       => 'utf8mb4',
- ]
+'MYSQL'  => [
+    'host'          => '',
+    'port'          => 3300,
+    'user'          => '',
+    'password'      => '',
+    'database'      => '',
+    'timeout'       => 5,
+    'charset'       => 'utf8mb4',
+]
 ```
 
 ### 引入ORM库
@@ -190,10 +190,11 @@ class AdminModel extends AbstractModel
     public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
     {
         $where = [];
-        if (!empty($keyword)) {
-            $where['adminAccount'] = ['%' . $keyword . '%','like'];
+        if (!empty($keyword)) 
+        {
+            $where['adminAccount'] = ['%' . $keyword . '%', 'like'];
         }
-        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $list  = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
         $total = $this->lastQueryResult()->getTotalCount();
         return ['total' => $total, 'list' => $list];
     }
@@ -201,30 +202,30 @@ class AdminModel extends AbstractModel
     /*
      * 登录成功后请返回更新后的bean
      */
-    function login():?AdminModel
+    public function login():?AdminModel
     {
-        $info = $this->get(['adminAccount'=>$this->adminAccount,'adminPassword'=>$this->adminPassword]);
+        $info = $this->get(['adminAccount' => $this->adminAccount, 'adminPassword' => $this->adminPassword]);
         return $info;
     }
 
     /*
      * 以account进行查询
      */
-    function accountExist($field='*'):?AdminModel
+    public function accountExist($field = '*'):?AdminModel
     {
-        $info = $this->field($field)->get(['adminAccount'=>$this->adminAccount]);
+        $info = $this->field($field)->get(['adminAccount' => $this->adminAccount]);
         return $info;
     }
 
-    function getOneBySession($field='*'):?AdminModel
+    public function getOneBySession($field = '*'):?AdminModel
     {
-        $info = $this->field($field)->get(['adminSession'=>$this->adminSession]);
+        $info = $this->field($field)->get(['adminSession' => $this->adminSession]);
         return $info;
     }
 
-    function logout()
+    public function logout()
     {
-        return $this->update(['adminSession'=>'']);
+        return $this->update(['adminSession' => '']);
     }
 
 }
@@ -245,21 +246,21 @@ class AdminModel extends AbstractModel
 #### 建表
 ```sql
 CREATE  TABLE if not exists `user_list` (
-                           `userId` int(11) NOT NULL AUTO_INCREMENT,
-                           `userName` varchar(32) NOT NULL,
-                           `userAccount` varchar(18) NOT NULL,
-                           `userPassword` varchar(32) NOT NULL,
-                           `phone` varchar(18) NOT NULL,
-                           `addTime` int(11) DEFAULT NULL,
-                           `lastLoginIp` varchar(20) DEFAULT NULL,
-                           `lastLoginTime` int(10) DEFAULT NULL,
-                           `userSession` varchar(32) DEFAULT NULL,
-                           `state` tinyint(2) DEFAULT NULL,
-                           `money` int(10) NOT NULL DEFAULT '0' COMMENT '用户余额',
-                           `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT '冻结余额',
-                           PRIMARY KEY (`userId`),
-                           UNIQUE KEY `pk_userAccount` (`userAccount`),
-                           KEY `userSession` (`userSession`)
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` varchar(32) NOT NULL,
+  `userAccount` varchar(18) NOT NULL,
+  `userPassword` varchar(32) NOT NULL,
+  `phone` varchar(18) NOT NULL,
+  `addTime` int(11) DEFAULT NULL,
+  `lastLoginIp` varchar(20) DEFAULT NULL,
+  `lastLoginTime` int(10) DEFAULT NULL,
+  `userSession` varchar(32) DEFAULT NULL,
+  `state` tinyint(2) DEFAULT NULL,
+  `money` int(10) NOT NULL DEFAULT '0' COMMENT '用户余额',
+  `frozenMoney` int(10) NOT NULL DEFAULT '0' COMMENT '冻结余额',
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `pk_userAccount` (`userAccount`),
+  KEY `userSession` (`userSession`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `user_list` VALUES ('1', '仙士可', 'xsk', 'e10adc3949ba59abbe56e057f20f883e', '', '1566279458', '192.168.159.1','1566279458','',1,'1','1');
@@ -293,12 +294,12 @@ use EasySwoole\ORM\AbstractModel;
  */
 class UserModel extends AbstractModel
 {
-    protected $tableName = 'user_list';
+    protected $tableName  = 'user_list';
 
     protected $primaryKey = 'userId';
 
-    const STATE_PROHIBIT = 0;//禁用状态
-    const STATE_NORMAL = 1;//正常状态
+    const STATE_PROHIBIT = 0; // 禁用状态
+    const STATE_NORMAL   = 1; // 正常状态
 
     /**
      * @getAll
@@ -311,39 +312,40 @@ class UserModel extends AbstractModel
     public function getAll(int $page = 1, string $keyword = null, int $pageSize = 10): array
     {
         $where = [];
-        if (!empty($keyword)) {
+        if (!empty($keyword)) 
+        {
             $where['userAccount'] = ['%' . $keyword . '%','like'];
         }
-        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $list  = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
         $total = $this->lastQueryResult()->getTotalCount();
         return ['total' => $total, 'list' => $list];
     }
 
-
-    public function getOneByPhone($field='*'): ?UserModel
+    public function getOneByPhone($field = '*'): ?UserModel
     {
-        $info = $this->field($field)->get(['phone'=>$this->phone]);
+        $info = $this->field($field)->get(['phone' => $this->phone]);
         return $info;
     }
 
     /*
      * 登录成功后请返回更新后的bean
      */
-    function login():?UserModel
+    public function login():?UserModel
     {
-        $info = $this->get(['userAccount'=>$this->userAccount,'userPassword'=>$this->userPassword]);
+        $info = $this->get(['userAccount' => $this->userAccount,'userPassword' => $this->userPassword]);
         return $info;
     }
 
 
-    function getOneBySession($field='*'):?UserModel
+    public function getOneBySession($field = '*'):?UserModel
     {
-        $info = $this->field($field)->get(['userSession'=>$this->userSession]);
+        $info = $this->field($field)->get(['userSession' => $this->userSession]);
         return $info;
     }
 
-    function logout(){
-        return $this->update(['userSession'=>'']);
+    public function logout()
+    {
+        return $this->update(['userSession' => '']);
     }
 
 }
@@ -355,13 +357,13 @@ class UserModel extends AbstractModel
 
 ```sql
 CREATE TABLE if not exists `banner_list` (
-                             `bannerId` int(11) NOT NULL AUTO_INCREMENT,
-                             `bannerName` varchar(32) DEFAULT NULL,
-                             `bannerImg` varchar(255) NOT NULL COMMENT 'banner图片',
-                             `bannerDescription` varchar(255) DEFAULT NULL,
-                             `bannerUrl` varchar(255) DEFAULT NULL COMMENT '跳转地址',
-                             `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
-                             PRIMARY KEY (`bannerId`)
+  `bannerId` int(11) NOT NULL AUTO_INCREMENT,
+  `bannerName` varchar(32) DEFAULT NULL,
+  `bannerImg` varchar(255) NOT NULL COMMENT 'banner图片',
+  `bannerDescription` varchar(255) DEFAULT NULL,
+  `bannerUrl` varchar(255) DEFAULT NULL COMMENT '跳转地址',
+  `state` tinyint(3) DEFAULT NULL COMMENT '状态0隐藏 1正常',
+  PRIMARY KEY (`bannerId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `banner_list` VALUES ('1', '测试banner', 'asdadsasdasd.jpg', '测试的banner数据', 'www.php20.cn',1);
@@ -399,7 +401,7 @@ class BannerModel extends AbstractModel
             $where['bannerUrl'] = ['%' . $keyword . '%','like'];
         }
         $where['state'] = $state;
-        $list = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
+        $list  = $this->limit($pageSize * ($page - 1), $pageSize)->order($this->primaryKey, 'DESC')->withTotalCount()->all($where);
         $total = $this->lastQueryResult()->getTotalCount();
         return ['total' => $total, 'list' => $list];
     }
@@ -422,7 +424,7 @@ use EasySwoole\Http\AbstractInterface\AnnotationController;
 class BaseController extends AnnotationController
 {
 
-    function index()
+    public function index()
     {
         $this->actionNotFound('index');
     }
@@ -439,10 +441,14 @@ class BaseController extends AnnotationController
         $clientAddress = $client['remote_ip'];
         $xri = $this->request()->getHeader($headerName);
         $xff = $this->request()->getHeader('x-forwarded-for');
-        if ($clientAddress === '127.0.0.1') {
-            if (!empty($xri)) {  // 如果有xri 则判定为前端有NGINX等代理
+        if ($clientAddress === '127.0.0.1') 
+        {
+            if (!empty($xri)) 
+            {  // 如果有xri 则判定为前端有NGINX等代理
                 $clientAddress = $xri[0];
-            } elseif (!empty($xff)) {  // 如果不存在xri 则继续判断xff
+            } 
+            elseif (!empty($xff)) 
+            {  // 如果不存在xri 则继续判断xff
                 $list = explode(',', $xff[0]);
                 if (isset($list[0])) $clientAddress = $list[0];
             }
@@ -450,7 +456,8 @@ class BaseController extends AnnotationController
         return $clientAddress;
     }
 
-    protected function input($name, $default = null) {
+    protected function input($name, $default = null) 
+    {
         $value = $this->request()->getRequestParam($name);
         return $value ?? $default;
     }
@@ -489,7 +496,7 @@ use EasySwoole\Http\Message\Status;
 
 abstract class ApiBase extends BaseController
 {
-    function index()
+    public function index()
     {
         // TODO: Implement index() method.
         $this->actionNotFound('index');
@@ -500,11 +507,11 @@ abstract class ApiBase extends BaseController
         $this->writeJson(Status::CODE_NOT_FOUND);
     }
 
-    function onRequest(?string $action): ?bool
+    public function onRequest(?string $action): ?bool
     {
         if (!parent::onRequest($action)) {
             return false;
-        };
+        }
         return true;
     }
 
@@ -582,7 +589,7 @@ class Banner extends CommonBase
 		$param = $this->request()->getRequestParam();
 		$model = new BannerModel();
 		$model->bannerId = $param['bannerId'];
-		$bean = $model->get();
+		$bean  = $model->get();
 		if ($bean) {
 		    $this->writeJson(Status::CODE_OK, $bean, "success");
 		} else {
@@ -601,10 +608,10 @@ class Banner extends CommonBase
     public function getAll()
 	{
         $param = $this->request()->getRequestParam();
-		$page = $param['page']??1;
-		$limit = $param['limit']??20;
+		$page  = $param['page'] ?? 1;
+		$limit = $param['limit'] ?? 20;
 		$model = new BannerModel();
-		$data = $model->getAll($page, 1,$param['keyword']??null, $limit);
+		$data  = $model->getAll($page, 1, $param['keyword']??null, $limit);
 		$this->writeJson(Status::CODE_OK, $data, 'success');
 	}
 }
@@ -662,7 +669,7 @@ class AdminBase extends ApiBase
      * @author yangzhenyu
      * Time: 13:49
      */
-    function onRequest(?string $action): ?bool
+    public function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
             //白名单判断
@@ -685,7 +692,7 @@ class AdminBase extends ApiBase
      * @author yangzhenyu
      * Time: 13:51
      */
-    function getWho(): ?AdminModel
+    public function getWho(): ?AdminModel
     {
         if ($this->who instanceof AdminModel) {
             return $this->who;
@@ -738,7 +745,7 @@ class Auth extends AdminBase
      * @author Tioncico
      * Time: 10:18
      */
-    function login()
+    public function login()
     {
         $param = $this->request()->getRequestParam();
         $model = new AdminModel();
@@ -772,7 +779,7 @@ class Auth extends AdminBase
      * @author Tioncico
      * Time: 10:23
      */
-    function logout()
+    public function logout()
     {
         $sessionKey = $this->request()->getRequestParam($this->sessionKey);
         if (empty($sessionKey)) {
@@ -790,7 +797,7 @@ class Auth extends AdminBase
         }
     }
 
-    function getInfo()
+    public function getInfo()
     {
         $this->writeJson(200, $this->getWho()->toArray(), 'success');
     }
@@ -851,7 +858,7 @@ class User extends AdminBase
      * @author Tioncico
      * Time: 14:01
      */
-    function getAll()
+    public function getAll()
     {
         $page = (int)$this->input('page', 1);
         $limit = (int)$this->input('limit', 20);
@@ -869,7 +876,7 @@ class User extends AdminBase
      * @author Tioncico
      * Time: 11:48
      */
-    function getOne()
+    public function getOne()
     {
         $param = $this->request()->getRequestParam();
         $model = new UserModel();
@@ -893,7 +900,7 @@ class User extends AdminBase
      * @author Tioncico
      * Time: 11:48
      */
-    function add()
+    public function add()
     {
         $param = $this->request()->getRequestParam();
         $model = new UserModel($param);
@@ -918,7 +925,7 @@ class User extends AdminBase
      * @author Tioncico
      * Time: 11:54
      */
-    function update()
+    public function update()
     {
         $model = new UserModel();
         $model->userId = $this->input('userId');
@@ -954,7 +961,7 @@ class User extends AdminBase
      * @author Tioncico
      * Time: 14:02
      */
-    function delete()
+    public function delete()
     {
         $param = $this->request()->getRequestParam();
         $model = new UserModel();
@@ -1021,7 +1028,7 @@ class UserBase extends ApiBase
      * @author yangzhenyu
      * Time: 13:49
      */
-    function onRequest(?string $action): ?bool
+    public function onRequest(?string $action): ?bool
     {
         if (parent::onRequest($action)) {
             //白名单判断
@@ -1046,7 +1053,7 @@ class UserBase extends ApiBase
      * @author yangzhenyu
      * Time: 13:51
      */
-    function getWho(): ?UserModel
+    public function getWho(): ?UserModel
     {
         if ($this->who instanceof UserModel) {
             return $this->who;
@@ -1106,11 +1113,11 @@ class Auth extends UserBase
      * @author Tioncico
      * Time: 15:06
      */
-    function login()
+    public function login()
     {
         $param = $this->request()->getRequestParam();
         $model = new UserModel();
-        $model->userAccount = $param['userAccount'];
+        $model->userAccount  = $param['userAccount'];
         $model->userPassword = md5($param['userPassword']);
 
         if ($userInfo = $model->login()) {
@@ -1131,7 +1138,7 @@ class Auth extends UserBase
     }
 
 
-    function logout()
+    public function logout()
     {
         $sessionKey = $this->request()->getRequestParam('userSession');
         if (empty($sessionKey)) {
@@ -1150,7 +1157,7 @@ class Auth extends UserBase
     }
 
 
-    function getInfo()
+    public function getInfo()
     {
         $this->writeJson(200, $this->getWho(), 'success');
     }
