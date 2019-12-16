@@ -222,6 +222,7 @@ const sidebarCn = [
                             ['/Components/Orm/DefineModel/timestamp', '自动时间戳'],
                         ]
                     },
+                    ['/Components/Orm/invoke', 'Invoke执行'],
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
                     ['/Components/Orm/lastResult', '模型执行结果'],
                     ['/Components/Orm/lastQuery', '最后执行语句'],
@@ -243,6 +244,7 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+                            ['/Components/Orm/Associat/preWithQuery', '关联预查询'],
                         ]
                     },
                     {
