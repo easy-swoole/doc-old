@@ -20,6 +20,17 @@ var_dump($lastResult->getLastErrorNo());
 var_dump($lastResult->getLastError());
 //获取执行mysql返回的结果
 var_dump($lastResult->getResult());
+
+// 以下内容在版本>=1.2.2后提供
+
+// 获取结果中的第一条
+var_dump($lastResult->getResultOne());
+// 获取结果中某列
+var_dump($lastResult->getResultColumn(string $column));
+// 获取结果中某列的第一条数据
+var_dump($lastResult->getResultScalar(string $column));
+// 以某一个字段名为key 返回结果数组
+var_dump($lastResult->getResultIndexBy(string $column));
 ```
 
 :::warning

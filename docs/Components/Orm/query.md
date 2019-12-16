@@ -73,3 +73,11 @@ $result = $model->lastQueryResult();
 // 总条数
 $total = $result->getTotalCount();
 ```
+
+## 快速查询
+
+- column(string $column) 快速查询结果的某一列
+- scalar(string $column) 快速查询结果的某一列的第一条数据
+- indexBy(string $column) 以某个字段名的数据返回结果数组
+
+> 用法参见单元测试  https://github.com/easy-swoole/orm/pull/62/files  后续补充完整
