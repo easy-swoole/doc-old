@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Custom events
   - name: keywords
-    content: Easyswoole Custom events|swoole frame|EasySwoole
+    content: swoole|swoole extension|swoole framework|Easyswoole Custom events|swoole frame|EasySwoole
 ---
 
 ## Custom Events

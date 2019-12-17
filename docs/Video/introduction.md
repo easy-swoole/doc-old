@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole免费视频教程
   - name: keywords
-    content: easyswoole视频|swoole视频教程|swoole免费教程
+    content: swoole|swoole 拓展|swoole 框架|easyswoole视频|swoole视频教程|swoole免费教程
 ---
 
 ## 关于版权

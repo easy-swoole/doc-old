@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, queue consumption / custom process issues
   - name: keywords
-    content: Easyswoole|Queue consumption/custom process issues
+    content: swoole|swoole extension|swoole framework|Easyswoole|Queue consumption/custom process issues
 ---
 ## How to implement queue consumption / custom process
 Maybe we will often encounter scenarios that require constant consumption of content in the queue. We implement this function in the way of custom processes in EasySwoole.

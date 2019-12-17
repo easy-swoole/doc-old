@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole ReadyScheduler
   - name: keywords
-    content: easyswoole|ReadyScheduler|Ready to wait
+    content: swoole|swoole extension|swoole framework|easyswoole|ReadyScheduler|Ready to wait
 ---
 # ReadyScheduler
 Since the 1.8.7 release of the Easyswoole base component, a ready-to-plan program based on the Swoole Table implementation has been provided to resolve some sub-service not-ready issues when the main service starts.

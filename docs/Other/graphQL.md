@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,GraphQL
   - name: keywords
-    content: easyswoole|GraphQL
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|GraphQL
 ---
 ## GraphQL
 本文档假定你熟悉GraphQL的概念。如果不是这样，请首先在官方网站上面了解 GraphQL。

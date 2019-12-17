@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
+    content:  swoole|swoole extension|swoole framework|EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 ## connection method
 The connection method includes some auth, echo, ping, and similar methods. The list is as follows:   

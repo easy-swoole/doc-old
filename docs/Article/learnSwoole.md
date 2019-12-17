@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 如何学习swoole|swoole 采坑|swoole|swoole学习笔记
   - name: keywords
-    content: easyswoole|swoole|如何学习swoole|swoole 采坑|swoole学习笔记
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole|如何学习swoole|swoole 采坑|swoole学习笔记
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole文件上传
   - name: keywords
-    content: easyswoole文件上传|swoole 文件上传|swoole http|swoole|swoole框架
+    content: swoole|swoole 拓展|swoole 框架|easyswoole文件上传|swoole 文件上传|swoole http|swoole|swoole框架
 ---
 ## UploadFile对象
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole分布式负载均衡
   - name: keywords
-    content: easyswoole|分布式|负载均衡
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|分布式|负载均衡
 ---
 # 如何实现分布式
 关于最近很多人在询问，如何利用EasySwoole做分布式负载均衡，复杂的就不讲解了，就讲解如何实现最简单的负载均衡。

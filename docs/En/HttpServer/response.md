@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Response object
   - name: keywords
-    content: easyswoole|Response object
+    content: swoole|swoole extension|swoole framework|easyswoole|Response object
 ---
 # Response object
 ## Life cycle

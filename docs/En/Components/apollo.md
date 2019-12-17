@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Apollo configuration center
   - name: keywords
-    content: easyswoole|apollo
+    content: swoole|swoole extension|swoole framework|easyswoole|apollo
 ---
 # Apollo configuration center
 EasySwoole supports apollo data center. Synchronization can be configured according to this component.

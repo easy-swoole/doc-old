@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, CURL SSL error
   - name: keywords
-    content: Easyswoole|CURL SSL error
+    content: swoole|swoole extension|swoole framework|Easyswoole|CURL SSL error
 ---
 ## CURL SSL error
 In the lower version of CURL, if the CURL is executed before the service is started, an ssl connection is executed. Then, after executing the curl again in the callback function, an error will be reported:

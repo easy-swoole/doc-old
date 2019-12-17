@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, how to get the client IP
   - name: keywords
-    content: Easyswoole|Get client IP|cross domain processing
+    content: swoole|swoole extension|swoole framework|Easyswoole|Get client IP|cross domain processing
 ---
 
 

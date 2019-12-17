@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole控制器使用说明
   - name: keywords
-    content: easyswoole|swoole api服务|swoole 控制器|swoole|swoole http
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole api服务|swoole 控制器|swoole|swoole http
 ---
 
 # 控制器对象

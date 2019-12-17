@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 支付宝SDK是封装的协程支付宝支付组件库,
   - name: keywords
-    content: easyswoole|AliPay|支付宝支付组件|swoole 支付宝
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|AliPay|支付宝支付组件|swoole 支付宝
 ---
 
 # 协程支付网关

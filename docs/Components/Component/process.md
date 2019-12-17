@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 本文主要讲述如何添加swoole的自定义进程，从而实现php多进程任务处理 
   - name: keywords
-    content: EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole自定义进程|swoole自定义进程|swoole进程|swoole多进程|php多进程
 ---
 
 

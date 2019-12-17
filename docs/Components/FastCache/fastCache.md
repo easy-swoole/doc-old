@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 利用swoole自定义进程实现简单的本机缓存
   - name: keywords
-    content:  EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存
+    content:  swoole|swoole 拓展|swoole 框架 框架|EasySwoole FastCache|swoole 缓存|swoole 跨进程缓存
 ---
 
 # FastCache

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole's powerful ecology contributes to many demos
   - name: keywords
-    content: easyswoole|demo|admin
+    content: swoole|swoole extension|swoole framework|easyswoole|demo|admin
 ---
 
 # Demo

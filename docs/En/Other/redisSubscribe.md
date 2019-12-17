@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, custom process implementation redis subscription
   - name: keywords
-    content: Easyswoole|Custom process implementation redis subscription
+    content: swoole|swoole extension|swoole framework|Easyswoole|Custom process implementation redis subscription
 ---
 
 ## Custom process implementation redis subscription

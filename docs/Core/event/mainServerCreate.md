@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 主服务创建事件
   - name: keywords
-    content: EasySwoole|swoole|mainServerCreate
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|swoole|mainServerCreate
 ---
 # 主服务创建事件
 

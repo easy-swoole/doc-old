@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 用于快速处理哈希密码以及数据完整性校验等场景。
   - name: keywords
-    content: easyswoole|组件库|杂项工具|Hash
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|组件库|杂项工具|Hash
 ---
 
 # Hash

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, randomly generated problem
   - name: keywords
-    content: Easyswoole|Random generation problem
+    content: swoole|swoole extension|swoole framework|Easyswoole|Random generation problem
 ---
 ## Random generation problem
 

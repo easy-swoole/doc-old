@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Contact easyswoole author
   - name: keywords
-    content: easyswoole | easyswoole contact us | easyswoole author
+    content: swoole|swoole extension|swoole framework|easyswoole | easyswoole contact us | easyswoole author
 ---
 # Contact author
 

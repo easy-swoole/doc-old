@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole中实现RPC 自定义注册中心
   - name: keywords
-    content: easyswoole|Rpc服务注册中心|swoole RPC|RPC
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Rpc服务注册中心|swoole RPC|RPC
 ---
 
 # EasySwoole RPC 自定义注册中心

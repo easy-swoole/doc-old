@@ -1,3 +1,11 @@
+---
+title: Orm 执行结果
+meta:
+  - name: description
+    content: Easyswoole ORM组件,
+  - name: keywords
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|Orm Invoke
+---
 # 执行结果
 
 当model执行一个语句之后,会将该次执行的结果保存到`$model->lastQueryResult()`中,该方法将返回一个`EasySwoole\ORM\Db\Result`对象

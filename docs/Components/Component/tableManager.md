@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole对Swoole table进行了基础的封装用于共享内存
   - name: keywords
-    content: easyswoole|TableManager|Swoole Table
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|TableManager|Swoole Table
 ---
 
 # TableManager

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswooleDonation
   - name: keywords
-    content: easyswoole|Donation|easyswoole
+    content: swoole|swoole extension|swoole framework|easyswoole|Donation|easyswoole
 ---
 
 # Donation

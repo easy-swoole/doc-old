@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
   - name: keywords
-    content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
+    content: swoole|swoole extension|swoole framework|EasySwoole Template engine|swoole Template engine|swoole Template rendering
 ---
 
 # Template engine

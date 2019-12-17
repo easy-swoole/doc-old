@@ -4,7 +4,7 @@ meta:
   - name: description
     content: The snowflake algorithm generates a unique number.
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools|SnowFlake
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools|SnowFlake
 ---
 
 # Snowflake algorithm

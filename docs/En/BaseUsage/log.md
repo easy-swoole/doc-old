@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 如何在php的swoole拓展中进行自定义的日志处理和异常捕获
   - name: keywords
-    content: EasySwoole日志处理|swoole日志处理|swoole日志
+    content: swoole|swoole extension|swoole framework|EasySwoole日志处理|swoole日志处理|swoole日志
 ---
 
 # 日志处理

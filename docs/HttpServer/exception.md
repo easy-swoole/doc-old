@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole错误与异常拦截
   - name: keywords
-    content:  EasySwoole|错误与异常拦截|swoole 错误异常|swoole|swoole框架
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole|错误与异常拦截|swoole 错误异常|swoole|swoole框架
 ---
 ## 错误与异常拦截
 

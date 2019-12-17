@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,自定义进程实现redis订阅
   - name: keywords
-    content: easyswoole|自定义进程实现redis订阅
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|自定义进程实现redis订阅
 ---
 
 ## 自定义进程实现redis订阅

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole,URL parsing rules
   - name: keywords
-    content:  EasySwoole|URL parsing rules
+    content:  swoole|swoole extension|swoole framework|EasySwoole|URL parsing rules
 ---
 # URL parsing rules
 

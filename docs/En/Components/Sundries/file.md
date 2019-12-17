@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Used to manipulate files or directories.
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools|File
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools|File
 ---
 
 # File

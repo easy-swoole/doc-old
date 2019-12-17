@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个轻量级的注解解析工具
   - name: keywords
-    content: EasySwoole|Annotation
+    content: swoole|swoole extension|swoole framework|EasySwoole|Annotation
 ---
 ## Annotation
 Easyswoole provides a lightweight annotation resolution tool.

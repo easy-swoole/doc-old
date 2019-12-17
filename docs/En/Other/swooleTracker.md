@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Swoole Tracker
   - name: keywords
-    content: easyswoole|Swoole Tracker
+    content: swoole|swoole extension|swoole framework|easyswoole|Swoole Tracker
 ---
 
 ## Swoole Tracker

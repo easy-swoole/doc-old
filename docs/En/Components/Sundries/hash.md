@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Used to quickly process hash passwords and data integrity check scenarios.
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools|Hash
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools|Hash
 ---
 
 # Hash

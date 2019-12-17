@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 全局事件
   - name: keywords
-    content: EasySwoole|swoole|全局事件
+    content: swoole|swoole extension|swoole framework|EasySwoole|swoole|全局事件
 ---
 # Global vent
 

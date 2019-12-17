@@ -4,7 +4,7 @@ meta:
   - name: description
     Content: EasySwoole provides a very flexible global configuration feature that allows you to extend your own profile and dynamically configure it.
   - name: keywords
-    Content: easyswoole|profile|dynamic configuration
+    Content: swoole|swoole extension|swoole framework|easyswoole|profile|dynamic configuration
 ---
 
 

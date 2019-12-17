@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 联系easyswoole作者
   - name: keywords
-    content: easyswoole|easyswoole联系我们|easyswoole作者
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|easyswoole联系我们|easyswoole作者
 ---
 # 联系作者
 

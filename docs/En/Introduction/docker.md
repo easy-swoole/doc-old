@@ -4,7 +4,7 @@ meta:
   - name: description
     Content: EasySwoole docker image build
   - name: keywords
-    Content: easyswoole|swoole docker image|swoole dockerfile
+    Content: swoole|swoole extension|swoole framework|easyswoole|swoole docker image|swoole dockerfile
 ---
 
 
