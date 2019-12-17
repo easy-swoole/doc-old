@@ -1,10 +1,10 @@
 ---
-title: UploadFile对象
+title: Easyswoole UploadFile对象
 meta:
   - name: description
-    content: UploadFile对象
+    content: easyswoole文件上传
   - name: keywords
-    content: EasySwoole UploadFile对象
+    content: easyswoole文件上传|swoole 文件上传|swoole http|swoole|swoole框架
 ---
 ## UploadFile对象
 

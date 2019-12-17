@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole环境要求
 meta:
   - name: description
     content: EasySwoole的基础环境要求与swoole的安装
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: easyswoole|swoole 扩展|swoole框架|swoole
 ---
 
 # 环境要求

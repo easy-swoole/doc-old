@@ -1,10 +1,10 @@
 ---
-title: http服务
+title: Easyswoole http服务
 meta:
   - name: description
-    content: easyswoole,http服务
+    content: easyswoolehttp服务
   - name: keywords
-    content: easyswoole|http服务
+    content: easyswoole|http服务|swoole http
 ---
 
 # http服务

@@ -1,10 +1,10 @@
 ---
-title: 控制器
+title: Easyswoole控制器
 meta:
   - name: description
-    content: easyswoole控制器说明
+    content: easyswoole控制器使用说明
   - name: keywords
-    content: easyswoole|控制器|swoole api服务|swoole 控制器池
+    content: easyswoole|swoole api服务|swoole 控制器|swoole|swoole http
 ---
 
 # 控制器对象

@@ -1,5 +1,5 @@
 ---
-title: 服务管理
+title: Easyswoole服务管理
 meta:
   - name: description
     content: easyswoole的服务管理,启动服务,停止服务等

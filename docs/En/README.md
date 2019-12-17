@@ -1,4 +1,7 @@
 ---
+meta:
+  - name: keywords
+    content: easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket
 home: true
 heroSvg: /resources/hero.svg
 heroImage: /resources/hero.png

@@ -1,10 +1,10 @@
 ---
-title: 日志处理
+title: Easyswoole自定义日志处理
 meta:
   - name: description
-    content: 如何在php的swoole拓展中进行自定义的日志处理和异常捕获
+    content: 如何在easyswoole中进行自定义的日志处理和异常捕获
   - name: keywords
-    content: EasySwoole日志处理|swoole日志处理|swoole日志
+    content: EasySwoole日志处理|swoole日志处理|swoole日志|swoole
 ---
 
 # 日志处理

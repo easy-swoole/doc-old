@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole docker镜像
 meta:
   - name: description
     content: EasySwoole的docker镜像构建
   - name: keywords
-    content: easyswoole|swoole docker镜像|swoole dockerfile
+    content: easyswoole|swoole docker镜像|swoole dockerfile|swoole
 ---
 
 

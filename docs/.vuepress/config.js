@@ -11,7 +11,6 @@ module.exports = {
         '/En/': {
             lang: 'en-US',
             title: 'easyswoole,swoole framework,an height-performance php framework which base on swoole extension',
-            keywords: 'easySwoole,swoole,swoole framework,swoole websocket,swoole rpc,swoole distribute',
             description: 'easyswoole framework,an height-performance php framework which base on swoole extension'
         }
     },
@@ -41,7 +40,6 @@ module.exports = {
         }
     },
     head: [
-        ['meta',{ name:'keywords',content:'easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket' }],
         ['script', {src: 'https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js'}],
         ['script', {src: 'https://cdn.bootcss.com/layer/2.3/layer.js'}],
         ['href', {src: 'https://cdn.bootcss.com/layer/2.3/skin/layer.css', rel: "stylesheet"}],
