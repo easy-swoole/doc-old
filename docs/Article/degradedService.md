@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole是一个高并发框架拓展，在微服务的架构下，如何实现服务之间的降级保护
   - name: keywords
-    content: easyswoole|swoole 微服务|swoole降级|swoole熔断|swoole框架
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole 微服务|swoole降级|swoole熔断|swoole框架
 ---
 
 # 服务熔断限流与降级

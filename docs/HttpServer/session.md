@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Session处理组件
   - name: keywords
-    content: EasySwoole Session处理组件|swoole session|php session
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole Session处理组件|swoole session|php session
 ---
 # Session 
 Easyswoole 自3.2.x开始，不再提供默认的session服务，若需要使用的用户，请独立引入session组件。

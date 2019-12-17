@@ -4,7 +4,7 @@ meta:
   - name: description
     content: bootstrap事件
   - name: keywords
-    content: EasySwoole|swoole|bootstrap事件
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|swoole|bootstrap事件
 ---
 # bootstrap事件
 

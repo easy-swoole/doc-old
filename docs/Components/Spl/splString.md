@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole SplString
   - name: keywords
-    content: easyswoole,SplString
+    content: swoole|swoole 拓展|swoole 框架|easyswoole,SplString
 ---
 # SplString
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 协程HTTPClient组件
   - name: keywords
-    content: easyswoole|协程HTTPClient|websocket Client|websocket客户端
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|协程HTTPClient|websocket Client|websocket客户端
 ---
 # WebSocket-Client
 

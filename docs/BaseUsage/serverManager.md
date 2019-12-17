@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole服务管理,服务启动,停止等
   - name: keywords
-    content: EasySwoole 服务管理|swoole 服务管理|swoole|EasySwoole 服务
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole 服务管理|swoole 服务管理|swoole|EasySwoole 服务
 ---
 
 # ServerManager

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 如何在easyswoole中进行自定义的日志处理和异常捕获
   - name: keywords
-    content: EasySwoole日志处理|swoole日志处理|swoole日志|swoole
+    content: swoole|swoole 拓展|EasySwoole日志处理|swoole日志处理|swoole日志|swoole
 ---
 
 # 日志处理

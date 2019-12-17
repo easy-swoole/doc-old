@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole组件更新记录
   - name: keywords
-    content: easyswoole|组件更新记录|框架更新
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|组件更新记录|框架更新
 ---
 
 # 2019-12

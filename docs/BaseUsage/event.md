@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole自定义事件
   - name: keywords
-    content: Easyswoole 自定义事件|swoole 框架|swoole
+    content: swoole|swoole 拓展|Easyswoole 自定义事件|swoole 框架|swoole
 ---
 
 ## 自定义事件

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,内核参数调整
   - name: keywords
-    content: easyswoole|内核参数调整
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|内核参数调整
 ---
 ## 内核参数调整
 

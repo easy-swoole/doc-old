@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个基于Atomic计数器的限流器，通过限制某一个时间周期内的总请求数，从而实现基础限流。
   - name: keywords
-    content: EasySwoole分布式|AtomicLimit|分布式限流器
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole分布式|AtomicLimit|分布式限流器
 ---
 # AtomicLimit
 

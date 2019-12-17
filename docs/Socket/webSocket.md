@@ -4,7 +4,7 @@ meta:
   - name: description
     content: php利用swoole，从而可以实现消息推送，和硬件消息交互
   - name: keywords
-    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
 # WebSocket控制器

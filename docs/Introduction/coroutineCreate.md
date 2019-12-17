@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole,easyswoole协程介绍
   - name: keywords
-    content: easyswoole 协程|php 协程|swoole
+    content: swoole|swoole 拓展|swoole 框架|easyswoole 协程|php 协程|swoole
 ---
 
 # 协程

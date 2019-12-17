@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole 提供轻量级的注解控制器支持
   - name: keywords
-    content:  EasySwoole|注解控制器|注解参数验证|swoole 注解
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole|注解控制器|注解参数验证|swoole 注解
 ---
 # 注解控制器
 

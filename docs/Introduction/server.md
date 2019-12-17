@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole的服务管理,启动服务,停止服务等
   - name: keywords
-    content: easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
 ---
 
 # 服务管理脚本

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole中用RPC实现分布式微服务架构
   - name: keywords
-    content: easyswoole|Rpc服务端|swoole RPC|swoole微服务|swoole分布式|PHP 分布式
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Rpc服务端|swoole RPC|swoole微服务|swoole分布式|PHP 分布式
 ---
 
 # EasySwoole RPC

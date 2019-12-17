@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole开源团队，文档维护团队介绍，EasySwoole社区
   - name: keywords
-    content:  EasySwoole | EasySwoole开源团队 | EasySwoole社区 | 文档维护团队
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole | EasySwoole开源团队 | EasySwoole社区 | 文档维护团队
 ---
 
 

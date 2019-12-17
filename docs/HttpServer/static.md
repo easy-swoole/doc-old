@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole静态文件处理
   - name: keywords
-    content: swoole静态文件处理|Easyswoole静态文件处理|swoole|swoole框架
+    content: swoole|swoole 拓展|swoole 框架|swoole静态文件处理|Easyswoole静态文件处理|swoole|swoole框架
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole的基础环境要求与swoole的安装
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|swoole
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole 扩展|swoole框架|swoole
 ---
 
 # 环境要求

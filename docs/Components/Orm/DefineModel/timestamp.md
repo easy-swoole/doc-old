@@ -1,3 +1,12 @@
+---
+title: 时间戳
+meta:
+  - name: description
+    content: Easyswoole ORM组件,
+  - name: keywords
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|指定连接名
+---
+
 # 时间戳
 
 在ORM组件版本 `>= 1.0.18` 后，增加自动时间戳特性支持。

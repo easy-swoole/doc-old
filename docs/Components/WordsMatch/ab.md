@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个基于字典树算法的关键词检测组件
   - name: keywords
-    content: easyswoole,关键词,关键词检测
+    content: swoole|swoole 拓展|swoole 框架|easyswoole,关键词,关键词检测
 ---
 
 # 压测结果

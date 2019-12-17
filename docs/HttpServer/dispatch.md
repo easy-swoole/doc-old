@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole URL解析规则
   - name: keywords
-    content:  EasySwoole|URL解析规则|swoole|swoole http|swoole框架
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole|URL解析规则|swoole|swoole http|swoole框架
 ---
 # URL解析规则
 
