@@ -1,10 +1,10 @@
 ---
-title: 视频HTTP教程
+title: Easyswoole免费视频教程
 meta:
   - name: description
-    content: EasySwoole为广大新手用户专门录制了免费、开放的系列视频
+    content: EasySwoole免费视频教程
   - name: keywords
-    content: easyswoole|免费视频|php教学视频
+    content: easyswoole视频|swoole视频教程|swoole免费教程
 ---
 
 ## 关于版权

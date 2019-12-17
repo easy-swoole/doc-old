@@ -1,10 +1,10 @@
 ---
-title: 注解控制器
+title: Easyswoole 注解控制器
 meta:
   - name: description
     content: Easyswoole 提供轻量级的注解控制器支持
   - name: keywords
-    content:  EasySwoole|注解控制器|注解参数验证
+    content:  EasySwoole|注解控制器|注解参数验证|swoole 注解
 ---
 # 注解控制器
 

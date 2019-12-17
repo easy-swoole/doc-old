@@ -1,10 +1,10 @@
 ---
-title: URL解析规则
+title: Easyswoole URL解析规则
 meta:
   - name: description
-    content: Easyswoole,URL解析规则
+    content: Easyswoole URL解析规则
   - name: keywords
-    content:  EasySwoole|URL解析规则
+    content:  EasySwoole|URL解析规则|swoole|swoole http|swoole框架
 ---
 # URL解析规则
 

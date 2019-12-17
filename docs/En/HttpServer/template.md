@@ -55,7 +55,7 @@ class R implements RenderInterface
 #### Called in HTTP service
 ```php
 //In the event created in the global main service, instantiate the Render and inject your driver configuration
-Render::getInstance()->getConfig()>setRender(new R());
+Render::getInstance()->getConfig()->setRender(new R());
 
 $http = new swoole_http_server("0.0.0.0", 9501);
 $http->on("request", function ($request, $response)use($render) {

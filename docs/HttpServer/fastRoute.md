@@ -1,10 +1,10 @@
 ---
-title: 路由
+title: Easyswoole 路由
 meta:
   - name: description
-    content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
+    content: easyswoole路由使用
   - name: keywords
-    content: easyswoole|路由|swoole 路由组件|swoole api|swoole自定义路由|restful
+    content: easyswoole路由|swoole 路由|swoole http|swoole自定义路由|swoole 框架
 ---
 
 ## 自定义路由

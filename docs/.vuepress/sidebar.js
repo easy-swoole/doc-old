@@ -222,6 +222,7 @@ const sidebarCn = [
                             ['/Components/Orm/DefineModel/timestamp', '自动时间戳'],
                         ]
                     },
+                    ['/Components/Orm/invoke', 'Invoke执行'],
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
                     ['/Components/Orm/lastResult', '模型执行结果'],
                     ['/Components/Orm/lastQuery', '最后执行语句'],
@@ -243,6 +244,7 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+                            ['/Components/Orm/Associat/preWithQuery', '关联预查询'],
                         ]
                     },
                     {
@@ -250,7 +252,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Event/onQuery', 'onQuery'],
+                            ['/Components/Orm/Event/onQuery', '回调事件'],
+                            ['/Components/Orm/Event/model', '模型事件'],
                         ]
                     },
                 ]
@@ -344,6 +347,14 @@ const sidebarCn = [
                 ]
             },
             {
+                title: 'MySqli组件',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Mysqli/mysqli', '示例'],
+                ]
+            },
+            {
                 title: 'Spl组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
@@ -390,9 +401,10 @@ const sidebarCn = [
                 ]
             },
             ['/Components/whoops', 'Whoops'],
+            ['/Components/oss', 'OSS协程客户端'],
             {
                 title: 'SyncInvoker',
-                path: '/Components/syncInvoker',
+                path: '/Components/SyncInvoker/syncInvoker',
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
@@ -900,7 +912,7 @@ const sidebarEn = [
       ['/En/Components/whoops', 'Whoops'],
       {
         title: 'SyncInvoker',
-        path: '/En/Components/syncInvoker',
+        path: '/En/Components/SyncInvoker/syncInvoker',
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [

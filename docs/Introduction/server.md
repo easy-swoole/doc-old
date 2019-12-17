@@ -1,5 +1,5 @@
 ---
-title: 服务管理
+title: Easyswoole服务管理
 meta:
   - name: description
     content: easyswoole的服务管理,启动服务,停止服务等
@@ -99,7 +99,8 @@ restart是强制停止服务并重新启动,所以在生产模式下禁用,否�
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003

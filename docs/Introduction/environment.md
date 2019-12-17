@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole环境要求
 meta:
   - name: description
     content: EasySwoole的基础环境要求与swoole的安装
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: easyswoole|swoole 扩展|swoole框架|swoole
 ---
 
 # 环境要求
@@ -36,7 +36,8 @@ meta:
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003

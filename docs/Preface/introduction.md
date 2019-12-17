@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 是一款基于Swoole Server 开发的常驻内存型的分布式PHP框架，专为API而生，摆脱传统PHP运行模式在进程唤起和文件加载上带来的性能损失。
   - name: keywords
-    content: easyswoole|swoole框架|swoole协程框架|php框架
+    content: easyswoole|swoole框架|swoole|php框架
 ---
 
 ```
@@ -110,7 +110,8 @@ Easyswoole从最早的前身EasyPHP-Swoole，到更名为Easyswoole,再到现如
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003

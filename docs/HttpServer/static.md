@@ -1,10 +1,10 @@
 ---
-title: 静态文件处理
+title: Easyswoole 静态文件处理
 meta:
   - name: description
-    content: swoole静态文件处理,Easyswoole静态文件处理
+    content: Easyswoole静态文件处理
   - name: keywords
-    content: swoole静态文件处理|Easyswoole静态文件处理
+    content: swoole静态文件处理|Easyswoole静态文件处理|swoole|swoole框架
 ---
 
 
@@ -31,7 +31,7 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Connection "keep-alive";
         proxy_set_header X-Real-IP $remote_addr;
-        if (!-e $request_filename) {
+        if (!-f $request_filename) {
              proxy_pass http://127.0.0.1:9501;
         }
     }

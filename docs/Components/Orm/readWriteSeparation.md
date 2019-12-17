@@ -33,7 +33,7 @@ function connection(string $name, bool $isTemp = false)
 ```
 
 ::: tip  提示
-第二个参数需要传入为true，表示临时使用，否则该认定为固定使用<br/>（效果等同在类中定义 connectionName 属性）
+第二个参数需要传入为true，表示临时使用，否则该认定为固定使用<br/> 建议只在临时使用时设置该方式，如果要固定使用则从Model类文件中定义。
 :::
 
 ### Model继承定义

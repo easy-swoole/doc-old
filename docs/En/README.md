@@ -1,9 +1,7 @@
 ---
 meta:
-  - name: description
-    content: easyswoole,an height-performance php framework which base on swoole extension
   - name: keywords
-    content: easySwoole,swoole,swoole framework,swoole websocket,swoole rpc,swoole distribute
+    content: easySwoole,swoole,swoole框架,swoole拓展,swoole微服务,swoole分布式,swoole rpc,swoole websocket
 home: true
 heroSvg: /resources/hero.svg
 heroImage: /resources/hero.png

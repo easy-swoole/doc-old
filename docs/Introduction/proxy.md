@@ -1,10 +1,10 @@
 ---
-title: swoole代理方案
+title: Easyswoole 静态资源反向代理
 meta:
   - name: description
-    content: 通过apache,nginx等对swoole server服务的代理
+    content: 通过apache,nginx等对swoole 实现静态资源反向代理处理
   - name: keywords
-    content: easyswoole|swoole 服务代理|服务代理
+    content: easyswoole|swoole 反向代理|swoole|swoole 静态资源处理
 ---
 # Proxy
 由于 Swoole Server 对 HTTP 协议的支持并不完整，建议仅将 EasySwoole 作为后端服务，并且在前端增加 NGINX 或 APACHE 作为代理，参照下面的例子添加转发规则
@@ -52,7 +52,8 @@ server {
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003
