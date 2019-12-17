@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Validator|swoole Parameter validator
   - name: keywords
-    content: EasySwoole Validator|swoole Parameter validator
+    content: swoole|swoole extension|swoole framework|EasySwoole Validator|swoole Parameter validator
 ---
 
 

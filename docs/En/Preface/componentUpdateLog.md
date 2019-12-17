@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswooleComponent update record
   - name: keywords
-    content: easyswoole|Component update record|Framework update
+    content: swoole|swoole extension|swoole framework|easyswoole|Component update record|Framework update
 ---
 
 

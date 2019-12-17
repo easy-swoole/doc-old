@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides a coroutine secure console version client
   - name: keywords
-    content: easyswoole|consul|Consul coroutine version client
+    content: swoole|swoole extension|swoole framework|easyswoole|consul|Consul coroutine version client
 ---
 
 # Consul

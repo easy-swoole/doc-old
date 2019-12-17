@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Json web token based on EasySwoole component
   - name: keywords
-    content: easyswoole|JWT component
+    content: swoole|swoole extension|swoole framework|easyswoole|JWT component
 ---
 
 # jwt

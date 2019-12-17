@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,routing,Swoole routing component,swoole api,Swoole custom routing,restful
   - name: keywords
-    content: easyswoole|routing|Swoole routing component|swoole api|Swoole custom routing|restful
+    content: swoole|swoole extension|swoole framework|easyswoole|routing|Swoole routing component|swoole api|Swoole custom routing|restful
 ---
 
 ## Custom routing

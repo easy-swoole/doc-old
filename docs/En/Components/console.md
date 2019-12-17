@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 利用swoole子服务，通过telnet 客户端实现远程控制交互
   - name: keywords
-    content: EasySwoole Console|swoole console|swoole 远程控制台
+    content: swoole|swoole extension|swoole framework|EasySwoole Console|swoole console|swoole 远程控制台
 ---
 
 # Console

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 框架初始化事件
   - name: keywords
-    content: EasySwoole|swoole|initialize
+    content: swoole|swoole extension|swoole framework|EasySwoole|swoole|initialize
 ---
 # Framework initializes Events
 

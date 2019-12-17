@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides a basic tracking component that allows users to implement basic server status monitoring and call chain logging.
   - name: keywords
-    content: easyswoole|Tracker
+    content: swoole|swoole extension|swoole framework|easyswoole|Tracker
 ---
 
 # Tracker

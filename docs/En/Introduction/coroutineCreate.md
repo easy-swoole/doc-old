@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Swoole, easyswoole coroutine introduction
   - name: keywords
-    content: Easyswoole coroutine|swoole coroutine|coroutine
+    content: swoole|swoole extension|swoole framework|Easyswoole coroutine|swoole coroutine|coroutine
 ---
 
 # Coroutine

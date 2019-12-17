@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Csp concurrent programming, the coroutine concurrent execution gets the result, easyswoole concurrently initiates the request summary result
   - name: keywords
-    content: Easyswoole|Csp|swoole Csp|Concurrent Programming|Coroutine Concurrency Results
+    content: swoole|swoole extension|swoole framework|Easyswoole|Csp|swoole Csp|Concurrent Programming|Coroutine Concurrency Results
 ---
 
 # Csp concurrency mode

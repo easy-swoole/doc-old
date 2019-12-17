@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Str string helper
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools|Str
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools|Str
 ---
 
 

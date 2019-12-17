@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Php uses swoole to enable message push and hardware message interaction
   - name: keywords
-    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+    content: swoole|swoole extension|swoole framework|EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
 ## udp application

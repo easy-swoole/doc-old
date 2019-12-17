@@ -4,7 +4,7 @@ meta:
   - name: description
     content: This article focuses on how to add swoole's custom process to enable PHP multi-process processing 
   - name: keywords
-    content: EasySwoole Custom process|swoole Custom process|swoole process|swoole Multiple processes|php Multiple processes
+    content: swoole|swoole extension|swoole framework|EasySwoole Custom process|swoole Custom process|swoole process|swoole Multiple processes|php Multiple processes
 ---
 
 

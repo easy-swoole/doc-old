@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole universal connection pool,Coroutine connection pool, easyswoole connection pool
   - name: keywords
-    content: Easyswoole|connection pool|swoole connection pool|universal connection pool
+    content: swoole|swoole extension|swoole framework|Easyswoole|connection pool|swoole connection pool|universal connection pool
 ---
 ## Pool manager
 

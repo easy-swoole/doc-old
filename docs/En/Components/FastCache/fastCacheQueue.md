@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Implement a simple native cache with the swoole custom process and implement queue features
   - name: keywords
-    content: FastCache-Queue|Queue|EasySwoole FastCache|swoole Cache|swoole Cross-Process Cache
+    content: swoole|swoole extension|swoole framework|FastCache-Queue|Queue|EasySwoole FastCache|swoole Cache|swoole Cross-Process Cache
 ---
 
 # FastCacheQueue

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides lightweight annotation controller support
   - name: keywords
-    content:  EasySwoole|Annotation controller|Annotation parameter verification
+    content:  swoole|swoole extension|swoole framework|EasySwoole|Annotation controller|Annotation parameter verification
 ---
 # Annotation controller
 

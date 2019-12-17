@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides a content detection component based on dictionary tree algorithm
   - name: keywords
-    content: easyswoole,Sensitive word,Sensitive word detection
+    content: swoole|swoole extension|swoole framework|easyswoole,Sensitive word,Sensitive word detection
 ---
 
 # Text detection(words-match)

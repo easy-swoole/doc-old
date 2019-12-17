@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Used to generate random verification codes, random strings, and more.
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools|Random
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools|Random
 ---
 
 # Random

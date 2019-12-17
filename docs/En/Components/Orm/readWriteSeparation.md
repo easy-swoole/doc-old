@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole ORM component,Read and write separation
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|swoole Read and write separation
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|swoole Read and write separation
 ---
 
 

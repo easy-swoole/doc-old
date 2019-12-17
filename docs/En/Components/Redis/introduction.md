@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Redis coroutine client,Implemented by swoole coroutine client,Covers the method of redis 99%
   - name: keywords
-    content:  EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
+    content:  swoole|swoole extension|swoole framework|EasySwoole redis| Swoole Redis coroutine client|swoole Redis|Redis coroutine
 ---
 ## Redis coroutine client
 Although swoole has its own coroutine client, we found some problems in the production environment:

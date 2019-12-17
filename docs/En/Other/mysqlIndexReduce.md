@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Mysql index dimension reduction
   - name: keywords
-    content: easyswoole|Mysql index dimension reduction
+    content: swoole|swoole extension|swoole framework|easyswoole|Mysql index dimension reduction
 ---
 ## Mysql index dimension reduction
 Many people know that mysql has the concept of indexing, but it rarely goes to the truth. How to use indexes to reduce the dimension of data to improve the query speed.
