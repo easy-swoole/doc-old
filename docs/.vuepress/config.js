@@ -11,7 +11,7 @@ module.exports = {
         '/En/': {
             lang: 'en-US',
             title: 'easyswoole,swoole framework,an height-performance php framework which base on swoole extension',
-            description: 'easyswoole framework,an height-performance php framework which base on swoole extension'
+            description: 'easyswoole ,swoole framework,an height-performance php framework which base on swoole extension'
         }
     },
     themeConfig: {
