@@ -65,6 +65,28 @@ Visit 127.0.0.1:9501/rpc, corresponding to App\HttpController\Rpc.php->index()
 
 > Implementation principle can be viewed in the source code
 
+### Routing Group
+```php
+class Router extends AbstractRouter
+{
+    function initialize(RouteCollector $routeCollector)
+    {
+        $routeCollector->addGroup('/admin',function (RouteCollector $collector){
+            $collector->addRoute('GET','/index.html',function (Request $request,Response $response){
+                $version = $request->getQueryParam('version');
+                // Here you can return the path according to the version parameter
+                if($version == 1){
+                    $path = '/V1'.$request->getUri()->getPath();
+                }else{
+                    $path = '/V2'.$request->getUri()->getPath();
+                }
+                //New path
+                return $path;
+            });
+        });
+    }
+}
+```
 
 ### Global Mode Intercept
 Add the following code in Router.php to enable global mode interception
