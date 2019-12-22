@@ -65,6 +65,29 @@ class Router extends AbstractRouter
 
 > 实现原理可在源码中查看
 
+### 路由分组
+
+```php
+class Router extends AbstractRouter
+{
+    function initialize(RouteCollector $routeCollector)
+    {
+        $routeCollector->addGroup('/admin',function (RouteCollector $collector){
+            $collector->addRoute('GET','/index.html',function (Request $request,Response $response){
+                $version = $request->getQueryParam('version');
+                // 这里可以根据version参数判断返回新路径
+                if($version == 1){
+                    $path = '/V1'.$request->getUri()->getPath();
+                }else{
+                    $path = '/V2'.$request->getUri()->getPath();
+                }
+                //返回新的构造的path
+                return $path;
+            });
+        });
+    }
+}
+```
 
 ### 全局模式拦截
 在Router.php加入以下代码,即可开启全局模式拦截
