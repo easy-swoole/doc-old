@@ -371,6 +371,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Pool/introduction', '介绍'],
+                    ['/Components/Pool/whyUsePool', '为什么要使用连接池'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
                     ['/Components/Pool/poolManage', '池管理器'],
