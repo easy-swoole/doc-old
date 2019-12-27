@@ -51,6 +51,98 @@ const sidebarCn = [
             ['/Introduction/demo', 'Demo'],
         ]
     },
+
+    {
+        title: 'PHP新手理论基础知识',
+        collapsable: true, // 可选的, 默认值是 true,
+        sidebarDepth: 0,    // 可选的, 默认值是 1
+        children: [
+            {
+                title: '运行模式',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: '网络协议',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: '会话管理',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'Linux基础',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'PHP7.0',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'PHP回调/闭包',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'PHP多进程',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            ['/NoobCourse/sync','同步/异步'],
+            ['/NoobCourse/block','阻塞/非阻塞'],
+            ['/NoobCourse/coroutine','协程'],
+            {
+                title: 'Swoole',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'Composer使用',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            {
+                title: 'EasySwoole',
+                collapsable: true, // 可选的, 默认值是 true,
+                sidebarDepth: 0,    // 可选的, 默认值是 1
+                children: [
+
+                ]
+            },
+            ['/NoobCourse/artOfAskingQuestions','提问的艺术']
+        ]
+    },
     {
         title: '核心架构',
         collapsable: true,
