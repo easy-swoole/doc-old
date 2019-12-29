@@ -923,7 +923,17 @@ const sidebarEn = [
       },
       ['/En/Components/tracker', 'Link tracking'],
       ['/En/Components/policy', 'Policy permissions'],
-      ['/En/Components/jwt', 'JWT'],
+        {
+            title: 'JWT',
+            path: '/En/Components/Jwt/introduction',
+            collapsable: true,
+            sidebarDepth: 0,
+            children: [
+                ['/En/Components/Jwt/use', 'use'],
+                ['/En/Components/Jwt/encode', 'encode'],
+                ['/En/Components/Jwt/decode', 'decode']
+            ]
+        },
       ['/En/Components/atomicLimit', 'Atomic current limiter'],
       {
         title: 'words-match',   // 必要的
