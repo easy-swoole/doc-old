@@ -10,7 +10,7 @@ meta:
 ## Custom Events
 In easyswoole, custom events can be implemented through the Container
 
-## Add 'App/Event/ event.php' file
+## Add 'App/Event/Event.php' file
 ```php
 <?php
 namespace App\Event;

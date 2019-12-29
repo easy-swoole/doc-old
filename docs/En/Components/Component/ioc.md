@@ -1,10 +1,10 @@
 ---
-title: IOC依赖注入
+title: IOC dependency injection
 meta:
   - name: description
-    content: php在swoole的框架开发中，利用IOC容器来实现注入解耦
+    content: PHP uses IOC container to realize injection decoupling in the framework development of swoole
   - name: keywords
-    content: swoole|swoole extension|swoole framework|easyswoole|IOC|swoole IOC|Di注入
+    content: swoole|swoole extension|swoole framework|easyswoole|IOC|swoole IOC|Di injection
 ---
 
 

@@ -511,7 +511,7 @@ const sidebarCn = [
                     ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
-            ['/Components/consul', 'Concul客户端'],
+            ['/Components/consul', 'Consul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -773,6 +773,7 @@ const sidebarEn = [
             children: [
               ['/En/Components/Orm/Associat/oneToOneAssociations', 'One-to-one association'],
               ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
+              ['/En/Components/Orm/Associat/preWithQuery', 'Associated pre query'],
             ]
           },
         ]
@@ -859,7 +860,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
-          ['/Components/Component/coroutineSingleton', '协程单例'],
+          ['/En/Components/Component/coroutineSingleton', 'Coroutine Singleton'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']
@@ -923,7 +924,17 @@ const sidebarEn = [
       },
       ['/En/Components/tracker', 'Link tracking'],
       ['/En/Components/policy', 'Policy permissions'],
-      ['/En/Components/jwt', 'JWT'],
+        {
+            title: 'JWT',
+            path: '/En/Components/Jwt/introduction',
+            collapsable: true,
+            sidebarDepth: 0,
+            children: [
+                ['/En/Components/Jwt/use', 'use'],
+                ['/En/Components/Jwt/encode', 'encode'],
+                ['/En/Components/Jwt/decode', 'decode']
+            ]
+        },
       ['/En/Components/atomicLimit', 'Atomic current limiter'],
       {
         title: 'words-match',   // 必要的
@@ -970,7 +981,7 @@ const sidebarEn = [
           ['/En/Components/Rpc/registerCenter', 'Service registry']
         ]
       },
-      ['/En/Components/consul', 'Concul client'],
+      ['/En/Components/consul', 'Consul client'],
       {
         title: 'Configuration center',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
