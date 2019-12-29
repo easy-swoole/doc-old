@@ -230,8 +230,8 @@ $buttons = [
     $snsAuthBean->getAccessToken();
     $snsAuthBean->getRefreshToken();
     
-    // 使用上面提供的 AccessToken 获取用户信息
-    $user = $jsApi->auth()->tokenToUser($snsAuthBean->getAccessToken());
+    // 使用上面提供的 $snsAuthBean对象 获取用户信息
+    $user = $jsApi->auth()->tokenToUser($snsAuthBean);
     $user->getOpenid();
     $user->getHeadimgurl();
     $user->getNickname(); 

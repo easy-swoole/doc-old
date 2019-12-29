@@ -229,6 +229,7 @@ const sidebarCn = [
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
+					['/Components/Orm/quickQuery', '快捷查询'],
                     ['/Components/Orm/specialQuery', '特殊条件查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
@@ -373,6 +374,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Pool/introduction', '介绍'],
+                    ['/Components/Pool/whyUsePool', '为什么要使用连接池'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
                     ['/Components/Pool/poolManage', '池管理器'],
