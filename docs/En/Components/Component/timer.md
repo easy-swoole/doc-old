@@ -1,42 +1,42 @@
 ---
-title: 定时器
+title: timer
 meta:
   - name: description
-    content:  可以利用swoole定时器，从而实现毫秒级的定时器，以及定时器存在的一些陷阱
+    content:  We can use swoole timer to realize millisecond level timer and some traps of timer
   - name: keywords
-    content: swoole|swoole extension|swoole framework|EasySwoole定时器|swoole定时器|swoole定时任务
+    content: swoole|swoole expand|swoole frame|EasySwoole timer|swoole timer|swoole timing task
 ---
 
-# 定时器
-框架对原生的毫秒级定时器进行了封装，以便开发者快速调用 Swoole 的原生定时器，定时器类的命名空间为 `EasySwoole\Component\Timer`
+# timer
+The framework encapsulates the native millisecond timer so that developers can quickly call the native timer of swoole. The namespace of timer class is `EasySwoole\Component\Timer`
 
 
 ::: warning 
- 注意： 定时器传入的时间参数单位为毫秒 按秒执行一定不要忘记 乘以 1000，若开启了reload_async配置时，请将定时器移动到自定义进程中，否则会导致worker进程无法reload
+ Note: the time parameter unit passed in by the timer is milliseconds and executed in seconds. Do not forget to multiply by 1000. If the reload ﹣ async configuration is enabled, please move the timer to the custom process, otherwise the worker process will not reload
 :::
 
 
-## 循环执行
+## Loop execution
 
-设置一个间隔时钟定时器，每隔一定的时间定时触发，直到进行 `clear` 操作才会停止，对应 Swoole 原生的定时器函数为 `swoole_timer_tick`
+Set an interval clock timer, which will be triggered at regular intervals until the 'clear' operation is performed. The corresponding native timer function of swoole is `swoole_timer_tick`
 
-### 函数原型
+### Function prototype
 
 ```php
 /**
-* 循环调用
-* @param int      $microSeconds 循环执行的间隔毫秒数 传入整数型
-* @param \Closure $func 定时器需要执行的操作 传入一个闭包
-* @param string    $name 定时器名称,用于取消该定时器
-* @return int 返回整数型的定时器编号 可以用该编号停止定时器
+* Cyclic invocation
+* @param int      $microSeconds The number of milliseconds between loop execution passed into integer type
+* @param \Closure $func The timer needs to perform an operation passed in a closure the timer needs to perform an operation passed in a closure
+* @param string    $name Timer name, used to cancel the timer
+* @return int Return the timer number of integer type to stop the timer
 */
 public function loop($microSeconds, \Closure $func, $args = null)
 ```
 
-### 示例代码
+### Sample code
 
 ```php
-// 每隔 10 秒执行一次
+// Every 10 seconds
 \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
     echo "this timer runs at intervals of 10 seconds\n";
 });
@@ -44,26 +44,26 @@ public function loop($microSeconds, \Closure $func, $args = null)
 
 
 
-## 延时执行
+## Delayed execution
 
-设置一个延时定时器，延时指定的时间后触发对应的操作，只会执行一次操作，对应 Swoole 原生的定时器函数为 `swoole_timer_after`
+Set a delay timer to trigger the corresponding operation after delaying the specified time. Only one operation will be performed. The corresponding native timer function of swoole is `swoole_timer_after`
 
-### 函数原型
+### Function prototype
 
 ```php
 /**
-* 延时调用
-* @param int      $microSeconds 需要延迟执行的时间
-* @param \Closure $func 定时器需要执行的操作 传入一个闭包
-* @return int 返回整数型的定时器编号 
+* Delayed call
+* @param int      $microSeconds Time to delay execution
+* @param \Closure $func The timer needs to perform an operation to pass a closure
+* @return int Returns the timer number of the integer type
 */
 public function after($microSeconds, \Closure $func)
 ```
 
-### 示例代码
+### Sample code
 
 ```php
-// 10 秒后执行一次
+// Once in 10 seconds
 \EasySwoole\Component\Timer::getInstance()->after(10 * 1000, function () {
     echo "ten seconds later\n";
 });
@@ -71,51 +71,51 @@ public function after($microSeconds, \Closure $func)
 
 
 
-## 清除定时器
+## Clear timer
 
 
 ::: warning 
- 注意: 该操作不能用于清除其他进程的定时器，只作用于当前进程
+ Note: this operation cannot be used to clear the timers of other processes, only for the current process
 :::
 
-定时器创建成功时，会返回一个整数型编号，调用本函数传入该编号，即可提前停止定时器，对应 Swoole 原生的定时器函数为 `swoole_timer_clear`
+When the timer is created successfully, an integer number will be returned. Call this function to pass in the number, and the timer can be stopped in advance. The corresponding native timer function of swoole is `swoole_timer_clear`
 
-### 函数原型
+### Function prototype
 
 ```php
 /**
-* 清除定时器
-* @param int $timerId|$timeName 定时器编号或名称
+* Clear timer
+* @param int $timerId|$timeName Timer number or name
 * @author : evalor <master@evalor.cn>
 */
 public function clear($timerId)
 ```
 
-### 示例代码
+### Sample code
 
 ```php
-// 创建一个2秒定时器
+// Create a 2 second timer
 $timerId = \EasySwoole\Component\Timer::getInstance()->loop(2 * 1000, function () {
     echo "timeout\n";
 },'time');
 
-// 清除该定时器
+// Clear the timer
 //var_dump(\EasySwoole\Component\Timer::getInstance()->clear($timerId)); // bool(true)
 var_dump($timerId); // int(1)
 
-// 定时器得不到执行 不输出：timeout
+// Timer not available, no output：timeout
 ```
 
 
-## 应用实例
+## Application example
 
 
 ::: warning 
- 注意：定时器不能在服务启动之前使用。在服务启动以后，添加的定时器仅仅在当前进程中有效。在workerStart事件中添加定时器时，请注意判断需要添加定时器的workerId,否在该定时器在每个进程中均会被执行
+ Note: the timer cannot be used before the service starts. After the service is started, the added timer is only valid in the current process. When adding a timer in the workerstart event, please pay attention to judge whether the workerid of the timer needs to be added will be executed in each process
 :::
 
 ```php
-// 为第一个 Worker 添加定时器
+// Add timer for first worker
 if ($workerId == 0) {
 	\EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
 		echo "timer in the worker number 0\n";
@@ -127,18 +127,18 @@ if ($workerId == 0) {
 public static function mainServerCreate(EventRegister $register)
 {
     $register->add(EventRegister::onWorkerStart, function (\swoole_server $server, $workerId) {
-        //如何避免定时器因为进程重启而丢失
-        //例如在第一个进程 添加一个10秒的定时器
+        //How to avoid timer loss due to process restart
+        //For example, add a 10 second timer to the first process
         if ($workerId == 0) {
             \EasySwoole\Component\Timer::getInstance()->loop(10 * 1000, function () {
-                // 从数据库，或者是redis中，去获取下个就近10秒内需要执行的任务
-                // 例如:2秒后一个任务，3秒后一个任务 代码如下
+                // From the database or redis, get the next task to be executed in the nearest 10 seconds
+                // For example: a task after 2 seconds and a task code after 3 seconds are as follows
                 \EasySwoole\Component\Timer::getInstance()->after(2 * 1000, function () {
-                    //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
+                    //In order to prevent the timer from being inaccurate due to task blocking, the task is sent to the asynchronous process for processing
                     Logger::getInstance()->console("time 2", false);
                 });
                 \EasySwoole\Component\Timer::getInstance()->after(3 * 1000, function () {
-                    //为了防止因为任务阻塞，引起定时器不准确，把任务给异步进程处理
+                    //In order to prevent the timer from being inaccurate due to task blocking, the task is sent to the asynchronous process for processing
                     Logger::getInstance()->console("time 3", false);
                 });
             });
@@ -147,6 +147,6 @@ public static function mainServerCreate(EventRegister $register)
 }
 ```
 
-### 经典案例-订单状态超时监控
-场景说明：在很多抢购的场景中，订单下单完成后，需要限制其付款时间，或者是在棋牌游戏中，需要对房间状态进行监控。那么我们
-可以先把待监控的订单或者是房间压入redis队列中。那么利用定时器+异步进程，去实现对订单状态的循环监控。
+### Classic case - order status timeout monitoring
+Scenario Description: in many rush to buy scenarios, after the order is placed, the payment time needs to be limited, or in chess and card games, the room status needs to be monitored. Then we
+You can first press the order or room to be monitored into the redis queue. Then use timer + asynchronous process to realize the cyclic monitoring of order status.
