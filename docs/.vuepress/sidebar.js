@@ -857,7 +857,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
-          ['/Components/Component/coroutineSingleton', '协程单例'],
+          ['/En/Components/Component/coroutineSingleton', 'Coroutine Singleton'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']
