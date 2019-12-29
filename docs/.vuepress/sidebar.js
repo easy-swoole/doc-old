@@ -511,7 +511,7 @@ const sidebarCn = [
                     ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
-            ['/Components/consul', 'Concul客户端'],
+            ['/Components/consul', 'Consul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -773,6 +773,7 @@ const sidebarEn = [
             children: [
               ['/En/Components/Orm/Associat/oneToOneAssociations', 'One-to-one association'],
               ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
+              ['/En/Components/Orm/Associat/preWithQuery', 'Associated pre query'],
             ]
           },
         ]
@@ -980,7 +981,7 @@ const sidebarEn = [
           ['/En/Components/Rpc/registerCenter', 'Service registry']
         ]
       },
-      ['/En/Components/consul', 'Concul client'],
+      ['/En/Components/consul', 'Consul client'],
       {
         title: 'Configuration center',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,
