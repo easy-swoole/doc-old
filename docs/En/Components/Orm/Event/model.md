@@ -2,36 +2,35 @@
 title: ORM
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|模型事件
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 
-# 模型事件
+# Model events
 
-模型事件是指模型在执行写入, 修改, 删除操作的时候触发的行为事件
+Model event refers to the behavior event triggered when the model performs write, modify, and delete operations
 
-方法列表
+Method list
 
-| 事件名称           | 事件说明         | 参数           |
+| Event name         | Event description         | parameter           |
 |:-------------------|:----------------|:---------------|
-| onBeforeInsert     | 插入前事件       |$model          |
-| onAfterInsert      | 插入后事件       |$model, $res    |
-| onBeforeUpdate     | 更新前事件       |$model          |
-| onAfterUpdate      | 更新后事件       |$model, $res    |
-| onBeforeDelete     | 删除前事件       |$model          |
-| onAfterDelete      | 删除后事件       |$model, $res    |
+| onBeforeInsert     | Pre insert event       |$model          |
+| onAfterInsert      | Post insert event       |$model, $res    |
+| onBeforeUpdate     | Events before update       |$model          |
+| onAfterUpdate      | Post update events      |$model, $res    |
+| onBeforeDelete     | Event before deleting       |$model          |
+| onAfterDelete      | Event after deletion       |$model, $res    |
 
 ::: tip
-`$model` 当前模型实例
+`$model` Current model instance
 
-`$res` 当前行为执行结果, 当执行失败时类型统一为`bool`型`false`, 当执行成功时有两种情况:
+`$res` The execution result of the current behavior is the same as `bool` type `false` when the execution fails. There are two situations when the execution succeeds:
 
-执行`onAfterDelete`事件: `int`型 影响记录数, 其他事件: `bool`型 `true`
-:::
+Execution of `onafterdelete` event: `Int` affects the number of records, other events: `bool` type `true`:::
 
 ::: warning
-如果ORM版本低于1.1.19将无法使用模型事件
+Model events will not be available if ORM version is less than 1.1.19
 :::
 
 ```php
