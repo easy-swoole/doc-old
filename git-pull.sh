@@ -1,6 +1,6 @@
 #!/bin/bash
 while ((1))
   do
-    sleep 10;
+    sleep 30;
     git pull;
   done
