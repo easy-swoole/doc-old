@@ -11,6 +11,12 @@ meta:
 
 # Update
 
+::: tip 
+The function of ORM depends on mysqli2.x component. The $data parameter of update will be passed to mysqli to construct SQL.
+
+So we can use most of mysqli's functions directly
+:::
+
 ## By existing model
 
 This approach is our most recommended, and is the core idea of the ORM component, mapping the operation of the data to the operation of the object.
@@ -103,12 +109,12 @@ $res = UserModel::create()->update([
 ]);
 ```
 
-## 快捷更新
+## Quick update
 
 ```php
 TestUserModel::create()->update([
-    'age' => QueryBuilder::inc(3), // 自增3
-    'test' => QueryBuilder::dec(4), // 自降4
+    'age' => QueryBuilder::inc(3), // Self increment 3
+    'test' => QueryBuilder::dec(4), // Self descending 4
 ], [
     'name' => 'Siam222'
 ]);

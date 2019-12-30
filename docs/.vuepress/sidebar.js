@@ -755,10 +755,15 @@ const sidebarEn = [
               ['/En/Components/Orm/DefineModel/timestamp', 'Timestamp'],
             ]
           },
+          ['/En/Components/Orm/invokeExecution', 'Invoke execution'],
           ['/En/Components/Orm/customSqlExecution', 'Custom SQL execution'],
+          ['/Components/Orm/lastResult', 'Last result'],
+          ['/Components/Orm/lastQuery', 'Last Query'],
           ['/En/Components/Orm/transactionOperations', 'Transaction operation'],
           ['/En/Components/Orm/readWriteSeparation', 'Read and write separation'],
           ['/En/Components/Orm/query', 'Inquire'],
+          ['/Components/Orm/quickQuery', 'Quick query'],
+          ['/Components/Orm/specialQuery', 'Special query'],
           ['/En/Components/Orm/add', 'Add'],
           ['/En/Components/Orm/delete', 'Delete'],
           ['/En/Components/Orm/update', 'Update'],
@@ -775,6 +780,15 @@ const sidebarEn = [
               ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
               ['/En/Components/Orm/Associat/preWithQuery', 'Associated pre query'],
             ]
+          },
+          {
+                title: 'Event',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/En/Components/Orm/Event/onQuery', 'Callback event'],
+                    ['/En/Components/Orm/Event/model', 'Model event'],
+                ]
           },
         ]
       }

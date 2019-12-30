@@ -2,65 +2,64 @@
 title: ORM
 meta:
   - name: description
-    content: Easyswoole ORM组件,
+    content: Easyswoole ORM component,
   - name: keywords
-    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|回调事件
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 
-# 回调事件
+# Callback event
 
-### 针对全局 onQuery
+### For the overall situation onQuery
 
-针对全局设置回调事件方式如下:
+Set callback events for the global as follows:
 
 ```php
-// 注册ORM时, 调用回调函数
+// When registering ORM, call the callback function
 public static function mainServerCreate(EventRegister $register)
 {
     ...
 
     DbManager::getInstance()->addConnection(new Connection($config));
     DbManager::getInstance()->onQuery(function ($res, $builder, $start) {
-        // 打印参数 OR 写入日志
+        // Print parameter or write log
     });
 }
 ```
 
-onQuery回调会注入三个参数
+The onquery callback will inject three parameters
 
-- `res`查询结果对象, 类名为`EasySwoole\ORM\Db\Result`
+- `res`Query result object, class name is`EasySwoole\ORM\Db\Result`
 
-可以参考 [执行结果](../lastResult.md) 文档, 以获取更多的结果内容
+Can refer to [results of enforcement](../lastResult.md) Document for more results
 
-- `builder`查询语句对象, 类名为`EasySwoole\Mysqli\QueryBuilder`
+- `builder`Query statement object, class name is`EasySwoole\Mysqli\QueryBuilder`
 
-- `start`开始查询时间戳, 单位为`s`, 类型为`float`
+- `start`Start query timestamp, unit is`s`, type is `float`
 
 ::: tip
-如果查询过程中调用`withTotalCount()`方法, 那么还会产生第二个回调结果
+If the `withTotalCount ()` method is invoked during the query, there will be second callback results.
 :::
 
 ::: warning
-需要注意的是, 此回调方法务必在注册ORM时调用, 否则不会产生任何结果
+It should be noted that this callback party legal must be called when registering ORM, otherwise no result will be generated
 :::
 
-### 针对特定模型 onQuery
+### Model specific onQuery
 
-如果不想使用全局性的onQuery, 我们可以在执行操作的时候调用onQuery方法, 以此来实现针对特定模型的回调
-
+If we don't want to use the global onquery, we can call the onquery method when we perform the operation, so as to realize the callback for a specific model
 ```php
 $res = User::create()->onQuery(function ($res, $builder, $start) {
-    // 打印参数 OR 写入日志
+    // Print parameter or write log
 })->get(1);
 ```
 
 ::: tip
-回调注入的三个参数与全局性onQuery相同
+The three parameters of callback injection are the same as the global onquery
 :::
 
-### 记录慢日志
+### Log slow
 
-我们可以通过手动判断执行时间, 来实现一个记录慢日志的功能
+We can manually determine the execution time to achieve a slow log recording function
 ```php
 public static function mainServerCreate(EventRegister $register)
 {
@@ -68,9 +67,9 @@ public static function mainServerCreate(EventRegister $register)
 
     DbManager::getInstance()->addConnection(new Connection($config));
     DbManager::getInstance()->onQuery(function ($res, $builder, $start) {
-        $queryTime = 查询时间阈值;
+        $queryTime = Query time threshold;
         if (bcsub(time(), $start, 3) > $queryTime) {
-            // 写入日志
+            // Write log
         }
     });
 }
