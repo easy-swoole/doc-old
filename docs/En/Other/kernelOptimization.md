@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, kernel parameter adjustment
   - name: keywords
-    content: Easyswoole|kernel parameter adjustment
+    content: swoole|swoole extension|swoole framework|Easyswoole|kernel parameter adjustment
 ---
 ## Kernel parameter adjustment
 

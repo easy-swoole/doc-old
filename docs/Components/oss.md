@@ -4,9 +4,14 @@ meta:
   - name: description
     content: easyswoole对阿里云，腾讯，七牛OSS的协程SDK客户端
   - name: keywords
-    content: swoole OSS|阿里云oss协程客户端|七牛oss协程客户端|腾讯云oss协程客户端
+    content: swoole|swoole 拓展|swoole 框架|swoole OSS|阿里云oss协程客户端|七牛oss协程客户端|腾讯云oss协程客户端
 ---
 # OSS云存储
+
+## 安装
+```
+composer require easyswoole/oss
+```
 
 ## 阿里云调用
 根据阿里云官方sdk修改,全部方法都一致,走通了所有官方的client请求类单元测试,全部调用方法都和阿里云一致

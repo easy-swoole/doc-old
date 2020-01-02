@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Memcache coroutine client, implemented by swoole coroutine client 
   - name: keywords
-    content:  EasySwoole memcache| Swoole Memcache coroutine client
+    content:  swoole|swoole extension|swoole framework|EasySwoole memcache| Swoole Memcache coroutine client
 ---
 ## Memcache coroutine client
 Memcache coroutine client, implemented by swoole coroutine client   

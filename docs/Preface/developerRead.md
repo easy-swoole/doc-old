@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole开发者必读,注意事项,进程隔离,协程问题
   - name: keywords
-    content: easyswoole|Swoole开发注意事项
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Swoole开发注意事项
 ---
 # 开发者必读
 

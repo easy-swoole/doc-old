@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Implement a simple native cache with the swoole custom process
   - name: keywords
-    content:  EasySwoole FastCache|swoole cache|swoole cross-process cache
+    content:  swoole|swoole extension|swoole framework|EasySwoole FastCache|swoole cache|swoole cross-process cache
 ---
 
 # FastCache

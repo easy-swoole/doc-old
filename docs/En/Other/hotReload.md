@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, service hot restart
   - name: keywords
-    content: Easyswoole|service hot restart
+    content: swoole|swoole extension|swoole framework|Easyswoole|service hot restart
 ---
 ## Service hot restart
 

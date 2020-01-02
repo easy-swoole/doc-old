@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个基于字典树算法的内容检测组件
   - name: keywords
-    content: easyswoole,敏感词,敏感词检测
+    content: swoole|swoole 拓展|swoole 框架|easyswoole,敏感词,敏感词检测
 ---
 
 # 文本检测(words-match)

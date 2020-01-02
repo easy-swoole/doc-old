@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Mainly about how to use swoole extension of PHP asynchronous task delivery, and the common swoole asynchronous task error
   - name: keywords
-    content: EasySwoole Asynchronous tasks|swoolea synchronous|swoole Asynchronous process
+    content: swoole|swoole extension|swoole framework|EasySwoole Asynchronous tasks|swoolea synchronous|swoole Asynchronous process
 ---
 
 ## Installation

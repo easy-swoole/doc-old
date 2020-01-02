@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Session processing component
   - name: keywords
-    content: EasySwoole Session processing component|swoole session|php session
+    content: swoole|swoole extension|swoole framework|EasySwoole Session processing component|swoole session|php session
 ---
 # Session 
 Easyswoole Since 3.2.x, the default session service is no longer available. If you need to use the user, please introduce the session component independently.

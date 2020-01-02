@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Swoole static file processing,EasySwoole static file processing
   - name: keywords
-    content: Swoole static file processing|EasySwoole static file processing
+    content: swoole|swoole extension|swoole framework|Swoole static file processing|EasySwoole static file processing
 ---
 
 

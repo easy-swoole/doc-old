@@ -4,7 +4,7 @@ meta:
   - name: description
     content: WeChat是一个基于Swoole 4.x全协程支持的SDK库
   - name: keywords
-    content: easyswoole|AliPay
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|AliPay
 ---
 
 # 协程支付网关

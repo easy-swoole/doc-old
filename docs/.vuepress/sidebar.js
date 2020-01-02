@@ -314,12 +314,14 @@ const sidebarCn = [
                             ['/Components/Orm/DefineModel/timestamp', '自动时间戳'],
                         ]
                     },
+                    ['/Components/Orm/invoke', 'Invoke执行'],
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
                     ['/Components/Orm/lastResult', '模型执行结果'],
                     ['/Components/Orm/lastQuery', '最后执行语句'],
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
+					['/Components/Orm/quickQuery', '快捷查询'],
                     ['/Components/Orm/specialQuery', '特殊条件查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
@@ -335,6 +337,7 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+                            ['/Components/Orm/Associat/preWithQuery', '关联预查询'],
                         ]
                     },
                     {
@@ -600,7 +603,7 @@ const sidebarCn = [
                     ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
-            ['/Components/consul', 'Concul客户端'],
+            ['/Components/consul', 'Consul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -844,10 +847,15 @@ const sidebarEn = [
               ['/En/Components/Orm/DefineModel/timestamp', 'Timestamp'],
             ]
           },
+          ['/En/Components/Orm/invokeExecution', 'Invoke execution'],
           ['/En/Components/Orm/customSqlExecution', 'Custom SQL execution'],
+          ['/Components/Orm/lastResult', 'Last result'],
+          ['/Components/Orm/lastQuery', 'Last Query'],
           ['/En/Components/Orm/transactionOperations', 'Transaction operation'],
           ['/En/Components/Orm/readWriteSeparation', 'Read and write separation'],
           ['/En/Components/Orm/query', 'Inquire'],
+          ['/Components/Orm/quickQuery', 'Quick query'],
+          ['/Components/Orm/specialQuery', 'Special query'],
           ['/En/Components/Orm/add', 'Add'],
           ['/En/Components/Orm/delete', 'Delete'],
           ['/En/Components/Orm/update', 'Update'],
@@ -862,7 +870,17 @@ const sidebarEn = [
             children: [
               ['/En/Components/Orm/Associat/oneToOneAssociations', 'One-to-one association'],
               ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
+              ['/En/Components/Orm/Associat/preWithQuery', 'Associated pre query'],
             ]
+          },
+          {
+                title: 'Event',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/En/Components/Orm/Event/onQuery', 'Callback event'],
+                    ['/En/Components/Orm/Event/model', 'Model event'],
+                ]
           },
         ]
       }
@@ -948,7 +966,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
-          ['/Components/Component/coroutineSingleton', '协程单例'],
+          ['/En/Components/Component/coroutineSingleton', 'Coroutine Singleton'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']
@@ -1012,7 +1030,17 @@ const sidebarEn = [
       },
       ['/En/Components/tracker', 'Link tracking'],
       ['/En/Components/policy', 'Policy permissions'],
-      ['/En/Components/jwt', 'JWT'],
+        {
+            title: 'JWT',
+            path: '/En/Components/Jwt/introduction',
+            collapsable: true,
+            sidebarDepth: 0,
+            children: [
+                ['/En/Components/Jwt/use', 'use'],
+                ['/En/Components/Jwt/encode', 'encode'],
+                ['/En/Components/Jwt/decode', 'decode']
+            ]
+        },
       ['/En/Components/atomicLimit', 'Atomic current limiter'],
       {
         title: 'words-match',   // 必要的
@@ -1059,7 +1087,7 @@ const sidebarEn = [
           ['/En/Components/Rpc/registerCenter', 'Service registry']
         ]
       },
-      ['/En/Components/consul', 'Concul client'],
+      ['/En/Components/consul', 'Consul client'],
       {
         title: 'Configuration center',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides an Atomic counter-based current limiter that limits the total number of requests in a given time period to achieve a base current limit.
   - name: keywords
-    content: EasySwoole Distributed | AtomicLimit|Distributed Current Limiter
+    content: swoole|swoole extension|swoole framework|EasySwoole Distributed | AtomicLimit|Distributed Current Limiter
 ---
 # AtomicLimit
 

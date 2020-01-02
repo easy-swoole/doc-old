@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole provides Actor mode support for game industry development
   - name: keywords
-    content: Easyswoole|ACTOR components|Architecture interpretation
+    content: swoole|swoole extension|swoole framework|Easyswoole|ACTOR components|Architecture interpretation
 ---
 
 ## Actor2 architecture interpretation

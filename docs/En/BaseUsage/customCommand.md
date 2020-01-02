@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Custom command implementation
   - name: keywords
-    content: Easyswoole Custom command|swoole framework|swoole Timing task|php timing
+    content: swoole|swoole extension|swoole framework|Easyswoole Custom command|swoole framework|swoole Timing task|php timing
 ---
 
 # Custom command

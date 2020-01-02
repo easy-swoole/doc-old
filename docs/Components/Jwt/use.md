@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 基于EasySwoole组件实现的json web token
   - name: keywords
-    content: easyswoole|JWT组件
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|JWT组件
 ---
 
 # 使用
@@ -65,9 +65,6 @@ try {
 
     switch ($status)
     {
-        case -1:
-            echo 'token无效';
-            break;
         case  1:
             echo '验证通过';
             $jwtObject->getAlg();
@@ -82,10 +79,10 @@ try {
             $jwtObject->getSignature();
             $jwtObject->getProperty('alg');
             break;
-        case  2:
-            echo '验证失败';
+        case  -1:
+            echo '无效';
             break;
-        case  3:
+        case  -2:
             echo 'token过期';
         break;
     }

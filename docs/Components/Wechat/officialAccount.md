@@ -4,7 +4,7 @@ meta:
   - name: description
     content: WeChat是一个基于Swoole 4.x全协程支持的微信SDK库
   - name: keywords
-    content: easyswoole|wechat|miniProgram
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|wechat|miniProgram
 ---
 
 

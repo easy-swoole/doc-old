@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole coroutine HTTPClient component
   - name: keywords
-    content: Easyswoole| coroutine HTTPClient|curl component|coroutine curl
+    content: swoole|swoole extension|swoole framework|Easyswoole| coroutine HTTPClient|curl component|coroutine curl
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
   - name: keywords
-    content: EasySwoole Template engine|swoole Template engine|swoole Template rendering
+    content: swoole|swoole extension|swoole framework|EasySwoole Template engine|swoole Template engine|swoole Template rendering
 ---
 
 # Template engine
@@ -55,7 +55,7 @@ class R implements RenderInterface
 #### HTTP服务中调用
 ```php
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
-Render::getInstance()->getConfig()>setRender(new R());
+Render::getInstance()->getConfig()->setRender(new R());
 
 $http = new swoole_http_server("0.0.0.0", 9501);
 $http->on("request", function ($request, $response)use($render) {

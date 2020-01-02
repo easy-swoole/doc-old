@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Redis coroutine client, implemented by swoole coroutine client, covering redis 99% method
   - name: keywords
-    content:  EasySwoole redis| Swoole redis coroutine client|swoole Redis|redis coroutine
+    content:  swoole|swoole extension|swoole framework|EasySwoole redis| Swoole redis coroutine client|swoole Redis|redis coroutine
 ---
 ## Cluster related methods
 Method list

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Used to output table information.
   - name: keywords
-    content: Easyswoole|Component Library|Miscellaneous Tools
+    content: swoole|swoole extension|swoole framework|Easyswoole|Component Library|Miscellaneous Tools
 ---
 
 # ArrayToTextTable

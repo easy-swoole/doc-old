@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Websocket custom handshake
   - name: keywords
-    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+    content: swoole|swoole extension|swoole framework|EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
 ### Custom handshake

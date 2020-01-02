@@ -4,7 +4,7 @@ meta:
   - name: description
     content: UploadFile object
   - name: keywords
-    content: EasySwoole UploadFile object
+    content: swoole|swoole extension|swoole framework|EasySwoole UploadFile object
 ---
 ## UploadFile object
 

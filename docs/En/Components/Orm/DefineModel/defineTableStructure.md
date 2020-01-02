@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Defining the table structure
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Defining the table structure
 ---
 
 
@@ -15,7 +15,7 @@ meta:
 $model = new User();
 $table = $model->schemaInfo();
 ```
-Use the `schemaInfo()` method in the model to get the structure of the current model specified data table and return an ʻEasySwoole\ORM\Utility\Schema\Table` object.
+Use the `schemaInfo()` method in the model to get the structure of the current model specified data table and return an `EasySwoole\ORM\Utility\Schema\Table` object.
 
 ::: tip
 The model itself will automatically generate the table structure, but each time you start Easyswoole, it will re-acquire the table structure information and cache it in this service until the Easyswoole service stops or restarts.
@@ -24,7 +24,7 @@ If you don't want to request the database every time you restart, you can define
 
 ## Custom Table Structure
 
-In the model class, we implement a `getSchemaInfo` method that returns an ʻEasySwoole\ORM\Utility\Schema\Table` instantiated object.
+In the model class, we implement a `getSchemaInfo` method that returns an `EasySwoole\ORM\Utility\Schema\Table` instantiated object.
 
 ```php
 use EasySwoole\ORM\Utility\Schema\Table;

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,TP ORM使用问题
   - name: keywords
-    content: easyswoole|TP ORM使用问题
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|TP ORM使用问题
 ---
 ## TP ORM使用问题
 由于swoole 是在常驻内存+协程环境下运行的,使用TP ORM 时,TP ORM自带了很多静态变量,将会出现问题,具体分析如下:  

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole ORM组件,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|删除
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|删除
 ---
 
 # 删除

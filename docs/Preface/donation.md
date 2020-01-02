@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole捐赠
   - name: keywords
-    content: easyswoole|捐赠|easyswoole
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|捐赠|easyswoole
 ---
 
 # 捐赠

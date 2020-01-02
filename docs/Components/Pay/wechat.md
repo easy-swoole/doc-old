@@ -4,7 +4,7 @@ meta:
   - name: description
     content: WeChat是一个基于Swoole 4.x全协程支持的SDK库,微信支付组件
   - name: keywords
-    content: easyswoole|wxPay|WeChat|微信支付|swoole 微信支付
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|wxPay|WeChat|微信支付|swoole 微信支付
 ---
 # 协程支付网关
 ```

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
   - name: keywords
-    content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
 ---
 
 # 模板引擎
@@ -55,7 +55,7 @@ class R implements RenderInterface
 #### HTTP服务中调用
 ```php
 //在全局的主服务中创建事件中，实例化该Render,并注入你的驱动配置
-Render::getInstance()->getConfig()>setRender(new R());
+Render::getInstance()->getConfig()->setRender(new R());
 
 $http = new swoole_http_server("0.0.0.0", 9501);
 $http->on("request", function ($request, $response)use($render) {

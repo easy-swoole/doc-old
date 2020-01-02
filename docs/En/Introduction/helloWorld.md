@@ -4,7 +4,7 @@ meta:
   - name: description
     Content: EasySwoole hello world development example
   - name: keywords
-    Content: easyswoole|swoole extension|swoole framework|php coroutine framework
+    Content: swoole|swoole extension|swoole framework|easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
 
 # Hello World

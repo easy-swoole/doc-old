@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Chrome Headless
   - name: keywords
-    content: easyswoole|Chrome Headless|No interface browser | chrome no interface
+    content: swoole|swoole extension|swoole framework|easyswoole|Chrome Headless|No interface browser | chrome no interface
 ---
 ## Chrome Headless
 ## What is Chrome Headless

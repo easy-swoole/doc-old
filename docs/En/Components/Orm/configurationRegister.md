@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM
 ---
 
 # Configuration information registration
@@ -76,7 +76,7 @@ public static function mainServerCreate($register)
 ```
 
 ::: tip prompt
-Detailed connection pool properties introduction [Click to view] (/En/Pool/config.md)
+Detailed connection pool properties introduction [Click to view](/En/Pool/config.md)
 :::
 
 

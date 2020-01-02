@@ -1,11 +1,21 @@
 ---
-title: EasySwoole Socket
+title: 用php基于swoole实现websocket通讯的聊天室
 meta:
   - name: description
-    content: php利用swoole，从而可以实现消息推送，和硬件消息交互
+    content: 用php基于swoole实现websocket通讯的聊天室
   - name: keywords
-    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
+# 前言
+大多人都习惯用PHP做WEB编程，很少有人用php实现websocket通讯，因为在PHP中，从socket的连接、建立、绑定、监听等都需要开发者自己去操作完成，对于初学者来说，难度方面也挺大的，因此我们用Easyswoole这个框架来实现聊天室的建立。
+
+1、socket协议的简介
+
+2、介绍client与server之间的连接原理
+
+3、PHP中建立socket的过程讲解
+
+4、用一个聊天室作为实例详细讲解在PHP中如何使用socket
 
 # WebSocket控制器
 

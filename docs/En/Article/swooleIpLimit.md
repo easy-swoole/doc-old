@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Swoole|swoole study notes|swoole Ip access restrictions
   - name: keywords
-    content: Easyswoole|swoole|swoole study notes|swoole Ip access restrictions
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole|swoole study notes|swoole Ip access restrictions
 ---
 
 

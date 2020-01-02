@@ -4,7 +4,7 @@ meta:
   - name: description
     content: RPC service implementation in EasySwoole
   - name: keywords
-    content: Easyswoole|RPC Service|RPC|swoole RPC
+    content: swoole|swoole extension|swoole framework|Easyswoole|RPC Service|RPC|swoole RPC
 ---
 
 # EasySwoole RPC

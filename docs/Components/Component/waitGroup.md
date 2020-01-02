@@ -4,7 +4,7 @@ meta:
   - name: description
     content: waitGroup
   - name: keywords
-    content: easyswoole|waitGroup|swoole waitGroup
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|waitGroup|swoole waitGroup
 ---
 
 # waitgroup

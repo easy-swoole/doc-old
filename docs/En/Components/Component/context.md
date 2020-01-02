@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole 如何实现上下文管理器，以及协程上下文管理器存在的一些使用误区
   - name: keywords
-    content: EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context
+    content: swoole|swoole extension|swoole framework|EasySwoole 上下文管理|swoole 上下文管理|swoole context|协程上下文管理|协程 context
 ---
 
 # Context

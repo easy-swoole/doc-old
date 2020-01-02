@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole ORM组件,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|查询
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM|查询
 ---
 
 
@@ -73,3 +73,11 @@ $result = $model->lastQueryResult();
 // 总条数
 $total = $result->getTotalCount();
 ```
+
+## 快速查询
+
+- column(string $column) 快速查询结果的某一列
+- scalar(string $column) 快速查询结果的某一列的第一条数据
+- indexBy(string $column) 以某个字段名的数据返回结果数组
+
+> 用法参见单元测试  https://github.com/easy-swoole/orm/pull/62/files  后续补充完整

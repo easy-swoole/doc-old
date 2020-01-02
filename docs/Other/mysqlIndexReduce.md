@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Mysql索引降维
   - name: keywords
-    content: easyswoole|Mysql索引降维
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Mysql索引降维
 ---
 ## Mysql索引降维
 很多人都知道，mysql有索引这个概念，但是却很少去较真，如何利用索引去对数据降维，以提高查询速度。

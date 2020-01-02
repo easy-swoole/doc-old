@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole Pressure measurement result
   - name: keywords
-    content: easyswoole,Pressure measurement result
+    content: swoole|swoole extension|swoole framework|easyswoole,Pressure measurement result
 ---
 
 # Pressure measurement result

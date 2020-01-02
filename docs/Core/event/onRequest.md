@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 收到请求事件
   - name: keywords
-    content: EasySwoole|swoole|onRequest
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|swoole|onRequest
 ---
 ## 收到请求事件
 
