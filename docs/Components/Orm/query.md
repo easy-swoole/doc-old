@@ -76,8 +76,53 @@ $total = $result->getTotalCount();
 
 ## 快速查询
 
-- column(string $column) 快速查询结果的某一列
-- scalar(string $column) 快速查询结果的某一列的第一条数据
-- indexBy(string $column) 以某个字段名的数据返回结果数组
+获取查询结果某一列的值，如果 `$column` 为空，则会返回查询结果的第一列
+- column(?string $column = null): ?array
 
-> 用法参见单元测试  https://github.com/easy-swoole/orm/pull/62/files  后续补充完整
+获取查询结果某一列第一行的值，如果 `$column` 为空，则会返回查询结果的第一列第一行的值
+- scalar(?string $column = null): ?array
+
+获取结果并使用某一列的作为索引
+- indexBy(string $column): ?array
+
+```php
+$nameList = UserListModel::create()->column('name');
+/*
+会返回类似这样的数组
+[
+  'tom',
+  'tony',
+  'alex'
+  'ben'
+]
+ */
+
+$name = UserListModel::create()->scalar('name');
+$age = UserListModel::create()->limit(1)->scalar('age');
+/*
+会返回单个值
+$name = 'tom';
+$age = 12;
+*/
+
+$userList = UserListModel::create()->indexBy('age');
+/*
+会返回类似这样的数组
+[
+  '12' => [
+    'tom',
+    'tony'
+  ],
+  '13' => [
+    'alex',
+  ]
+  '14' => [
+    'ben',
+  ]
+]
+ */
+```
+
+> `column`，`scalar`，`indexBy` 这三个方法都是对 `all` 方法的封装。
+`scalar` 方法只是返回查询结果当中的某一列第一行的值， 条件语句中不会自动加上 LIMIT 1 条件。
+`column`，`scalar`，`indexBy` 这三个方法在获取数据失败时会返回 `null` ，获取数据失败时不一定查询失败，也可能返回的数据里没有对应的列名
