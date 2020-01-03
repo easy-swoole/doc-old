@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
   - name: keywords
-    content: EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole 模板引擎|swoole 模板引擎|swoole 模板渲染|swoole|swoole框架
 ---
 
 # 模板引擎

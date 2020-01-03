@@ -1,10 +1,10 @@
 ---
-title: 服务管理
+title: Service management
 meta:
   - name: description
-    content: EasySwoole服务管理,服务启动,停止等
+    content: Easysoole service management, service start, stop, etc
   - name: keywords
-    content: EasySwoole 服务管理|swoole 服务管理|swoole 服务|EasySwoole 服务
+    content: swoole|swoole extension|swoole framework|EasySwoole service management|swoole servicemanagement|swoole service|EasySwoole service
 ---
 
 # ServerManager

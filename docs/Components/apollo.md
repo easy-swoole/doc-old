@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole apollo配置中心
   - name: keywords
-    content: easyswoole|apollo
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|apollo
 ---
 # apollo配置中心
 EasySwoole实现了对apollo数据中心的支持.可根据该组件,进行同步配置

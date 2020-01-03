@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole提供了一个轻量级的注解解析工具
   - name: keywords
-    content: EasySwoole|Annotation
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|Annotation
 ---
 ## Annotation
 Easyswoole提供了一个轻量级的注解解析工具。

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Http service
   - name: keywords
-    content: easyswoole|Http service
+    content: swoole|swoole extension|swoole framework|easyswoole|Http service
 ---
 
 # Http service

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole basic development example, teach you how to implement an api interface website with easyswoole
   - name: keywords
-    content: Easyswoole|swoole extension|swoole framework|php coroutine framework
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
 # Basic development example
 ## Demo address

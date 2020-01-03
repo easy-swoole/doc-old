@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole环境要求
 meta:
   - name: description
     content: EasySwoole的基础环境要求与swoole的安装
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole 扩展|swoole框架|swoole
 ---
 
 # 环境要求
@@ -48,7 +48,7 @@ meta:
     ![](/resources/authWx.png)
     
 - [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+    您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
   - 文档和社区的建设和维护

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Implementing RPC Custom Registration Center in EasySwoole
   - name: keywords
-    content: Easyswoole|Rpc Service Registration Center|swoole RPC|RPC
+    content: swoole|swoole extension|swoole framework|Easyswoole|Rpc Service Registration Center|swoole RPC|RPC
 ---
 
 # EasySwoole RPC Custom Registration Center

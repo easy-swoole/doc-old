@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 单例模式
   - name: keywords
-    content: easyswoole|单例模式
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|单例模式
 ---
 # 单例
 单例模式确保类在全局只能有一个实例，因为它的实例是由自己保存，在类的外部也无法对该类进行实例化。  

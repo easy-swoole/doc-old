@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole协程环境
 meta:
   - name: description
     content: swoole,easyswoole协程介绍
   - name: keywords
-    content: easyswoole 协程|swoole 协程|协程
+    content: swoole|swoole 拓展|swoole 框架|easyswoole 协程|php 协程|swoole
 ---
 
 # 协程

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole SplBean
   - name: keywords
-    content: easyswoole,SplBean
+    content: swoole|swoole 拓展|swoole 框架|easyswoole,SplBean
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole verification code component, can be customized to generate QR code graphics or base64 encoding.
   - name: keywords
-    content: easyswoole|Verification code|Swoole verification code
+    content: swoole|swoole extension|swoole framework|easyswoole|Verification code|Swoole verification code
 ---
 
 ## Verification code generation

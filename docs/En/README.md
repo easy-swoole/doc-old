@@ -1,4 +1,7 @@
 ---
+meta:
+  - name: keywords
+    content: easySwoole|swoole|swoole framework|swoole websocket|swoole coroutine
 home: true
 heroSvg: /resources/hero.svg
 heroImage: /resources/hero.png

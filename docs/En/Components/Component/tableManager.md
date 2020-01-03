@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole has a basic package for Swoole table for shared memory
   - name: keywords
-    content: easyswoole|TableManager|Swoole Table
+    content: swoole|swoole extension|swoole framework|easyswoole|TableManager|Swoole Table
 ---
 
 # TableManager

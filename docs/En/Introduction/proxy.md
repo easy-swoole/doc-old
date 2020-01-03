@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Agent for swoole server service through apache, nginx, etc.
   - name: keywords
-    content: Easyswoole|swoole service agent|service agent
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole service agent|service agent
 ---
 # Proxy
 Since Swoole Server does not support HTTP protocol, it is recommended to use EasySwoole as a backend service and add NGINX or APACHE as a proxy on the front end. Add forwarding rules by referring to the following example.

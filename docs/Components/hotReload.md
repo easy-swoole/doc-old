@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 方便的热重载组件，在Linux环境下使用Inotify，其他环境或虚拟机内使用iNode脏检测扫描实现开发过程中的代码热重载，可自定义重载处理逻辑，由于可以自定义，也可以作为一个方便的文件变更事件触发器使用，在文件变更时执行一些逻辑
   - name: keywords
-    content: 热重载监视器|hot-reload|iNode
+    content: swoole|swoole 拓展|swoole 框架|热重载监视器|hot-reload|iNode
 ---
 
 # hot-reload

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 主要讲述php如何用swoole拓展进行异步任务投递，以及常见的swoole异步任务报错问题
   - name: keywords
-    content: EasySwoole异步任务|swoole异步|swoole异步进程
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole异步任务|swoole异步|swoole异步进程
 ---
 # task组件
 3.3.0版本的EasySwoole异步任务抛弃了swoole的原生task,采用独立组件实现实现.

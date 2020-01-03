@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 微服务基础的概念科普
   - name: keywords
-    content: easyswoole|微服务
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|微服务
 ---
 # 微服务
 

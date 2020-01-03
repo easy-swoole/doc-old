@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Redis connection pool example,reids,Easyswoole connection pool
   - name: keywords
-    content: easyswoole|redis|swoole redis|Redis connection pool
+    content: swoole|swoole extension|swoole framework|easyswoole|redis|swoole redis|Redis connection pool
 ---
 
 ## Redis connection pool example

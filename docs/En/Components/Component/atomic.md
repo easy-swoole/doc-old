@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Atomic
   - name: keywords
-    content: easyswoole|Atomic|Atomic counter
+    content: swoole|swoole extension|swoole framework|easyswoole|Atomic|Atomic counter
 ---
 
 # Atomic

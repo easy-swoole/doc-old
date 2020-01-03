@@ -1,20 +1,21 @@
 ---
-title: Crontab计划任务
+title: Crontab planning task
+
 meta:
   - name: description
-    content: Crontab 是linux系统中自带的定时器，本文主要讲述php如何在不依赖运维的情况下，利用swoole实现 crontab定时器解析规则
+    content: Crontab is a timer in Linux system. This paper mainly talks about how PHP implements crontab timer resolution rules by using swoole without relying on operation and maintenance
   - name: keywords
-    content: Easyswoole Crontab|swoole crontab|swoole定时任务|php 定时
+    content: swoole|swoole extension|swoole framework|Easyswoole Crontab|swoole crontab|Swoole scheduled tasks|php timing
 ---
 
-# Crontab 定时器
-EasySwoole支持用户根据Crontab规则去添加定时器。时间最小粒度是1分钟。
+# Crontab timer
+Easysoole supports users to add timers according to crontab rules. The minimum granularity of time is 1 minute.
 
-## 实现原理
-在主进程中，注册好各个任务规则和回调，服务启动后，在自定义进程内，通过定时器检测有没有待执行任务，若有则投递给异步进程异步执行。
-解析规则可以参考https://github.com/dragonmantank/cron-expression 实现。
+## Realization principle
+In the main process, each task rule and callback are registered. After the service is started, in the user-defined process, the timer is used to detect whether there is a task to be executed. If there is one, it is delivered to the asynchronous process for asynchronous execution.
+The resolution rules can be referred to https://github.com/dragonmantank/cron-expression 。
 
-## 示例代码
+## Sample code
 EasySwooleEvent.php中
 use EasySwoole\EasySwoole\Crontab\Crontab;
 ```php
@@ -22,17 +23,15 @@ use EasySwoole\EasySwoole\Crontab\Crontab;
     public static function mainServerCreate(EventRegister $register)
     {
         // TODO: Implement mainServerCreate() method.
-        /**
-         * **************** Crontab任务计划 **********************
-         */
-        // 开始一个定时任务计划 
+        
+        // Start a scheduled task plan 
         Crontab::getInstance()->addTask(TaskOne::class);
-        // 开始一个定时任务计划 
+        // Start a scheduled task plan 
         Crontab::getInstance()->addTask(TaskTwo::class);
     }
 ```
 
-## 任务定义 3.3.0版本后
+## After task definition version 3.3.0
 ```php
 
 namespace App;
@@ -105,7 +104,7 @@ class TaskTwo extends AbstractCronTask
 }
 ```
 
-## 任务定义 3.3.0版本前
+## Before task definition version 3.3.0
 
 
 ```php
@@ -128,21 +127,21 @@ class TaskOne extends AbstractCronTask
     public static function getRule(): string
     {
         // TODO: Implement getRule() method.
-        // 定时周期 （每小时）
+        // Timing period (per hour)
         return '@hourly';
     }
 
     public static function getTaskName(): string
     {
         // TODO: Implement getTaskName() method.
-        // 定时任务名称
+        // Scheduled task name
         return 'taskOne';
     }
 
     static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags=null)
     {
         // TODO: Implement run() method.
-        // 定时任务处理逻辑
+        // Timed task processing logic
         var_dump('run once per hour');
     }
 }
@@ -170,28 +169,28 @@ class TaskTwo extends AbstractCronTask
     public static function getRule(): string
     {
         // TODO: Implement getRule() method.
-        // 定时周期 （每两分钟一次）
+        // Timing cycle (every two minutes)
         return '*/2 * * * *';
     }
 
     public static function getTaskName(): string
     {
         // TODO: Implement getTaskName() method.
-        // 定时任务名称
+        // Scheduled task name
         return 'taskTwo';
     }
 
     static function run(\swoole_server $server, int $taskId, int $fromWorkerId,$flags=null)
     {
         // TODO: Implement run() method.
-        // 定时任务处理逻辑
+        // Timed task processing logic
         var_dump('run once every two minutes');
     }
 }
 
 ```
 
-cron通用表达式规则如下：
+The general expression rules of cron are as follows：
 ```
 
     *    *    *    *    *
@@ -205,12 +204,12 @@ cron通用表达式规则如下：
     +------------------------- min (0 - 59)
 ```
 
-cron特殊表达式有以下几个：
+Cron special expressions are as follows：
 ``` text
-@yearly                    每年一次 等同于(0 0 1 1 *) 
-@annually                  每年一次 等同于(0 0 1 1 *)
-@monthly                   每月一次 等同于(0 0 1 * *) 
-@weekly                    每周一次 等同于(0 0 * * 0) 
-@daily                     每日一次 等同于(0 0 * * *) 
-@hourly                    每小时一次 等同于(0 * * * *)
+@yearly                    Once a year is equivalent to(0 0 1 1 *) 
+@annually                  Once a year is equivalent to((0 0 1 1 *)
+@monthly                   Once a month is equivalent to(0 0 1 * *) 
+@weekly                    Once a week is equivalent to(0 0 * * 0) 
+@daily                     Once a day is equivalent to(0 0 * * *) 
+@hourly                    Once an hour is equivalent to(0 * * * *)
 ```

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: The Database Definition Language (DDL) is a language used to describe real-world entities to be stored in a database. Easyswoole provides a DDL library that is easy for users to define a database table structure.
   - name: keywords
-    content: Easyswoole|DDL|database statement generation|sql DDL
+    content: swoole|swoole extension|swoole framework|Easyswoole|DDL|database statement generation|sql DDL
 ---
 
 # DDL

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole installation, Composer installation EasySwoole, swoole quick start
   - name: keywords
-    content: Easyswoole|swoole extension|swoole framework|php coroutine framework
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole extension|swoole framework|php coroutine framework
 ---
 
 
@@ -124,4 +124,3 @@ At this point you can visit `http://localhost:9501` to see the welcome page of t
     }
   }
 </script>
-  

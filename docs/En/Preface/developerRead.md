@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole developers read, notes, process isolation, coroutine issues
   - name: keywords
-    content: Easyswoole|Swoole development considerations
+    content: swoole|swoole extension|swoole framework|Easyswoole|Swoole development considerations
 ---
 
 # Developer reading

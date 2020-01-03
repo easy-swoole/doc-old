@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 验证器|swoole 参数验证器
   - name: keywords
-    content: EasySwoole 验证器|swoole 参数验证器
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole 验证器|swoole 参数验证器
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole SplArray
   - name: keywords
-    content: easyswoole,SplArray
+    content: swoole|swoole extension|swoole framework|easyswoole,SplArray
 ---
 
 ## SplArray related methods

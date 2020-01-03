@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Easyswoole is fully compatible with PSR7 Http Message Interface Specification
   - name: keywords
-    content: easyswoole|PSR7
+    content: swoole|swoole extension|swoole framework|easyswoole|PSR7
 ---
 
 #PSR-7 Http Message

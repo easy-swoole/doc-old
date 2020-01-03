@@ -1,10 +1,10 @@
 ---
-title: swoole代理方案
+title: Easyswoole 静态资源反向代理
 meta:
   - name: description
-    content: 通过apache,nginx等对swoole server服务的代理
+    content: 通过apache,nginx等对swoole 实现静态资源反向代理处理
   - name: keywords
-    content: easyswoole|swoole 服务代理|服务代理
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole 反向代理|swoole|swoole 静态资源处理
 ---
 # Proxy
 由于 Swoole Server 对 HTTP 协议的支持并不完整，建议仅将 EasySwoole 作为后端服务，并且在前端增加 NGINX 或 APACHE 作为代理，参照下面的例子添加转发规则
@@ -64,7 +64,7 @@ server {
      ![](/resources/authWx.png)
     
 - [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+    您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
   - 文档和社区的建设和维护

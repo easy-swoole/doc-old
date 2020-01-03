@@ -4,7 +4,7 @@ meta:
   - name: description
     content: RPC server implementation in EasySwoole
   - name: keywords
-    content: Easyswoole|Rpc server | swoole RPC
+    content: swoole|swoole extension|swoole framework|Easyswoole|Rpc server | swoole RPC
 ---
 
 

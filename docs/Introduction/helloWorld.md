@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole helloworld入门教程
 meta:
   - name: description
     content: EasySwoole hello world开发示例
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: swoole|swoole 拓展|swoole 框架|easyswoole入门教程|swoole 扩展|swoole框架|swoole|swoole 入门教程
 ---
 
 # Hello World

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole singleton mode
   - name: keywords
-    content: Easyswoole|singleton mode
+    content: swoole|swoole extension|swoole framework|Easyswoole|singleton mode
 ---
 # Single case
 The singleton pattern ensures that a class can only have one instance globally, because its instances are saved by itself and cannot be instantiated outside of the class.  
