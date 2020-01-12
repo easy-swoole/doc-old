@@ -175,6 +175,13 @@ class Index extends BaseController
 }
 ```
 
+## 投递返回值
+任务投递之后,会返回一个是否投递成功的返回值,有以下几种情况:
+- 1 投递成功(异步任务专属,同步直接返回return值)
+- -1 task进程繁忙,投递失败(已经到达最大运行数量maxRunningNum)
+- -2 投递数据解包失败,当投递数据传输时数据异常时会报错,此错误为组件底层错误,一般不会出现
+- -3 任务出错(该任务执行时出现异常错误,被组件拦截并输出错误)
+
 
 # 异步任务-3.3.0版本以下
 
@@ -388,3 +395,5 @@ static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
  */
 static function barrier(array $taskList, $timeout = 0.5)
 ```
+
+

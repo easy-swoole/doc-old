@@ -73,10 +73,10 @@ go(function () {
     $redisCluster->set('a', 1);
 
     //invoke方式获取连接
-    \EasySwoole\RedisPool\Redis::invoker('redis', function (\EasySwoole\Redis\Redis $redis) {
+    \EasySwoole\RedisPool\Redis::invoke('redis', function (\EasySwoole\Redis\Redis $redis) {
         var_dump($redis->set('a', 1));
     });
-    \EasySwoole\RedisPool\Redis::invoker('redisCluster', function (\EasySwoole\Redis\Redis $redis) {
+    \EasySwoole\RedisPool\Redis::invoke('redisCluster', function (\EasySwoole\Redis\Redis $redis) {
         var_dump($redis->set('a', 1));
     });
 
