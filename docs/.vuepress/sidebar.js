@@ -213,6 +213,23 @@ const sidebarCn = [
         ]
     },
     {
+        title: '基础使用',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/BaseUsage/serverManager', 'Swoole实例'],
+            ['/BaseUsage/customCommand', '自定义命令'],
+            ['/Components/Component/process', '自定义进程'],
+            ['/BaseUsage/event', '自定义事件'],
+            ['/Components/task', 'Task 异步任务'],
+            ['/Components/Component/timer', 'Timer 定时器'],
+            ['/BaseUsage/crontab', 'Crontab 计划任务'],
+            ['/BaseUsage/log', '日志处理'],
+            ['/Components/phpunit', '单元测试'],
+            ['/Components/console', '远程控制台'],
+        ]
+    },
+    {
         title: 'HTTP服务',
         collapsable: true,
         sidebarDepth: 0,
@@ -670,7 +687,15 @@ const sidebarCn = [
             ['/Other/chromeHeadless', 'ChromeHeadless'],
             ['/Other/graphQL', 'GraphQL'],
         ]
-    }
+    },
+    {
+        title: '开源项目推荐',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/OpenSource/xlsWriter', 'xlsWriter-excel解析项目'],
+        ]
+    },
 ];
 const sidebarEn = [
   {
