@@ -72,7 +72,7 @@ return [
             ],
         ];
 ```  
-::: waring
+::: warning  
     注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
 :::
 
@@ -99,7 +99,7 @@ class Index extends BaseController
     }
 }
 ```
-::: waring
+::: warning  
  `EasySwoole\EasySwoole\Task\TaskManager` 是EasySwoole的全局task管理对象,可以直接通过单例,在框架启动后的任意位置调用它进行任务投递
 :::
 
@@ -186,12 +186,12 @@ class Index extends BaseController
 # 异步任务-3.3.0版本以下
 
 
-::: warning 
+::: warning  
  参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 :::
 
 
-::: warning 
+::: warning  
  异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
 :::
 
