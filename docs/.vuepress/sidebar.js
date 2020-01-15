@@ -667,6 +667,7 @@ const sidebarCn = [
             ['/Article/learnSwoole', '如何学习swoole'],
             ['/Article/swooleIpLimit', 'swoole如何对ip限制访问频率'],
             ['/Article/degradedService', '微服务开发中的服务限流与降级'],
+            ['/Article/websocket', 'websocket'],
         ]
     },
     {
