@@ -39,6 +39,10 @@ var_dump($lastResult->getResultColumn(string $column));
 var_dump($lastResult->getResultScalar(string $column));
 // 以某一个字段名为key 返回结果数组
 var_dump($lastResult->getResultIndexBy(string $column));
+
+// 以下快速获取方式在版本>=1.2.12后提供
+DbManager::getInstance()->getConnection()->defer()->lastQueryResult();
+AdminModel::defer()->lastQueryResult();
 ```
 
 :::warning

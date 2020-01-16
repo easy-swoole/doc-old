@@ -19,6 +19,12 @@ var_dump($model->all());
 var_dump($model->lastQuery());
 //打印最后执行的sql语句
 var_dump($model->lastQuery()->getLastQuery());
+
+
+// 以下快速获取方式在版本>=1.2.12后提供
+DbManager::getInstance()->getConnection()->defer()->lastQuery();
+AdminModel::defer()->lastQuery();
+
 ```
 
 ::: warning
