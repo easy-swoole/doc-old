@@ -36,3 +36,14 @@ DbManager::getInstance()->invoke(function ($client){
 - DbManager下的invoke方法 （从连接池内获取一个连接，并在闭包完成时归还连接）
 - Model的invoke方法 （注入客户端连接，不再从连接池内defer获取）
 
+## invoke中调试sql
+
+版本>=1.2.12提供特性
+
+关于lastQueryResult、lastQuery返回内容，请查看章节`模型执行结果`、`最后执行语句`
+
+```php
+$client->lastQueryResult();
+$client->lastQuery();
+```
+
