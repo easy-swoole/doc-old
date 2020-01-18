@@ -12,31 +12,23 @@ Stack trace:
   thrown in /www/easyswoole/tioncico_redis/src/Redis.php on line 2866
 
 ```
-我们只需要接管该异常即可.
-
-### 错误
-当redis 命令语法错误,授权错误时,redis客户端不会直接抛出异常,而是将返回false,需要通过 `$redis->getErrorMsg()` 来进行判断,例如:
+我们只需要接管该异常即可:
 ```php
 go(function () {
 
     $redisConfig = new \EasySwoole\Redis\Config\RedisConfig();
     $redisConfig->setAuth('easyswoole');
-
     $redis = new \EasySwoole\Redis\Redis($redisConfig);
-    $data = $redis->rawCommand(['set','a','1','1']);//多了一个参数,redis将会报语法错误
-    var_dump($redis->getErrorMsg());//redis错误信息
-    var_dump($redis->getErrorType());//redis错误类型
-    var_dump($redis->getLastSocketErrno());//tcp客户端错误号
-    var_dump($redis->getLastSocketError());//tcp客户端错误信息
-    var_dump($data);
-});
+    try{
 
-```
-输出:
-```
-string(16) "ERR syntax error"
-string(3) "ERR"
-int(0)
-string(0) ""
-bool(false)
+        $data = $redis->rawCommand(['set','a','1','1']);//多了一个参数,redis将会报语法错误
+         var_dump($data);
+
+    }catch (\EasySwoole\Redis\Exception\RedisException $exception){
+
+        var_dump($exception->getMessage());
+        var_dump($exception->getRedisErrorCode());
+        var_dump($exception->getRedisErrorMsg());
+    }
+});
 ```
