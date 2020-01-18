@@ -410,6 +410,7 @@ const sidebarCn = [
                     ['/Components/Redis/introduction', '介绍'],
                     ['/Components/Redis/install', '安装'],
                     ['/Components/Redis/config', '配置'],
+                    ['/Components/Redis/error', '错误处理'],
                     ['/Components/Redis/redis', '单机客户端'],
                     ['/Components/Redis/cluster', '集群客户端'],
                     ['/Components/Redis/rawCommand', '执行自定义命令'],
