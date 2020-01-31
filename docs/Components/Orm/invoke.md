@@ -16,7 +16,7 @@ meta:
 我们可以使用invoke方式，让ORM查询结束后马上归还资源，可以提高资源的利用率。
 
 ```php
-DbManager::getInstance()->invoke(function ($client){
+$user = DbManager::getInstance()->invoke(function ($client){
 
     $testUserModel = Model::invoke($client);
     $testUserModel->state = 1;
@@ -25,9 +25,15 @@ DbManager::getInstance()->invoke(function ($client){
     $testUserModel->addTime = date('Y-m-d H:i:s');
 
     $data = $testUserModel->save();
+    return $data;
 });
+
+var_dump($user);
 ```
 
+::: tip
+旧版本的invoke没有return值，请更新orm版本。
+:::
 
 ## 方法支持
 
@@ -35,4 +41,15 @@ DbManager::getInstance()->invoke(function ($client){
 
 - DbManager下的invoke方法 （从连接池内获取一个连接，并在闭包完成时归还连接）
 - Model的invoke方法 （注入客户端连接，不再从连接池内defer获取）
+
+## invoke中调试sql
+
+版本>=1.2.12提供特性
+
+关于lastQueryResult、lastQuery返回内容，请查看章节`模型执行结果`、`最后执行语句`
+
+```php
+$client->lastQueryResult();
+$client->lastQuery();
+```
 
