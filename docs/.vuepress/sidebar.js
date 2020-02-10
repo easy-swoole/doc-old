@@ -22,6 +22,7 @@ const sidebarCn = [
             ['/Video/base', '基础部分'],
             ['/Video/http', 'HTTP部分'],
             ['/Video/database', '数据库部分'],
+            ['/Video/orm', 'ORM'],
             ['/Video/other', '其他额外部分'],
         ]
     },
