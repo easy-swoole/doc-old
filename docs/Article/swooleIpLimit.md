@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole|swoole学习笔记|swoole Ip访问限制
   - name: keywords
-    content: easyswoole|swoole|swoole学习笔记|swoole Ip访问限制
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|swoole|swoole学习笔记|swoole Ip访问限制
 ---
 
 

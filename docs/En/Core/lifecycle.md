@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 框架生命周期
   - name: keywords
-    content: EasySwoole|swoole|框架生命周期
+    content: swoole|swoole extension|swoole framework|EasySwoole|swoole|框架生命周期
 ---
 ## 框架生命周期
 

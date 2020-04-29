@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole is a resident memory-based distributed PHP framework based on Swoole Server. It is designed for APIs and gets rid of the performance loss caused by process evoke and file loading in traditional PHP running mode.
   - name: keywords
-    content: Easyswoole|swoole framework|swoole coroutine framework|php framework
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole framework|swoole coroutine framework|php framework
 ---
 
 ```
@@ -110,7 +110,8 @@ These companies are using EasySwoole.
 - QQ exchange group
     - VIP group 579434607 (this group needs to pay 599 RMP)
     - EasySwoole official group 633921431 (full)
-    - EasySwoole official two groups 709134628
+    - EasySwoole official two groups 709134628 (full)
+    - EasySwoole official three groups 932625047
     
 - Business support:
     - QQ 291323003

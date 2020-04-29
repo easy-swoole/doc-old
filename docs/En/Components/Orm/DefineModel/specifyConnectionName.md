@@ -4,13 +4,13 @@ meta:
   - name: description
     content: Easyswoole ORM component,
   - name: keywords
-    content:  EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Specify the connection name
+    content:  swoole|swoole extension|swoole framework|EasySwoole mysql ORM|EasySwoole ORM|Swoole mysqli coroutine client|swoole ORM|Specify the connection name
 ---
 
 
 # Specify the connection name
 
-From the [Configuration Information Registration] (/En/Components/Orm/configurationRegister) section, we already know that when registering configuration information, you can specify a `connection name' for this configuration.
+From the [Configuration Information Registration](/En/Components/Orm/configurationRegister) section, we already know that when registering configuration information, you can specify a `connection name' for this configuration.
 
 
 You can specify the connection configuration to be used by the model class custom property `connectionName`. The default is `default`
@@ -28,4 +28,4 @@ Class AdminModel extends \EasySwoole\ORM\AbstractModel
 ```
 
 
-You can continue to see the [Reading and Writing Separation] (/En/Components/Orm/readWriteSeparation) section for further details on how to use different database configurations.
+You can continue to see the [Reading and Writing Separation](/En/Components/Orm/readWriteSeparation) section for further details on how to use different database configurations.

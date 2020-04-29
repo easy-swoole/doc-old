@@ -1,3 +1,11 @@
+---
+title: JWT组件
+meta:
+  - name: description
+    content: 基于EasySwoole组件实现的Kafka组件
+  - name: keywords
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Kafka|Kafka服务
+---
 # kafka
 本项目代码参考自 https://github.com/weiboad/kafka-php
 

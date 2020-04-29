@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole redis连接池组件,通过通用连接池和redis协程客户端封装实现
   - name: keywords
-    content:  EasySwoole redis|redis连接池|swoole redis|redis连接池
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole redis|redis连接池|swoole redis|redis连接池
 ---
 
 # Redis-Pool
@@ -73,10 +73,10 @@ go(function () {
     $redisCluster->set('a', 1);
 
     //invoke方式获取连接
-    \EasySwoole\RedisPool\Redis::invoker('redis', function (\EasySwoole\Redis\Redis $redis) {
+    \EasySwoole\RedisPool\Redis::invoke('redis', function (\EasySwoole\Redis\Redis $redis) {
         var_dump($redis->set('a', 1));
     });
-    \EasySwoole\RedisPool\Redis::invoker('redisCluster', function (\EasySwoole\Redis\Redis $redis) {
+    \EasySwoole\RedisPool\Redis::invoke('redisCluster', function (\EasySwoole\Redis\Redis $redis) {
         var_dump($redis->set('a', 1));
     });
 

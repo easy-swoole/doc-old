@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, Trait and singleton
   - name: keywords
-    content: Easyswoole|Trait and singleton
+    content: swoole|swoole extension|swoole framework|Easyswoole|Trait and singleton
 ---
 
 ## Trait and singleton

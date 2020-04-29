@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole,Error and exception interception
   - name: keywords
-    content:  EasySwoole|Error and exception interception|Swoole error exception
+    content:  swoole|swoole extension|swoole framework|EasySwoole|Error and exception interception|Swoole error exception
 ---
 ## Error and exception interception
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole controller description
   - name: keywords
-    content: easyswoole|Controller|Swoole api service|Swoole controller pool
+    content: swoole|swoole extension|swoole framework|easyswoole|Controller|Swoole api service|Swoole controller pool
 ---
 
 # Controller object

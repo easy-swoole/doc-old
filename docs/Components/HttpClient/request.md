@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 协程HTTPClient组件
   - name: keywords
-    content: 请求|easyswoole|协程HTTPClient|curl组件|协程curl
+    content: swoole|swoole 拓展|swoole 框架|请求|easyswoole|协程HTTPClient|curl组件|协程curl
 ---
 
 ## 请求
@@ -43,7 +43,7 @@ go(function () {
      go(function () {
          //实例化
          $client = new \EasySwoole\HttpClient\HttpClient('http://easyswoole.com');
-     
+         
          //发起一个简单get请求
          $response = $client->get();
          var_dump($response);
@@ -93,6 +93,10 @@ go(function () {
              'head1' => 'head1',
              'head2' => 'head2'
          ]);
+         
+         // 设置 basic auth 
+         $client->setBasicAuth('admin', '111111');
+
          $client->setHeader('head1', 'head1');
      
          //设置cookie

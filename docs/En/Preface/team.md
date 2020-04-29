@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Open source team, Document Maintenance Team Introduction, EasySwoole Community
   - name: keywords
-    content:  EasySwoole | EasySwoole open source team | EasySwoole Community | Document maintenance team
+    content:  swoole|swoole extension|swoole framework|EasySwoole | EasySwoole open source team | EasySwoole Community | Document maintenance team
 ---
 
 

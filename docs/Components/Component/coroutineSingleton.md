@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole 协程安全 单例模式
   - name: keywords
-    content: easyswoole|协程安全|单例模式
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|协程安全|单例模式
 ---
 
 # 协程单例

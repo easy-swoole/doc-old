@@ -4,7 +4,7 @@ meta:
   - name: description
     content: How to learn swoole|swoole pit | swoole|swoole study notes
   - name: keywords
-    content: Easyswoole|swoole|How to learn swoole|swoole pits|swoole study notes
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole|How to learn swoole|swoole pits|swoole study notes
 ---
 
 

@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 全局事件
   - name: keywords
-    content: EasySwoole|swoole|全局事件
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|swoole|全局事件
 ---
 # 全局事件
 

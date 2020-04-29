@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole Redis connection pool component, implemented by universal connection pool and redis coroutine client package
   - name: keywords
-    content:  EasySwoole redis|redis connection pool|swoole redis|redis connection pool
+    content:  swoole|swoole extension|swoole framework|EasySwoole redis|redis connection pool|swoole redis|redis connection pool
 ---
 
 # Redis-Pool

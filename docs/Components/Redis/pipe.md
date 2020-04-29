@@ -4,7 +4,7 @@ meta:
   - name: description
     content: redis协程客户端,由swoole 协程client实现,覆盖了redis 99%的方法
   - name: keywords
-    content:  EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole redis| Swoole redis协程客户端|swoole Redis|redis协程
 ---
 ## pipe管道方法
 
@@ -23,7 +23,7 @@ meta:
 :::
 
 ::: warning
-在集群中,只有execPipe命令会选中一个client发送数据,其他时候不管怎么调用都和client无关
+集群目前不支持管道模式,将会出现错误
 :::
 
 ## 实例

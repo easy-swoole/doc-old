@@ -1,10 +1,10 @@
 ---
-title: 服务管理
+title: Easyswoole服务管理
 meta:
   - name: description
     content: easyswoole的服务管理,启动服务,停止服务等
   - name: keywords
-    content: easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|easyswoole安装|easyswoole启动|easyswoole软重启|easyswoole重启
 ---
 
 # 服务管理脚本
@@ -99,7 +99,8 @@ restart是强制停止服务并重新启动,所以在生产模式下禁用,否�
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003
@@ -110,7 +111,7 @@ restart是强制停止服务并重新启动,所以在生产模式下禁用,否�
      ![](/resources/authWx.png)
     
 - [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+    您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
   - 文档和社区的建设和维护

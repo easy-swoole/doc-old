@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 基于EasySwoole组件实现的json web token
   - name: keywords
-    content: easyswoole|JWT组件
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|JWT组件
 ---
 
 ## 解码相关方法
@@ -14,7 +14,7 @@ meta:
     public function decode(?string $raw):?JwtObject
 ```
 
-获取解码状态, -1:无效，1:通过, 2:失败, 3:token过期
+获取解码状态, 1:通过, -1:无效, -2:token过期
 ```php
     public function getStatus(): int
 ```

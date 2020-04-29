@@ -4,7 +4,7 @@ meta:
   - name: description
     content: RPC cross-platform implementation in EasySwoole
   - name: keywords
-    content: Easyswoole|Rpc cross-platform|swoole RPC|RPC
+    content: swoole|swoole extension|swoole framework|Easyswoole|Rpc cross-platform|swoole RPC|RPC
 ---
 
 # Cross-platform

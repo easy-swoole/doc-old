@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole中Rpc跨平台实现
   - name: keywords
-    content: easyswoole|Rpc跨平台|swoole RPC|RPC
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Rpc跨平台|swoole RPC|RPC
 ---
 
 # 跨平台

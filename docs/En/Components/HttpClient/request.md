@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Coroutine HTTPClient component
   - name: keywords
-    content: request|easyswoole|Coroutine HTTPClient|Curl component|Coroutine curl
+    content: swoole|swoole extension|swoole framework|request|easyswoole|Coroutine HTTPClient|Curl component|Coroutine curl
 ---
 
 ## Request
@@ -95,6 +95,9 @@ go(function () {
          ]);
          $client->setHeader('head1', 'head1');
      
+         // set basic auth 
+         $client->setBasicAuth('admin', '111111');
+         
          //Set cookie
          $client->addCookies([
              'cookie1' => 'cookie1',

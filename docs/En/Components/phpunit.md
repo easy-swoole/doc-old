@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole利用phpunit进行单元测试 swoole单元测试 协程环境单元测试
   - name: keywords
-    content: EasySwoole 单元测试|swoole 单元测试|swoole phpunit
+    content: swoole|swoole extension|swoole framework|EasySwoole 单元测试|swoole 单元测试|swoole phpunit
 ---
 
 # Phpunit

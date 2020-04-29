@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Agent for swoole server service through apache, nginx, etc.
   - name: keywords
-    content: Easyswoole|swoole service agent|service agent
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole service agent|service agent
 ---
 # Proxy
 Since Swoole Server does not support HTTP protocol, it is recommended to use EasySwoole as a backend service and add NGINX or APACHE as a proxy on the front end. Add forwarding rules by referring to the following example.
@@ -52,7 +52,8 @@ After the proxy, you can get the real ip of the client through `$request->getHea
 - QQ exchange group
     - VIP group 579434607 (this group needs to pay 599 RMP)
     - EasySwoole official group 633921431 (full)
-    - EasySwoole official two groups 709134628
+    - EasySwoole official two groups 709134628 (full)
+    - EasySwoole official three groups 932625047
     
 - Business support:
     - QQ 291323003

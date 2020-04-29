@@ -4,7 +4,7 @@ meta:
   - name: description
     content: WeChat是一个基于Swoole 4.x全协程支持的微信SDK库
   - name: keywords
-    content: easyswoole|wechat|openPlatform
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|wechat|openPlatform
 ---
 
 ## 微信公众号
@@ -230,8 +230,8 @@ $buttons = [
     $snsAuthBean->getAccessToken();
     $snsAuthBean->getRefreshToken();
     
-    // 使用上面提供的 AccessToken 获取用户信息
-    $user = $jsApi->auth()->tokenToUser($snsAuthBean->getAccessToken());
+    // 使用上面提供的 $snsAuthBean对象 获取用户信息
+    $user = $jsApi->auth()->tokenToUser($snsAuthBean);
     $user->getOpenid();
     $user->getHeadimgurl();
     $user->getNickname(); 

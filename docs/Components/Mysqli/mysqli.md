@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
 ---
 
 ### GET
@@ -57,7 +57,7 @@ $builder->where('col1', 2)->orWhere('col2', 'str')->get('getTable');
 $builder->where('status', 1)->where(' (id > 10 or id <2) ')->get('getTable');
 ```
 
-#### Join
+### JOIN
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -70,7 +70,8 @@ $builder->join('table2', 'table2.col1 = getTable.col2', 'LEFT')->get('getTable')
 // join Where
 $builder->join('table2','table2.col1 = getTable.col2')->where('table2.col1', 2)->get('getTable');
 ```
-#### GroupBy Having
+
+### GROUPBY HAVING
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -92,7 +93,7 @@ $builder->groupBy('col1')->having('col1', 1, '>')->orHaving('col2', 1, '>')->get
 $builder->groupBy('col1')->having('col1', 1, '>')->having('col2', 1, '>', 'OR')->get('whereGet');
 ```
 
-#### OrderBy
+### ORDERBY
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 
@@ -104,7 +105,7 @@ $builder->where('col1',2)->orderBy('col1', 'ASC')->get('getTable');
 
 ```
 
-#### Union
+### UNION
 ```php
 use EasySwoole\Mysqli\QueryBuilder;
 

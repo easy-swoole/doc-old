@@ -4,7 +4,7 @@ meta:
   - name: description
     content: php在swoole的框架开发中，利用IOC容器来实现注入解耦
   - name: keywords
-    content: easyswoole|IOC|swoole IOC|Di注入
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|IOC|swoole IOC|Di注入
 ---
 
 

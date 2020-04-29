@@ -1,10 +1,10 @@
 ---
-title: 视频HTTP教程
+title: Easyswoole免费视频教程
 meta:
   - name: description
-    content: EasySwoole为广大新手用户专门录制了免费、开放的系列视频
+    content: EasySwoole免费视频教程
   - name: keywords
-    content: easyswoole|免费视频|php教学视频
+    content: swoole|swoole 拓展|swoole 框架|easyswoole视频|swoole视频教程|swoole免费教程
 ---
 
 ## 关于版权
@@ -38,7 +38,6 @@ meta:
  观看地址:[对象简介和池模型介绍](https://www.easyswoole.com/playVideo.html?video=aHR0cDovL3ZpZGVvLW9zcy5lYXN5c3dvb2xlLmNvbS8lRTUlODUlQTUlRTklOTclQTglRTYlOTUlOTklRTclQTglOEIxL0Vhc3lTd29vbGVDb250cm9sbGVyJUU1JUFGJUI5JUU4JUIxJUExJUU3JUFFJTgwJUU0JUJCJThCJUU1JTkyJThDJUU2JUIxJUEwJUU2JUE4JUExJUU1JTlFJThCJUU0JUJCJThCJUU3JUJCJThELm1wNA==)
 :::
 
-
-### 第三节 异常处理 约3分钟
+### [第三节 异常处理 约13分钟](http://video-oss.easyswoole.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/HTTP%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86.mp4)
 1. 介绍EasySwoole全局异常处理及接管 和自定义异常处理 Di注入
 2. 介绍HttpController onException 

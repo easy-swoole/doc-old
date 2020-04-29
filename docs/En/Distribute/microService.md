@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Microservices based concept science
   - name: keywords
-    content: Easyswoole|microservices
+    content: swoole|swoole extension|swoole framework|Easyswoole|microservices
 ---
 # Microservice
 

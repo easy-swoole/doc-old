@@ -1,10 +1,10 @@
 ---
-title: 其他视频教程
+title: Easyswoole免费视频教程
 meta:
   - name: description
-    content: EasySwoole为广大新手用户专门录制了免费、开放的系列视频
+    content: EasySwoole免费视频教程
   - name: keywords
-    content: easyswoole|免费视频|php教学视频
+    content: swoole|swoole 拓展|swoole 框架|easyswoole视频|swoole视频教程|swoole免费教程
 ---
 
 
@@ -20,8 +20,8 @@ meta:
 # 其他教程
 
 
-### 并发查询 约 5分钟
-1. 如何利用 Channel 进行并发查询 （这部分考虑放到后期做)
+### [并发查询 约 7分钟](http://video-oss.easyswoole.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/%E5%8D%8F%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%9F%A5%E8%AF%A2.mp4)
+1. 利用 协程+Channel+WaitGroup 进行并发查询
    
 ### [http上传 约5分钟](http://video-oss.easyswoole.com/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1/fileupload.mp4)
 1. 简单阐述http 上传以及 request 对象获取uploadFile对象

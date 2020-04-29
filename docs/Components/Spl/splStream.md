@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole SplStream
   - name: keywords
-    content: easyswoole,SplStream
+    content: swoole|swoole 拓展|swoole 框架|easyswoole,SplStream
 ---
 # SplStream
 

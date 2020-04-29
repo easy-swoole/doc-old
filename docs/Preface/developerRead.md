@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole开发者必读,注意事项,进程隔离,协程问题
   - name: keywords
-    content: easyswoole|Swoole开发注意事项
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|Swoole开发注意事项
 ---
 # 开发者必读
 
@@ -16,7 +16,8 @@ meta:
 - QQ交流群 
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
 
 - 商业支持：
     - QQ 291323003

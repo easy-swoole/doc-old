@@ -4,14 +4,14 @@ meta:
   - name: description
     content: EasySwoole分布式负载均衡
   - name: keywords
-    content: easyswoole|分布式|负载均衡
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|分布式|负载均衡
 ---
 # 如何实现分布式
 关于最近很多人在询问，如何利用EasySwoole做分布式负载均衡，复杂的就不讲解了，就讲解如何实现最简单的负载均衡。
 
 ## 相关知识
 
-### DNS轮训
+### DNS轮询
 
 一个域名针对多个ip A记录的解析，DNS服务器将解析请求按照A记录的顺序，逐一分配到不同的IP上，这样就完成了简单的负载均衡。
 

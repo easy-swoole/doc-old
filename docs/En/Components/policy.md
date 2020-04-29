@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole Policy
   - name: keywords
-    content: easyswoole|Policy
+    content: swoole|swoole extension|swoole framework|easyswoole|Policy
 ---
 
 # Policy

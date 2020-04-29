@@ -4,7 +4,7 @@ meta:
   - name: description
     content: WeChat是一个基于Swoole 4.x全协程支持的微信SDK库
   - name: keywords
-    content: easyswoole|wechat|openPlatform
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|wechat|openPlatform
 ---
 
 ## 微信公众号
@@ -230,8 +230,8 @@ $buttons = [
     $snsAuthBean->getAccessToken();
     $snsAuthBean->getRefreshToken();
     
-    // 使用上面提供的 AccessToken 获取用户信息
-    $user = $jsApi->auth()->tokenToUser($snsAuthBean->getAccessToken());
+    // 使用上面提供的 $snsAuthBean对象 获取用户信息
+    $user = $jsApi->auth()->tokenToUser($snsAuthBean);
     $user->getOpenid();
     $user->getHeadimgurl();
     $user->getNickname(); 
@@ -348,4 +348,37 @@ $buttons = [
 
     // 删除素材
     $materialDeleteResponse = $wechat->officialAccount()->material()->delete($uploadArticleResponse['media_id']);
+```
+#### 模板消息
+```php
+$wechat = new \EasySwoole\WeChat\WeChat();
+
+$wechat->officialAccount()->getConfig()
+    ->setAppId('setAppId')
+    ->setAppSecret('setAppSecret')
+    ->setToken('setToken');
+
+//设置所属行业(传入参数为mixed类型，返回bool)
+$wechat->officialAccount()->templateMsg()->setIndustry('1');
+//获取设置的行业信息
+$wechat->officialAccount()->templateMsg()->getIndustry();
+
+//获取模板消息列表
+$wechat->officialAccount()->templateMsg()->getPrivateTemplates();
+
+//获得模板id (传入模板库编号)
+$wechat->officialAccount()->templateMsg()->addTemplate('TM00015');
+
+//删除模板消息(传入模板id)
+$wechat->officialAccount()->templateMsg()->deletePrivateTemplate('Dyvp3-Ff0cnail_CDSzk1fIc6-9lOkxsQE7exTJbwUE');
+
+//发送模板消息(以下数据为必填数据)
+
+$templateMsg = new \EasySwoole\WeChat\Bean\OfficialAccount\TemplateMsg();
+$templateMsg->setTouser();
+$templateMsg->setAppid();
+$templateMsg->setTemplateId();
+$templateMsg->setData();
+
+$wechat->officialAccount()->templateMsg()->send($templateMsg);
 ```

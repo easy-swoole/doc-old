@@ -1,10 +1,10 @@
 ---
-title: 配置文件
+title: Easyswoole安装教程
 meta:
   - name: description
     content: EasySwoole 安装，Composer安装EasySwoole，swoole快速入门
   - name: keywords
-    content: easyswoole|swoole 扩展|swoole框架|php协程框架
+    content: swoole|swoole 拓展|swoole 框架|easyswoole安装|swoole 扩展|swoole框架|swoole
 ---
 
 
@@ -23,8 +23,10 @@ meta:
 - 目前推荐的镜像为阿里云或者梯子拉取源站
 - 在安装过程中，会释放框架的文件到项目目录，请保证项目目录有可写入权限
 - 安装完成之后，不会自动生成App目录，请自行根据Hello World章节配置
-- 不可把虚拟机共享目录作为安装目录，否则会因为权限不足无法创建socket，产生报错：`listen xxxxxx.sock fail `
-- 共享目录产生以上报错，手动在dev.php配置文件里把Temp目录改为其他路径即可
+
+
+> 注意，在部分环境下，例如win10的docker环境中，不可把虚拟机共享目录作为EasySwoole的Temp目录，否则会因为权限不足无法创建socket，产生报错：listen xxxxxx.sock fail，
+> 为此可以手动在dev.php配置文件里把Temp目录改为其他路径即可,如：'/Tmp'
 
 
 ## 切换阿里云镜像
@@ -94,7 +96,8 @@ php easyswoole start
 - QQ交流群
     - VIP群 579434607 （本群需要付费599元）
     - EasySwoole官方一群 633921431(已满)
-    - EasySwoole官方二群 709134628
+    - EasySwoole官方二群 709134628(已满)
+    - EasySwoole官方三群 932625047
     
 - 商业支持：
     - QQ 291323003
@@ -105,7 +108,7 @@ php easyswoole start
      ![](/resources/authWx.png)
     
 - [捐赠](../Preface/donation.md)
-    您的捐赠是对Swoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
+    您的捐赠是对EasySwoole项目开发组最大的鼓励和支持。我们会坚持开发维护下去。 您的捐赠将被用于:
         
   - 持续和深入地开发
   - 文档和社区的建设和维护

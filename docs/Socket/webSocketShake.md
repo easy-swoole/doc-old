@@ -4,7 +4,7 @@ meta:
   - name: description
     content: websocket自定义握手
   - name: keywords
-    content: EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole Socket|swoole socket|swoole websocket|swoole tcp|swoole udp|php websocket
 ---
 
 ### 自定义握手

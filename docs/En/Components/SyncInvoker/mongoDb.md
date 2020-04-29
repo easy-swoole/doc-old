@@ -1,13 +1,13 @@
 ---
-title: MonggoDb 协程使用
+title: MongoDb 协程使用
 meta:
   - name: description
     content: EasySwoole 提供了一个同步程序协程调用转化驱动
   - name: keywords
-    content: easyswoole|SyncInvoker MonggoDb 协程| MonggoDb 协程使用
+    content: swoole|swoole extension|swoole framework|easyswoole|SyncInvoker MongoDb 协程| MongoDb 协程使用
 ---
 
-# MonggoDb
+# MongoDb
 
 目前，MongoDB并没有提供协程版本的php客户端，只有同步阻塞版本。
 

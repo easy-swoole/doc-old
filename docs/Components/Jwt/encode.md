@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 基于EasySwoole组件实现的json web token
   - name: keywords
-    content: easyswoole|JWT组件
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|JWT组件
 ---
 
 ## 编码相关方法
@@ -26,47 +26,47 @@ meta:
 
 设置加密方式, 默认HMACSHA256
 ```php
-    public function setAlg($alg): void
+    public function setAlg($alg): self
 ```
 
 设置用户
 ```php
-    public function setAud($aud): void
+    public function setAud($aud): self
 ```
 
 设置过期时间
 ```php
-    public function setExp($exp): void
+    public function setExp($exp): self
 ```
 
 设置发布时间
 ```php
-    public function setIat($iat): void
+    public function setIat($iat): self
 ```
 
 设置发行人
 ```php
-    public function setIss(string $iss): void
+    public function setIss(string $iss): self
 ```
 
 设置jwt-id，用于标识该jwt
 ```php
-    public function setJti($jti): void
+    public function setJti($jti): self
 ```
 
 在此之前不可用
 ```php
-    public function setNbf($nbf): void
+    public function setNbf($nbf): self
 ```
 
 设置主题
 ```php
-    public function setSub($sub): void
+    public function setSub($sub): self
 ```
 
 设置其他数据
 ```php
-    public function setData($data): void
+    public function setData($data): self
 ```
 
 获取token

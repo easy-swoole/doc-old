@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Connection pool configuration
   - name: keywords
-    content: Connection pool configuration
+    content: swoole|swoole extension|swoole framework|Connection pool configuration
 ---
 
 ## Connection pool configuration

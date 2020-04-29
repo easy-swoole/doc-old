@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole Mysqli库，旨在方便用户以面向对象的形式进行数据库调用的一个库。并且为Orm组件等高级用法提供了基础支持
   - name: keywords
-    content:  EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
+    content:  swoole|swoole 拓展|swoole 框架|EasySwoole mysqli|EasySwoole ORM|Swoole mysqli协程客户端|swoole ORM
 ---
 # limit
 
@@ -26,4 +26,4 @@ function limit(int $one, ?int $two = null)
 ```
 
 - $one 若第二个参数不传，则代表取多少条数据；若第二个参数传递，则代表从第几行开始
-- $tow 可不传，若传递，则代表从$one开始，取$tow行数据
+- $two 可不传，若传递，则代表从$one开始，取$two行数据

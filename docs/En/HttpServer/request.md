@@ -4,7 +4,7 @@ meta:
   - name: description
     content: easyswoole,Life cycle
   - name: keywords
-    content: easyswoole|Life cycle
+    content: swoole|swoole extension|swoole framework|easyswoole|Life cycle
 ---
 ## Life cycle
 The Request object exists in the system in singleton mode, and is automatically created when the client HTTP request is received, until the request ends automatically. The Request object is fully compliant with all the specifications in [PSR7] (psr-7.md).

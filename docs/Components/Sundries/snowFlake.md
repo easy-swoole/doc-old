@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 雪花算法，生成唯一编号。
   - name: keywords
-    content: easyswoole|组件库|杂项工具|SnowFlake
+    content: swoole|swoole 拓展|swoole 框架|easyswoole|组件库|杂项工具|SnowFlake
 ---
 
 # 雪花算法

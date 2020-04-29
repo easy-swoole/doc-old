@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Contact easyswoole author
   - name: keywords
-    content: easyswoole | easyswoole contact us | easyswoole author
+    content: swoole|swoole extension|swoole framework|easyswoole | easyswoole contact us | easyswoole author
 ---
 # Contact author
 
@@ -19,4 +19,5 @@ meta:
 - QQ exchange group
     - VIP group 579434607 (this group needs to pay 599 RMP)
     - EasySwoole official group 633921431 (full)
-    - EasySwoole official two groups 709134628   
+    - EasySwoole official two groups 709134628 (full)
+    - EasySwoole official three groups 932625047

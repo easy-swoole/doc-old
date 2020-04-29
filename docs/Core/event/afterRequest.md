@@ -4,7 +4,7 @@ meta:
   - name: description
     content: swoole事件,请求方法结束后执行
   - name: keywords
-    content: EasySwoole|swoole事件|afterRequest
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole|swoole事件|afterRequest
 ---
 ## 请求方法结束后执行
 

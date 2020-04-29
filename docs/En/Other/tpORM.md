@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole, TP ORM usage problem
   - name: keywords
-    content: Easyswoole|TP ORM usage problem
+    content: swoole|swoole extension|swoole framework|Easyswoole|TP ORM usage problem
 ---
 ## TP ORM usage problem
 Since the swoole is running in the resident memory + coroutine environment, when using the TP ORM, the TP ORM comes with a lot of static variables, and there will be problems. The specific analysis is as follows:

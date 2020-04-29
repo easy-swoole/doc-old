@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole Distributed Load Balancing
   - name: keywords
-    content: Easyswoole|distributed|load balancing
+    content: swoole|swoole extension|swoole framework|Easyswoole|distributed|load balancing
 ---
 # How to achieve distributed
 Recently, many people are asking how to use EasySwoole for distributed load balancing. If the complexity is not explained, explain how to achieve the simplest load balancing.

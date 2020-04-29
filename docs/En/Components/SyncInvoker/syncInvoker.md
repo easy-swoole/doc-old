@@ -4,7 +4,7 @@ meta:
   - name: description
     content: EasySwoole provides a synchronization program coroutine call conversion driver
   - name: keywords
-    content: easyswoole|SyncInvoker
+    content: swoole|swoole extension|swoole framework|easyswoole|SyncInvoker
 ---
 # SyncInvoker
 

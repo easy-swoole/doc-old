@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Easyswoole provides a current limiter based on Atomic counters
   - name: keywords
-    content: easyswoole|Atomic|Current limiter
+    content: swoole|swoole extension|swoole framework|easyswoole|Atomic|Current limiter
 ---
 
 # AtomicLimit

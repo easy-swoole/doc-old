@@ -1,10 +1,10 @@
 ---
-title: 路由
+title: Easyswoole 路由
 meta:
   - name: description
-    content: easyswoole,路由,swoole 路由组件,swoole api,swoole自定义路由,restful
+    content: easyswoole路由使用
   - name: keywords
-    content: easyswoole|路由|swoole 路由组件|swoole api|swoole自定义路由|restful
+    content: swoole|swoole 拓展|swoole 框架|easyswoole路由|swoole 路由|swoole http|swoole自定义路由|swoole 框架
 ---
 
 ## 自定义路由
@@ -65,6 +65,29 @@ class Router extends AbstractRouter
 
 > 实现原理可在源码中查看
 
+### 路由分组
+
+```php
+class Router extends AbstractRouter
+{
+    function initialize(RouteCollector $routeCollector)
+    {
+        $routeCollector->addGroup('/admin',function (RouteCollector $collector){
+            $collector->addRoute('GET','/index.html',function (Request $request,Response $response){
+                $version = $request->getQueryParam('version');
+                // 这里可以根据version参数判断返回新路径
+                if($version == 1){
+                    $path = '/V1'.$request->getUri()->getPath();
+                }else{
+                    $path = '/V2'.$request->getUri()->getPath();
+                }
+                //返回新的构造的path
+                return $path;
+            });
+        });
+    }
+}
+```
 
 ### 全局模式拦截
 在Router.php加入以下代码,即可开启全局模式拦截

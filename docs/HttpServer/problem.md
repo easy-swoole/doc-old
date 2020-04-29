@@ -1,10 +1,10 @@
 ---
-title: http服务
+title: Easyswoole http服务场景问题
 meta:
   - name: description
-    content: easyswoole,如何获取客户端IP
+    content: swoole 使用常见问题
   - name: keywords
-    content: easyswoole|获取客户端IP|跨域处理
+    content: swoole|swoole 拓展|swoole 框架|swoole如何获取客户端IP|swoole如何获取RAW_POST|swoole https
 ---
 
 
@@ -59,4 +59,32 @@ var_dump($ip2);
         ]
     ],
 
+```
+## DNS Lookup resolve timeout错误
+该错误一般存在与 http客户端并发时产生,原因是dns效率慢,导致多线程获取dns时超时,包括不限于以下场景:  
+ - mysql host设置为域名形式,并且设置最小连接高于2(很难看到,一般是10才会偶尔报错)
+ - HTTPClient 多个协程同时并发
+ - csp并发编程
+等  
+::: warning
+解决方法为:   
+在并发之前,预先使用Swoole\Coroutine::gethostbyname('www.baidu.com'); 去查询一次dns ip,swoole底层才会自动缓存该ip
+:::
+ 
+例如:
+```php
+    Swoole\Coroutine::gethostbyname('www.baidu.com');
+    for ($j = 0; $j < 100; $j++) {
+        go(function () use ($j) {
+            for ($i = 0; $i < 1000; $i++) {
+                $client = new Swoole\Coroutine\Http\Client('www.baidu.com',443,true);
+                $client->get('/');
+                if (empty($client->errMsg)){
+//var_dump($client->getBody());
+                }else{
+                    var_dump($client->errMsg);
+                }
+            }
+        });
+    }
 ```

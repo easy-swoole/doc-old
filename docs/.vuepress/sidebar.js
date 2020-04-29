@@ -22,6 +22,7 @@ const sidebarCn = [
             ['/Video/base', '基础部分'],
             ['/Video/http', 'HTTP部分'],
             ['/Video/database', '数据库部分'],
+            ['/Video/orm', 'ORM'],
             ['/Video/other', '其他额外部分'],
         ]
     },
@@ -51,6 +52,125 @@ const sidebarCn = [
             ['/Introduction/demo', 'Demo'],
         ]
     },
+    // {
+    //     "title": "新手教程",
+    //     "collapsable": true,
+    //     "sidebarDepth": 1,
+    //     "children": [
+    //         ["NoobCourse/Introduction", "新手教程"], {
+    //             "title": "运行模式",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/RunMode/Introduction", "运行模式"],
+    //                 ["NoobCourse/RunMode/php-fpm", "php-fpm"], {
+    //                     "title": "php-cli",
+    //                     "collapsable": true,
+    //                     "sidebarDepth": 1,
+    //                     "children": [
+    //                         ["NoobCourse/RunMode/php-cli/Introduction", "基础介绍"]
+    //                     ]
+    //                 }
+    //             ]
+    //         }, {
+    //             "title": "网络协议",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/NetworkrPotocol/Introduction", "网络协议"],
+    //                 ["NoobCourse/NetworkrPotocol/ip", "ip"], {
+    //                     "title": "tcp",
+    //                     "collapsable": true,
+    //                     "sidebarDepth": 1,
+    //                     "children": [
+    //                         ["NoobCourse/NetworkrPotocol/tcp/tcp", "tcp"],
+    //                         ["NoobCourse/NetworkrPotocol/tcp/http", "http"],
+    //                         ["NoobCourse/NetworkrPotocol/tcp/websocket", "webSocket"]
+    //                     ]
+    //                 },
+    //                 ["NoobCourse/NetworkrPotocol/udp", "udp"],
+    //                 ["NoobCourse/NetworkrPotocol/port", "port端口"]
+    //             ]
+    //         }, {
+    //             "title": "会话管理",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/Conversation/Introduction", "会话管理"],
+    //                 ["NoobCourse/Conversation/Cookie", "cookie"],
+    //                 ["NoobCourse/Conversation/Session", "session"],
+    //                 ["NoobCourse/Conversation/token", "api/token"]
+    //             ]
+    //         }, {
+    //             "title": "linux基础",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/Linux/Introduction", "linux基础"],
+    //                 ["NoobCourse/Linux/Lnmp", "lnmp安装"],
+    //                 ["NoobCourse/Linux/Command", "命令"],
+    //                 ["NoobCourse/Linux/Process", "进程管理"],
+    //                 ["NoobCourse/Linux/Extention", "扩展安装"],
+    //                 ["NoobCourse/Linux/Port", "端口监控"],
+    //                 ["NoobCourse/Linux/Firewall", "防火墙说明"]
+    //             ]
+    //         }, {
+    //             "title": "php7.0",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/PHP/Php7", "部分新特性"]
+    //             ]
+    //         }, {
+    //             "title": "php回调/闭包",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/PHP/Callback", "回调事件"],
+    //                 ["NoobCourse/PHP/Closures", "闭包/匿名函数"]
+    //             ]
+    //         }, {
+    //             "title": "php多进程",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/PHP/Multiprocess/Introduction", "php多进程"],
+    //                 ["NoobCourse/PHP/Multiprocess/fork", "多进程开启"],
+    //                 ["NoobCourse/PHP/Multiprocess/ProcessCommunication", "进程通信"],
+    //                 ["NoobCourse/PHP/Multiprocess/ProcessSignal", "进程信号"],
+    //                 ["NoobCourse/PHP/Multiprocess/ZombieProcess", "僵尸进程"],
+    //                 ["NoobCourse/PHP/Multiprocess/OrphanProcess", "孤儿进程"],
+    //                 ["NoobCourse/PHP/Multiprocess/Deamon", "守护进程"]
+    //             ]
+    //         },
+    //         ["NoobCourse/Sync", "同步/异步"],
+    //         ["NoobCourse/Block", "阻塞/非阻塞"],
+    //         ["NoobCourse/Coroutine", "协程"], {
+    //             "title": "Swoole",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/Swoole/Start", "初识Swoole"],
+    //                 ["NoobCourse/Swoole/RunningMode", "运行机制"],
+    //                 ["NoobCourse/Swoole/Lifecycle", "生命周期"],
+    //                 ["", "常见问题"]
+    //             ]
+    //         },
+    //         ["NoobCourse/Composer", "composer使用"], {
+    //             "title": "EasySwoole",
+    //             "collapsable": true,
+    //             "sidebarDepth": 1,
+    //             "children": [
+    //                 ["NoobCourse/EasySwoole/Introduction", "EasySwoole"],
+    //                 ["NoobCourse/EasySwoole/DesignIdea", "设计理念"],
+    //                 ["NoobCourse/EasySwoole/Section", "组件说明"],
+    //                 ["NoobCourse/EasySwoole/RunSteps", "运行过程"],
+    //                 ["NoobCourse/EasySwoole/Demo", "demo"]
+    //             ]
+    //         },
+    //         ["NoobCourse/ArtOfAskingQuestions", "提问的艺术"]
+    //     ]
+    // },
     {
         title: '核心架构',
         collapsable: true,
@@ -74,6 +194,23 @@ const sidebarCn = [
             },
             ['/Components/annotation', '注解支持'],
             ['/Core/other', '其他架构体系'],
+        ]
+    },
+    {
+        title: '基础使用',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/BaseUsage/serverManager', 'Swoole实例'],
+            ['/BaseUsage/customCommand', '自定义命令'],
+            ['/Components/Component/process', '自定义进程'],
+            ['/BaseUsage/event', '自定义事件'],
+            ['/Components/task', 'Task 异步任务'],
+            ['/Components/Component/timer', 'Timer 定时器'],
+            ['/BaseUsage/crontab', 'Crontab 计划任务'],
+            ['/BaseUsage/log', '日志处理'],
+            ['/Components/phpunit', '单元测试'],
+            ['/Components/console', '远程控制台'],
         ]
     },
     {
@@ -222,12 +359,14 @@ const sidebarCn = [
                             ['/Components/Orm/DefineModel/timestamp', '自动时间戳'],
                         ]
                     },
+                    ['/Components/Orm/invoke', 'Invoke执行'],
                     ['/Components/Orm/customSqlExecution', '自定义SQL执行'],
                     ['/Components/Orm/lastResult', '模型执行结果'],
                     ['/Components/Orm/lastQuery', '最后执行语句'],
                     ['/Components/Orm/transactionOperations', '事务操作'],
                     ['/Components/Orm/readWriteSeparation', '读写分离'],
                     ['/Components/Orm/query', '查询'],
+					['/Components/Orm/quickQuery', '快捷查询'],
                     ['/Components/Orm/specialQuery', '特殊条件查询'],
                     ['/Components/Orm/add', '新增'],
                     ['/Components/Orm/delete', '删除'],
@@ -243,6 +382,7 @@ const sidebarCn = [
                         children: [
                             ['/Components/Orm/Associat/oneToOneAssociations', '一对一关联'],
                             ['/Components/Orm/Associat/oneToManyAssociations', '一对多关联'],
+                            ['/Components/Orm/Associat/preWithQuery', '关联预查询'],
                         ]
                     },
                     {
@@ -250,7 +390,8 @@ const sidebarCn = [
                         collapsable: true,
                         sidebarDepth: 0,
                         children: [
-                            ['/Components/Orm/Event/onQuery', 'onQuery'],
+                            ['/Components/Orm/Event/onQuery', '回调事件'],
+                            ['/Components/Orm/Event/model', '模型事件'],
                         ]
                     },
                 ]
@@ -270,8 +411,10 @@ const sidebarCn = [
                     ['/Components/Redis/introduction', '介绍'],
                     ['/Components/Redis/install', '安装'],
                     ['/Components/Redis/config', '配置'],
+                    ['/Components/Redis/error', '错误处理'],
                     ['/Components/Redis/redis', '单机客户端'],
                     ['/Components/Redis/cluster', '集群客户端'],
+                    ['/Components/Redis/rawCommand', '执行自定义命令'],
                     ['/Components/Redis/pool', '连接池'],
                     ['/Components/Redis/connection', '连接(connection)'],
                     ['/Components/Redis/keys', '键(keys)'],
@@ -344,6 +487,14 @@ const sidebarCn = [
                 ]
             },
             {
+                title: 'MySqli组件',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/Components/Mysqli/mysqli', '示例'],
+                ]
+            },
+            {
                 title: 'Spl组件',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
@@ -362,6 +513,7 @@ const sidebarCn = [
                 sidebarDepth: 0,
                 children: [
                     ['/Components/Pool/introduction', '介绍'],
+                    ['/Components/Pool/whyUsePool', '为什么要使用连接池'],
                     ['/Components/Pool/config', '连接池配置'],
                     ['/Components/Pool/demo', '示例'],
                     ['/Components/Pool/poolManage', '池管理器'],
@@ -390,13 +542,14 @@ const sidebarCn = [
                 ]
             },
             ['/Components/whoops', 'Whoops'],
+            ['/Components/oss', 'OSS协程客户端'],
             {
                 title: 'SyncInvoker',
-                path: '/Components/syncInvoker',
+                path: '/Components/SyncInvoker/syncInvoker',
                 collapsable: true, // 可选的, 默认值是 true,
                 sidebarDepth: 0,    // 可选的, 默认值是 1
                 children: [
-                    ['/Components/SyncInvoker/monggoDb', 'MonggoDb客户端案例'],
+                    ['/Components/SyncInvoker/mongoDb', 'MongoDb客户端案例'],
                 ]
             },
             ['/Components/tracker', '链路追踪'],
@@ -497,7 +650,7 @@ const sidebarCn = [
                     ['/Components/Rpc/service', '服务基类定义'],
                 ]
             },
-            ['/Components/consul', 'Concul客户端'],
+            ['/Components/consul', 'Consul客户端'],
             {
                 title: '配置中心',   // 必要的
                 collapsable: true, // 可选的, 默认值是 true,
@@ -516,6 +669,7 @@ const sidebarCn = [
             ['/Article/learnSwoole', '如何学习swoole'],
             ['/Article/swooleIpLimit', 'swoole如何对ip限制访问频率'],
             ['/Article/degradedService', '微服务开发中的服务限流与降级'],
+            ['/Article/websocket', 'websocket'],
         ]
     },
     {
@@ -536,7 +690,15 @@ const sidebarCn = [
             ['/Other/chromeHeadless', 'ChromeHeadless'],
             ['/Other/graphQL', 'GraphQL'],
         ]
-    }
+    },
+    {
+        title: '开源项目推荐',
+        collapsable: true,
+        sidebarDepth: 0,
+        children: [
+            ['/OpenSource/xlsWriter', 'xlsWriter-excel解析项目'],
+        ]
+    },
 ];
 const sidebarEn = [
   {
@@ -741,10 +903,15 @@ const sidebarEn = [
               ['/En/Components/Orm/DefineModel/timestamp', 'Timestamp'],
             ]
           },
+          ['/En/Components/Orm/invokeExecution', 'Invoke execution'],
           ['/En/Components/Orm/customSqlExecution', 'Custom SQL execution'],
+          ['/Components/Orm/lastResult', 'Last result'],
+          ['/Components/Orm/lastQuery', 'Last Query'],
           ['/En/Components/Orm/transactionOperations', 'Transaction operation'],
           ['/En/Components/Orm/readWriteSeparation', 'Read and write separation'],
           ['/En/Components/Orm/query', 'Inquire'],
+          ['/Components/Orm/quickQuery', 'Quick query'],
+          ['/Components/Orm/specialQuery', 'Special query'],
           ['/En/Components/Orm/add', 'Add'],
           ['/En/Components/Orm/delete', 'Delete'],
           ['/En/Components/Orm/update', 'Update'],
@@ -759,7 +926,17 @@ const sidebarEn = [
             children: [
               ['/En/Components/Orm/Associat/oneToOneAssociations', 'One-to-one association'],
               ['/En/Components/Orm/Associat/oneToManyAssociations', 'One-to-many association'],
+              ['/En/Components/Orm/Associat/preWithQuery', 'Associated pre query'],
             ]
+          },
+          {
+                title: 'Event',
+                collapsable: true,
+                sidebarDepth: 0,
+                children: [
+                    ['/En/Components/Orm/Event/onQuery', 'Callback event'],
+                    ['/En/Components/Orm/Event/model', 'Model event'],
+                ]
           },
         ]
       }
@@ -845,7 +1022,7 @@ const sidebarEn = [
         sidebarDepth: 0,
         children: [
           ['/En/Components/Component/singleton', 'Singleton'],
-          ['/Components/Component/coroutineSingleton', '协程单例'],
+          ['/En/Components/Component/coroutineSingleton', 'Coroutine Singleton'],
           ['/En/Components/Component/readyScheduler', 'Ready waiting'],
           ['/En/Components/Component/tableManager', 'Swoole Table'],
           ['/En/Components/Component/atomic', 'Atomic Counter']
@@ -900,16 +1077,26 @@ const sidebarEn = [
       ['/En/Components/whoops', 'Whoops'],
       {
         title: 'SyncInvoker',
-        path: '/En/Components/syncInvoker',
+        path: '/En/Components/SyncInvoker/syncInvoker',
         collapsable: true, // 可选的, 默认值是 true,
         sidebarDepth: 0,    // 可选的, 默认值是 1
         children: [
-          ['/En/Components/SyncInvoker/monggoDb', 'MonggoDb client case']
+          ['/En/Components/SyncInvoker/mongoDb', 'MongoDb client case']
         ]
       },
       ['/En/Components/tracker', 'Link tracking'],
       ['/En/Components/policy', 'Policy permissions'],
-      ['/En/Components/jwt', 'JWT'],
+        {
+            title: 'JWT',
+            path: '/En/Components/Jwt/introduction',
+            collapsable: true,
+            sidebarDepth: 0,
+            children: [
+                ['/En/Components/Jwt/use', 'use'],
+                ['/En/Components/Jwt/encode', 'encode'],
+                ['/En/Components/Jwt/decode', 'decode']
+            ]
+        },
       ['/En/Components/atomicLimit', 'Atomic current limiter'],
       {
         title: 'words-match',   // 必要的
@@ -956,7 +1143,7 @@ const sidebarEn = [
           ['/En/Components/Rpc/registerCenter', 'Service registry']
         ]
       },
-      ['/En/Components/consul', 'Concul client'],
+      ['/En/Components/consul', 'Consul client'],
       {
         title: 'Configuration center',   // 必要的
         collapsable: true, // 可选的, 默认值是 true,

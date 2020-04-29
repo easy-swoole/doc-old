@@ -4,7 +4,7 @@ meta:
   - name: description
     content: 主要讲述php如何用swoole拓展进行异步任务投递，以及常见的swoole异步任务报错问题
   - name: keywords
-    content: EasySwoole异步任务|swoole异步|swoole异步进程
+    content: swoole|swoole 拓展|swoole 框架|EasySwoole异步任务|swoole异步|swoole异步进程
 ---
 # task组件
 3.3.0版本的EasySwoole异步任务抛弃了swoole的原生task,采用独立组件实现实现.
@@ -72,7 +72,7 @@ return [
             ],
         ];
 ```  
-::: waring
+::: warning  
     注意EasySwoole的Temp目录不在虚拟机与宿主机共享目录下，否则会导致没有权限创建UnixSocket链接
 :::
 
@@ -99,7 +99,7 @@ class Index extends BaseController
     }
 }
 ```
-::: waring
+::: warning  
  `EasySwoole\EasySwoole\Task\TaskManager` 是EasySwoole的全局task管理对象,可以直接通过单例,在框架启动后的任意位置调用它进行任务投递
 :::
 
@@ -175,16 +175,23 @@ class Index extends BaseController
 }
 ```
 
+## 投递返回值
+任务投递之后,会返回一个是否投递成功的返回值,有以下几种情况:
+- 大于0 投递成功(异步任务专属,返回taskId,同步任务直接返回return值)
+- -1 task进程繁忙,投递失败(已经到达最大运行数量maxRunningNum)
+- -2 投递数据解包失败,当投递数据传输时数据异常时会报错,此错误为组件底层错误,一般不会出现
+- -3 任务出错(该任务执行时出现异常错误,被组件拦截并输出错误)
+
 
 # 异步任务-3.3.0版本以下
 
 
-::: warning 
+::: warning  
  参考Demo: [异步任务处理demo](https://github.com/easy-swoole/demo/tree/3.x-async)
 :::
 
 
-::: warning 
+::: warning  
  异步任务管理器类：EasySwoole\EasySwoole\Swoole\Task\TaskManager
 :::
 
@@ -388,3 +395,5 @@ static function sync($task, $timeout = 0.5, $taskWorkerId = -1)
  */
 static function barrier(array $taskList, $timeout = 0.5)
 ```
+
+

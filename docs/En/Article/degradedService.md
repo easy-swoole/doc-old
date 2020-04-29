@@ -4,7 +4,7 @@ meta:
   - name: description
     content: Why do you need downgrade and fuse protection under the microservice architecture
   - name: keywords
-    content: Easyswoole|swoole microservices|swoole downgrade|swoole fuse protection
+    content: swoole|swoole extension|swoole framework|Easyswoole|swoole microservices|swoole downgrade|swoole fuse protection
 ---
 
 # Service blown current limit and downgrade
